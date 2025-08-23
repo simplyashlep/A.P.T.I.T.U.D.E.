@@ -16,6 +16,7 @@ class JudgeAnalysisSystem {
         this.setupEventListeners();
         this.populateDropdowns();
         this.setupFilters();
+        this.initializeHeatMap();
     }
     
     loadJudgeData() {
@@ -143,10 +144,15 @@ class JudgeAnalysisSystem {
             }
         });
         
-        // Comparison tool
-        const compareBtn = document.getElementById('start-comparison');
+        // Comparison tool buttons
+        const compareBtn = document.getElementById('compare-btn');
         if (compareBtn) {
             compareBtn.addEventListener('click', () => this.startComparison());
+        }
+        
+        const clearBtn = document.getElementById('clear-comparison');
+        if (clearBtn) {
+            clearBtn.addEventListener('click', () => this.clearComparison());
         }
         
         // Judge card action buttons
@@ -158,15 +164,20 @@ class JudgeAnalysisSystem {
             }
         });
         
-        // Comparison selectors
-        ['compare-judge-1', 'compare-judge-2', 'compare-judge-3'].forEach(selectorId => {
-            const selector = document.getElementById(selectorId);
-            if (selector) {
-                selector.addEventListener('change', (e) => {
-                    this.updateComparisonSelection(selectorId, e.target.value);
-                });
-            }
-        });
+        // Heat map controls
+        const heatMapRefresh = document.getElementById('heat-map-refresh');
+        if (heatMapRefresh) {
+            heatMapRefresh.addEventListener('click', () => this.updateHeatMap());
+        }
+        
+        const heatMapMetric = document.getElementById('heat-map-metric');
+        const heatMapView = document.getElementById('heat-map-view');
+        if (heatMapMetric) {
+            heatMapMetric.addEventListener('change', () => this.updateHeatMap());
+        }
+        if (heatMapView) {
+            heatMapView.addEventListener('change', () => this.updateHeatMap());
+        }
     }
     
     populateDropdowns() {
@@ -440,20 +451,42 @@ class JudgeAnalysisSystem {
         const judge = this.judges.find(j => j.id === judgeId);
         if (judge) {
             this.comparisonJudges.push(judge);
-            this.updateComparisonSelectors();
+            this.updateComparisonPanel();
             
             // Show success message
             this.showMessage(`${judgeName} added to comparison (${this.comparisonJudges.length}/3)`);
         }
     }
     
-    updateComparisonSelectors() {
-        ['compare-judge-1', 'compare-judge-2', 'compare-judge-3'].forEach((selectorId, index) => {
-            const selector = document.getElementById(selectorId);
-            if (selector && this.comparisonJudges[index]) {
-                selector.value = this.comparisonJudges[index].id;
-            }
+    updateComparisonPanel() {
+        const selectedJudgesArea = document.getElementById('selected-judges');
+        const compareBtn = document.getElementById('compare-btn');
+        
+        if (!selectedJudgesArea) return;
+        
+        if (this.comparisonJudges.length === 0) {
+            selectedJudgesArea.innerHTML = '<p class="comparison-help">Click "Add to Compare" on judge cards to compare up to 3 judges side-by-side</p>';
+            if (compareBtn) compareBtn.disabled = true;
+            return;
+        }
+        
+        let html = '<div class="selected-judges-list">';
+        this.comparisonJudges.forEach((judge, index) => {
+            html += `
+                <div class="selected-judge">
+                    <span class="judge-info">${judge.data.name} (${judge.county.charAt(0).toUpperCase() + judge.county.slice(1)} County)</span>
+                    <button class="remove-judge" onclick="judgeSystem.removeFromComparison(${index})">&times;</button>
+                </div>
+            `;
         });
+        html += '</div>';
+        
+        selectedJudgesArea.innerHTML = html;
+        
+        // Enable compare button if we have at least 2 judges
+        if (compareBtn) {
+            compareBtn.disabled = this.comparisonJudges.length < 2;
+        }
     }
     
     updateComparisonSelection(selectorId, judgeId) {
@@ -489,16 +522,49 @@ class JudgeAnalysisSystem {
         this.displayComparison(selectedJudges);
     }
     
+    removeFromComparison(index) {
+        this.comparisonJudges.splice(index, 1);
+        this.updateComparisonPanel();
+    }
+    
+    clearComparison() {
+        this.comparisonJudges = [];
+        this.updateComparisonPanel();
+        
+        // Hide comparison results if visible
+        const comparisonResults = document.getElementById('comparison-results');
+        if (comparisonResults) {
+            comparisonResults.style.display = 'none';
+        }
+    }
+    
     displayComparison(judges) {
+        // Use the modal for comparison results
+        const comparisonModal = document.getElementById('comparison-modal');
         const comparisonContainer = document.getElementById('comparison-results');
-        if (!comparisonContainer) return;
+        
+        if (!comparisonContainer || !comparisonModal) return;
         
         const comparisonHTML = this.generateComparisonTable(judges);
         comparisonContainer.innerHTML = comparisonHTML;
-        comparisonContainer.style.display = 'block';
         
-        // Scroll to comparison
-        comparisonContainer.scrollIntoView({ behavior: 'smooth' });
+        // Show the modal
+        comparisonModal.style.display = 'block';
+        
+        // Add close functionality
+        const closeBtn = comparisonModal.querySelector('.close');
+        if (closeBtn) {
+            closeBtn.onclick = () => {
+                comparisonModal.style.display = 'none';
+            };
+        }
+        
+        // Close on outside click
+        comparisonModal.onclick = (e) => {
+            if (e.target === comparisonModal) {
+                comparisonModal.style.display = 'none';
+            }
+        };
     }
     
     generateComparisonTable(judges) {
@@ -714,6 +780,20 @@ class JudgeAnalysisSystem {
             messageEl = document.createElement('div');
             messageEl.id = 'system-message';
             messageEl.className = 'system-message';
+            messageEl.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: var(--bright-green);
+                color: var(--black);
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                z-index: 10000;
+                font-weight: 600;
+                border: 2px solid var(--black);
+                display: none;
+            `;
             document.body.appendChild(messageEl);
         }
         
@@ -724,6 +804,226 @@ class JudgeAnalysisSystem {
         setTimeout(() => {
             messageEl.style.display = 'none';
         }, 3000);
+    }
+    
+    // Heat Map Functionality
+    initializeHeatMap() {
+        this.updateHeatMap();
+    }
+    
+    updateHeatMap() {
+        const metric = document.getElementById('heat-map-metric')?.value || 'racial_disparity';
+        const view = document.getElementById('heat-map-view')?.value || 'county';
+        
+        const data = this.calculateHeatMapData(metric, view);
+        this.renderHeatMap(data, metric, view);
+        this.updateHeatMapStats(data, metric);
+    }
+    
+    calculateHeatMapData(metric, view) {
+        const data = new Map();
+        
+        this.judges.forEach(judge => {
+            let key;
+            switch (view) {
+                case 'county':
+                    key = judge.county.charAt(0).toUpperCase() + judge.county.slice(1);
+                    break;
+                case 'department':
+                    key = judge.department.charAt(0).toUpperCase() + judge.department.slice(1);
+                    break;
+                case 'risk_level':
+                    key = judge.risk.charAt(0).toUpperCase() + judge.risk.slice(1);
+                    break;
+                default:
+                    key = 'Unknown';
+            }
+            
+            if (!data.has(key)) {
+                data.set(key, {
+                    judges: [],
+                    values: [],
+                    total: 0,
+                    average: 0,
+                    riskLevel: 'low'
+                });
+            }
+            
+            const entry = data.get(key);
+            entry.judges.push(judge);
+            
+            let value = 0;
+            switch (metric) {
+                case 'racial_disparity':
+                    value = parseFloat(judge.data.racialDisparity) || 0;
+                    break;
+                case 'counsel_disparity':
+                    value = parseFloat(judge.data.counselDisparity) || 0;
+                    break;
+                case 'prison_rate':
+                    value = parseFloat(judge.data.prisonRate) || 0;
+                    break;
+                case 'reversal_rate':
+                    value = parseFloat(judge.data.appeals?.reversal_rate) || 0;
+                    break;
+            }
+            
+            entry.values.push(value);
+            entry.total += value;
+        });
+        
+        // Calculate averages and determine risk levels
+        data.forEach((entry, key) => {
+            entry.average = entry.total / entry.judges.length;
+            entry.riskLevel = this.calculateRiskLevel(entry.average, metric);
+        });
+        
+        return data;
+    }
+    
+    calculateRiskLevel(value, metric) {
+        // Define thresholds based on metric type
+        let thresholds;
+        switch (metric) {
+            case 'racial_disparity':
+            case 'counsel_disparity':
+                thresholds = { excellent: 0.5, low: 1.0, moderate: 2.0, high: 3.0 };
+                break;
+            case 'prison_rate':
+                thresholds = { excellent: 15, low: 25, moderate: 40, high: 60 };
+                break;
+            case 'reversal_rate':
+                thresholds = { excellent: 5, low: 10, moderate: 20, high: 35 };
+                break;
+            default:
+                thresholds = { excellent: 1, low: 2, moderate: 3, high: 4 };
+        }
+        
+        if (value <= thresholds.excellent) return 'excellent';
+        if (value <= thresholds.low) return 'low';
+        if (value <= thresholds.moderate) return 'moderate';
+        if (value <= thresholds.high) return 'high';
+        return 'critical';
+    }
+    
+    renderHeatMap(data, metric, view) {
+        const grid = document.getElementById('heat-map-grid');
+        if (!grid) return;
+        
+        let html = '';
+        
+        Array.from(data.entries())
+            .sort((a, b) => b[1].average - a[1].average)
+            .forEach(([key, entry]) => {
+                const formatValue = this.formatMetricValue(entry.average, metric);
+                
+                html += `
+                    <div class="heat-tile ${entry.riskLevel}" onclick="judgeSystem.filterByHeatMapTile('${view}', '${key.toLowerCase()}')">
+                        <div class="tile-label">${key}</div>
+                        <div class="tile-value">${formatValue}</div>
+                        <div class="tile-metric">${this.getMetricLabel(metric)}</div>
+                        <div class="tile-judges">${entry.judges.length} judges</div>
+                    </div>
+                `;
+            });
+        
+        if (html === '') {
+            html = '<div class="no-data">No data available for selected view</div>';
+        }
+        
+        grid.innerHTML = html;
+    }
+    
+    formatMetricValue(value, metric) {
+        switch (metric) {
+            case 'prison_rate':
+            case 'reversal_rate':
+                return `${value.toFixed(1)}%`;
+            case 'racial_disparity':
+            case 'counsel_disparity':
+                return value.toFixed(2);
+            default:
+                return value.toFixed(1);
+        }
+    }
+    
+    getMetricLabel(metric) {
+        switch (metric) {
+            case 'racial_disparity':
+                return 'Racial Disparity';
+            case 'counsel_disparity':
+                return 'Counsel Disparity';
+            case 'prison_rate':
+                return 'Prison Rate';
+            case 'reversal_rate':
+                return 'Reversal Rate';
+            default:
+                return 'Score';
+        }
+    }
+    
+    updateHeatMapStats(data, metric) {
+        const summaryEl = document.getElementById('heat-map-summary');
+        if (!summaryEl) return;
+        
+        const values = Array.from(data.values()).map(entry => entry.average);
+        const totalJudges = Array.from(data.values()).reduce((sum, entry) => sum + entry.judges.length, 0);
+        
+        const stats = {
+            total: totalJudges,
+            average: values.reduce((sum, val) => sum + val, 0) / values.length || 0,
+            highest: Math.max(...values) || 0,
+            lowest: Math.min(...values) || 0,
+            counties: data.size
+        };
+        
+        const html = `
+            <div class="stat-item">
+                <span class="stat-label">Total Judges:</span>
+                <span class="stat-value">${stats.total}</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Average ${this.getMetricLabel(metric)}:</span>
+                <span class="stat-value">${this.formatMetricValue(stats.average, metric)}</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Highest:</span>
+                <span class="stat-value">${this.formatMetricValue(stats.highest, metric)}</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Lowest:</span>
+                <span class="stat-value">${this.formatMetricValue(stats.lowest, metric)}</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Categories:</span>
+                <span class="stat-value">${stats.counties}</span>
+            </div>
+        `;
+        
+        summaryEl.innerHTML = html;
+    }
+    
+    filterByHeatMapTile(view, value) {
+        // Apply filter based on heat map tile selection
+        const filterMap = {
+            'county': 'county-filter',
+            'department': 'department-filter',
+            'risk_level': 'risk-filter'
+        };
+        
+        const filterId = filterMap[view];
+        const filterElement = document.getElementById(filterId);
+        
+        if (filterElement) {
+            filterElement.value = value;
+            this.applyFilters();
+            
+            // Scroll to judges grid
+            document.getElementById('judges-grid')?.scrollIntoView({ behavior: 'smooth' });
+            
+            // Show success message
+            this.showMessage(`Filtered by ${view}: ${value.charAt(0).toUpperCase() + value.slice(1)}`);
+        }
     }
 }
 

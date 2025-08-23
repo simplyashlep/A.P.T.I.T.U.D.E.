@@ -7,6 +7,10 @@ permalink: /bias-beacon/judges/
 <div class="bias-beacon-container">
   <h1>Oregon Judge Profiles</h1>
   
+  <div class="methodology-link">
+    <p>📊 <a href="{{ '/bias-beacon/methodology/' | relative_url }}" class="methodology-btn">View Bias Calculation Methodology</a> - Learn how our bias metrics are calculated and validated</p>
+  </div>
+  
   <div class="judges-controls">
     <div class="filter-controls">
       <select id="county-filter">
@@ -48,6 +52,57 @@ permalink: /bias-beacon/judges/
         <div class="comparison-buttons">
           <button id="compare-btn" disabled class="btn btn-primary">Compare Selected Judges</button>
           <button id="clear-comparison" class="btn btn-secondary">Clear All</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bias Heat Map Dashboard -->
+  <div class="heat-map-section">
+    <h2>🗺️ Oregon Judicial Bias Heat Map</h2>
+    <p>Visual representation of bias patterns across Oregon counties and demographic factors</p>
+    
+    <div class="heat-map-controls">
+      <div class="heat-map-filters">
+        <select id="heat-map-metric">
+          <option value="racial_disparity">Racial Disparity Score</option>
+          <option value="counsel_disparity">Counsel Disparity Score</option>
+          <option value="prison_rate">Prison Rate</option>
+          <option value="reversal_rate">Reversal Rate</option>
+        </select>
+        
+        <select id="heat-map-view">
+          <option value="county">By County</option>
+          <option value="department">By Department</option>
+          <option value="risk_level">By Risk Level</option>
+        </select>
+        
+        <button id="heat-map-refresh" class="btn btn-secondary">Update Heat Map</button>
+      </div>
+    </div>
+    
+    <div class="heat-map-container">
+      <div class="heat-map-legend">
+        <h4>📊 Bias Level Scale</h4>
+        <div class="legend-items">
+          <div class="legend-item excellent">Excellent (Low Bias)</div>
+          <div class="legend-item low">Low Risk</div>
+          <div class="legend-item moderate">Moderate Risk</div>
+          <div class="legend-item high">High Risk</div>
+          <div class="legend-item critical">Critical (High Bias)</div>
+        </div>
+      </div>
+      
+      <div id="heat-map-grid" class="heat-map-grid">
+        <!-- Dynamic heat map tiles will be generated here -->
+      </div>
+      
+      <div class="heat-map-stats">
+        <div class="stat-summary">
+          <h4>📈 Summary Statistics</h4>
+          <div id="heat-map-summary">
+            <!-- Dynamic summary statistics -->
+          </div>
         </div>
       </div>
     </div>
