@@ -1,0 +1,78 @@
+---
+layout: default
+title: Home
+---
+
+<div class="home">
+  <h1 class="page-heading">{{ site.title }}</h1>
+  
+  <p class="site-description">{{ site.description }}</p>
+
+  <div class="hero-section">
+    <h2>Welcome to the Public Accountability Project</h2>
+    <p>Promoting transparency, accountability, and informed citizenship through rigorous investigation and reporting.</p>
+  </div>
+
+  <div class="bias-beacon-spotlight">
+    <h2>🎯 Introducing: Bias Beacon</h2>
+    <p>Our comprehensive judicial bias tracker analyzes sentencing patterns across all 36 counties, revealing disparities in criminal justice decisions. Track how demographics, legal representation, and judicial backgrounds affect outcomes.</p>
+    <div class="beacon-stats">
+      <div class="beacon-stat">
+        <strong>5-10 Years</strong>
+        <span>of Court Data</span>
+      </div>
+      <div class="beacon-stat">
+        <strong>All 36</strong>
+        <span>Counties Covered</span>
+      </div>
+      <div class="beacon-stat">
+        <strong>Real Data</strong>
+        <span>Official Records</span>
+      </div>
+    </div>
+    <a href="/bias-beacon/" class="btn btn-primary btn-large">Explore Bias Beacon →</a>
+  </div>
+
+  <div class="features">
+    <div class="feature">
+      <h3>📋 Reports</h3>
+      <p>In-depth analysis and documentation of public institutions and processes.</p>
+      <a href="/reports/" class="btn">View Reports</a>
+    </div>
+    
+    <div class="feature">
+      <h3>🔍 Investigations</h3>
+      <p>Ongoing investigative work into matters of public interest.</p>
+      <a href="/investigations/" class="btn">View Investigations</a>
+    </div>
+    
+    <div class="feature">
+      <h3>📰 Latest Updates</h3>
+      <p>Stay informed with our latest findings and updates.</p>
+      <a href="/posts/" class="btn">View Posts</a>
+    </div>
+  </div>
+
+  {% if site.posts.size > 0 %}
+  <div class="recent-posts">
+    <h2>Recent Posts</h2>
+    <ul class="post-list">
+      {% for post in site.posts limit:3 %}
+      <li>
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+        <h3>
+          <a class="post-link" href="{{ post.url | relative_url }}">
+            {{ post.title | escape }}
+          </a>
+        </h3>
+        {% if post.excerpt %}
+        <p>{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    
+    <p><a href="/posts/">View all posts →</a></p>
+  </div>
+  {% endif %}
+</div>

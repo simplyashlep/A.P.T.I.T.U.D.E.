@@ -1,0 +1,611 @@
+/* Bias Beacon Styles */
+
+/* Hero Section */
+.bias-beacon-hero {
+  background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+  color: white;
+  padding: 4rem 2rem;
+  margin: 2rem -2rem;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    
+    p {
+      font-size: 1.3rem;
+      line-height: 1.7;
+      opacity: 0.95;
+    }
+  }
+}
+
+/* Tracking Metrics Grid */
+.tracking-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.metric-card {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border-left: 4px solid #3498db;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+  
+  h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    
+    li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #e9ecef;
+      color: #666;
+      
+      &:last-child {
+        border-bottom: none;
+      }
+      
+      &:before {
+        content: "→";
+        color: #3498db;
+        margin-right: 0.5rem;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+/* CTA Section */
+.cta-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.cta-item {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 2px solid #e9ecef;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    border-color: #3498db;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  }
+  
+  h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+  }
+  
+  p {
+    color: #666;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+}
+
+/* Button Styles */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  
+  &.btn-primary {
+    background: #3498db;
+    color: white;
+    
+    &:hover {
+      background: #2980b9;
+      color: white;
+      text-decoration: none;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+    }
+  }
+  
+  &.btn-secondary {
+    background: #95a5a6;
+    color: white;
+    
+    &:hover {
+      background: #7f8c8d;
+      color: white;
+      text-decoration: none;
+    }
+  }
+  
+  &.btn-outline {
+    background: transparent;
+    color: #3498db;
+    border: 2px solid #3498db;
+    
+    &:hover {
+      background: #3498db;
+      color: white;
+      text-decoration: none;
+    }
+  }
+}
+
+/* Dashboard Styles */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.stat-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border-top: 4px solid #3498db;
+  
+  .stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+  }
+  
+  .stat-label {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 0.25rem;
+  }
+  
+  .stat-period {
+    font-size: 0.9rem;
+    color: #95a5a6;
+  }
+}
+
+/* Bias Indicators */
+.bias-indicators {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.indicator-section {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  
+  h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+  }
+  
+  .placeholder {
+    color: #666;
+    font-style: italic;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    text-align: center;
+  }
+}
+
+/* Visualization Containers */
+.viz-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.viz-section {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  
+  h3 {
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+  }
+}
+
+.chart-placeholder {
+  background: #f8f9fa;
+  padding: 3rem 2rem;
+  border-radius: 8px;
+  text-align: center;
+  color: #666;
+  min-height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #dee2e6;
+}
+
+/* Search and Filter Controls */
+.search-controls, .filter-controls {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+
+.search-input, .filter-select {
+  padding: 0.75rem;
+  border: 2px solid #e9ecef;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  
+  &:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+  }
+}
+
+.search-input {
+  flex: 1;
+  min-width: 250px;
+}
+
+/* County Map */
+.county-map-container {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem 0;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.map-placeholder {
+  background: #f8f9fa;
+  padding: 4rem 2rem;
+  border-radius: 8px;
+  text-align: center;
+  border: 2px dashed #dee2e6;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.map-legend {
+  margin-top: 2rem;
+  
+  h4 {
+    margin-bottom: 1rem;
+    color: #2c3e50;
+  }
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  
+  .color-box {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.75rem;
+    border-radius: 4px;
+    
+    &.severe { background: #e74c3c; }
+    &.moderate { background: #f39c12; }
+    &.lenient { background: #27ae60; }
+  }
+}
+
+/* Rankings */
+.ranking-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+}
+
+.ranking-btn {
+  padding: 0.75rem 1rem;
+  background: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover, &.active {
+    background: #3498db;
+    color: white;
+    border-color: #3498db;
+  }
+}
+
+/* Loading Messages */
+.loading-message {
+  background: #f8f9fa;
+  padding: 3rem 2rem;
+  border-radius: 8px;
+  text-align: center;
+  color: #666;
+  border: 2px dashed #dee2e6;
+  
+  h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+  
+  em {
+    color: #95a5a6;
+    font-size: 0.9rem;
+  }
+}
+
+/* Metrics Explanation */
+.metrics-explanation {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.metric-item {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border-left: 4px solid #27ae60;
+  
+  h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  
+  p {
+    color: #666;
+    line-height: 1.6;
+  }
+}
+
+/* County Metrics Grid */
+.county-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.county-metrics-grid .metric-card {
+  border-left-color: #e67e22;
+  
+  .metric-details {
+    margin-top: 1rem;
+    
+    strong {
+      color: #2c3e50;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    
+    ul {
+      margin-top: 0.5rem;
+      
+      li:before {
+        content: "•";
+        color: #e67e22;
+      }
+    }
+  }
+}
+
+/* Filter Groups */
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  
+  label {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 0.9rem;
+  }
+}
+
+/* Download Section */
+.download-section {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 12px;
+  margin: 3rem 0;
+  text-align: center;
+  
+  h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    color: #666;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.download-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Insights Section */
+.insights-section {
+  margin: 3rem 0;
+}
+
+.insights-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.insight-item {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border-left: 4px solid #9b59b6;
+  
+  &.placeholder {
+    background: #f8f9fa;
+    border-left-color: #bdc3c7;
+  }
+  
+  h4 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    color: #666;
+    line-height: 1.6;
+  }
+}
+
+/* Methodology Section */
+.methodology-section {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 12px;
+  margin: 2rem 0;
+}
+
+.quality-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.quality-item {
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  
+  strong {
+    color: #2c3e50;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+  
+  span {
+    color: #666;
+  }
+}
+
+/* Dashboard Footer */
+.dashboard-footer {
+  background: #ecf0f1;
+  padding: 2rem;
+  border-radius: 12px;
+  margin: 3rem 0;
+  
+  p {
+    color: #2c3e50;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  strong {
+    color: #e74c3c;
+  }
+  
+  a {
+    color: #3498db;
+    text-decoration: none;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .bias-beacon-hero .hero-content h2 {
+    font-size: 2rem;
+  }
+  
+  .bias-beacon-hero .hero-content p {
+    font-size: 1.1rem;
+  }
+  
+  .tracking-metrics,
+  .stats-grid,
+  .viz-container,
+  .county-metrics-grid,
+  .insights-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .search-controls,
+  .filter-controls {
+    flex-direction: column;
+  }
+  
+  .search-input {
+    min-width: auto;
+  }
+  
+  .ranking-buttons {
+    justify-content: center;
+  }
+  
+  .download-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .quality-metrics {
+    grid-template-columns: 1fr;
+  }
+}

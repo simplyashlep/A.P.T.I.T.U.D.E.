@@ -1,0 +1,92 @@
+# Sample data structure for Bias Beacon
+# This shows the expected format for judicial bias tracking data
+
+metadata:
+  coverage_years: "2014-2024"
+  total_cases: "Loading..."
+  total_judges: "Loading..."
+  total_counties: 36
+  last_updated: "2024-08-23"
+  data_sources:
+    - "County Court Records"
+    - "State Judicial Database"
+    - "District Attorney Reports"
+
+# Sample judge structure
+judges:
+  - id: "judge_001"
+    name: "Sample Judge"
+    county: "Sample County"
+    years_active: [2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024]
+    total_cases: 1250
+    case_types:
+      felony: 480
+      misdemeanor: 620
+      drug_offenses: 150
+    sentencing_metrics:
+      avg_prison_months: 36.5
+      incarceration_rate: 0.68
+      total_prison_years: 245
+    demographic_patterns:
+      by_race:
+        white: { avg_sentence: 32.1, conviction_rate: 0.72 }
+        black: { avg_sentence: 42.3, conviction_rate: 0.78 }
+        hispanic: { avg_sentence: 38.7, conviction_rate: 0.75 }
+        other: { avg_sentence: 34.2, conviction_rate: 0.73 }
+      by_gender:
+        male: { avg_sentence: 39.2, conviction_rate: 0.76 }
+        female: { avg_sentence: 28.4, conviction_rate: 0.71 }
+    representation_impact:
+      public_defender:
+        conviction_rate: 0.81
+        avg_sentence: 41.2
+        cases: 850
+      private_attorney:
+        conviction_rate: 0.68
+        avg_sentence: 29.7
+        cases: 400
+
+# Sample county structure
+counties:
+  - name: "Sample County"
+    population: 125000
+    judges: 4
+    total_cases: 5200
+    metrics:
+      severity_index: 1.15  # Relative to state average
+      disparity_score: 2.3  # Higher = more disparity
+      consistency_rating: 0.78
+    demographics:
+      racial_composition:
+        white: 0.65
+        black: 0.18
+        hispanic: 0.12
+        other: 0.05
+
+# Key findings that will be highlighted
+key_findings:
+  - title: "Representation Disparity"
+    description: "Defendants with public defenders receive sentences averaging 28% longer than those with private attorneys for similar cases."
+    significance: "high"
+  
+  - title: "Geographic Variations"
+    description: "Sentencing severity varies by up to 45% between counties for identical crime categories."
+    significance: "high"
+  
+  - title: "Demographic Patterns"
+    description: "Statistical analysis reveals concerning disparities in sentencing patterns across demographic groups."
+    significance: "high"
+
+# Bias indicators for dashboard
+bias_indicators:
+  high_concern:
+    - "County X: 67% sentencing disparity between demographic groups"
+    - "Judge Y: 89% higher incarceration rate than county average"
+  
+  moderate_concern:
+    - "County Z: 23% variation in sentences for similar cases"
+    - "Judge W: Public defender outcomes 31% worse than private attorneys"
+  
+  best_practices:
+    - "County A: Consistent sentencing across all demographics"
+    - "Judge V: Minimal representation-based disparities"
