@@ -1,14 +1,28 @@
-/* Bias Beacon Styles */
+/* Bias Beacon Styles - Chalk Grey, Neon Hot Pink, Periwinkle Theme */
+
+/* Color Variables */
+:root {
+  --chalk-grey: #2F3031;
+  --chalk-grey-light: #4A4B4D;
+  --chalk-grey-lighter: #6B6C6E;
+  --neon-hot-pink: #FF1493;
+  --neon-hot-pink-light: #FF69B4;
+  --periwinkle: #C5C5FF;
+  --periwinkle-dark: #9999FF;
+  --periwinkle-light: #E6E6FF;
+  --white: #FFFFFF;
+  --grey-background: #F5F5F7;
+}
 
 /* Hero Section */
 .bias-beacon-hero {
-  background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
-  color: white;
+  background: linear-gradient(135deg, #2F3031 0%, #9999FF 100%);
+  color: #FFFFFF;
   padding: 4rem 2rem;
   margin: 2rem -2rem;
   text-align: center;
   border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 32px rgba(47, 48, 49, 0.2);
   
   .hero-content {
     max-width: 800px;
@@ -38,20 +52,21 @@
 }
 
 .metric-card {
-  background: #f8f9fa;
+  background: #FFFFFF;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-  border-left: 4px solid #3498db;
+  box-shadow: 0 4px 16px rgba(47, 48, 49, 0.08);
+  border-left: 4px solid #FF1493;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    box-shadow: 0 8px 24px rgba(255, 20, 147, 0.15);
+    border-left-color: #FF69B4;
   }
   
   h3 {
-    color: #2c3e50;
+    color: #2F3031;
     margin-bottom: 1rem;
     font-size: 1.3rem;
   }
@@ -71,7 +86,7 @@
       
       &:before {
         content: "→";
-        color: #3498db;
+        color: #FF1493;
         margin-right: 0.5rem;
         font-weight: bold;
       }
@@ -88,22 +103,22 @@
 }
 
 .cta-item {
-  background: white;
+  background: #FFFFFF;
   padding: 2rem;
   border-radius: 12px;
   text-align: center;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-  border: 2px solid #e9ecef;
+  box-shadow: 0 4px 16px rgba(47, 48, 49, 0.08);
+  border: 2px solid #E6E6FF;
   transition: all 0.3s ease;
   
   &:hover {
-    border-color: #3498db;
+    border-color: #FF1493;
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    box-shadow: 0 8px 24px rgba(255, 20, 147, 0.15);
   }
   
   h3 {
-    color: #2c3e50;
+    color: #2F3031;
     margin-bottom: 1rem;
     font-size: 1.4rem;
   }
@@ -127,25 +142,25 @@
   cursor: pointer;
   
   &.btn-primary {
-    background: #3498db;
-    color: white;
+    background: #FF1493;
+    color: #FFFFFF;
     
     &:hover {
-      background: #2980b9;
-      color: white;
+      background: #FF69B4;
+      color: #FFFFFF;
       text-decoration: none;
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+      box-shadow: 0 4px 12px rgba(255, 20, 147, 0.4);
     }
   }
   
   &.btn-secondary {
-    background: #95a5a6;
-    color: white;
+    background: var(--periwinkle);
+    color: var(--chalk-grey);
     
     &:hover {
-      background: #7f8c8d;
-      color: white;
+      background: var(--periwinkle-dark);
+      color: var(--white);
       text-decoration: none;
     }
   }
@@ -207,10 +222,10 @@
 }
 
 .indicator-section {
-  background: white;
+  background: var(--white);
   border-radius: 12px;
   padding: 2rem;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 16px rgba(47, 48, 49, 0.08);
   
   h3 {
     margin-bottom: 1.5rem;
@@ -236,14 +251,14 @@
 }
 
 .viz-section {
-  background: white;
+  background: var(--white);
   border-radius: 12px;
   padding: 2rem;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 16px rgba(47, 48, 49, 0.08);
   
   h3 {
     margin-bottom: 1.5rem;
-    color: #2c3e50;
+    color: var(--chalk-grey);
   }
 }
 
@@ -268,17 +283,292 @@
   flex-wrap: wrap;
 }
 
+/* Comparison Panel */
+.comparison-controls {
+  margin: 2rem 0;
+  
+  .comparison-panel-visible {
+    background: linear-gradient(145deg, #FFFFFF, #F8F9FA);
+    border: 2px solid #C5C5FF;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(197, 197, 255, 0.15);
+    
+    h3 {
+      color: #2F3031;
+      margin-bottom: 1.5rem;
+      font-size: 1.4rem;
+      text-align: center;
+    }
+    
+    .selected-judges-area {
+      min-height: 120px;
+      background: #FFFFFF;
+      border: 2px dashed #E6E6FF;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      transition: all 0.3s ease;
+      
+      .comparison-help {
+        text-align: center;
+        color: #888;
+        font-style: italic;
+        margin: 0;
+        font-size: 1rem;
+      }
+      
+      .selected-judge {
+        background: #C5C5FF;
+        color: #2F3031;
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+        margin: 0.5rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: 600;
+        
+        .remove-judge {
+          background: #FF1493;
+          color: #FFFFFF;
+          border: none;
+          border-radius: 50%;
+          width: 20px;
+          height: 20px;
+          font-size: 0.8rem;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          
+          &:hover {
+            background: #FF69B4;
+          }
+        }
+      }
+    }
+    
+    .comparison-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      
+      .btn {
+        padding: 0.875rem 2rem;
+        font-size: 1rem;
+        border-radius: 8px;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        
+        &:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+        
+        &.btn-primary {
+          background: #FF1493;
+          color: #FFFFFF;
+          
+          &:hover:not(:disabled) {
+            background: #FF69B4;
+            transform: translateY(-2px);
+          }
+        }
+        
+        &.btn-secondary {
+          background: #6B6C6E;
+          color: #FFFFFF;
+          
+          &:hover {
+            background: #4A4B4D;
+            transform: translateY(-2px);
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(47, 48, 49, 0.8);
+  backdrop-filter: blur(4px);
+  
+  &.show {
+    display: block;
+  }
+  
+  .modal-content {
+    background: #FFFFFF;
+    margin: 5% auto;
+    padding: 2rem;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 900px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 16px 64px rgba(47, 48, 49, 0.3);
+    position: relative;
+    animation: modalSlideIn 0.3s ease-out;
+    
+    &.judge-detail-content {
+      max-width: 1100px;
+    }
+    
+    .close {
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #888;
+      cursor: pointer;
+      z-index: 10;
+      
+      &:hover {
+        color: #FF1493;
+      }
+    }
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Judge Detail Modal Content */
+.detailed-judge-profile {
+  .profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #E6E6FF;
+    
+    h2 {
+      color: #2F3031;
+      margin: 0;
+      font-size: 2rem;
+    }
+    
+    .risk-badge {
+      position: static;
+      font-size: 1rem;
+      padding: 0.75rem 1.5rem;
+    }
+  }
+  
+  .profile-content {
+    .profile-section {
+      margin-bottom: 2.5rem;
+      
+      h3 {
+        color: #2F3031;
+        margin-bottom: 1.5rem;
+        font-size: 1.4rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      
+      .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        
+        .metric-card {
+          background: linear-gradient(145deg, #FC00FF, #BBFF1C);
+          padding: 1.5rem;
+          border-radius: 12px;
+          text-align: center;
+          border: 2px solid #87E6FF;
+          
+          .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #FF1493;
+            display: block;
+            margin-bottom: 0.5rem;
+          }
+          
+          .metric-label {
+            color: #666;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+          }
+        }
+      }
+    }
+  }
+  
+  .profile-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid #E6E6FF;
+    
+    button {
+      padding: 0.875rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      
+      &:first-child {
+        background: #F2F2F2;
+        color: #F2F2F2;
+        
+        &:hover {
+          background: #BBFF1C;
+        }
+      }
+      
+      &:last-child {
+        background: #0A0101;
+        color: #0A0101;
+        
+        &:hover {
+          background: #FB05FF;
+        }
+      }
+    }
+  }
+}
+
 .search-input, .filter-select {
   padding: 0.75rem;
-  border: 2px solid #e9ecef;
+  border: 2px solid #E6E6FF;
   border-radius: 6px;
   font-size: 1rem;
   transition: border-color 0.3s ease;
+  background: #FFFFFF;
   
   &:focus {
     outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+    border-color: #FF1493;
+    box-shadow: 0 0 0 3px rgba(255, 20, 147, 0.1);
   }
 }
 
@@ -289,11 +579,11 @@
 
 /* County Map */
 .county-map-container {
-  background: white;
+  background: var(--white);
   border-radius: 12px;
   padding: 2rem;
   margin: 2rem 0;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 16px rgba(47, 48, 49, 0.08);
 }
 
 .map-placeholder {
@@ -313,7 +603,7 @@
   
   h4 {
     margin-bottom: 1rem;
-    color: #2c3e50;
+    color: var(--chalk-grey);
   }
 }
 
@@ -607,5 +897,1287 @@
   
   .quality-metrics {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ======================================
+   JUDGE ANALYSIS SYSTEM STYLES
+   Comprehensive styling for judge selection,
+   search, comparison, and detailed profiles
+   ====================================== */
+
+/* Judge Controls Section */
+.judge-controls {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 12px;
+  margin: 2rem 0;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  
+  .control-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+    
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+  
+  .filter-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+  }
+  
+  label {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  
+  .judge-select, .search-input, .filter-select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    
+    &:focus {
+      outline: none;
+      border-color: #3498db;
+      box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+    }
+  }
+}
+
+/* Results Count */
+.results-count {
+  color: #666;
+  font-style: italic;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+/* Judge Comparison Tool */
+.comparison-tool {
+  background: #fff3cd;
+  border: 2px solid #ffeaa7;
+  padding: 2rem;
+  border-radius: 12px;
+  margin: 2rem 0;
+  
+  h3 {
+    color: #856404;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .comparison-selectors {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    
+    .compare-judge {
+      label {
+        font-weight: 600;
+        color: #856404;
+        margin-bottom: 0.5rem;
+        display: block;
+      }
+      
+      .compare-select {
+        width: 100%;
+        padding: 0.75rem;
+        border: 2px solid #ffeaa7;
+        border-radius: 8px;
+        background: white;
+        
+        &:focus {
+          outline: none;
+          border-color: #f39c12;
+          box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.1);
+        }
+      }
+    }
+  }
+  
+  .compare-btn {
+    background: #f39c12;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background: #e67e22;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(243, 156, 18, 0.3);
+    }
+    
+    &:disabled {
+      background: #bdc3c7;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+  }
+}
+
+/* Methodology Section */
+.methodology-section {
+  margin: 2rem 0;
+  
+  .methodology-details {
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    overflow: hidden;
+    
+    summary {
+      background: #3498db;
+      color: white;
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s ease;
+      
+      &:hover {
+        background: #2980b9;
+      }
+    }
+    
+    .methodology-content {
+      padding: 2rem;
+      background: #f8f9fa;
+      
+      h4 {
+        color: #2c3e50;
+        margin: 1.5rem 0 1rem 0;
+        
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+      
+      .score-ranges {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 0.5rem;
+        margin: 1rem 0;
+        
+        .range {
+          padding: 0.5rem 1rem;
+          border-radius: 6px;
+          font-weight: 600;
+          text-align: center;
+          font-size: 0.9rem;
+          
+          &.excellent {
+            background: #d5f4e6;
+            color: #27ae60;
+            border: 1px solid #27ae60;
+          }
+          
+          &.low {
+            background: #d1ecf1;
+            color: #17a2b8;
+            border: 1px solid #17a2b8;
+          }
+          
+          &.moderate {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffc107;
+          }
+          
+          &.high {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #dc3545;
+          }
+          
+          &.critical {
+            background: #f5c6cb;
+            color: #495057;
+            border: 1px solid #dc3545;
+            font-weight: 700;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Pulse Animation for Critical Indicators */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Judges Grid Layout */
+.judges-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  
+  @media (max-width: 768px) {
+    justify-content: center;
+    gap: 1rem;
+  }
+}
+
+/* Judges Grid Layout */
+.judges-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2.5rem;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Individual Judge Cards */
+.judge-card {
+  background: #FFFFFF;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(47, 48, 49, 0.12);
+  border: 2px solid #E6E6FF;
+  transition: all 0.4s ease;
+  overflow: hidden;
+  position: relative;
+  
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 48px rgba(47, 48, 49, 0.2);
+    border-color: #FF1493;
+  }
+  
+  /* Risk Badge */
+  .risk-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    z-index: 10;
+    
+    &.excellent {
+      background: #C5C5FF;
+      color: #2F3031;
+      border: 2px solid #9999FF;
+    }
+    
+    &.low {
+      background: #E6E6FF;
+      color: #2F3031;
+      border: 2px solid #C5C5FF;
+    }
+    
+    &.moderate {
+      background: #6B6C6E;
+      color: #FFFFFF;
+      border: 2px solid #4A4B4D;
+    }
+    
+    &.high {
+      background: #FF69B4;
+      color: #FFFFFF;
+      border: 2px solid #FF1493;
+    }
+    
+    &.critical {
+      background: #FF1493;
+      color: #FFFFFF;
+      border: 2px solid #FF1493;
+      animation: pulse-glow 2s infinite;
+    }
+  }
+  
+  /* Judge Header */
+  .judge-header {
+    padding: 2rem 2rem 1rem;
+    text-align: left;
+    
+    .judge-name {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #2F3031;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+    
+    .judge-court {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 0.25rem;
+    }
+    
+    .judge-department {
+      font-size: 0.9rem;
+      color: #888;
+      margin-bottom: 1rem;
+    }
+    
+    .specialization {
+      background: #F8F9FA;
+      padding: 0.75rem;
+      border-radius: 8px;
+      border-left: 4px solid #FF1493;
+      font-size: 0.85rem;
+      color: #555;
+      line-height: 1.4;
+      
+      strong {
+        color: #2F3031;
+      }
+    }
+  }
+  
+  /* Key Metrics */
+  .key-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    padding: 0 2rem 1rem;
+    
+    .metric-item {
+      text-align: center;
+      background: #F8F9FA;
+      padding: 1rem 0.5rem;
+      border-radius: 8px;
+      
+      .metric-value {
+        display: block;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #FF1493;
+        margin-bottom: 0.25rem;
+      }
+      
+      .metric-label {
+        font-size: 0.8rem;
+        color: #666;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+    }
+  }
+  
+  /* Bias Indicators */
+  .bias-indicators {
+    padding: 0 2rem 1rem;
+    
+    .bias-metric {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #E6E6FF;
+      
+      &:last-child {
+        border-bottom: none;
+      }
+      
+      .bias-label {
+        font-size: 0.9rem;
+        color: #666;
+        font-weight: 500;
+      }
+      
+      .bias-score {
+        font-weight: 700;
+        padding: 0.25rem 0.75rem;
+        border-radius: 12px;
+        font-size: 0.85rem;
+        
+        &.disparity-0, &.disparity-1 {
+          background: #C5C5FF;
+          color: #2F3031;
+        }
+        
+        &.disparity-2 {
+          background: #E6E6FF;
+          color: #2F3031;
+        }
+        
+        &.disparity-3, &.disparity-4 {
+          background: #FF69B4;
+          color: #FFFFFF;
+        }
+        
+        &.disparity-5 {
+          background: #FF1493;
+          color: #FFFFFF;
+        }
+      }
+    }
+  }
+  
+  /* Card Actions */
+  .card-actions {
+    padding: 1rem 2rem 2rem;
+    display: flex;
+    gap: 1rem;
+    
+    .btn {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      
+      &.btn-primary {
+        background: #FF1493;
+        color: #FFFFFF;
+        
+        &:hover {
+          background: #FF69B4;
+          transform: translateY(-2px);
+        }
+      }
+      
+      &.btn-secondary {
+        background: #C5C5FF;
+        color: #2F3031;
+        
+        &:hover {
+          background: #9999FF;
+          color: #FFFFFF;
+          transform: translateY(-2px);
+        }
+      }
+    }
+  }
+  
+  /* Risk-based card border colors */
+  &.excellent {
+    border-color: #9999FF;
+    
+    &:hover {
+      border-color: #C5C5FF;
+      box-shadow: 0 16px 48px rgba(153, 153, 255, 0.3);
+    }
+  }
+  
+  &.low {
+    border-color: #C5C5FF;
+    
+    &:hover {
+      border-color: #9999FF;
+      box-shadow: 0 16px 48px rgba(197, 197, 255, 0.3);
+    }
+  }
+  
+  &.moderate {
+    border-color: #6B6C6E;
+    
+    &:hover {
+      border-color: #4A4B4D;
+      box-shadow: 0 16px 48px rgba(107, 108, 110, 0.3);
+    }
+  }
+  
+  &.high {
+    border-color: #FF69B4;
+    
+    &:hover {
+      border-color: #FF1493;
+      box-shadow: 0 16px 48px rgba(255, 105, 180, 0.3);
+    }
+  }
+  
+  &.critical {
+    border-color: #FF1493;
+    animation: pulse-border 2s infinite;
+    
+    &:hover {
+      border-color: #FF1493;
+      box-shadow: 0 16px 48px rgba(255, 20, 147, 0.4);
+    }
+  }
+  
+  @keyframes pulse-glow {
+    0% { box-shadow: 0 0 20px rgba(255, 20, 147, 0.4); }
+    50% { box-shadow: 0 0 30px rgba(255, 20, 147, 0.8); }
+    100% { box-shadow: 0 0 20px rgba(255, 20, 147, 0.4); }
+  }
+  
+  @keyframes pulse-border {
+    0% { border-color: #FF1493; }
+    50% { border-color: #FF69B4; }
+    100% { border-color: #FF1493; }
+  }
+  
+  .judge-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  
+  .judge-title {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 0.3rem;
+  }
+  
+  .risk-level {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .judge-metrics {
+    text-align: left;
+    width: 100%;
+  }
+  
+  .metric-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.4rem;
+    font-size: 0.85rem;
+  }
+  
+  .metric-label {
+    font-weight: 600;
+  }
+  
+  .metric-value {
+    font-weight: 700;
+  }
+    
+    .risk-badge {
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      
+      &.excellent {
+        background: var(--periwinkle-light);
+        color: var(--periwinkle-dark);
+      }
+      
+      &.low {
+        background: rgba(197, 197, 255, 0.3);
+        color: var(--periwinkle);
+      }
+      
+      &.moderate {
+        background: rgba(107, 108, 110, 0.2);
+        color: var(--chalk-grey);
+      }
+      
+      &.high {
+        background: rgba(255, 105, 180, 0.2);
+        color: var(--neon-hot-pink-light);
+      }
+      
+      &.critical {
+        background: rgba(255, 20, 147, 0.2);
+        color: var(--neon-hot-pink);
+        animation: pulse 2s infinite;
+        box-shadow: 0 0 10px rgba(255, 20, 147, 0.3);
+      }
+    }
+  }
+}
+
+/* Representation Breakdown */
+.representation-breakdown {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  border: 1px solid #e9ecef;
+  
+  h4 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .rep-stats {
+    .rep-type {
+      display: grid;
+      grid-template-columns: 150px 1fr 1fr;
+      gap: 1rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid #e9ecef;
+      
+      &:last-child {
+        border-bottom: none;
+      }
+      
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
+      
+      .rep-label {
+        font-weight: 600;
+        color: #2c3e50;
+      }
+      
+      .rep-count {
+        color: #666;
+        font-size: 0.95rem;
+      }
+      
+      .rep-outcome {
+        color: #495057;
+        font-size: 0.9rem;
+        font-family: monospace;
+      }
+    }
+  }
+  
+  .disparity-alerts {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 2px solid #e9ecef;
+    
+    .disparity-item {
+      background: #fff3cd;
+      padding: 0.75rem;
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+      border: 1px solid #ffeaa7;
+      font-size: 0.9rem;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+      
+      strong {
+        color: #856404;
+      }
+    }
+  }
+}
+
+/* Judge Actions */
+.judge-actions {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 2px solid #e9ecef;
+  display: flex;
+  gap: 1rem;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+  
+  button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    
+    &.view-details-btn {
+      background: #3498db;
+      color: white;
+      
+      &:hover {
+        background: #2980b9;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+      }
+    }
+    
+    &.add-compare-btn {
+      background: #17a2b8;
+      color: white;
+      
+      &:hover {
+        background: #138496;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(23, 162, 184, 0.3);
+      }
+    }
+  }
+}
+
+/* Animations */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Dashboard Judge Selection Styles */
+.dashboard-judge-selection {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem 0;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 2px solid #e9ecef;
+  
+  .judge-selection-header {
+    margin-bottom: 2rem;
+    
+    h3 {
+      color: #2c3e50;
+      margin-bottom: 1rem;
+    }
+    
+    p {
+      color: #666;
+      line-height: 1.6;
+    }
+  }
+  
+  .judge-selection-controls {
+    .selection-row {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 2rem;
+      align-items: end;
+      
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+    }
+    
+    .judge-selector {
+      label {
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 0.5rem;
+        display: block;
+      }
+      
+      .dashboard-judge-dropdown {
+        width: 100%;
+        padding: 0.75rem;
+        border: 2px solid #e9ecef;
+        border-radius: 8px;
+        font-size: 1rem;
+        background: white;
+        
+        &:focus {
+          outline: none;
+          border-color: #3498db;
+          box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+      }
+    }
+    
+    .quick-filters {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      
+      label {
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 0.5rem;
+        display: block;
+        font-size: 0.9rem;
+      }
+      
+      .dashboard-filter {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        
+        &:focus {
+          outline: none;
+          border-color: #3498db;
+        }
+      }
+    }
+  }
+}
+
+/* Judge Dashboard Container */
+.judge-dashboard-container {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 2px solid #e9ecef;
+  
+  .judge-dashboard-analysis {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 2rem;
+    
+    .analysis-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid #e9ecef;
+      
+      @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+      
+      h4 {
+        color: #2c3e50;
+        margin: 0;
+        font-size: 1.5rem;
+      }
+      
+      .judge-meta {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        
+        .county {
+          color: #666;
+          font-weight: 600;
+        }
+        
+        .risk-badge {
+          padding: 0.4rem 0.8rem;
+          border-radius: 20px;
+          font-size: 0.8rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          
+          &.excellent {
+            background: #d5f4e6;
+            color: #27ae60;
+          }
+          
+          &.low {
+            background: #d1ecf1;
+            color: #17a2b8;
+          }
+          
+          &.moderate {
+            background: #fff3cd;
+            color: #856404;
+          }
+          
+          &.high {
+            background: #f8d7da;
+            color: #721c24;
+          }
+          
+          &.critical {
+            background: #f5c6cb;
+            color: #495057;
+          }
+        }
+      }
+    }
+    
+    .analysis-metrics {
+      margin: 2rem 0;
+      
+      .metric-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        
+        .dashboard-metric {
+          background: white;
+          padding: 1.5rem;
+          border-radius: 8px;
+          text-align: center;
+          border: 1px solid #e9ecef;
+          
+          .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #3498db;
+            margin-bottom: 0.5rem;
+          }
+          
+          .metric-label {
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+          }
+          
+          .metric-comparison {
+            color: #666;
+            font-size: 0.9rem;
+            font-style: italic;
+          }
+        }
+      }
+    }
+    
+    .analysis-charts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+      
+      .chart-section {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 8px;
+        border: 1px solid #e9ecef;
+        
+        h5 {
+          color: #2c3e50;
+          margin-bottom: 1rem;
+        }
+        
+        .mini-chart {
+          .rep-chart-bars {
+            .rep-bar {
+              margin-bottom: 1rem;
+              
+              &:last-child {
+                margin-bottom: 0;
+              }
+              
+              .rep-label {
+                font-weight: 600;
+                color: #2c3e50;
+                margin-bottom: 0.5rem;
+                display: block;
+              }
+              
+              .bar-container {
+                position: relative;
+                background: #e9ecef;
+                border-radius: 4px;
+                height: 30px;
+                overflow: hidden;
+                
+                .bar {
+                  height: 100%;
+                  background: linear-gradient(90deg, #3498db 0%, #2980b9 100%);
+                  transition: width 0.8s ease;
+                  position: relative;
+                }
+                
+                .bar-value {
+                  position: absolute;
+                  right: 10px;
+                  top: 50%;
+                  transform: translateY(-50%);
+                  color: white;
+                  font-weight: 600;
+                  font-size: 0.9rem;
+                  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+                }
+              }
+            }
+          }
+        }
+        
+        .risk-assessment {
+          .risk-factors {
+            .risk-factor {
+              padding: 0.75rem;
+              margin-bottom: 0.5rem;
+              border-radius: 6px;
+              font-size: 0.9rem;
+              
+              &:last-child {
+                margin-bottom: 0;
+              }
+              
+              &.excellent {
+                background: #d5f4e6;
+                color: #27ae60;
+                border: 1px solid #27ae60;
+              }
+              
+              &.low {
+                background: #d1ecf1;
+                color: #17a2b8;
+                border: 1px solid #17a2b8;
+              }
+              
+              &.moderate {
+                background: #fff3cd;
+                color: #856404;
+                border: 1px solid #ffc107;
+              }
+              
+              &.high {
+                background: #f8d7da;
+                color: #721c24;
+                border: 1px solid #dc3545;
+              }
+              
+              &.critical {
+                background: #f5c6cb;
+                color: #495057;
+                border: 1px solid #dc3545;
+                font-weight: 600;
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    .analysis-actions {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 2px solid #e9ecef;
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      
+      @media (max-width: 768px) {
+        flex-direction: column;
+      }
+      
+      button {
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        
+        &.view-full-profile {
+          background: #3498db;
+          color: white;
+          
+          &:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+          }
+        }
+        
+        &.add-to-compare {
+          background: #17a2b8;
+          color: white;
+          
+          &:hover {
+            background: #138496;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(23, 162, 184, 0.3);
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Case Type Analysis */
+.case-type-analysis {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem 0;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  border: 2px solid #e9ecef;
+  
+  .case-type-header {
+    margin-bottom: 2rem;
+    
+    h3 {
+      color: #2c3e50;
+      margin-bottom: 1rem;
+    }
+    
+    p {
+      color: #666;
+      line-height: 1.6;
+    }
+  }
+  
+  .case-type-selector {
+    margin-bottom: 2rem;
+    
+    label {
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    
+    .case-type-dropdown {
+      padding: 0.75rem;
+      border: 2px solid #e9ecef;
+      border-radius: 8px;
+      font-size: 1rem;
+      background: white;
+      min-width: 250px;
+      
+      &:focus {
+        outline: none;
+        border-color: #3498db;
+        box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+      }
+    }
+  }
+  
+  .case-type-results {
+    .case-type-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      
+      .case-type-metric {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: 8px;
+        border: 1px solid #e9ecef;
+        
+        .metric-header {
+          font-weight: 600;
+          color: #2c3e50;
+          margin-bottom: 1rem;
+          text-align: center;
+        }
+        
+        .metric-visualization {
+          .mini-chart-container {
+            .mini-bars {
+              display: flex;
+              align-items: end;
+              justify-content: space-between;
+              height: 100px;
+              gap: 5px;
+              margin-bottom: 1rem;
+              
+              .mini-bar {
+                flex: 1;
+                background: linear-gradient(to top, #3498db 0%, #5dade2 100%);
+                border-radius: 4px 4px 0 0;
+                position: relative;
+                min-height: 20px;
+                transition: all 0.3s ease;
+                
+                &:hover {
+                  background: linear-gradient(to top, #2980b9 0%, #3498db 100%);
+                  transform: translateY(-2px);
+                }
+                
+                .bar-value {
+                  position: absolute;
+                  top: -25px;
+                  left: 50%;
+                  transform: translateX(-50%);
+                  font-size: 0.8rem;
+                  font-weight: 600;
+                  color: #2c3e50;
+                  background: white;
+                  padding: 2px 4px;
+                  border-radius: 4px;
+                  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                }
+              }
+            }
+            
+            .chart-label {
+              text-align: center;
+              color: #666;
+              font-size: 0.9rem;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Additional Mobile Responsive Rules for Judge System */
+@media (max-width: 768px) {
+  .judge-controls {
+    padding: 1rem;
+    
+    .control-row {
+      grid-template-columns: 1fr;
+    }
+    
+    .filter-row {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .comparison-tool {
+    padding: 1rem;
+    
+    .comparison-selectors {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .judge-card {
+    padding: 1rem;
+    
+    .representation-breakdown .rep-stats .rep-type {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .dashboard-judge-selection {
+    padding: 1rem;
+    
+    .judge-selection-controls .selection-row {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .case-type-analysis {
+    padding: 1rem;
+    
+    .case-type-results .case-type-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .judge-dashboard-container .judge-dashboard-analysis {
+    padding: 1rem;
+    
+    .analysis-charts {
+      grid-template-columns: 1fr;
+    }
+    
+    .analysis-metrics .metric-grid {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
   }
 }
