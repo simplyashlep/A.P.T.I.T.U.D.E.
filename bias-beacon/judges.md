@@ -35,11 +35,11 @@ description: "Individual judicial profiles showing sentencing patterns, case spe
 ## Judge Directory
 
 <div id="judges-list" class="judges-grid">
-  <!-- Judges will be loaded here via JavaScript when data is available -->
+  <!-- All available judges will be loaded here via JavaScript when data is available -->
   <div class="loading-message">
-    <h3>Loading Judge Data...</h3>
-    <p>Judge profiles will be displayed here once the Bias Beacon data is loaded.</p>
-    <p><em>Note: Upload your judicial data zip file to populate this section.</em></p>
+    <h3>Loading All Judge Data...</h3>
+    <p>All judge profiles from the Bias Beacon dataset will be displayed here once loaded.</p>
+    <p><em>Note: Upload your complete judicial data zip file to populate this section with every judge record available.</em></p>
   </div>
 </div>
 
