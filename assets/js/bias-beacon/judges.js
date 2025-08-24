@@ -277,6 +277,8 @@ class JudgeAnalysisSystem {
                         ${this.generateBiasExplanation(judge)}
                     </div>
                     
+                    ${this.generateStopCorrelationSection(judge)}
+                    
                     <div class=\"profile-actions\">
                         <button onclick=\"judgeSystem.addToComparison('${judge.id}', '${data.name}')\">Add to Comparison</button>
                         <button onclick=\"judgeSystem.hideSelectedJudgeProfile()\">Close Profile</button>
@@ -354,6 +356,23 @@ class JudgeAnalysisSystem {
         
         explanation += '</div>';
         return explanation;
+    }
+    
+    generateStopCorrelationSection(judge) {
+        // Extract STOP correlation data from judge card HTML
+        const stopCorrelationDiv = judge.element.querySelector('.stop-correlation');
+        if (!stopCorrelationDiv) {
+            return '';
+        }
+        
+        return `
+            <div class="profile-section">
+                <h3>🚔 STOP Data Correlation Analysis</h3>
+                <div class="stop-correlation-content">
+                    ${stopCorrelationDiv.innerHTML}
+                </div>
+            </div>
+        `;
     }
     
     performSearch(searchTerm) {

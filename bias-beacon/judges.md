@@ -256,6 +256,64 @@ permalink: /bias-beacon/judges/
         </div>
         {% endif %}
         
+        {% if judge_data.stop_data_correlation %}
+        <div class="stop-correlation" style="display: none;">
+          <h4>🚔 STOP Data Correlation Analysis</h4>
+          <div class="stop-stats">
+            <div class="pipeline-analysis">
+              <h5>Traffic Stop to Court Pipeline</h5>
+              <div class="demographic-flow">
+                <div class="demo-row">
+                  <span class="demo-label">Black defendants:</span>
+                  <span class="stop-rate">{{ judge_data.stop_data_correlation.county_stop_patterns.demographic_breakdown.black }}% in stops</span>
+                  <span class="court-rate">→ {{ judge_data.stop_data_correlation.judicial_caseload_demographics.black_defendants }}% in court</span>
+                  <span class="overrep {{ judge_data.stop_data_correlation.correlation_analysis.stop_to_court_pipeline.black_overrepresentation | plus: 0 | times: 1.0 }}">{{ judge_data.stop_data_correlation.correlation_analysis.stop_to_court_pipeline.black_overrepresentation }}% overrepresentation</span>
+                </div>
+                <div class="demo-row">
+                  <span class="demo-label">Hispanic defendants:</span>
+                  <span class="stop-rate">{{ judge_data.stop_data_correlation.county_stop_patterns.demographic_breakdown.hispanic }}% in stops</span>
+                  <span class="court-rate">→ {{ judge_data.stop_data_correlation.judicial_caseload_demographics.hispanic_defendants }}% in court</span>
+                  <span class="overrep {{ judge_data.stop_data_correlation.correlation_analysis.stop_to_court_pipeline.hispanic_overrepresentation | plus: 0 | times: 1.0 }}">{{ judge_data.stop_data_correlation.correlation_analysis.stop_to_court_pipeline.hispanic_overrepresentation }}% overrepresentation</span>
+                </div>
+                <div class="demo-row">
+                  <span class="demo-label">White defendants:</span>
+                  <span class="stop-rate">{{ judge_data.stop_data_correlation.county_stop_patterns.demographic_breakdown.white }}% in stops</span>
+                  <span class="court-rate">→ {{ judge_data.stop_data_correlation.judicial_caseload_demographics.white_defendants }}% in court</span>
+                  <span class="underrep">{{ judge_data.stop_data_correlation.correlation_analysis.stop_to_court_pipeline.white_underrepresentation }}% underrepresentation</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="search-analysis">
+              <h5>Racial Search Rate Disparities</h5>
+              <div class="search-rates">
+                <div class="search-row">
+                  <span class="race-label">White:</span>
+                  <span class="search-rate">{{ judge_data.stop_data_correlation.correlation_analysis.search_rate_correlation.racial_search_disparities.white_search_rate }}%</span>
+                </div>
+                <div class="search-row">
+                  <span class="race-label">Black:</span>
+                  <span class="search-rate high-rate">{{ judge_data.stop_data_correlation.correlation_analysis.search_rate_correlation.racial_search_disparities.black_search_rate }}%</span>
+                </div>
+                <div class="search-row">
+                  <span class="race-label">Hispanic:</span>
+                  <span class="search-rate high-rate">{{ judge_data.stop_data_correlation.correlation_analysis.search_rate_correlation.racial_search_disparities.hispanic_search_rate }}%</span>
+                </div>
+              </div>
+              <div class="contraband-found">
+                <span class="contraband-label">Contraband Found Rate:</span>
+                <span class="contraband-rate">{{ judge_data.stop_data_correlation.correlation_analysis.search_rate_correlation.contraband_found_rate }}%</span>
+              </div>
+            </div>
+            
+            <div class="correlation-interpretation">
+              <h5>Analysis</h5>
+              <p class="interpretation-text">{{ judge_data.stop_data_correlation.correlation_analysis.interpretation }}</p>
+            </div>
+          </div>
+        </div>
+        {% endif %}
+        
         {% if judge_data.specialization %}
         <div class="specialization" style="display: none;">
           <strong>Specializes in:</strong> {{ judge_data.specialization | join: ", " }}
