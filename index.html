@@ -1,78 +1,526 @@
----
-layout: default
-title: Home
----
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>County Comparisons - Bias Beacon | Public Accountability Project</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="County Comparisons - Bias Beacon" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="County-by-county analysis of judicial sentencing patterns and criminal justice outcomes across all 36 counties." />
+<meta property="og:description" content="County-by-county analysis of judicial sentencing patterns and criminal justice outcomes across all 36 counties." />
+<link rel="canonical" href="http://0.0.0.0:3000/bias-beacon/counties/" />
+<meta property="og:url" content="http://0.0.0.0:3000/bias-beacon/counties/" />
+<meta property="og:site_name" content="Public Accountability Project" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="County Comparisons - Bias Beacon" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"County-by-county analysis of judicial sentencing patterns and criminal justice outcomes across all 36 counties.","headline":"County Comparisons - Bias Beacon","url":"http://0.0.0.0:3000/bias-beacon/counties/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:3000/feed.xml" title="Public Accountability Project" /></head><body><header class="site-header" role="banner">
 
-<div class="home">
-  <h1 class="page-heading">{{ site.title }}</h1>
-  
-  <p class="site-description">{{ site.description }}</p>
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Public Accountability Project</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.484C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.484l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.001,18,12.665,18,13.484L18,13.484z"/>
+            </svg>
+          </span>
+        </label>
 
-  <div class="hero-section">
-    <h2>Welcome to the Public Accountability Project</h2>
-    <p>Promoting transparency, accountability, and informed citizenship through rigorous investigation and reporting.</p>
-  </div>
+        <div class="trigger">
+          <a class="page-link" href="/">Home</a>
+          <a class="page-link" href="/bias-beacon/">Bias Beacon</a>
+          <a class="page-link" href="/reports/">Reports</a>
+          <a class="page-link" href="/investigations/">Investigations</a>
+          <a class="page-link" href="/posts/">Posts</a>
+          <a class="page-link" href="/about/">About</a>
+        </div>
+      </nav></div>
+</header><main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
 
-  <div class="bias-beacon-spotlight">
-    <h2>🎯 Introducing: Bias Beacon</h2>
-    <p>Our comprehensive judicial bias tracker analyzes sentencing patterns across all 36 counties, revealing disparities in criminal justice decisions. Track how demographics, legal representation, and judicial backgrounds affect outcomes.</p>
-    <div class="beacon-stats">
-      <div class="beacon-stat">
-        <strong>5-10 Years</strong>
-        <span>of Court Data</span>
-      </div>
-      <div class="beacon-stat">
-        <strong>All 36</strong>
-        <span>Counties Covered</span>
-      </div>
-      <div class="beacon-stat">
-        <strong>Real Data</strong>
-        <span>Official Records</span>
-      </div>
-    </div>
-    <a href="/bias-beacon/" class="btn btn-primary btn-large">Explore Bias Beacon →</a>
-  </div>
+  <header class="post-header">
+    <h1 class="post-title">County Comparisons - Bias Beacon</h1>
+  </header>
 
-  <div class="features">
-    <div class="feature">
-      <h3>📋 Reports</h3>
-      <p>In-depth analysis and documentation of public institutions and processes.</p>
-      <a href="/reports/" class="btn">View Reports</a>
-    </div>
-    
-    <div class="feature">
-      <h3>🔍 Investigations</h3>
-      <p>Ongoing investigative work into matters of public interest.</p>
-      <a href="/investigations/" class="btn">View Investigations</a>
-    </div>
-    
-    <div class="feature">
-      <h3>📰 Latest Updates</h3>
-      <p>Stay informed with our latest findings and updates.</p>
-      <a href="/posts/" class="btn">View Posts</a>
-    </div>
-  </div>
+  <div class="post-content">
+    <h1 id="county-comparisons">County Comparisons</h1>
 
-  {% if site.posts.size > 0 %}
-  <div class="recent-posts">
-    <h2>Recent Posts</h2>
-    <ul class="post-list">
-      {% for post in site.posts limit:3 %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-        <h3>
-          <a class="post-link" href="{{ post.url | relative_url }}">
-            {{ post.title | escape }}
-          </a>
-        </h3>
-        {% if post.excerpt %}
-        <p>{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
-        {% endif %}
-      </li>
-      {% endfor %}
-    </ul>
-    
-    <p><a href="/posts/">View all posts →</a></p>
-  </div>
-  {% endif %}
+<div class="counties-header">
+  <p>Comparative analysis of criminal justice outcomes across all 36 counties, revealing regional variations in sentencing patterns, resource allocation, and judicial consistency.</p>
 </div>
+
+<h2 id="interactive-county-map">Interactive County Map</h2>
+
+<div id="county-map" class="county-map-container">
+  <div class="map-placeholder">
+    <h3>Interactive County Map</h3>
+    <p>A visual map showing sentencing severity, demographic disparities, and key justice metrics by county will be displayed here once data is loaded.</p>
+    <div class="map-legend">
+      <h4>Legend (Sample)</h4>
+      <div class="legend-item"><span class="color-box severe"></span> High Sentencing Severity</div>
+      <div class="legend-item"><span class="color-box moderate"></span> Moderate Sentencing</div>
+      <div class="legend-item"><span class="color-box lenient"></span> Lower Sentencing Severity</div>
+    </div>
+  </div>
+</div>
+
+<h2 id="county-rankings">County Rankings</h2>
+
+<div class="county-controls">
+  <h3>Rank Counties By:</h3>
+  <div class="ranking-buttons">
+    <button class="ranking-btn active" data-metric="severity">Sentencing Severity</button>
+    <button class="ranking-btn" data-metric="disparity">Demographic Disparity</button>
+    <button class="ranking-btn" data-metric="representation">Representation Gap</button>
+    <button class="ranking-btn" data-metric="consistency">Judicial Consistency</button>
+    <button class="ranking-btn" data-metric="volume">Case Volume</button>
+  </div>
+</div>
+
+<div id="county-rankings" class="county-rankings">
+  <!-- Rankings will be populated via JavaScript -->
+  <div class="loading-message">
+    <h3>Loading County Data...</h3>
+    <p>County rankings and comparisons will appear here once the judicial data is processed.</p>
+  </div>
+</div>
+
+<h2 id="key-county-metrics">Key County Metrics</h2>
+
+<div class="county-metrics-grid">
+  <div class="metric-card">
+    <h3>📊 Sentencing Severity Index</h3>
+    <p>Average sentence length and incarceration rates compared to state benchmarks. Helps identify counties with particularly harsh or lenient sentencing patterns.</p>
+    <div class="metric-details">
+      <strong>Includes:</strong>
+      <ul>
+        <li>Average prison sentence length</li>
+        <li>Incarceration vs. probation rates</li>
+        <li>Fine amounts and community service</li>
+        <li>Suspended sentence frequency</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="metric-card">
+    <h3>⚖️ Demographic Disparity Score</h3>
+    <p>Statistical measure of sentencing differences across racial, gender, and socioeconomic lines within each county.</p>
+    <div class="metric-details">
+      <strong>Analyzes:</strong>
+      <ul>
+        <li>Racial sentencing disparities</li>
+        <li>Gender-based differences</li>
+        <li>Age-related patterns</li>
+        <li>Economic status impact</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="metric-card">
+    <h3>🏛️ Judicial Resources</h3>
+    <p>Assessment of court resources, case loads, and their impact on justice outcomes in each county.</p>
+    <div class="metric-details">
+      <strong>Measures:</strong>
+      <ul>
+        <li>Judge-to-population ratio</li>
+        <li>Average case processing time</li>
+        <li>Public defender caseloads</li>
+        <li>Court facility adequacy</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="metric-card">
+    <h3>📈 Consistency Rating</h3>
+    <p>How consistent sentencing is within each county for similar cases and circumstances.</p>
+    <div class="metric-details">
+      <strong>Evaluates:</strong>
+      <ul>
+        <li>Inter-judge consistency</li>
+        <li>Sentence predictability</li>
+        <li>Appeal rates</li>
+        <li>Reversal frequencies</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="metric-card">
+    <h3>👥 Representation Impact</h3>
+    <p>Difference in outcomes between public defender and private attorney representation by county.</p>
+    <div class="metric-details">
+      <strong>Compares:</strong>
+      <ul>
+        <li>Conviction rates by representation</li>
+        <li>Sentence length differences</li>
+        <li>Plea bargain success rates</li>
+        <li>Trial outcome variations</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="metric-card">
+    <h3>🔍 Case Type Distribution</h3>
+    <p>Breakdown of case types and specializations across different counties and their impact on outcomes.</p>
+    <div class="metric-details">
+      <strong>Tracks:</strong>
+      <ul>
+        <li>Drug offense patterns</li>
+        <li>Violent crime handling</li>
+        <li>Property crime sentences</li>
+        <li>Traffic violation outcomes</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<h2 id="detailed-county-profiles">Detailed County Profiles</h2>
+
+<div class="county-directory">
+  <h3>All Oregon Counties - Detailed Profiles:</h3>
+  <div class="county-grid">
+    
+    <div class="county-profile-card critical" data-county="multnomah">
+      <div class="county-card-header">
+        <h4>Multnomah County</h4>
+        <div class="county-risk-badge critical">
+          CRITICAL
+        </div>
+      </div>
+      
+      <div class="county-key-stats">
+        <div class="stat-grid">
+          <div class="stat-item">
+            <div class="stat-label">Population</div>
+            <div class="stat-value">815428</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Judges</div>
+            <div class="stat-value">38</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">2024 Cases</div>
+            <div class="stat-value">18947</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Prison Rate</div>
+            <div class="stat-value">32.4%</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bias-summary">
+        <div class="bias-metric">
+          <span class="metric-name">Racial Disparity:</span>
+          <span class="metric-value disparity-36">12.1</span>
+        </div>
+        <div class="bias-metric">
+          <span class="metric-name">Counsel Disparity:</span>
+          <span class="metric-value disparity-36">18.2</span>
+        </div>
+        <div class="bias-metric">
+          <span class="metric-name">Unrepresented:</span>
+          <span class="metric-value crisis-1">78.3%</span>
+        </div>
+      </div>
+      
+      <div class="crisis-indicator">
+        
+        <div class="crisis-alert emergency">
+          🚨 EMERGENCY: 78.3% unrepresented
+        </div>
+        
+      </div>
+      
+      <div class="county-actions">
+        <button class="view-details-btn" onclick="showCountyDetails('multnomah')">View Details</button>
+        <button class="compare-btn" onclick="addToComparison('multnomah')">Compare</button>
+      </div>
+    </div>
+    
+    <div class="county-profile-card moderate" data-county="washington">
+      <div class="county-card-header">
+        <h4>Washington County</h4>
+        <div class="county-risk-badge moderate">
+          MODERATE
+        </div>
+      </div>
+      
+      <div class="county-key-stats">
+        <div class="stat-grid">
+          <div class="stat-item">
+            <div class="stat-label">Population</div>
+            <div class="stat-value">695115</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Judges</div>
+            <div class="stat-value">16</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">2024 Cases</div>
+            <div class="stat-value">12834</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Prison Rate</div>
+            <div class="stat-value">29.1%</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bias-summary">
+        <div class="bias-metric">
+          <span class="metric-name">Racial Disparity:</span>
+          <span class="metric-value disparity-7">2.4</span>
+        </div>
+        <div class="bias-metric">
+          <span class="metric-name">Counsel Disparity:</span>
+          <span class="metric-value disparity-17">8.3</span>
+        </div>
+        <div class="bias-metric">
+          <span class="metric-name">Unrepresented:</span>
+          <span class="metric-value crisis-1">67.9%</span>
+        </div>
+      </div>
+      
+      <div class="crisis-indicator">
+        
+        <div class="crisis-alert critical">
+          ⚠️ CRITICAL: 67.9% unrepresented
+        </div>
+        
+      </div>
+      
+      <div class="county-actions">
+        <button class="view-details-btn" onclick="showCountyDetails('washington')">View Details</button>
+        <button class="compare-btn" onclick="addToComparison('washington')">Compare</button>
+      </div>
+    </div>
+    
+    <div class="county-profile-card excellent" data-county="lane">
+      <div class="county-card-header">
+        <h4>Lane County</h4>
+        <div class="county-risk-badge excellent">
+          EXCELLENT
+        </div>
+      </div>
+      
+      <div class="county-key-stats">
+        <div class="stat-grid">
+          <div class="stat-item">
+            <div class="stat-label">Population</div>
+            <div class="stat-value">382067</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Judges</div>
+            <div class="stat-value">16</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">2024 Cases</div>
+            <div class="stat-value">8923</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Prison Rate</div>
+            <div class="stat-value">24.3%</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bias-summary">
+        <div class="bias-metric">
+          <span class="metric-name">Racial Disparity:</span>
+          <span class="metric-value disparity--3">-1.1</span>
+        </div>
+        <div class="bias-metric">
+          <span class="metric-name">Counsel Disparity:</span>
+          <span class="metric-value disparity-4">1.8</span>
+        </div>
+        <div class="bias-metric">
+          <span class="metric-name">Unrepresented:</span>
+          <span class="metric-value crisis-1">64.2%</span>
+        </div>
+      </div>
+      
+      <div class="crisis-indicator">
+        
+        <div class="crisis-alert manageable">
+          ℹ️ Manageable: 64.2% unrepresented
+        </div>
+        
+      </div>
+      
+      <div class="county-actions">
+        <button class="view-details-btn" onclick="showCountyDetails('lane')">View Details</button>
+        <button class="compare-btn" onclick="addToComparison('lane')">Compare</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<h2 id="county-comparison-tool">County Comparison Tool</h2>
+
+<div class="comparison-tool">
+  <h3>📊 Compare Counties Side-by-Side</h3>
+  <div class="comparison-interface">
+    <div class="comparison-selectors">
+      <div class="selector-group">
+        <label for="county1">County 1:</label>
+        <select id="county1" class="county-selector">
+          <option value="">Select County...</option>
+          
+          <option value="multnomah">Multnomah</option>
+          
+          <option value="washington">Washington</option>
+          
+          <option value="lane">Lane</option>
+          
+        </select>
+      </div>
+      <div class="vs-indicator">VS</div>
+      <div class="selector-group">
+        <label for="county2">County 2:</label>
+        <select id="county2" class="county-selector">
+          <option value="">Select County...</option>
+          
+          <option value="multnomah">Multnomah</option>
+          
+          <option value="washington">Washington</option>
+          
+          <option value="lane">Lane</option>
+          
+        </select>
+      </div>
+      <button id="compareButton" class="compare-execute-btn">Compare</button>
+    </div>
+    
+    <div id="comparisonResults" class="comparison-results">
+      <div class="comparison-placeholder">
+        <p>Select two counties above to see a detailed side-by-side comparison of their judicial bias metrics.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2 id="regional-analysis">Regional Analysis</h2>
+
+<div class="regional-analysis">
+  <h3>🗺️ Regional Patterns</h3>
+  
+  <div class="region-cards">
+    <div class="region-card">
+      <h4>Metro Portland Area</h4>
+      <div class="region-counties">Multnomah, Washington, Clackamas</div>
+      <div class="region-stats">
+        <div class="region-stat">
+          <span class="label">Avg Prison Rate:</span>
+          <span class="value">29.4%</span>
+        </div>
+        <div class="region-stat">
+          <span class="label">Avg Unrepresented:</span>
+          <span class="value">70.5%</span>
+        </div>
+        <div class="region-challenges">
+          <strong>Key Challenges:</strong> High case volumes, counsel shortage, urban crime patterns
+        </div>
+      </div>
+    </div>
+    
+    <div class="region-card">
+      <h4>Willamette Valley</h4>
+      <div class="region-counties">Marion, Polk, Yamhill, Benton, Lane, Linn</div>
+      <div class="region-stats">
+        <div class="region-stat">
+          <span class="label">Avg Prison Rate:</span>
+          <span class="value">24.1%</span>
+        </div>
+        <div class="region-stat">
+          <span class="label">Avg Unrepresented:</span>
+          <span class="value">65.3%</span>
+        </div>
+        <div class="region-challenges">
+          <strong>Key Challenges:</strong> Rural-urban divide, resource allocation, agricultural crime
+        </div>
+      </div>
+    </div>
+    
+    <div class="region-card">
+      <h4>Southern Oregon</h4>
+      <div class="region-counties">Jackson, Josephine, Douglas, Coos, Curry</div>
+      <div class="region-stats">
+        <div class="region-stat">
+          <span class="label">Avg Prison Rate:</span>
+          <span class="value">26.8%</span>
+        </div>
+        <div class="region-stat">
+          <span class="label">Avg Unrepresented:</span>
+          <span class="value">68.9%</span>
+        </div>
+        <div class="region-challenges">
+          <strong>Key Challenges:</strong> Limited resources, geographic isolation, drug-related crime
+        </div>
+      </div>
+    </div>
+    
+    <div class="region-card">
+      <h4>Eastern Oregon</h4>
+      <div class="region-counties">Baker, Grant, Harney, Malheur, Union, Wallowa, Wheeler</div>
+      <div class="region-stats">
+        <div class="region-stat">
+          <span class="label">Avg Prison Rate:</span>
+          <span class="value">23.2%</span>
+        </div>
+        <div class="region-stat">
+          <span class="label">Avg Unrepresented:</span>
+          <span class="value">61.7%</span>
+        </div>
+        <div class="region-challenges">
+          <strong>Key Challenges:</strong> Rural isolation, limited court resources, travel distances
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/assets/js/bias-beacon/counties.js"></script>
+
+<hr />
+
+<p><em>County data is updated in real-time from Oregon Judicial Department sources. For detailed methodology and data sources, see the <a href="/about/">About section</a>.</em></p>
+
+  </div>
+
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Public Accountability Project</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Public Accountability Project</li><li><a class="u-email" href="mailto:your-email@example.com">your-email@example.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul></div>
+
+      <div class="footer-col footer-col-3">
+        <p>Discernment. Accountability. Held to Answer. A platform dedicated to promoting transparency and accountability  in public institutions and processes.</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 Public Accountability Project. Promoting transparency and accountability.</p>
+    </div>
+
+  </div>
+
+</footer></body>
+
+</html>
