@@ -2,41 +2,156 @@
 layout: page
 title: "Dashboard - Bias Beacon"
 permalink: /bias-beacon/dashboard/
-description: "Interactive dashboard showing key judicial bias metrics, trends, and patterns across all counties."
+description: "Comprehensive dashboard showing real-time bias patterns across Oregon's judicial system with individual judge analysis."
 ---
 
 # Bias Beacon Dashboard
 
 <div class="dashboard-header">
-  <p>Real-time overview of judicial sentencing patterns, bias indicators, and criminal justice metrics across all 36 counties. Data refreshed quarterly.</p>
+  <p>Real-time overview of judicial sentencing patterns, bias indicators, and criminal justice metrics across all 36 Oregon counties. Includes individual judge selection and comprehensive analysis tools.</p>
+  <div class="data-status">
+    <div class="status-indicator live">🟢 LIVE DATA</div>
+    <div class="last-updated">Last Updated: {{ site.data.bias-beacon.live-oregon-data.last_updated | date: "%B %d, %Y at %I:%M %p" }}</div>
+    <div class="next-update">Next Update: {{ site.data.bias-beacon.live-oregon-data.next_scheduled_update | date: "%B %d at %I:%M %p" }}</div>
+  </div>
+</div>
+
+## Individual Judge Analysis
+
+<div class="dashboard-judge-selection">
+  <div class="judge-selection-header">
+    <h3>📊 Select Judge for Detailed Analysis</h3>
+    <p>Choose any judge from the dropdown to view comprehensive bias metrics, representation type analysis, and appeals tracking.</p>
+  </div>
+  
+  <div class="judge-selection-controls">
+    <div class="selection-row">
+      <div class="judge-selector">
+        <label for="dashboard-judge-select">Select Judge:</label>
+        <select id="dashboard-judge-select" class="dashboard-judge-dropdown">
+          <option value="">-- Choose a Judge --</option>
+          <!-- Populated by JavaScript -->
+        </select>
+      </div>
+      
+      <div class="quick-filters">
+        <label for="dashboard-county-filter">Filter by County:</label>
+        <select id="dashboard-county-filter" class="dashboard-filter">
+          <option value="">All Counties</option>
+          <option value="multnomah">Multnomah County</option>
+          <option value="washington">Washington County</option>
+          <option value="lane">Lane County</option>
+          <option value="jackson">Jackson County</option>
+          <option value="marion">Marion County</option>
+          <option value="clackamas">Clackamas County</option>
+        </select>
+        
+        <label for="dashboard-risk-filter">Risk Level:</label>
+        <select id="dashboard-risk-filter" class="dashboard-filter">
+          <option value="">All Risk Levels</option>
+          <option value="excellent">Excellent</option>
+          <option value="low">Low Concern</option>
+          <option value="moderate">Moderate</option>
+          <option value="high">High Concern</option>
+          <option value="critical">Critical</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  
+  <div id="selected-judge-dashboard" class="judge-dashboard-container" style="display: none;">
+    <!-- Selected judge analysis will be populated here -->
+  </div>
+</div>
+
+## Case Type Analysis
+
+<div class="case-type-analysis">
+  <div class="case-type-header">
+    <h3>⚖️ Bias Patterns by Case Type</h3>
+    <p>Interactive analysis showing how bias metrics vary across different types of criminal cases.</p>
+  </div>
+  
+  <div class="case-type-selector">
+    <label for="case-type-filter">Select Case Type:</label>
+    <select id="case-type-filter" class="case-type-dropdown">
+      <option value="all">All Case Types</option>
+      <option value="felony">Felony Cases</option>
+      <option value="misdemeanor">Misdemeanor Cases</option>
+      <option value="drug">Drug Offenses</option>
+      <option value="violent">Violent Crimes</option>
+      <option value="property">Property Crimes</option>
+      <option value="traffic">Traffic Violations</option>
+      <option value="dui">DUI/DUII Cases</option>
+      <option value="domestic">Domestic Violence</option>
+    </select>
+  </div>
+  
+  <div id="case-type-results" class="case-type-results">
+    <div class="case-type-grid">
+      <div class="case-type-metric">
+        <div class="metric-header">Prison Rate Variation</div>
+        <div id="prison-rate-variation" class="metric-visualization"></div>
+      </div>
+      
+      <div class="case-type-metric">
+        <div class="metric-header">Sentence Length Disparities</div>
+        <div id="sentence-disparities" class="metric-visualization"></div>
+      </div>
+      
+      <div class="case-type-metric">
+        <div class="metric-header">Representation Impact</div>
+        <div id="representation-impact" class="metric-visualization"></div>
+      </div>
+    </div>
+  </div>
 </div>
 
 ## Key Statistics
 
 <div class="stats-grid">
   <div class="stat-card">
-    <div class="stat-number" id="total-cases">Loading...</div>
+    <div class="stat-number">{{ site.data.bias-beacon.oregon-judicial-data.metadata.total_cases_analyzed | number_with_delimiter }}</div>
     <div class="stat-label">Total Cases Analyzed</div>
-    <div class="stat-period">5-10 Year Period</div>
+    <div class="stat-period">{{ site.data.bias-beacon.oregon-judicial-data.metadata.data_period }}</div>
   </div>
 
   <div class="stat-card">
-    <div class="stat-number" id="total-judges">36</div>
+    <div class="stat-number">{{ site.data.bias-beacon.oregon-judicial-data.metadata.total_counties }}</div>
     <div class="stat-label">Counties Covered</div>
-    <div class="stat-period">Complete Coverage</div>
+    <div class="stat-period">Complete Oregon Coverage</div>
   </div>
 
   <div class="stat-card">
-    <div class="stat-number" id="active-judges">Loading...</div>
+    <div class="stat-number">{{ site.data.bias-beacon.oregon-judicial-data.metadata.total_judges }}</div>
     <div class="stat-label">Judges Tracked</div>
     <div class="stat-period">Active & Historical</div>
   </div>
 
   <div class="stat-card">
-    <div class="stat-number" id="prison-years">Loading...</div>
+    <div class="stat-number">{{ site.data.bias-beacon.oregon-judicial-data.aggregate_stats.total_prison_years_imposed | number_with_delimiter }}</div>
     <div class="stat-label">Total Prison Years</div>
     <div class="stat-period">Sentences Imposed</div>
   </div>
+</div>
+
+<!-- Crisis Alert Card -->
+<div class="crisis-alert-card">
+  <div class="crisis-header">
+    <h3>🚨 {{ site.data.bias-beacon.live-oregon-data.current_events.unrepresented_crisis.title }}</h3>
+    <div class="severity-badge critical">CRITICAL</div>
+  </div>
+  <div class="crisis-stats">
+    <div class="crisis-stat">
+      <span class="number">{{ site.data.bias-beacon.live-oregon-data.current_events.unrepresented_crisis.statewide_impact.percent_criminal_unrepresented }}%</span>
+      <span class="label">Criminal Cases Unrepresented</span>
+    </div>
+    <div class="crisis-stat">
+      <span class="number">{{ site.data.bias-beacon.live-oregon-data.current_events.unrepresented_crisis.statewide_impact.average_delay_days }}</span>
+      <span class="label">Average Delay (Days)</span>
+    </div>
+  </div>
+  <a href="{{ '/bias-beacon/current-events/' | relative_url }}" class="crisis-link">View Full Crisis Report →</a>
 </div>
 
 ## Bias Indicators Overview
@@ -44,54 +159,105 @@ description: "Interactive dashboard showing key judicial bias metrics, trends, a
 <div class="bias-indicators">
   <div class="indicator-section">
     <h3>🔴 High Concern Areas</h3>
-    <div id="high-concern" class="indicator-list">
-      <div class="placeholder">Data will be displayed here showing counties or judges with significant bias indicators.</div>
+    <div class="indicator-list">
+      {% for indicator in site.data.bias-beacon.oregon-judicial-data.bias_indicators.high_concern %}
+      <div class="indicator-item high-concern">
+        <div class="indicator-icon">🚨</div>
+        <div class="indicator-text">{{ indicator }}</div>
+      </div>
+      {% endfor %}
     </div>
   </div>
 
   <div class="indicator-section">
     <h3>🟡 Moderate Concern Areas</h3>
-    <div id="moderate-concern" class="indicator-list">
-      <div class="placeholder">Moderate bias indicators will be shown here.</div>
+    <div class="indicator-list">
+      {% for indicator in site.data.bias-beacon.oregon-judicial-data.bias_indicators.moderate_concern %}
+      <div class="indicator-item moderate-concern">
+        <div class="indicator-icon">⚠️</div>
+        <div class="indicator-text">{{ indicator }}</div>
+      </div>
+      {% endfor %}
     </div>
   </div>
 
   <div class="indicator-section">
     <h3>🟢 Best Practices</h3>
-    <div id="best-practices" class="indicator-list">
-      <div class="placeholder">Counties and judges with exemplary fairness metrics will be highlighted here.</div>
+    <div class="indicator-list">
+      {% for indicator in site.data.bias-beacon.oregon-judicial-data.bias_indicators.best_practices %}
+      <div class="indicator-item best-practice">
+        <div class="indicator-icon">✅</div>
+        <div class="indicator-text">{{ indicator }}</div>
+      </div>
+      {% endfor %}
     </div>
   </div>
+</div>
+
+## Live County Data Overview
+
+<div class="county-overview-grid">
+  {% for county in site.data.bias-beacon.live-oregon-data.county_aggregates %}
+  <div class="county-card {{ county[1].risk_level }}" data-county="{{ county[0] }}">
+    <div class="county-header">
+      <h4>{{ county[0] | capitalize }} County</h4>
+      <div class="risk-indicator {{ county[1].risk_level }}">{{ county[1].risk_level | upcase }}</div>
+    </div>
+    
+    <div class="county-stats">
+      <div class="stat-row">
+        <span class="stat-label">Prison Rate:</span>
+        <span class="stat-value">{{ county[1].bias_indicators.prison_rate }}%</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Racial Disparity:</span>
+        <span class="stat-value">{{ county[1].bias_indicators.racial_disparity }}</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Counsel Disparity:</span>
+        <span class="stat-value">{{ county[1].bias_indicators.counsel_disparity }}</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Unrepresented:</span>
+        <span class="stat-value">{{ county[1].unrepresented_crisis_impact.percent_unrepresented }}%</span>
+      </div>
+    </div>
+    
+    <div class="county-judges">
+      <small>{{ county[1].total_judges }} judges • {{ county[1].total_cases_2024 | number_with_delimiter }} cases (2024)</small>
+    </div>
+  </div>
+  {% endfor %}
 </div>
 
 ## Interactive Visualizations
 
 <div class="viz-container">
   <div class="viz-section">
-    <h3>📊 Sentencing Severity by County</h3>
-    <div id="severity-chart" class="chart-placeholder">
-      <p>Interactive bar chart showing average sentence lengths across all counties. Click on bars to drill down into specific county data.</p>
+    <h3>📊 Real-Time Prison Rates by County</h3>
+    <div id="prison-rates-chart" class="chart-container">
+      <canvas id="prisonRatesCanvas" width="800" height="400"></canvas>
     </div>
   </div>
 
   <div class="viz-section">
-    <h3>👥 Demographic Disparity Heatmap</h3>
-    <div id="disparity-heatmap" class="chart-placeholder">
-      <p>Heat map visualization showing sentencing disparities across demographic groups by county.</p>
+    <h3>👥 Counsel Representation Disparities</h3>
+    <div id="counsel-disparity-chart" class="chart-container">
+      <canvas id="counselDisparityCanvas" width="800" height="400"></canvas>
     </div>
   </div>
 
   <div class="viz-section">
-    <h3>⚖️ Public vs. Private Attorney Outcomes</h3>
-    <div id="representation-chart" class="chart-placeholder">
-      <p>Comparative analysis of case outcomes based on type of legal representation.</p>
+    <h3>⚖️ Appeals and Reversal Tracking</h3>
+    <div id="appeals-chart" class="chart-container">
+      <canvas id="appealsCanvas" width="800" height="400"></canvas>
     </div>
   </div>
 
   <div class="viz-section">
-    <h3>📈 Trends Over Time</h3>
-    <div id="trends-chart" class="chart-placeholder">
-      <p>Line chart showing how sentencing patterns have changed over the 5-10 year analysis period.</p>
+    <h3>📈 Unrepresented Crisis Trends</h3>
+    <div id="crisis-trends-chart" class="chart-container">
+      <canvas id="crisisTrendsCanvas" width="800" height="400"></canvas>
     </div>
   </div>
 </div>
@@ -100,20 +266,29 @@ description: "Interactive dashboard showing key judicial bias metrics, trends, a
 
 <div class="insights-section">
   <h3>🔍 Key Findings</h3>
-  <div id="key-findings" class="insights-list">
-    <!-- Findings will be populated from data analysis -->
-    <div class="insight-item placeholder">
-      <h4>Finding 1</h4>
-      <p>Key insights about judicial bias patterns will be displayed here once data is processed.</p>
+  <div class="insights-list">
+    {% for finding in site.data.bias-beacon.oregon-judicial-data.key_findings %}
+    <div class="insight-item {{ finding.significance }}">
+      <div class="finding-header">
+        <h4>{{ finding.title }}</h4>
+        <div class="significance-badge {{ finding.significance }}">{{ finding.significance | upcase }}</div>
+      </div>
+      <p>{{ finding.description }}</p>
+      {% if finding.counties_affected %}
+      <div class="affected-counties">
+        <strong>Affected Counties:</strong> {{ finding.counties_affected | join: ", " }}
+      </div>
+      {% endif %}
+      {% if finding.highest_rate %}
+      <div class="finding-stats">
+        <span class="stat-highlight">Highest: {{ finding.highest_rate }}</span>
+        {% if finding.lowest_rate %}
+        <span class="stat-highlight">Lowest: {{ finding.lowest_rate }}</span>
+        {% endif %}
+      </div>
+      {% endif %}
     </div>
-    <div class="insight-item placeholder">
-      <h4>Finding 2</h4>
-      <p>Significant statistical findings about representation disparities.</p>
-    </div>
-    <div class="insight-item placeholder">
-      <h4>Finding 3</h4>
-      <p>Important trends in demographic sentencing patterns.</p>
-    </div>
+    {% endfor %}
   </div>
 </div>
 

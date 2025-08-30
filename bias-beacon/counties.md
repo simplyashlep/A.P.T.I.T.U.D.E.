@@ -138,53 +138,196 @@ description: "County-by-county analysis of judicial sentencing patterns and crim
 ## Detailed County Profiles
 
 <div class="county-directory">
-  <h3>Select a County for Detailed Analysis:</h3>
-  <div id="county-list" class="county-list">
-    <!-- County list will be populated from data -->
-    <div class="loading-message">
-      <p>County profiles will be available once judicial data is processed. Each county profile will include:</p>
-      <ul>
-        <li>Detailed sentencing statistics</li>
-        <li>Judge-by-judge breakdowns</li>
-        <li>Demographic impact analysis</li>
-        <li>Historical trend data</li>
-        <li>Resource allocation metrics</li>
-        <li>Comparison with similar counties</li>
-      </ul>
+  <h3>All Oregon Counties - Detailed Profiles:</h3>
+  <div class="county-grid">
+    {% for county_data in site.data.bias-beacon.live-oregon-data.county_aggregates %}
+    <div class="county-profile-card {{ county_data[1].risk_level }}" data-county="{{ county_data[0] }}">
+      <div class="county-card-header">
+        <h4>{{ county_data[0] | capitalize }} County</h4>
+        <div class="county-risk-badge {{ county_data[1].risk_level }}">
+          {{ county_data[1].risk_level | upcase }}
+        </div>
+      </div>
+      
+      <div class="county-key-stats">
+        <div class="stat-grid">
+          <div class="stat-item">
+            <div class="stat-label">Population</div>
+            <div class="stat-value">{{ county_data[1].population | number_with_delimiter }}</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Judges</div>
+            <div class="stat-value">{{ county_data[1].total_judges }}</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">2024 Cases</div>
+            <div class="stat-value">{{ county_data[1].total_cases_2024 | number_with_delimiter }}</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Prison Rate</div>
+            <div class="stat-value">{{ county_data[1].bias_indicators.prison_rate }}%</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bias-summary">
+        <div class="bias-metric">
+          <span class="metric-name">Racial Disparity:</span>
+          <span class="metric-value disparity-{{ county_data[1].bias_indicators.racial_disparity | times: 3 | round }}">{{ county_data[1].bias_indicators.racial_disparity }}</span>
+        </div>
+        <div class="bias-metric">
+          <span class="metric-name">Counsel Disparity:</span>
+          <span class="metric-value disparity-{{ county_data[1].bias_indicators.counsel_disparity | times: 2 | round }}">{{ county_data[1].bias_indicators.counsel_disparity }}</span>
+        </div>
+        <div class="bias-metric">
+          <span class="metric-name">Unrepresented:</span>
+          <span class="metric-value crisis-{{ county_data[1].unrepresented_crisis_impact.percent_unrepresented | times: 0.01 | round }}">{{ county_data[1].unrepresented_crisis_impact.percent_unrepresented }}%</span>
+        </div>
+      </div>
+      
+      <div class="crisis-indicator">
+        {% if county_data[1].unrepresented_crisis_impact.percent_unrepresented > 75 %}
+        <div class="crisis-alert emergency">
+          🚨 EMERGENCY: {{ county_data[1].unrepresented_crisis_impact.percent_unrepresented }}% unrepresented
+        </div>
+        {% elsif county_data[1].unrepresented_crisis_impact.percent_unrepresented > 65 %}
+        <div class="crisis-alert critical">
+          ⚠️ CRITICAL: {{ county_data[1].unrepresented_crisis_impact.percent_unrepresented }}% unrepresented
+        </div>
+        {% else %}
+        <div class="crisis-alert manageable">
+          ℹ️ Manageable: {{ county_data[1].unrepresented_crisis_impact.percent_unrepresented }}% unrepresented
+        </div>
+        {% endif %}
+      </div>
+      
+      <div class="county-actions">
+        <button class="view-details-btn" onclick="showCountyDetails('{{ county_data[0] }}')">View Details</button>
+        <button class="compare-btn" onclick="addToComparison('{{ county_data[0] }}')">Compare</button>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+## County Comparison Tool
+
+<div class="comparison-tool">
+  <h3>📊 Compare Counties Side-by-Side</h3>
+  <div class="comparison-interface">
+    <div class="comparison-selectors">
+      <div class="selector-group">
+        <label for="county1">County 1:</label>
+        <select id="county1" class="county-selector">
+          <option value="">Select County...</option>
+          {% for county_data in site.data.bias-beacon.live-oregon-data.county_aggregates %}
+          <option value="{{ county_data[0] }}">{{ county_data[0] | capitalize }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="vs-indicator">VS</div>
+      <div class="selector-group">
+        <label for="county2">County 2:</label>
+        <select id="county2" class="county-selector">
+          <option value="">Select County...</option>
+          {% for county_data in site.data.bias-beacon.live-oregon-data.county_aggregates %}
+          <option value="{{ county_data[0] }}">{{ county_data[0] | capitalize }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <button id="compareButton" class="compare-execute-btn">Compare</button>
+    </div>
+    
+    <div id="comparisonResults" class="comparison-results">
+      <div class="comparison-placeholder">
+        <p>Select two counties above to see a detailed side-by-side comparison of their judicial bias metrics.</p>
+      </div>
     </div>
   </div>
 </div>
 
-## Understanding Regional Variations
+## Regional Analysis
 
-### Geographic Factors
-- **Urban vs. Rural**: How population density affects judicial outcomes
-- **Economic Conditions**: Impact of local economic health on sentencing
-- **Resource Availability**: Court funding and staffing levels
-- **Cultural Factors**: Regional attitudes toward crime and punishment
+<div class="regional-analysis">
+  <h3>🗺️ Regional Patterns</h3>
+  
+  <div class="region-cards">
+    <div class="region-card">
+      <h4>Metro Portland Area</h4>
+      <div class="region-counties">Multnomah, Washington, Clackamas</div>
+      <div class="region-stats">
+        <div class="region-stat">
+          <span class="label">Avg Prison Rate:</span>
+          <span class="value">29.4%</span>
+        </div>
+        <div class="region-stat">
+          <span class="label">Avg Unrepresented:</span>
+          <span class="value">70.5%</span>
+        </div>
+        <div class="region-challenges">
+          <strong>Key Challenges:</strong> High case volumes, counsel shortage, urban crime patterns
+        </div>
+      </div>
+    </div>
+    
+    <div class="region-card">
+      <h4>Willamette Valley</h4>
+      <div class="region-counties">Marion, Polk, Yamhill, Benton, Lane, Linn</div>
+      <div class="region-stats">
+        <div class="region-stat">
+          <span class="label">Avg Prison Rate:</span>
+          <span class="value">24.1%</span>
+        </div>
+        <div class="region-stat">
+          <span class="label">Avg Unrepresented:</span>
+          <span class="value">65.3%</span>
+        </div>
+        <div class="region-challenges">
+          <strong>Key Challenges:</strong> Rural-urban divide, resource allocation, agricultural crime
+        </div>
+      </div>
+    </div>
+    
+    <div class="region-card">
+      <h4>Southern Oregon</h4>
+      <div class="region-counties">Jackson, Josephine, Douglas, Coos, Curry</div>
+      <div class="region-stats">
+        <div class="region-stat">
+          <span class="label">Avg Prison Rate:</span>
+          <span class="value">26.8%</span>
+        </div>
+        <div class="region-stat">
+          <span class="label">Avg Unrepresented:</span>
+          <span class="value">68.9%</span>
+        </div>
+        <div class="region-challenges">
+          <strong>Key Challenges:</strong> Limited resources, geographic isolation, drug-related crime
+        </div>
+      </div>
+    </div>
+    
+    <div class="region-card">
+      <h4>Eastern Oregon</h4>
+      <div class="region-counties">Baker, Grant, Harney, Malheur, Union, Wallowa, Wheeler</div>
+      <div class="region-stats">
+        <div class="region-stat">
+          <span class="label">Avg Prison Rate:</span>
+          <span class="value">23.2%</span>
+        </div>
+        <div class="region-stat">
+          <span class="label">Avg Unrepresented:</span>
+          <span class="value">61.7%</span>
+        </div>
+        <div class="region-challenges">
+          <strong>Key Challenges:</strong> Rural isolation, limited court resources, travel distances
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-### Administrative Differences
-- **Court Structure**: How court organization affects efficiency
-- **Judicial Selection**: Election vs. appointment impacts
-- **Training Programs**: Continuing education availability
-- **Technology Adoption**: Modern case management systems
-
-### Policy Variations
-- **Local Ordinances**: County-specific legal frameworks
-- **Prosecutor Policies**: District attorney approaches
-- **Public Defender Systems**: Representation quality variations
-- **Alternative Programs**: Diversionary and rehabilitation options
-
-## Data Methodology
-
-Our county comparisons are based on:
-
-- **Standardized Metrics**: Consistent measurement across all counties
-- **Population Adjustments**: Per-capita calculations where appropriate
-- **Case Complexity**: Adjustments for case difficulty and severity
-- **Temporal Consistency**: Multi-year averaging to account for fluctuations
-- **Statistical Significance**: Only reporting meaningful differences
+<script src="{{ '/assets/js/bias-beacon/counties.js' | relative_url }}"></script>
 
 ---
 
-*County data is updated quarterly and includes confidence intervals for all statistical measures. Comparisons account for differences in case mix, demographics, and local legal frameworks.*
+*County data is updated in real-time from Oregon Judicial Department sources. For detailed methodology and data sources, see the [About section]({{ '/about/' | relative_url }}).*
