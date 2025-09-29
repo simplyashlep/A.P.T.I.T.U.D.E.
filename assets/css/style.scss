@@ -7,7 +7,7 @@
 /* Custom styles for Public Accountability Project */
 
 .hero-section {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(155deg, #ff69ff 0%, #beff19 100%);
   color: white;
   padding: 4rem 2rem;
   margin: 2rem -2rem;
@@ -15,13 +15,13 @@
   border-radius: 8px;
   
   h2 {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     margin-bottom: 1rem;
     font-weight: 700;
   }
   
   p {
-    font-size: 1.2rem;
+    font-size: 2.5rem;
     max-width: 600px;
     margin: 0 auto;
     line-height: 1.6;
@@ -35,20 +35,20 @@
   margin: 3rem 0;
   
   .feature {
-    background: #f8f9fa;
+    background: #ff69ff;
     padding: 2rem;
     border-radius: 8px;
     text-align: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     
     h3 {
-      color: #333;
+      color: #080303;
       margin-bottom: 1rem;
       font-size: 1.4rem;
     }
     
     p {
-      color: #666;
+      color: #d7ff12;
       margin-bottom: 1.5rem;
       line-height: 1.6;
     }
@@ -57,7 +57,7 @@
 
 .btn {
   display: inline-block;
-  background: #667eea;
+  background: #ff69ff;
   color: white;
   padding: 0.75rem 1.5rem;
   border-radius: 4px;
@@ -66,7 +66,7 @@
   transition: background 0.3s ease;
   
   &:hover {
-    background: #5a6fd8;
+    background: #e055e0;
     color: white;
     text-decoration: none;
   }
@@ -111,7 +111,7 @@
         text-decoration: none;
         
         &:hover {
-          color: #667eea;
+          color: #ff69ff;
         }
       }
     }
@@ -135,17 +135,17 @@
   
   &.status-active {
     background: #d4edda;
-    color: #155724;
+    color: #d4ff17;
   }
   
   &.status-ongoing {
     background: #fff3cd;
-    color: #856404;
+    color: #8504fd;
   }
   
   &.status-completed {
     background: #d1ecf1;
-    color: #0c5460;
+    color: #d4ff17;
   }
 }
 
@@ -176,7 +176,7 @@
 
 /* Bias Beacon Spotlight */
 .bias-beacon-spotlight {
-  background: linear-gradient(135deg, #8e44ad 0%, #3498db 100%);
+  background: linear-gradient(135deg, #ff69ff 0%, #c1ff16 100%);
   color: white;
   padding: 3rem 2rem;
   margin: 3rem -2rem;

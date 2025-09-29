@@ -24,13 +24,26 @@ description: >- # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
+# Production settings
+environment: production
+future: false
+show_drafts: false
+limit_posts: 10
+
 # Build settings
 markdown: kramdown
 theme: minima
+highlighter: rouge
 plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
+
+# Performance settings
+incremental: false
+profile: false
+safe: true
+strict_front_matter: true
 
 # Exclude from processing.
 # The following items will not be processed, by default.
