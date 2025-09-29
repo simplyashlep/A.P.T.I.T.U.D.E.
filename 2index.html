@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A.P.T.I.T.U.D.E - Judicial Bias Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/bias-beacon.scss">
+</head>
+<body>
+    <!-- Bias Beacon Hero Section -->
+    <section class="bias-beacon-hero">
+        <div class="hero-content">
+            <h2>BiasBeacon - Judicial Bias Tracker</h2>
+            <p>Illuminating patterns of judicial bias across Oregon's 36 counties with data-driven insights for justice reform.</p>
+        </div>
+    </section>
+
+    <!-- Search and Filter Controls -->
+    <section class="search-filter-section">
+        <div class="search-controls">
+            <input type="text" class="search-input" placeholder="Search judges by name, county, or court..." id="judgeSearch">
+            <button class="btn btn-primary" onclick="searchJudges()">Search</button>
+        </div>
+        
+        <div class="filter-controls">
+            <select class="filter-select" id="countyFilter">
+                <option value="">All Counties</option>
+                <option value="multnomah">Multnomah County</option>
+                <option value="washington">Washington County</option>
+                <option value="clackamas">Clackamas County</option>
+                <option value="marion">Marion County</option>
+                <option value="jackson">Jackson County</option>
+                <!-- Add all 36 Oregon counties -->
+            </select>
+            
+            <select class="filter-select" id="riskFilter">
+                <option value="">All Risk Levels</option>
+                <option value="high">High Risk</option>
+                <option value="moderate">Moderate Risk</option>
+                <option value="low">Low Risk</option>
+            </select>
+            
+            <select class="filter-select" id="courtFilter">
+                <option value="">All Courts</option>
+                <option value="circuit">Circuit Court</option>
+                <option value="district">District Court</option>
+                <option value="municipal">Municipal Court</option>
+            </select>
+        </div>
+    </section>
+
+    <!-- Statistics Dashboard -->
+    <section class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number" id="totalJudges">247</div>
+            <div class="stat-label">Total Judges</div>
+            <div class="stat-period">Across 36 Counties</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="casesAnalyzed">156,892</div>
+            <div class="stat-label">Cases Analyzed</div>
+            <div class="stat-period">2019-Present</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="highRiskJudges">42</div>
+            <div class="stat-label">High Risk Judges</div>
+            <div class="stat-period">17% of Total</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="avgSentenceDisparity">23%</div>
+            <div class="stat-label">Avg Sentence Disparity</div>
+            <div class="stat-period">By Demographics</div>
+        </div>
+    </section>
+
+    <!-- Judge Cards Grid -->
+    <section class="judge-cards-container">
+        <h2 class="section-title">Judicial Risk Assessment</h2>
+        
+        <div class="judge-cards-grid" id="judgeCardsGrid">
+            <!-- High Risk Judge Example -->
+            <div class="judge-card high-risk" data-county="multnomah" data-risk="high">
+                <div class="judge-name">Judge Patricia Thompson</div>
+                <div class="judge-court">Multnomah County Circuit Court</div>
+                <span class="risk-indicator high">High Risk</span>
+                
+                <div class="judge-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">47%</div>
+                        <div class="stat-label">Sentence Disparity</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">78%</div>
+                        <div class="stat-label">Prison Rate</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">34</div>
+                        <div class="stat-label">Probation Revocations</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">2.3x</div>
+                        <div class="stat-label">Racial Disparity</div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-outline" onclick="viewJudgeDetails('thompson-patricia')">View Details</button>
+            </div>
+
+            <!-- Moderate Risk Judge Example -->
+            <div class="judge-card moderate-risk" data-county="washington" data-risk="moderate">
+                <div class="judge-name">Judge Michael Rodriguez</div>
+                <div class="judge-court">Washington County Circuit Court</div>
+                <span class="risk-indicator moderate">Moderate Risk</span>
+                
+                <div class="judge-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">23%</div>
+                        <div class="stat-label">Sentence Disparity</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">52%</div>
+                        <div class="stat-label">Prison Rate</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">18</div>
+                        <div class="stat-label">Probation Revocations</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">1.4x</div>
+                        <div class="stat-label">Racial Disparity</div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-outline" onclick="viewJudgeDetails('rodriguez-michael')">View Details</button>
+            </div>
+
+            <!-- Low Risk Judge Example -->
+            <div class="judge-card low-risk" data-county="clackamas" data-risk="low">
+                <div class="judge-name">Judge Sarah Chen</div>
+                <div class="judge-court">Clackamas County Circuit Court</div>
+                <span class="risk-indicator low">Low Risk</span>
+                
+                <div class="judge-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">8%</div>
+                        <div class="stat-label">Sentence Disparity</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">31%</div>
+                        <div class="stat-label">Prison Rate</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">7</div>
+                        <div class="stat-label">Probation Revocations</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">1.1x</div>
+                        <div class="stat-label">Racial Disparity</div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-outline" onclick="viewJudgeDetails('chen-sarah')">View Details</button>
+            </div>
+
+            <!-- Additional Judge Cards -->
+            <div class="judge-card high-risk" data-county="marion" data-risk="high">
+                <div class="judge-name">Judge Robert Williams</div>
+                <div class="judge-court">Marion County Circuit Court</div>
+                <span class="risk-indicator high">High Risk</span>
+                
+                <div class="judge-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">52%</div>
+                        <div class="stat-label">Sentence Disparity</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">81%</div>
+                        <div class="stat-label">Prison Rate</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">41</div>
+                        <div class="stat-label">Probation Revocations</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">2.7x</div>
+                        <div class="stat-label">Racial Disparity</div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-outline" onclick="viewJudgeDetails('williams-robert')">View Details</button>
+            </div>
+
+            <div class="judge-card low-risk" data-county="jackson" data-risk="low">
+                <div class="judge-name">Judge Amanda Foster</div>
+                <div class="judge-court">Jackson County Circuit Court</div>
+                <span class="risk-indicator low">Low Risk</span>
+                
+                <div class="judge-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">12%</div>
+                        <div class="stat-label">Sentence Disparity</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">28%</div>
+                        <div class="stat-label">Prison Rate</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">9</div>
+                        <div class="stat-label">Probation Revocations</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">1.2x</div>
+                        <div class="stat-label">Racial Disparity</div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-outline" onclick="viewJudgeDetails('foster-amanda')">View Details</button>
+            </div>
+
+            <div class="judge-card moderate-risk" data-county="lane" data-risk="moderate">
+                <div class="judge-name">Judge David Kim</div>
+                <div class="judge-court">Lane County Circuit Court</div>
+                <span class="risk-indicator moderate">Moderate Risk</span>
+                
+                <div class="judge-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">28%</div>
+                        <div class="stat-label">Sentence Disparity</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">58%</div>
+                        <div class="stat-label">Prison Rate</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">22</div>
+                        <div class="stat-label">Probation Revocations</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">1.6x</div>
+                        <div class="stat-label">Racial Disparity</div>
+                    </div>
+                </div>
+                
+                <button class="btn btn-outline" onclick="viewJudgeDetails('kim-david')">View Details</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Load More Button -->
+    <section class="load-more-section" style="text-align: center; margin: 3rem 0;">
+        <button class="btn btn-primary" onclick="loadMoreJudges()">Load More Judges</button>
+        <p style="color: var(--text-gray); margin-top: 1rem;">Showing 6 of 247 judges</p>
+    </section>
+
+    <!-- County Heat Map Section -->
+    <section class="county-map-container">
+        <h2 style="color: var(--dark-purple); margin-bottom: 2rem;">Oregon Judicial Bias Heat Map</h2>
+        <div class="map-placeholder">
+            <h3>Interactive County Heat Map</h3>
+            <p>Coming Soon: Interactive map showing bias risk levels across all 36 Oregon counties</p>
+        </div>
+        
+        <div class="map-legend">
+            <h4>Risk Levels</h4>
+            <div class="legend-item">
+                <div class="color-box high-bias"></div>
+                <span>High Bias Risk (40%+ sentence disparity)</span>
+            </div>
+            <div class="legend-item">
+                <div class="color-box moderate-bias"></div>
+                <span>Moderate Bias Risk (20-40% sentence disparity)</span>
+            </div>
+            <div class="legend-item">
+                <div class="color-box low-bias"></div>
+                <span>Low Bias Risk (<20% sentence disparity)</span>
+            </div>
+        </div>
+    </section>
+
+    <script src="assets/js/bias-beacon.js"></script>
+</body>
+</html>
