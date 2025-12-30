@@ -2,29 +2,30 @@
 
 /* Color Variables */
 :root {
-  --bright-magenta: #FB05FF;
-  --bright-magenta-light: #FC4AFF;
+  /* Palette requested: Chalk grey -> Periwinkle, Neon hot pink accents */
+  --chalk-grey: #ECEFF1;
+  --periwinkle: #9FA8FF;
+  --periwinkle-dark: #8E9EFF;
+  --neon-hot-pink: #FF1493;
+  --neon-hot-pink-light: #FF66B2;
   --bright-green: #A3FF05;
-  --bright-green-light: #B8FF40;
   --light-grey: #EBEBEB;
   --black: #000000;
-  --dark-purple: #8100FF;
-  --dark-purple-light: #9A33FF;
   --white: #FFFFFF;
   --success: #A3FF05;
-  --warning: #FB05FF;
+  --warning: #FF1493;
   --danger: #8100FF;
 }
 
 /* Hero Section */
 .bias-beacon-hero {
-  background: linear-gradient(135deg, var(--black) 0%, var(--dark-purple) 50%, var(--bright-magenta) 100%);
-  color: var(--white);
+  background: linear-gradient(135deg, var(--chalk-grey) 0%, var(--periwinkle) 100%);
+  color: var(--black);
   padding: 4rem 2rem;
   margin: 2rem -2rem;
   text-align: center;
   border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(251, 5, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
   
   .hero-content {
     max-width: 800px;
@@ -35,7 +36,7 @@
       margin-bottom: 1.5rem;
       font-weight: 700;
       text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-      color: var(--bright-green);
+      color: var(--periwinkle-dark);
     }
     
     p {
@@ -59,13 +60,13 @@
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  border-left: 4px solid var(--bright-magenta);
+  border-left: 4px solid var(--neon-hot-pink);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(251, 5, 255, 0.2);
-    border-left-color: var(--bright-green);
+    box-shadow: 0 8px 24px rgba(255,20,147,0.12);
+    border-left-color: var(--periwinkle-dark);
   }
   
   h3 {
