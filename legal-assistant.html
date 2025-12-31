@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Legal Assistant — Public Accountability Project</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body class="page-theme page-theme--5 dark-theme">
+  <div class="sticky-menu page-theme--5">
+    <a href="/">Home</a>
+    <a href="/community-forum.html">Forum</a>
+    <a href="/bias-beacon/">Bias Beacon</a>
+    <a href="/legal-assistant.html">Legal Assistant</a>
+  </div>
+
+  <main class="wrapper">
+    <header class="page-header-3d">
+      <h1>Legal Assistant</h1>
+      <p>Conversational assistant, templates, and case law snippets</p>
+    </header>
+
+    <section class="legal-assistant">
+      <div class="assistant-chat">
+        <div class="chat-window" style="height:320px;overflow:auto;border:1px solid #eee;padding:8px;border-radius:8px">
+          <p><strong>Assistant:</strong> Hi — how can I help with your case?</p>
+        </div>
+        <div style="margin-top:8px"><input style="width:100%;padding:8px;border-radius:6px" placeholder="Ask the assistant..." /></div>
+      </div>
+
+      <aside class="assistant-side">
+        <div class="collapse">
+          <h4>Quick Links</h4>
+          <ul><li><a href="/legal-templates/">Legal templates</a></li><li><a href="/case-law/">Case law</a></li></ul>
+          <h4>Relevant case snippets</h4>
+          <p id="case-snippet">(Will display court opinions when queried)</p>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script type="module" src="/assets/js/site-ui.js"></script>
+</body>
+</html>
