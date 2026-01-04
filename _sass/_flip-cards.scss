@@ -1,0 +1,714 @@
+/* ==========================================================================
+   FLIP CARD STYLES - Bias Beacon
+   Elegant 3D flip cards with raised outline design and color-coded bias scores
+   Reusable for judges, prosecutors, law enforcement, etc.
+   ========================================================================== */
+
+/* Bias Score Color Variables */
+:root {
+  --bias-excellent: #A3FF05;      /* Bright green - minimal bias */
+  --bias-low: #9FA8FF;            /* Periwinkle - low concern */
+  --bias-moderate: #666666;       /* Grey - moderate concern */
+  --bias-high: #9A031E;           /* Brand red - high concern */
+  --bias-critical: #5F0F40;       /* Deep magenta - critical */
+
+  --card-shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --card-shadow-raised: 0 12px 40px rgba(0, 0, 0, 0.15);
+  --card-shadow-hover: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================================================================
+   FLIP CARD GRID LAYOUT
+   ========================================================================== */
+
+.flip-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2.5rem;
+  padding: 2rem;
+  max-width: 1600px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+}
+
+/* ==========================================================================
+   FLIP CARD CONTAINER
+   ========================================================================== */
+
+.flip-card {
+  perspective: 1500px;
+  width: 100%;
+  height: 420px;
+  cursor: pointer;
+
+  @media (max-width: 768px) {
+    height: 380px;
+  }
+
+  &:focus {
+    outline: 3px solid var(--bias-excellent);
+    outline-offset: 4px;
+  }
+}
+
+/* ==========================================================================
+   FLIP CARD INNER - 3D Transform Container
+   ========================================================================== */
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+/* Trigger flip on hover */
+.flip-card:hover .flip-card-inner,
+.flip-card.is-flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* ==========================================================================
+   SHARED FACE STYLES - Front & Back
+   ========================================================================== */
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 16px;
+  overflow: hidden;
+
+  /* Raised outline effect */
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+
+/* ==========================================================================
+   FRONT OF CARD - Name Display with Bias Color
+   ========================================================================== */
+
+.flip-card-front {
+  /* Clean white/light background with subtle gradient */
+  background: linear-gradient(145deg, #FFFFFF 0%, #F8F9FA 100%);
+
+  /* Raised shadow effect */
+  box-shadow:
+    var(--card-shadow-raised),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+
+  /* Dynamic accent border using CSS variable from inline style */
+  border-color: var(--card-accent, #666);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+
+  .flip-card:hover & {
+    box-shadow: var(--card-shadow-hover);
+  }
+}
+
+.card-front-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+}
+
+/* Status indicator (Active/Former) */
+.status-indicator {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  &.active {
+    background: var(--bias-excellent);
+    color: #0B0F12;
+  }
+
+  &.former, &.inactive {
+    background: #E0E0E0;
+    color: #666;
+  }
+}
+
+/* Judge name container */
+.judge-name-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+/* Judge name - The visual centerpiece */
+.judge-name-display {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+  margin: 0 0 0.5rem 0;
+  text-align: center;
+
+  /* Text shadow for depth */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+
+  /* Color is set dynamically via inline style based on bias score */
+
+  @media (max-width: 768px) {
+    font-size: 1.6rem;
+  }
+}
+
+.county-label {
+  font-size: 1rem;
+  color: #666;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Bias score indicator circle */
+.bias-score-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.score-circle {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+
+  /* Raised effect */
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.2),
+    inset 0 2px 4px rgba(255, 255, 255, 0.3);
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  .flip-card:hover & {
+    transform: scale(1.05);
+  }
+}
+
+.score-value {
+  font-variant-numeric: tabular-nums;
+}
+
+.score-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Footer hint */
+.card-front-footer {
+  position: absolute;
+  bottom: 1rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.hover-hint {
+  font-size: 0.8rem;
+  color: #999;
+  font-style: italic;
+
+  .flip-card:hover & {
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   BACK OF CARD - Detailed Bias Information
+   ========================================================================== */
+
+.flip-card-back {
+  transform: rotateY(180deg);
+  background: linear-gradient(145deg, #FFFFFF 0%, #F5F5F5 100%);
+  border-color: #E0E0E0;
+
+  box-shadow:
+    var(--card-shadow-raised),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+  overflow-y: auto;
+
+  /* Custom scrollbar */
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+.card-back-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #E0E0E0;
+
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0B0F12;
+    margin: 0;
+    flex: 1;
+    line-height: 1.2;
+  }
+}
+
+.score-badge {
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+  margin-left: 0.5rem;
+}
+
+.card-back-content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Metric group styling */
+.flip-metric-group {
+  margin-bottom: 1rem;
+
+  h4 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 0 0.5rem 0;
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid #E8E8E8;
+  }
+}
+
+/* Mini metric grid for overview */
+.metric-grid-mini {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.metric-mini {
+  display: flex;
+  flex-direction: column;
+  padding: 0.4rem;
+  background: #F8F9FA;
+  border-radius: 6px;
+
+  .metric-label {
+    font-size: 0.7rem;
+    color: #888;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .metric-value {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #0B0F12;
+
+    &.truncate {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+  }
+}
+
+/* Bias metrics grid */
+.bias-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.bias-metric-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0.6rem;
+  border-radius: 6px;
+  border-left: 3px solid transparent;
+  background: #F8F9FA;
+
+  .bias-metric-label {
+    font-size: 0.75rem;
+    color: #666;
+    font-weight: 500;
+  }
+
+  .bias-metric-value {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #0B0F12;
+  }
+
+  /* Color coding based on severity */
+  &.level-low {
+    border-left-color: var(--bias-excellent);
+    background: rgba(163, 255, 5, 0.1);
+  }
+
+  &.level-moderate {
+    border-left-color: var(--bias-moderate);
+    background: rgba(102, 102, 102, 0.1);
+  }
+
+  &.level-high {
+    border-left-color: var(--bias-high);
+    background: rgba(154, 3, 30, 0.1);
+  }
+
+  &.level-critical {
+    border-left-color: var(--bias-critical);
+    background: rgba(95, 15, 64, 0.15);
+
+    .bias-metric-value {
+      color: var(--bias-critical);
+    }
+  }
+}
+
+/* Representation comparison */
+.rep-comparison {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.rep-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.3rem 0.5rem;
+  background: #F5F5F5;
+  border-radius: 4px;
+  font-size: 0.8rem;
+
+  .rep-label {
+    color: #666;
+    font-weight: 500;
+  }
+
+  .rep-value {
+    font-weight: 600;
+    color: #0B0F12;
+  }
+}
+
+/* Appellate summary */
+.appellate-summary {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  background: #F0F0F0;
+  border-radius: 6px;
+  font-size: 0.85rem;
+
+  span {
+    font-weight: 600;
+    color: #0B0F12;
+  }
+}
+
+/* Accountability flags */
+.flags-section {
+  h4 {
+    color: var(--bias-high);
+  }
+}
+
+.flags-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    font-size: 0.8rem;
+    color: #444;
+    padding: 0.35rem 0;
+    border-bottom: 1px dashed #E0E0E0;
+    position: relative;
+    padding-left: 1rem;
+
+    &::before {
+      content: "!";
+      position: absolute;
+      left: 0;
+      color: var(--bias-high);
+      font-weight: 700;
+    }
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+/* Card actions */
+.card-back-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid #E0E0E0;
+
+  .btn {
+    flex: 1;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &.btn-primary {
+      background: var(--bias-critical);
+      color: #FFFFFF;
+
+      &:hover {
+        background: darken(#5F0F40, 10%);
+        transform: translateY(-1px);
+      }
+    }
+
+    &.btn-secondary {
+      background: #E8E8E8;
+      color: #0B0F12;
+      border: 2px solid #CCC;
+
+      &:hover {
+        background: #D0D0D0;
+        transform: translateY(-1px);
+      }
+    }
+  }
+}
+
+/* ==========================================================================
+   SIMPLE CARD VARIANT (for search results / lists)
+   ========================================================================== */
+
+.simple-judge-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  background: #FFFFFF;
+  border-radius: 8px;
+  border-left: 4px solid;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  }
+}
+
+.simple-card-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.simple-name {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.simple-county {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.simple-score {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* ==========================================================================
+   BIAS LEVEL COLOR UTILITY CLASSES
+   ========================================================================== */
+
+.bias-excellent {
+  --card-accent: var(--bias-excellent);
+}
+
+.bias-low {
+  --card-accent: var(--bias-low);
+}
+
+.bias-moderate {
+  --card-accent: var(--bias-moderate);
+}
+
+.bias-high {
+  --card-accent: var(--bias-high);
+}
+
+.bias-critical {
+  --card-accent: var(--bias-critical);
+}
+
+/* ==========================================================================
+   RESPONSIVE ADJUSTMENTS
+   ========================================================================== */
+
+@media (max-width: 480px) {
+  .flip-card {
+    height: 360px;
+  }
+
+  .judge-name-display {
+    font-size: 1.4rem;
+  }
+
+  .score-circle {
+    width: 60px;
+    height: 60px;
+    font-size: 1.4rem;
+  }
+
+  .flip-card-back {
+    padding: 1rem;
+  }
+
+  .bias-metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .metric-grid-mini {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   ANIMATION ENHANCEMENTS
+   ========================================================================== */
+
+/* Subtle pulse for critical cards */
+@keyframes critical-pulse {
+  0%, 100% {
+    box-shadow: var(--card-shadow-raised);
+  }
+  50% {
+    box-shadow: var(--card-shadow-raised), 0 0 20px rgba(95, 15, 64, 0.3);
+  }
+}
+
+.flip-card[data-level="critical"] .flip-card-front {
+  animation: critical-pulse 3s ease-in-out infinite;
+}
+
+/* Entrance animation for cards */
+@keyframes card-entrance {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.flip-cards-grid .flip-card {
+  animation: card-entrance 0.4s ease-out backwards;
+}
+
+/* Stagger the entrance animation */
+.flip-cards-grid .flip-card:nth-child(1) { animation-delay: 0.05s; }
+.flip-cards-grid .flip-card:nth-child(2) { animation-delay: 0.1s; }
+.flip-cards-grid .flip-card:nth-child(3) { animation-delay: 0.15s; }
+.flip-cards-grid .flip-card:nth-child(4) { animation-delay: 0.2s; }
+.flip-cards-grid .flip-card:nth-child(5) { animation-delay: 0.25s; }
+.flip-cards-grid .flip-card:nth-child(6) { animation-delay: 0.3s; }
+.flip-cards-grid .flip-card:nth-child(7) { animation-delay: 0.35s; }
+.flip-cards-grid .flip-card:nth-child(8) { animation-delay: 0.4s; }
+.flip-cards-grid .flip-card:nth-child(n+9) { animation-delay: 0.45s; }
+
+/* ==========================================================================
+   PRINT STYLES
+   ========================================================================== */
+
+@media print {
+  .flip-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .flip-card-inner {
+    transform: none !important;
+  }
+
+  .flip-card-back {
+    display: none;
+  }
+
+  .hover-hint {
+    display: none;
+  }
+}
