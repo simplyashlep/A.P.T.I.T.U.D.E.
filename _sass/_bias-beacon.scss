@@ -28,6 +28,9 @@
   --danger: var(--brand-deep);
 }
 
+/* Import Flip Card Styles */
+@import 'flip-cards';
+
 /* Hero Section */
 .bias-beacon-hero {
   background: linear-gradient(135deg, var(--chalk-grey) 0%, var(--periwinkle) 100%);
@@ -2693,9 +2696,6 @@ body.dark-theme {
     }
   }
 }
-
-/* Import Flip Card Styles */
-@import 'flip-cards';
 
 // STOP Correlation Data Styling
 .stop-correlation {
