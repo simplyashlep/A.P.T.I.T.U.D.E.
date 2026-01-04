@@ -4,13 +4,14 @@
    Reusable for judges, prosecutors, law enforcement, etc.
    ========================================================================== */
 
-/* Bias Score Color Variables */
+/* Bias Score Color Variables - Using existing project palette */
 :root {
-  --bias-excellent: #A3FF05;      /* Bright green - minimal bias */
-  --bias-low: #9FA8FF;            /* Periwinkle - low concern */
-  --bias-moderate: #666666;       /* Grey - moderate concern */
-  --bias-high: #9A031E;           /* Brand red - high concern */
-  --bias-critical: #5F0F40;       /* Deep magenta - critical */
+  /* Map bias levels to existing project colors */
+  --bias-excellent: var(--bright-green, #A3FF05);   /* Success green */
+  --bias-low: var(--periwinkle, #9FA8FF);           /* Periwinkle */
+  --bias-moderate: var(--muted, #666666);           /* Muted grey */
+  --bias-high: var(--brand-red, #9A031E);           /* Brand red */
+  --bias-critical: var(--brand-deep, #5F0F40);      /* Deep magenta */
 
   --card-shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.08);
   --card-shadow-raised: 0 12px 40px rgba(0, 0, 0, 0.15);
@@ -523,7 +524,7 @@
       color: #FFFFFF;
 
       &:hover {
-        background: darken(#5F0F40, 10%);
+        background: #4a0b31;
         transform: translateY(-1px);
       }
     }
