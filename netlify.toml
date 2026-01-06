@@ -6,6 +6,10 @@
   RUBY_VERSION = "3.3.5"
   JEKYLL_ENV = "production"
 
+# Enable Visual Editor
+[visual-editor]
+  enabled = true
+
 # Headers for security and performance
 [[headers]]
   for = "/*"
