@@ -14,8 +14,8 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Public Accountability Project
-email: your-email@example.com
+title: A.P.T.I.T.U.D.E.
+email: ashle.p@pennandpenn.com
 description: >- # this means to ignore newlines until "baseurl:"
   Discernment. Accountability. Held to Answer.
   A platform dedicated to promoting transparency and accountability 
@@ -28,7 +28,7 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 environment: production
 future: false
 show_drafts: false
-limit_posts: 10
+limit_posts: 500
 
 # Build settings
 markdown: kramdown
