@@ -1,0 +1,141 @@
+---
+layout: default
+title: Page Not Found
+permalink: /404.html
+---
+
+<div class="error-page">
+  <div class="error-content">
+    <h1>404</h1>
+    <h2>Page Not Found</h2>
+    <p>The page you're looking for doesn't exist or may have been moved.</p>
+
+    <div class="error-suggestions">
+      <h3>Here are some helpful links:</h3>
+      <ul>
+        <li><a href="/">Home</a> - Return to the main page</li>
+        <li><a href="/bias-beacon/">Bias Beacon</a> - Explore judicial bias data</li>
+        <li><a href="/bias-beacon/judges/">Judges</a> - Search judge profiles</li>
+        <li><a href="/bias-beacon/counties/">Counties</a> - View county comparisons</li>
+        <li><a href="/about/">About</a> - Learn about the project</li>
+      </ul>
+    </div>
+
+    <div class="error-actions">
+      <a href="/" class="btn-primary">Go to Home</a>
+      <a href="javascript:history.back()" class="btn-secondary">Go Back</a>
+    </div>
+  </div>
+</div>
+
+<style>
+.error-page {
+  text-align: center;
+  padding: 3rem 1rem;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-content {
+  max-width: 600px;
+}
+
+.error-content h1 {
+  font-size: 6rem;
+  color: #ff69ff;
+  margin: 0;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.error-content h2 {
+  font-size: 2rem;
+  color: #333;
+  margin: 1rem 0;
+}
+
+.error-content > p {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.error-suggestions {
+  text-align: left;
+  background: #f8f9fa;
+  padding: 1.5rem 2rem;
+  border-radius: 8px;
+  margin: 2rem 0;
+}
+
+.error-suggestions h3 {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.error-suggestions ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.error-suggestions li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.error-suggestions li:last-child {
+  border-bottom: none;
+}
+
+.error-suggestions a {
+  color: #ff69ff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.error-suggestions a:hover {
+  text-decoration: underline;
+}
+
+.error-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.btn-primary,
+.btn-secondary {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: #ff69ff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #e54ce5;
+  color: white;
+}
+
+.btn-secondary {
+  background: #f8f9fa;
+  color: #333;
+  border: 1px solid #dee2e6;
+}
+
+.btn-secondary:hover {
+  background: #e9ecef;
+}
+</style>
