@@ -77,6 +77,8 @@
 
 [build.processing.html]
   pretty_urls = true
-
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+  enabled = false
 [build.processing.images]
   compress = true
