@@ -1,7 +1,7 @@
 backend:
   name: github
   repo: simplyashlep/A.P.T.I.T.U.D.E.
-  branch: main
+  branch: claude/judge-bias-beacon-scoring-8qAT3
 
 media_folder: "assets/images/uploads"
 public_folder: "/assets/images/uploads"
