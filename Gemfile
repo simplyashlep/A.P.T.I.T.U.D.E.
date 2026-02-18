@@ -41,3 +41,4 @@ gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
 
 # Add webrick since it's not included by default in Ruby 3.0+
 gem "webrick", "~> 1.7"
+gem "netlify-visual-editor-jekyll"
