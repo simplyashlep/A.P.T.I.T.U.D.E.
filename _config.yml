@@ -60,3 +60,5 @@ collections:
     permalink: /:collection/:name/
 paginate: 5
 paginate_path: "/page/:num/"
+visual_editor:
+  enabled: true
