@@ -6,7 +6,8 @@
   "scripts": {
     "start": "bundle exec jekyll serve --livereload",
     "build": "bundle exec jekyll build",
-    "dev": "bundle exec jekyll serve"
+    "dev": "bundle exec jekyll serve",
+    "preview": "python3 -m http.server 5500 --bind 0.0.0.0"
   },
   "keywords": [
     "judicial-bias",
@@ -16,6 +17,8 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@stackbit/cms-git": "^1.0.36",
+    "@stackbit/types": "^2.1.15",
     "typescript": "^5.3.3"
   },
   "dependencies": {

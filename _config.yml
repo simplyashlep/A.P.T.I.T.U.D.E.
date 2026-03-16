@@ -14,23 +14,18 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Public Accountability Project
-email: your-email@example.com
-description: >- # this means to ignore newlines until "baseurl:"
+title: A.P.T.I.T.U.D.E.
+email: ashle.p@pennandpenn.com
+description: >-
   Discernment. Accountability. Held to Answer.
   A platform dedicated to promoting transparency and accountability 
   in public institutions and processes.
-
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-
-# Production settings
+baseurl: ""
+url: "https://biasbeacon.netlify.app"
 environment: production
 future: false
 show_drafts: false
-limit_posts: 10
-
-# Build settings
+limit_posts: 500
 markdown: kramdown
 theme: minima
 highlighter: rouge
@@ -38,21 +33,12 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
-
-# Performance settings
+sitemap:
+  filename: "sitemap.xml"
 incremental: false
 profile: false
 safe: true
 strict_front_matter: true
-
-# Exclude from processing.
-# The following items will not be processed, by default.
-# Any item listed under the `exclude:` key here will be automatically added to
-# the internal "default list".
-#
-# Excluded items can be processed by explicitly listing the directories or
-# their entries' file path in the `include:` list.
-#
 exclude:
   - .sass-cache/
   - .jekyll-cache/
@@ -65,8 +51,6 @@ exclude:
   - vendor/gems/
   - vendor/ruby/
   - README.md
-
-# Collections
 collections:
   reports:
     output: true
@@ -74,14 +58,21 @@ collections:
   investigations:
     output: true
     permalink: /:collection/:name/
-
-# Pagination
 paginate: 5
 paginate_path: "/page/:num/"
-
-# Social links (optional)
-# twitter_username: your_username
-# github_username: your_username
-
-# Google Analytics (optional)
-# google_analytics: UA-XXXXXXXX-X
+[visual-editor]
+  enabled = true
+  entry_point = "/"
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Content Manager</title>
+</head>
+<body>
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+</body>
+</html>
+include:
+  - admin

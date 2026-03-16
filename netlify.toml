@@ -6,6 +6,10 @@
   RUBY_VERSION = "3.3.5"
   JEKYLL_ENV = "production"
 
+# Enable Visual Editor
+[visual-editor]
+  enabled = true
+  entry_point = "/"
 # Headers for security and performance
 [[headers]]
   for = "/*"
@@ -73,6 +77,8 @@
 
 [build.processing.html]
   pretty_urls = true
-
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+  enabled = false
 [build.processing.images]
   compress = true

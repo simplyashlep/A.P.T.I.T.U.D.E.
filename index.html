@@ -50,6 +50,21 @@
   <div class="post-content">
     <h1 id="county-comparisons">County Comparisons</h1>
 
+      <!-- Quick judge search and cards demo (real data) -->
+      <section id="judges-explorer" class="judges-explorer">
+        <h2>Judge Profiles</h2>
+        <div class="search-controls">
+          <input id="judge-search" class="search-input" placeholder="Search judges, court, or specialization" />
+          <select id="judge-county-filter" class="filter-select">
+            <option value="all">All counties</option>
+          </select>
+        </div>
+
+        <div id="judge-list" class="judges-grid">
+          <div class="loading-message"><h3>Loading judge profiles…</h3></div>
+        </div>
+      </section>
+
 <div class="counties-header">
   <p>Comparative analysis of criminal justice outcomes across all 36 counties, revealing regional variations in sentencing patterns, resource allocation, and judicial consistency.</p>
 </div>
@@ -106,6 +121,9 @@
       </ul>
     </div>
   </div>
+
+    <!-- include client-side scripts for judge explorer -->
+    <script type="module" src="/assets/js/search.js"></script>
 
   <div class="metric-card">
     <h3>⚖️ Demographic Disparity Score</h3>
