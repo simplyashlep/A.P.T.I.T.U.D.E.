@@ -58,21 +58,5 @@ collections:
   investigations:
     output: true
     permalink: /:collection/:name/
-paginate: 5
-paginate_path: "/page/:num/"
-[visual-editor]
-  enabled = true
-  entry_point = "/"
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Content Manager</title>
-</head>
-<body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-</body>
-</html>
 include:
   - admin
