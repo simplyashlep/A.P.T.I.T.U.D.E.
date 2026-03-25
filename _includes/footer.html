@@ -1,39 +1,24 @@
 <footer class="site-footer h-card">
   <data class="u-url" href="{{ "/" | relative_url }}"></data>
 
-  <div class="wrapper">
+  <div class="wrapper site-footer-inner">
+    <div>
+      <h2 class="footer-heading">A.P.T.I.T.U.D.E.</h2>
+      <p class="footer-deck">A civic intelligence archive for measurable patterns of institutional behavior.</p>
+    </div>
 
-    <h2 class="footer-heading">{{ site.title | escape }}</h2>
+    <div class="footer-column">
+      <p class="footer-label">Contact</p>
+      <a class="u-email footer-link" href="mailto:{{ site.email }}">{{ site.email }}</a>
+    </div>
 
-    <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          <li class="p-name">
-            {%- if site.author -%}
-              {{ site.author | escape }}
-            {%- else -%}
-              {{ site.title | escape }}
-            {%- endif -%}
-            </li>
-            {%- if site.email -%}
-            <li><a class="u-email" href="mailto:{{ site.email }}">{{ site.email }}</a></li>
-            {%- endif -%}
-        </ul>
-      </div>
-
-      <div class="footer-col footer-col-2">
-        {%- include social.html -%}
-      </div>
-
-      <div class="footer-col footer-col-3">
-        <p>{{- site.description | escape -}}</p>
-      </div>
+    <div class="footer-column">
+      <p class="footer-label">Evidence Chain</p>
+      <p>Behavior becomes data. Data becomes pattern. Pattern becomes evidence. Evidence becomes accountability.</p>
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}. Promoting transparency and accountability.</p>
+      <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}. Institutional truth made legible.</p>
     </div>
-
   </div>
-
 </footer>
