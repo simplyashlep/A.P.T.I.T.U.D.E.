@@ -6,436 +6,267 @@ body_class: home-page
 wrapper_class: home-wrapper
 ---
 
-<section class="home-hero justice-dashboard-hero" id="top">
-  <div class="bias-beacon-masthead">
-    <div class="masthead-mark" aria-hidden="true">
-      <span class="masthead-burst"></span>
-    </div>
-    <div class="masthead-copy">
-      <p class="eyebrow">Signature System</p>
-      <h2 class="bias-beacon-wordmark">Bias Beacon</h2>
-      <p class="masthead-note">A premium evidence surface for reading Oregon's justice system as structure, behavior, and expenditure.</p>
-    </div>
-  </div>
+<section class="archive-hero" id="top">
+  <div class="archive-hero-grid">
+    <div class="archive-hero-copy">
+      <p class="eyebrow">Civic Intelligence Archive</p>
+      <div class="archive-title-lockup">
+        <p class="archive-kicker">WE ARE THE RECORD</p>
+        <h1 class="archive-title">
+          <span class="archive-title-main"><span class="wordmark-dropcap">A</span>.P.T.I.T.U.D.E.</span>
+          <span class="archive-title-sub">Track how the law is applied.</span>
+        </h1>
+        <p class="archive-acronym">Advanced Platform Tabulating Institutional Trends Unmasking Disparity Epidemics</p>
+      </div>
 
-  <div class="hero-grid dashboard-hero-grid">
-    <div class="hero-copy dashboard-hero-copy">
-      <p class="eyebrow">Oregon Justice System Teaser</p>
-      <h1>Follow the people, the institutions, and the money at the same time.</h1>
-      <p class="hero-lead">
-        A.P.T.I.T.U.D.E. turns Oregon's public justice records into a statewide operating picture. This front page is the 30,000-foot view:
-        where people are held, where they are supervised, how the court system is structured, how prison demographics concentrate, and how
-        corrections dollars are distributed.
+      <p class="archive-lead">
+        A living record of how Oregon's justice system is actually administered. Bias Beacon transforms public judicial and
+        criminal justice records into measurable institutional patterns: disparities, anomalies, reversals, suppression
+        signals, and actor-level outlier behavior across courts, counties, and agencies.
       </p>
-      <p class="dashboard-narrative">
-        The useful story is not just that Oregon imprisons people. It is that the supervised population outside prison is far larger than the
-        prison population, while correctional spending remains heavily concentrated in secure custody. Bias Beacon exists to connect those
-        structural choices to courtroom behavior, county practice, and public accountability.
-      </p>
-      <div class="hero-actions hero-actions-premium">
-        <a class="button button-primary" href="/bias-beacon/">Open Bias Beacon</a>
-        <a class="button button-secondary" href="/bias-beacon/dashboard/">View Full Dashboard</a>
+
+      <div class="spine-sequence" aria-label="Evidence spine">
+        <span>Behavior becomes data.</span>
+        <span>Data becomes pattern.</span>
+        <span>Pattern becomes evidence.</span>
+        <span>Evidence becomes accountability.</span>
       </div>
-      <div class="hero-editorial-rail">
-        <div class="editorial-pill">
-          <span class="editorial-label">What most people miss</span>
-          <span class="editorial-copy">Supervision is the larger control surface. Prison is only the most visible one.</span>
-        </div>
-        <div class="editorial-pill">
-          <span class="editorial-label">Why this matters</span>
-          <span class="editorial-copy">If the money is public and the consequences are public, the operating picture should be public too.</span>
-        </div>
-      </div>
-      <div class="hero-proof dashboard-proof">
-        <div>
-          <span class="proof-value">12</span>
-          <span class="proof-label">State prisons</span>
-        </div>
-        <div>
-          <span class="proof-value">27</span>
-          <span class="proof-label">Judicial districts</span>
-        </div>
-        <div>
-          <span class="proof-value">4,628</span>
-          <span class="proof-label">DOC employees</span>
-        </div>
+
+      <form class="hero-search-form" action="{{ '/bias-beacon/judges/' | relative_url }}" method="get">
+        <label class="visually-hidden" for="hero-search">Search Oregon judges</label>
+        <input id="hero-search" name="q" type="search" placeholder="Search judges, counties, or institutions" />
+        <label class="visually-hidden" for="hero-county">Filter by county</label>
+        <select id="hero-county" name="county">
+          <option value="">All counties</option>
+          <option value="multnomah">Multnomah</option>
+          <option value="washington">Washington</option>
+          <option value="clackamas">Clackamas</option>
+          <option value="lane">Lane</option>
+          <option value="marion">Marion</option>
+          <option value="jackson">Jackson</option>
+          <option value="deschutes">Deschutes</option>
+        </select>
+        <button class="button button-primary" type="submit">View the System</button>
+      </form>
+
+      <div class="archive-actions">
+        <a class="button button-secondary" href="{{ '/bias-beacon/' | relative_url }}">Open Bias Beacon</a>
+        <a class="button button-secondary" href="{{ '/bias-beacon/dashboard/' | relative_url }}">Request Early Access</a>
       </div>
     </div>
 
-    <aside class="hero-panel dashboard-hero-panel">
-      <div class="premium-orb premium-orb-one" aria-hidden="true"></div>
-      <div class="premium-orb premium-orb-two" aria-hidden="true"></div>
-      <p class="panel-label">What This Page Does</p>
-      <div class="spine-lines">
-        <span>Show the statewide baseline.</span>
-        <span>Give visitors a reason to care.</span>
-        <span>Point them into the deeper evidence layer.</span>
-      </div>
-      <div class="hero-aside-story">
-        <p class="archive-meta">
-          Oregon's justice footprint is not only a prison story. It is a courts story, a county story, a supervision story, and a budget story.
-        </p>
-        <p class="archive-meta">
-          Bias Beacon is the platform layer that turns those institutional surfaces into signals: outliers, disparities, funding pressure points,
-          and behavioral drift worth investigating.
-        </p>
-      </div>
-      <div class="spotlight-module">
-        <p class="archive-chip">Bias Beacon Focus</p>
-        <h3>From teaser to evidence dossier</h3>
-        <p>
-          The landing page introduces the statewide pattern. The Bias Beacon environment lets visitors move from that pattern into judge, county,
-          and institutional detail without losing the source trail.
-        </p>
-        <a class="button button-secondary" href="/bias-beacon/judges/">Inspect Judge Profiles</a>
-      </div>
-      <div class="signal-slate">
-        <span class="signal-slate-label">Premium posture</span>
-        <span class="signal-slate-copy">Editorial restraint up front. Deep institutional detail one click later.</span>
-      </div>
+    <aside class="archive-hero-aside">
+      <p class="archive-chip">System Record</p>
+      <h2>Not a watchdog. Not commentary. A record system of record systems.</h2>
+      <p>
+        The surface is designed to feel archival, exacting, and layered. Summary first, structured view next, then
+        deep evidence with traceable source paths.
+      </p>
+      <dl class="archive-facts">
+        <div>
+          <dt>Scope</dt>
+          <dd>27 judicial districts across Oregon</dd>
+        </div>
+        <div>
+          <dt>Primary frame</dt>
+          <dd>Judges, prosecutors, supervision, law enforcement, cases, data</dd>
+        </div>
+        <div>
+          <dt>Method</dt>
+          <dd>Primary-source ingestion, normalization, pattern detection, comparative analysis</dd>
+        </div>
+      </dl>
     </aside>
   </div>
 </section>
 
-<section class="signal-band">
-  <p>Headline KPIs</p>
-  <p>Statewide Trends</p>
-  <p>Interactive Budget Mix</p>
-  <p>Bias Beacon On-Ramp</p>
+<section class="identity-strip" aria-label="Identity strip">
+  <p>Archival</p>
+  <p>Forensic</p>
+  <p>Civic</p>
+  <p>Exacting</p>
 </section>
 
-<section class="story-block dashboard-kpi-block" id="statewide-kpis">
+<section class="home-section" id="actor-cards">
   <div class="section-heading">
-    <p class="eyebrow">Headline KPIs</p>
-    <h2>The supervision footprint is larger than the prison footprint.</h2>
+    <p class="eyebrow">Interactive Actor Cards</p>
+    <h2>Summary first. Structured view next. Deep data after that.</h2>
     <p>
-      The first impression should be structural: Oregon keeps a large number of people under correctional control outside prison walls, while the
-      prison system still dominates the cost conversation. These top-line counters are intentionally simple and marked for extension.
+      Each card is an entry point into a deeper record. The front face stays clean. The reverse face explains what the
+      user can inspect and where that record leads.
     </p>
   </div>
 
-  <div class="dashboard-kpi-grid">
-    <article class="stat-card dashboard-kpi-card">
-      <p class="stat-label">Adults In Custody</p>
-      <div class="stat-number" data-counter="12299">0</div>
-      <p class="stat-period">DOC quick facts count for adults in custody across Oregon institutions.</p>
-    </article>
-    <article class="stat-card dashboard-kpi-card">
-      <p class="stat-label">On Community Supervision</p>
-      <div class="stat-number" data-counter="30000">0</div>
-      <p class="stat-period">Probation, parole, and post-prison supervision across Oregon communities.</p>
-    </article>
-    <article class="stat-card dashboard-kpi-card dashboard-kpi-card-assumption">
-      <p class="stat-label">Local Jail Sentences</p>
-      <div class="stat-number" data-counter="1400">0</div>
-      <p class="stat-period">Assumption/TODO: using DAS local jail-sentence forecast as the current landing-page jail proxy.</p>
-    </article>
-    <article class="stat-card dashboard-kpi-card">
-      <p class="stat-label">2025-27 General Fund</p>
-      <div class="stat-number stat-number-money" data-counter-prefix="$" data-counter="2589000000">0</div>
-      <p class="stat-period">DOC issue brief value that ties operating scale to the public purse.</p>
-    </article>
-  </div>
-</section>
-
-<section class="story-block dashboard-trends-block" id="statewide-trends">
-  <div class="section-heading">
-    <p class="eyebrow">Trends</p>
-    <h2>The statewide shape is legible before it gets detailed.</h2>
-    <p>
-      This section keeps the information hierarchy clean: a few comparative patterns first, then the invitation to dig deeper into the county and
-      actor level dashboards.
-    </p>
-  </div>
-
-  <div class="dashboard-trends-grid">
-    <article class="trend-panel">
-      <div class="trend-header">
-        <p class="archive-chip">Population Control Surface</p>
-        <h3>Correctional control is mostly community-based</h3>
-      </div>
-      <div class="pipeline-bars">
-        <div class="pipeline-row">
-          <span class="pipeline-label">Community supervision</span>
-          <div class="pipeline-track">
-            <span class="pipeline-fill" style="--pipeline-width: 100%;"></span>
-          </div>
-          <span class="pipeline-value">30k</span>
-        </div>
-        <div class="pipeline-row">
-          <span class="pipeline-label">Prison</span>
-          <div class="pipeline-track">
-            <span class="pipeline-fill" style="--pipeline-width: 41%;"></span>
-          </div>
-          <span class="pipeline-value">12.3k</span>
-        </div>
-        <div class="pipeline-row">
-          <span class="pipeline-label">Measure 11</span>
-          <div class="pipeline-track">
-            <span class="pipeline-fill pipeline-fill-muted" style="--pipeline-width: 11%;"></span>
-          </div>
-          <span class="pipeline-value">1.3k</span>
-        </div>
-      </div>
-      <p class="trend-note">
-        The landing-page takeaway: the state's formal control footprint extends well beyond prison walls, and even inside prison a notable share
-        of custody is driven by mandatory sentencing structures.
-      </p>
-    </article>
-
-    <article class="trend-panel">
-      <div class="trend-header">
-        <p class="archive-chip">Incarceration Profile</p>
-        <h3>Aging custody and long-term sentences shape the system</h3>
-      </div>
-      <div class="trend-callouts">
-        <div class="trend-callout">
-          <span class="trend-value">39</span>
-          <span class="trend-label">Average age</span>
-        </div>
-        <div class="trend-callout">
-          <span class="trend-value">54%</span>
-          <span class="trend-label">Serving 5+ years</span>
-        </div>
-        <div class="trend-callout">
-          <span class="trend-value">89%</span>
-          <span class="trend-label">Male population</span>
-        </div>
-      </div>
-      <p class="trend-note">
-        This keeps the narrative from sounding generic. Oregon's custody story is not just about volume. It is also about sentence length,
-        demographic concentration, and institutional permanence.
-      </p>
-    </article>
-
-    <article class="trend-panel trend-panel-bias-beacon">
-      <div class="trend-header">
-        <p class="archive-chip">Bias Beacon Service Layer</p>
-        <h3>Interactive media that converts curiosity into buy-in</h3>
-      </div>
-      <div class="beacon-feature-stack">
-        <a class="beacon-feature" href="/bias-beacon/">
-          <span class="beacon-feature-title">Statewide Signal Map</span>
-          <span class="beacon-feature-copy">Move from statewide pressure points into county and actor-level evidence.</span>
-        </a>
-        <a class="beacon-feature" href="/bias-beacon/judges/">
-          <span class="beacon-feature-title">Flip-Card Dossiers</span>
-          <span class="beacon-feature-copy">Open profile cards that behave like evidence files, not marketing tiles.</span>
-        </a>
-        <a class="beacon-feature" href="/legal-assistant.html">
-          <span class="beacon-feature-title">Research to Action</span>
-          <span class="beacon-feature-copy">Turn patterns into research, drafting support, and pro se preparation.</span>
-        </a>
-      </div>
-    </article>
-  </div>
-</section>
-
-<section class="story-block split-layout dashboard-budget-block" id="budget-story">
-  <div class="section-heading compact">
-    <p class="eyebrow">Interactive Budget Mix</p>
-    <h2>A teaser pie chart should answer a question, not just decorate the page.</h2>
-    <p>
-      Hover or click the budget slices to reveal another level of detail. The message here is simple: Oregon corrections funding is structurally
-      dependent on state General Fund dollars, which is exactly why the public should be able to inspect outcomes with the same clarity.
-    </p>
-    <div class="budget-links">
-      <a class="button button-secondary" href="/bias-beacon/dashboard/">Explore the full dashboard</a>
-      <a class="button button-secondary" href="https://www.oregon.gov/das/financial/pages/index.aspx" target="_blank" rel="noreferrer">Open DAS budget context</a>
-    </div>
-  </div>
-
-  <div class="budget-visual-shell">
-    <div class="budget-donut-panel">
-      <svg class="budget-donut" viewBox="0 0 240 240" role="img" aria-labelledby="budget-donut-title budget-donut-desc">
-        <title id="budget-donut-title">Oregon DOC 2025-27 budget mix</title>
-        <desc id="budget-donut-desc">Interactive donut chart showing General Fund, Other Funds, and Federal Funds shares.</desc>
-        <circle class="budget-donut-ring" cx="120" cy="120" r="72"></circle>
-        <circle class="budget-segment is-active" cx="120" cy="120" r="72" data-budget-key="general" stroke-dasharray="430.53 22" stroke-dashoffset="0"></circle>
-        <circle class="budget-segment" cx="120" cy="120" r="72" data-budget-key="other" stroke-dasharray="21.45 431.08" stroke-dashoffset="-430.53"></circle>
-        <circle class="budget-segment" cx="120" cy="120" r="72" data-budget-key="federal" stroke-dasharray="0.36 452.17" stroke-dashoffset="-451.98"></circle>
-        <g class="budget-donut-center">
-          <text x="120" y="108" text-anchor="middle">DOC</text>
-          <text x="120" y="132" text-anchor="middle">$2.73B</text>
-        </g>
-      </svg>
-
-      <div class="budget-legend">
-        <button class="budget-legend-item is-active" type="button" data-budget-key="general">
-          <span class="budget-swatch budget-swatch-general"></span>
-          <span>General Fund</span>
-        </button>
-        <button class="budget-legend-item" type="button" data-budget-key="other">
-          <span class="budget-swatch budget-swatch-other"></span>
-          <span>Other Funds</span>
-        </button>
-        <button class="budget-legend-item" type="button" data-budget-key="federal">
-          <span class="budget-swatch budget-swatch-federal"></span>
-          <span>Federal Funds</span>
-        </button>
-      </div>
-    </div>
-
-    <article class="budget-detail-panel" id="budget-detail-panel">
-      <p class="archive-chip">Selected Slice</p>
-      <h3 id="budget-detail-title">General Fund</h3>
-      <p class="budget-detail-value" id="budget-detail-value">$2.59B</p>
-      <p class="budget-detail-share" id="budget-detail-share">95.18% of DOC total funds</p>
-      <p class="budget-detail-copy" id="budget-detail-copy">
-        The dominant funding stream comes from the state's core discretionary resources. That makes statewide correctional performance a
-        statewide public-interest issue, not just a siloed agency question.
-      </p>
-      <a class="budget-detail-link" id="budget-detail-link" href="https://www.oregon.gov/doc/Documents/quick-facts-issue-brief-2025.pdf" target="_blank" rel="noreferrer">
-        Open source document
-      </a>
-    </article>
-  </div>
-</section>
-
-<section class="story-block dashboard-flip-block" id="flip-cards">
-  <div class="section-heading">
-    <p class="eyebrow">State Context Cards</p>
-    <h2>The statewide basics should flip into meaning, not trivia.</h2>
-    <p>
-      These cards intentionally mirror the judge-card interaction pattern so the landing page and Bias Beacon feel like one system. Front faces
-      establish the statewide frame; back faces explain why that frame matters.
-    </p>
-  </div>
-
-  <div class="flip-cards-grid dashboard-flip-grid">
-    <article class="flip-card dashboard-flip-card" tabindex="0">
+  <div class="flip-cards-grid actor-card-grid">
+    <article class="flip-card home-actor-card" tabindex="0">
       <div class="flip-card-inner">
-        <div class="flip-card-front dashboard-card-front">
-          <div class="card-front-content dashboard-card-content">
-            <p class="archive-chip">State Footprint</p>
-            <h3 class="judge-name-display">4.27M People</h3>
-            <p class="county-label">Oregon population context</p>
-            <div class="bias-score-indicator">
-              <div class="score-circle dashboard-score-circle">
-                <span class="score-value">36</span>
-              </div>
-              <span class="score-label">Counties in one statewide system</span>
-            </div>
-            <div class="card-front-footer"><span class="hover-hint">Hover for deeper context</span></div>
+        <div class="flip-card-front" style="--card-accent: #9b6a88;">
+          <div class="card-front-content">
+            <p class="archive-chip">Bias Beacon</p>
+            <h3 class="judge-name-display">Judges</h3>
+            <p class="county-label">Actor-level accountability</p>
           </div>
         </div>
-        <div class="flip-card-back dashboard-card-back">
-          <div class="card-back-header">
-            <h3>Population meets jurisdiction</h3>
-          </div>
+        <div class="flip-card-back">
+          <div class="card-back-header"><h3>Judge records</h3></div>
           <div class="card-back-content">
             <div class="flip-metric-group">
-              <h4>What matters</h4>
+              <h4>What Bias Beacon Does</h4>
               <div class="metric-grid-mini">
-                <div class="metric-mini"><span class="metric-label">Population</span><span class="metric-value">~4.27M residents</span></div>
-                <div class="metric-mini"><span class="metric-label">Counties</span><span class="metric-value">36 counties</span></div>
-                <div class="metric-mini"><span class="metric-label">Signal</span><span class="metric-value">Local practices can diverge sharply</span></div>
-                <div class="metric-mini"><span class="metric-label">Why track</span><span class="metric-value">Statewide metrics can hide county-level outliers</span></div>
+                <div class="metric-mini"><span class="metric-label">Signals</span><span class="metric-value">Disparities and reversals</span></div>
+                <div class="metric-mini"><span class="metric-label">Layer</span><span class="metric-value">Evidence to implication</span></div>
+                <div class="metric-mini"><span class="metric-label">Search</span><span class="metric-value">County-aware judge cards</span></div>
+                <div class="metric-mini"><span class="metric-label">Action</span><span class="metric-value">Open full record</span></div>
               </div>
-            </div>
-            <div class="flip-metric-group">
-              <h4>Bias Beacon angle</h4>
-              <p class="dashboard-card-copy">
-                Visitors should learn immediately that Oregon is administratively one state but behaviorally many systems. Bias Beacon is built to
-                make those local divergences visible.
-              </p>
             </div>
           </div>
           <div class="card-back-actions">
-            <a class="btn btn-primary" href="/bias-beacon/counties/">County view</a>
-            <a class="btn btn-secondary" href="/bias-beacon/">More signals</a>
+            <a class="btn btn-primary" href="{{ '/bias-beacon/judges/' | relative_url }}">View Full Record</a>
           </div>
         </div>
       </div>
     </article>
 
-    <article class="flip-card dashboard-flip-card" tabindex="0">
+    <article class="flip-card home-actor-card" tabindex="0">
       <div class="flip-card-inner">
-        <div class="flip-card-front dashboard-card-front">
-          <div class="card-front-content dashboard-card-content">
-            <p class="archive-chip">Court Structure</p>
-            <h3 class="judge-name-display">27 Districts</h3>
-            <p class="county-label">Unified statewide court system</p>
-            <div class="bias-score-indicator">
-              <div class="score-circle dashboard-score-circle">
-                <span class="score-value">~200</span>
-              </div>
-              <span class="score-label">Judges supported by 1,600+ staff</span>
-            </div>
-            <div class="card-front-footer"><span class="hover-hint">Hover for deeper context</span></div>
+        <div class="flip-card-front" style="--card-accent: #8f7b6f;">
+          <div class="card-front-content">
+            <p class="archive-chip">Bias Beacon</p>
+            <h3 class="judge-name-display">Prosecutors</h3>
+            <p class="county-label">Charging and disposition patterns</p>
           </div>
         </div>
-        <div class="flip-card-back dashboard-card-back">
-          <div class="card-back-header">
-            <h3>Statewide court structure</h3>
-          </div>
+        <div class="flip-card-back">
+          <div class="card-back-header"><h3>Prosecutor records</h3></div>
           <div class="card-back-content">
             <div class="flip-metric-group">
-              <h4>OJD frame</h4>
+              <h4>Signals</h4>
               <div class="metric-grid-mini">
-                <div class="metric-mini"><span class="metric-label">Circuit layer</span><span class="metric-value">36 circuit courts</span></div>
-                <div class="metric-mini"><span class="metric-label">Statewide system</span><span class="metric-value">27 judicial districts</span></div>
-                <div class="metric-mini"><span class="metric-label">Higher courts</span><span class="metric-value">Supreme, Appeals, Tax</span></div>
-                <div class="metric-mini"><span class="metric-label">Staffing</span><span class="metric-value">1,600+ full/part-time staff</span></div>
+                <div class="metric-mini"><span class="metric-label">Focus</span><span class="metric-value">Charging intensity</span></div>
+                <div class="metric-mini"><span class="metric-label">Compare</span><span class="metric-value">County to county</span></div>
+                <div class="metric-mini"><span class="metric-label">Track</span><span class="metric-value">Dismissals and plea drift</span></div>
+                <div class="metric-mini"><span class="metric-label">Path</span><span class="metric-value">Agency context</span></div>
               </div>
-            </div>
-            <div class="flip-metric-group">
-              <h4>Bias Beacon angle</h4>
-              <p class="dashboard-card-copy">
-                This is where statewide comparisons become credible. A unified court system makes judge-level and county-level comparisons more
-                meaningful than they would be in a fragmented local model.
-              </p>
             </div>
           </div>
           <div class="card-back-actions">
-            <a class="btn btn-primary" href="/bias-beacon/judges/">Judge cards</a>
-            <a class="btn btn-secondary" href="https://www.courts.oregon.gov/Pages/default.aspx" target="_blank" rel="noreferrer">Oregon Courts</a>
+            <a class="btn btn-primary" href="{{ '/prosecutors.html' | relative_url }}">View Full Record</a>
           </div>
         </div>
       </div>
     </article>
 
-    <article class="flip-card dashboard-flip-card" tabindex="0">
+    <article class="flip-card home-actor-card" tabindex="0">
       <div class="flip-card-inner">
-        <div class="flip-card-front dashboard-card-front">
-          <div class="card-front-content dashboard-card-content">
-            <p class="archive-chip">Custody + Supervision</p>
-            <h3 class="judge-name-display">30k Supervised</h3>
-            <p class="county-label">Compared with roughly 12.3k in prison</p>
-            <div class="bias-score-indicator">
-              <div class="score-circle dashboard-score-circle">
-                <span class="score-value">2.4x</span>
-              </div>
-              <span class="score-label">Community footprint versus custody footprint</span>
-            </div>
-            <div class="card-front-footer"><span class="hover-hint">Hover for deeper context</span></div>
+        <div class="flip-card-front" style="--card-accent: #7a8fb5;">
+          <div class="card-front-content">
+            <p class="archive-chip">Bias Beacon</p>
+            <h3 class="judge-name-display">Probation</h3>
+            <p class="county-label">Supervision as control surface</p>
           </div>
         </div>
-        <div class="flip-card-back dashboard-card-back">
-          <div class="card-back-header">
-            <h3>Why this matters first</h3>
-          </div>
+        <div class="flip-card-back">
+          <div class="card-back-header"><h3>Supervision patterns</h3></div>
           <div class="card-back-content">
             <div class="flip-metric-group">
-              <h4>Control layers</h4>
+              <h4>Signals</h4>
               <div class="metric-grid-mini">
-                <div class="metric-mini"><span class="metric-label">Prison</span><span class="metric-value">12,299 adults in custody</span></div>
-                <div class="metric-mini"><span class="metric-label">Community</span><span class="metric-value">~30,000 supervised</span></div>
-                <div class="metric-mini"><span class="metric-label">Earned discharge</span><span class="metric-value">County variation matters</span></div>
-                <div class="metric-mini"><span class="metric-label">Inference</span><span class="metric-value">Supervision policy drives a wider footprint than prison</span></div>
+                <div class="metric-mini"><span class="metric-label">Focus</span><span class="metric-value">Revocations and sanctions</span></div>
+                <div class="metric-mini"><span class="metric-label">Frame</span><span class="metric-value">Supervision exceeds custody</span></div>
+                <div class="metric-mini"><span class="metric-label">Compare</span><span class="metric-value">County variance</span></div>
+                <div class="metric-mini"><span class="metric-label">Path</span><span class="metric-value">Action-oriented review</span></div>
               </div>
-            </div>
-            <div class="flip-metric-group">
-              <h4>Bias Beacon angle</h4>
-              <p class="dashboard-card-copy">
-                Once visitors understand that supervision is the larger control surface, county revocations, sanctions, earned discharge, and
-                court decisions stop looking like side issues. They become central.
-              </p>
             </div>
           </div>
           <div class="card-back-actions">
-            <a class="btn btn-primary" href="/parole-probation.html">Supervision layer</a>
-            <a class="btn btn-secondary" href="/bias-beacon/dashboard/">Full metrics</a>
+            <a class="btn btn-primary" href="{{ '/parole-probation.html' | relative_url }}">View Full Record</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="flip-card home-actor-card" tabindex="0">
+      <div class="flip-card-inner">
+        <div class="flip-card-front" style="--card-accent: #a05e72;">
+          <div class="card-front-content">
+            <p class="archive-chip">Bias Beacon</p>
+            <h3 class="judge-name-display">Law Enforcement</h3>
+            <p class="county-label">Upstream disparities and enforcement drift</p>
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <div class="card-back-header"><h3>Policing layer</h3></div>
+          <div class="card-back-content">
+            <div class="flip-metric-group">
+              <h4>Signals</h4>
+              <div class="metric-grid-mini">
+                <div class="metric-mini"><span class="metric-label">Focus</span><span class="metric-value">STOP and agency patterns</span></div>
+                <div class="metric-mini"><span class="metric-label">Compare</span><span class="metric-value">Search and stop rates</span></div>
+                <div class="metric-mini"><span class="metric-label">Context</span><span class="metric-value">Pipeline to court outcomes</span></div>
+                <div class="metric-mini"><span class="metric-label">Path</span><span class="metric-value">Oversight links</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="card-back-actions">
+            <a class="btn btn-primary" href="{{ '/law-enforcement.html' | relative_url }}">View Full Record</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="flip-card home-actor-card" tabindex="0">
+      <div class="flip-card-inner">
+        <div class="flip-card-front" style="--card-accent: #6f879a;">
+          <div class="card-front-content">
+            <p class="archive-chip">Juris Lab</p>
+            <h3 class="judge-name-display">Cases</h3>
+            <p class="county-label">Linked rulings and source references</p>
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <div class="card-back-header"><h3>Case layer</h3></div>
+          <div class="card-back-content">
+            <div class="flip-metric-group">
+              <h4>Evidence</h4>
+              <div class="metric-grid-mini">
+                <div class="metric-mini"><span class="metric-label">Primary</span><span class="metric-value">Dates and rulings</span></div>
+                <div class="metric-mini"><span class="metric-label">Trust</span><span class="metric-value">Source-linked records</span></div>
+                <div class="metric-mini"><span class="metric-label">Context</span><span class="metric-value">Legal issues and filings</span></div>
+                <div class="metric-mini"><span class="metric-label">Path</span><span class="metric-value">Library integration</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="card-back-actions">
+            <a class="btn btn-primary" href="{{ '/reports/' | relative_url }}">View Full Record</a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="flip-card home-actor-card" tabindex="0">
+      <div class="flip-card-inner">
+        <div class="flip-card-front" style="--card-accent: #8896c7;">
+          <div class="card-front-content">
+            <p class="archive-chip">Watchtower</p>
+            <h3 class="judge-name-display">Data</h3>
+            <p class="county-label">Pattern explorer and statewide comparisons</p>
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <div class="card-back-header"><h3>Watchtower command layer</h3></div>
+          <div class="card-back-content">
+            <div class="flip-metric-group">
+              <h4>System intelligence</h4>
+              <div class="metric-grid-mini">
+                <div class="metric-mini"><span class="metric-label">Controls</span><span class="metric-value">County and time filters</span></div>
+                <div class="metric-mini"><span class="metric-label">Metrics</span><span class="metric-value">Large stat cards</span></div>
+                <div class="metric-mini"><span class="metric-label">Visuals</span><span class="metric-value">Trend and distribution views</span></div>
+                <div class="metric-mini"><span class="metric-label">Path</span><span class="metric-value">Drill down by actor</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="card-back-actions">
+            <a class="btn btn-primary" href="{{ '/bias-beacon/dashboard/' | relative_url }}">View Full Record</a>
           </div>
         </div>
       </div>
@@ -443,109 +274,91 @@ wrapper_class: home-wrapper
   </div>
 </section>
 
-<section class="story-block dashboard-table-block" id="breakdown-table">
-  <div class="section-heading">
-    <p class="eyebrow">Breakdown Table</p>
-    <h2>The landing page should end its dashboard stack with an audit-friendly breakdown.</h2>
-    <p>
-      This table is intentionally compact. It gives visitors a clean bridge from the teaser metrics into the fuller dashboard and makes the
-      assumptions explicit rather than hiding them.
-    </p>
-  </div>
+<section class="home-section archive-system-grid">
+  <article class="archive-panel">
+    <p class="eyebrow">How the System Builds Truth</p>
+    <h2>Primary-source ingestion to public accountability.</h2>
+    <ol class="archive-sequence-list">
+      <li>Primary-source ingestion</li>
+      <li>Normalization</li>
+      <li>Pattern detection</li>
+      <li>Comparative analysis</li>
+      <li>Public accountability</li>
+    </ol>
+  </article>
 
-  <div class="dashboard-table-shell">
-    <table class="dashboard-breakdown-table">
-      <thead>
-        <tr>
-          <th scope="col">Measure</th>
-          <th scope="col">Value</th>
-          <th scope="col">Why it matters</th>
-          <th scope="col">Next click</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Adults in custody</td>
-          <td>12,299</td>
-          <td>Secure custody remains Oregon's most visible correctional function.</td>
-          <td><a href="/bias-beacon/dashboard/">See prison trends</a></td>
-        </tr>
-        <tr>
-          <td>Community supervision</td>
-          <td>~30,000</td>
-          <td>The state's correctional footprint is significantly larger outside prison than inside it.</td>
-          <td><a href="/parole-probation.html">Open supervision view</a></td>
-        </tr>
-        <tr>
-          <td>Measure 11 population</td>
-          <td>~1,320</td>
-          <td>Mandatory sentencing remains a visible structural driver inside prison.</td>
-          <td><a href="https://www.oregon.gov/doc/Documents/measure-11-offenders.pdf" target="_blank" rel="noreferrer">Open Measure 11 brief</a></td>
-        </tr>
-        <tr>
-          <td>DOC 2025-27 General Fund</td>
-          <td>$2.589B</td>
-          <td>Budget scale lets visitors connect system size to public spending.</td>
-          <td><a href="https://www.oregon.gov/doc/Documents/quick-facts-issue-brief-2025.pdf" target="_blank" rel="noreferrer">Open issue brief</a></td>
-        </tr>
-        <tr>
-          <td>Oregon court structure</td>
-          <td>27 districts, 36 circuit courts</td>
-          <td>A unified system creates a basis for cross-county comparisons and anomaly detection.</td>
-          <td><a href="/bias-beacon/judges/">Inspect judge cards</a></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<section class="story-block split-layout" id="sources">
-  <div class="section-heading compact">
-    <p class="eyebrow">Sources And Assumptions</p>
-    <h2>Built from official Oregon references, with one clearly labeled placeholder.</h2>
-    <p>
-      This page is a teaser, not the finished statewide observatory. The source trail is visible so the landing experience can stay persuasive
-      without turning into an untraceable pile of claims.
-    </p>
-  </div>
-  <div class="resource-panel">
-    <ul class="record-list">
-      <li><a href="https://www.oregon.gov/doc/Documents/agency-quick-facts.pdf" target="_blank" rel="noreferrer">DOC agency quick facts</a> for institutions, staffing, and adults in custody.</li>
-      <li><a href="https://www.oregon.gov/doc/Documents/quick-facts-issue-brief-2025.pdf" target="_blank" rel="noreferrer">DOC quick facts issue brief 2025</a> for funding and operating context.</li>
-      <li><a href="https://www.oregon.gov/doc/Documents/measure-11-offenders.pdf" target="_blank" rel="noreferrer">Measure 11 offenders</a> for mandatory sentencing context.</li>
-      <li><a href="https://www.oregon.gov/doc/Documents/inmate-profile.pdf" target="_blank" rel="noreferrer">Inmate profile</a> for age, sex, race, and sentence length context.</li>
-      <li><a href="https://www.oregon.gov/doc/Documents/prison-population-trends.pdf" target="_blank" rel="noreferrer">Prison population trends</a> for longer-term custody movement.</li>
-      <li><a href="https://www.oregon.gov/doc/community-corrections/pages/home.aspx" target="_blank" rel="noreferrer">DOC Community Corrections</a> for community supervision counts.</li>
-      <li><a href="https://www.oregon.gov/das/OEA/Pages/forecastcorrections.aspx" target="_blank" rel="noreferrer">DAS Office of Economic Analysis corrections forecast</a> as the current jail/local-control proxy to replace later with a fuller jail dataset.</li>
-      <li><a href="https://www.urban.org/sites/default/files/publication/105347/an-assessment-of-earned-discharge-community-supervision-policies-in-oregon-and-missouri.pdf" target="_blank" rel="noreferrer">Urban Institute earned discharge assessment</a> for the supervision-policy narrative layer.</li>
+  <article class="archive-panel">
+    <p class="eyebrow">Analytical Environments</p>
+    <h2>The system is organized around actors, not abstractions.</h2>
+    <ul class="archive-tag-list">
+      <li>Judges</li>
+      <li>Prosecutors</li>
+      <li>Probation / Parole</li>
+      <li>Law Enforcement</li>
     </ul>
+  </article>
+  <article class="archive-panel">
+    <p class="eyebrow">Aggregation Layers</p>
+    <h2>Individual to statewide.</h2>
+    <ul class="archive-tag-list">
+      <li>Individual</li>
+      <li>Court</li>
+      <li>County</li>
+      <li>Statewide</li>
+    </ul>
+  </article>
+</section>
+
+<section class="home-section profile-flow-grid">
+  <div class="section-heading">
+    <p class="eyebrow">Bias Beacon Profile Flow</p>
+    <h2>Evidence should lead to informed use, not passive observation.</h2>
+  </div>
+
+  <div class="profile-layers">
+    <article class="layer-card">
+      <span class="layer-index">01</span>
+      <h3>Evidence</h3>
+      <p>Linked cases, dates, rulings, and source references establish trust before interpretation begins.</p>
+    </article>
+    <article class="layer-card">
+      <span class="layer-index">02</span>
+      <h3>Pattern Context</h3>
+      <p>Compare a judge or agency against county and state baselines to see whether conduct is ordinary or outlying.</p>
+    </article>
+    <article class="layer-card">
+      <span class="layer-index">03</span>
+      <h3>Implication</h3>
+      <p>Plain-language interpretation explains what the pattern means in practice for litigants, defendants, and communities.</p>
+    </article>
+    <article class="layer-card">
+      <span class="layer-index">04</span>
+      <h3>Action Path</h3>
+      <p>Open related cases, save materials to workspace, or move into drafting and research without losing the source trail.</p>
+    </article>
   </div>
 </section>
 
-<section class="contact-section story-block" id="contact">
-  <div class="section-heading compact">
-    <p class="eyebrow">Request Early Access</p>
-    <h2>Tell us which layer of the Oregon system you need to inspect.</h2>
-    <p>Use this form to request access, discuss research collaboration, or ask for county, judge, supervision, or budget coverage.</p>
-  </div>
-  <form class="contact-form" name="aptitude-access" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-    <input type="hidden" name="form-name" value="aptitude-access">
-    <p class="hidden-field">
-      <label>Do not fill this out if you are human: <input name="bot-field"></label>
+<section class="home-section watchtower-grid">
+  <article class="archive-panel archive-panel-emphasis">
+    <p class="eyebrow">The Watchtower</p>
+    <h2>A control system, not a landing page.</h2>
+    <p>
+      The Watchtower is the command layer: domain selectors, county filters, line charts, distribution views, and short
+      summaries that point directly to the next drill-down.
     </p>
-    <div class="form-grid">
-      <label><span>Name</span><input type="text" name="name" required></label>
-      <label><span>Email</span><input type="email" name="email" required></label>
-      <label><span>Role</span><input type="text" name="role" placeholder="Researcher, journalist, public defender, analyst"></label>
-      <label><span>Focus Area</span><input type="text" name="focus" placeholder="Judges, counties, prosecutors, supervision, law enforcement"></label>
+    <div class="watchtower-actions">
+      <a class="button button-primary" href="{{ '/bias-beacon/dashboard/' | relative_url }}">Open Watchtower</a>
+      <a class="button button-secondary" href="{{ '/bias-beacon/counties/' | relative_url }}">Explore Counties</a>
     </div>
-    <label class="full-width"><span>Message</span><textarea name="message" rows="6" required placeholder="What questions are you trying to answer, and which part of Oregon's justice system should the platform surface next?"></textarea></label>
-    <div class="form-actions">
-      <button class="button button-primary" type="submit">Submit Request</button>
-      <p class="form-note">Configured for Netlify Forms so submissions can be captured without a custom backend.</p>
-    </div>
-  </form>
-</section>
+  </article>
 
-<script src="{{ '/assets/js/site-ui.js' | relative_url }}"></script>
-<script type="module" src="{{ '/assets/js/home-dashboard.js' | relative_url }}"></script>
+  <article class="archive-panel">
+    <p class="eyebrow">Workspace</p>
+    <h2>Research, drafting, and document use stay separate from public data.</h2>
+    <p>
+      The workspace layer is reserved for uploads, document organization, assistant workflows, and drafting support. The
+      public record remains the public record.
+    </p>
+  </article>
+</section>

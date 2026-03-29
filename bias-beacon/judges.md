@@ -6,7 +6,7 @@ permalink: /bias-beacon/judges/
 
 <div class="bias-beacon-container">
   <h1>Oregon Judge Profiles</h1>
-  <p class="page-subtitle">Comprehensive bias analysis for every sitting and former judge from the past 5 years across all 36 Oregon counties.</p>
+  <p class="page-subtitle">Structured judge records for county-level search and comparison. Official roster verification is in progress as OJD county directories replace provisional entries.</p>
 
   <div class="methodology-link">
     <p><a href="{{ '/bias-beacon/methodology/' | relative_url }}" class="methodology-btn">View Bias Calculation Methodology</a> - Learn how our Bias Beacon Scores are calculated and validated</p>
@@ -24,7 +24,7 @@ permalink: /bias-beacon/judges/
       </div>
 
       <div class="results-info">
-        <span id="results-count" class="results-count">Loading judges...</span>
+        <span id="results-count" class="results-count">Loading judge cards...</span>
       </div>
     </div>
 

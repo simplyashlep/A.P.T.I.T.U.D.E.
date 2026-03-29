@@ -1,28 +1,63 @@
 <header class="site-header" role="banner">
   <div class="wrapper site-header-inner">
     <a class="site-title" rel="author" href="{{ '/' | relative_url }}">
-      <span class="site-title-mark">A.P.T.I.T.U.D.E.</span>
+      <span class="site-title-mark"><span class="site-title-initial">A</span>.P.T.I.T.U.D.E.</span>
       <span class="site-title-submark">Civic Intelligence Archive</span>
     </a>
 
-    <nav class="site-nav">
-      <input type="checkbox" id="nav-trigger" class="nav-trigger" />
-      <label for="nav-trigger">
-        <span class="menu-icon">
-          <svg viewBox="0 0 18 15" width="18px" height="15px" aria-hidden="true">
-            <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.484C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.484l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.001,18,12.665,18,13.484L18,13.484z"/>
-          </svg>
-        </span>
-      </label>
-
-      <div class="trigger">
-        <a class="page-link" href="{{ '/' | relative_url }}">Home</a>
-        <a class="page-link" href="{{ '/bias-beacon/' | relative_url }}">Bias Beacon</a>
-        <a class="page-link" href="{{ '/reports/' | relative_url }}">Reports</a>
-        <a class="page-link" href="{{ '/investigations/' | relative_url }}">Investigations</a>
-        <a class="page-link" href="{{ '/about/' | relative_url }}">About</a>
-        <a class="nav-cta" href="{{ '/bias-beacon/judges/' | relative_url }}">Open Profiles</a>
-      </div>
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a class="page-link" href="{{ '/' | relative_url }}">Home</a>
+      <a class="page-link" href="{{ '/bias-beacon/' | relative_url }}">Bias Beacon</a>
+      <a class="page-link" href="{{ '/bias-beacon/dashboard/' | relative_url }}">Watchtower</a>
+      <a class="page-link" href="{{ '/legal-assistant.html' | relative_url }}">Workspace</a>
+      <button class="menu-launcher" type="button" data-menu-toggle aria-expanded="false" aria-controls="mega-menu-panel">
+        Menu
+      </button>
     </nav>
+  </div>
+
+  <div class="mega-menu-shell" id="mega-menu-panel" data-mega-menu hidden>
+    <div class="wrapper mega-menu-grid">
+      <section class="mega-menu-column">
+        <p class="mega-menu-kicker">Bias Beacon</p>
+        <a class="mega-menu-link" href="{{ '/bias-beacon/judges/' | relative_url }}">Judges</a>
+        <a class="mega-menu-link" href="{{ '/prosecutors.html' | relative_url }}">Prosecutors</a>
+        <a class="mega-menu-link" href="{{ '/parole-probation.html' | relative_url }}">Probation</a>
+        <a class="mega-menu-link" href="{{ '/law-enforcement.html' | relative_url }}">Law Enforcement</a>
+      </section>
+
+      <section class="mega-menu-column mega-menu-column-centered">
+        <p class="mega-menu-kicker">The Watchtower</p>
+        <a class="mega-menu-link" href="{{ '/bias-beacon/dashboard/' | relative_url }}">Statewide Dashboard</a>
+        <a class="mega-menu-link" href="{{ '/bias-beacon/counties/' | relative_url }}">Agency Intelligence</a>
+        <a class="mega-menu-link" href="{{ '/reports/' | relative_url }}">Budget Analysis</a>
+        <a class="mega-menu-link" href="{{ '/investigations/' | relative_url }}">Pattern Explorer</a>
+      </section>
+
+      <section class="mega-menu-column">
+        <p class="mega-menu-kicker">Juris Lab</p>
+        <a class="mega-menu-link" href="{{ '/bias-beacon/' | relative_url }}">Cases &amp; Law</a>
+        <a class="mega-menu-link" href="{{ '/reports/' | relative_url }}">Cases &amp; Filings</a>
+        <a class="mega-menu-link" href="{{ '/bias-beacon/methodology/' | relative_url }}">Legal Issues</a>
+        <a class="mega-menu-link" href="https://soll.libguides.com/" target="_blank" rel="noreferrer">Library</a>
+      </section>
+
+      <section class="mega-menu-column">
+        <p class="mega-menu-kicker">Sui Generis</p>
+        <a class="mega-menu-link" href="{{ '/reports/' | relative_url }}">My Documents</a>
+        <a class="mega-menu-link" href="{{ '/legal-assistant.html' | relative_url }}">AI Assistant</a>
+        <a class="mega-menu-link" href="{{ '/legal-assistant.html' | relative_url }}">Drafting Lab</a>
+        <a class="mega-menu-link" href="{{ '/community-forum.html' | relative_url }}">Forums &amp; Discussion</a>
+      </section>
+
+      <section class="mega-menu-column">
+        <p class="mega-menu-kicker">Contacts &amp; Oversight</p>
+        <a class="mega-menu-link" href="{{ '/reports/' | relative_url }}">Attorney Directory</a>
+        <a class="mega-menu-link" href="https://www.oregonlegislature.gov/" target="_blank" rel="noreferrer">Oregon State Legislature</a>
+        <a class="mega-menu-link" href="https://www.osbar.org/" target="_blank" rel="noreferrer">Oregon State Bar</a>
+        <a class="mega-menu-link" href="https://www.courts.oregon.gov/courts/Pages/default.aspx" target="_blank" rel="noreferrer">OJD &amp; CJC</a>
+        <a class="mega-menu-link" href="https://www.portland.gov/ipr" target="_blank" rel="noreferrer">Oversight Bodies</a>
+      </section>
+    </div>
   </div>
 </header>
