@@ -8,8 +8,13 @@
     </div>
 
     <div class="footer-column">
-      <p class="footer-label">Contact</p>
-      <a class="u-email footer-link" href="mailto:{{ site.email }}">{{ site.email }}</a>
+      <p class="footer-label">Site Links</p>
+      <div class="footer-links-list">
+        <a class="footer-link" href="{{ '/bias-beacon/' | relative_url }}">Bias Beacon</a>
+        <a class="footer-link" href="{{ '/bias-beacon/methodology/' | relative_url }}">Methodology</a>
+        <a class="footer-link" href="{{ '/privacy-compliance/' | relative_url }}">Disclaimers</a>
+        <a class="footer-link" href="{{ '/community-forum.html' | relative_url }}">Contact Us</a>
+      </div>
     </div>
 
     <div class="footer-column">
@@ -19,6 +24,7 @@
 
     <div class="footer-bottom">
       <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}. Institutional truth made legible.</p>
+      <a class="u-email footer-link" href="mailto:{{ site.email }}">{{ site.email }}</a>
     </div>
   </div>
 </footer>
