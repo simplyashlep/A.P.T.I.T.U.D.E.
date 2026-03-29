@@ -3,12 +3,12 @@
 
   {%- include head.html -%}
 
-  <body>
+  <body class="{{ page.body_class | default: layout.body_class }}">
 
     {%- include header.html -%}
 
     <main class="page-content" aria-label="Content">
-      <div class="wrapper">
+      <div class="wrapper {{ page.wrapper_class | default: layout.wrapper_class }}">
         {{ content }}
       </div>
     </main>
