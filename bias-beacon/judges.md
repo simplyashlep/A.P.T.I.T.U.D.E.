@@ -11,15 +11,28 @@ body_class: archive-page actor-directory-page judges-page
       <p class="archive-kicker">Bias Beacon</p>
       <h1 class="actor-page-title">Oregon Judge Profiles</h1>
       <p class="actor-page-deck">
-        Compare judicial behavior across counties, scan where each judge sits on the Bias Beacon spectrum,
-        and open deeper profiles with evidence, reversals, representation disparities, and accountability flags.
+        Judicial profiles arranged for quick comparison across counties, courtrooms, and outcome patterns,
+        with deeper layers for reversals, disparity signals, and accountability flags.
       </p>
+      <div class="actor-hero-search">
+        <label class="visually-hidden" for="judge-search">Search judges, counties, or focus areas</label>
+        <div class="search-wrapper">
+          <input type="text"
+                 id="judge-search"
+                 class="search-input-enhanced"
+                 placeholder="Search judges, counties, or focus areas">
+          <span class="search-icon">&#128269;</span>
+        </div>
+      </div>
+      <div class="actor-hero-actions">
+        <button class="btn btn-secondary actor-sidebar-toggle" type="button" data-sidebar-toggle aria-expanded="true">Filters</button>
+      </div>
     </div>
     <aside class="actor-hero-panel">
       <p class="archive-kicker">Evidence Chain</p>
       <p class="actor-hero-note">
-        This page explains how courtroom behavior is measured once records become comparable. Search by county,
-        narrow by bias level, and compare judges side by side without leaving the directory.
+        Courtroom discretion leaves a pattern when enough rulings, sentences, and reversals are read together.
+        The directory keeps that pattern visible without flattening the judge, the county, or the record that produced it.
       </p>
       <div class="actor-chain-mini">
         <span>Sentencing</span>
@@ -35,17 +48,6 @@ body_class: archive-page actor-directory-page judges-page
       <div class="sidebar-panel sidebar-panel-emphasis">
         <h2>Directory Filters</h2>
         <p class="sidebar-copy">Glass-filter controls stay pinned so the cards remain the focus.</p>
-      </div>
-
-      <div class="sidebar-panel">
-        <label for="judge-search">Search</label>
-        <div class="search-wrapper">
-          <input type="text"
-                 id="judge-search"
-                 class="search-input-enhanced"
-                 placeholder="Search judges, counties, or focus areas">
-          <span class="search-icon">&#128269;</span>
-        </div>
       </div>
 
       <div class="sidebar-panel sidebar-filters">
@@ -120,10 +122,10 @@ body_class: archive-page actor-directory-page judges-page
         </section>
         <section class="actor-top-panel actor-top-panel--evidence">
           <p class="eyebrow">Evidence Chain</p>
-          <h2>How to read this directory</h2>
+          <h2>How the surface opens up</h2>
           <p>
-            Start with the score and spectrum, flip for the record signals, then open the full profile for deeper
-            evidence, links, actor context, and comparative indicators.
+            Start with the score and spectrum, flip for the pressure points, then open the full profile
+            for the deeper context that gives each signal its weight.
           </p>
         </section>
       </div>

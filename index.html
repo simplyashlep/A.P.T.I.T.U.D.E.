@@ -7,67 +7,92 @@ wrapper_class: home-wrapper
 ---
 
 <section class="archive-hero" id="top">
+  <div class="hero-cube-field" aria-hidden="true">
+    <span class="hero-cube hero-cube-a"></span>
+    <span class="hero-cube hero-cube-b"></span>
+    <span class="hero-cube hero-cube-c"></span>
+    <span class="hero-cube hero-cube-d"></span>
+  </div>
   <div class="archive-hero-grid">
     <div class="archive-hero-copy">
-      <p class="archive-kicker">WE ARE THE RECORD</p>
-      <h1 class="archive-title">
-        <span class="archive-title-main"><span class="wordmark-dropcap">A</span>.P.T.I.T.U.D.E.</span>
-      </h1>
-      <p class="archive-title-sub">Track how the law is applied.</p>
-      <p class="archive-acronym archive-acronym-expanded" aria-label="APTITUDE acronym">
-        <span class="archive-acronym-word"><span class="archive-acronym-mark">A</span>dvanced</span>
-        <span class="archive-acronym-word"><span class="archive-acronym-mark">P</span>latform</span>
-        <span class="archive-acronym-word"><span class="archive-acronym-mark">T</span>abulating</span>
-        <span class="archive-acronym-word"><span class="archive-acronym-mark">I</span>nstitutional</span>
-        <span class="archive-acronym-word"><span class="archive-acronym-mark">T</span>rends</span>
-        <span class="archive-acronym-word"><span class="archive-acronym-mark">U</span>nmasking</span>
-        <span class="archive-acronym-word"><span class="archive-acronym-mark">D</span>isparity</span>
-        <span class="archive-acronym-word"><span class="archive-acronym-mark">E</span>pidemics</span>
-      </p>
-
-      <form class="hero-search-form hero-search-form-long" action="{{ '/bias-beacon/judges/' | relative_url }}" method="get">
-        <label class="visually-hidden" for="hero-search">Search Oregon judges</label>
-        <input id="hero-search" name="q" type="search" placeholder="Search judges, counties, cases, or institutions" />
-        <button class="button button-primary" type="submit">Search Records</button>
-      </form>
-
-      <p class="archive-lead">
-        A living record of how Oregon's justice system is actually administered. Bias Beacon turns court and criminal
-        justice records into measurable patterns of institutional behavior across judges, counties, agencies, and cases.
-      </p>
-
-      <div class="spine-sequence" aria-label="Evidence spine">
-        <span>Behavior becomes data.</span>
-        <span>Data becomes pattern.</span>
-        <span>Pattern becomes evidence.</span>
-        <span>Evidence becomes accountability.</span>
+      <div class="hero-title-stack">
+        <h1 class="archive-title archive-title-solo">
+          <span class="archive-title-main"><span class="wordmark-dropcap">A</span>.P.T.I.T.U.D.E.</span>
+        </h1>
+        <p class="archive-acronym archive-acronym-expanded archive-acronym-fade" aria-label="APTITUDE acronym">
+          <span class="archive-acronym-word"><span class="archive-acronym-mark">A</span>dvanced</span>
+          <span class="archive-acronym-word"><span class="archive-acronym-mark">P</span>latform</span>
+          <span class="archive-acronym-word"><span class="archive-acronym-mark">T</span>abulating</span>
+          <span class="archive-acronym-word"><span class="archive-acronym-mark">I</span>nstitutional</span>
+          <span class="archive-acronym-word"><span class="archive-acronym-mark">T</span>rends</span>
+          <span class="archive-acronym-word"><span class="archive-acronym-mark">U</span>nmasking</span>
+          <span class="archive-acronym-word"><span class="archive-acronym-mark">D</span>isparity</span>
+          <span class="archive-acronym-word"><span class="archive-acronym-mark">E</span>pidemics</span>
+        </p>
       </div>
 
+      <p class="archive-title-sub archive-title-sub-broad">Read how power moves through Oregon's justice record.</p>
+      <div class="archive-hero-manifesto">
+        <p class="archive-kicker">WE ARE THE RECORD</p>
+        <div class="spine-sequence spine-sequence-hero" aria-label="Evidence spine">
+          <span>Behavior becomes data.</span>
+          <span>Data becomes pattern.</span>
+          <span>Pattern becomes evidence.</span>
+          <span>Evidence becomes accountability.</span>
+        </div>
+      </div>
+
+      <form class="hero-search-form hero-search-form-long hero-search-form-primary" action="{{ '/bias-beacon/judges/' | relative_url }}" method="get">
+        <label class="visually-hidden" for="hero-search">Search Oregon records</label>
+        <input id="hero-search" name="q" type="search" placeholder="Search judges, counties, offices, agencies, or methodology" />
+        <button class="button button-primary" type="submit">Search the Record</button>
+      </form>
+
+      <div class="hero-jump-shell">
+        <label class="visually-hidden" for="hero-jump">Jump to a site section</label>
+        <select id="hero-jump" class="hero-jump-select" data-hero-jump>
+          <option value="">Jump to a record surface</option>
+          <option value="{{ '/bias-beacon/' | relative_url }}">System View</option>
+          <option value="{{ '/bias-beacon/judges/' | relative_url }}">Judiciary</option>
+          <option value="{{ '/prosecutors.html' | relative_url }}">Prosecutor's Office</option>
+          <option value="{{ '/law-enforcement.html' | relative_url }}">Law Enforcement</option>
+          <option value="{{ '/parole-probation.html' | relative_url }}">Community Supervision</option>
+          <option value="{{ '/bias-beacon/methodology/' | relative_url }}">Methodology</option>
+          <option value="{{ '/bias-beacon/counties/' | relative_url }}">County Data</option>
+        </select>
+      </div>
+
+      <p class="archive-lead">
+        Built for people who need the whole picture to hold together. A.P.T.I.T.U.D.E. places judges, prosecutor
+        offices, law enforcement, supervision, and statewide patterns on the same record plane so the public can
+        compare what aligns, what diverges, and what deserves a deeper look.
+      </p>
+
       <div class="archive-actions">
-        <a class="button button-secondary" href="{{ '/bias-beacon/' | relative_url }}">Open Bias Beacon</a>
+        <a class="button button-secondary" href="{{ '/bias-beacon/' | relative_url }}">Open System View</a>
         <a class="button button-secondary" href="{{ '/bias-beacon/dashboard/' | relative_url }}">Open Watchtower</a>
       </div>
     </div>
 
     <aside class="archive-hero-aside">
-      <p class="archive-chip">What It Is</p>
-      <h2>A record system of record systems.</h2>
+      <p class="archive-chip">System View</p>
+      <h2>One surface for the points where the record agrees and where it breaks apart.</h2>
       <p>
-        Not a watchdog. Not commentary. A civic intelligence surface built to read institutional behavior through linked
-        source records, comparative context, and accountable evidence trails.
+        Stops, arrests, charging, conviction patterns, reversals, and supervision outcomes do not sit in isolation.
+        System View is where those environments begin to speak to one another without forcing a conclusion ahead of the evidence.
       </p>
       <dl class="archive-facts">
         <div>
-          <dt>Core environments</dt>
-          <dd>Judges, prosecutors, probation, law enforcement, cases, statewide data</dd>
+          <dt>Cross-actor read</dt>
+          <dd>Street contact, charging pressure, courtroom outcomes, and supervision return points in one sequence</dd>
         </div>
         <div>
-          <dt>Aggregation layers</dt>
-          <dd>Individual, court, county, statewide</dd>
+          <dt>Method</dt>
+          <dd>Compare counties and institutions without assuming causation where the record has not earned it</dd>
         </div>
         <div>
-          <dt>Truth pipeline</dt>
-          <dd>Primary-source ingestion, normalization, pattern detection, comparative analysis, accountability</dd>
+          <dt>Purpose</dt>
+          <dd>Make the archive legible enough that the public can notice what deserves the next question</dd>
         </div>
       </dl>
     </aside>
@@ -77,7 +102,7 @@ wrapper_class: home-wrapper
 <section class="home-section" id="actor-cards">
   <div class="section-heading">
     <p class="eyebrow">Actor Cards</p>
-    <h2>Summary first. Structured record second.</h2>
+    <h2>Summary. Structure. Statistics. Specifics.</h2>
   </div>
 
   <div class="flip-cards-grid actor-card-grid">
@@ -85,18 +110,21 @@ wrapper_class: home-wrapper
       <div class="flip-card-inner">
         <div class="flip-card-front" style="--card-accent: #9b6a88;">
           <div class="card-front-content">
-            <h3 class="judge-name-display">Judges</h3>
+            <p class="home-actor-kicker">Why Judiciary</p>
+            <h3 class="judge-name-display">Judiciary</h3>
+            <p class="card-front-summary">Read where courtroom discretion becomes measurable public consequence.</p>
           </div>
         </div>
         <div class="flip-card-back">
-          <div class="card-back-header"><h3>Judges</h3></div>
+          <div class="card-back-header"><h3>Why Judiciary</h3></div>
           <div class="card-back-content">
             <div class="flip-metric-group">
-              <h4>Signals</h4>
+              <h4>What this surface holds</h4>
               <div class="metric-grid-mini">
-                <div class="metric-mini"><span class="metric-label">Evidence</span><span class="metric-value">Linked cases and source references</span></div>
-                <div class="metric-mini"><span class="metric-label">Pattern</span><span class="metric-value">Disparities and reversal trends</span></div>
-                <div class="metric-mini"><span class="metric-label">Action</span><span class="metric-value">Open full record</span></div>
+                <div class="metric-mini"><span class="metric-label">Summary</span><span class="metric-value">Who is deciding and where</span></div>
+                <div class="metric-mini"><span class="metric-label">Structure</span><span class="metric-value">Court role, tenure, docket, county</span></div>
+                <div class="metric-mini"><span class="metric-label">Statistics</span><span class="metric-value">Score, reversals, disparity signals</span></div>
+                <div class="metric-mini"><span class="metric-label">Specifics</span><span class="metric-value">Flags worth opening into the full profile</span></div>
               </div>
             </div>
           </div>
@@ -111,18 +139,21 @@ wrapper_class: home-wrapper
       <div class="flip-card-inner">
         <div class="flip-card-front" style="--card-accent: #8f7b6f;">
           <div class="card-front-content">
-            <h3 class="judge-name-display">Prosecutors</h3>
+            <p class="home-actor-kicker">Why Charging</p>
+            <h3 class="judge-name-display">Prosecutor's Office</h3>
+            <p class="card-front-summary">Trace how county offices turn arrest into leverage, diversion, or escalation.</p>
           </div>
         </div>
         <div class="flip-card-back">
-          <div class="card-back-header"><h3>Prosecutors</h3></div>
+          <div class="card-back-header"><h3>Why Prosecutor's Office</h3></div>
           <div class="card-back-content">
             <div class="flip-metric-group">
-              <h4>Signals</h4>
+              <h4>What this surface holds</h4>
               <div class="metric-grid-mini">
-                <div class="metric-mini"><span class="metric-label">Charging</span><span class="metric-value">Intensity and dismissals</span></div>
-                <div class="metric-mini"><span class="metric-label">Comparison</span><span class="metric-value">County and office trends</span></div>
-                <div class="metric-mini"><span class="metric-label">Action</span><span class="metric-value">View full record</span></div>
+                <div class="metric-mini"><span class="metric-label">Summary</span><span class="metric-value">County office posture at a glance</span></div>
+                <div class="metric-mini"><span class="metric-label">Structure</span><span class="metric-value">Office profile, county, comparison set</span></div>
+                <div class="metric-mini"><span class="metric-label">Statistics</span><span class="metric-value">Charging pressure, plea leverage, dismissal drift</span></div>
+                <div class="metric-mini"><span class="metric-label">Specifics</span><span class="metric-value">Patterns that sharpen or narrow pipeline pressure</span></div>
               </div>
             </div>
           </div>
@@ -137,18 +168,21 @@ wrapper_class: home-wrapper
       <div class="flip-card-inner">
         <div class="flip-card-front" style="--card-accent: #7a8fb5;">
           <div class="card-front-content">
-            <h3 class="judge-name-display">Probation</h3>
+            <p class="home-actor-kicker">Why Supervision</p>
+            <h3 class="judge-name-display">Community Supervision</h3>
+            <p class="card-front-summary">Watch where monitoring, support, and revocation pressure pull against each other.</p>
           </div>
         </div>
         <div class="flip-card-back">
-          <div class="card-back-header"><h3>Probation</h3></div>
+          <div class="card-back-header"><h3>Why Community Supervision</h3></div>
           <div class="card-back-content">
             <div class="flip-metric-group">
-              <h4>Signals</h4>
+              <h4>What this surface holds</h4>
               <div class="metric-grid-mini">
-                <div class="metric-mini"><span class="metric-label">Revocations</span><span class="metric-value">Supervision and sanction patterns</span></div>
-                <div class="metric-mini"><span class="metric-label">Comparison</span><span class="metric-value">County variance</span></div>
-                <div class="metric-mini"><span class="metric-label">Action</span><span class="metric-value">View full record</span></div>
+                <div class="metric-mini"><span class="metric-label">Summary</span><span class="metric-value">How heavily each county leans on supervision</span></div>
+                <div class="metric-mini"><span class="metric-label">Structure</span><span class="metric-value">County network, capacity, supervision load</span></div>
+                <div class="metric-mini"><span class="metric-label">Statistics</span><span class="metric-value">Revocation pressure, support capacity, intensity</span></div>
+                <div class="metric-mini"><span class="metric-label">Specifics</span><span class="metric-value">Where people are most at risk of being pulled back in</span></div>
               </div>
             </div>
           </div>
@@ -163,18 +197,21 @@ wrapper_class: home-wrapper
       <div class="flip-card-inner">
         <div class="flip-card-front" style="--card-accent: #a05e72;">
           <div class="card-front-content">
+            <p class="home-actor-kicker">Why Intake</p>
             <h3 class="judge-name-display">Law Enforcement</h3>
+            <p class="card-front-summary">Start at the street and see where stop, search, and arrest pressure begin to gather.</p>
           </div>
         </div>
         <div class="flip-card-back">
-          <div class="card-back-header"><h3>Law Enforcement</h3></div>
+          <div class="card-back-header"><h3>Why Law Enforcement</h3></div>
           <div class="card-back-content">
             <div class="flip-metric-group">
-              <h4>Signals</h4>
+              <h4>What this surface holds</h4>
               <div class="metric-grid-mini">
-                <div class="metric-mini"><span class="metric-label">STOP data</span><span class="metric-value">Stop and search disparities</span></div>
-                <div class="metric-mini"><span class="metric-label">Pipeline</span><span class="metric-value">Upstream pressure points</span></div>
-                <div class="metric-mini"><span class="metric-label">Action</span><span class="metric-value">View full record</span></div>
+                <div class="metric-mini"><span class="metric-label">Summary</span><span class="metric-value">Who enters the pipeline and where</span></div>
+                <div class="metric-mini"><span class="metric-label">Structure</span><span class="metric-value">County agency view, intake pressure, peer context</span></div>
+                <div class="metric-mini"><span class="metric-label">Statistics</span><span class="metric-value">Stops, searches, arrests, intake variance</span></div>
+                <div class="metric-mini"><span class="metric-label">Specifics</span><span class="metric-value">Signals that deserve comparison against later outcomes</span></div>
               </div>
             </div>
           </div>
@@ -189,18 +226,21 @@ wrapper_class: home-wrapper
       <div class="flip-card-inner">
         <div class="flip-card-front" style="--card-accent: #6f879a;">
           <div class="card-front-content">
-            <h3 class="judge-name-display">Cases</h3>
+            <p class="home-actor-kicker">Why Case Records</p>
+            <h3 class="judge-name-display">Cases &amp; Filings</h3>
+            <p class="card-front-summary">Anchor every pattern back to the matter, motion, ruling, and timeline that produced it.</p>
           </div>
         </div>
         <div class="flip-card-back">
-          <div class="card-back-header"><h3>Cases</h3></div>
+          <div class="card-back-header"><h3>Why Cases &amp; Filings</h3></div>
           <div class="card-back-content">
             <div class="flip-metric-group">
-              <h4>Signals</h4>
+              <h4>What this surface holds</h4>
               <div class="metric-grid-mini">
-                <div class="metric-mini"><span class="metric-label">Evidence</span><span class="metric-value">Dates, rulings, filings</span></div>
-                <div class="metric-mini"><span class="metric-label">Library</span><span class="metric-value">Case law and legal issues</span></div>
-                <div class="metric-mini"><span class="metric-label">Action</span><span class="metric-value">View full record</span></div>
+                <div class="metric-mini"><span class="metric-label">Summary</span><span class="metric-value">The underlying matter behind the signal</span></div>
+                <div class="metric-mini"><span class="metric-label">Structure</span><span class="metric-value">Dates, filings, rulings, procedural sequence</span></div>
+                <div class="metric-mini"><span class="metric-label">Statistics</span><span class="metric-value">How often issues recur across the archive</span></div>
+                <div class="metric-mini"><span class="metric-label">Specifics</span><span class="metric-value">The source material for closer review</span></div>
               </div>
             </div>
           </div>
@@ -215,18 +255,21 @@ wrapper_class: home-wrapper
       <div class="flip-card-inner">
         <div class="flip-card-front" style="--card-accent: #8896c7;">
           <div class="card-front-content">
-            <h3 class="judge-name-display">Data</h3>
+            <p class="home-actor-kicker">Why Watchtower</p>
+            <h3 class="judge-name-display">Statewide Watchtower</h3>
+            <p class="card-front-summary">See what becomes visible only when local records are read together at statewide scale.</p>
           </div>
         </div>
         <div class="flip-card-back">
-          <div class="card-back-header"><h3>Data</h3></div>
+          <div class="card-back-header"><h3>Why Statewide Watchtower</h3></div>
           <div class="card-back-content">
             <div class="flip-metric-group">
-              <h4>Signals</h4>
+              <h4>What this surface holds</h4>
               <div class="metric-grid-mini">
-                <div class="metric-mini"><span class="metric-label">Dashboard</span><span class="metric-value">Statewide command center</span></div>
-                <div class="metric-mini"><span class="metric-label">Controls</span><span class="metric-value">County and time filters</span></div>
-                <div class="metric-mini"><span class="metric-label">Action</span><span class="metric-value">View full record</span></div>
+                <div class="metric-mini"><span class="metric-label">Summary</span><span class="metric-value">Statewide drift and county concentration</span></div>
+                <div class="metric-mini"><span class="metric-label">Structure</span><span class="metric-value">Counties, timelines, comparative layers</span></div>
+                <div class="metric-mini"><span class="metric-label">Statistics</span><span class="metric-value">Ranking shifts, score ranges, distribution</span></div>
+                <div class="metric-mini"><span class="metric-label">Specifics</span><span class="metric-value">Where to open the archive next</span></div>
               </div>
             </div>
           </div>

@@ -13,15 +13,25 @@ body_class: archive-page actor-directory-page prosecutors-page
       <p class="archive-kicker">Bias Beacon</p>
       <h1 class="actor-page-title">Statewide Prosecutor Profiles</h1>
       <p class="actor-page-deck">
-        Review charging pressure, plea leverage, dismissal variance, and county-level office patterns
-        for prosecutor environments across Oregon.
+        Prosecutor environments arranged county by county so charging pressure, plea leverage,
+        dismissal drift, and office posture can be read side by side.
       </p>
+      <div class="actor-hero-search">
+        <label class="visually-hidden" for="judge-search">Search county or office name</label>
+        <div class="search-wrapper">
+          <input id="judge-search" class="search-input-enhanced" placeholder="Search county or office name">
+          <span class="search-icon">&#128269;</span>
+        </div>
+      </div>
+      <div class="actor-hero-actions">
+        <button class="btn btn-secondary actor-sidebar-toggle" type="button" data-sidebar-toggle aria-expanded="true">Filters</button>
+      </div>
     </div>
     <aside class="actor-hero-panel">
       <p class="archive-kicker">Evidence Chain</p>
       <p class="actor-hero-note">
-        Prosecutors decide how aggressively the system advances after an arrest. This page surfaces
-        charging behavior, resolution pressure, and office-level asymmetry county by county.
+        Prosecutor offices decide how aggressively the record moves after an arrest.
+        This surface keeps county charging culture visible without pretending every office behaves the same.
       </p>
       <div class="actor-chain-mini">
         <span>Charging</span>
@@ -37,14 +47,6 @@ body_class: archive-page actor-directory-page prosecutors-page
       <div class="sidebar-panel sidebar-panel-emphasis">
         <h2>Office Filters</h2>
         <p class="sidebar-copy">Filter, sort, and compare DA offices without leaving the page.</p>
-      </div>
-
-      <div class="sidebar-panel">
-        <label for="judge-search">Search</label>
-        <div class="search-wrapper">
-          <input id="judge-search" class="search-input-enhanced" placeholder="Search county or office name">
-          <span class="search-icon">&#128269;</span>
-        </div>
       </div>
 
       <div class="sidebar-panel sidebar-filters">

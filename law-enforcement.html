@@ -13,9 +13,19 @@ body_class: archive-page actor-directory-page law-page
       <p class="archive-kicker">Bias Beacon</p>
       <h1 class="actor-page-title">Law Enforcement Profiles</h1>
       <p class="actor-page-deck">
-        Oregon county-level agency cards focused on stop patterns, search disparities, arrest pressure,
-        and the street-level inputs that feed the rest of the judicial system.
+        County-level agency profiles built to keep stop patterns, search disparity, arrest pressure,
+        and street-level intake visible before the rest of the system takes over.
       </p>
+      <div class="actor-hero-search">
+        <label class="visually-hidden" for="judge-search">Search county or agency</label>
+        <div class="search-wrapper">
+          <input id="judge-search" class="search-input-enhanced" placeholder="Search county or agency">
+          <span class="search-icon">&#128269;</span>
+        </div>
+      </div>
+      <div class="actor-hero-actions">
+        <button class="btn btn-secondary actor-sidebar-toggle" type="button" data-sidebar-toggle aria-expanded="true">Filters</button>
+      </div>
     </div>
     <aside class="actor-hero-panel">
       <p class="archive-kicker">Evidence Chain</p>
@@ -37,13 +47,6 @@ body_class: archive-page actor-directory-page law-page
       <div class="sidebar-panel sidebar-panel-emphasis">
         <h2>Agency Filters</h2>
         <p class="sidebar-copy">Vertical filters keep the cards centered and easier to compare.</p>
-      </div>
-      <div class="sidebar-panel">
-        <label for="judge-search">Search</label>
-        <div class="search-wrapper">
-          <input id="judge-search" class="search-input-enhanced" placeholder="Search county or agency">
-          <span class="search-icon">&#128269;</span>
-        </div>
       </div>
       <div class="sidebar-panel sidebar-filters">
         <div class="filter-group">

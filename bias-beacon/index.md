@@ -9,16 +9,16 @@ body_class: archive-page
 <section class="archive-shell">
   <div class="archive-header">
     <div>
-      <p class="archive-kicker">Bias Beacon</p>
-      <h1 class="archive-title">The analytical index for Oregon institutional behavior.</h1>
+      <p class="archive-kicker">System View</p>
+      <h1 class="archive-title">Where separate public records either reinforce one another or start to fall apart.</h1>
       <p class="archive-deck">
-        Bias Beacon is the signal environment inside A.P.T.I.T.U.D.E. It turns source records into
-        comparative evidence: disparities, anomalies, procedural irregularities, reversal trends,
-        and actor-level outlier conduct across courts, counties, and statewide systems.
+        System View places law enforcement intake, prosecutor pressure, courtroom outcomes, appellate movement,
+        and supervision return points onto the same civic surface. The record is allowed to align where it aligns
+        and diverge where it diverges, without forcing causation beyond what the source layers can support.
       </p>
       <div class="archive-actions">
-        <a href="/bias-beacon/judges/" class="button button-primary">View the System</a>
-        <a href="/#contact" class="button button-secondary">Request Early Access</a>
+        <a href="/bias-beacon/judges/" class="button button-primary">Open Actor Records</a>
+        <a href="/bias-beacon/dashboard/" class="button button-secondary">Open Watchtower</a>
       </div>
     </div>
 
@@ -30,7 +30,7 @@ body_class: archive-page
         <span>Pattern becomes evidence.</span>
         <span>Evidence becomes accountability.</span>
       </div>
-      <p class="archive-meta">Bias Beacon is not a commentary layer. It is a comparative record of institutional behavior.</p>
+      <p class="archive-meta">The point is not to narrate ahead of the evidence. The point is to make the evidence legible enough to ask better questions.</p>
     </aside>
   </div>
 
@@ -61,38 +61,38 @@ body_class: archive-page
 <div class="tracking-metrics">
   <div class="archive-index-card">
     <p class="archive-chip">01</p>
-    <h3>Flags statistical anomalies</h3>
-    <p>Identifies actor behavior that departs materially from peer baselines and from statewide expectations.</p>
+    <h3>Reads intake against outcome</h3>
+    <p>Lets stop, arrest, charging, conviction, reversal, and supervision signals sit in sequence instead of in separate silos.</p>
   </div>
 
   <div class="archive-index-card">
     <p class="archive-chip">02</p>
-    <h3>Maps disparity signals</h3>
-    <p>Cross-references demographic, counsel, and outcome variables to reveal patterns hidden in isolated records.</p>
+    <h3>Preserves difference without forcing a story</h3>
+    <p>Shows where counties or actors move together and where they separate without pretending every divergence has the same cause.</p>
   </div>
 
   <div class="archive-index-card">
     <p class="archive-chip">03</p>
-    <h3>Tracks procedural irregularities</h3>
-    <p>Surfaces suppression patterns, revocations, charge stacking, and other repeatable process signals.</p>
+    <h3>Surfaces pressure points</h3>
+    <p>Highlights the places where public systems tighten: searches, charges, sentencing, reversals, and revocations.</p>
   </div>
 
   <div class="archive-index-card">
     <p class="archive-chip">04</p>
-    <h3>Measures reversal trends</h3>
-    <p>Links actor behavior to appellate movement and records where decisions are repeatedly disturbed.</p>
+    <h3>Connects upstream and downstream layers</h3>
+    <p>Makes it easier to notice when later outcomes do not square with the shape of the earlier intake record.</p>
   </div>
 
   <div class="archive-index-card">
     <p class="archive-chip">05</p>
-    <h3>Builds actor-level dossiers</h3>
-    <p>Turns records into profile cards that can be compared, aggregated, and used for deeper inquiry.</p>
+    <h3>Builds actor-level comparison</h3>
+    <p>Every page can be filtered, compared, and opened deeper so the archive remains useful instead of ornamental.</p>
   </div>
 
   <div class="archive-index-card">
     <p class="archive-chip">06</p>
-    <h3>Preserves comparative context</h3>
-    <p>Keeps each record legible at multiple scales: person, office, county, and statewide environment.</p>
+    <h3>Keeps the record scalable</h3>
+    <p>Each pattern stays readable at the person, office, county, and statewide level without losing the trace back to the source layer.</p>
   </div>
 </div>
 
@@ -117,6 +117,25 @@ body_class: archive-page
   <div class="archive-index-card">
     <h3>Law Enforcement</h3>
     <p>STOP-related disparities, arrest-to-charge patterns, suppression exposure, complaints, and force-adjacent indicators.</p>
+  </div>
+</div>
+
+## What System View Compares
+
+<div class="tracking-metrics">
+  <div class="archive-index-card">
+    <h3>Street intake against courtroom outcome</h3>
+    <p>Read stop, search, and arrest pressure beside conviction, sentencing, and reversal patterns without assuming the same explanation in every county.</p>
+  </div>
+
+  <div class="archive-index-card">
+    <h3>Office behavior against judicial behavior</h3>
+    <p>Notice where charging intensity and courtroom outcomes appear to move together, and where they do not, so the next question is earned by the record.</p>
+  </div>
+
+  <div class="archive-index-card">
+    <h3>County environment against statewide drift</h3>
+    <p>Compare each local system to the statewide distribution so the archive can show whether a signal is isolated, regional, or systemic.</p>
   </div>
 </div>
 

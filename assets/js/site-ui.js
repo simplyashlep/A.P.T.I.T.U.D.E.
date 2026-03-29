@@ -91,6 +91,7 @@
     const distributionContainer = document.getElementById("directory-distribution");
     const cards = Array.from(grid.querySelectorAll(".flip-card"));
     const directoryLabel = root.dataset.directoryLabel || "records";
+    const sidebarToggle = root.querySelector("[data-sidebar-toggle]");
     const maxComparison = 3;
     const selectedIds = [];
     let ascending = false;
@@ -554,6 +555,11 @@
 
     compareButton?.addEventListener("click", openComparisonModal);
 
+    sidebarToggle?.addEventListener("click", () => {
+      const collapsed = root.classList.toggle("sidebar-collapsed");
+      sidebarToggle.setAttribute("aria-expanded", String(!collapsed));
+    });
+
     grid.addEventListener("change", (event) => {
       const toggle = event.target.closest("[data-compare-toggle]");
       if (!toggle) {
@@ -661,6 +667,15 @@
   };
 
   document.addEventListener("DOMContentLoaded", () => {
+    const heroJump = document.querySelector("[data-hero-jump]");
+    if (heroJump) {
+      heroJump.addEventListener("change", () => {
+        if (heroJump.value) {
+          window.location.href = heroJump.value;
+        }
+      });
+    }
+
     initializeMegaMenu();
     initializeFlipCards();
     initializeActorDirectory();
