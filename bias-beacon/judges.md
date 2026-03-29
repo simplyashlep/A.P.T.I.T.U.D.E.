@@ -33,42 +33,12 @@ permalink: /bias-beacon/judges/
         <label for="county-filter">County</label>
         <select id="county-filter" class="filter-select">
           <option value="all">All Counties</option>
-          <option value="multnomah">Multnomah County</option>
-          <option value="washington">Washington County</option>
-          <option value="clackamas">Clackamas County</option>
-          <option value="lane">Lane County</option>
-          <option value="jackson">Jackson County</option>
-          <option value="marion">Marion County</option>
-          <option value="deschutes">Deschutes County</option>
-          <option value="yamhill">Yamhill County</option>
-          <option value="linn">Linn County</option>
-          <option value="benton">Benton County</option>
-          <option value="douglas">Douglas County</option>
-          <option value="josephine">Josephine County</option>
-          <option value="klamath">Klamath County</option>
-          <option value="umatilla">Umatilla County</option>
-          <option value="polk">Polk County</option>
-          <option value="columbia">Columbia County</option>
-          <option value="coos">Coos County</option>
-          <option value="curry">Curry County</option>
-          <option value="lincoln">Lincoln County</option>
-          <option value="tillamook">Tillamook County</option>
-          <option value="clatsop">Clatsop County</option>
-          <option value="hood_river">Hood River County</option>
-          <option value="wasco">Wasco County</option>
-          <option value="jefferson">Jefferson County</option>
-          <option value="crook">Crook County</option>
-          <option value="malheur">Malheur County</option>
-          <option value="baker">Baker County</option>
-          <option value="union">Union County</option>
-          <option value="wallowa">Wallowa County</option>
-          <option value="grant">Grant County</option>
-          <option value="harney">Harney County</option>
-          <option value="lake">Lake County</option>
-          <option value="morrow">Morrow County</option>
-          <option value="gilliam">Gilliam County</option>
-          <option value="sherman">Sherman County</option>
-          <option value="wheeler">Wheeler County</option>
+          {% for county_data in site.data.bias-beacon.live-oregon-data.oregon_judges %}
+            {% assign judges = county_data[1] %}
+            {% if judges and judges.first and judges.first.county %}
+          <option value="{{ judges.first.county | downcase | replace: ' ', '_' }}">{{ judges.first.county }} County</option>
+            {% endif %}
+          {% endfor %}
         </select>
       </div>
 
@@ -157,7 +127,10 @@ permalink: /bias-beacon/judges/
                data-id="{{ judge_data.id }}"
                data-name="{{ judge_data.name }}"
                data-county="{{ judge_data.county | downcase }}"
-               data-level="{{ judge_data.risk_assessment }}">
+               data-level="{{ judge_data.risk_assessment }}"
+               data-prison-rate="{{ judge_data.bias_metrics.prison_rate | default: 0 }}"
+               data-reversal-rate="{{ judge_data.appellate_record.reversal_rate | default: 0 }}"
+               data-specialization="{{ judge_data.specialization | join: ', ' | downcase }}">
         <div class="flip-card-inner">
 
           <!-- FRONT OF CARD -->

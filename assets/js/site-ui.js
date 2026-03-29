@@ -91,6 +91,14 @@
     const comparisonSelection = [];
     let ascending = false;
 
+    function toTitleCase(value) {
+      return value
+        .split(/[_\s]+/)
+        .filter(Boolean)
+        .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+        .join(" ");
+    }
+
     function getCardScore(card) {
       const scoreNode = card.querySelector(".score-value");
       return Number.parseFloat(scoreNode?.textContent || "0");
@@ -100,8 +108,33 @@
       return (card.dataset.county || "").toLowerCase().replace(/\s+/g, "_");
     }
 
+    function getNumericDataset(card, key) {
+      return Number.parseFloat(card.dataset[key] || "0");
+    }
+
     function getVisibleCards() {
       return cards.filter((card) => card.style.display !== "none");
+    }
+
+    function populateCountyFilter() {
+      if (!countyFilter) {
+        return;
+      }
+
+      const existing = countyFilter.value || "all";
+      const counties = [...new Set(cards.map((card) => getCardCounty(card)).filter(Boolean))].sort();
+
+      countyFilter.innerHTML = '<option value="all">All Counties</option>';
+      counties.forEach((county) => {
+        const option = document.createElement("option");
+        option.value = county;
+        option.textContent = `${toTitleCase(county)} County`;
+        countyFilter.appendChild(option);
+      });
+
+      if (Array.from(countyFilter.options).some((option) => option.value === existing)) {
+        countyFilter.value = existing;
+      }
     }
 
     function renderStats(visibleCards) {
@@ -155,6 +188,10 @@
           comparison = (left.dataset.name || "").localeCompare(right.dataset.name || "");
         } else if (mode === "county") {
           comparison = (left.dataset.county || "").localeCompare(right.dataset.county || "");
+        } else if (mode === "prison_rate") {
+          comparison = getNumericDataset(left, "prisonRate") - getNumericDataset(right, "prisonRate");
+        } else if (mode === "reversal_rate") {
+          comparison = getNumericDataset(left, "reversalRate") - getNumericDataset(right, "reversalRate");
         } else {
           comparison = getCardScore(left) - getCardScore(right);
         }
@@ -174,8 +211,13 @@
         const name = (card.dataset.name || "").toLowerCase();
         const county = getCardCounty(card);
         const level = (card.dataset.level || "").toLowerCase();
+        const specialization = (card.dataset.specialization || "").toLowerCase();
 
-        const searchMatch = !searchValue || name.includes(searchValue) || county.includes(searchValue);
+        const searchMatch =
+          !searchValue ||
+          name.includes(searchValue) ||
+          county.includes(searchValue) ||
+          specialization.includes(searchValue);
         const countyMatch = countyValue === "all" || county === countyValue;
         const riskMatch = riskValue === "all" || level === riskValue;
 
@@ -307,6 +349,8 @@
     if (query && searchInput) {
       searchInput.value = query;
     }
+
+    populateCountyFilter();
 
     if (county && countyFilter) {
       const normalizedCounty = county.toLowerCase();

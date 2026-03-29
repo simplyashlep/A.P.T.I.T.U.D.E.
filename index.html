@@ -9,20 +9,31 @@ wrapper_class: home-wrapper
 <section class="archive-hero" id="top">
   <div class="archive-hero-grid">
     <div class="archive-hero-copy">
-      <p class="eyebrow">Civic Intelligence Archive</p>
-      <div class="archive-title-lockup">
-        <p class="archive-kicker">WE ARE THE RECORD</p>
-        <h1 class="archive-title">
-          <span class="archive-title-main"><span class="wordmark-dropcap">A</span>.P.T.I.T.U.D.E.</span>
-          <span class="archive-title-sub">Track how the law is applied.</span>
-        </h1>
-        <p class="archive-acronym">Advanced Platform Tabulating Institutional Trends Unmasking Disparity Epidemics</p>
-      </div>
+      <p class="archive-kicker">WE ARE THE RECORD</p>
+      <h1 class="archive-title">
+        <span class="archive-title-main"><span class="wordmark-dropcap">A</span>.P.T.I.T.U.D.E.</span>
+      </h1>
+      <p class="archive-title-sub">Track how the law is applied.</p>
+      <p class="archive-acronym archive-acronym-expanded" aria-label="APTITUDE acronym">
+        <span class="archive-acronym-word"><span class="archive-acronym-mark">A</span>dvanced</span>
+        <span class="archive-acronym-word"><span class="archive-acronym-mark">P</span>latform</span>
+        <span class="archive-acronym-word"><span class="archive-acronym-mark">T</span>abulating</span>
+        <span class="archive-acronym-word"><span class="archive-acronym-mark">I</span>nstitutional</span>
+        <span class="archive-acronym-word"><span class="archive-acronym-mark">T</span>rends</span>
+        <span class="archive-acronym-word"><span class="archive-acronym-mark">U</span>nmasking</span>
+        <span class="archive-acronym-word"><span class="archive-acronym-mark">D</span>isparity</span>
+        <span class="archive-acronym-word"><span class="archive-acronym-mark">E</span>pidemics</span>
+      </p>
+
+      <form class="hero-search-form hero-search-form-long" action="{{ '/bias-beacon/judges/' | relative_url }}" method="get">
+        <label class="visually-hidden" for="hero-search">Search Oregon judges</label>
+        <input id="hero-search" name="q" type="search" placeholder="Search judges, counties, cases, or institutions" />
+        <button class="button button-primary" type="submit">Search Records</button>
+      </form>
 
       <p class="archive-lead">
-        A living record of how Oregon's justice system is actually administered. Bias Beacon transforms public judicial and
-        criminal justice records into measurable institutional patterns: disparities, anomalies, reversals, suppression
-        signals, and actor-level outlier behavior across courts, counties, and agencies.
+        A living record of how Oregon's justice system is actually administered. Bias Beacon turns court and criminal
+        justice records into measurable patterns of institutional behavior across judges, counties, agencies, and cases.
       </p>
 
       <div class="spine-sequence" aria-label="Evidence spine">
@@ -32,69 +43,41 @@ wrapper_class: home-wrapper
         <span>Evidence becomes accountability.</span>
       </div>
 
-      <form class="hero-search-form" action="{{ '/bias-beacon/judges/' | relative_url }}" method="get">
-        <label class="visually-hidden" for="hero-search">Search Oregon judges</label>
-        <input id="hero-search" name="q" type="search" placeholder="Search judges, counties, or institutions" />
-        <label class="visually-hidden" for="hero-county">Filter by county</label>
-        <select id="hero-county" name="county">
-          <option value="">All counties</option>
-          <option value="multnomah">Multnomah</option>
-          <option value="washington">Washington</option>
-          <option value="clackamas">Clackamas</option>
-          <option value="lane">Lane</option>
-          <option value="marion">Marion</option>
-          <option value="jackson">Jackson</option>
-          <option value="deschutes">Deschutes</option>
-        </select>
-        <button class="button button-primary" type="submit">View the System</button>
-      </form>
-
       <div class="archive-actions">
         <a class="button button-secondary" href="{{ '/bias-beacon/' | relative_url }}">Open Bias Beacon</a>
-        <a class="button button-secondary" href="{{ '/bias-beacon/dashboard/' | relative_url }}">Request Early Access</a>
+        <a class="button button-secondary" href="{{ '/bias-beacon/dashboard/' | relative_url }}">Open Watchtower</a>
       </div>
     </div>
 
     <aside class="archive-hero-aside">
-      <p class="archive-chip">System Record</p>
-      <h2>Not a watchdog. Not commentary. A record system of record systems.</h2>
+      <p class="archive-chip">What It Is</p>
+      <h2>A record system of record systems.</h2>
       <p>
-        The surface is designed to feel archival, exacting, and layered. Summary first, structured view next, then
-        deep evidence with traceable source paths.
+        Not a watchdog. Not commentary. A civic intelligence surface built to read institutional behavior through linked
+        source records, comparative context, and accountable evidence trails.
       </p>
       <dl class="archive-facts">
         <div>
-          <dt>Scope</dt>
-          <dd>27 judicial districts across Oregon</dd>
+          <dt>Core environments</dt>
+          <dd>Judges, prosecutors, probation, law enforcement, cases, statewide data</dd>
         </div>
         <div>
-          <dt>Primary frame</dt>
-          <dd>Judges, prosecutors, supervision, law enforcement, cases, data</dd>
+          <dt>Aggregation layers</dt>
+          <dd>Individual, court, county, statewide</dd>
         </div>
         <div>
-          <dt>Method</dt>
-          <dd>Primary-source ingestion, normalization, pattern detection, comparative analysis</dd>
+          <dt>Truth pipeline</dt>
+          <dd>Primary-source ingestion, normalization, pattern detection, comparative analysis, accountability</dd>
         </div>
       </dl>
     </aside>
   </div>
 </section>
 
-<section class="identity-strip" aria-label="Identity strip">
-  <p>Archival</p>
-  <p>Forensic</p>
-  <p>Civic</p>
-  <p>Exacting</p>
-</section>
-
 <section class="home-section" id="actor-cards">
   <div class="section-heading">
-    <p class="eyebrow">Interactive Actor Cards</p>
-    <h2>Summary first. Structured view next. Deep data after that.</h2>
-    <p>
-      Each card is an entry point into a deeper record. The front face stays clean. The reverse face explains what the
-      user can inspect and where that record leads.
-    </p>
+    <p class="eyebrow">Actor Cards</p>
+    <h2>Summary first. Structured record second.</h2>
   </div>
 
   <div class="flip-cards-grid actor-card-grid">
@@ -102,20 +85,17 @@ wrapper_class: home-wrapper
       <div class="flip-card-inner">
         <div class="flip-card-front" style="--card-accent: #9b6a88;">
           <div class="card-front-content">
-            <p class="archive-chip">Bias Beacon</p>
             <h3 class="judge-name-display">Judges</h3>
-            <p class="county-label">Actor-level accountability</p>
           </div>
         </div>
         <div class="flip-card-back">
-          <div class="card-back-header"><h3>Judge records</h3></div>
+          <div class="card-back-header"><h3>Judges</h3></div>
           <div class="card-back-content">
             <div class="flip-metric-group">
-              <h4>What Bias Beacon Does</h4>
+              <h4>Signals</h4>
               <div class="metric-grid-mini">
-                <div class="metric-mini"><span class="metric-label">Signals</span><span class="metric-value">Disparities and reversals</span></div>
-                <div class="metric-mini"><span class="metric-label">Layer</span><span class="metric-value">Evidence to implication</span></div>
-                <div class="metric-mini"><span class="metric-label">Search</span><span class="metric-value">County-aware judge cards</span></div>
+                <div class="metric-mini"><span class="metric-label">Evidence</span><span class="metric-value">Linked cases and source references</span></div>
+                <div class="metric-mini"><span class="metric-label">Pattern</span><span class="metric-value">Disparities and reversal trends</span></div>
                 <div class="metric-mini"><span class="metric-label">Action</span><span class="metric-value">Open full record</span></div>
               </div>
             </div>
@@ -131,21 +111,18 @@ wrapper_class: home-wrapper
       <div class="flip-card-inner">
         <div class="flip-card-front" style="--card-accent: #8f7b6f;">
           <div class="card-front-content">
-            <p class="archive-chip">Bias Beacon</p>
             <h3 class="judge-name-display">Prosecutors</h3>
-            <p class="county-label">Charging and disposition patterns</p>
           </div>
         </div>
         <div class="flip-card-back">
-          <div class="card-back-header"><h3>Prosecutor records</h3></div>
+          <div class="card-back-header"><h3>Prosecutors</h3></div>
           <div class="card-back-content">
             <div class="flip-metric-group">
               <h4>Signals</h4>
               <div class="metric-grid-mini">
-                <div class="metric-mini"><span class="metric-label">Focus</span><span class="metric-value">Charging intensity</span></div>
-                <div class="metric-mini"><span class="metric-label">Compare</span><span class="metric-value">County to county</span></div>
-                <div class="metric-mini"><span class="metric-label">Track</span><span class="metric-value">Dismissals and plea drift</span></div>
-                <div class="metric-mini"><span class="metric-label">Path</span><span class="metric-value">Agency context</span></div>
+                <div class="metric-mini"><span class="metric-label">Charging</span><span class="metric-value">Intensity and dismissals</span></div>
+                <div class="metric-mini"><span class="metric-label">Comparison</span><span class="metric-value">County and office trends</span></div>
+                <div class="metric-mini"><span class="metric-label">Action</span><span class="metric-value">View full record</span></div>
               </div>
             </div>
           </div>
@@ -160,21 +137,18 @@ wrapper_class: home-wrapper
       <div class="flip-card-inner">
         <div class="flip-card-front" style="--card-accent: #7a8fb5;">
           <div class="card-front-content">
-            <p class="archive-chip">Bias Beacon</p>
             <h3 class="judge-name-display">Probation</h3>
-            <p class="county-label">Supervision as control surface</p>
           </div>
         </div>
         <div class="flip-card-back">
-          <div class="card-back-header"><h3>Supervision patterns</h3></div>
+          <div class="card-back-header"><h3>Probation</h3></div>
           <div class="card-back-content">
             <div class="flip-metric-group">
               <h4>Signals</h4>
               <div class="metric-grid-mini">
-                <div class="metric-mini"><span class="metric-label">Focus</span><span class="metric-value">Revocations and sanctions</span></div>
-                <div class="metric-mini"><span class="metric-label">Frame</span><span class="metric-value">Supervision exceeds custody</span></div>
-                <div class="metric-mini"><span class="metric-label">Compare</span><span class="metric-value">County variance</span></div>
-                <div class="metric-mini"><span class="metric-label">Path</span><span class="metric-value">Action-oriented review</span></div>
+                <div class="metric-mini"><span class="metric-label">Revocations</span><span class="metric-value">Supervision and sanction patterns</span></div>
+                <div class="metric-mini"><span class="metric-label">Comparison</span><span class="metric-value">County variance</span></div>
+                <div class="metric-mini"><span class="metric-label">Action</span><span class="metric-value">View full record</span></div>
               </div>
             </div>
           </div>
@@ -189,21 +163,18 @@ wrapper_class: home-wrapper
       <div class="flip-card-inner">
         <div class="flip-card-front" style="--card-accent: #a05e72;">
           <div class="card-front-content">
-            <p class="archive-chip">Bias Beacon</p>
             <h3 class="judge-name-display">Law Enforcement</h3>
-            <p class="county-label">Upstream disparities and enforcement drift</p>
           </div>
         </div>
         <div class="flip-card-back">
-          <div class="card-back-header"><h3>Policing layer</h3></div>
+          <div class="card-back-header"><h3>Law Enforcement</h3></div>
           <div class="card-back-content">
             <div class="flip-metric-group">
               <h4>Signals</h4>
               <div class="metric-grid-mini">
-                <div class="metric-mini"><span class="metric-label">Focus</span><span class="metric-value">STOP and agency patterns</span></div>
-                <div class="metric-mini"><span class="metric-label">Compare</span><span class="metric-value">Search and stop rates</span></div>
-                <div class="metric-mini"><span class="metric-label">Context</span><span class="metric-value">Pipeline to court outcomes</span></div>
-                <div class="metric-mini"><span class="metric-label">Path</span><span class="metric-value">Oversight links</span></div>
+                <div class="metric-mini"><span class="metric-label">STOP data</span><span class="metric-value">Stop and search disparities</span></div>
+                <div class="metric-mini"><span class="metric-label">Pipeline</span><span class="metric-value">Upstream pressure points</span></div>
+                <div class="metric-mini"><span class="metric-label">Action</span><span class="metric-value">View full record</span></div>
               </div>
             </div>
           </div>
@@ -218,21 +189,18 @@ wrapper_class: home-wrapper
       <div class="flip-card-inner">
         <div class="flip-card-front" style="--card-accent: #6f879a;">
           <div class="card-front-content">
-            <p class="archive-chip">Juris Lab</p>
             <h3 class="judge-name-display">Cases</h3>
-            <p class="county-label">Linked rulings and source references</p>
           </div>
         </div>
         <div class="flip-card-back">
-          <div class="card-back-header"><h3>Case layer</h3></div>
+          <div class="card-back-header"><h3>Cases</h3></div>
           <div class="card-back-content">
             <div class="flip-metric-group">
-              <h4>Evidence</h4>
+              <h4>Signals</h4>
               <div class="metric-grid-mini">
-                <div class="metric-mini"><span class="metric-label">Primary</span><span class="metric-value">Dates and rulings</span></div>
-                <div class="metric-mini"><span class="metric-label">Trust</span><span class="metric-value">Source-linked records</span></div>
-                <div class="metric-mini"><span class="metric-label">Context</span><span class="metric-value">Legal issues and filings</span></div>
-                <div class="metric-mini"><span class="metric-label">Path</span><span class="metric-value">Library integration</span></div>
+                <div class="metric-mini"><span class="metric-label">Evidence</span><span class="metric-value">Dates, rulings, filings</span></div>
+                <div class="metric-mini"><span class="metric-label">Library</span><span class="metric-value">Case law and legal issues</span></div>
+                <div class="metric-mini"><span class="metric-label">Action</span><span class="metric-value">View full record</span></div>
               </div>
             </div>
           </div>
@@ -247,21 +215,18 @@ wrapper_class: home-wrapper
       <div class="flip-card-inner">
         <div class="flip-card-front" style="--card-accent: #8896c7;">
           <div class="card-front-content">
-            <p class="archive-chip">Watchtower</p>
             <h3 class="judge-name-display">Data</h3>
-            <p class="county-label">Pattern explorer and statewide comparisons</p>
           </div>
         </div>
         <div class="flip-card-back">
-          <div class="card-back-header"><h3>Watchtower command layer</h3></div>
+          <div class="card-back-header"><h3>Data</h3></div>
           <div class="card-back-content">
             <div class="flip-metric-group">
-              <h4>System intelligence</h4>
+              <h4>Signals</h4>
               <div class="metric-grid-mini">
+                <div class="metric-mini"><span class="metric-label">Dashboard</span><span class="metric-value">Statewide command center</span></div>
                 <div class="metric-mini"><span class="metric-label">Controls</span><span class="metric-value">County and time filters</span></div>
-                <div class="metric-mini"><span class="metric-label">Metrics</span><span class="metric-value">Large stat cards</span></div>
-                <div class="metric-mini"><span class="metric-label">Visuals</span><span class="metric-value">Trend and distribution views</span></div>
-                <div class="metric-mini"><span class="metric-label">Path</span><span class="metric-value">Drill down by actor</span></div>
+                <div class="metric-mini"><span class="metric-label">Action</span><span class="metric-value">View full record</span></div>
               </div>
             </div>
           </div>
@@ -272,93 +237,4 @@ wrapper_class: home-wrapper
       </div>
     </article>
   </div>
-</section>
-
-<section class="home-section archive-system-grid">
-  <article class="archive-panel">
-    <p class="eyebrow">How the System Builds Truth</p>
-    <h2>Primary-source ingestion to public accountability.</h2>
-    <ol class="archive-sequence-list">
-      <li>Primary-source ingestion</li>
-      <li>Normalization</li>
-      <li>Pattern detection</li>
-      <li>Comparative analysis</li>
-      <li>Public accountability</li>
-    </ol>
-  </article>
-
-  <article class="archive-panel">
-    <p class="eyebrow">Analytical Environments</p>
-    <h2>The system is organized around actors, not abstractions.</h2>
-    <ul class="archive-tag-list">
-      <li>Judges</li>
-      <li>Prosecutors</li>
-      <li>Probation / Parole</li>
-      <li>Law Enforcement</li>
-    </ul>
-  </article>
-  <article class="archive-panel">
-    <p class="eyebrow">Aggregation Layers</p>
-    <h2>Individual to statewide.</h2>
-    <ul class="archive-tag-list">
-      <li>Individual</li>
-      <li>Court</li>
-      <li>County</li>
-      <li>Statewide</li>
-    </ul>
-  </article>
-</section>
-
-<section class="home-section profile-flow-grid">
-  <div class="section-heading">
-    <p class="eyebrow">Bias Beacon Profile Flow</p>
-    <h2>Evidence should lead to informed use, not passive observation.</h2>
-  </div>
-
-  <div class="profile-layers">
-    <article class="layer-card">
-      <span class="layer-index">01</span>
-      <h3>Evidence</h3>
-      <p>Linked cases, dates, rulings, and source references establish trust before interpretation begins.</p>
-    </article>
-    <article class="layer-card">
-      <span class="layer-index">02</span>
-      <h3>Pattern Context</h3>
-      <p>Compare a judge or agency against county and state baselines to see whether conduct is ordinary or outlying.</p>
-    </article>
-    <article class="layer-card">
-      <span class="layer-index">03</span>
-      <h3>Implication</h3>
-      <p>Plain-language interpretation explains what the pattern means in practice for litigants, defendants, and communities.</p>
-    </article>
-    <article class="layer-card">
-      <span class="layer-index">04</span>
-      <h3>Action Path</h3>
-      <p>Open related cases, save materials to workspace, or move into drafting and research without losing the source trail.</p>
-    </article>
-  </div>
-</section>
-
-<section class="home-section watchtower-grid">
-  <article class="archive-panel archive-panel-emphasis">
-    <p class="eyebrow">The Watchtower</p>
-    <h2>A control system, not a landing page.</h2>
-    <p>
-      The Watchtower is the command layer: domain selectors, county filters, line charts, distribution views, and short
-      summaries that point directly to the next drill-down.
-    </p>
-    <div class="watchtower-actions">
-      <a class="button button-primary" href="{{ '/bias-beacon/dashboard/' | relative_url }}">Open Watchtower</a>
-      <a class="button button-secondary" href="{{ '/bias-beacon/counties/' | relative_url }}">Explore Counties</a>
-    </div>
-  </article>
-
-  <article class="archive-panel">
-    <p class="eyebrow">Workspace</p>
-    <h2>Research, drafting, and document use stay separate from public data.</h2>
-    <p>
-      The workspace layer is reserved for uploads, document organization, assistant workflows, and drafting support. The
-      public record remains the public record.
-    </p>
-  </article>
 </section>
