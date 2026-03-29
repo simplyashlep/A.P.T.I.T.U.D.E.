@@ -9,7 +9,12 @@ body_class: archive-page actor-directory-page judges-page
   <section class="actor-directory-hero">
     <div class="actor-hero-copy">
       <p class="archive-kicker">Bias Beacon</p>
-      <h1 class="actor-page-title">Oregon Judge Profiles</h1>
+      <h1 class="actor-page-title actor-page-title-image-wrap">
+        <img class="actor-page-title-image"
+             src="{{ '/assets/images/titles/THE-JUDICIARY-3-29-2026.png' | relative_url }}"
+             alt="The Judiciary">
+        <span class="visually-hidden">The Judiciary</span>
+      </h1>
       <p class="actor-page-deck">
         Judicial profiles arranged for quick comparison across counties, courtrooms, and outcome patterns,
         with deeper layers for reversals, disparity signals, and accountability flags.
