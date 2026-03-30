@@ -24,6 +24,13 @@
       <p>Behavior becomes data. Data becomes pattern. Pattern becomes evidence. Evidence becomes accountability.</p>
     </div>
 
+    <div class="footer-column footer-status">
+      <p class="footer-label">Record Status</p>
+      <p>Judge roster refresh: {{ site.data.bias-beacon.judges-directory.generatedAt | date: '%b %-d, %Y' }}</p>
+      <p>Official roster source: Oregon Judicial Department.</p>
+      <p>Official photo source: Oregon Blue Book where available.</p>
+    </div>
+
     <div class="footer-bottom">
       <p>&copy; {{ site.time | date: '%Y' }} {{ site.title }}. Institutional truth made legible.</p>
       <a class="u-email footer-link" href="mailto:{{ site.email }}">{{ site.email }}</a>

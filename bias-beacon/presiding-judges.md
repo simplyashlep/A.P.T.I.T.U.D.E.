@@ -5,7 +5,11 @@ permalink: /bias-beacon/presiding-judges/
 body_class: archive-page actor-directory-page judges-page
 ---
 
-<div class="actor-directory actor-directory--judges" data-directory-root data-directory-label="presiding judges">
+<div class="actor-directory actor-directory--judges"
+     data-directory-root
+     data-directory-label="presiding judges"
+     data-directory-updated="{{ site.data.bias-beacon.judges-directory.generatedAt | date: '%b %-d, %Y' }}"
+     data-directory-official-source="{{ site.data.bias-beacon.judges-directory.sourceNotes.officialRoster }}">
   <section class="actor-directory-hero">
     <div class="actor-hero-copy">
       <p class="archive-kicker">Bias Beacon</p>

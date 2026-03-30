@@ -105,6 +105,8 @@
     const distributionContainer = document.getElementById("directory-distribution");
     const cards = Array.from(grid.querySelectorAll(".flip-card"));
     const directoryLabel = root.dataset.directoryLabel || "records";
+    const directoryUpdated = root.dataset.directoryUpdated || "";
+    const directoryOfficialSource = root.dataset.directoryOfficialSource || "Oregon Judicial Department";
     const sidebarToggle = root.querySelector("[data-sidebar-toggle]");
     const maxComparison = 3;
     const selectedIds = [];
@@ -130,6 +132,11 @@
     function parseMetric(value) {
       const numeric = Number.parseFloat(value);
       return Number.isFinite(numeric) ? numeric : 0;
+    }
+
+    function formatMetric(value, suffix = "", fallback = "Pending") {
+      const numeric = Number.parseFloat(value);
+      return Number.isFinite(numeric) && numeric > 0 ? `${numeric}${suffix}` : fallback;
     }
 
     function normalizeNameKey(value) {
@@ -291,7 +298,8 @@
             if (official.district) {
               additions.push(`District ${official.district}`);
             }
-            subtitle.textContent = `${county} County • ${additions.join(" • ")}`;
+            const countyLabel = county && county !== "Statewide" ? `${county} County` : county || "Statewide";
+            subtitle.textContent = `${countyLabel} | ${additions.join(" | ")}`;
           }
         });
       } catch (error) {
@@ -528,7 +536,7 @@
       const selectedData = selectedCards.map((card) => getCardData(card));
       const highestScore = [...selectedData].sort((left, right) => right.score - left.score)[0];
       const highestPressure = [...selectedData].sort((left, right) => right.prisonRate - left.prisonRate)[0];
-      const strongestCapacity = [...selectedData].sort((left, right) => right.reversalRate - left.reversalRate)[0];
+      const highestReversal = [...selectedData].sort((left, right) => right.reversalRate - left.reversalRate)[0];
 
       return `
         <div class="comparison-insights">
@@ -538,14 +546,14 @@
             <span>${highestScore.score}</span>
           </div>
           <div class="comparison-insight">
-            <span class="comparison-insight-label">Strongest pressure signal</span>
+            <span class="comparison-insight-label">Highest prison usage</span>
             <strong>${escapeHtml(highestPressure.name)}</strong>
-            <span>${highestPressure.prisonRate}</span>
+            <span>${escapeHtml(formatMetric(highestPressure.prisonRate, "%"))}</span>
           </div>
           <div class="comparison-insight">
-            <span class="comparison-insight-label">Strongest support metric</span>
-            <strong>${escapeHtml(strongestCapacity.name)}</strong>
-            <span>${strongestCapacity.reversalRate}</span>
+            <span class="comparison-insight-label">Highest reversal rate</span>
+            <strong>${escapeHtml(highestReversal.name)}</strong>
+            <span>${escapeHtml(formatMetric(highestReversal.reversalRate, "%"))}</span>
           </div>
         </div>
       `;
@@ -578,8 +586,8 @@
                     <span class="comparison-card-marker" style="left: ${Math.min(data.score, 100)}%;"></span>
                   </div>
                   <div class="comparison-metric-list">
-                    <div><span>Primary pressure</span><strong>${data.prisonRate}</strong></div>
-                    <div><span>Counterweight</span><strong>${data.reversalRate}</strong></div>
+                    <div><span>Prison usage</span><strong>${escapeHtml(formatMetric(data.prisonRate, "%"))}</strong></div>
+                    <div><span>Reversal rate</span><strong>${escapeHtml(formatMetric(data.reversalRate, "%"))}</strong></div>
                     <div><span>Volume</span><strong>${escapeHtml(data.caseload)}</strong></div>
                   </div>
                   <p class="comparison-summary">${escapeHtml(data.summary)}</p>
@@ -602,6 +610,12 @@
       const flagsMarkup = data.flags.length
         ? `<ul class="detail-flag-list">${data.flags.map((flag) => `<li>${escapeHtml(flag)}</li>`).join("")}</ul>`
         : "<p>No accountability flags are currently listed for this profile.</p>";
+      const officialPhotoStatus = data.photoUrl ? "Matched from Oregon Blue Book." : "Official photo not yet matched.";
+      const analyticStatus = data.metricsVerified
+        ? "Matched to the current local Bias Beacon analytic layer."
+        : "No current analytic match. Official identity data is present, but the scoring layer is still pending.";
+      const dataFreshness = directoryUpdated ? `Directory refresh: ${escapeHtml(directoryUpdated)}` : "Directory refresh date pending.";
+      const countyLabel = data.county.toLowerCase() === "statewide" ? "Statewide" : `${titleCase(data.county)} County`;
 
       detailContent.innerHTML = `
         <article class="detail-profile-shell">
@@ -645,7 +659,7 @@
               <h3>Profile metrics</h3>
               <div class="detail-metric-grid">
                 <div><span>Score</span><strong>${escapeHtml(data.scoreDisplay)}</strong></div>
-                <div><span>County</span><strong>${escapeHtml(data.county.toLowerCase() === "statewide" ? "Statewide" : `${titleCase(data.county)} County`)}</strong></div>
+                <div><span>County</span><strong>${escapeHtml(countyLabel)}</strong></div>
                 <div><span>Role</span><strong>${escapeHtml(data.court)}</strong></div>
                 <div><span>Coverage</span><strong>${escapeHtml(data.tenure)}</strong></div>
                 <div><span>Volume</span><strong>${escapeHtml(data.caseload)}</strong></div>
@@ -659,20 +673,44 @@
             <section class="detail-panel">
               <h3>Signal snapshot</h3>
               <div class="detail-bars">
-                <div class="detail-bar-row"><span>Prison usage</span><div class="detail-bar-track"><span style="width: ${Math.min(data.prisonRate, 100)}%;"></span></div><strong>${data.prisonRate}%</strong></div>
-                <div class="detail-bar-row"><span>Reversal rate</span><div class="detail-bar-track"><span style="width: ${Math.min(data.reversalRate, 100)}%;"></span></div><strong>${data.reversalRate}%</strong></div>
-                <div class="detail-bar-row"><span>Counsel disparity</span><div class="detail-bar-track"><span style="width: ${Math.min(data.counselDisparity, 100)}%;"></span></div><strong>${data.counselDisparity}</strong></div>
-                <div class="detail-bar-row"><span>Overall score</span><div class="detail-bar-track"><span style="width: ${Math.min(data.score, 100)}%;"></span></div><strong>${data.score}</strong></div>
+                <div class="detail-bar-row"><span>Prison usage</span><div class="detail-bar-track"><span style="width: ${Math.min(data.prisonRate, 100)}%;"></span></div><strong>${escapeHtml(formatMetric(data.prisonRate, "%"))}</strong></div>
+                <div class="detail-bar-row"><span>Reversal rate</span><div class="detail-bar-track"><span style="width: ${Math.min(data.reversalRate, 100)}%;"></span></div><strong>${escapeHtml(formatMetric(data.reversalRate, "%"))}</strong></div>
+                <div class="detail-bar-row"><span>Counsel disparity</span><div class="detail-bar-track"><span style="width: ${Math.min(data.counselDisparity, 100)}%;"></span></div><strong>${escapeHtml(formatMetric(data.counselDisparity))}</strong></div>
+                <div class="detail-bar-row"><span>Overall score</span><div class="detail-bar-track"><span style="width: ${Math.min(data.score, 100)}%;"></span></div><strong>${escapeHtml(data.scoreDisplay)}</strong></div>
               </div>
             </section>
             <section class="detail-panel detail-panel-wide">
               <h3>Evidence chain flags</h3>
               ${flagsMarkup}
             </section>
+            <section class="detail-panel detail-panel-wide">
+              <h3>Source ledger</h3>
+              <div class="detail-source-grid">
+                <article class="detail-source-item">
+                  <span class="detail-source-label">Official roster</span>
+                  <strong>${escapeHtml(directoryOfficialSource)}</strong>
+                  <p>${dataFreshness}</p>
+                </article>
+                <article class="detail-source-item">
+                  <span class="detail-source-label">Official photo</span>
+                  <strong>${data.photoUrl ? "Matched" : "Pending"}</strong>
+                  <p>${escapeHtml(officialPhotoStatus)}</p>
+                </article>
+                <article class="detail-source-item">
+                  <span class="detail-source-label">Analytic layer</span>
+                  <strong>${data.metricsVerified ? "Provisional metrics present" : "Pending match"}</strong>
+                  <p>${escapeHtml(analyticStatus)}</p>
+                </article>
+                <article class="detail-source-item">
+                  <span class="detail-source-label">Campaign statements</span>
+                  <strong>Ballotpedia not linked yet</strong>
+                  <p>Candidate statements and survey responses will only be shown where a verified judge-specific page exists.</p>
+                </article>
+              </div>
+            </section>
           </div>
         </article>
       `;
-
       detailModal.classList.add("show");
     }
 
