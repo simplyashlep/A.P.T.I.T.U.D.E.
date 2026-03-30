@@ -40,18 +40,30 @@
 
   function initializeFlipCards() {
     document.addEventListener("click", (event) => {
+      const interactiveTarget = event.target.closest("a, button, input, select, option, label, textarea");
       const button = event.target.closest(".flip-toggle");
       if (button) {
         const card = button.closest(".flip-card");
         if (card) {
           card.classList.toggle("is-flipped");
+          card.classList.toggle("is-pinned", card.classList.contains("is-flipped"));
         }
         return;
+      }
+
+      if (!interactiveTarget) {
+        const directoryCard = event.target.closest(".actor-directory .flip-card");
+        if (directoryCard) {
+          directoryCard.classList.toggle("is-flipped");
+          directoryCard.classList.toggle("is-pinned", directoryCard.classList.contains("is-flipped"));
+          return;
+        }
       }
 
       const homeCard = event.target.closest(".home-actor-card");
       if (homeCard && window.innerWidth < 980) {
         homeCard.classList.toggle("is-flipped");
+        homeCard.classList.toggle("is-pinned", homeCard.classList.contains("is-flipped"));
       }
     });
 
@@ -62,6 +74,7 @@
       if (card && (event.key === "Enter" || event.key === " ")) {
         event.preventDefault();
         card.classList.toggle("is-flipped");
+        card.classList.toggle("is-pinned", card.classList.contains("is-flipped"));
       }
     });
   }
@@ -75,6 +88,7 @@
 
     const searchInput = document.getElementById("judge-search");
     const countyFilter = document.getElementById("county-filter");
+    const districtFilter = document.getElementById("district-filter");
     const riskFilter = document.getElementById("risk-filter");
     const sortBy = document.getElementById("sort-by");
     const sortOrder = document.getElementById("sort-order");
@@ -118,6 +132,19 @@
       return Number.isFinite(numeric) ? numeric : 0;
     }
 
+    function normalizeNameKey(value) {
+      return String(value || "")
+        .replace(/\bjudge\b/gi, "")
+        .replace(/[^a-zA-Z ]+/g, " ")
+        .toLowerCase()
+        .split(/\s+/)
+        .filter(Boolean)
+        .filter((part) => part.length > 1)
+        .map((part, index, parts) => (index === 0 || index === parts.length - 1 ? part : ""))
+        .filter(Boolean)
+        .join(" ");
+    }
+
     function getCardScore(card) {
       return parseMetric(card.dataset.score || card.querySelector(".score-value")?.textContent);
     }
@@ -139,6 +166,10 @@
         score: getCardScore(card),
         prisonRate: parseMetric(card.dataset.prisonRate),
         reversalRate: parseMetric(card.dataset.reversalRate),
+        counselDisparity: parseMetric(card.dataset.counselDisparity),
+        officialRole: card.dataset.officialRole || "",
+        officialDistrict: card.dataset.officialDistrict || "",
+        photoUrl: card.dataset.photoUrl || "",
         summary: card.dataset.summary || "",
         focus: card.dataset.focus || card.dataset.specialization || "",
         court: card.dataset.court || "Actor profile",
@@ -170,6 +201,95 @@
 
       if ([...countyFilter.options].some((option) => option.value === existing)) {
         countyFilter.value = existing;
+      }
+    }
+
+    function populateDistrictFilter() {
+      if (!districtFilter) {
+        return;
+      }
+
+      const existing = districtFilter.value || "all";
+      const districts = [...new Set(cards.map((card) => card.dataset.officialDistrict).filter(Boolean))]
+        .sort((a, b) => Number(a) - Number(b));
+
+      districtFilter.innerHTML = '<option value="all">All Districts</option>';
+      districts.forEach((district) => {
+        const option = document.createElement("option");
+        option.value = String(district);
+        option.textContent = `District ${district}`;
+        districtFilter.appendChild(option);
+      });
+
+      if ([...districtFilter.options].some((option) => option.value === existing)) {
+        districtFilter.value = existing;
+      }
+    }
+
+    async function enhanceOfficialJudgeCards() {
+      if (directoryLabel !== "judges") {
+        return;
+      }
+
+      try {
+        const response = await fetch("/assets/data/official-judges.json");
+        if (!response.ok) {
+          return;
+        }
+
+        const payload = await response.json();
+        const officialJudges = payload.judges || [];
+        const byKey = new Map();
+
+        officialJudges.forEach((judge) => {
+          const key = judge.nameKey || normalizeNameKey(judge.name);
+          if (!key) {
+            return;
+          }
+          const entries = byKey.get(key) || [];
+          entries.push(judge);
+          byKey.set(key, entries);
+        });
+
+        cards.forEach((card) => {
+          const key = normalizeNameKey(card.dataset.name || card.querySelector(".judge-name-display")?.textContent);
+          const county = titleCase(card.dataset.county || "");
+          const matches = byKey.get(key) || [];
+          const official = matches.find((entry) => !county || !entry.county || entry.county === county) || matches[0];
+
+          if (!official) {
+            return;
+          }
+
+          if (official.officialPhotoUrl) {
+            card.dataset.photoUrl = official.officialPhotoUrl;
+          }
+          if (official.roleTitle) {
+            card.dataset.officialRole = official.roleTitle;
+          }
+          if (official.district) {
+            card.dataset.officialDistrict = official.district;
+          }
+
+          const photoSlot = card.querySelector("[data-photo-slot]");
+          if (photoSlot && official.officialPhotoUrl) {
+            photoSlot.innerHTML = `<img src="${official.officialPhotoUrl}" alt="${escapeHtml(official.name)}" loading="lazy">`;
+          }
+
+          const subtitle = card.querySelector(".card-back-subtitle");
+          if (subtitle && (official.roleTitle || official.district)) {
+            const additions = [];
+            if (official.roleTitle) {
+              additions.push(official.roleTitle);
+            }
+            if (official.district) {
+              additions.push(`District ${official.district}`);
+            }
+            subtitle.textContent = `${county} County • ${additions.join(" • ")}`;
+          }
+        });
+      } catch (error) {
+        console.error("Official judge enhancement failed", error);
       }
     }
 
@@ -372,6 +492,7 @@
     function applyFilters() {
       const searchValue = (searchInput?.value || "").trim().toLowerCase();
       const countyValue = countyFilter?.value || "all";
+      const districtValue = districtFilter?.value || "all";
       const riskValue = riskFilter?.value || "all";
 
       cards.forEach((card) => {
@@ -383,9 +504,10 @@
           data.focus.toLowerCase().includes(searchValue) ||
           data.summary.toLowerCase().includes(searchValue);
         const matchesCounty = countyValue === "all" || getCardCounty(card) === countyValue;
+        const matchesDistrict = districtValue === "all" || String(card.dataset.officialDistrict || "") === districtValue;
         const matchesRisk = riskValue === "all" || data.level.toLowerCase() === riskValue;
 
-        card.style.display = matchesSearch && matchesCounty && matchesRisk ? "" : "none";
+        card.style.display = matchesSearch && matchesCounty && matchesDistrict && matchesRisk ? "" : "none";
       });
 
       const visibleCards = getVisibleCards();
@@ -479,18 +601,27 @@
         <article class="detail-profile-shell">
           <div class="detail-profile-hero">
             <div class="detail-photo-space">
-              <span>${escapeHtml(
-                data.name
-                  .split(" ")
-                  .slice(0, 2)
-                  .map((part) => part.charAt(0))
-                  .join("")
-              )}</span>
+              ${
+                data.photoUrl
+                  ? `<img src="${escapeHtml(data.photoUrl)}" alt="${escapeHtml(data.name)}" loading="lazy">`
+                  : `<span>${escapeHtml(
+                      data.name
+                        .split(" ")
+                        .slice(0, 2)
+                        .map((part) => part.charAt(0))
+                        .join("")
+                    )}</span>`
+              }
             </div>
             <div class="detail-hero-copy">
               <p class="eyebrow">${escapeHtml(data.actorType)}</p>
               <h2>${escapeHtml(data.name)}</h2>
               <p>${escapeHtml(data.summary)}</p>
+              ${
+                data.officialRole || data.officialDistrict
+                  ? `<p class="detail-official-meta">${escapeHtml(data.officialRole || "Official role")}${data.officialDistrict ? ` | District ${escapeHtml(data.officialDistrict)}` : ""}</p>`
+                  : ""
+              }
               <div class="detail-links">
                 <a class="btn btn-primary" href="/bias-beacon/methodology/">Methodology</a>
                 <a class="btn btn-secondary" href="?county=${encodeURIComponent(data.county.toLowerCase())}">Filter This County</a>
@@ -518,8 +649,9 @@
             <section class="detail-panel">
               <h3>Signal snapshot</h3>
               <div class="detail-bars">
-                <div class="detail-bar-row"><span>Primary pressure</span><div class="detail-bar-track"><span style="width: ${Math.min(data.prisonRate, 100)}%;"></span></div><strong>${data.prisonRate}</strong></div>
-                <div class="detail-bar-row"><span>Counterweight</span><div class="detail-bar-track"><span style="width: ${Math.min(data.reversalRate, 100)}%;"></span></div><strong>${data.reversalRate}</strong></div>
+                <div class="detail-bar-row"><span>Prison usage</span><div class="detail-bar-track"><span style="width: ${Math.min(data.prisonRate, 100)}%;"></span></div><strong>${data.prisonRate}%</strong></div>
+                <div class="detail-bar-row"><span>Reversal rate</span><div class="detail-bar-track"><span style="width: ${Math.min(data.reversalRate, 100)}%;"></span></div><strong>${data.reversalRate}%</strong></div>
+                <div class="detail-bar-row"><span>Counsel disparity</span><div class="detail-bar-track"><span style="width: ${Math.min(data.counselDisparity, 100)}%;"></span></div><strong>${data.counselDisparity}</strong></div>
                 <div class="detail-bar-row"><span>Overall score</span><div class="detail-bar-track"><span style="width: ${Math.min(data.score, 100)}%;"></span></div><strong>${data.score}</strong></div>
               </div>
             </section>
@@ -534,7 +666,7 @@
       detailModal.classList.add("show");
     }
 
-    [searchInput, countyFilter, riskFilter, sortBy].forEach((control) => {
+    [searchInput, countyFilter, districtFilter, riskFilter, sortBy].forEach((control) => {
       control?.addEventListener("input", applyFilters);
       control?.addEventListener("change", applyFilters);
     });
@@ -645,6 +777,7 @@
     }
 
     populateCountyFilter();
+    populateDistrictFilter();
 
     if (county && countyFilter) {
       const normalizedCounty = county.toLowerCase();
@@ -653,8 +786,11 @@
       }
     }
 
-    renderSelection();
-    applyFilters();
+    enhanceOfficialJudgeCards().finally(() => {
+      populateDistrictFilter();
+      renderSelection();
+      applyFilters();
+    });
   }
 
   window.siteUI = {
@@ -681,3 +817,4 @@
     initializeActorDirectory();
   });
 })();
+

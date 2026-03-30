@@ -64,6 +64,13 @@ body_class: archive-page actor-directory-page judges-page
         </div>
 
         <div class="filter-group">
+          <label for="district-filter">District</label>
+          <select id="district-filter" class="filter-select">
+            <option value="all">All Districts</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
           <label for="risk-filter">Bias Level</label>
           <select id="risk-filter" class="filter-select">
             <option value="all">All Levels</option>
@@ -104,6 +111,8 @@ body_class: archive-page actor-directory-page judges-page
       <nav class="sidebar-panel directory-cross-nav" aria-label="Actor navigation">
         <h3>Open Another Actor View</h3>
         <a class="directory-cross-link active" href="{{ '/bias-beacon/judges/' | relative_url }}">Judges</a>
+        <a class="directory-cross-link" href="{{ '/bias-beacon/presiding-judges/' | relative_url }}">Presiding Judges</a>
+        <a class="directory-cross-link" href="{{ '/bias-beacon/pro-tem-judges/' | relative_url }}">Pro Tem Judges</a>
         <a class="directory-cross-link" href="{{ '/prosecutors.html' | relative_url }}">Prosecutors</a>
         <a class="directory-cross-link" href="{{ '/law-enforcement.html' | relative_url }}">Law Enforcement</a>
         <a class="directory-cross-link" href="{{ '/parole-probation.html' | relative_url }}">Community Supervision</a>
@@ -132,6 +141,20 @@ body_class: archive-page actor-directory-page judges-page
             Start with the score and spectrum, flip for the pressure points, then open the full profile
             for the deeper context that gives each signal its weight.
           </p>
+        </section>
+        <section class="actor-top-panel actor-top-panel--sources">
+          <p class="eyebrow">Source Stack</p>
+          <h2>Roster and photos are official. Metrics still need verification.</h2>
+          <p>
+            Judge names, roles, districts, and photos are now being matched against Oregon Judicial Department and Oregon Blue Book
+            records. The prison-usage, reversal, and counsel-disparity figures remain the site's analytic layer and should be treated
+            as provisional until each metric is tied to a reviewable source trail.
+          </p>
+          <div class="source-link-row">
+            <a class="btn btn-outline" href="https://www.courts.oregon.gov/courts/Pages/judges.aspx?wp9116=so:[[42569,0]]" target="_blank" rel="noreferrer">Official Judges</a>
+            <a class="btn btn-outline" href="https://www.courts.oregon.gov/courts/Pages/presiding-judges.aspx" target="_blank" rel="noreferrer">Presiding Judges</a>
+            <a class="btn btn-outline" href="https://www.courts.oregon.gov/courts/Pages/pro-tem.aspx" target="_blank" rel="noreferrer">Pro Tem Judges</a>
+          </div>
         </section>
       </div>
 
@@ -184,6 +207,7 @@ body_class: archive-page actor-directory-page judges-page
                      data-score="{{ score }}"
                      data-prison-rate="{{ judge_data.bias_metrics.prison_rate | default: 0 }}"
                      data-reversal-rate="{{ judge_data.appellate_record.reversal_rate | default: 0 }}"
+                     data-counsel-disparity="{{ judge_data.bias_metrics.sentence_disparity.counsel_representation.disparity_score | default: 0 }}"
                      data-specialization="{{ focus_joined | strip | downcase }}"
                      data-summary="{{ summary | strip }}"
                      data-court="{{ judge_data.court | default: 'Circuit Court' }}"
@@ -228,6 +252,20 @@ body_class: archive-page actor-directory-page judges-page
                     </div>
 
                     <p class="card-front-summary">{{ summary | strip }}</p>
+                    <div class="card-front-metrics">
+                      <div class="front-metric-chip">
+                        <span class="front-metric-label">Prison Usage</span>
+                        <strong class="front-metric-value">{{ judge_data.bias_metrics.prison_rate | default: "N/A" }}%</strong>
+                      </div>
+                      <div class="front-metric-chip">
+                        <span class="front-metric-label">Reversal Rate</span>
+                        <strong class="front-metric-value">{{ judge_data.appellate_record.reversal_rate | default: "N/A" }}%</strong>
+                      </div>
+                      <div class="front-metric-chip">
+                        <span class="front-metric-label">Counsel Disparity</span>
+                        <strong class="front-metric-value">{{ judge_data.bias_metrics.sentence_disparity.counsel_representation.disparity_score | default: "N/A" }}</strong>
+                      </div>
+                    </div>
                     <div class="card-front-footer"><span class="hover-hint">Flip for evidence and profile links</span></div>
                   </div>
                 </div>
@@ -245,7 +283,10 @@ body_class: archive-page actor-directory-page judges-page
 
                   <div class="card-back-header">
                     <h3>{{ judge_data.name }}</h3>
-                    <p class="card-back-subtitle">{{ judge_data.county }} County • {{ judge_data.court | default: "Circuit Court" }}</p>
+                    <p class="card-back-subtitle">{{ judge_data.county }} County | {{ judge_data.court | default: "Circuit Court" }}</p>
+                    <div class="judge-photo-shell" data-photo-slot>
+                      <span class="judge-photo-placeholder">Official photo pending match</span>
+                    </div>
                   </div>
 
                   <div class="card-back-content">
@@ -262,7 +303,7 @@ body_class: archive-page actor-directory-page judges-page
                     <div class="flip-metric-group">
                       <h4>Bias Signals</h4>
                       <div class="bias-metrics-grid">
-                        <div class="bias-metric-item"><span class="bias-metric-label">Prison Rate</span><span class="bias-metric-value">{{ judge_data.bias_metrics.prison_rate | default: "N/A" }}%</span></div>
+                        <div class="bias-metric-item"><span class="bias-metric-label">Prison Usage</span><span class="bias-metric-value">{{ judge_data.bias_metrics.prison_rate | default: "N/A" }}%</span></div>
                         <div class="bias-metric-item"><span class="bias-metric-label">Racial Disparity</span><span class="bias-metric-value">{{ judge_data.bias_metrics.sentence_disparity.racial.disparity_score | default: "N/A" }}</span></div>
                         <div class="bias-metric-item"><span class="bias-metric-label">Counsel Disparity</span><span class="bias-metric-value">{{ judge_data.bias_metrics.sentence_disparity.counsel_representation.disparity_score | default: "N/A" }}</span></div>
                         <div class="bias-metric-item"><span class="bias-metric-label">Reversal Rate</span><span class="bias-metric-value">{{ judge_data.appellate_record.reversal_rate | default: "N/A" }}%</span></div>
@@ -319,6 +360,23 @@ body_class: archive-page actor-directory-page judges-page
           <div class="metric-item"><h3>Counsel disparity</h3><p>Outcome gaps tied to representation type.</p></div>
           <div class="metric-item"><h3>Prison rate</h3><p>How often incarceration is imposed versus alternatives.</p></div>
           <div class="metric-item"><h3>Reversal trend</h3><p>Appeal outcomes that show decisions being disturbed.</p></div>
+        </div>
+      </section>
+
+      <section class="directory-visualization">
+        <div class="section-heading">
+          <p class="eyebrow">Verification Path</p>
+          <h2>What is official and what still needs audit</h2>
+        </div>
+        <div class="directory-viz-grid">
+          <article class="viz-card">
+            <h3>Official layer</h3>
+            <p>Roster identity, judicial role, district, and photo space are sourced from Oregon State Courts and Oregon Blue Book records.</p>
+          </article>
+          <article class="viz-card">
+            <h3>Analytic layer</h3>
+            <p>Prison usage, reversal rate, and counsel disparity currently come from the local Bias Beacon dataset and still require documentable source-by-source verification.</p>
+          </article>
         </div>
       </section>
     </section>

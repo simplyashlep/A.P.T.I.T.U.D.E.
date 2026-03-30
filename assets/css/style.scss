@@ -4251,3 +4251,237 @@ body.home-page {
     min-height: auto;
   }
 }
+
+/* Current pass: darker raised actor cards, tighter outline buttons, pinned flips, image header, official photo shells */
+.site-title-image {
+  display: block;
+  max-height: 2.45rem;
+  width: auto;
+}
+
+.site-title-mark,
+.mega-menu-title-text,
+.sidebar-panel h2,
+.sidebar-panel h3,
+.actor-top-panel h2,
+.directory-visualization h2,
+.viz-card h3,
+.comparison-modal-content h2 {
+  font-family: "Lemon Milk Pro Ultra Bold", "Public Sans", sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.button,
+.btn,
+.nav-cta,
+.menu-launcher,
+.nav-system-link {
+  min-height: auto;
+  padding: 0.56rem 0.82rem;
+  border-radius: 0.8rem;
+  background: transparent;
+  box-shadow: none;
+}
+
+.button-primary,
+.btn-primary,
+.button-secondary,
+.btn-secondary,
+.btn-outline,
+.nav-cta,
+.menu-launcher,
+.nav-system-link {
+  background: transparent;
+  color: #eef3fb;
+  border-color: rgba(205, 221, 245, 0.24);
+}
+
+.actor-hero-copy,
+.actor-hero-panel,
+.sidebar-panel,
+.actor-top-panel,
+.actor-toolbar,
+.directory-visualization,
+.viz-card,
+.archive-panel,
+.detail-panel,
+.comparison-card,
+.actor-directory .flip-card-front,
+.actor-directory .flip-card-back {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.actor-hero-copy,
+.actor-hero-panel,
+.sidebar-panel,
+.actor-top-panel,
+.actor-toolbar,
+.directory-visualization,
+.viz-card,
+.archive-panel,
+.detail-panel,
+.comparison-card {
+  background:
+    radial-gradient(circle at top left, rgba(176, 207, 244, 0.12), transparent 30%),
+    linear-gradient(180deg, rgba(17, 37, 63, 0.94), rgba(9, 25, 45, 0.96));
+  color: #edf3fc;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow:
+    0 26px 56px rgba(3, 8, 18, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 0 0 1px rgba(149, 173, 214, 0.06);
+}
+
+.actor-hero-copy::before,
+.actor-hero-panel::before,
+.sidebar-panel::before,
+.actor-top-panel::before,
+.directory-visualization::before,
+.viz-card::before,
+.archive-panel::before,
+.detail-panel::before,
+.comparison-card::before,
+.actor-directory .flip-card-front::before,
+.actor-directory .flip-card-back::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    linear-gradient(145deg, rgba(140, 164, 201, 0.18), transparent 30%),
+    linear-gradient(315deg, rgba(6, 14, 26, 0.66), transparent 35%);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  padding: 1px;
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+}
+
+.actor-directory .flip-card {
+  filter: drop-shadow(0 20px 24px rgba(0, 0, 0, 0.22));
+}
+
+.actor-directory .flip-card-front,
+.actor-directory .flip-card-back {
+  background:
+    radial-gradient(circle at top center, rgba(255, 255, 255, 0.08), transparent 30%),
+    linear-gradient(180deg, rgba(18, 40, 67, 0.98), rgba(12, 28, 50, 0.98)),
+    rgba(14, 31, 54, 0.96);
+  color: #eef3fb;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow:
+    0 22px 42px rgba(2, 8, 18, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 0 0 1px rgba(149, 173, 214, 0.06);
+}
+
+.actor-directory .compare-toggle-pill,
+.actor-directory .metric-mini,
+.actor-directory .bias-metric-item,
+.actor-directory .detail-metric-grid > div,
+.front-metric-chip,
+.selected-judges-area,
+.directory-cross-link,
+.metric-item {
+  background: rgba(154, 185, 232, 0.08);
+  color: #eef3fb;
+  border: 1px solid rgba(182, 209, 245, 0.12);
+  border-radius: 10px;
+}
+
+.actor-directory .judge-name-display,
+.actor-directory .card-back-header h3,
+.actor-directory .county-label,
+.actor-directory .card-front-summary,
+.actor-directory .card-back-subtitle,
+.actor-directory .hover-hint,
+.actor-directory .metric-label,
+.actor-directory .flags-list,
+.actor-directory .score-label,
+.actor-directory .status-indicator,
+.actor-directory .score-badge,
+.front-metric-label,
+.sidebar-copy,
+.comparison-help,
+.actor-page-deck,
+.actor-hero-note {
+  color: #e8f0fb;
+}
+
+.card-front-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.55rem;
+  margin-top: 0.85rem;
+}
+
+.front-metric-chip {
+  gap: 0.25rem;
+  padding: 0.62rem 0.68rem;
+}
+
+.front-metric-label {
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.front-metric-value {
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+.source-link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.judge-photo-shell {
+  display: grid;
+  place-items: center;
+  width: min(100%, 10.5rem);
+  margin: 0.85rem auto 0;
+  aspect-ratio: 0.82;
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(160, 192, 240, 0.07);
+  border: 1px solid rgba(182, 209, 245, 0.12);
+}
+
+.judge-photo-shell img,
+.detail-photo-space img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.judge-photo-placeholder,
+.detail-official-meta {
+  color: #d8e4f5;
+  font-size: 0.78rem;
+  text-align: center;
+}
+
+.detail-photo-space {
+  overflow: hidden;
+}
+
+.flip-card.is-pinned {
+  z-index: 2;
+}
+
+.flip-card.is-pinned .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+@media screen and (max-width: 700px) {
+  .source-link-row {
+    flex-direction: column;
+  }
+}
