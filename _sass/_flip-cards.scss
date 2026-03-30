@@ -69,8 +69,8 @@
   transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
 }
 
-/* Trigger flip on hover */
-.flip-card:hover .flip-card-inner,
+/* Hover flips only apply when the card is not pinned open by click */
+.flip-card:not(.is-pinned):hover .flip-card-inner,
 .flip-card.is-flipped .flip-card-inner {
   transform: rotateY(180deg);
 }
