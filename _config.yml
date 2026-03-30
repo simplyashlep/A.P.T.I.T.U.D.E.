@@ -21,7 +21,8 @@ description: >-
   A platform dedicated to promoting transparency and accountability 
   in public institutions and processes.
 baseurl: ""
-url: "https://biasbeacon.netlify.app"
+# Leave blank until the Cloudflare Pages domain or custom production domain is assigned.
+url: ""
 environment: production
 future: false
 show_drafts: false
@@ -60,3 +61,5 @@ collections:
     permalink: /:collection/:name/
 include:
   - admin
+  - _headers
+  - _redirects

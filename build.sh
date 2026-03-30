@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Bias Beacon - Build Script for Netlify Deployment
+# Bias Beacon - Build Script for Static Deployment
 # This script builds the Jekyll site and validates it's ready for deployment
 
-echo "🚀 Building Bias Beacon for Netlify Deployment..."
+echo "🚀 Building Bias Beacon for static deployment..."
 
 # Clean previous builds
 echo "🧹 Cleaning previous builds..."
@@ -85,12 +85,12 @@ if [ -d "_site" ]; then
     echo "🎉 Build validation complete!"
     echo "📁 Site ready for deployment in '_site' directory"
     echo ""
-    echo "🚀 To deploy to Netlify:"
-    echo "   1. Commit all changes to Git"
-    echo "   2. Push to your connected branch"
-    echo "   3. Netlify will auto-build and deploy"
+    echo "🚀 Deploy options:"
+    echo "   1. Import the repository into Cloudflare Pages"
+    echo "   2. Use build command: bundle exec jekyll build"
+    echo "   3. Use output directory: _site"
     echo ""
-    echo "🔗 Or manually upload '_site' contents to B12"
+    echo "🔗 You can also upload the built '_site' directory to any static host"
     
 else
     echo "❌ Build failed! Check errors above."
