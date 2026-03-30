@@ -164,12 +164,18 @@
         county: card.dataset.county || "Unknown county",
         level: card.dataset.level || "moderate",
         score: getCardScore(card),
+        scoreDisplay: card.dataset.scoreDisplay || String(getCardScore(card)),
         prisonRate: parseMetric(card.dataset.prisonRate),
         reversalRate: parseMetric(card.dataset.reversalRate),
         counselDisparity: parseMetric(card.dataset.counselDisparity),
         officialRole: card.dataset.officialRole || "",
         officialDistrict: card.dataset.officialDistrict || "",
         photoUrl: card.dataset.photoUrl || "",
+        bioUrl: card.dataset.bioUrl || "",
+        email: card.dataset.email || "",
+        phone: card.dataset.phone || "",
+        termExpires: card.dataset.termExpires || "",
+        metricsVerified: card.dataset.metricsVerified === "true",
         summary: card.dataset.summary || "",
         focus: card.dataset.focus || card.dataset.specialization || "",
         court: card.dataset.court || "Actor profile",
@@ -195,7 +201,7 @@
       counties.forEach((county) => {
         const option = document.createElement("option");
         option.value = county;
-        option.textContent = `${titleCase(county)} County`;
+        option.textContent = county === "statewide" ? "Statewide" : `${titleCase(county)} County`;
         countyFilter.appendChild(option);
       });
 
@@ -623,8 +629,8 @@
                   : ""
               }
               <div class="detail-links">
-                <a class="btn btn-primary" href="/bias-beacon/methodology/">Methodology</a>
-                <a class="btn btn-secondary" href="?county=${encodeURIComponent(data.county.toLowerCase())}">Filter This County</a>
+                ${data.bioUrl ? `<a class="btn btn-primary" href="${escapeHtml(data.bioUrl)}" target="_blank" rel="noreferrer">Official Bio</a>` : `<a class="btn btn-primary" href="/bias-beacon/methodology/">Methodology</a>`}
+                <a class="btn btn-secondary" href="?county=${encodeURIComponent(data.county.toLowerCase())}">${data.county.toLowerCase() === "statewide" ? "View Statewide" : "Filter This County"}</a>
               </div>
             </div>
           </div>
@@ -638,12 +644,16 @@
             <section class="detail-panel">
               <h3>Profile metrics</h3>
               <div class="detail-metric-grid">
-                <div><span>Score</span><strong>${data.score}</strong></div>
-                <div><span>County</span><strong>${escapeHtml(titleCase(data.county))}</strong></div>
+                <div><span>Score</span><strong>${escapeHtml(data.scoreDisplay)}</strong></div>
+                <div><span>County</span><strong>${escapeHtml(data.county.toLowerCase() === "statewide" ? "Statewide" : `${titleCase(data.county)} County`)}</strong></div>
                 <div><span>Role</span><strong>${escapeHtml(data.court)}</strong></div>
                 <div><span>Coverage</span><strong>${escapeHtml(data.tenure)}</strong></div>
                 <div><span>Volume</span><strong>${escapeHtml(data.caseload)}</strong></div>
                 <div><span>Focus</span><strong>${escapeHtml(data.focus || "General profile")}</strong></div>
+                <div><span>Term Expires</span><strong>${escapeHtml(data.termExpires || "Unknown")}</strong></div>
+                <div><span>Official Email</span><strong>${escapeHtml(data.email || "Not listed")}</strong></div>
+                <div><span>Official Phone</span><strong>${escapeHtml(data.phone || "Not listed")}</strong></div>
+                <div><span>Analytics</span><strong>${data.metricsVerified ? "Local analytic layer matched" : "Pending analytic match"}</strong></div>
               </div>
             </section>
             <section class="detail-panel">
