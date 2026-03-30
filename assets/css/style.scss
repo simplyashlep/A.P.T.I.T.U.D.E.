@@ -141,12 +141,20 @@ body,
   padding: 1rem 0;
 }
 
+.home-page .site-header-inner {
+  grid-template-columns: 1fr;
+}
+
 .site-title {
   display: inline-grid;
   gap: 0.18rem;
   float: none;
   line-height: 1.05;
   text-decoration: none;
+}
+
+.home-page .site-title {
+  display: none;
 }
 
 .site-title:hover {
@@ -182,6 +190,10 @@ body,
   display: flex;
   align-items: center;
   gap: 0.85rem;
+}
+
+.home-page .site-nav {
+  justify-self: end;
 }
 
 .site-nav .page-link,
