@@ -20,8 +20,8 @@ body_class: archive-page actor-directory-page judges-page
         <span class="visually-hidden">The Judiciary</span>
       </h1>
       <p class="actor-page-deck">
-        Judicial profiles arranged for quick comparison across counties, courtrooms, and outcome patterns,
-        with deeper layers for reversals, disparity signals, and accountability flags.
+        Judicial behavior becomes legible here through comparison, pressure points, reversals,
+        and the quiet patterns that only appear when enough of the record is held together at once.
       </p>
       <div class="actor-hero-search">
         <label class="visually-hidden" for="judge-search">Search judges, counties, or focus areas</label>
@@ -373,10 +373,10 @@ body_class: archive-page actor-directory-page judges-page
           <h2>Compact guide to the Bias Beacon model</h2>
         </div>
         <div class="metrics-explanation compact-grid">
-          <div class="metric-item"><h3>Racial disparity</h3><p>Sentencing differences for similar cases.</p></div>
-          <div class="metric-item"><h3>Counsel disparity</h3><p>Outcome gaps tied to representation type.</p></div>
-          <div class="metric-item"><h3>Prison rate</h3><p>How often incarceration is imposed versus alternatives.</p></div>
-          <div class="metric-item"><h3>Reversal trend</h3><p>Appeal outcomes that show decisions being disturbed.</p></div>
+          <div class="metric-item"><h3>Racial disparity</h3><p>Sentence variation that persists after similar case framing is held in view.</p></div>
+          <div class="metric-item"><h3>Counsel disparity</h3><p>Outcome separation linked to whether a person had meaningful representation.</p></div>
+          <div class="metric-item"><h3>Prison rate</h3><p>The share of visible cases pushed toward incarceration rather than alternatives.</p></div>
+          <div class="metric-item"><h3>Reversal trend</h3><p>How often higher courts interrupt, narrow, or undo the underlying decision.</p></div>
         </div>
       </section>
 

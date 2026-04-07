@@ -850,6 +850,79 @@
     }
   };
 
+  function initializeHomeHeroMotion() {
+    const titleStack = document.querySelector("[data-hero-title-stack]");
+    const cubeField = document.querySelector("[data-cube-field]");
+    const cubes = cubeField ? Array.from(cubeField.querySelectorAll("[data-cube]")) : [];
+
+    if (titleStack) {
+      const updateHeroOffset = () => {
+        const offset = Math.min(window.scrollY * 0.42, 260);
+        titleStack.style.transform = `translateY(${-offset}px)`;
+        titleStack.style.opacity = String(Math.max(0, 1 - window.scrollY / 420));
+      };
+
+      updateHeroOffset();
+      window.addEventListener("scroll", updateHeroOffset, { passive: true });
+    }
+
+    if (!cubeField || !cubes.length) {
+      return;
+    }
+
+    const bounds = () => cubeField.getBoundingClientRect();
+    const state = cubes.map((cube, index) => ({
+      el: cube,
+      x: (index + 1) * 120,
+      y: 80 + index * 70,
+      size: 90 + (index % 3) * 38,
+      vx: (index % 2 === 0 ? 0.22 : -0.18) * (1 + index * 0.08),
+      vy: (index % 2 === 0 ? 0.16 : -0.14) * (1 + index * 0.06)
+    }));
+
+    state.forEach((item) => {
+      item.el.style.width = `${item.size}px`;
+      item.el.style.height = `${item.size}px`;
+    });
+
+    function animateCubes() {
+      const box = bounds();
+      state.forEach((item, index) => {
+        item.x += item.vx;
+        item.y += item.vy;
+
+        if (item.x <= 0 || item.x + item.size >= box.width) {
+          item.vx *= -1;
+        }
+
+        if (item.y <= 0 || item.y + item.size >= box.height) {
+          item.vy *= -1;
+        }
+
+        state.forEach((other, otherIndex) => {
+          if (otherIndex <= index) {
+            return;
+          }
+
+          const overlapX = Math.abs(item.x - other.x) < (item.size + other.size) / 2;
+          const overlapY = Math.abs(item.y - other.y) < (item.size + other.size) / 2;
+          if (overlapX && overlapY) {
+            item.vx *= -1;
+            item.vy *= -1;
+            other.vx *= -1;
+            other.vy *= -1;
+          }
+        });
+
+        item.el.style.transform = `translate3d(${item.x}px, ${item.y}px, 0) rotateX(58deg) rotateZ(${(item.x + item.y) / 28}deg)`;
+      });
+
+      window.requestAnimationFrame(animateCubes);
+    }
+
+    window.requestAnimationFrame(animateCubes);
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     const heroJump = document.querySelector("[data-hero-jump]");
     if (heroJump) {
@@ -863,6 +936,17 @@
     initializeMegaMenu();
     initializeFlipCards();
     initializeActorDirectory();
+    initializeHomeHeroMotion();
+  });
+})();
+
+
+    }
+
+    initializeMegaMenu();
+    initializeFlipCards();
+    initializeActorDirectory();
+    initializeHomeHeroMotion();
   });
 })();
 

@@ -6,15 +6,17 @@ body_class: home-page
 wrapper_class: home-wrapper
 ---
 
-<section class="archive-hero" id="top">
-  <div class="hero-cube-field" aria-hidden="true">
-    <span class="hero-cube hero-cube-a"></span>
-    <span class="hero-cube hero-cube-b"></span>
-    <span class="hero-cube hero-cube-c"></span>
-    <span class="hero-cube hero-cube-d"></span>
+<section class="archive-hero archive-hero-solo" id="top">
+  <div class="hero-cube-field" aria-hidden="true" data-cube-field>
+    <span class="hero-cube hero-cube-a" data-cube></span>
+    <span class="hero-cube hero-cube-b" data-cube></span>
+    <span class="hero-cube hero-cube-c" data-cube></span>
+    <span class="hero-cube hero-cube-d" data-cube></span>
+    <span class="hero-cube hero-cube-e" data-cube></span>
+    <span class="hero-cube hero-cube-f" data-cube></span>
   </div>
-  <div class="archive-hero-grid">
-    <div class="archive-hero-copy">
+  <div class="archive-hero-grid archive-hero-grid-solo">
+    <div class="archive-hero-copy archive-hero-copy-solo" data-hero-title-stack>
       <div class="hero-title-stack">
         <h1 class="archive-title archive-title-solo">
           <img class="hero-title-image hero-title-image-main"
@@ -22,7 +24,10 @@ wrapper_class: home-wrapper
                alt="A.P.T.I.T.U.D.E.">
           <span class="visually-hidden">A.P.T.I.T.U.D.E.</span>
         </h1>
-        <p class="archive-acronym archive-acronym-expanded archive-acronym-fade" aria-label="APTITUDE acronym">
+      </div>
+
+      <div class="archive-hero-manifesto archive-hero-manifesto-solo">
+        <p class="archive-acronym archive-acronym-expanded archive-acronym-fade archive-acronym-fade-delayed" aria-label="APTITUDE acronym">
           <span class="archive-acronym-word"><span class="archive-acronym-mark">A</span>dvanced</span>
           <span class="archive-acronym-word"><span class="archive-acronym-mark">P</span>latform</span>
           <span class="archive-acronym-word"><span class="archive-acronym-mark">T</span>abulating</span>
@@ -32,12 +37,7 @@ wrapper_class: home-wrapper
           <span class="archive-acronym-word"><span class="archive-acronym-mark">D</span>isparity</span>
           <span class="archive-acronym-word"><span class="archive-acronym-mark">E</span>pidemics</span>
         </p>
-      </div>
-
-      <p class="archive-title-sub archive-title-sub-broad">A control system for the public record, built to show where institutions align, drift, or break apart.</p>
-      <div class="archive-hero-manifesto">
-        <p class="archive-kicker">WE ARE THE RECORD</p>
-        <div class="spine-sequence spine-sequence-hero" aria-label="Evidence spine">
+        <div class="spine-sequence spine-sequence-hero spine-sequence-floating" aria-label="Evidence spine">
           <span>Behavior becomes data.</span>
           <span>Data becomes pattern.</span>
           <span>Pattern becomes evidence.</span>
@@ -45,13 +45,13 @@ wrapper_class: home-wrapper
         </div>
       </div>
 
-      <form class="hero-search-form hero-search-form-long hero-search-form-primary" action="{{ '/bias-beacon/judges/' | relative_url }}" method="get">
+      <form class="hero-search-form hero-search-form-long hero-search-form-primary hero-search-form-solo" action="{{ '/bias-beacon/judges/' | relative_url }}" method="get">
         <label class="visually-hidden" for="hero-search">Search Oregon records</label>
         <input id="hero-search" name="q" type="search" placeholder="Search judges, counties, offices, agencies, or methodology" />
         <button class="button button-primary" type="submit">Search the Record</button>
       </form>
 
-      <div class="hero-jump-shell">
+      <div class="hero-jump-shell hero-jump-shell-solo">
         <label class="visually-hidden" for="hero-jump">Jump to a site section</label>
         <select id="hero-jump" class="hero-jump-select" data-hero-jump>
           <option value="">Jump to a record surface</option>
@@ -64,41 +64,18 @@ wrapper_class: home-wrapper
           <option value="{{ '/bias-beacon/counties/' | relative_url }}">County Data</option>
         </select>
       </div>
-
-      <p class="archive-lead">
-        Judges, prosecutor offices, law enforcement, supervision, cases, and statewide signals live on one record
-        plane here. The point is not to force a conclusion. The point is to make the structure visible enough that
-        the evidence can speak in full.
-      </p>
-
-      <div class="archive-actions">
-        <a class="button button-secondary" href="{{ '/bias-beacon/' | relative_url }}">Open System View</a>
-        <a class="button button-secondary" href="{{ '/bias-beacon/dashboard/' | relative_url }}">Open Watchtower</a>
-      </div>
     </div>
+  </div>
+</section>
 
-    <aside class="archive-hero-aside">
-      <p class="archive-chip">System View</p>
-      <h2>One surface for the points where the record agrees and where it breaks apart.</h2>
-      <p>
-        Stops, arrests, charging, conviction patterns, reversals, and supervision outcomes do not sit in isolation.
-        System View is where those environments begin to speak to one another without forcing a conclusion ahead of the evidence.
-      </p>
-      <dl class="archive-facts">
-        <div>
-          <dt>Cross-actor read</dt>
-          <dd>Street contact, charging pressure, courtroom outcomes, and supervision return points in one sequence</dd>
-        </div>
-        <div>
-          <dt>Method</dt>
-          <dd>Compare counties and institutions without assuming causation where the record has not earned it</dd>
-        </div>
-        <div>
-          <dt>Purpose</dt>
-          <dd>Make the archive legible enough that the public can notice what deserves the next question</dd>
-        </div>
-      </dl>
-    </aside>
+<section class="home-section home-section-intro" id="system-view">
+  <div class="section-heading section-heading-centered">
+    <p class="eyebrow">System View</p>
+    <h2>Where the record starts to relate to itself.</h2>
+    <p class="section-intro-copy">
+      Stops, arrests, charging, reversals, and supervision outcomes live here as connected institutional behavior.
+      The purpose is not to lead the evidence. The purpose is to hold the surfaces together long enough for the pattern to speak.
+    </p>
   </div>
 </section>
 
@@ -111,9 +88,10 @@ wrapper_class: home-wrapper
   <div class="flip-cards-grid actor-card-grid">
     <article class="flip-card home-actor-card" tabindex="0">
       <div class="flip-card-inner">
-        <div class="flip-card-front" style="--card-accent: #9b6a88;">
+        <div class="flip-card-front" style="--card-accent: #8eb1ff;">
           <div class="card-front-content">
-            <h3 class="judge-name-display">Judiciary</h3>
+            <h3 class="judge-name-display">The Judiciary</h3>
+            <p class="home-card-front-caption">Summary, structure, statistics, and specifics from the bench.</p>
           </div>
         </div>
         <div class="flip-card-back">
@@ -138,9 +116,10 @@ wrapper_class: home-wrapper
 
     <article class="flip-card home-actor-card" tabindex="0">
       <div class="flip-card-inner">
-        <div class="flip-card-front" style="--card-accent: #8f7b6f;">
+        <div class="flip-card-front" style="--card-accent: #dcccb4;">
           <div class="card-front-content">
             <h3 class="judge-name-display">Prosecutor's Office</h3>
+            <p class="home-card-front-caption">Pressure, leverage, and disposition choices by county office.</p>
           </div>
         </div>
         <div class="flip-card-back">
@@ -165,9 +144,10 @@ wrapper_class: home-wrapper
 
     <article class="flip-card home-actor-card" tabindex="0">
       <div class="flip-card-inner">
-        <div class="flip-card-front" style="--card-accent: #7a8fb5;">
+        <div class="flip-card-front" style="--card-accent: #8fa8d8;">
           <div class="card-front-content">
             <h3 class="judge-name-display">Community Supervision</h3>
+            <p class="home-card-front-caption">How monitoring, support, and return pressure shape the pipeline.</p>
           </div>
         </div>
         <div class="flip-card-back">
@@ -192,9 +172,10 @@ wrapper_class: home-wrapper
 
     <article class="flip-card home-actor-card" tabindex="0">
       <div class="flip-card-inner">
-        <div class="flip-card-front" style="--card-accent: #a05e72;">
+        <div class="flip-card-front" style="--card-accent: #83a6ef;">
           <div class="card-front-content">
             <h3 class="judge-name-display">Law Enforcement</h3>
+            <p class="home-card-front-caption">Where the intake side of the system first becomes visible.</p>
           </div>
         </div>
         <div class="flip-card-back">
@@ -219,9 +200,10 @@ wrapper_class: home-wrapper
 
     <article class="flip-card home-actor-card" tabindex="0">
       <div class="flip-card-inner">
-        <div class="flip-card-front" style="--card-accent: #6f879a;">
+        <div class="flip-card-front" style="--card-accent: #9ebaf5;">
           <div class="card-front-content">
             <h3 class="judge-name-display">Cases &amp; Filings</h3>
+            <p class="home-card-front-caption">The source material underneath every larger institutional signal.</p>
           </div>
         </div>
         <div class="flip-card-back">
@@ -246,9 +228,10 @@ wrapper_class: home-wrapper
 
     <article class="flip-card home-actor-card" tabindex="0">
       <div class="flip-card-inner">
-        <div class="flip-card-front" style="--card-accent: #8896c7;">
+        <div class="flip-card-front" style="--card-accent: #b0c5ff;">
           <div class="card-front-content">
             <h3 class="judge-name-display">Statewide Watchtower</h3>
+            <p class="home-card-front-caption">The statewide read of concentration, drift, and outlier pressure.</p>
           </div>
         </div>
         <div class="flip-card-back">
