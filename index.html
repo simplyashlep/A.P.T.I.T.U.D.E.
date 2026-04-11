@@ -6,186 +6,218 @@ body_class: home-page page-bias-beacon
 wrapper_class: home-wrapper
 ---
 
-<section class="archive-hero archive-hero-solo" id="top">
-  <div class="hero-cube-field" aria-hidden="true" data-cube-field>
-    <span class="hero-cube hero-cube-a" data-cube></span>
-    <span class="hero-cube hero-cube-b" data-cube></span>
-    <span class="hero-cube hero-cube-c" data-cube></span>
-    <span class="hero-cube hero-cube-d" data-cube></span>
-    <span class="hero-cube hero-cube-e" data-cube></span>
-    <span class="hero-cube hero-cube-f" data-cube></span>
+<!-- MODERN STICKY HEADER -->
+<header class="site-header">
+  <div class="header-container">
+    <a href="/" class="site-logo">
+      <span class="logo-text">A.P.T.I.T.U.D.E.</span>
+    </a>
+    
+    <nav class="site-nav" id="main-nav" aria-label="Main navigation">
+      <a href="{{ '/bias-beacon/' | relative_url }}">Bias Beacon</a>
+      <a href="{{ '/bias-beacon/judges/' | relative_url }}">Judges</a>
+      <a href="{{ '/bias-beacon/dashboard/' | relative_url }}">Dashboard</a>
+      <a href="{{ '/about/' | relative_url }}">About</a>
+      <a href="{{ '/bias-beacon/methodology/' | relative_url }}">Methodology</a>
+    </nav>
+    
+    <button class="hamburger" id="hamburger-menu" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
-  <div class="archive-hero-grid archive-hero-grid-solo">
-    <div class="archive-hero-copy archive-hero-copy-solo" data-hero-title-stack>
-      <div class="hero-title-stack">
-        <h1 class="archive-title archive-title-solo">
-          <img class="hero-title-image hero-title-image-main"
-               src="{{ '/assets/images/titles/A-P-T-I-T-U-D-E-3-29-2026 (1).png' | relative_url }}"
-               alt="A.P.T.I.T.U.D.E.">
-          <span class="visually-hidden">A.P.T.I.T.U.D.E.</span>
-        </h1>
-      </div>
+</header>
 
-      <div class="archive-hero-manifesto archive-hero-manifesto-solo">
-        <p class="archive-acronym archive-acronym-expanded archive-acronym-fade archive-acronym-fade-delayed" aria-label="APTITUDE acronym">
-          <span class="archive-acronym-word"><span class="archive-acronym-mark">A</span>dvanced</span>
-          <span class="archive-acronym-word"><span class="archive-acronym-mark">P</span>latform</span>
-          <span class="archive-acronym-word"><span class="archive-acronym-mark">T</span>abulating</span>
-          <span class="archive-acronym-word"><span class="archive-acronym-mark">I</span>nstitutional</span>
-          <span class="archive-acronym-word"><span class="archive-acronym-mark">T</span>rends</span>
-          <span class="archive-acronym-word"><span class="archive-acronym-mark">U</span>nmasking</span>
-          <span class="archive-acronym-word"><span class="archive-acronym-mark">D</span>isparity</span>
-          <span class="archive-acronym-word"><span class="archive-acronym-mark">E</span>pidemics</span>
-        </p>
-        <div class="spine-sequence spine-sequence-hero spine-sequence-floating" aria-label="Evidence spine">
-          <span>Behavior becomes data.</span>
-          <span>Data becomes pattern.</span>
-          <span>Pattern becomes evidence.</span>
-          <span>Evidence becomes accountability.</span>
-        </div>
-      </div>
-
-      <!-- Enhanced Search Section with Filters -->
-      <div class="hero-search-enhanced">
-        <form class="search-form-enhanced" action="{{ '/bias-beacon/judges/' | relative_url }}" method="get">
+<!-- MODERN HERO SECTION -->
+<section class="hero-section">
+  <div class="hero-background">
+    <div class="hero-cube-field" aria-hidden="true">
+      <span class="hero-cube"></span>
+      <span class="hero-cube"></span>
+      <span class="hero-cube"></span>
+      <span class="hero-cube"></span>
+      <span class="hero-cube"></span>
+      <span class="hero-cube"></span>
+    </div>
+  </div>
+  
+  <div class="hero-content">
+    <!-- Main Title -->
+    <div class="hero-title-section">
+      <h1 class="hero-title">
+        A.P.T.I.T.U.D.E.
+        <span class="title-subtitle">Institutional Transparency Tracking</span>
+      </h1>
+    </div>
+    
+    <!-- Acronym Expansion -->
+    <div class="hero-acronym">
+      <p>
+        <strong>A</strong>dvanced 
+        <strong>P</strong>latform 
+        <strong>T</strong>abulating 
+        <strong>I</strong>nstitutional 
+        <strong>T</strong>rends 
+        <strong>U</strong>nmasking 
+        <strong>D</strong>isparity 
+        <strong>E</strong>pidemics
+      </p>
+    </div>
+    
+    <!-- Evidence Spine -->
+    <div class="evidence-spine">
+      <p>Behavior → Data → Pattern → Evidence → Accountability</p>
+    </div>
+    
+    <!-- MAIN SEARCH BAR (Nearly Full Width) -->
+    <div class="hero-search">
+      <form class="search-form" action="{{ '/bias-beacon/judges/' | relative_url }}" method="get">
+        <div class="search-input-wrapper">
           <input 
             type="search" 
             name="q" 
-            placeholder="Search judges, counties, or metrics..." 
-            aria-label="Search judicial records"
+            class="search-input"
+            placeholder="Search judges by name, county, or district..." 
+            aria-label="Search judges"
           />
-          <button type="submit" aria-label="Search">Search</button>
-        </form>
-
-        <!-- Advanced Filter Options -->
-        <div class="filter-options">
-          <div class="filter-group">
-            <label for="filter-type">Judge Type:</label>
-            <select id="filter-type" name="type" aria-label="Filter by judge type">
-              <option value="">All Types</option>
-              <option value="circuit">Circuit Judge</option>
-              <option value="presiding">Presiding Judge</option>
-              <option value="pro-tem">Pro Tem Judge</option>
-            </select>
-          </div>
-
-          <div class="filter-group">
-            <label for="filter-county">County:</label>
-            <select id="filter-county" name="county" aria-label="Filter by county">
-              <option value="">All Counties</option>
-              <option value="Baker">Baker</option>
-              <option value="Benton">Benton</option>
-              <option value="Clackamas">Clackamas</option>
-              <option value="Clatsop">Clatsop</option>
-              <option value="Columbia">Columbia</option>
-              <option value="Coos">Coos</option>
-              <option value="Crook">Crook</option>
-              <option value="Curry">Curry</option>
-              <option value="Deschutes">Deschutes</option>
-              <option value="Douglas">Douglas</option>
-              <option value="Gilliam">Gilliam</option>
-              <option value="Grant">Grant</option>
-              <option value="Harney">Harney</option>
-              <option value="Hood River">Hood River</option>
-              <option value="Jackson">Jackson</option>
-              <option value="Jefferson">Jefferson</option>
-              <option value="Josephine">Josephine</option>
-              <option value="Klamath">Klamath</option>
-              <option value="Lake">Lake</option>
-              <option value="Lane">Lane</option>
-              <option value="Lincoln">Lincoln</option>
-              <option value="Linn">Linn</option>
-              <option value="Malheur">Malheur</option>
-              <option value="Marion">Marion</option>
-              <option value="Morrow">Morrow</option>
-              <option value="Multnomah">Multnomah</option>
-              <option value="Polk">Polk</option>
-              <option value="Sherman">Sherman</option>
-              <option value="Tillamook">Tillamook</option>
-              <option value="Umatilla">Umatilla</option>
-              <option value="Union">Union</option>
-              <option value="Wallowa">Wallowa</option>
-              <option value="Wasco">Wasco</option>
-              <option value="Washington">Washington</option>
-              <option value="Wheeler">Wheeler</option>
-              <option value="Yamhill">Yamhill</option>
-            </select>
-          </div>
-
-          <div class="filter-group">
-            <label for="filter-risk">Risk Level:</label>
-            <select id="filter-risk" name="risk" aria-label="Filter by risk level">
-              <option value="">All Levels</option>
-              <option value="low">Low Risk</option>
-              <option value="moderate">Moderate Risk</option>
-              <option value="high">High Risk</option>
-            </select>
-          </div>
+          <button type="submit" class="search-button" aria-label="Search">
+            <span>Search</span>
+          </button>
         </div>
-
-        <!-- Fun Facts Counter Widget -->
-        <div class="fun-fact-counter" role="region" aria-label="Judicial system insight">
-          <span class="fact-label">Did You Know?</span>
-          <span class="fact-number">211</span>
-          <p class="fact-description">Circuit court judges serve across Oregon's 36 judicial districts and enforce laws across all 8 appellate regions.</p>
-          <p class="fact-source">📊 Oregon Judicial Department</p>
-        </div>
-      </div>
-
-      <div class="archive-hero-action">
-        <a href="{{ '/bias-beacon/dashboard/' | relative_url }}" class="button button-primary">View Dashboard</a>
-        <a href="{{ '/bias-beacon/judges/' | relative_url }}" class="button button-secondary">Browse Judges</a>
-      </div>
+      </form>
     </div>
-
-    <div class="archive-hero-visual archive-hero-visual-solo">
-      <div class="archive-hero-content">
-        <h2 class="archive-hero-deck archive-hero-deck-solo">Transparency in the Oregon judicial system</h2>
-        <p class="archive-hero-summary">
-          A.P.T.I.T.U.D.E. provides comprehensive data on judicial decisions, sentencing patterns, and system inequities across Oregon. 
-          Search judge profiles, compare metrics across counties, and explore evidence-based analysis of judicial behavior.
-        </p>
-        <div class="archive-hero-links archive-hero-links-solo">
-          <a href="{{ '/bias-beacon/' | relative_url }}" class="archive-hero-link">Bias Beacon Initiative →</a>
-          <a href="{{ '/bias-beacon/methodology/' | relative_url }}" class="archive-hero-link">Our Methodology →</a>
-          <a href="{{ '/about/' | relative_url }}" class="archive-hero-link">About This Project →</a>
-        </div>
+    
+    <!-- Primary Call-to-Actions -->
+    <div class="hero-ctas">
+      <a href="{{ '/bias-beacon/judges/' | relative_url }}" class="btn btn-primary">Browse All Judges</a>
+      <a href="{{ '/bias-beacon/dashboard/' | relative_url }}" class="btn btn-secondary">View Dashboard</a>
+    </div>
+    
+    <!-- Key Facts Counter -->
+    <div class="key-facts">
+      <div class="fact">
+        <span class="fact-number">211</span>
+        <span class="fact-label">Circuit Court Judges</span>
+      </div>
+      <div class="fact">
+        <span class="fact-number">36</span>
+        <span class="fact-label">Judicial Districts</span>
+      </div>
+      <div class="fact">
+        <span class="fact-number">36</span>
+        <span class="fact-label">Oregon Counties</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Main Actor Cards Grid Section -->
+<!-- FEATURED SECTIONS WITH ASSETS -->
+<section class="featured-sections">
+  <div class="section-container">
+    
+    <!-- BIAS BEACON SECTION -->
+    <div class="featured-section section-bias-beacon">
+      <div class="section-content">
+        <div class="section-image">
+          <img src="{{ '/assets/images/titles/NEW ASSETS/BIAS BEACON ASSET.png' | relative_url }}" 
+               alt="Bias Beacon Initiative">
+        </div>
+        <div class="section-text">
+          <h2>Bias Beacon Initiative</h2>
+          <p>Comprehensive analysis of judicial decision patterns across Oregon's 36 counties. Discover how systemic inequities manifest in courtroom outcomes.</p>
+          <a href="{{ '/bias-beacon/' | relative_url }}" class="section-link">Learn More →</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- JUDICIARY SECTION -->
+    <div class="featured-section section-judiciary">
+      <div class="section-content">
+        <div class="section-image">
+          <img src="{{ '/assets/images/titles/NEW ASSETS/JUDICIARY ASSET.png' | relative_url }}" 
+               alt="Oregon Judiciary">
+        </div>
+        <div class="section-text">
+          <h2>The Oregon Judiciary</h2>
+          <p>Explore detailed profiles of all circuit court judges, including demographics, appointment records, sentencing patterns, and performance metrics.</p>
+          <a href="{{ '/bias-beacon/judges/' | relative_url }}" class="section-link">Browse Judges →</a>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<!-- ACTOR CARDS GRID -->
 <section class="archive-grid">
   <div class="archive-flex">
     {% include actor-cards.html %}
   </div>
 </section>
 
-<!-- Recent Updates Section -->
+<!-- RECENT UPDATES / QUICK LINKS -->
 <section class="recent-updates">
   <div class="recent-updates-container">
-    <h2>Latest Judicial Data</h2>
+    <h2>Quick Access</h2>
     <div class="updates-grid">
       <a href="{{ '/bias-beacon/dashboard/' | relative_url }}" class="update-card">
         <h3>📊 Dashboard</h3>
-        <p>Statewide metrics and comparisons</p>
+        <p>Statewide metrics and trends</p>
       </a>
       <a href="{{ '/bias-beacon/judges/' | relative_url }}" class="update-card">
         <h3>👨‍⚖️ Judge Profiles</h3>
-        <p>Individual judge records and metrics</p>
+        <p>Individual judge analytics</p>
       </a>
       <a href="{{ '/bias-beacon/counties/' | relative_url }}" class="update-card">
         <h3>📍 County Data</h3>
-        <p>Regional judicial statistics</p>
+        <p>Regional comparisons</p>
       </a>
       <a href="{{ '/bias-beacon/methodology/' | relative_url }}" class="update-card">
         <h3>📚 Methodology</h3>
-        <p>How we calculate bias metrics</p>
+        <p>How we measure bias</p>
       </a>
     </div>
   </div>
 </section>
 
-<!-- Load Enhanced Hero Scripts -->
-<script src="{{ '/assets/js/hero-enhanced.js' | relative_url }}"></script>
+<!-- Enhanced Hero Scripts -->
+<script>
+// Hamburger Menu Toggle
+const hamburger = document.getElementById('hamburger-menu');
+const nav = document.getElementById('main-nav');
+
+if (hamburger) {
+  hamburger.addEventListener('click', function() {
+    const isOpen = hamburger.classList.contains('open');
+    if (isOpen) {
+      hamburger.classList.remove('open');
+      nav.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    } else {
+      hamburger.classList.add('open');
+      nav.classList.add('open');
+      hamburger.setAttribute('aria-expanded', 'true');
+    }
+  });
+  
+  // Close menu when link is clicked
+  const navLinks = nav.querySelectorAll('a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      hamburger.classList.remove('open');
+      nav.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+
+// Close menu when clicking outside
+document.addEventListener('click', function(event) {
+  if (!event.target.closest('header')) {
+    hamburger.classList.remove('open');
+    nav.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+  }
+});
+</script>
