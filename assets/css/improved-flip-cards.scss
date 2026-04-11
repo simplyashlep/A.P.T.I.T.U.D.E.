@@ -1,3 +1,4 @@
+
 /* ==========================================================================
    IMPROVED FLIP CARDS - APTITUDE
    Premium flip cards with proper hover/click behavior and comparison features
@@ -34,16 +35,22 @@
 .flip-cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 2rem;
-  padding: 1.5rem;
+  gap: 3rem 2.5rem;
+  padding: 2rem;
   max-width: 1600px;
   margin: 0 auto;
   
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 1rem;
+    gap: 2rem;
+    padding: 1.5rem;
   }
+}
+
+.actor-card-grid {
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 3rem;
+  padding: 3rem 2rem;
 }
 
 /* ==========================================================================
@@ -56,10 +63,13 @@
   height: 420px;
   cursor: pointer;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   
-  /* Ensure cards are always visible */
-  visibility: visible !important;
-  opacity: 1 !important;
+  /* Ensure cards stay in place */
+  transform: translateZ(0);
+  will-change: none;
   
   @media (max-width: 768px) {
     height: 380px;
@@ -71,12 +81,12 @@
    ========================================================================== */
 
 .flip-card-inner {
-  position: absolute;
+  position: relative;
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
-  will-change: transform;
+  transition: transform 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  will-change: auto;
 }
 
 /* Flip on hover (only if not pinned) */
@@ -103,7 +113,7 @@
   overflow: hidden;
   
   /* Premium background */
-  background: var(--card-bg);
+  background: linear-gradient(145deg, rgba(25, 40, 60, 0.95), rgba(15, 25, 40, 0.98));
   box-shadow: var(--card-shadow);
   border: var(--card-border);
   
@@ -120,6 +130,8 @@
   padding: 2rem;
   text-align: center;
   transition: all 0.3s ease;
+  top: 0;
+  left: 0;
 }
 
 /* Dynamic glow effect */
@@ -162,6 +174,7 @@
    FRONT CARD CONTENT (SIMPLIFIED)
    ========================================================================== */
 
+.card-front-content,
 .card-front-simplified {
   width: 100%;
   height: 100%;
@@ -169,7 +182,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .judge-front-name {
@@ -177,18 +190,28 @@
   font-size: 1.6rem;
   font-weight: 700;
   line-height: 1.2;
-  color: white;
-  margin-bottom: 0.25rem;
+  color: #ffffff;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.judge-front-county {
+.judge-name-display {
   font-family: 'Inter', sans-serif;
-  font-size: 0.9rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  margin: 0;
+}
+
+.judge-front-county,
+.home-card-front-caption {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.7);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.3px;
+  margin: 0;
 }
 
 .front-score-circle {
@@ -235,7 +258,7 @@
 }
 
 .flip-card:hover .front-hover-hint {
-  opacity: 0.5;
+  opacity: 0.7;
 }
 
 /* ==========================================================================
@@ -253,14 +276,16 @@
   transform: rotateY(180deg);
   
   /* Premium background */
-  background: var(--card-bg);
+  background: linear-gradient(145deg, rgba(30, 50, 75, 0.97), rgba(20, 35, 55, 0.99));
   box-shadow: var(--card-shadow);
   border: var(--card-border);
   
   /* Flex layout */
   display: flex;
   flex-direction: column;
-  padding: 1.5rem;
+  padding: 2rem 1.5rem;
+  top: 0;
+  left: 0;
 }
 
 /* ==========================================================================
@@ -272,19 +297,31 @@
   margin-bottom: 1.5rem;
 }
 
+.card-back-header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
 .card-back-name {
   font-family: 'Inter', sans-serif;
   font-size: 1.4rem;
   font-weight: 700;
   line-height: 1.2;
-  color: white;
+  color: #ffffff;
   margin-bottom: 0.5rem;
 }
 
 .card-back-subtitle {
   font-family: 'Inter', sans-serif;
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.card-back-content {
+  flex: 1;
+  overflow-y: auto;
 }
 
 .judge-photo-container {
@@ -300,346 +337,114 @@
   border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
-.judge-photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.photo-placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.05);
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.8rem;
-  text-align: center;
-  padding: 1rem;
-}
-
-/* ==========================================================================
-   METRIC SECTIONS
-   ========================================================================== */
-
-.metric-section {
+.flip-metric-group {
   margin-bottom: 1.5rem;
 }
 
-.metric-section-title {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.9rem;
+.flip-metric-group h4 {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.95rem;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
 }
 
-.metric-grid {
+.metric-grid-mini {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.75rem;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
 }
 
-.metric-item {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
+.metric-mini {
   padding: 0.75rem;
-  border-left: 3px solid transparent;
-  transition: all 0.2s ease;
-}
-
-.metric-item:hover {
-  background: rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .metric-label {
   display: block;
-  font-family: 'Inter', sans-serif;
   font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
   margin-bottom: 0.25rem;
 }
 
 .metric-value {
   display: block;
-  font-family: 'Inter', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: white;
+  font-size: 0.9rem;
+  color: #ffffff;
+  font-weight: 600;
 }
 
-/* ==========================================================================
-   BIAS SCORE COLOR CODING
-   ========================================================================== */
-
-/* Front card score color */
-.flip-card[data-level="excellent"] .front-score-circle {
-  background: var(--bias-excellent);
-  color: #0C1218;
-}
-
-.flip-card[data-level="low"] .front-score-circle {
-  background: var(--bias-low);
-  color: white;
-}
-
-.flip-card[data-level="moderate"] .front-score-circle {
-  background: var(--bias-moderate);
-  color: white;
-}
-
-.flip-card[data-level="high"] .front-score-circle {
-  background: var(--bias-high);
-  color: white;
-}
-
-.flip-card[data-level="critical"] .front-score-circle {
-  background: var(--bias-critical);
-  color: white;
-}
-
-/* Back card metric borders */
-.flip-card[data-level="excellent"] .metric-item {
-  border-left-color: var(--bias-excellent);
-}
-
-.flip-card[data-level="low"] .metric-item {
-  border-left-color: var(--bias-low);
-}
-
-.flip-card[data-level="moderate"] .metric-item {
-  border-left-color: var(--bias-moderate);
-}
-
-.flip-card[data-level="high"] .metric-item {
-  border-left-color: var(--bias-high);
-}
-
-.flip-card[data-level="critical"] .metric-item {
-  border-left-color: var(--bias-critical);
-}
-
-/* ==========================================================================
-   COMPARISON FEATURES
-   ========================================================================== */
-
-.compare-toggle {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  z-index: 10;
-}
-
-.compare-checkbox {
-  display: none;
-}
-
-.compare-label {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  color: white;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.compare-label:hover {
-  background: rgba(255, 255, 255, 0.15);
-}
-
-.compare-checkbox:checked + .compare-label {
-  background: var(--premium-accent);
-  border-color: var(--premium-accent);
-  box-shadow: 0 0 15px rgba(0, 86, 179, 0.3);
-}
-
-.compare-checkbox:checked + .compare-label::after {
-  content: '✓';
-  font-weight: bold;
-}
-
-/* ==========================================================================
-   ACTIONS AND BUTTONS
-   ========================================================================== */
-
-.card-actions {
-  display: flex;
-  gap: 0.75rem;
-  margin-top: auto;
-  padding-top: 1.5rem;
+.card-back-actions {
+  margin-top: 1rem;
+  padding-top: 1rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.btn-profile {
-  flex: 1;
-  background: var(--premium-accent);
-  color: white;
-  border: none;
-  border-radius: 12px;
-  padding: 0.75rem 1rem;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
   font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  text-align: center;
 }
 
-.btn-profile:hover {
-  background: #1D7BE3;
-  transform: translateY(-1px);
+.btn-primary {
+  background: rgba(162, 173, 220, 0.3);
+  color: #ffffff;
+  border: 1px solid rgba(162, 173, 220, 0.5);
 }
 
-.btn-compare {
-  flex: 1;
+.btn-primary:hover {
+  background: rgba(162, 173, 220, 0.5);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
   background: transparent;
-  color: rgba(255, 255, 255, 0.8);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 12px;
-  padding: 0.75rem 1rem;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.btn-compare:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.5);
-}
-
-/* ==========================================================================
-   FIXED POSITIONING TO PREVENT BLANK SPACES
-   ========================================================================== */
-
-.flip-card {
-  transform-style: preserve-3d;
-}
-
-.flip-card-inner,
-.flip-card-front,
-.flip-card-back {
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
-}
-
-/* Ensure both sides are always rendered correctly */
-.flip-card-front,
-.flip-card-back {
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-/* ==========================================================================
-   COMPARISON SELECTION STATE
-   ========================================================================== */
-
-.flip-card.is-selected {
-  outline: 3px solid var(--premium-gold);
-  outline-offset: 3px;
-  border-radius: 28px;
-}
-
-.flip-card.is-selected .flip-card-front {
-  box-shadow: 
-    var(--card-hover-shadow),
-    0 0 40px rgba(212, 175, 55, 0.3);
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.6);
 }
 
 /* ==========================================================================
    RESPONSIVE ADJUSTMENTS
    ========================================================================== */
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .flip-cards-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .flip-card {
-    height: 380px;
-  }
-  
-  .judge-front-name {
-    font-size: 1.4rem;
-  }
-  
-  .front-score-circle {
-    width: 70px;
-    height: 70px;
-    font-size: 1.6rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2.5rem 2rem;
   }
 }
 
 @media (max-width: 480px) {
   .flip-card {
-    height: 360px;
+    height: 350px;
   }
   
   .flip-card-front,
   .flip-card-back {
-    padding: 1.25rem;
+    padding: 1.5rem;
   }
   
-  .metric-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ==========================================================================
-   ANIMATIONS
-   ========================================================================== */
-
-@keyframes cardPulse {
-  0% {
-    box-shadow: var(--card-shadow);
-  }
-  50% {
-    box-shadow: var(--card-hover-shadow);
-  }
-  100% {
-    box-shadow: var(--card-shadow);
-  }
-}
-
-.flip-card.is-pinned {
-  animation: cardPulse 2s ease-in-out infinite;
-}
-
-/* ==========================================================================
-   ACCESSIBILITY
-   ========================================================================== */
-
-.flip-card:focus-within {
-  outline: 3px solid var(--premium-accent);
-  outline-offset: 3px;
-  border-radius: 24px;
-}
-
-/* ==========================================================================
-   PRINT STYLES
-   ========================================================================== */
-
-@media print {
-  .flip-card {
-    break-inside: avoid;
-    page-break-inside: avoid;
+  .judge-name-display {
+    font-size: 1.4rem;
   }
   
-  .flip-card-inner {
-    transform: none !important;
-  }
-  
-  .flip-card-back {
-    display: none;
+  .judge-front-county {
+    font-size: 0.85rem;
   }
 }
