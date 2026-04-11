@@ -7,5 +7,134 @@
 @import "improved-flip-cards";
 @import "premium-theme";
 @import "fixed-menu";
+@import "3d-cubes";
 
-/* Additional responsive and refinement styles follow in this file */
+/* ==========================================================================
+   CARD TITLE IMAGE STYLING
+   Adapts to lighter assets with proper sizing and contrast
+   ========================================================================== */
+
+.card-title-image {
+  max-width: 100%;
+  height: auto;
+  max-height: 120px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  transition: filter 0.3s ease;
+}
+
+.flip-card:hover .card-title-image {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+}
+
+/* ==========================================================================
+   SECTION BACKGROUNDS WITH PAGE-SPECIFIC COLORS
+   ========================================================================== */
+
+.home-section {
+  padding: 3rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--page-bg-light, rgba(74, 126, 200, 0.04));
+  pointer-events: none;
+  z-index: 0;
+}
+
+.home-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+.home-section-intro {
+  background: linear-gradient(135deg, rgba(245, 243, 240, 0.95) 0%, rgba(255, 255, 255, 0.98) 100%);
+}
+
+/* ==========================================================================
+   FOOTER STYLING WITH COLOR SYSTEM
+   ========================================================================== */
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  background: linear-gradient(135deg, rgba(245, 243, 240, 0.98) 0%, rgba(240, 237, 232, 0.98) 100%);
+  color: var(--text);
+  padding: 3rem 0;
+}
+
+.footer-heading {
+  color: var(--text);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.footer-link,
+.footer-link:visited {
+  color: var(--page-primary, #4a7ec8);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: var(--page-accent, #a2addc);
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   PRINT STYLES
+   ========================================================================== */
+
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  
+  a {
+    color: #2d4a7b;
+  }
+  
+  .hero-cube-field,
+  body::before,
+  body::after {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY & FOCUS STATES
+   ========================================================================== */
+
+:focus {
+  outline: 2px solid var(--page-primary, #4a7ec8);
+  outline-offset: 2px;
+}
+
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid var(--page-primary, #4a7ec8);
+  outline-offset: 2px;
+}
+
+/* Skip to main content link */
+.skip-to-main {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--page-primary, #4a7ec8);
+  color: white;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  z-index: 100;
+}
+
+.skip-to-main:focus {
+  top: 0;
+}
