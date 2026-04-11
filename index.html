@@ -149,13 +149,6 @@ wrapper_class: home-wrapper
   </div>
 </section>
 
-<!-- ACTOR CARDS GRID -->
-<section class="archive-grid">
-  <div class="archive-flex">
-    {% include actor-cards.html %}
-  </div>
-</section>
-
 <!-- RECENT UPDATES / QUICK LINKS -->
 <section class="recent-updates">
   <div class="recent-updates-container">
@@ -181,7 +174,7 @@ wrapper_class: home-wrapper
   </div>
 </section>
 
-<!-- Enhanced Hero Scripts -->
+<!-- Hero Menu Scripts -->
 <script>
 // Hamburger Menu Toggle
 const hamburger = document.getElementById('hamburger-menu');
@@ -190,6 +183,7 @@ const nav = document.getElementById('main-nav');
 if (hamburger) {
   hamburger.addEventListener('click', function() {
     const isOpen = hamburger.classList.contains('open');
+    
     if (isOpen) {
       hamburger.classList.remove('open');
       nav.classList.remove('open');
