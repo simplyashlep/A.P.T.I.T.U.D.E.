@@ -8,12 +8,36 @@ wrapper_class: home-wrapper
 
 <section class="archive-hero archive-hero-solo" id="top">
   <div class="hero-cube-field" aria-hidden="true" data-cube-field>
-    <span class="hero-cube hero-cube-a" data-cube></span>
-    <span class="hero-cube hero-cube-b" data-cube></span>
-    <span class="hero-cube hero-cube-c" data-cube></span>
-    <span class="hero-cube hero-cube-d" data-cube></span>
-    <span class="hero-cube hero-cube-e" data-cube></span>
-    <span class="hero-cube hero-cube-f" data-cube></span>
+    <div class="hero-cube hero-cube-a" data-cube>
+      <span class="cube-face cube-top"></span>
+      <span class="cube-face cube-front"></span>
+      <span class="cube-face cube-right"></span>
+    </div>
+    <div class="hero-cube hero-cube-b" data-cube>
+      <span class="cube-face cube-top"></span>
+      <span class="cube-face cube-front"></span>
+      <span class="cube-face cube-right"></span>
+    </div>
+    <div class="hero-cube hero-cube-c" data-cube>
+      <span class="cube-face cube-top"></span>
+      <span class="cube-face cube-front"></span>
+      <span class="cube-face cube-right"></span>
+    </div>
+    <div class="hero-cube hero-cube-d" data-cube>
+      <span class="cube-face cube-top"></span>
+      <span class="cube-face cube-front"></span>
+      <span class="cube-face cube-right"></span>
+    </div>
+    <div class="hero-cube hero-cube-e" data-cube>
+      <span class="cube-face cube-top"></span>
+      <span class="cube-face cube-front"></span>
+      <span class="cube-face cube-right"></span>
+    </div>
+    <div class="hero-cube hero-cube-f" data-cube>
+      <span class="cube-face cube-top"></span>
+      <span class="cube-face cube-front"></span>
+      <span class="cube-face cube-right"></span>
+    </div>
   </div>
   <div class="archive-hero-grid archive-hero-grid-solo">
     <div class="archive-hero-copy archive-hero-copy-solo" data-hero-title-stack>
@@ -50,32 +74,92 @@ wrapper_class: home-wrapper
         <input id="hero-search" name="q" type="search" placeholder="Search judges, counties, offices, agencies, or methodology" />
         <button class="button button-primary" type="submit">Search the Record</button>
       </form>
-
-      <div class="hero-jump-shell hero-jump-shell-solo">
-        <label class="visually-hidden" for="hero-jump">Jump to a site section</label>
-        <select id="hero-jump" class="hero-jump-select" data-hero-jump>
-          <option value="">Jump to a record surface</option>
-          <option value="{{ '/bias-beacon/' | relative_url }}">System View</option>
-          <option value="{{ '/bias-beacon/judges/' | relative_url }}">Judiciary</option>
-          <option value="{{ '/prosecutors.html' | relative_url }}">Prosecutor's Office</option>
-          <option value="{{ '/law-enforcement.html' | relative_url }}">Law Enforcement</option>
-          <option value="{{ '/parole-probation.html' | relative_url }}">Community Supervision</option>
-          <option value="{{ '/bias-beacon/methodology/' | relative_url }}">Methodology</option>
-          <option value="{{ '/bias-beacon/counties/' | relative_url }}">County Data</option>
-        </select>
-      </div>
     </div>
   </div>
 </section>
 
-<section class="home-section home-section-intro" id="system-view">
-  <div class="section-heading section-heading-centered">
-    <p class="eyebrow">System View</p>
-    <h2>Where the record starts to relate to itself.</h2>
-    <p class="section-intro-copy">
-      Stops, arrests, charging, reversals, and supervision outcomes live here as connected institutional behavior.
-      The purpose is not to lead the evidence. The purpose is to hold the surfaces together long enough for the pattern to speak.
-    </p>
+<section class="home-main-menu" id="main-menu">
+  <div class="main-menu-grid">
+    <div class="main-menu-column" data-menu-col>
+      <a class="main-menu-title" href="{{ '/bias-beacon/judges/' | relative_url }}">
+        <span class="main-menu-title-text">The Judiciary</span>
+        <span class="main-menu-title-sub">Judges &amp; Accountability</span>
+      </a>
+      <div class="main-menu-dropdown" data-menu-dropdown>
+        <a class="main-menu-link" href="{{ '/bias-beacon/judges/' | relative_url }}">Judges</a>
+        <a class="main-menu-link" href="{{ '/bias-beacon/presiding-judges/' | relative_url }}">Presiding Judges</a>
+        <a class="main-menu-link" href="{{ '/bias-beacon/pro-tem-judges/' | relative_url }}">Pro Tem Judges</a>
+        <a class="main-menu-link" href="{{ '/prosecutors.html' | relative_url }}">Prosecutors</a>
+        <a class="main-menu-link" href="{{ '/parole-probation.html' | relative_url }}">Probation</a>
+        <a class="main-menu-link" href="{{ '/law-enforcement.html' | relative_url }}">Law Enforcement</a>
+      </div>
+    </div>
+
+    <div class="main-menu-column" data-menu-col>
+      <a class="main-menu-title" href="{{ '/bias-beacon/dashboard/' | relative_url }}">
+        <span class="main-menu-title-text">Watchtower</span>
+        <span class="main-menu-title-sub">System Intelligence</span>
+      </a>
+      <div class="main-menu-dropdown" data-menu-dropdown>
+        <a class="main-menu-link" href="{{ '/bias-beacon/dashboard/' | relative_url }}">Statewide Dashboard</a>
+        <a class="main-menu-link" href="{{ '/bias-beacon/counties/' | relative_url }}">County Intelligence</a>
+        <a class="main-menu-link" href="{{ '/reports/' | relative_url }}">Budget Analysis</a>
+        <a class="main-menu-link" href="{{ '/investigations/' | relative_url }}">Pattern Explorer</a>
+      </div>
+    </div>
+
+    <div class="main-menu-column" data-menu-col>
+      <a class="main-menu-title" href="{{ '/bias-beacon/methodology/' | relative_url }}">
+        <span class="main-menu-title-text">Juris Lab</span>
+        <span class="main-menu-title-sub">Law &amp; Application</span>
+      </a>
+      <div class="main-menu-dropdown" data-menu-dropdown>
+        <a class="main-menu-link" href="{{ '/bias-beacon/' | relative_url }}">Cases &amp; Law</a>
+        <a class="main-menu-link" href="{{ '/reports/' | relative_url }}">Cases &amp; Filings</a>
+        <a class="main-menu-link" href="{{ '/bias-beacon/methodology/' | relative_url }}">Legal Issues</a>
+        <a class="main-menu-link" href="https://soll.libguides.com/" target="_blank" rel="noreferrer">Library</a>
+      </div>
+    </div>
+
+    <div class="main-menu-column" data-menu-col>
+      <a class="main-menu-title" href="{{ '/workspace/' | relative_url }}">
+        <span class="main-menu-title-text">Sui Generis</span>
+        <span class="main-menu-title-sub">Workspace &amp; Community</span>
+      </a>
+      <div class="main-menu-dropdown" data-menu-dropdown>
+        <a class="main-menu-link" href="{{ '/workspace/' | relative_url }}">My Documents</a>
+        <a class="main-menu-link" href="{{ '/legal-assistant.html' | relative_url }}">AI Assistant</a>
+        <a class="main-menu-link" href="{{ '/workspace/' | relative_url }}#drafting-lab">Drafting Lab</a>
+        <a class="main-menu-link" href="{{ '/community-forum.html' | relative_url }}">Forums</a>
+      </div>
+    </div>
+
+    <div class="main-menu-column" data-menu-col>
+      <a class="main-menu-title" href="{{ '/about/' | relative_url }}">
+        <span class="main-menu-title-text">Contacts &amp; Oversight</span>
+        <span class="main-menu-title-sub">Public Oversight Routes</span>
+      </a>
+      <div class="main-menu-dropdown" data-menu-dropdown>
+        <a class="main-menu-link" href="{{ '/about/' | relative_url }}">Attorney Directory</a>
+        <a class="main-menu-link" href="https://www.oregonlegislature.gov/" target="_blank" rel="noreferrer">Oregon State Legislature</a>
+        <a class="main-menu-link" href="https://www.osbar.org/" target="_blank" rel="noreferrer">Oregon State Bar</a>
+        <a class="main-menu-link" href="https://www.oregon.gov/cjc/Pages/default.aspx" target="_blank" rel="noreferrer">Criminal Justice Commission</a>
+        <a class="main-menu-link" href="https://www.portland.gov/ipr" target="_blank" rel="noreferrer">Oversight Bodies</a>
+      </div>
+    </div>
+
+    <div class="main-menu-column" data-menu-col>
+      <a class="main-menu-title" href="{{ '/bias-beacon/methodology/' | relative_url }}">
+        <span class="main-menu-title-text">Methodology</span>
+        <span class="main-menu-title-sub">Data &amp; Scoring</span>
+      </a>
+      <div class="main-menu-dropdown" data-menu-dropdown>
+        <a class="main-menu-link" href="{{ '/bias-beacon/methodology/' | relative_url }}">Scoring Framework</a>
+        <a class="main-menu-link" href="{{ '/bias-beacon/' | relative_url }}">System View</a>
+        <a class="main-menu-link" href="{{ '/privacy-compliance/' | relative_url }}">Privacy &amp; Compliance</a>
+        <a class="main-menu-link" href="{{ '/about/' | relative_url }}">About A.P.T.I.T.U.D.E.</a>
+      </div>
+    </div>
   </div>
 </section>
 
