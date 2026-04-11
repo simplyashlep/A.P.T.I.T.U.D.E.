@@ -3,19 +3,23 @@
 @import "aptitude-base";
 @import "improved-flip-cards";
 @import "premium-theme";
-@import "hero-modern";
 @import "fixed-menu";
 @import "3d-cubes";
 @import "judge-profile";
 @import "dashboard";
 @import "hero-enhanced";
 
-// ===========================
-// ACCESSIBILITY
-// ===========================
+/* Accessibility Improvements */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--page-primary, #4a7ec8);
+  outline-offset: 2px;
+}
 
-// Skip to main content link
-a.skip-to-main {
+/* Skip to main content link */
+.skip-to-main {
   position: absolute;
   top: -40px;
   left: 0;
@@ -30,29 +34,25 @@ a.skip-to-main {
   }
 }
 
-// ===========================
-// PRINT STYLES
-// ===========================
-
+/* Print Styles */
 @media print {
-  header, nav, .hamburger, footer {
+  .archive-hero,
+  .hero-search-enhanced,
+  .fun-fact-counter {
     display: none;
   }
 
   body {
-    background-color: #FFFFFF;
-    color: #000000;
+    background: white;
   }
 
-  a {
-    text-decoration: underline;
+  * {
+    animation: none !important;
+    transition: none !important;
   }
 }
 
-// ===========================
-// PREFERS REDUCED MOTION
-// ===========================
-
+/* Reduce Motion Support */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
@@ -61,42 +61,55 @@ a.skip-to-main {
   }
 }
 
-// ===========================
-// RECENT UPDATES GRID REFINEMENT
-// ===========================
+/* Recent Updates Grid Styling */
+.recent-updates {
+  padding: 3rem 1rem;
+  background: linear-gradient(135deg, rgba(74, 126, 200, 0.05), rgba(122, 155, 127, 0.05));
 
-.recent-updates-container {
-  h2 {
-    font-size: 2rem;
-    color: #0F3460;
-    margin: 0 0 2.5rem 0;
-    font-weight: 700;
-    text-align: center;
+  .recent-updates-container {
+    max-width: 1200px;
+    margin: 0 auto;
 
-    @media (max-width: 768px) {
-      font-size: 1.5rem;
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: var(--page-primary, #4a7ec8);
     }
   }
-}
 
-// ===========================
-// GLOBAL RESPONSIVE REFINEMENTS
-// ===========================
+  .updates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
 
-@media (max-width: 480px) {
-  body {
-    font-size: 15px;
-  }
+    .update-card {
+      padding: 1.5rem;
+      background: white;
+      border-radius: 8px;
+      border-left: 4px solid var(--page-primary, #4a7ec8);
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
-  h1 {
-    font-size: 1.75rem;
-  }
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        border-left-color: var(--page-secondary, #7a9b7f);
+      }
 
-  h2 {
-    font-size: 1.5rem;
-  }
+      h3 {
+        margin: 0 0 0.5rem 0;
+        font-size: 1.25rem;
+        color: var(--page-primary, #4a7ec8);
+      }
 
-  h3 {
-    font-size: 1.25rem;
+      p {
+        margin: 0;
+        color: #666;
+        font-size: 0.95rem;
+      }
+    }
   }
 }
