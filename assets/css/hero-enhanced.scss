@@ -1,0 +1,183 @@
+/**
+ * Enhanced Hero Section with Search & Fun Facts
+ * Add this to the index.html hero section for advanced search and dynamic fun facts
+ */
+
+.hero-search-enhanced {
+  .search-container {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+
+  .search-form-enhanced {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+
+    input[type="search"] {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      &:focus {
+        outline: none;
+        border-color: white;
+        background: rgba(255, 255, 255, 0.2);
+      }
+    }
+
+    button {
+      padding: 0.75rem 1.5rem;
+      background: white;
+      color: #4a7ec8;
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.9);
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  .filter-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+
+      label {
+        font-weight: 500;
+        color: white;
+        font-size: 0.9rem;
+      }
+
+      select {
+        padding: 0.4rem 0.8rem;
+        border: none;
+        border-radius: 3px;
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        cursor: pointer;
+        font-weight: 500;
+
+        &:focus {
+          outline: 2px solid white;
+        }
+
+        option {
+          color: #2a3a52;
+          background: white;
+        }
+      }
+    }
+  }
+}
+
+// Fun Facts Counter
+.fun-fact-counter {
+  background: rgba(255, 255, 255, 0.15);
+  border-left: 4px solid white;
+  padding: 1.5rem;
+  border-radius: 6px;
+  margin: 1.5rem 0 0;
+  backdrop-filter: blur(10px);
+
+  .fact-label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.8;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .fact-number {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .fact-description {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    opacity: 0.9;
+  }
+
+  .fact-source {
+    font-size: 0.8rem;
+    opacity: 0.6;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+// Example fun facts (rotate daily)
+.fact-rotation {
+  .fact-item {
+    display: none;
+
+    &.active {
+      display: block;
+      animation: fadeIn 0.5s ease-out;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .hero-search-enhanced {
+    .search-form-enhanced {
+      flex-direction: column;
+    }
+
+    .filter-options {
+      flex-direction: column;
+
+      .filter-group {
+        width: 100%;
+        flex-direction: column;
+      }
+    }
+  }
+
+  .fun-fact-counter {
+    .fact-number {
+      font-size: 1.5rem;
+    }
+  }
+}
