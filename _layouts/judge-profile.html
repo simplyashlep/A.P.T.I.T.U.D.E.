@@ -1,0 +1,509 @@
+---
+layout: default
+---
+
+<article class="judge-profile-wrapper page-judiciary" data-judge-id="{{ page.judge_id }}">
+  
+  <!-- Hero Section with Judge Photo -->
+  <section class="judge-profile-hero">
+    <div class="judge-hero-content">
+      <div class="judge-photo-container">
+        {% if page.officialPhotoUrl %}
+          <img class="judge-photo" src="{{ page.officialPhotoUrl }}" alt="{{ page.name }}" />
+        {% else %}
+          <div class="judge-photo-placeholder">
+            <span class="placeholder-initials">{{ page.initials }}</span>
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="judge-hero-info">
+        <p class="judge-court-type">{{ page.court }}</p>
+        <h1 class="judge-name text-shimmer">{{ page.name }}</h1>
+        <p class="judge-position">{{ page.roleTitle }}</p>
+        
+        {% if page.isPresiding %}
+          <span class="judge-badge badge-presiding">Presiding Judge</span>
+        {% endif %}
+        
+        <div class="judge-status">
+          <span class="judge-county">📍 {{ page.county }} County</span>
+          <span class="judge-term">📅 Term expires {{ page.termExpiresDisplay }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Stats Bar -->
+  <section class="judge-quick-stats">
+    <div class="stat-item">
+      <span class="stat-label">Risk Score</span>
+      <span class="stat-value" data-score="{{ page.score }}">{{ page.scoreLabel }}</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">District</span>
+      <span class="stat-value">District {{ page.district }}</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">Caseload 2024</span>
+      <span class="stat-value">{{ page.caseload2024 | default: '—' }}</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-label">Focus Areas</span>
+      <span class="stat-value">{{ page.focus }}</span>
+    </div>
+  </section>
+
+  <div class="judge-profile-container">
+    <!-- Main Content Column -->
+    <main class="judge-profile-main">
+      
+      <!-- Contact Information -->
+      <section class="profile-section profile-contact">
+        <h2>Contact & Bio</h2>
+        <div class="contact-grid">
+          <div class="contact-item">
+            <span class="contact-label">📧 Email</span>
+            <a href="mailto:{{ page.email }}" class="contact-value">{{ page.email }}</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">📞 Phone</span>
+            <a href="tel:{{ page.phone }}" class="contact-value">{{ page.phone }}</a>
+          </div>
+          {% if page.bioUrl %}
+            <div class="contact-item">
+              <span class="contact-label">🔗 Official Bio</span>
+              <a href="{{ page.bioUrl }}" target="_blank" rel="noopener" class="contact-value">Oregon Judicial Department</a>
+            </div>
+          {% endif %}
+        </div>
+      </section>
+
+      <!-- Bias Metrics Section -->
+      {% if page.metricsVerified %}
+        <section class="profile-section profile-metrics">
+          <h2>Decision Patterns & Metrics</h2>
+          <p class="metrics-intro text-dynamic">How {{ page.name }} compares on key judicial metrics</p>
+
+          <!-- Metrics Grid -->
+          <div class="metrics-grid">
+            
+            <!-- Prison Usage -->
+            <div class="metric-card metric-prison">
+              <div class="metric-header">
+                <h3>Prison Sentence Usage</h3>
+                <p class="metric-help">% of cases resulting in prison sentences vs. alternatives</p>
+              </div>
+              <div class="metric-display">
+                <div class="metric-value-large text-glow">{{ page.prisonUsage }}%</div>
+                <div class="metric-comparison">
+                  <span class="comparison-county">County avg: <strong>28.5%</strong></span>
+                  <span class="comparison-state">State avg: <strong>31.2%</strong></span>
+                </div>
+              </div>
+              <div class="metric-bar">
+                <div class="bar-fill" style="width: {{ page.prisonUsage | divided_by: 50 | times: 100 }}%"></div>
+              </div>
+            </div>
+
+            <!-- Reversal Rate -->
+            <div class="metric-card metric-reversal">
+              <div class="metric-header">
+                <h3>Appeal Reversal Rate</h3>
+                <p class="metric-help">% of decisions reversed or modified on appeal</p>
+              </div>
+              <div class="metric-display">
+                <div class="metric-value-large text-glow">{{ page.reversalRate }}%</div>
+                <div class="metric-comparison">
+                  <span class="comparison-county">County avg: <strong>14.2%</strong></span>
+                  <span class="comparison-state">State avg: <strong>15.8%</strong></span>
+                </div>
+              </div>
+              <div class="metric-bar">
+                <div class="bar-fill" style="width: {{ page.reversalRate | divided_by: 30 | times: 100 }}%"></div>
+              </div>
+            </div>
+
+            <!-- Counsel Representation Disparity -->
+            <div class="metric-card metric-counsel">
+              <div class="metric-header">
+                <h3>Counsel Representation Disparity</h3>
+                <p class="metric-help">Difference in outcomes: represented vs. unrepresented defendants</p>
+              </div>
+              <div class="metric-display">
+                <div class="metric-value-large text-glow">{{ page.counselDisparity }}%</div>
+                <div class="metric-comparison">
+                  <span class="comparison-county">County avg: <strong>8.1%</strong></span>
+                  <span class="comparison-state">State avg: <strong>9.7%</strong></span>
+                </div>
+              </div>
+              <div class="metric-bar">
+                <div class="bar-fill" style="width: {{ page.counselDisparity | divided_by: 20 | times: 100 }}%"></div>
+              </div>
+            </div>
+
+            <!-- Racial Disparity -->
+            <div class="metric-card metric-racial">
+              <div class="metric-header">
+                <h3>Racial Outcome Disparity</h3>
+                <p class="metric-help">Difference in sentencing outcomes across racial groups</p>
+              </div>
+              <div class="metric-display">
+                <div class="metric-value-large text-glow">{{ page.racialDisparity }}%</div>
+                <div class="metric-comparison">
+                  <span class="comparison-county">County avg: <strong>5.2%</strong></span>
+                  <span class="comparison-state">State avg: <strong>6.3%</strong></span>
+                </div>
+              </div>
+              <div class="metric-bar">
+                <div class="bar-fill" style="width: {{ page.racialDisparity | divided_by: 15 | times: 100 }}%"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Comprehensive Risk Score -->
+          <div class="profile-section profile-risk-score">
+            <h3>Comprehensive Bias Risk Score</h3>
+            <div class="risk-score-display">
+              <div class="risk-gauge" data-score="{{ page.score }}">
+                <div class="risk-label risk-label-{{ page.riskLevel }}">{{ page.scoreLabel }}</div>
+                <div class="risk-value">{{ page.score }}/100</div>
+              </div>
+              <p class="risk-explanation">This score combines decision patterns, sentencing disparity, and appeal reversal data to indicate potential bias risk. Lower scores indicate less disparity, higher scores indicate greater disparity requiring attention.</p>
+            </div>
+          </div>
+        </section>
+      {% else %}
+        <section class="profile-section profile-pending">
+          <h2>Decision Patterns & Metrics</h2>
+          <div class="pending-metrics">
+            <p class="text-dynamic">Detailed bias metrics are currently being compiled for this judge. Check back soon for:</p>
+            <ul>
+              <li>Prison sentence usage statistics</li>
+              <li>Appeal reversal rates</li>
+              <li>Representation outcome disparities</li>
+              <li>Racial outcome analysis</li>
+            </ul>
+            <p class="metrics-note">* This data is systematically collected and verified before publication to ensure accuracy.</p>
+          </div>
+        </section>
+      {% endif %}
+
+      <!-- Peer Comparison Section -->
+      <section class="profile-section profile-peers">
+        <h2>Peer Comparison</h2>
+        <p class="text-dynamic">How {{ page.name }} compares to peers:</p>
+        
+        <div class="comparison-tabs">
+          <button class="tab-button tab-active" data-tab="courthouse">Courthouse</button>
+          <button class="tab-button" data-tab="county">County</button>
+          <button class="tab-button" data-tab="state">State</button>
+        </div>
+
+        <div class="comparison-content" id="courthouse-comparison">
+          <div class="comparison-group">
+            <h4>District {{ page.district }} Judges</h4>
+            <div class="judge-list-mini">
+              <!-- Will be populated by JavaScript with courthouse peers -->
+              <p class="placeholder">Loading judges in this district...</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="comparison-content hidden" id="county-comparison">
+          <div class="comparison-group">
+            <h4>{{ page.county }} County Judges</h4>
+            <div class="judge-list-mini">
+              <!-- Will be populated by JavaScript with county peers -->
+              <p class="placeholder">Loading judges in this county...</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="comparison-content hidden" id="state-comparison">
+          <div class="comparison-group">
+            <h4>Oregon State Judges (statewide)</h4>
+            <div class="judge-list-mini">
+              <!-- Will be populated by JavaScript with state peers -->
+              <p class="placeholder">Loading statewide judge comparison...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Content Area -->
+      <section class="profile-section profile-content">
+        {{ content }}
+      </section>
+
+    </main>
+
+    <!-- Sidebar -->
+    <aside class="judge-profile-sidebar">
+      
+      <!-- Judge Summary Card -->
+      <div class="sidebar-card summary-card">
+        <h3>Profile Summary</h3>
+        <div class="summary-item">
+          <span class="label">Court Type</span>
+          <span class="value">{{ page.court }}</span>
+        </div>
+        <div class="summary-item">
+          <span class="label">Judicial District</span>
+          <span class="value">{{ page.district }}</span>
+        </div>
+        <div class="summary-item">
+          <span class="label">Position Number</span>
+          <span class="value">{{ page.position }}</span>
+        </div>
+        <div class="summary-item">
+          <span class="label">Current Tenure</span>
+          <span class="value">{{ page.tenureDisplay }}</span>
+        </div>
+        <div class="summary-item">
+          <span class="label">Term Expires</span>
+          <span class="value">{{ page.termExpiresDisplay }}</span>
+        </div>
+      </div>
+
+      <!-- Related Judges -->
+      <div class="sidebar-card related-judges">
+        <h3>Related In This District</h3>
+        <div class="related-list">
+          <!-- Will be populated by JavaScript -->
+          <p class="placeholder">Loading related judges...</p>
+        </div>
+      </div>
+
+      <!-- Data Sources -->
+      <div class="sidebar-card sources-card">
+        <h3>Data Sources</h3>
+        <ul class="sources-list">
+          <li>🏛️ Oregon Judicial Department</li>
+          <li>📋 Oregon Blue Book</li>
+          {% if page.metricsVerified %}
+            <li>📊 Bias Beacon Analysis Dataset</li>
+          {% endif %}
+        </ul>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- Navigation -->
+  <section class="profile-navigation">
+    <a href="{{ '/bias-beacon/judges/' | relative_url }}" class="btn btn-secondary">← Back to Judge Directory</a>
+  </section>
+
+</article>
+
+<style>
+  .judge-profile-wrapper {
+    background: linear-gradient(135deg, #f5f3f0 0%, rgba(45, 74, 123, 0.04) 100%);
+    padding: 2rem 0;
+  }
+
+  .judge-profile-hero {
+    background: linear-gradient(135deg, #2d4a7b 0%, #7a9b7f 100%);
+    color: white;
+    padding: 3rem 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .judge-hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .judge-photo-container {
+    width: 140px;
+    height: 180px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .judge-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .judge-photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .placeholder-initials {
+    font-size: 2.5rem;
+    font-weight: bold;
+    opacity: 0.8;
+  }
+
+  .judge-hero-info h1 {
+    margin: 0.5rem 0 0.25rem;
+    font-size: 2rem;
+  }
+
+  .judge-quick-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+  }
+
+  .stat-item {
+    background: white;
+    padding: 1rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .stat-label {
+    display: block;
+    font-size: 0.85rem;
+    color: #6b7280;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-value {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #2d4a7b;
+  }
+
+  .judge-profile-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 2rem;
+  }
+
+  .profile-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .profile-section h2 {
+    color: #2d4a7b;
+    margin-top: 0;
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .metric-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(45, 74, 123, 0.02) 0%, rgba(122, 155, 127, 0.02) 100%);
+  }
+
+  .metric-value-large {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2d4a7b;
+    margin: 0.5rem 0;
+  }
+
+  .metric-comparison {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-top: 1rem;
+  }
+
+  .metric-bar {
+    height: 6px;
+    background: #e5e7eb;
+    border-radius: 3px;
+    margin-top: 1rem;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #2d4a7b 0%, #7a9b7f 100%);
+  }
+
+  .judge-profile-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .sidebar-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  .sidebar-card h3 {
+    margin-top: 0;
+    color: #2d4a7b;
+    font-size: 1.1rem;
+  }
+
+  .summary-item {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .summary-item:last-child {
+    border-bottom: none;
+  }
+
+  .summary-item .label {
+    font-weight: 600;
+    color: #6b7280;
+    font-size: 0.9rem;
+  }
+
+  .summary-item .value {
+    color: #2a3a52;
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .judge-profile-container {
+      grid-template-columns: 1fr;
+    }
+
+    .judge-hero-content {
+      grid-template-columns: 1fr;
+    }
+
+    .metrics-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
