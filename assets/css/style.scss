@@ -1,132 +1,24 @@
-# Main Stylesheet - APTITUDE
-# Comprehensive style system with all modules integrated
-
-// Import Minima theme as base
 @import "minima";
-
-// Import our custom color system
 @import "color-system";
-
-// Import base typography and light theme
 @import "aptitude-base";
-
-// Import improved flip cards with proper spacing
 @import "improved-flip-cards";
-
-// Import premium theme enhancements
 @import "premium-theme";
-
-// Import fixed menu system
 @import "fixed-menu";
-
-// Import 3D cube effects
 @import "3d-cubes";
-
-// Import judge profile styling
 @import "judge-profile";
+@import "dashboard";
+@import "hero-enhanced";
 
-// ============================================================
-// CORE SITE STYLING
-// ============================================================
-
-body {
-  background-color: var(--bg-light, #f5f3f0);
-  color: var(--text-primary, #2a3a52);
-}
-
-// ============================================================
-// CARD & COMPONENT STYLING
-// ============================================================
-
-.card-title-image {
-  max-height: 120px;
-  width: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-  transition: filter 0.3s ease;
-
-  &:hover {
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
-  }
-}
-
-// ============================================================
-// HOME SECTIONS
-// ============================================================
-
-.home-section {
-  background-color: var(--bg-light, #f5f3f0);
-  padding: 3rem 2rem;
-  margin-bottom: 0;
-
-  &.home-section-intro {
-    background: linear-gradient(135deg, var(--bg-light, #f5f3f0) 0%, var(--page-bg-light, rgba(74, 126, 200, 0.04)) 100%);
-  }
-}
-
-.section-heading {
-  color: var(--text-primary, #2a3a52);
-  margin-bottom: 2rem;
-
-  h2 {
-    color: var(--page-primary, #4a7ec8);
-    font-size: 1.75rem;
-    margin-bottom: 1rem;
-  }
-
-  .eyebrow {
-    color: var(--page-accent, #a2addc);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 0.85rem;
-    margin-bottom: 0.5rem;
-    display: block;
-  }
-}
-
-// ============================================================
-// FOOTER
-// ============================================================
-
-.site-footer {
-  background: linear-gradient(135deg, var(--primary-deep, #1a2847) 0%, var(--primary-mid, #2d4a7b) 100%);
-  color: white;
-  padding: 3rem 2rem 2rem;
-  margin-top: 3rem;
-
-  a {
-    color: var(--page-accent, #a2addc);
-    text-decoration: none;
-    transition: opacity 0.3s ease;
-
-    &:hover {
-      opacity: 0.8;
-      text-decoration: underline;
-    }
-  }
-
-  .footer-col {
-    h2 {
-      color: white;
-    }
-  }
-}
-
-// ============================================================
-// ACCESSIBILITY & FOCUS STATES
-// ============================================================
-
-a:focus,
-button:focus,
-input:focus,
-select:focus,
-textarea:focus {
+/* Accessibility Improvements */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
   outline: 2px solid var(--page-primary, #4a7ec8);
   outline-offset: 2px;
-  border-radius: 2px;
 }
 
+/* Skip to main content link */
 .skip-to-main {
   position: absolute;
   top: -40px;
@@ -142,52 +34,82 @@ textarea:focus {
   }
 }
 
-// ============================================================
-// PRINT STYLES
-// ============================================================
-
+/* Print Styles */
 @media print {
-  body {
-    background: white !important;
-    color: black !important;
-  }
-
-  .text-shimmer,
-  .text-glow,
-  .text-dynamic {
-    animation: none !important;
-    background: none !important;
-    -webkit-background-clip: unset !important;
-    -webkit-text-fill-color: unset !important;
-    background-clip: unset !important;
-    color: black !important;
-    text-shadow: none !important;
-  }
-
-  .hero-cube-field {
+  .archive-hero,
+  .hero-search-enhanced,
+  .fun-fact-counter {
     display: none;
   }
 
-  .site-header,
-  .site-nav,
-  .site-footer {
-    print-color-adjust: exact;
+  body {
+    background: white;
+  }
+
+  * {
+    animation: none !important;
+    transition: none !important;
   }
 }
 
-// ============================================================
-// REDUCED MOTION SUPPORT
-// ============================================================
-
+/* Reduce Motion Support */
 @media (prefers-reduced-motion: reduce) {
-  .text-shimmer,
-  .text-glow,
-  .text-dynamic,
-  .flip-card-inner,
-  .hero-cube,
-  [class*="animation"],
-  [class*="transition"] {
-    animation: none !important;
-    transition: none !important;
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Recent Updates Grid Styling */
+.recent-updates {
+  padding: 3rem 1rem;
+  background: linear-gradient(135deg, rgba(74, 126, 200, 0.05), rgba(122, 155, 127, 0.05));
+
+  .recent-updates-container {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: var(--page-primary, #4a7ec8);
+    }
+  }
+
+  .updates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+
+    .update-card {
+      padding: 1.5rem;
+      background: white;
+      border-radius: 8px;
+      border-left: 4px solid var(--page-primary, #4a7ec8);
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        border-left-color: var(--page-secondary, #7a9b7f);
+      }
+
+      h3 {
+        margin: 0 0 0.5rem 0;
+        font-size: 1.25rem;
+        color: var(--page-primary, #4a7ec8);
+      }
+
+      p {
+        margin: 0;
+        color: #666;
+        font-size: 0.95rem;
+      }
+    }
   }
 }
