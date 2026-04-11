@@ -1,337 +1,443 @@
-// Improved Flip Cards with better spacing and animation
-// Updated for premium feel with 1s animation and enhanced spacing
+// ===========================
+// Improved Flip Cards with Proper Spacing
+// Modern, Minimal, Responsive
+// ===========================
 
+// Grid Container
 .flip-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-  gap: 3rem 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem; // Increased gap for better spacing
   padding: 2rem 0;
+  margin: 2rem 0;
+  width: 100%;
   
-  &.actor-card-grid {
-    max-width: 100%;
-    margin: 0 auto;
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem; // More space on larger screens
+  }
+  
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem; // Tighter on mobile
   }
 }
 
-// Flip Card Container
+// Individual Card Container
 .flip-card {
-  perspective: 1000px;
-  height: 420px;
-  cursor: pointer;
+  width: 100%;
+  height: 0;
+  padding-bottom: 140%; // Maintains aspect ratio
   position: relative;
+  perspective: 1000px;
   
-  @media (max-width: 768px) {
-    height: 380px;
-  }
-  
-  &:focus {
-    outline: 2px solid var(--page-primary, #4a7ec8);
-    outline-offset: 4px;
-    border-radius: 8px;
+  @media (max-width: 480px) {
+    padding-bottom: 150%;
   }
 }
 
-// Flip Card Inner (the rotating element)
+// Card Inner (3D Transform Container)
 .flip-card-inner {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  transition: transform 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   transform-style: preserve-3d;
-  
-  // Flip on hover or active state
-  .flip-card.flipped &,
-  .flip-card:hover &:not(.pinned) {
-    transform: rotateY(180deg);
-  }
-  
-  // Keep flipped state when pinned
-  .flip-card.pinned & {
-    transform: rotateY(180deg);
-  }
+  background-color: transparent;
 }
 
-// Front and Back of Card
+// Flip animation on hover
+.flip-card:hover .flip-card-inner,
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+// Front and Back faces
 .flip-card-front,
 .flip-card-back {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  padding: 2rem;
-  border-radius: 8px;
   display: flex;
   flex-direction: column;
-  justifyContent: space-between;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
+  justify-content: space-between;
+  padding: 1.75rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-// Front of Card (visible by default)
+// FRONT SIDE
 .flip-card-front {
-  background: linear-gradient(135deg, #f5f3f0 0%, rgba(74, 126, 200, 0.04) 100%);
-  color: #2a3a52;
-  border: 1px solid rgba(76, 76, 76, 0.1);
-  z-index: 2;
+  background: linear-gradient(135deg, #FFFFFF 0%, #F9F9F9 100%);
+  color: #2B2B2B;
   
-  .flip-card:hover & {
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-  }
-}
-
-// Back of Card (initially hidden, shows on flip)
-.flip-card-back {
-  background: linear-gradient(135deg, #4a7ec8 0%, #a2addc 100%);
-  color: #ffffff;
-  transform: rotateY(180deg);
-  z-index: 1;
-  
-  // Text styling on back
-  h3, h4 {
-    color: rgba(255, 255, 255, 0.95);
+  // Front Content Areas
+  .card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
   }
   
-  p {
-    color: rgba(255, 255, 255, 0.9);
+  .judge-photo {
+    width: 100%;
+    height: 200px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border: 1px solid #D4D4D4;
+    background-color: #F0F0F0;
+  }
+  
+  .judge-name {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #0F3460;
+    line-height: 1.2;
+    margin: 0;
+  }
+  
+  .judge-county {
     font-size: 0.95rem;
-    line-height: 1.5;
-  }
-}
-
-// Card Content Wrapper
-.card-front-content,
-.card-back-content {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-// Card Front Styling
-.card-front-content {
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  gap: 1rem;
-  
-  .card-title-image {
-    max-height: 120px;
-    width: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-    transition: filter 0.3s ease;
-  }
-  
-  .flip-card:hover & .card-title-image {
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
-  }
-}
-
-// Judge Name Display
-.judge-name-display {
-  font-size: 1.75rem;
-  font-weight: 600;
-  color: var(--page-primary, #4a7ec8);
-  margin: 0;
-  line-height: 1.2;
-}
-
-// Front Card Caption
-.home-card-front-caption {
-  font-size: 0.9rem;
-  color: #6b7280;
-  margin: 0;
-  line-height: 1.4;
-}
-
-// Card Back Styling
-.card-back-header {
-  padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  margin-bottom: 1rem;
-  
-  h3 {
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: 600;
-  }
-}
-
-.card-back-content {
-  flex: 1;
-  gap: 1rem;
-  padding: 1rem 0;
-  
-  p {
-    margin: 0 0 1rem 0;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
+    color: #8E8E8E;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
     margin: 0;
   }
   
-  li {
-    padding-left: 1.5rem;
-    position: relative;
-    margin-bottom: 0.5rem;
+  .judge-title {
+    font-size: 0.85rem;
+    color: #6B7F8F;
+    font-weight: 400;
+    margin: 0.5rem 0 0 0;
+  }
+  
+  // Bias Score Display - Front
+  .bias-score-display {
+    margin-top: auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid #D4D4D4;
     
-    &:before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      color: rgba(255, 255, 255, 0.8);
+    .score-label {
+      font-size: 0.75rem;
+      color: #8E8E8E;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .score-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #0F3460;
+      line-height: 1;
+      
+      &.score-excellent {
+        color: #2B7B4F;
+      }
+      
+      &.score-low-risk {
+        color: #1A5A8E;
+      }
+      
+      &.score-moderate {
+        color: #6B7F8F;
+      }
+      
+      &.score-high-risk {
+        color: #9B2F2F;
+      }
+      
+      &.score-critical {
+        color: #7C4A6D;
+      }
+    }
+    
+    .score-descriptor {
+      font-size: 0.85rem;
+      color: #6B7F8F;
+      margin-top: 0.25rem;
+      font-weight: 500;
     }
   }
+  
+  // Flip Instruction (subtle)
+  .flip-instruction {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    font-size: 0.75rem;
+    color: #D4D4D4;
+    text-transform: uppercase;
+    letter-spacing: 0.2px;
+    font-weight: 600;
+  }
 }
 
-.flip-metric-group {
-  margin: 1rem 0 0 0;
+// BACK SIDE
+.flip-card-back {
+  background: linear-gradient(135deg, #0F3460 0%, #1A5490 100%);
+  color: #FFFFFF;
+  transform: rotateY(180deg);
+  overflow-y: auto;
   
-  h4 {
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+  }
+  
+  .back-header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .judge-name-back {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    color: #FFFFFF;
+  }
+  
+  .back-subtitle {
     font-size: 0.9rem;
-    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+  }
+  
+  // Data sections
+  .back-section {
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    
+    &:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
+  
+  .section-title {
+    font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.95);
     margin: 0 0 0.75rem 0;
     opacity: 0.9;
   }
-}
-
-.metric-grid-mini {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.75rem;
-}
-
-.metric-mini {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
   
-  .metric-label {
-    font-size: 0.8rem;
-    font-weight: 500;
-    opacity: 0.8;
-  }
-  
-  .metric-value {
+  .metric {
+    margin-bottom: 0.75rem;
     font-size: 0.9rem;
-    font-weight: 600;
-  }
-}
-
-.metric-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  
-  li {
-    padding-left: 1.5rem;
-    position: relative;
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
+    line-height: 1.4;
     
-    &:before {
-      content: "→";
-      position: absolute;
-      left: 0;
-      color: rgba(255, 255, 255, 0.7);
-      font-weight: bold;
+    .metric-label {
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 500;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+    
+    .metric-value {
+      color: rgba(255, 255, 255, 0.95);
+      font-weight: 600;
+      font-size: 1.05rem;
+    }
+  }
+  
+  .metric-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+    li {
+      margin-bottom: 0.5rem;
+      padding-left: 1.25rem;
+      position: relative;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.9rem;
+      
+      &:before {
+        content: '→';
+        position: absolute;
+        left: 0;
+        color: rgba(255, 255, 255, 0.6);
+        font-weight: bold;
+      }
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+  
+  // Stats grid
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+    
+    .stat {
+      background-color: rgba(255, 255, 255, 0.08);
+      padding: 0.75rem;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+      
+      .stat-label {
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.75);
+        text-transform: uppercase;
+        letter-spacing: 0.2px;
+        font-weight: 600;
+        margin-bottom: 0.3rem;
+      }
+      
+      .stat-value {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #FFFFFF;
+      }
+    }
+  }
+  
+  // Action buttons area
+  .back-actions {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    gap: 0.75rem;
+    
+    button, a {
+      flex: 1;
+      padding: 0.65rem 0.75rem;
+      font-size: 0.8rem;
+      text-align: center;
+      border-radius: 6px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2px;
+      transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #FFFFFF;
+      text-decoration: none;
+      cursor: pointer;
+      
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.5);
+      }
     }
   }
 }
 
-// Card Actions
-.card-back-actions {
-  padding-top: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-
-.btn,
-.button {
-  display: inline-block;
-  padding: 0.6rem 1.2rem;
-  border-radius: 4px;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 0.9rem;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-align: center;
-  
-  &.btn-primary,
-  &.button-primary {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    
-    &:hover {
-      background: rgba(255, 255, 255, 0.3);
-      transform: translateY(-1px);
-    }
-  }
-  
-  &.btn-secondary,
-  &.button-secondary {
-    background: transparent;
-    color: white;
-    border: 1px solid white;
-    
-    &:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
-  }
-}
-
-// Pinned Card Pulse Effect
-@keyframes cardPulse {
-  0%, 100% {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  }
-  50% {
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-  }
-}
-
+// PINNED STATE
 .flip-card.pinned {
   .flip-card-inner {
-    animation: cardPulse 2s ease-in-out infinite;
+    transform: rotateY(180deg);
+  }
+  
+  .flip-card-back {
+    border: 2px solid #D4784A;
+    box-shadow: 0 0 20px -5px rgba(212, 120, 74, 0.3);
   }
 }
 
-// Hover State (non-pinned)
-.flip-card:not(.pinned) {
-  .flip-card-front {
-    &:hover {
-      transform: translateY(-4px);
-    }
+// LOADING STATE
+.flip-card.loading {
+  opacity: 0.7;
+  pointer-events: none;
+  
+  .flip-card-inner {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 }
 
-// Mobile Responsive
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+// FOCUS STATE (Accessibility)
+.flip-card:focus-within .flip-card-front,
+.flip-card:focus-within .flip-card-back {
+  outline: 2px solid #0F3460;
+  outline-offset: -8px;
+}
+
+// MOBILE RESPONSIVENESS
 @media (max-width: 480px) {
   .flip-cards-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem 1rem;
-  }
-  
-  .flip-card {
-    height: 360px;
-  }
-  
-  .judge-name-display {
-    font-size: 1.5rem;
+    gap: 1.5rem;
   }
   
   .flip-card-front,
   .flip-card-back {
-    padding: 1.5rem;
+    padding: 1.25rem;
+    font-size: 0.95rem;
+  }
+  
+  .flip-card-front {
+    .judge-name {
+      font-size: 1.15rem;
+    }
+    
+    .judge-county {
+      font-size: 0.85rem;
+    }
+  }
+  
+  .flip-card-back {
+    .judge-name-back {
+      font-size: 1.1rem;
+    }
+    
+    .section-title {
+      font-size: 0.75rem;
+    }
+    
+    .metric {
+      font-size: 0.85rem;
+    }
+  }
+}
+
+// TABLET RESPONSIVENESS
+@media (min-width: 481px) and (max-width: 1024px) {
+  .flip-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+// DESKTOP
+@media (min-width: 1025px) {
+  .flip-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
