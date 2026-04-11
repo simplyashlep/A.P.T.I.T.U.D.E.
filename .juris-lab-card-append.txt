@@ -1,0 +1,23 @@
+    <!-- Card 6: Juris Lab -->
+    <article class="flip-card home-actor-card card-juris-lab" tabindex="0">
+      <div class="flip-card-inner">
+        <div class="flip-card-front" style="--card-accent: #a6b999; background: linear-gradient(135deg, rgba(166, 185, 153, 0.15) 0%, rgba(193, 119, 149, 0.1) 100%), linear-gradient(145deg, rgba(25, 40, 60, 0.95), rgba(15, 25, 40, 0.98));">
+          <div class="card-front-content">
+            <img class="card-title-image" src="{{ '/assets/images/titles/Juris Lab Title.png' | relative_url }}" alt="Juris Lab" />
+            <p class="home-card-front-caption">Research, analysis, and deep dives into Oregon's criminal justice data and legal patterns.</p>
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <div class="card-back-header"><h3>Juris Lab</h3></div>
+          <div class="card-back-content">
+            <div class="flip-metric-group">
+              <h4>Research and analysis</h4>
+              <p>Access curated research, data analysis, custom reports, and deep investigative work on Oregon's criminal justice system and institutional patterns.</p>
+            </div>
+          </div>
+          <div class="card-back-actions">
+            <a class="btn btn-primary" href="{{ '/bias-beacon/methodology/' | relative_url }}">Explore Research</a>
+          </div>
+        </div>
+      </div>
+    </article>
