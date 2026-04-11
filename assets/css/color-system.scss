@@ -1,124 +1,160 @@
-/* ==========================================================================
-   APTITUDE COLOR SYSTEM v2.0
-   Premium, Sophisticated Branding with Dynamic Remixes
-   ========================================================================== */
+// ============================================================
+// APTITUDE Color System & Dynamic Text Effects
+// ============================================================
+// Unified color system with page-specific remixes and dynamic
+// text animations. Each page uses the same palette in different
+// proportions to create visual cohesion with distinct identity.
+
+// ============================================================
+// CORE BRAND PALETTE
+// ============================================================
 
 :root {
-  /* Core Brand Palette - Sophisticated & Trustworthy */
-  --primary-deep: #1a2847;      /* Deep navy - authority & trust */
-  --primary-mid: #2d4a7b;       /* Mid blue - professional */
-  --primary-light: #4a7ec8;     /* Light blue - accessible */
+  // Primary Colors
+  --primary-deep: #1a2847;      // Deep navy (base)
+  --primary-mid: #2d4a7b;       // Mid blue (secondary)
+  --primary-light: #4a7ec8;     // Light blue (bright)
   
-  --accent-rose: #c17795;       /* Warm rose - humanitarian */
-  --accent-sage: #7a9b7f;       /* Soft sage - balance & growth */
-  --accent-gold: #d4af8f;       /* Warm gold - premium quality */
-  --accent-slate: #6b7280;      /* Neutral slate - structure */
+  // Accent Colors  
+  --accent-rose: #c17795;       // Warm rose
+  --accent-sage: #7a9b7f;       // Soft sage
+  --accent-gold: #d4af8f;       // Warm gold
+  --accent-slate: #6b7280;      // Neutral slate
   
-  /* Extended Palette for Page Remixes */
-  --color-periwinkle: #a2addc;  /* Soft purple - intellect */
-  --color-teal: #5d9b9b;        /* Teal - stability */
-  --color-coral: #d97c6a;       /* Warm coral - energy */
-  --color-plum: #8b6f9f;        /* Soft plum - sophistication */
-  --color-bronze: #a87a5c;      /* Bronze - heritage */
-  --color-seafoam: #7cb8a8;     /* Seafoam - calm */
+  // Extended Palette (for remixes)
+  --color-periwinkle: #a2addc;  // Soft purple
+  --color-teal: #5d9b9b;        // Teal blue-green
+  --color-coral: #d97c6a;       // Warm coral
+  --color-plum: #8b6f9f;        // Soft plum
+  --color-bronze: #a87a5c;      // Bronze brown
+  --color-seafoam: #7cb8a8;     // Seafoam green
   
-  /* Semantic Colors */
-  --success: #7a9b7f;
-  --warning: #d4af8f;
-  --alert: #d97c6a;
-  --info: #4a7ec8;
+  // Background Colors (Light Theme)
+  --bg-light: #f5f3f0;          // Warm light (primary)
+  --bg-light-alt: #faf9f8;      // Slightly lighter
+  --bg-neutral: #f0f0f0;        // Neutral light
   
-  /* Neutral Palette - Refined */
-  --dark-1: #0f1318;            /* Darkest */
-  --dark-2: #1a2847;            /* Dark navy */
-  --dark-3: #2a3a52;            /* Dark slate */
-  --neutral-bg: #f5f3f0;        /* Warm light - for lighter assets */
-  --light-1: #ffffff;           /* Pure white */
-  --text-primary: #2a3a52;      /* Dark slate text */
-  --text-secondary: #6b7280;    /* Medium slate text */
-  --text-light: #a0a6b5;        /* Light text for dark backgrounds */
+  // Text Colors
+  --text-primary: #2a3a52;      // Dark slate (primary text)
+  --text-secondary: #6b7280;    // Medium gray (secondary)
+  --text-light: #ffffff;        // White (on dark backgrounds)
   
-  /* Shadows - Refined */
-  --shadow-sm: 0 4px 12px rgba(10, 15, 35, 0.08);
-  --shadow-md: 0 8px 24px rgba(10, 15, 35, 0.12);
-  --shadow-lg: 0 16px 48px rgba(10, 15, 35, 0.16);
-  --shadow-xl: 0 24px 64px rgba(10, 15, 35, 0.2);
+  // Semantic Colors
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --alert-color: #ef4444;
+  --info-color: #3b82f6;
   
-  /* Gradients */
-  --gradient-primary: linear-gradient(135deg, #2d4a7b 0%, #4a7ec8 100%);
-  --gradient-warm: linear-gradient(135deg, #c17795 0%, #d4af8f 100%);
-  --gradient-cool: linear-gradient(135deg, #5d9b9b 0%, #a2addc 100%);
-  --gradient-premium: linear-gradient(135deg, #1a2847 0%, #2d4a7b 50%, #4a7ec8 100%);
-}
-
-/* ==========================================================================
-   PAGE-SPECIFIC COLOR REMIXES
-   Each page uses the same palette but in different proportions
-   ========================================================================== */
-
-body.page-bias-beacon {
-  --page-primary: #4a7ec8;      /* Bright blue focus */
-  --page-accent: #a2addc;       /* Periwinkle secondary */
-  --page-accent-2: #c17795;     /* Rose accent */
+  // Default Page (Bias Beacon)
+  --page-primary: var(--primary-light);
+  --page-accent: var(--color-periwinkle);
+  --page-accent-2: var(--accent-rose);
   --page-bg-light: rgba(74, 126, 200, 0.04);
   --page-bg-medium: rgba(162, 173, 220, 0.06);
 }
 
+// ============================================================
+// PAGE-SPECIFIC COLOR REMIXES
+// ============================================================
+// Each page gets a unique color treatment while maintaining
+// cohesion across the site. Apply via body_class in Jekyll.
+
+// Bias Beacon - Bright, analytical, pattern-focused
+body.page-bias-beacon {
+  --page-primary: #4a7ec8;      // Bright blue focus
+  --page-accent: #a2addc;       // Periwinkle secondary
+  --page-accent-2: #c17795;     // Rose accent
+  --page-bg-light: rgba(74, 126, 200, 0.04);
+  --page-bg-medium: rgba(162, 173, 220, 0.06);
+  
+  // Card-specific backgrounds
+  .flip-card-back {
+    background: linear-gradient(135deg, #4a7ec8 0%, #a2addc 100%) !important;
+  }
+}
+
+// Judiciary - Deep, authoritative, structure-focused
 body.page-judiciary {
-  --page-primary: #2d4a7b;      /* Deep blue focus */
-  --page-accent: #7a9b7f;       /* Sage secondary */
-  --page-accent-2: #d4af8f;     /* Gold accent */
+  --page-primary: #2d4a7b;      // Deep blue authority
+  --page-accent: #7a9b7f;       // Sage secondary
+  --page-accent-2: #d4af8f;     // Gold accent
   --page-bg-light: rgba(45, 74, 123, 0.04);
   --page-bg-medium: rgba(122, 155, 127, 0.06);
+  
+  .flip-card-back {
+    background: linear-gradient(135deg, #2d4a7b 0%, #7a9b7f 100%) !important;
+  }
 }
 
+// Prosecutor's Office - Warm, institutional, systematic
 body.page-prosecutor {
-  --page-primary: #d4af8f;      /* Gold focus */
-  --page-accent: #a87a5c;       /* Bronze secondary */
-  --page-accent-2: #6b7280;     /* Slate accent */
+  --page-primary: #d4af8f;      // Gold primary
+  --page-accent: #a87a5c;       // Bronze secondary
+  --page-accent-2: #6b7280;     // Slate accent
   --page-bg-light: rgba(212, 175, 143, 0.04);
   --page-bg-medium: rgba(168, 122, 92, 0.06);
+  
+  .flip-card-back {
+    background: linear-gradient(135deg, #d4af8f 0%, #a87a5c 100%) !important;
+  }
 }
 
+// Law Enforcement - Energetic, urgent, action-focused
 body.page-law-enforcement {
-  --page-primary: #d97c6a;      /* Coral focus */
-  --page-accent: #5d9b9b;       /* Teal secondary */
-  --page-accent-2: #8b6f9f;     /* Plum accent */
+  --page-primary: #d97c6a;      // Coral primary
+  --page-accent: #5d9b9b;       // Teal secondary
+  --page-accent-2: #8b6f9f;     // Plum accent
   --page-bg-light: rgba(217, 124, 106, 0.04);
   --page-bg-medium: rgba(93, 155, 155, 0.06);
+  
+  .flip-card-back {
+    background: linear-gradient(135deg, #d97c6a 0%, #5d9b9b 100%) !important;
+  }
 }
 
+// Community Corrections - Balanced, rehabilitative, outcome-focused
 body.page-community-corrections {
-  --page-primary: #7cb8a8;      /* Seafoam focus */
-  --page-accent: #5d9b9b;       /* Teal secondary */
-  --page-accent-2: #4a7ec8;     /* Blue accent */
+  --page-primary: #7cb8a8;      // Seafoam primary
+  --page-accent: #5d9b9b;       // Teal secondary
+  --page-accent-2: #4a7ec8;     // Blue accent
   --page-bg-light: rgba(124, 184, 168, 0.04);
   --page-bg-medium: rgba(93, 155, 155, 0.06);
+  
+  .flip-card-back {
+    background: linear-gradient(135deg, #7cb8a8 0%, #5d9b9b 100%) !important;
+  }
 }
 
+// Juris Lab - Investigative, exploratory, research-focused
 body.page-juris-lab {
-  --page-primary: #7a9b7f;      /* Sage focus */
-  --page-accent: #8b6f9f;       /* Plum secondary */
-  --page-accent-2: #c17795;     /* Rose accent */
+  --page-primary: #7a9b7f;      // Sage primary
+  --page-accent: #8b6f9f;       // Plum secondary
+  --page-accent-2: #c17795;     // Rose accent
   --page-bg-light: rgba(122, 155, 127, 0.04);
   --page-bg-medium: rgba(139, 111, 159, 0.06);
-}
-
-/* ==========================================================================
-   DYNAMIC TEXT EFFECTS
-   ========================================================================== */
-
-@keyframes text-glow {
-  0%, 100% {
-    text-shadow: 0 0 10px rgba(74, 126, 200, 0.5),
-                 0 0 20px rgba(74, 126, 200, 0.3);
-  }
-  50% {
-    text-shadow: 0 0 20px rgba(74, 126, 200, 0.8),
-                 0 0 30px rgba(74, 126, 200, 0.5);
+  
+  .flip-card-back {
+    background: linear-gradient(135deg, #7a9b7f 0%, #8b6f9f 100%) !important;
   }
 }
 
+// ============================================================
+// DYNAMIC TEXT ANIMATIONS
+// ============================================================
+
+// Fade-in animation
+@keyframes text-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Shimmer effect (flowing gradient)
 @keyframes text-shimmer {
   0% {
     background-position: -1000px 0;
@@ -128,24 +164,36 @@ body.page-juris-lab {
   }
 }
 
-@keyframes text-fade-in {
-  0% {
-    opacity: 0;
-    transform: translateY(10px);
+// Glow effect (pulsing shadow)
+@keyframes text-glow {
+  0%, 100% {
+    text-shadow: 
+      0 0 5px var(--page-primary),
+      0 0 10px var(--page-accent);
   }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
+  50% {
+    text-shadow: 
+      0 0 10px var(--page-primary),
+      0 0 20px var(--page-accent),
+      0 0 30px var(--page-accent-2);
   }
 }
 
-/* Dynamic Text Classes */
+// Text fade-in dynamic effect
 .text-dynamic {
   animation: text-fade-in 0.8s ease-out;
 }
 
+// Text shimmer with gradient flowing
 .text-shimmer {
-  background: linear-gradient(90deg, var(--text-primary, #2a3a52), var(--page-accent, #4a7ec8), var(--text-primary, #2a3a52));
+  background: linear-gradient(
+    90deg,
+    var(--text-primary) 0%,
+    var(--page-primary) 25%,
+    var(--page-accent) 50%,
+    var(--page-primary) 75%,
+    var(--text-primary) 100%
+  );
   background-size: 1000px 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -153,220 +201,226 @@ body.page-juris-lab {
   animation: text-shimmer 3s ease-in-out infinite;
 }
 
+// Text glow effect
 .text-glow {
+  color: var(--page-primary);
   animation: text-glow 2s ease-in-out infinite;
 }
 
-/* ==========================================================================
-   CARD COLOR UPDATES
-   ========================================================================== */
+// ============================================================
+// BUTTON & INTERACTIVE ELEMENT STYLING
+// ============================================================
 
-.flip-card-front {
-  background: linear-gradient(135deg, rgba(245, 243, 240, 0.95), rgba(255, 255, 255, 0.98)) !important;
-  color: var(--text-primary);
-}
-
-.flip-card-front .judge-name-display,
-.flip-card-front h3 {
-  color: var(--text-primary);
-}
-
-.flip-card-front p {
-  color: var(--text-secondary);
-}
-
-.flip-card-back {
-  background: linear-gradient(135deg, var(--page-primary, #2d4a7b), var(--page-accent, #4a7ec8)) !important;
-  color: var(--light-1);
-}
-
-.flip-card-back h3,
-.flip-card-back h4 {
-  color: var(--light-1);
-}
-
-.flip-card-back p {
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.metric-mini {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.metric-label {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.metric-value {
-  color: rgba(255, 255, 255, 0.95);
-}
-
-/* Page-specific Card Colors */
-.card-bias-beacon .flip-card-back {
-  background: linear-gradient(135deg, #4a7ec8 0%, #a2addc 100%) !important;
-}
-
-.card-judiciary .flip-card-back {
-  background: linear-gradient(135deg, #2d4a7b 0%, #7a9b7f 100%) !important;
-}
-
-.card-prosecutor .flip-card-back {
-  background: linear-gradient(135deg, #d4af8f 0%, #a87a5c 100%) !important;
-}
-
-.card-law-enforcement .flip-card-back {
-  background: linear-gradient(135deg, #d97c6a 0%, #5d9b9b 100%) !important;
-}
-
-.card-community-corrections .flip-card-back {
-  background: linear-gradient(135deg, #7cb8a8 0%, #5d9b9b 100%) !important;
-}
-
-.card-juris-lab .flip-card-back {
-  background: linear-gradient(135deg, #7a9b7f 0%, #8b6f9f 100%) !important;
-}
-
-/* ==========================================================================
-   BUTTON STYLING WITH COLOR SYSTEM
-   ========================================================================== */
-
-.btn-primary {
-  background: var(--page-primary, #4a7ec8);
-  color: var(--light-1);
-  border: 1px solid var(--page-primary, #4a7ec8);
-  transition: all 0.3s ease;
-}
-
-.btn-primary:hover {
-  background: var(--page-accent, #a2addc);
-  border-color: var(--page-accent, #a2addc);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.btn-outline {
-  background: transparent;
-  color: var(--page-primary, #4a7ec8);
-  border: 2px solid var(--page-primary, #4a7ec8);
-}
-
-.btn-outline:hover {
-  background: var(--page-primary, #4a7ec8);
-  color: var(--light-1);
-}
-
-/* ==========================================================================
-   HEADING COLORS
-   ========================================================================== */
-
-h1, h2, h3, h4, h5, h6 {
-  color: var(--text-primary);
-}
-
-.archive-title {
-  color: var(--text-primary);
-}
-
-.section-heading h2 {
-  background: linear-gradient(135deg, var(--page-primary, #2d4a7b), var(--page-accent, #4a7ec8));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.eyebrow {
-  color: var(--page-primary, #4a7ec8);
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  font-weight: 700;
-}
-
-/* ==========================================================================
-   INPUT & FORM STYLING
-   ========================================================================== */
-
-input[type="text"],
-input[type="search"],
-select,
-textarea {
-  background: var(--neutral-bg);
-  color: var(--text-primary);
-  border: 2px solid var(--page-primary, #4a7ec8);
-  border-radius: 8px;
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
-}
-
-input[type="text"]:focus,
-input[type="search"]:focus,
-select:focus,
-textarea:focus {
-  outline: none;
-  border-color: var(--page-accent, #a2addc);
-  box-shadow: 0 0 0 3px rgba(74, 126, 200, 0.1);
-}
-
-/* ==========================================================================
-   LINK STYLING
-   ========================================================================== */
-
-a {
-  color: var(--page-primary, #4a7ec8);
-  text-decoration: none;
-  position: relative;
-  transition: color 0.3s ease;
-}
-
-a:hover {
-  color: var(--page-accent, #a2addc);
-}
-
-a::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--page-accent, #a2addc);
-  transition: width 0.3s ease;
-}
-
-a:hover::after {
-  width: 100%;
-}
-
-/* ==========================================================================
-   DECORATIVE ELEMENTS
-   ========================================================================== */
-
-.divider {
-  background: linear-gradient(90deg, transparent, var(--page-primary, #4a7ec8), transparent);
-  height: 1px;
-  margin: 2rem 0;
-}
-
-.accent-bar {
-  height: 4px;
-  background: linear-gradient(90deg, var(--page-primary, #4a7ec8), var(--page-accent, #a2addc));
-  margin: 1rem 0;
-}
-
-/* ==========================================================================
-   RESPONSIVE & ACCESSIBILITY
-   ========================================================================== */
-
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation: none !important;
-    transition: none !important;
+button,
+.btn,
+.button {
+  // Primary button style
+  &.button-primary,
+  &.btn-primary {
+    background: linear-gradient(135deg, var(--page-primary) 0%, var(--page-accent) 100%);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+    
+    &:active {
+      transform: translateY(0);
+    }
+  }
+  
+  // Secondary button
+  &.button-secondary,
+  &.btn-secondary {
+    background: var(--page-bg-light);
+    color: var(--page-primary);
+    border: 2px solid var(--page-primary);
+    border-radius: 4px;
+    padding: 8px 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background: var(--page-primary);
+      color: white;
+    }
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
+// ============================================================
+// FORM ELEMENTS WITH COLOR THEMING
+// ============================================================
+
+input[type="text"],
+input[type="email"],
+input[type="search"],
+input[type="url"],
+input[type="password"],
+textarea,
+select {
+  border: 2px solid var(--page-bg-medium);
+  background: white;
+  color: var(--text-primary);
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  
+  &:focus {
+    outline: none;
+    border-color: var(--page-primary);
+    box-shadow: 0 0 0 3px var(--page-bg-light);
+  }
+  
+  &::placeholder {
+    color: var(--text-secondary);
+  }
+}
+
+// ============================================================
+// SECTION & CARD BACKGROUNDS
+// ============================================================
+
+.home-section {
+  background-color: var(--bg-light);
+  
+  &.home-section-intro {
+    background: linear-gradient(135deg, var(--bg-light) 0%, var(--page-bg-light) 100%);
+  }
+}
+
+.section-heading {
+  color: var(--text-primary);
+  
+  > h2 {
+    color: var(--page-primary);
+  }
+  
+  > .eyebrow {
+    color: var(--page-accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+}
+
+// ============================================================
+// FLIP CARD COLOR INTEGRATION  
+// ============================================================
+
+.flip-card-front {
+  background: linear-gradient(135deg, var(--bg-light) 0%, var(--page-bg-light) 100%);
+  color: var(--text-primary);
+  border: 1px solid rgba(76, 76, 76, 0.1);
+}
+
+.flip-card-back {
+  background: linear-gradient(135deg, var(--page-primary) 0%, var(--page-accent) 100%);
+  color: white;
+}
+
+.card-title-image {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  transition: filter 0.3s ease;
+  
+  &:hover {
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+  }
+}
+
+// ============================================================
+// CARD-SPECIFIC COLOR CLASSES
+// ============================================================
+
+.card-bias-beacon {
+  --page-primary: #4a7ec8;
+  --page-accent: #a2addc;
+}
+
+.card-judiciary {
+  --page-primary: #2d4a7b;
+  --page-accent: #7a9b7f;
+}
+
+.card-prosecutor {
+  --page-primary: #d4af8f;
+  --page-accent: #a87a5c;
+}
+
+.card-law-enforcement {
+  --page-primary: #d97c6a;
+  --page-accent: #5d9b9b;
+}
+
+.card-community-corrections {
+  --page-primary: #7cb8a8;
+  --page-accent: #5d9b9b;
+}
+
+.card-juris-lab {
+  --page-primary: #7a9b7f;
+  --page-accent: #8b6f9f;
+}
+
+// ============================================================
+// FOOTER & STRUCTURAL ELEMENTS
+// ============================================================
+
+.site-footer {
+  background: linear-gradient(135deg, var(--primary-deep) 0%, var(--primary-mid) 100%);
+  color: white;
+  
+  a {
+    color: var(--page-accent);
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+    
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+// ============================================================
+// ACCESSIBILITY & FOCUS STATES
+// ============================================================
+
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid var(--page-primary);
+  outline-offset: 2px;
+}
+
+// ============================================================
+// PRINT STYLES
+// ============================================================
+
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .text-shimmer,
+  .text-glow,
+  .text-dynamic {
+    animation: none !important;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: unset !important;
+    background-clip: unset !important;
+    color: black !important;
+    text-shadow: none !important;
   }
 }
