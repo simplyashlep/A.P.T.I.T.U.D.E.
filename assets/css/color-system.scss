@@ -1,426 +1,330 @@
-// ============================================================
-// APTITUDE Color System & Dynamic Text Effects
-// ============================================================
-// Unified color system with page-specific remixes and dynamic
-// text animations. Each page uses the same palette in different
-// proportions to create visual cohesion with distinct identity.
+// ===========================
+// Modern Minimal Color System
+// Nike/Nordstrom Quality Aesthetic
+// ===========================
 
-// ============================================================
-// CORE BRAND PALETTE
-// ============================================================
+// === NEUTRAL PALETTE (Foundation) ===
+$color-white: #FFFFFF;
+$color-off-white: #F9F9F9;
+$color-light-gray: #F0F0F0;
+$color-medium-gray: #D4D4D4;
+$color-stone-gray: #8E8E8E;
+$color-dark-gray: #4A4A4A;
+$color-charcoal: #2B2B2B;
+$color-black: #000000;
 
-:root {
-  // Primary Colors
-  --primary-deep: #1a2847;      // Deep navy (base)
-  --primary-mid: #2d4a7b;       // Mid blue (secondary)
-  --primary-light: #4a7ec8;     // Light blue (bright)
-  
-  // Accent Colors  
-  --accent-rose: #c17795;       // Warm rose
-  --accent-sage: #7a9b7f;       // Soft sage
-  --accent-gold: #d4af8f;       // Warm gold
-  --accent-slate: #6b7280;      // Neutral slate
-  
-  // Extended Palette (for remixes)
-  --color-periwinkle: #a2addc;  // Soft purple
-  --color-teal: #5d9b9b;        // Teal blue-green
-  --color-coral: #d97c6a;       // Warm coral
-  --color-plum: #8b6f9f;        // Soft plum
-  --color-bronze: #a87a5c;      // Bronze brown
-  --color-seafoam: #7cb8a8;     // Seafoam green
-  
-  // Background Colors (Light Theme)
-  --bg-light: #f5f3f0;          // Warm light (primary)
-  --bg-light-alt: #faf9f8;      // Slightly lighter
-  --bg-neutral: #f0f0f0;        // Neutral light
-  
-  // Text Colors
-  --text-primary: #2a3a52;      // Dark slate (primary text)
-  --text-secondary: #6b7280;    // Medium gray (secondary)
-  --text-light: #ffffff;        // White (on dark backgrounds)
-  
-  // Semantic Colors
-  --success-color: #10b981;
-  --warning-color: #f59e0b;
-  --alert-color: #ef4444;
-  --info-color: #3b82f6;
-  
-  // Default Page (Bias Beacon)
-  --page-primary: var(--primary-light);
-  --page-accent: var(--color-periwinkle);
-  --page-accent-2: var(--accent-rose);
-  --page-bg-light: rgba(74, 126, 200, 0.04);
-  --page-bg-medium: rgba(162, 173, 220, 0.06);
-}
+// === PRIMARY (Sophisticated Blue) ===
+$color-primary: #0F3460;        // Deep sophisticated navy
+$color-primary-light: #1A5490;  // Lighter blue for hover states
+$color-primary-lighter: #2E7BB4; // Even lighter for accents
 
-// ============================================================
-// PAGE-SPECIFIC COLOR REMIXES
-// ============================================================
-// Each page gets a unique color treatment while maintaining
-// cohesion across the site. Apply via body_class in Jekyll.
+// === SECONDARY (Warm Accent) ===
+$color-secondary: #D4784A;      // Warm rust/terracotta
+$color-secondary-light: #E89E6E; // Lighter warm tone
 
-// Bias Beacon - Bright, analytical, pattern-focused
-body.page-bias-beacon {
-  --page-primary: #4a7ec8;      // Bright blue focus
-  --page-accent: #a2addc;       // Periwinkle secondary
-  --page-accent-2: #c17795;     // Rose accent
-  --page-bg-light: rgba(74, 126, 200, 0.04);
-  --page-bg-medium: rgba(162, 173, 220, 0.06);
-  
-  // Card-specific backgrounds
-  .flip-card-back {
-    background: linear-gradient(135deg, #4a7ec8 0%, #a2addc 100%) !important;
-  }
-}
+// === SUCCESS/POSITIVE ===
+$color-success: #2B7B4F;        // Professional green
+$color-success-light: #4A9B6F;
 
-// Judiciary - Deep, authoritative, structure-focused
-body.page-judiciary {
-  --page-primary: #2d4a7b;      // Deep blue authority
-  --page-accent: #7a9b7f;       // Sage secondary
-  --page-accent-2: #d4af8f;     // Gold accent
-  --page-bg-light: rgba(45, 74, 123, 0.04);
-  --page-bg-medium: rgba(122, 155, 127, 0.06);
-  
-  .flip-card-back {
-    background: linear-gradient(135deg, #2d4a7b 0%, #7a9b7f 100%) !important;
-  }
-}
+// === WARNING ===
+$color-warning: #C68642;        // Warm amber
+$color-warning-light: #D9A062;
 
-// Prosecutor's Office - Warm, institutional, systematic
-body.page-prosecutor {
-  --page-primary: #d4af8f;      // Gold primary
-  --page-accent: #a87a5c;       // Bronze secondary
-  --page-accent-2: #6b7280;     // Slate accent
-  --page-bg-light: rgba(212, 175, 143, 0.04);
-  --page-bg-medium: rgba(168, 122, 92, 0.06);
-  
-  .flip-card-back {
-    background: linear-gradient(135deg, #d4af8f 0%, #a87a5c 100%) !important;
-  }
-}
+// === DANGER/CRITICAL ===
+$color-danger: #9B2F2F;         // Deep red
+$color-danger-light: #C94444;
 
-// Law Enforcement - Energetic, urgent, action-focused
-body.page-law-enforcement {
-  --page-primary: #d97c6a;      // Coral primary
-  --page-accent: #5d9b9b;       // Teal secondary
-  --page-accent-2: #8b6f9f;     // Plum accent
-  --page-bg-light: rgba(217, 124, 106, 0.04);
-  --page-bg-medium: rgba(93, 155, 155, 0.06);
-  
-  .flip-card-back {
-    background: linear-gradient(135deg, #d97c6a 0%, #5d9b9b 100%) !important;
-  }
-}
+// === INFO ===
+$color-info: #1A5A8E;           // Professional blue
+$color-info-light: #2E7CB4;
 
-// Community Corrections - Balanced, rehabilitative, outcome-focused
-body.page-community-corrections {
-  --page-primary: #7cb8a8;      // Seafoam primary
-  --page-accent: #5d9b9b;       // Teal secondary
-  --page-accent-2: #4a7ec8;     // Blue accent
-  --page-bg-light: rgba(124, 184, 168, 0.04);
-  --page-bg-medium: rgba(93, 155, 155, 0.06);
-  
-  .flip-card-back {
-    background: linear-gradient(135deg, #7cb8a8 0%, #5d9b9b 100%) !important;
-  }
-}
+// === PAGE-SPECIFIC PALETTES (Minimal, Modern) ===
+$bias-beacon-primary: $color-primary;
+$bias-beacon-accent: $color-secondary;
+$bias-beacon-accent-light: $color-secondary-light;
 
-// Juris Lab - Investigative, exploratory, research-focused
-body.page-juris-lab {
-  --page-primary: #7a9b7f;      // Sage primary
-  --page-accent: #8b6f9f;       // Plum secondary
-  --page-accent-2: #c17795;     // Rose accent
-  --page-bg-light: rgba(122, 155, 127, 0.04);
-  --page-bg-medium: rgba(139, 111, 159, 0.06);
-  
-  .flip-card-back {
-    background: linear-gradient(135deg, #7a9b7f 0%, #8b6f9f 100%) !important;
-  }
-}
+$judiciary-primary: #1A4D76;     // Deep blue
+$judiciary-accent: #5A7F6E;      // Muted sage
+$judiciary-accent-light: #7FA896;
 
-// ============================================================
-// DYNAMIC TEXT ANIMATIONS
-// ============================================================
+$prosecutor-primary: #6B4423;    // Warm brown
+$prosecutor-accent: #A67C52;     // Tan
+$prosecutor-accent-light: #C19A6B;
 
-// Fade-in animation
-@keyframes text-fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+$law-enforcement-primary: #5A3A3A; // Deep brown
+$law-enforcement-accent: #8B5C5C;  // Dusty rose
+$law-enforcement-accent-light: #A8746E;
 
-// Shimmer effect (flowing gradient)
-@keyframes text-shimmer {
-  0% {
-    background-position: -1000px 0;
-  }
-  100% {
-    background-position: 1000px 0;
-  }
-}
+$community-primary: #2B6B5F;    // Teal-green
+$community-accent: #4A9B8F;     // Lighter teal
+$community-accent-light: #6FBAAE;
 
-// Glow effect (pulsing shadow)
-@keyframes text-glow {
-  0%, 100% {
-    text-shadow: 
-      0 0 5px var(--page-primary),
-      0 0 10px var(--page-accent);
-  }
-  50% {
-    text-shadow: 
-      0 0 10px var(--page-primary),
-      0 0 20px var(--page-accent),
-      0 0 30px var(--page-accent-2);
-  }
-}
+$juris-lab-primary: #4A5F6B;    // Slate blue
+$juris-lab-accent: #6B7F8F;     // Light slate
+$juris-lab-accent-light: #8FA5B8;
 
-// Text fade-in dynamic effect
-.text-dynamic {
-  animation: text-fade-in 0.8s ease-out;
-}
+// === TEXT COLORS ===
+$text-primary: $color-charcoal;
+$text-secondary: $color-stone-gray;
+$text-light: $color-medium-gray;
+$text-inverse: $color-white;
 
-// Text shimmer with gradient flowing
-.text-shimmer {
-  background: linear-gradient(
-    90deg,
-    var(--text-primary) 0%,
-    var(--page-primary) 25%,
-    var(--page-accent) 50%,
-    var(--page-primary) 75%,
-    var(--text-primary) 100%
-  );
-  background-size: 1000px 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: text-shimmer 3s ease-in-out infinite;
-}
+// === BACKGROUNDS ===
+$bg-primary: $color-white;
+$bg-secondary: $color-off-white;
+$bg-tertiary: $color-light-gray;
+$bg-dark: $color-charcoal;
 
-// Text glow effect
-.text-glow {
-  color: var(--page-primary);
-  animation: text-glow 2s ease-in-out infinite;
-}
+// === BORDERS & DIVIDERS ===
+$border-color: $color-medium-gray;
+$border-color-light: $color-light-gray;
+$border-color-dark: $color-stone-gray;
 
-// ============================================================
-// BUTTON & INTERACTIVE ELEMENT STYLING
-// ============================================================
+// === LINKS ===
+$link-color: $color-primary;
+$link-hover: $color-primary-light;
+$link-visited: #6B4A8E;
 
-button,
-.btn,
-.button {
-  // Primary button style
-  &.button-primary,
-  &.btn-primary {
-    background: linear-gradient(135deg, var(--page-primary) 0%, var(--page-accent) 100%);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 10px 20px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    }
-    
-    &:active {
-      transform: translateY(0);
-    }
-  }
-  
-  // Secondary button
-  &.button-secondary,
-  &.btn-secondary {
-    background: var(--page-bg-light);
-    color: var(--page-primary);
-    border: 2px solid var(--page-primary);
-    border-radius: 4px;
-    padding: 8px 18px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    
-    &:hover {
-      background: var(--page-primary);
-      color: white;
-    }
-  }
-}
+// === BIAS SCORE COLORS (Data Visualization) ===
+$bias-excellent: #2B7B4F;       // Green
+$bias-low-risk: #1A5A8E;        // Blue
+$bias-moderate: $color-stone-gray; // Gray
+$bias-high-risk: #9B2F2F;       // Red
+$bias-critical: #7C4A6D;        // Purple
 
-// ============================================================
-// FORM ELEMENTS WITH COLOR THEMING
-// ============================================================
+// === SHADOWS (Minimal & Refined) ===
+$shadow-xs: 0 1px 2px rgba($color-black, 0.05);
+$shadow-sm: 0 1px 3px 0 rgba($color-black, 0.10);
+$shadow-md: 0 4px 6px -1px rgba($color-black, 0.10);
+$shadow-lg: 0 10px 15px -3px rgba($color-black, 0.10);
+$shadow-xl: 0 20px 25px -5px rgba($color-black, 0.10);
 
-input[type="text"],
-input[type="email"],
-input[type="search"],
-input[type="url"],
-input[type="password"],
-textarea,
-select {
-  border: 2px solid var(--page-bg-medium);
-  background: white;
-  color: var(--text-primary);
+// === TRANSITIONS ===
+$transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+$transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+$transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+
+// ===========================
+// COMPONENT STYLING
+// ===========================
+
+// === Buttons ===
+.btn, button, [type="button"], [type="submit"] {
+  background-color: $color-primary;
+  color: $color-white;
+  border: 1px solid $color-primary;
+  padding: 0.75rem 1.5rem;
   border-radius: 4px;
-  padding: 8px 12px;
-  font-family: inherit;
-  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: all $transition-base;
+  text-transform: uppercase;
+  
+  &:hover {
+    background-color: $color-primary-light;
+    border-color: $color-primary-light;
+    box-shadow: $shadow-md;
+  }
   
   &:focus {
     outline: none;
-    border-color: var(--page-primary);
-    box-shadow: 0 0 0 3px var(--page-bg-light);
+    box-shadow: 0 0 0 3px rgba($color-primary, 0.1), $shadow-md;
+  }
+  
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: $color-primary;
+  border: 2px solid $color-primary;
+  
+  &:hover {
+    background-color: rgba($color-primary, 0.05);
+  }
+}
+
+.btn-danger {
+  background-color: $color-danger;
+  border-color: $color-danger;
+  
+  &:hover {
+    background-color: $color-danger-light;
+    border-color: $color-danger-light;
+  }
+}
+
+// === Links ===
+a {
+  color: $link-color;
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: color $transition-base;
+  
+  &:hover {
+    color: $link-hover;
+  }
+  
+  &:visited {
+    color: $link-visited;
+  }
+  
+  &:focus {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+// === Cards ===
+.card {
+  background-color: $color-white;
+  border: 1px solid $border-color-light;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: $shadow-sm;
+  transition: all $transition-base;
+  
+  &:hover {
+    box-shadow: $shadow-md;
+    border-color: $border-color;
+  }
+}
+
+// === Form Elements ===
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+textarea,
+select {
+  background-color: $color-white;
+  border: 1px solid $border-color;
+  border-radius: 4px;
+  padding: 0.75rem;
+  font-family: inherit;
+  font-size: 1rem;
+  color: $text-primary;
+  transition: all $transition-base;
+  
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+    box-shadow: 0 0 0 3px rgba($color-primary, 0.1);
   }
   
   &::placeholder {
-    color: var(--text-secondary);
+    color: $color-stone-gray;
   }
 }
 
-// ============================================================
-// SECTION & CARD BACKGROUNDS
-// ============================================================
+// === Section Backgrounds (Page-Specific Color Application) ===
+.section-bias-beacon {
+  background: linear-gradient(135deg, rgba($bias-beacon-primary, 0.02) 0%, rgba($bias-beacon-accent, 0.02) 100%);
+  border-left: 4px solid $bias-beacon-primary;
+}
 
-.home-section {
-  background-color: var(--bg-light);
+.section-judiciary {
+  background: linear-gradient(135deg, rgba($judiciary-primary, 0.02) 0%, rgba($judiciary-accent, 0.02) 100%);
+  border-left: 4px solid $judiciary-primary;
+}
+
+.section-prosecutor {
+  background: linear-gradient(135deg, rgba($prosecutor-primary, 0.02) 0%, rgba($prosecutor-accent, 0.02) 100%);
+  border-left: 4px solid $prosecutor-primary;
+}
+
+.section-law-enforcement {
+  background: linear-gradient(135deg, rgba($law-enforcement-primary, 0.02) 0%, rgba($law-enforcement-accent, 0.02) 100%);
+  border-left: 4px solid $law-enforcement-primary;
+}
+
+.section-community {
+  background: linear-gradient(135deg, rgba($community-primary, 0.02) 0%, rgba($community-accent, 0.02) 100%);
+  border-left: 4px solid $community-primary;
+}
+
+.section-juris-lab {
+  background: linear-gradient(135deg, rgba($juris-lab-primary, 0.02) 0%, rgba($juris-lab-accent, 0.02) 100%);
+  border-left: 4px solid $juris-lab-primary;
+}
+
+// === Badge/Tag Styling ===
+.badge {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.2px;
   
-  &.home-section-intro {
-    background: linear-gradient(135deg, var(--bg-light) 0%, var(--page-bg-light) 100%);
-  }
-}
-
-.section-heading {
-  color: var(--text-primary);
-  
-  > h2 {
-    color: var(--page-primary);
+  &.badge-primary {
+    background-color: rgba($color-primary, 0.1);
+    color: $color-primary;
   }
   
-  > .eyebrow {
-    color: var(--page-accent);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+  &.badge-success {
+    background-color: rgba($color-success, 0.1);
+    color: $color-success;
   }
-}
-
-// ============================================================
-// FLIP CARD COLOR INTEGRATION  
-// ============================================================
-
-.flip-card-front {
-  background: linear-gradient(135deg, var(--bg-light) 0%, var(--page-bg-light) 100%);
-  color: var(--text-primary);
-  border: 1px solid rgba(76, 76, 76, 0.1);
-}
-
-.flip-card-back {
-  background: linear-gradient(135deg, var(--page-primary) 0%, var(--page-accent) 100%);
-  color: white;
-}
-
-.card-title-image {
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-  transition: filter 0.3s ease;
   
-  &:hover {
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+  &.badge-warning {
+    background-color: rgba($color-warning, 0.1);
+    color: $color-warning;
   }
-}
-
-// ============================================================
-// CARD-SPECIFIC COLOR CLASSES
-// ============================================================
-
-.card-bias-beacon {
-  --page-primary: #4a7ec8;
-  --page-accent: #a2addc;
-}
-
-.card-judiciary {
-  --page-primary: #2d4a7b;
-  --page-accent: #7a9b7f;
-}
-
-.card-prosecutor {
-  --page-primary: #d4af8f;
-  --page-accent: #a87a5c;
-}
-
-.card-law-enforcement {
-  --page-primary: #d97c6a;
-  --page-accent: #5d9b9b;
-}
-
-.card-community-corrections {
-  --page-primary: #7cb8a8;
-  --page-accent: #5d9b9b;
-}
-
-.card-juris-lab {
-  --page-primary: #7a9b7f;
-  --page-accent: #8b6f9f;
-}
-
-// ============================================================
-// FOOTER & STRUCTURAL ELEMENTS
-// ============================================================
-
-.site-footer {
-  background: linear-gradient(135deg, var(--primary-deep) 0%, var(--primary-mid) 100%);
-  color: white;
   
-  a {
-    color: var(--page-accent);
-    text-decoration: none;
-    transition: opacity 0.3s ease;
-    
-    &:hover {
-      opacity: 0.8;
-    }
+  &.badge-danger {
+    background-color: rgba($color-danger, 0.1);
+    color: $color-danger;
   }
 }
 
-// ============================================================
-// ACCESSIBILITY & FOCUS STATES
-// ============================================================
+// === Data Visualization / Bias Scores ===
+.bias-score {
+  &.excellent {
+    color: $bias-excellent;
+    background-color: rgba($bias-excellent, 0.08);
+  }
+  
+  &.low-risk {
+    color: $bias-low-risk;
+    background-color: rgba($bias-low-risk, 0.08);
+  }
+  
+  &.moderate {
+    color: $bias-moderate;
+    background-color: rgba($bias-moderate, 0.08);
+  }
+  
+  &.high-risk {
+    color: $bias-high-risk;
+    background-color: rgba($bias-high-risk, 0.08);
+  }
+  
+  &.critical {
+    color: $bias-critical;
+    background-color: rgba($bias-critical, 0.08);
+  }
+}
 
-a:focus,
-button:focus,
-input:focus,
-select:focus,
-textarea:focus {
-  outline: 2px solid var(--page-primary);
+// === Accessibility & Focus States ===
+*:focus-visible {
+  outline: 2px solid $color-primary;
   outline-offset: 2px;
 }
 
-// ============================================================
-// PRINT STYLES
-// ============================================================
-
+// === Print Styles ===
 @media print {
   body {
-    background: white !important;
-    color: black !important;
+    background-color: $color-white;
+    color: $text-primary;
   }
   
-  .text-shimmer,
-  .text-glow,
-  .text-dynamic {
-    animation: none !important;
-    background: none !important;
-    -webkit-background-clip: unset !important;
-    -webkit-text-fill-color: unset !important;
-    background-clip: unset !important;
-    color: black !important;
-    text-shadow: none !important;
+  a {
+    text-decoration: underline;
   }
 }
