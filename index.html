@@ -8,36 +8,12 @@ wrapper_class: home-wrapper
 
 <section class="archive-hero archive-hero-solo" id="top">
   <div class="hero-cube-field" aria-hidden="true" data-cube-field>
-    <div class="hero-cube hero-cube-a" data-cube>
-      <span class="cube-face cube-top"></span>
-      <span class="cube-face cube-front"></span>
-      <span class="cube-face cube-right"></span>
-    </div>
-    <div class="hero-cube hero-cube-b" data-cube>
-      <span class="cube-face cube-top"></span>
-      <span class="cube-face cube-front"></span>
-      <span class="cube-face cube-right"></span>
-    </div>
-    <div class="hero-cube hero-cube-c" data-cube>
-      <span class="cube-face cube-top"></span>
-      <span class="cube-face cube-front"></span>
-      <span class="cube-face cube-right"></span>
-    </div>
-    <div class="hero-cube hero-cube-d" data-cube>
-      <span class="cube-face cube-top"></span>
-      <span class="cube-face cube-front"></span>
-      <span class="cube-face cube-right"></span>
-    </div>
-    <div class="hero-cube hero-cube-e" data-cube>
-      <span class="cube-face cube-top"></span>
-      <span class="cube-face cube-front"></span>
-      <span class="cube-face cube-right"></span>
-    </div>
-    <div class="hero-cube hero-cube-f" data-cube>
-      <span class="cube-face cube-top"></span>
-      <span class="cube-face cube-front"></span>
-      <span class="cube-face cube-right"></span>
-    </div>
+    <span class="hero-cube hero-cube-a" data-cube></span>
+    <span class="hero-cube hero-cube-b" data-cube></span>
+    <span class="hero-cube hero-cube-c" data-cube></span>
+    <span class="hero-cube hero-cube-d" data-cube></span>
+    <span class="hero-cube hero-cube-e" data-cube></span>
+    <span class="hero-cube hero-cube-f" data-cube></span>
   </div>
   <div class="archive-hero-grid archive-hero-grid-solo">
     <div class="archive-hero-copy archive-hero-copy-solo" data-hero-title-stack>
@@ -45,7 +21,7 @@ wrapper_class: home-wrapper
         <h1 class="archive-title archive-title-solo">
           <img class="hero-title-image hero-title-image-main"
                src="{{ '/assets/images/titles/A-P-T-I-T-U-D-E-3-29-2026 (1).png' | relative_url }}"
-               alt="A.P.T.I.T.U.D.E.">
+               alt="A.P.T.I.T.U.D.E." />
           <span class="visually-hidden">A.P.T.I.T.U.D.E.</span>
         </h1>
       </div>
@@ -74,268 +50,160 @@ wrapper_class: home-wrapper
         <input id="hero-search" name="q" type="search" placeholder="Search judges, counties, offices, agencies, or methodology" />
         <button class="button button-primary" type="submit">Search the Record</button>
       </form>
+
+      <div class="hero-jump-shell hero-jump-shell-solo">
+        <label class="visually-hidden" for="hero-jump">Jump to a site section</label>
+        <select id="hero-jump" class="hero-jump-select" data-hero-jump>
+          <option value="">Jump to a record surface</option>
+          <option value="{{ '/bias-beacon/' | relative_url }}">Bias Beacon</option>
+          <option value="{{ '/bias-beacon/judges/' | relative_url }}">The Judiciary</option>
+          <option value="{{ '/prosecutors.html' | relative_url }}">Prosecutor's Office</option>
+          <option value="{{ '/law-enforcement.html' | relative_url }}">Law Enforcement</option>
+          <option value="{{ '/parole-probation.html' | relative_url }}">Community Corrections</option>
+          <option value="{{ '/bias-beacon/methodology/' | relative_url }}">Methodology</option>
+          <option value="{{ '/bias-beacon/counties/' | relative_url }}">County Data</option>
+        </select>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="home-main-menu" id="main-menu">
-  <div class="main-menu-grid">
-    <div class="main-menu-column" data-menu-col>
-      <a class="main-menu-title" href="{{ '/bias-beacon/judges/' | relative_url }}">
-        <span class="main-menu-title-text">The Judiciary</span>
-        <span class="main-menu-title-sub">Judges &amp; Accountability</span>
-      </a>
-      <div class="main-menu-dropdown" data-menu-dropdown>
-        <a class="main-menu-link" href="{{ '/bias-beacon/judges/' | relative_url }}">Judges</a>
-        <a class="main-menu-link" href="{{ '/bias-beacon/presiding-judges/' | relative_url }}">Presiding Judges</a>
-        <a class="main-menu-link" href="{{ '/bias-beacon/pro-tem-judges/' | relative_url }}">Pro Tem Judges</a>
-        <a class="main-menu-link" href="{{ '/prosecutors.html' | relative_url }}">Prosecutors</a>
-        <a class="main-menu-link" href="{{ '/parole-probation.html' | relative_url }}">Probation</a>
-        <a class="main-menu-link" href="{{ '/law-enforcement.html' | relative_url }}">Law Enforcement</a>
-      </div>
-    </div>
-
-    <div class="main-menu-column" data-menu-col>
-      <a class="main-menu-title" href="{{ '/bias-beacon/dashboard/' | relative_url }}">
-        <span class="main-menu-title-text">Watchtower</span>
-        <span class="main-menu-title-sub">System Intelligence</span>
-      </a>
-      <div class="main-menu-dropdown" data-menu-dropdown>
-        <a class="main-menu-link" href="{{ '/bias-beacon/dashboard/' | relative_url }}">Statewide Dashboard</a>
-        <a class="main-menu-link" href="{{ '/bias-beacon/counties/' | relative_url }}">County Intelligence</a>
-        <a class="main-menu-link" href="{{ '/reports/' | relative_url }}">Budget Analysis</a>
-        <a class="main-menu-link" href="{{ '/investigations/' | relative_url }}">Pattern Explorer</a>
-      </div>
-    </div>
-
-    <div class="main-menu-column" data-menu-col>
-      <a class="main-menu-title" href="{{ '/bias-beacon/methodology/' | relative_url }}">
-        <span class="main-menu-title-text">Juris Lab</span>
-        <span class="main-menu-title-sub">Law &amp; Application</span>
-      </a>
-      <div class="main-menu-dropdown" data-menu-dropdown>
-        <a class="main-menu-link" href="{{ '/bias-beacon/' | relative_url }}">Cases &amp; Law</a>
-        <a class="main-menu-link" href="{{ '/reports/' | relative_url }}">Cases &amp; Filings</a>
-        <a class="main-menu-link" href="{{ '/bias-beacon/methodology/' | relative_url }}">Legal Issues</a>
-        <a class="main-menu-link" href="https://soll.libguides.com/" target="_blank" rel="noreferrer">Library</a>
-      </div>
-    </div>
-
-    <div class="main-menu-column" data-menu-col>
-      <a class="main-menu-title" href="{{ '/workspace/' | relative_url }}">
-        <span class="main-menu-title-text">Sui Generis</span>
-        <span class="main-menu-title-sub">Workspace &amp; Community</span>
-      </a>
-      <div class="main-menu-dropdown" data-menu-dropdown>
-        <a class="main-menu-link" href="{{ '/workspace/' | relative_url }}">My Documents</a>
-        <a class="main-menu-link" href="{{ '/legal-assistant.html' | relative_url }}">AI Assistant</a>
-        <a class="main-menu-link" href="{{ '/workspace/' | relative_url }}#drafting-lab">Drafting Lab</a>
-        <a class="main-menu-link" href="{{ '/community-forum.html' | relative_url }}">Forums</a>
-      </div>
-    </div>
-
-    <div class="main-menu-column" data-menu-col>
-      <a class="main-menu-title" href="{{ '/about/' | relative_url }}">
-        <span class="main-menu-title-text">Contacts &amp; Oversight</span>
-        <span class="main-menu-title-sub">Public Oversight Routes</span>
-      </a>
-      <div class="main-menu-dropdown" data-menu-dropdown>
-        <a class="main-menu-link" href="{{ '/about/' | relative_url }}">Attorney Directory</a>
-        <a class="main-menu-link" href="https://www.oregonlegislature.gov/" target="_blank" rel="noreferrer">Oregon State Legislature</a>
-        <a class="main-menu-link" href="https://www.osbar.org/" target="_blank" rel="noreferrer">Oregon State Bar</a>
-        <a class="main-menu-link" href="https://www.oregon.gov/cjc/Pages/default.aspx" target="_blank" rel="noreferrer">Criminal Justice Commission</a>
-        <a class="main-menu-link" href="https://www.portland.gov/ipr" target="_blank" rel="noreferrer">Oversight Bodies</a>
-      </div>
-    </div>
-
-    <div class="main-menu-column" data-menu-col>
-      <a class="main-menu-title" href="{{ '/bias-beacon/methodology/' | relative_url }}">
-        <span class="main-menu-title-text">Methodology</span>
-        <span class="main-menu-title-sub">Data &amp; Scoring</span>
-      </a>
-      <div class="main-menu-dropdown" data-menu-dropdown>
-        <a class="main-menu-link" href="{{ '/bias-beacon/methodology/' | relative_url }}">Scoring Framework</a>
-        <a class="main-menu-link" href="{{ '/bias-beacon/' | relative_url }}">System View</a>
-        <a class="main-menu-link" href="{{ '/privacy-compliance/' | relative_url }}">Privacy &amp; Compliance</a>
-        <a class="main-menu-link" href="{{ '/about/' | relative_url }}">About A.P.T.I.T.U.D.E.</a>
-      </div>
-    </div>
+<section class="home-section home-section-intro" id="system-view">
+  <div class="section-heading section-heading-centered">
+    <p class="eyebrow">System View</p>
+    <h2>Institutional Accountability Across Oregon's Criminal Justice System</h2>
+    <p class="section-intro-copy">
+      The criminal justice system is not a series of isolated decisions. It's a connected network where behavior becomes data, data becomes pattern, and pattern becomes evidence of systemic accountability.
+    </p>
   </div>
 </section>
 
 <section class="home-section" id="actor-cards">
   <div class="section-heading">
-    <p class="eyebrow">Actor Cards</p>
-    <h2>Summary. Structure. Statistics. Specifics.</h2>
+    <p class="eyebrow">Access the Record</p>
+    <h2>Explore Six Surfaces of Institutional Behavior</h2>
   </div>
 
   <div class="flip-cards-grid actor-card-grid">
-    <article class="flip-card home-actor-card" tabindex="0">
+    <!-- Card 1: Bias Beacon -->
+    <article class="flip-card home-actor-card card-bias-beacon" tabindex="0">
       <div class="flip-card-inner">
-        <div class="flip-card-front" style="--card-accent: #8eb1ff;">
+        <div class="flip-card-front" style="--card-accent: #a2addc; background: linear-gradient(135deg, rgba(162, 173, 220, 0.15) 0%, rgba(193, 119, 149, 0.1) 100%), linear-gradient(145deg, rgba(25, 40, 60, 0.95), rgba(15, 25, 40, 0.98));">
           <div class="card-front-content">
-            <h3 class="judge-name-display">The Judiciary</h3>
-            <p class="home-card-front-caption">Summary, structure, statistics, and specifics from the bench.</p>
+            <img class="card-title-image" src="{{ '/assets/images/titles/Bias Beacon Title.png' | relative_url }}" alt="Bias Beacon" />
+            <p class="home-card-front-caption">Systematic patterns in judicial decision-making across Oregon's judiciary.</p>
           </div>
         </div>
         <div class="flip-card-back">
-          <div class="card-back-header"><h3>Why Judiciary</h3></div>
+          <div class="card-back-header"><h3>Bias Beacon</h3></div>
           <div class="card-back-content">
             <div class="flip-metric-group">
-              <h4>What this surface holds</h4>
-              <div class="metric-grid-mini">
-                <div class="metric-mini"><span class="metric-label">Summary</span><span class="metric-value">Who is deciding and where</span></div>
-                <div class="metric-mini"><span class="metric-label">Structure</span><span class="metric-value">Court role, tenure, docket, county</span></div>
-                <div class="metric-mini"><span class="metric-label">Statistics</span><span class="metric-value">Score, reversals, disparity signals</span></div>
-                <div class="metric-mini"><span class="metric-label">Specifics</span><span class="metric-value">Flags worth opening into the full profile</span></div>
-              </div>
+              <h4>Explore judicial patterns</h4>
+              <p>Bias Beacon reveals sentencing disparities, reversal rates, and demographic patterns across Oregon's 36 counties and all sitting judges.</p>
             </div>
           </div>
           <div class="card-back-actions">
-            <a class="btn btn-primary" href="{{ '/bias-beacon/judges/' | relative_url }}">View Full Record</a>
+            <a class="btn btn-primary" href="{{ '/bias-beacon/' | relative_url }}">View Bias Beacon</a>
           </div>
         </div>
       </div>
     </article>
 
-    <article class="flip-card home-actor-card" tabindex="0">
+    <!-- Card 2: The Judiciary -->
+    <article class="flip-card home-actor-card card-judiciary" tabindex="0">
       <div class="flip-card-inner">
-        <div class="flip-card-front" style="--card-accent: #dcccb4;">
+        <div class="flip-card-front" style="--card-accent: #8eb1ff; background: linear-gradient(135deg, rgba(142, 177, 255, 0.15) 0%, rgba(162, 173, 220, 0.1) 100%), linear-gradient(145deg, rgba(25, 40, 60, 0.95), rgba(15, 25, 40, 0.98));">
           <div class="card-front-content">
-            <h3 class="judge-name-display">Prosecutor's Office</h3>
-            <p class="home-card-front-caption">Pressure, leverage, and disposition choices by county office.</p>
+            <img class="card-title-image" src="{{ '/assets/images/titles/The judiciary Title.png' | relative_url }}" alt="The Judiciary" />
+            <p class="home-card-front-caption">Who is deciding and where decisions are made in Oregon's courts.</p>
           </div>
         </div>
         <div class="flip-card-back">
-          <div class="card-back-header"><h3>Why Prosecutor's Office</h3></div>
+          <div class="card-back-header"><h3>The Judiciary</h3></div>
           <div class="card-back-content">
             <div class="flip-metric-group">
-              <h4>What this surface holds</h4>
-              <div class="metric-grid-mini">
-                <div class="metric-mini"><span class="metric-label">Summary</span><span class="metric-value">County office posture at a glance</span></div>
-                <div class="metric-mini"><span class="metric-label">Structure</span><span class="metric-value">Office profile, county, comparison set</span></div>
-                <div class="metric-mini"><span class="metric-label">Statistics</span><span class="metric-value">Charging pressure, plea leverage, dismissal drift</span></div>
-                <div class="metric-mini"><span class="metric-label">Specifics</span><span class="metric-value">Patterns that sharpen or narrow pipeline pressure</span></div>
-              </div>
+              <h4>Judge profiles and statistics</h4>
+              <p>View detailed profiles of Oregon's sitting circuit court judges, including sentencing patterns, reversals, and comparative data across courts and counties.</p>
             </div>
           </div>
           <div class="card-back-actions">
-            <a class="btn btn-primary" href="{{ '/prosecutors.html' | relative_url }}">View Full Record</a>
+            <a class="btn btn-primary" href="{{ '/bias-beacon/judges/' | relative_url }}">View Judges</a>
           </div>
         </div>
       </div>
     </article>
 
-    <article class="flip-card home-actor-card" tabindex="0">
+    <!-- Card 3: Prosecutor's Office -->
+    <article class="flip-card home-actor-card card-prosecutor" tabindex="0">
       <div class="flip-card-inner">
-        <div class="flip-card-front" style="--card-accent: #8fa8d8;">
+        <div class="flip-card-front" style="--card-accent: #dcccb4; background: linear-gradient(135deg, rgba(220, 204, 180, 0.15) 0%, rgba(193, 119, 149, 0.1) 100%), linear-gradient(145deg, rgba(25, 40, 60, 0.95), rgba(15, 25, 40, 0.98));">
           <div class="card-front-content">
-            <h3 class="judge-name-display">Community Supervision</h3>
-            <p class="home-card-front-caption">How monitoring, support, and return pressure shape the pipeline.</p>
+            <img class="card-title-image" src="{{ '/assets/images/titles/PROSECUTOR TITLE.png' | relative_url }}" alt="Prosecutor's Office" />
+            <p class="home-card-front-caption">Charging decisions, charging pressure, and county office posture.</p>
           </div>
         </div>
         <div class="flip-card-back">
-          <div class="card-back-header"><h3>Why Community Supervision</h3></div>
+          <div class="card-back-header"><h3>Prosecutor's Office</h3></div>
           <div class="card-back-content">
             <div class="flip-metric-group">
-              <h4>What this surface holds</h4>
-              <div class="metric-grid-mini">
-                <div class="metric-mini"><span class="metric-label">Summary</span><span class="metric-value">How heavily each county leans on supervision</span></div>
-                <div class="metric-mini"><span class="metric-label">Structure</span><span class="metric-value">County network, capacity, supervision load</span></div>
-                <div class="metric-mini"><span class="metric-label">Statistics</span><span class="metric-value">Revocation pressure, support capacity, intensity</span></div>
-                <div class="metric-mini"><span class="metric-label">Specifics</span><span class="metric-value">Where people are most at risk of being pulled back in</span></div>
-              </div>
+              <h4>County prosecutor analysis</h4>
+              <p>County-by-county analysis of charging patterns, plea leverage, charge modulation, and office-level disposition choices.</p>
             </div>
           </div>
           <div class="card-back-actions">
-            <a class="btn btn-primary" href="{{ '/parole-probation.html' | relative_url }}">View Full Record</a>
+            <a class="btn btn-primary" href="{{ '/prosecutors.html' | relative_url }}">View Prosecutors</a>
           </div>
         </div>
       </div>
     </article>
 
-    <article class="flip-card home-actor-card" tabindex="0">
+    <!-- Card 4: Law Enforcement -->
+    <article class="flip-card home-actor-card card-law-enforcement" tabindex="0">
       <div class="flip-card-inner">
-        <div class="flip-card-front" style="--card-accent: #83a6ef;">
+        <div class="flip-card-front" style="--card-accent: #83a6ef; background: linear-gradient(135deg, rgba(131, 166, 239, 0.15) 0%, rgba(162, 173, 220, 0.1) 100%), linear-gradient(145deg, rgba(25, 40, 60, 0.95), rgba(15, 25, 40, 0.98));">
           <div class="card-front-content">
             <h3 class="judge-name-display">Law Enforcement</h3>
-            <p class="home-card-front-caption">Where the intake side of the system first becomes visible.</p>
+            <p class="home-card-front-caption">Where the intake side of the system first becomes visible through stops, searches, and arrests.</p>
           </div>
         </div>
         <div class="flip-card-back">
-          <div class="card-back-header"><h3>Why Law Enforcement</h3></div>
+          <div class="card-back-header"><h3>Law Enforcement</h3></div>
           <div class="card-back-content">
             <div class="flip-metric-group">
-              <h4>What this surface holds</h4>
-              <div class="metric-grid-mini">
-                <div class="metric-mini"><span class="metric-label">Summary</span><span class="metric-value">Who enters the pipeline and where</span></div>
-                <div class="metric-mini"><span class="metric-label">Structure</span><span class="metric-value">County agency view, intake pressure, peer context</span></div>
-                <div class="metric-mini"><span class="metric-label">Statistics</span><span class="metric-value">Stops, searches, arrests, intake variance</span></div>
-                <div class="metric-mini"><span class="metric-label">Specifics</span><span class="metric-value">Signals that deserve comparison against later outcomes</span></div>
-              </div>
+              <h4>Police activity patterns</h4>
+              <p>Police stops, searches, and arrest patterns by county and agency, showing how the intake stage shapes downstream criminal justice outcomes.</p>
             </div>
           </div>
           <div class="card-back-actions">
-            <a class="btn btn-primary" href="{{ '/law-enforcement.html' | relative_url }}">View Full Record</a>
+            <a class="btn btn-primary" href="{{ '/law-enforcement.html' | relative_url }}">View Law Enforcement</a>
           </div>
         </div>
       </div>
     </article>
 
-    <article class="flip-card home-actor-card" tabindex="0">
+    <!-- Card 5: Community Corrections -->
+    <article class="flip-card home-actor-card card-community-corrections" tabindex="0">
       <div class="flip-card-inner">
-        <div class="flip-card-front" style="--card-accent: #9ebaf5;">
+        <div class="flip-card-front" style="--card-accent: #8fa8d8; background: linear-gradient(135deg, rgba(143, 168, 216, 0.15) 0%, rgba(162, 173, 220, 0.1) 100%), linear-gradient(145deg, rgba(25, 40, 60, 0.95), rgba(15, 25, 40, 0.98));">
           <div class="card-front-content">
-            <h3 class="judge-name-display">Cases &amp; Filings</h3>
-            <p class="home-card-front-caption">The source material underneath every larger institutional signal.</p>
+            <img class="card-title-image" src="{{ '/assets/images/titles/Community Supervision Title.png' | relative_url }}" alt="Community Corrections" />
+            <p class="home-card-front-caption">How supervision decisions shape re-entry and the risk of system reentry.</p>
           </div>
         </div>
         <div class="flip-card-back">
-          <div class="card-back-header"><h3>Why Cases &amp; Filings</h3></div>
+          <div class="card-back-header"><h3>Community Corrections</h3></div>
           <div class="card-back-content">
             <div class="flip-metric-group">
-              <h4>What this surface holds</h4>
-              <div class="metric-grid-mini">
-                <div class="metric-mini"><span class="metric-label">Summary</span><span class="metric-value">The underlying matter behind the signal</span></div>
-                <div class="metric-mini"><span class="metric-label">Structure</span><span class="metric-value">Dates, filings, rulings, procedural sequence</span></div>
-                <div class="metric-mini"><span class="metric-label">Statistics</span><span class="metric-value">How often issues recur across the archive</span></div>
-                <div class="metric-mini"><span class="metric-label">Specifics</span><span class="metric-value">The source material for closer review</span></div>
-              </div>
+              <h4>Supervision and reentry</h4>
+              <p>How monitoring, support, residential restrictions, and revocation decisions shape re-entry outcomes across Oregon's counties.</p>
             </div>
           </div>
           <div class="card-back-actions">
-            <a class="btn btn-primary" href="{{ '/reports/' | relative_url }}">View Full Record</a>
+            <a class="btn btn-primary" href="{{ '/parole-probation.html' | relative_url }}">View Community Corrections</a>
           </div>
         </div>
       </div>
     </article>
 
-    <article class="flip-card home-actor-card" tabindex="0">
-      <div class="flip-card-inner">
-        <div class="flip-card-front" style="--card-accent: #b0c5ff;">
-          <div class="card-front-content">
-            <h3 class="judge-name-display">Statewide Watchtower</h3>
-            <p class="home-card-front-caption">The statewide read of concentration, drift, and outlier pressure.</p>
-          </div>
-        </div>
-        <div class="flip-card-back">
-          <div class="card-back-header"><h3>Why Statewide Watchtower</h3></div>
-          <div class="card-back-content">
-            <div class="flip-metric-group">
-              <h4>What this surface holds</h4>
-              <div class="metric-grid-mini">
-                <div class="metric-mini"><span class="metric-label">Summary</span><span class="metric-value">Statewide drift and county concentration</span></div>
-                <div class="metric-mini"><span class="metric-label">Structure</span><span class="metric-value">Counties, timelines, comparative layers</span></div>
-                <div class="metric-mini"><span class="metric-label">Statistics</span><span class="metric-value">Ranking shifts, score ranges, distribution</span></div>
-                <div class="metric-mini"><span class="metric-label">Specifics</span><span class="metric-value">Where to open the archive next</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="card-back-actions">
-            <a class="btn btn-primary" href="{{ '/bias-beacon/dashboard/' | relative_url }}">View Full Record</a>
-          </div>
-        </div>
-      </div>
-    </article>
   </div>
 </section>
