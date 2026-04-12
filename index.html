@@ -20,14 +20,14 @@ body_class: page-bias-beacon
       <div class="hero-title-stack">
         <h1 class="archive-title archive-title-solo">
           <img class="hero-title-image hero-title-image-main text-dynamic"
-               src="{{ '/assets/images/titles/A-P-T-I-T-U-D-E-3-29-2026 (1).png' | relative_url }}"
-               alt="A.P.T.I.T.U.D.E.">
+            src="{{ 'assets/images/titles/NEW ASSETS/MAIN TITLE ASSET.png' | relative_url }}" alt="A.P.T.I.T.U.D.E.">
           <span class="visually-hidden">A.P.T.I.T.U.D.E.</span>
         </h1>
       </div>
 
       <div class="archive-hero-manifesto archive-hero-manifesto-solo">
-        <p class="archive-acronym archive-acronym-expanded archive-acronym-fade archive-acronym-fade-delayed text-shimmer" aria-label="APTITUDE acronym expansion">
+        <p class="archive-acronym archive-acronym-expanded archive-acronym-fade archive-acronym-fade-delayed text-shimmer"
+          aria-label="APTITUDE acronym expansion">
           <span class="archive-acronym-word"><span class="archive-acronym-mark">A</span>dvanced</span>
           <span class="archive-acronym-word"><span class="archive-acronym-mark">P</span>latform</span>
           <span class="archive-acronym-word"><span class="archive-acronym-mark">T</span>abulating</span>
@@ -37,7 +37,8 @@ body_class: page-bias-beacon
           <span class="archive-acronym-word"><span class="archive-acronym-mark">D</span>isparity</span>
           <span class="archive-acronym-word"><span class="archive-acronym-mark">E</span>pidemics</span>
         </p>
-        <div class="spine-sequence spine-sequence-hero spine-sequence-floating text-dynamic" aria-label="Evidence spine sequence">
+        <div class="spine-sequence spine-sequence-hero spine-sequence-floating text-dynamic"
+          aria-label="Evidence spine sequence">
           <span>Behavior becomes data.</span>
           <span>Data becomes pattern.</span>
           <span>Pattern becomes evidence.</span>
@@ -45,9 +46,11 @@ body_class: page-bias-beacon
         </div>
       </div>
 
-      <form class="hero-search-form hero-search-form-long hero-search-form-primary hero-search-form-solo" action="{{ '/bias-beacon/judges/' | relative_url }}" method="get">
+      <form class="hero-search-form hero-search-form-long hero-search-form-primary hero-search-form-solo"
+        action="{{ '/bias-beacon/judges/' | relative_url }}" method="get">
         <label class="visually-hidden" for="hero-search">Search Oregon records</label>
-        <input id="hero-search" name="q" type="search" placeholder="Search judges, counties, offices, agencies, or methodology" />
+        <input id="hero-search" name="q" type="search"
+          placeholder="Search judges, counties, offices, agencies, or methodology" />
         <button class="button button-primary" type="submit">Search the Record</button>
       </form>
 
@@ -74,7 +77,8 @@ body_class: page-bias-beacon
     <h2 class="text-shimmer">Where the record starts to relate to itself.</h2>
     <p class="section-intro-copy text-dynamic">
       Stops, arrests, charging, reversals, and supervision outcomes live here as connected institutional behavior.
-      The purpose is not to lead the evidence. The purpose is to hold the surfaces together long enough for the pattern to speak.
+      The purpose is not to lead the evidence. The purpose is to hold the surfaces together long enough for the pattern
+      to speak.
     </p>
   </div>
 </section>
@@ -92,17 +96,21 @@ body_class: page-bias-beacon
         <div class="flip-card-front">
           <div class="card-front-content">
             {% if site.data.bias-beacon.judges-directory.metadata.title_image %}
-              <img class="card-title-image" src="{{ site.data.bias-beacon.judges-directory.metadata.title_image | relative_url }}" alt="Bias Beacon">
+            <img class="card-title-image"
+              src="{{ site.data.bias-beacon.judges-directory.metadata.title_image | relative_url }}" alt="Bias Beacon">
             {% else %}
-              <h3 class="judge-name-display">Bias Beacon</h3>
+            <h3 class="judge-name-display">Bias Beacon</h3>
             {% endif %}
             <p class="home-card-front-caption">Judicial bias patterns across Oregon's courts and counties.</p>
           </div>
         </div>
         <div class="flip-card-back">
-          <div class="card-back-header"><h3>Bias Beacon</h3></div>
+          <div class="card-back-header">
+            <h3>Bias Beacon</h3>
+          </div>
           <div class="card-back-content">
-            <p>Analyze patterns in judicial decision-making, sentence disparities, and demographic factors influencing outcomes.</p>
+            <p>Analyze patterns in judicial decision-making, sentence disparities, and demographic factors influencing
+              outcomes.</p>
             <div class="flip-metric-group">
               <h4>What this surface holds</h4>
               <ul class="metric-list">
@@ -130,7 +138,9 @@ body_class: page-bias-beacon
           </div>
         </div>
         <div class="flip-card-back">
-          <div class="card-back-header"><h3>The Judiciary</h3></div>
+          <div class="card-back-header">
+            <h3>The Judiciary</h3>
+          </div>
           <div class="card-back-content">
             <p>Oregon's circuit court judges, appellate justices, and administrative structures that shape outcomes.</p>
             <div class="flip-metric-group">
@@ -160,7 +170,9 @@ body_class: page-bias-beacon
           </div>
         </div>
         <div class="flip-card-back">
-          <div class="card-back-header"><h3>Prosecutor's Office</h3></div>
+          <div class="card-back-header">
+            <h3>Prosecutor's Office</h3>
+          </div>
           <div class="card-back-content">
             <p>Prosecutorial charging decisions, case outcomes, and county-level prosecution patterns.</p>
             <div class="flip-metric-group">
@@ -190,7 +202,9 @@ body_class: page-bias-beacon
           </div>
         </div>
         <div class="flip-card-back">
-          <div class="card-back-header"><h3>Law Enforcement</h3></div>
+          <div class="card-back-header">
+            <h3>Law Enforcement</h3>
+          </div>
           <div class="card-back-content">
             <p>Police activity, stop patterns, search rates, and the initial contact points in the criminal system.</p>
             <div class="flip-metric-group">
@@ -220,7 +234,9 @@ body_class: page-bias-beacon
           </div>
         </div>
         <div class="flip-card-back">
-          <div class="card-back-header"><h3>Community Supervision</h3></div>
+          <div class="card-back-header">
+            <h3>Community Supervision</h3>
+          </div>
           <div class="card-back-content">
             <p>Supervision outcomes, revocation patterns, and the back-end trajectory of system involvement.</p>
             <div class="flip-metric-group">
@@ -250,7 +266,9 @@ body_class: page-bias-beacon
           </div>
         </div>
         <div class="flip-card-back">
-          <div class="card-back-header"><h3>Juris Lab</h3></div>
+          <div class="card-back-header">
+            <h3>Juris Lab</h3>
+          </div>
           <div class="card-back-content">
             <p>Research tools, analysis frameworks, and emerging methodologies for understanding system behavior.</p>
             <div class="flip-metric-group">
