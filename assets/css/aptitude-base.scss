@@ -1,0 +1,549 @@
+// ===========================
+// Modern Typography & Base Styles
+// Nike/Nordstrom Quality
+// ===========================
+
+// === TYPOGRAPHY STACK ===
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+$font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+$font-family-display: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; // All sans-serif now
+
+$line-height-base: 1.6;
+$line-height-heading: 1.2;
+$line-height-tight: 1.4;
+
+$font-size-base: 16px;
+$font-size-small: 14px;
+$font-size-xs: 12px;
+$font-size-lg: 18px;
+$font-size-xl: 20px;
+$font-size-2xl: 24px;
+$font-size-3xl: 30px;
+$font-size-4xl: 36px;
+$font-size-5xl: 44px;
+$font-size-6xl: 52px;
+
+// ===========================
+// GLOBAL STYLES
+// ===========================
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: #2B2B2B;
+  background-color: #FFFFFF;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #FFFFFF;
+  color: #2B2B2B;
+  font-family: $font-family-base;
+  font-weight: 400;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  -webkit-font-feature-settings: 'kern' 1;
+  font-feature-settings: 'kern' 1;
+  text-rendering: optimizeLegibility;
+}
+
+// ===========================
+// TYPOGRAPHY ELEMENTS
+// ===========================
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-display;
+  font-weight: 600;
+  line-height: $line-height-heading;
+  letter-spacing: -0.5px;
+  margin: 1.5rem 0 0.75rem 0;
+  color: #0F3460;
+  
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+h1 {
+  font-size: $font-size-6xl;
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  
+  @media (max-width: 768px) {
+    font-size: $font-size-4xl;
+  }
+}
+
+h2 {
+  font-size: $font-size-4xl;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  
+  @media (max-width: 768px) {
+    font-size: $font-size-3xl;
+  }
+}
+
+h3 {
+  font-size: $font-size-3xl;
+  font-weight: 600;
+  
+  @media (max-width: 768px) {
+    font-size: $font-size-2xl;
+  }
+}
+
+h4 {
+  font-size: $font-size-2xl;
+  font-weight: 600;
+}
+
+h5 {
+  font-size: $font-size-xl;
+  font-weight: 600;
+}
+
+h6 {
+  font-size: $font-size-lg;
+  font-weight: 600;
+}
+
+p {
+  margin: 0 0 1rem 0;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: #4A4A4A;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Strong text
+strong, b {
+  font-weight: 600;
+  color: #2B2B2B;
+}
+
+// Emphasized text
+em, i {
+  font-style: italic;
+  color: #4A4A4A;
+}
+
+// ===========================
+// LINKS & INTERACTIVE
+// ===========================
+
+a {
+  color: #0F3460;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  
+  &:hover {
+    color: #1A5490;
+    text-decoration: underline;
+  }
+  
+  &:visited {
+    color: #6B4A8E;
+  }
+  
+  &:focus {
+    outline: 2px solid #0F3460;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+  
+  &:active {
+    color: #0F3460;
+  }
+}
+
+// ===========================
+// LISTS
+// ===========================
+
+ul, ol {
+  margin: 1rem 0;
+  padding-left: 1.75rem;
+  
+  li {
+    margin: 0.5rem 0;
+    line-height: $line-height-base;
+  }
+}
+
+ul li {
+  list-style-type: disc;
+}
+
+ol li {
+  list-style-type: decimal;
+}
+
+dl {
+  margin: 1rem 0;
+}
+
+dt {
+  font-weight: 600;
+  color: #0F3460;
+  margin-top: 0.75rem;
+  
+  &:first-of-type {
+    margin-top: 0;
+  }
+}
+
+dd {
+  margin: 0 0 0.75rem 1.5rem;
+  color: #4A4A4A;
+}
+
+// ===========================
+// CODE & PREFORMATTED
+// ===========================
+
+code, kbd, samp {
+  font-family: 'Monaco', 'Courier New', monospace;
+  font-size: 0.9em;
+  background-color: #F9F9F9;
+  border: 1px solid #D4D4D4;
+  border-radius: 3px;
+  padding: 0.2em 0.4em;
+  color: #9B2F2F;
+}
+
+pre {
+  background-color: #F9F9F9;
+  border: 1px solid #D4D4D4;
+  border-radius: 6px;
+  padding: 1.25rem;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 1.5rem 0;
+  
+  code {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    color: #2B2B2B;
+  }
+}
+
+// ===========================
+// BLOCKQUOTES
+// ===========================
+
+blockquote {
+  margin: 1.5rem 0;
+  padding: 1rem 1.5rem;
+  border-left: 4px solid #0F3460;
+  background-color: #F9F9F9;
+  color: #4A4A4A;
+  font-style: italic;
+  line-height: $line-height-base;
+  
+  p {
+    margin: 0.5rem 0;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  cite {
+    display: block;
+    margin-top: 0.75rem;
+    font-style: normal;
+    font-size: $font-size-small;
+    color: #6B7F8F;
+    
+    &:before {
+      content: '— ';
+    }
+  }
+}
+
+// ===========================
+// TABLES
+// ===========================
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  border: 1px solid #D4D4D4;
+}
+
+thead {
+  background-color: #F0F0F0;
+}
+
+th, td {
+  padding: 0.75rem;
+  text-align: left;
+  border: 1px solid #D4D4D4;
+}
+
+th {
+  font-weight: 600;
+  color: #0F3460;
+  background-color: #F0F0F0;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #F9F9F9;
+}
+
+tbody tr:hover {
+  background-color: #F0F0F0;
+}
+
+// ===========================
+// BUTTONS
+// ===========================
+
+button, [role="button"], .btn {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  padding: 0.75rem 1.75rem;
+  border-radius: 6px;
+  border: 2px solid;
+  cursor: pointer;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  user-select: none;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(15, 52, 96, 0.1);
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+.btn-primary {
+  background-color: #0F3460;
+  color: #FFFFFF;
+  border-color: #0F3460;
+  
+  &:hover {
+    background-color: #1A5490;
+    border-color: #1A5490;
+  }
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #0F3460;
+  border-color: #0F3460;
+  
+  &:hover {
+    background-color: rgba(15, 52, 96, 0.08);
+  }
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: #0F3460;
+  border-color: #D4D4D4;
+  
+  &:hover {
+    background-color: #F9F9F9;
+    border-color: #0F3460;
+  }
+}
+
+// ===========================
+// FORM ELEMENTS
+// ===========================
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #0F3460;
+  font-size: $font-size-small;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="url"],
+input[type="tel"],
+input[type="date"],
+input[type="time"],
+input[type="number"],
+textarea,
+select {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  width: 100%;
+  max-width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #D4D4D4;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  color: #2B2B2B;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+  &::placeholder {
+    color: #8E8E8E;
+  }
+  
+  &:focus {
+    outline: none;
+    border-color: #0F3460;
+    box-shadow: 0 0 0 3px rgba(15, 52, 96, 0.1);
+  }
+  
+  &:disabled {
+    background-color: #F0F0F0;
+    color: #8E8E8E;
+    cursor: not-allowed;
+  }
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+// ===========================
+// LAYOUT COMPONENTS
+// ===========================
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  box-sizing: border-box;
+  
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -1rem;
+  
+  > * {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+}
+
+.spacer {
+  margin: 2rem 0;
+  
+  &.spacer-sm {
+    margin: 1rem 0;
+  }
+  
+  &.spacer-lg {
+    margin: 4rem 0;
+  }
+}
+
+// ===========================
+// UTILITY CLASSES
+// ===========================
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-muted {
+  color: #8E8E8E;
+}
+
+.text-primary {
+  color: #0F3460;
+}
+
+.text-secondary {
+  color: #4A4A4A;
+}
+
+.font-weight-bold {
+  font-weight: 700;
+}
+
+.font-weight-semibold {
+  font-weight: 600;
+}
+
+.font-weight-normal {
+  font-weight: 400;
+}
+
+.font-weight-light {
+  font-weight: 300;
+}
+
+// ===========================
+// PRINT STYLES
+// ===========================
+
+@media print {
+  body {
+    background-color: #FFFFFF;
+    color: #000000;
+  }
+  
+  a {
+    text-decoration: underline;
+  }
+  
+  button, input, select, textarea {
+    border: 1px solid #000000;
+  }
+}

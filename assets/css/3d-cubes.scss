@@ -1,0 +1,141 @@
+/* ==========================================================================
+   ENHANCED 3D CUBE BACKGROUND ELEMENTS
+   Large, floating, depth-layered cubes for visual interest
+   ========================================================================== */
+
+@keyframes float-cube-far {
+  0%, 100% {
+    transform: translate(0, 0) rotateX(45deg) rotateY(45deg) scale(0.3);
+    opacity: 0.15;
+  }
+  50% {
+    transform: translate(40px, -30px) rotateX(45deg) rotateY(45deg) scale(0.3);
+    opacity: 0.2;
+  }
+}
+
+@keyframes float-cube-mid {
+  0%, 100% {
+    transform: translate(0, 0) rotateX(35deg) rotateY(55deg) scale(0.5);
+    opacity: 0.25;
+  }
+  50% {
+    transform: translate(-50px, 40px) rotateX(35deg) rotateY(55deg) scale(0.5);
+    opacity: 0.35;
+  }
+}
+
+@keyframes float-cube-near {
+  0%, 100% {
+    transform: translate(0, 0) rotateX(20deg) rotateY(30deg) scale(0.8);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translate(60px, -50px) rotateX(20deg) rotateY(30deg) scale(0.8);
+    opacity: 0.45;
+  }
+}
+
+.hero-cube-field {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  perspective: 1200px;
+}
+
+.hero-cube {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border: 2px solid;
+  border-color: rgba(74, 126, 200, 0.2);
+  background: transparent;
+  transform-style: preserve-3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Cube faces for 3D effect */
+.hero-cube::before,
+.hero-cube::after {
+  content: '';
+  position: absolute;
+  border: 1px solid rgba(74, 126, 200, 0.15);
+}
+
+.hero-cube-a {
+  top: 10%;
+  left: 5%;
+  border-color: rgba(74, 126, 200, 0.15);
+  animation: float-cube-far 8s ease-in-out infinite;
+}
+
+.hero-cube-b {
+  top: 50%;
+  right: 10%;
+  border-color: rgba(162, 173, 220, 0.15);
+  animation: float-cube-mid 10s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.hero-cube-c {
+  bottom: 20%;
+  left: 15%;
+  border-color: rgba(193, 119, 149, 0.15);
+  animation: float-cube-near 12s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+.hero-cube-d {
+  top: 30%;
+  right: 25%;
+  border-color: rgba(122, 155, 127, 0.15);
+  width: 150px;
+  height: 150px;
+  animation: float-cube-far 9s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.hero-cube-e {
+  bottom: 40%;
+  right: 5%;
+  border-color: rgba(212, 175, 143, 0.15);
+  width: 250px;
+  height: 250px;
+  animation: float-cube-mid 11s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+
+.hero-cube-f {
+  top: 15%;
+  left: 50%;
+  border-color: rgba(217, 124, 106, 0.15);
+  width: 120px;
+  height: 120px;
+  animation: float-cube-near 13s ease-in-out infinite;
+  animation-delay: 2.5s;
+}
+
+/* Responsive cube sizing */
+@media (max-width: 768px) {
+  .hero-cube {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .hero-cube-d {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .hero-cube-e {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .hero-cube-f {
+    width: 80px;
+    height: 80px;
+  }
+}

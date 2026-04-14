@@ -59,6 +59,9 @@ collections:
   investigations:
     output: true
     permalink: /:collection/:name/
+  judges:
+    output: true
+    permalink: /bias-beacon/judges/:slug/
 include:
   - admin
   - _headers
