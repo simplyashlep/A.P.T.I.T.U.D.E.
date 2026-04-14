@@ -1,1028 +1,273 @@
----
+﻿---
 layout: default
 title: A.P.T.I.T.U.D.E. | Advanced Platform Tabulating Institutional Trends Unmasking Disparity Epidemics
 permalink: /
 body_class: home-page
 ---
 
-<!-- Sticky Header with APTITUDE Logo -->
-<header class="sticky-header">
-  <div class="header-content">
-    <div class="aptitude-logo">
-      <div class="aptitude-title-text">A.P.T.I.T.U.D.E.</div>
-    </div>
-    <nav class="hamburger-menu">
-      <input type="checkbox" id="nav-trigger" class="nav-trigger" />
-      <label for="nav-trigger" class="hamburger-label">
-        <span class="hamburger-icon">
-          <span></span>
-          <span></span>
-          <span></span>
-        </span>
-      </label>
-      <div class="nav-menu">
-        <a href="#bias-beacon">Bias Beacon</a>
-        <a href="#judiciary">The Judiciary</a>
-        <a href="#prosecutors">Prosecutors Office</a>
-        <a href="#law-enforcement">Law Enforcement</a>
-        <a href="#community-supervision">Community Supervision</a>
-        <a href="#juris-lab">Juris Lab</a>
-      </div>
-    </nav>
-  </div>
-</header>
-<div class="archive-hero-copy archive-hero-copy-solo" data-hero-title-stack>
-  <div class="hero-title-stack">
-    <h1 class="archive-title archive-title-solo">
-      <img class="hero-title-image hero-title-image-main text-dynamic"
-        src="{{ 'assets/images/titles/NEW ASSETS/MAIN TITLE ASSET.png' | relative_url }}" alt="A.P.T.I.T.U.D.E.">
-      <span class="visually-hidden">A.P.T.I.T.U.D.E.</span>
-    </h1>
-  </div>
-
-  <div class="archive-hero-manifesto archive-hero-manifesto-solo">
-    <p class="archive-acronym archive-acronym-expanded archive-acronym-fade archive-acronym-fade-delayed text-shimmer"
-      aria-label="APTITUDE acronym expansion">
-      <span class="archive-acronym-word"><span class="archive-acronym-mark">A</span>dvanced</span>
-      <span class="archive-acronym-word"><span class="archive-acronym-mark">P</span>latform</span>
-      <span class="archive-acronym-word"><span class="archive-acronym-mark">T</span>abulating</span>
-      <span class="archive-acronym-word"><span class="archive-acronym-mark">I</span>nstitutional</span>
-      <span class="archive-acronym-word"><span class="archive-acronym-mark">T</span>rends</span>
-      <span class="archive-acronym-word"><span class="archive-acronym-mark">U</span>nmasking</span>
-      <span class="archive-acronym-word"><span class="archive-acronym-mark">D</span>isparity</span>
-      <span class="archive-acronym-word"><span class="archive-acronym-mark">E</span>pidemics</span>
-    </p>
-    <div class="spine-sequence spine-sequence-hero spine-sequence-floating text-dynamic"
-      aria-label="Evidence spine sequence">
-      <span>Behavior becomes data.</span>
-      <span>Data becomes pattern.</span>
-      <span>Pattern becomes evidence.</span>
-      <span>Evidence becomes accountability.</span>
-    </div>
-  </div>
-
-  <form class="hero-search-form hero-search-form-long hero-search-form-primary hero-search-form-solo"
-    action="{{ '/bias-beacon/judges/' | relative_url }}" method="get">
-    <label class="visually-hidden" for="hero-search">Search Oregon records</label>
-    <input id="hero-search" name="q" type="search"
-      placeholder="Search judges, counties, offices, agencies, or methodology" />
-    <button class="button button-primary" type="submit">Search the Record</button>
-  </form>
-
-  <div class="hero-jump-shell hero-jump-shell-solo">
-    <label class="visually-hidden" for="hero-jump">Jump to a site section</label>
-    <select id="hero-jump" class="hero-jump-select" data-hero-jump>
-      <option value="">Jump to a record surface</option>
-      <option value="{{ '/bias-beacon/' | relative_url }}">System View</option>
-      <option value="{{ '/bias-beacon/judges/' | relative_url }}">Judiciary</option>
-      <option value="{{ '/prosecutors.html' | relative_url }}">Prosecutor's Office</option>
-      <option value="{{ '/law-enforcement.html' | relative_url }}">Law Enforcement</option>
-      <option value="{{ '/parole-probation.html' | relative_url }}">Community Supervision</option>
-      <option value="{{ '/bias-beacon/methodology/' | relative_url }}">Methodology</option>
-      <option value="{{ '/bias-beacon/counties/' | relative_url }}">County Data</option>
-    </select>
-  </div>
-  =======
-  <!-- Hero Section with Search -->
-  <section class="hero-section">
-    <div class="hero-background">
-      <div class="hero-content">
-        <!-- Long Search Bar -->
-        <div class="search-container">
-          <form class="main-search-form" action="/search" method="get">
-            <div class="search-input-wrapper">
-              <input type="text" name="q" placeholder="Search judges, cases, counties, agencies..."
-                class="main-search-input">
-              <button type="submit" class="search-submit-btn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <path d="m21 21-4.35-4.35"></path>
-                </svg>
-              </button>
-            </div>
-            <!-- Filter Options -->
-            <div class="search-filters">
-              <div class="filter-group">
-                <label class="filter-label">Filter by:</label>
-                <select name="category" class="filter-select">
-                  <option value="">All Categories</option>
-                  <option value="judges">Judges</option>
-                  <option value="cases">Cases</option>
-                  <option value="counties">Counties</option>
-                  <option value="agencies">Agencies</option>
-                </select>
-              </div>
-              <div class="filter-group">
-                <select name="county" class="filter-select">
-                  <option value="">All Counties</option>
-                  <option value="multnomah">Multnomah</option>
-                  <option value="clackamas">Clackamas</option>
-                  <option value="washington">Washington</option>
-                  <!-- Add more counties -->
-                </select>
-              </div>
-              <div class="filter-group">
-                <select name="bias_level" class="filter-select">
-                  <option value="">All Bias Levels</option>
-                  <option value="low">Low Risk</option>
-                  <option value="moderate">Moderate</option>
-                  <option value="high">High Risk</option>
-                  <option value="critical">Critical</option>
-                </select>
-              </div>
-            </div>
-          </form>
+<section class="hero-section">
+  <div class="hero-background">
+    <div class="hero-content">
+      <div class="hero-copy">
+        <p class="eyebrow">Public accountability, elevated.</p>
+        <h1>Oregon justice data built for meaning, not noise.</h1>
+        <p class="hero-lead">A.P.T.I.T.U.D.E. renders judges, courts, enforcement, and supervision into a premium intelligence experience with rich visual signal and accountability-ready context.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="{{ '/bias-beacon/' | relative_url }}">Open Bias Beacon</a>
+          <a class="button button-secondary" href="{{ '/bias-beacon/judges/' | relative_url }}">Search Judges</a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Hero Metrics Section -->
-  <section class="hero-metrics-section">
-    <div class="hero-metrics-container">
-      <div class="hero-metric">
-        <div class="metric-number">210</div>
-        <div class="metric-label">Circuit Judges</div>
-        <div class="metric-description">Every judge in every county</div>
-      </div>
-      <div class="hero-metric">
-        <div class="metric-number">27</div>
-        <div class="metric-label">Oregon Counties</div>
-        <div class="metric-description">Complete judicial coverage</div>
-      </div>
-      <div class="hero-metric">
-        <div class="metric-number">24/7</div>
-        <div class="metric-label">Evidence Access</div>
-        <div class="metric-description">Real-time accountability</div>
-        >>>>>>> 324c6d0 (feat: Add premium interactive hover graphs to judge cards)
-      </div>
-    </div>
-  </section>
-
-  <<<<<<< HEAD <section class="home-section home-section-intro" id="system-view">
-    <div class="section-heading section-heading-centered">
-      <p class="eyebrow">System View</p>
-      <h2 class="text-shimmer">Where the record starts to relate to itself.</h2>
-      <p class="section-intro-copy text-dynamic">
-        Stops, arrests, charging, reversals, and supervision outcomes live here as connected institutional behavior.
-        The purpose is not to lead the evidence. The purpose is to hold the surfaces together long enough for the
-        pattern
-        to speak.
-      </p>
-    </div>
-    </section>
-
-    <section class="home-section" id="actor-cards">
-      <div class="section-heading">
-        <p class="eyebrow">Actor Cards</p>
-        <h2 class="text-shimmer">Summary. Structure. Statistics. Specifics.</h2>
-        =======
-        <!-- Mission Statement Section -->
-        <section class="mission-section">
-          <div class="mission-content">
-            <div class="mission-text">
-              <h2>Our Mission</h2>
-              <p>
-                A.P.T.I.T.U.D.E. transforms Oregon's public justice records into actionable intelligence.
-                We believe that when behavior becomes data, data becomes pattern, pattern becomes evidence,
-                and evidence becomes accountability.
-              </p>
-              <p>
-                Our platform reveals the hidden architecture of justice: where disparities emerge,
-                where institutional patterns repeat, and where accountability can be restored.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <!-- 6 Main Cards Section -->
-        <section class="main-cards-section">
-          <div class="cards-container">
-            <!-- Bias Beacon Card -->
-            <div class="main-card flip-card" id="bias-beacon-card">
-              <div class="card-inner">
-                <div class="card-front">
-                  <div class="card-title">
-                    <div class="premium-card-header">
-                      <div class="card-icon">📊</div>
-                      <h2 class="card-title-text">BIAS BEACON</h2>
-                      <div class="card-accent-line"></div>
-                    </div>
-                    <p class="card-subtitle">Real-time judicial monitoring</p>
-                  </div>
-                </div>
-                <div class="card-back">
-                  <div class="card-back-content">
-                    <h3>Bias Beacon</h3>
-                    <p>Real-time monitoring of judicial patterns, sentencing disparities, and institutional behavior
-                      across
-                      Oregon's justice system.</p>
-                  </div>
-                  <div class="card-graph-container">
-                    <h4 class="card-graph-title">Judicial Bias Trends</h4>
-                    <div class="card-graph">
-                      <div class="graph-bar" style="--target-height: 85%;"></div>
-                      <div class="graph-bar" style="--target-height: 65%;"></div>
-                      <div class="graph-bar" style="--target-height: 90%;"></div>
-                      <div class="graph-bar" style="--target-height: 45%;"></div>
-                      <div class="graph-bar" style="--target-height: 75%;"></div>
-                    </div>
-                    <div class="card-graph-legend">
-                      <div class="legend-item">
-                        <div class="legend-color"></div>
-                        <span>Bias Score Distribution</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-back-actions">
-                    <a href="/bias-beacon/" class="card-link">Explore Bias Beacon</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Judiciary Card -->
-            <div class="main-card flip-card" id="judiciary-card">
-              <div class="card-inner">
-                <div class="card-front">
-                  <div class="card-title">
-                    <div class="premium-card-header">
-                      <div class="card-icon">⚖️</div>
-                      <h2 class="card-title-text">THE JUDICIARY</h2>
-                      <div class="card-accent-line"></div>
-                    </div>
-                    <p class="card-subtitle">Circuit court profiles</p>
-                  </div>
-                </div>
-                <div class="card-back">
-                  <div class="card-back-content">
-                    <h3>The Judiciary</h3>
-                    <p>Comprehensive profiles of Oregon's circuit court judges, including bias scores, case histories,
-                      and
-                      performance metrics.</p>
-                  </div>
-                  <div class="card-graph-container">
-                    <h4 class="card-graph-title">Judge Performance Metrics</h4>
-                    <div class="card-graph">
-                      <div class="graph-bar" style="--target-height: 70%;"></div>
-                      <div class="graph-bar" style="--target-height: 85%;"></div>
-                      <div class="graph-bar" style="--target-height: 60%;"></div>
-                      <div class="graph-bar" style="--target-height: 90%;"></div>
-                      <div class="graph-bar" style="--target-height: 55%;"></div>
-                    </div>
-                    <div class="card-graph-legend">
-                      <div class="legend-item">
-                        <div class="legend-color"></div>
-                        <span>Caseload Efficiency</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-back-actions">
-                    <a href="/judiciary/" class="card-link">View Judiciary</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Prosecutors Office Card -->
-            <div class="main-card flip-card" id="prosecutors-card">
-              <div class="card-inner">
-                <div class="card-front">
-                  <div class="card-title">
-                    <div class="premium-card-header">
-                      <div class="card-icon">👔</div>
-                      <h2 class="card-title-text">PROSECUTORS</h2>
-                      <div class="card-accent-line"></div>
-                    </div>
-                    <p class="card-subtitle">District attorney analysis</p>
-                  </div>
-                </div>
-                <div class="card-back">
-                  <div class="card-back-content">
-                    <h3>Prosecutors Office</h3>
-                    <p>Analysis of district attorney charging patterns, plea agreements, and prosecution strategies
-                      across
-                      Oregon
-                      counties.</p>
-                  </div>
-                  <div class="card-graph-container">
-                    <h4 class="card-graph-title">Charging Pattern Analysis</h4>
-                    <div class="card-graph">
-                      <div class="graph-bar" style="--target-height: 80%;"></div>
-                      <div class="graph-bar" style="--target-height: 45%;"></div>
-                      <div class="graph-bar" style="--target-height: 65%;"></div>
-                      <div class="graph-bar" style="--target-height: 90%;"></div>
-                      <div class="graph-bar" style="--target-height: 55%;"></div>
-                    </div>
-                    <div class="card-graph-legend">
-                      <div class="legend-item">
-                        <div class="legend-color"></div>
-                        <span>Conviction Rates</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-back-actions">
-                    <a href="/prosecutors/" class="card-link">Explore Prosecutors</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Law Enforcement Card -->
-            <div class="main-card flip-card" id="law-enforcement-card">
-              <div class="card-inner">
-                <div class="card-front">
-                  <div class="card-title">
-                    <div class="premium-card-header">
-                      <div class="card-icon">🚔</div>
-                      <h2 class="card-title-text">LAW ENFORCEMENT</h2>
-                      <div class="card-accent-line"></div>
-                    </div>
-                    <p class="card-subtitle">Police department metrics</p>
-                  </div>
-                </div>
-                <div class="card-back">
-                  <div class="card-back-content">
-                    <h3>Law Enforcement</h3>
-                    <p>STOP data analysis, arrest patterns, and police department performance metrics with community
-                      impact
-                      assessment.</p>
-                  </div>
-                  <div class="card-graph-container">
-                    <h4 class="card-graph-title">Arrest Pattern Trends</h4>
-                    <div class="card-graph">
-                      <div class="graph-bar" style="--target-height: 75%;"></div>
-                      <div class="graph-bar" style="--target-height: 60%;"></div>
-                      <div class="graph-bar" style="--target-height: 85%;"></div>
-                      <div class="graph-bar" style="--target-height: 40%;"></div>
-                      <div class="graph-bar" style="--target-height: 70%;"></div>
-                    </div>
-                    <div class="card-graph-legend">
-                      <div class="legend-item">
-                        <div class="legend-color"></div>
-                        <span>Community Impact</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-back-actions">
-                    <a href="/law-enforcement/" class="card-link">View Law Enforcement</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Community Supervision Card -->
-            <div class="main-card flip-card" id="community-supervision-card">
-              <div class="card-inner">
-                <div class="card-front">
-                  <div class="card-title">
-                    <div class="premium-card-header">
-                      <div class="card-icon">👁️</div>
-                      <h2 class="card-title-text">COMMUNITY SUPERVISION</h2>
-                      <div class="card-accent-line"></div>
-                    </div>
-                    <p class="card-subtitle">Probation & parole data</p>
-                  </div>
-                </div>
-                <div class="card-back">
-                  <div class="card-back-content">
-                    <h3>Community Supervision</h3>
-                    <p>Probation and parole data, revocation rates, supervision outcomes, and community corrections
-                      effectiveness.
-                    </p>
-                  </div>
-                  <div class="card-graph-container">
-                    <h4 class="card-graph-title">Supervision Success Rates</h4>
-                    <div class="card-graph">
-                      <div class="graph-bar" style="--target-height: 65%;"></div>
-                      <div class="graph-bar" style="--target-height: 80%;"></div>
-                      <div class="graph-bar" style="--target-height: 50%;"></div>
-                      <div class="graph-bar" style="--target-height: 75%;"></div>
-                      <div class="graph-bar" style="--target-height: 60%;"></div>
-                    </div>
-                    <div class="card-graph-legend">
-                      <div class="legend-item">
-                        <div class="legend-color"></div>
-                        <span>Revocation Trends</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-back-actions">
-                    <a href="/community-supervision/" class="card-link">Explore Supervision</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Juris Lab Card -->
-            <div class="main-card flip-card" id="juris-lab-card">
-              <div class="card-inner">
-                <div class="card-front">
-                  <div class="card-title">
-                    <div class="premium-card-header">
-                      <div class="card-icon">🔬</div>
-                      <h2 class="card-title-text">JURIS LAB</h2>
-                      <div class="card-accent-line"></div>
-                    </div>
-                    <p class="card-subtitle">Legal research tools</p>
-                  </div>
-                </div>
-                <div class="card-back">
-                  <div class="card-back-content">
-                    <h3>Juris Lab</h3>
-                    <p>Legal research tools, case law analysis, AI-assisted legal drafting, and comprehensive legal
-                      resource
-                      library.</p>
-                  </div>
-                  <div class="card-graph-container">
-                    <h4 class="card-graph-title">Research Tool Usage</h4>
-                    <div class="card-graph">
-                      <div class="graph-bar" style="--target-height: 90%;"></div>
-                      <div class="graph-bar" style="--target-height: 70%;"></div>
-                      <div class="graph-bar" style="--target-height: 85%;"></div>
-                      <div class="graph-bar" style="--target-height: 60%;"></div>
-                      <div class="graph-bar" style="--target-height: 80%;"></div>
-                    </div>
-                    <div class="card-graph-legend">
-                      <div class="legend-item">
-                        <div class="legend-color"></div>
-                        <span>AI-Assisted Analysis</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-back-actions">
-                    <a href="/juris-lab/" class="card-link">Enter Juris Lab</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <script src="{{ '/assets/js/site-ui.js' | relative_url }}"></script>
-        <script src="{{ '/assets/js/home.js' | relative_url }}"></script>
-        <div class="section-heading compact">
-          <p class="eyebrow">Interactive Budget Mix</p>
-          <h2>A teaser pie chart should answer a question, not just decorate the page.</h2>
-          <p>
-            Hover or click the budget slices to reveal another level of detail. The message here is simple: Oregon
-            corrections
-            funding is structurally
-            dependent on state General Fund dollars, which is exactly why the public should be able to inspect outcomes
-            with
-            the same clarity.
-          </p>
-          <div class="budget-links">
-            <a class="button button-secondary" href="/bias-beacon/dashboard/">Explore the full dashboard</a>
-            <a class="button button-secondary" href="https://www.oregon.gov/das/financial/pages/index.aspx"
-              target="_blank" rel="noreferrer">Open DAS budget context</a>
-          </div>
-        </div>
-
-        <div class="budget-visual-shell">
-          <div class="budget-donut-panel">
-            <svg class="budget-donut" viewBox="0 0 240 240" role="img"
-              aria-labelledby="budget-donut-title budget-donut-desc">
-              <title id="budget-donut-title">Oregon DOC 2025-27 budget mix</title>
-              <desc id="budget-donut-desc">Interactive donut chart showing General Fund, Other Funds, and Federal Funds
-                shares.</desc>
-              <circle class="budget-donut-ring" cx="120" cy="120" r="72"></circle>
-              <circle class="budget-segment is-active" cx="120" cy="120" r="72" data-budget-key="general"
-                stroke-dasharray="430.53 22" stroke-dashoffset="0"></circle>
-              <circle class="budget-segment" cx="120" cy="120" r="72" data-budget-key="other"
-                stroke-dasharray="21.45 431.08" stroke-dashoffset="-430.53"></circle>
-              <circle class="budget-segment" cx="120" cy="120" r="72" data-budget-key="federal"
-                stroke-dasharray="0.36 452.17" stroke-dashoffset="-451.98"></circle>
-              <g class="budget-donut-center">
-                <text x="120" y="108" text-anchor="middle">DOC</text>
-                <text x="120" y="132" text-anchor="middle">$2.73B</text>
-              </g>
-            </svg>
-
-            <div class="budget-legend">
-              <button class="budget-legend-item is-active" type="button" data-budget-key="general">
-                <span class="budget-swatch budget-swatch-general"></span>
-                <span>General Fund</span>
-              </button>
-              <button class="budget-legend-item" type="button" data-budget-key="other">
-                <span class="budget-swatch budget-swatch-other"></span>
-                <span>Other Funds</span>
-              </button>
-              <button class="budget-legend-item" type="button" data-budget-key="federal">
-                <span class="budget-swatch budget-swatch-federal"></span>
-                <span>Federal Funds</span>
-              </button>
-            </div>
-          </div>
-
-          <article class="budget-detail-panel" id="budget-detail-panel">
-            <p class="archive-chip">Selected Slice</p>
-            <h3 id="budget-detail-title">General Fund</h3>
-            <p class="budget-detail-value" id="budget-detail-value">$2.59B</p>
-            <p class="budget-detail-share" id="budget-detail-share">95.18% of DOC total funds</p>
-            <p class="budget-detail-copy" id="budget-detail-copy">
-              The dominant funding stream comes from the state's core discretionary resources. That makes statewide
-              correctional performance a
-              statewide public-interest issue, not just a siloed agency question.
-            </p>
-            <a class="budget-detail-link" id="budget-detail-link"
-              href="https://www.oregon.gov/doc/Documents/quick-facts-issue-brief-2025.pdf" target="_blank"
-              rel="noreferrer">
-              Open source document
-            </a>
-          </article>
-        </div>
-    </section>
-
-    <section class="story-block dashboard-flip-block" id="flip-cards">
-      <div class="section-heading">
-        <p class="eyebrow">State Context Cards</p>
-        <h2>The statewide basics should flip into meaning, not trivia.</h2>
-        <p>
-          These cards intentionally mirror the judge-card interaction pattern so the landing page and Bias Beacon feel
-          like
-          one system. Front faces
-          establish the statewide frame; back faces explain why that frame matters.
-        </p>
-        >>>>>>> 324c6d0 (feat: Add premium interactive hover graphs to judge cards)
-      </div>
-
-      <div class="flip-cards-grid actor-card-grid">
-        <!-- Bias Beacon Card -->
-        <article class="flip-card home-actor-card card-bias-beacon" tabindex="0">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <div class="card-front-content">
-                {% if site.data.bias-beacon.judges-directory.metadata.title_image %}
-                <img class="card-title-image"
-                  src="{{ site.data.bias-beacon.judges-directory.metadata.title_image | relative_url }}"
-                  alt="Bias Beacon">
-                {% else %}
-                <h3 class="judge-name-display">Bias Beacon</h3>
-                {% endif %}
-                <p class="home-card-front-caption">Judicial bias patterns across Oregon's courts and counties.</p>
-              </div>
-            </div>
-            <div class="flip-card-back">
-              <div class="card-back-header">
-                <h3>Bias Beacon</h3>
-              </div>
-              <div class="card-back-content">
-                <p>Analyze patterns in judicial decision-making, sentence disparities, and demographic factors
-                  influencing
-                  outcomes.</p>
-                <div class="flip-metric-group">
-                  <<<<<<< HEAD <h4>What this surface holds</h4>
-                    <ul class="metric-list">
-                      <li>Judge profiles and decision patterns</li>
-                      <li>Sentencing disparity analysis</li>
-                      <li>County-by-county comparisons</li>
-                      <li>Demographic outcome correlations</li>
-                    </ul>
-                    =======
-                    <h4>What matters</h4>
-                    <div class="metric-grid-mini">
-                      <div class="metric-mini"><span class="metric-label">Population</span><span
-                          class="metric-value">~4.27M
-                          residents</span></div>
-                      <div class="metric-mini"><span class="metric-label">Counties</span><span class="metric-value">36
-                          counties</span></div>
-                      <div class="metric-mini"><span class="metric-label">Signal</span><span class="metric-value">Local
-                          practices can diverge sharply</span></div>
-                      <div class="metric-mini"><span class="metric-label">Why track</span><span
-                          class="metric-value">Statewide
-                          metrics can hide county-level outliers</span></div>
-                    </div>
-                </div>
-                <div class="flip-metric-group">
-                  <h4>Bias Beacon angle</h4>
-                  <p class="dashboard-card-copy">
-                    Visitors should learn immediately that Oregon is administratively one state but behaviorally many
-                    systems. Bias Beacon is built to
-                    make those local divergences visible.
-                  </p>
-                  >>>>>>> 324c6d0 (feat: Add premium interactive hover graphs to judge cards)
-                </div>
-              </div>
-              <div class="card-graph-container">
-                <h4 class="card-graph-title">County Population Distribution</h4>
-                <div class="card-graph">
-                  <div class="graph-bar" style="--target-height: 60%;"></div>
-                  <div class="graph-bar" style="--target-height: 80%;"></div>
-                  <div class="graph-bar" style="--target-height: 45%;"></div>
-                  <div class="graph-bar" style="--target-height: 90%;"></div>
-                  <div class="graph-bar" style="--target-height: 70%;"></div>
-                </div>
-                <div class="card-graph-legend">
-                  <div class="legend-item">
-                    <div class="legend-color"></div>
-                    <span>Population Density</span>
-                  </div>
-                </div>
-              </div>
-              <div class="card-back-actions">
-                <a class="btn btn-primary" href="{{ '/bias-beacon/' | relative_url }}">Explore Patterns</a>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Judiciary Card -->
-        <article class="flip-card home-actor-card card-judiciary" tabindex="0">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <div class="card-front-content">
-                <h3 class="judge-name-display">The Judiciary</h3>
-                <p class="home-card-front-caption">Judges, courts, and decision structures defining the system.</p>
-              </div>
-            </div>
-            <div class="flip-card-back">
-              <div class="card-back-header">
-                <h3>The Judiciary</h3>
-              </div>
-              <div class="card-back-content">
-                <p>Oregon's circuit court judges, appellate justices, and administrative structures that shape outcomes.
-                </p>
-                <div class="flip-metric-group">
-                  <<<<<<< HEAD <h4>What this surface holds</h4>
-                    <ul class="metric-list">
-                      <li>Oregon circuit court directory</li>
-                      <li>Judge tenure and appointments</li>
-                      <li>Court jurisdiction boundaries</li>
-                      <li>Appellate information</li>
-                    </ul>
-                    =======
-                    <h4>OJD frame</h4>
-                    <div class="metric-grid-mini">
-                      <div class="metric-mini"><span class="metric-label">Circuit layer</span><span
-                          class="metric-value">36
-                          circuit courts</span></div>
-                      <div class="metric-mini"><span class="metric-label">Statewide system</span><span
-                          class="metric-value">27
-                          judicial districts</span></div>
-                      <div class="metric-mini"><span class="metric-label">Higher courts</span><span
-                          class="metric-value">Supreme, Appeals, Tax</span></div>
-                      <div class="metric-mini"><span class="metric-label">Staffing</span><span
-                          class="metric-value">1,600+
-                          full/part-time staff</span></div>
-                    </div>
-                </div>
-                <div class="flip-metric-group">
-                  <h4>Bias Beacon angle</h4>
-                  <p class="dashboard-card-copy">
-                    This is where statewide comparisons become credible. A unified court system makes judge-level and
-                    county-level comparisons more
-                    meaningful than they would be in a fragmented local model.
-                  </p>
-                  >>>>>>> 324c6d0 (feat: Add premium interactive hover graphs to judge cards)
-                </div>
-              </div>
-              <div class="card-graph-container">
-                <h4 class="card-graph-title">Judicial District Caseload</h4>
-                <div class="card-graph">
-                  <div class="graph-bar" style="--target-height: 75%;"></div>
-                  <div class="graph-bar" style="--target-height: 55%;"></div>
-                  <div class="graph-bar" style="--target-height: 85%;"></div>
-                  <div class="graph-bar" style="--target-height: 45%;"></div>
-                  <div class="graph-bar" style="--target-height: 65%;"></div>
-                </div>
-                <div class="card-graph-legend">
-                  <div class="legend-item">
-                    <div class="legend-color"></div>
-                    <span>Caseload Volume</span>
-                  </div>
-                </div>
-              </div>
-              <div class="card-back-actions">
-                <<<<<<< HEAD <a class="btn btn-primary" href="{{ '/bias-beacon/judges/' | relative_url }}">View
-                  Judges</a>
-                  =======
-                  <a class="btn btn-primary" href="/bias-beacon/judges/">Judge cards</a>
-                  <a class="btn btn-secondary" href="https://www.courts.oregon.gov/Pages/default.aspx" target="_blank"
-                    rel="noreferrer">Oregon Courts</a>
-                  >>>>>>> 324c6d0 (feat: Add premium interactive hover graphs to judge cards)
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Prosecutor's Office Card -->
-        <article class="flip-card home-actor-card card-prosecutor" tabindex="0">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <div class="card-front-content">
-                <h3 class="judge-name-display">Prosecutor's Office</h3>
-                <p class="home-card-front-caption">County prosecutors and charging decision patterns.</p>
-              </div>
-            </div>
-            <div class="flip-card-back">
-              <div class="card-back-header">
-                <h3>Prosecutor's Office</h3>
-              </div>
-              <div class="card-back-content">
-                <p>Prosecutorial charging decisions, case outcomes, and county-level prosecution patterns.</p>
-                <div class="flip-metric-group">
-                  <<<<<<< HEAD <h4>What this surface holds</h4>
-                    <ul class="metric-list">
-                      <li>County prosecutor offices</li>
-                      <li>Charging patterns and rates</li>
-                      <li>Case disposition data</li>
-                      <li>Diversion program information</li>
-                    </ul>
-                    =======
-                    <h4>Control layers</h4>
-                    <div class="metric-grid-mini">
-                      <div class="metric-mini"><span class="metric-label">Prison</span><span class="metric-value">12,299
-                          adults in custody</span></div>
-                      <div class="metric-mini"><span class="metric-label">Community</span><span
-                          class="metric-value">~30,000
-                          supervised</span></div>
-                      <div class="metric-mini"><span class="metric-label">Earned discharge</span><span
-                          class="metric-value">County variation matters</span></div>
-                      <div class="metric-mini"><span class="metric-label">Inference</span><span
-                          class="metric-value">Supervision policy drives a wider footprint than prison</span></div>
-                    </div>
-                </div>
-                <div class="flip-metric-group">
-                  <h4>Bias Beacon angle</h4>
-                  <p class="dashboard-card-copy">
-                    Once visitors understand that supervision is the larger control surface, county revocations,
-                    sanctions,
-                    earned discharge, and
-                    court decisions stop looking like side issues. They become central.
-                  </p>
-                  >>>>>>> 324c6d0 (feat: Add premium interactive hover graphs to judge cards)
-                </div>
-              </div>
-              <div class="card-graph-container">
-                <h4 class="card-graph-title">Custody vs Supervision Ratio</h4>
-                <div class="card-graph">
-                  <div class="graph-bar" style="--target-height: 35%;"></div>
-                  <div class="graph-bar" style="--target-height: 100%;"></div>
-                  <div class="graph-bar" style="--target-height: 25%;"></div>
-                  <div class="graph-bar" style="--target-height: 45%;"></div>
-                  <div class="graph-bar" style="--target-height: 60%;"></div>
-                </div>
-                <div class="card-graph-legend">
-                  <div class="legend-item">
-                    <div class="legend-color"></div>
-                    <span>Custody (Blue) vs Supervision (Green)</span>
-                  </div>
-                </div>
-              </div>
-              <div class="card-back-actions">
-                <a class="btn btn-primary" href="{{ '/prosecutors.html' | relative_url }}">Explore Offices</a>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Law Enforcement Card -->
-        <article class="flip-card home-actor-card card-law-enforcement" tabindex="0">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <div class="card-front-content">
-                <h3 class="judge-name-display">Law Enforcement</h3>
-                <p class="home-card-front-caption">Police stops, searches, and the front-end of the system.</p>
-              </div>
-            </div>
-            <div class="flip-card-back">
-              <div class="card-back-header">
-                <h3>Law Enforcement</h3>
-              </div>
-              <div class="card-back-content">
-                <p>Police activity, stop patterns, search rates, and the initial contact points in the criminal system.
-                </p>
-                <div class="flip-metric-group">
-                  <h4>What this surface holds</h4>
-                  <ul class="metric-list">
-                    <li>Police agency data</li>
-                    <li>Traffic stop statistics</li>
-                    <li>Search and seizure rates</li>
-                    <li>Demographic stop patterns</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="card-back-actions">
-                <a class="btn btn-primary" href="{{ '/law-enforcement.html' | relative_url }}">View Agencies</a>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Community Corrections Card -->
-        <article class="flip-card home-actor-card card-community-corrections" tabindex="0">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <div class="card-front-content">
-                <h3 class="judge-name-display">Community Supervision</h3>
-                <p class="home-card-front-caption">Probation, parole, and post-release outcomes.</p>
-              </div>
-            </div>
-            <div class="flip-card-back">
-              <div class="card-back-header">
-                <h3>Community Supervision</h3>
-              </div>
-              <div class="card-back-content">
-                <p>Supervision outcomes, revocation patterns, and the back-end trajectory of system involvement.</p>
-                <div class="flip-metric-group">
-                  <h4>What this surface holds</h4>
-                  <ul class="metric-list">
-                    <li>County supervision data</li>
-                    <li>Revocation statistics</li>
-                    <li>Reentry outcomes</li>
-                    <li>Supervision compliance patterns</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="card-back-actions">
-                <a class="btn btn-primary" href="{{ '/parole-probation.html' | relative_url }}">Explore Supervision</a>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- Juris Lab Card -->
-        <article class="flip-card home-actor-card card-juris-lab" tabindex="0">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <div class="card-front-content">
-                <h3 class="judge-name-display">Juris Lab</h3>
-                <p class="home-card-front-caption">Research, analysis, and emerging data methodologies.</p>
-              </div>
-            </div>
-            <div class="flip-card-back">
-              <div class="card-back-header">
-                <h3>Juris Lab</h3>
-              </div>
-              <div class="card-back-content">
-                <p>Research tools, analysis frameworks, and emerging methodologies for understanding system behavior.
-                </p>
-                <div class="flip-metric-group">
-                  <h4>What this surface holds</h4>
-                  <ul class="metric-list">
-                    <li>Research methodology</li>
-                    <li>Analysis tools</li>
-                    <li>Data integration frameworks</li>
-                    <li>Academic resources</li>
-                  </ul>
-                </div>
-              </div>
-              <div class="card-back-actions">
-                <a class="btn btn-primary" href="{{ '/bias-beacon/methodology/' | relative_url }}">View Research</a>
-              </div>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <<<<<<< HEAD <section class="home-section" id="oregon-judges">
-      <div class="section-heading section-heading-centered">
-        <p class="eyebrow">Oregon Circuit Court Judges</p>
-        <h2 class="text-shimmer">Every Judge. Every County. On the Record.</h2>
-        <p class="section-intro-copy text-dynamic">
-          210 sitting circuit court judges across all 27 Oregon judicial districts. Real names. Real photos. Real
-          accountability.
-        </p>
-      </div>
-
-      {% include judge-flip-cards.html %}
-      </section>
-      =======
-      <section class="story-block dashboard-table-block" id="breakdown-table">
-        <div class="section-heading">
-          <p class="eyebrow">Breakdown Table</p>
-          <h2>The landing page should end its dashboard stack with an audit-friendly breakdown.</h2>
-          <p>
-            This table is intentionally compact. It gives visitors a clean bridge from the teaser metrics into the
-            fuller
-            dashboard and makes the
-            assumptions explicit rather than hiding them.
-          </p>
-        </div>
-
-        <div class="dashboard-table-shell">
-          <table class="dashboard-breakdown-table">
-            <thead>
-              <tr>
-                <th scope="col">Measure</th>
-                <th scope="col">Value</th>
-                <th scope="col">Why it matters</th>
-                <th scope="col">Next click</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Adults in custody</td>
-                <td>12,299</td>
-                <td>Secure custody remains Oregon's most visible correctional function.</td>
-                <td><a href="/bias-beacon/dashboard/">See prison trends</a></td>
-              </tr>
-              <tr>
-                <td>Community supervision</td>
-                <td>~30,000</td>
-                <td>The state's correctional footprint is significantly larger outside prison than inside it.</td>
-                <td><a href="/parole-probation.html">Open supervision view</a></td>
-              </tr>
-              <tr>
-                <td>Measure 11 population</td>
-                <td>~1,320</td>
-                <td>Mandatory sentencing remains a visible structural driver inside prison.</td>
-                <td><a href="https://www.oregon.gov/doc/Documents/measure-11-offenders.pdf" target="_blank"
-                    rel="noreferrer">Open Measure 11 brief</a></td>
-              </tr>
-              <tr>
-                <td>DOC 2025-27 General Fund</td>
-                <td>$2.589B</td>
-                <td>Budget scale lets visitors connect system size to public spending.</td>
-                <td><a href="https://www.oregon.gov/doc/Documents/quick-facts-issue-brief-2025.pdf" target="_blank"
-                    rel="noreferrer">Open issue brief</a></td>
-              </tr>
-              <tr>
-                <td>Oregon court structure</td>
-                <td>27 districts, 36 circuit courts</td>
-                <td>A unified system creates a basis for cross-county comparisons and anomaly detection.</td>
-                <td><a href="/bias-beacon/judges/">Inspect judge cards</a></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <section class="story-block split-layout" id="sources">
-        <div class="section-heading compact">
-          <p class="eyebrow">Sources And Assumptions</p>
-          <h2>Built from official Oregon references, with one clearly labeled placeholder.</h2>
-          <p>
-            This page is a teaser, not the finished statewide observatory. The source trail is visible so the landing
-            experience can stay persuasive
-            without turning into an untraceable pile of claims.
-          </p>
-        </div>
-        <div class="resource-panel">
-          <ul class="record-list">
-            <li><a href="https://www.oregon.gov/doc/Documents/agency-quick-facts.pdf" target="_blank"
-                rel="noreferrer">DOC
-                agency quick facts</a> for institutions, staffing, and adults in custody.</li>
-            <li><a href="https://www.oregon.gov/doc/Documents/quick-facts-issue-brief-2025.pdf" target="_blank"
-                rel="noreferrer">DOC quick facts issue brief 2025</a> for funding and operating context.</li>
-            <li><a href="https://www.oregon.gov/doc/Documents/measure-11-offenders.pdf" target="_blank"
-                rel="noreferrer">Measure 11 offenders</a> for mandatory sentencing context.</li>
-            <li><a href="https://www.oregon.gov/doc/Documents/inmate-profile.pdf" target="_blank"
-                rel="noreferrer">Inmate
-                profile</a> for age, sex, race, and sentence length context.</li>
-            <li><a href="https://www.oregon.gov/doc/Documents/prison-population-trends.pdf" target="_blank"
-                rel="noreferrer">Prison population trends</a> for longer-term custody movement.</li>
-            <li><a href="https://www.oregon.gov/doc/community-corrections/pages/home.aspx" target="_blank"
-                rel="noreferrer">DOC Community Corrections</a> for community supervision counts.</li>
-            <li><a href="https://www.oregon.gov/das/OEA/Pages/forecastcorrections.aspx" target="_blank"
-                rel="noreferrer">DAS
-                Office of Economic Analysis corrections forecast</a> as the current jail/local-control proxy to replace
-              later
-              with a fuller jail dataset.</li>
-            <li><a
-                href="https://www.urban.org/sites/default/files/publication/105347/an-assessment-of-earned-discharge-community-supervision-policies-in-oregon-and-missouri.pdf"
-                target="_blank" rel="noreferrer">Urban Institute earned discharge assessment</a> for the
-              supervision-policy
-              narrative layer.</li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="contact-section story-block" id="contact">
-        <div class="section-heading compact">
-          <p class="eyebrow">Request Early Access</p>
-          <h2>Tell us which layer of the Oregon system you need to inspect.</h2>
-          <p>Use this form to request access, discuss research collaboration, or ask for county, judge, supervision, or
-            budget
-            coverage.</p>
-        </div>
-        <form class="contact-form" name="aptitude-access" method="POST" data-netlify="true"
-          netlify-honeypot="bot-field">
-          <input type="hidden" name="form-name" value="aptitude-access">
-          <p class="hidden-field">
-            <label>Do not fill this out if you are human: <input name="bot-field"></label>
-          </p>
-          <div class="form-grid">
-            <label><span>Name</span><input type="text" name="name" required></label>
-            <label><span>Email</span><input type="email" name="email" required></label>
-            <label><span>Role</span><input type="text" name="role"
-                placeholder="Researcher, journalist, public defender, analyst"></label>
-            <label><span>Focus Area</span><input type="text" name="focus"
-                placeholder="Judges, counties, prosecutors, supervision, law enforcement"></label>
-          </div>
-          <label class="full-width"><span>Message</span><textarea name="message" rows="6" required
-              placeholder="What questions are you trying to answer, and which part of Oregon's justice system should the platform surface next?"></textarea></label>
-          <div class="form-actions">
-            <button class="button button-primary" type="submit">Submit Request</button>
-            <p class="form-note">Configured for Netlify Forms so submissions can be captured without a custom backend.
-            </p>
-          </div>
+      <div class="hero-search-panel">
+        <form class="main-search-form" action="{{ '/bias-beacon/judges/' | relative_url }}" method="get">
+          <label class="visually-hidden" for="hero-search">Search Oregon records</label>
+          <input id="hero-search" name="q" type="search" class="main-search-input" placeholder="Search judges, cases, counties, or agencies" />
+          <button type="submit" class="search-submit-btn">Search</button>
         </form>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <script src="{{ '/assets/js/site-ui.js' | relative_url }}"></script>
-      <script type="module" src="{{ '/assets/js/home-dashboard.js' | relative_url }}"></script>
-      <script src="{{ '/assets/js/home.js' | relative_url }}"></script>
-      >>>>>>> 324c6d0 (feat: Add premium interactive hover graphs to judge cards)
+<section class="hero-metrics-section">
+  <div class="hero-metrics-container">
+    <div class="hero-metric">
+      <div class="metric-number">210</div>
+      <div class="metric-label">Circuit Judges</div>
+      <div class="metric-description">Every judge in every county.</div>
+    </div>
+    <div class="hero-metric">
+      <div class="metric-number">27</div>
+      <div class="metric-label">Oregon Counties</div>
+      <div class="metric-description">Complete statewide coverage.</div>
+    </div>
+    <div class="hero-metric">
+      <div class="metric-number">24/7</div>
+      <div class="metric-label">Evidence Access</div>
+      <div class="metric-description">Dynamic insight into judicial behavior.</div>
+    </div>
+  </div>
+</section>
+
+<section class="mission-section">
+  <div class="mission-content">
+    <div class="mission-text">
+      <h2>Our mission</h2>
+      <p>A.P.T.I.T.U.D.E. transforms public justice records into intelligence that exposes patterns, compares performance, and makes accountability actionable.</p>
+      <p>We build a premium experience where data is presented with clarity, context, and ethical transparency so decision makers and the public can use it with confidence.</p>
+    </div>
+  </div>
+</section>
+
+<section class="main-cards-section">
+  <div class="cards-container">
+    <div class="main-card flip-card" id="bias-beacon">
+      <div class="card-inner">
+        <div class="card-front">
+          <div class="card-title">
+            <div class="premium-card-header">
+              <div class="card-icon">📊</div>
+              <h2 class="card-title-text">BIAS BEACON</h2>
+              <div class="card-accent-line"></div>
+            </div>
+            <p class="card-subtitle">Real-time judicial monitoring</p>
+          </div>
+        </div>
+        <div class="card-back">
+          <div class="card-back-content">
+            <h3>Bias Beacon</h3>
+            <p>Track judicial behavior, sentencing disparities, and institutional drift across Oregon's justice system.</p>
+          </div>
+          <div class="card-graph-container">
+            <h4 class="card-graph-title">Judicial Bias Trends</h4>
+            <div class="card-graph">
+              <div class="graph-bar" style="--target-height: 85%;"></div>
+              <div class="graph-bar" style="--target-height: 65%;"></div>
+              <div class="graph-bar" style="--target-height: 90%;"></div>
+              <div class="graph-bar" style="--target-height: 45%;"></div>
+              <div class="graph-bar" style="--target-height: 75%;"></div>
+            </div>
+            <div class="card-graph-legend">
+              <div class="legend-item"><div class="legend-color"></div><span>Bias score distribution</span></div>
+            </div>
+          </div>
+          <div class="card-back-actions"><a href="{{ '/bias-beacon/' | relative_url }}" class="card-link">Explore Bias Beacon</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-card flip-card" id="judiciary">
+      <div class="card-inner">
+        <div class="card-front">
+          <div class="card-title">
+            <div class="premium-card-header">
+              <div class="card-icon">⚖️</div>
+              <h2 class="card-title-text">THE JUDICIARY</h2>
+              <div class="card-accent-line"></div>
+            </div>
+            <p class="card-subtitle">Circuit court profiles</p>
+          </div>
+        </div>
+        <div class="card-back">
+          <div class="card-back-content">
+            <h3>The Judiciary</h3>
+            <p>Judge profiles, bias scores, caseload context, and accountability signals consolidated by circuit.</p>
+          </div>
+          <div class="card-graph-container">
+            <h4 class="card-graph-title">Judge Performance Metrics</h4>
+            <div class="card-graph">
+              <div class="graph-bar" style="--target-height: 70%;"></div>
+              <div class="graph-bar" style="--target-height: 85%;"></div>
+              <div class="graph-bar" style="--target-height: 60%;"></div>
+              <div class="graph-bar" style="--target-height: 90%;"></div>
+              <div class="graph-bar" style="--target-height: 55%;"></div>
+            </div>
+            <div class="card-graph-legend">
+              <div class="legend-item"><div class="legend-color"></div><span>Caseload efficiency</span></div>
+            </div>
+          </div>
+          <div class="card-back-actions"><a href="{{ '/bias-beacon/judges/' | relative_url }}" class="card-link">View Judiciary</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-card flip-card" id="prosecutors">
+      <div class="card-inner">
+        <div class="card-front">
+          <div class="card-title">
+            <div class="premium-card-header">
+              <div class="card-icon">👔</div>
+              <h2 class="card-title-text">PROSECUTORS</h2>
+              <div class="card-accent-line"></div>
+            </div>
+            <p class="card-subtitle">District attorney analysis</p>
+          </div>
+        </div>
+        <div class="card-back">
+          <div class="card-back-content">
+            <h3>Prosecutors Office</h3>
+            <p>Compare charging patterns, plea outcomes, and public safety narratives on a county-by-county basis.</p>
+          </div>
+          <div class="card-graph-container">
+            <h4 class="card-graph-title">Charging Pattern Analysis</h4>
+            <div class="card-graph">
+              <div class="graph-bar" style="--target-height: 80%;"></div>
+              <div class="graph-bar" style="--target-height: 45%;"></div>
+              <div class="graph-bar" style="--target-height: 65%;"></div>
+              <div class="graph-bar" style="--target-height: 90%;"></div>
+              <div class="graph-bar" style="--target-height: 55%;"></div>
+            </div>
+            <div class="card-graph-legend">
+              <div class="legend-item"><div class="legend-color"></div><span>Conviction rate trends</span></div>
+            </div>
+          </div>
+          <div class="card-back-actions"><a href="{{ '/prosecutors/' | relative_url }}" class="card-link">Explore Prosecutors</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-card flip-card" id="law-enforcement">
+      <div class="card-inner">
+        <div class="card-front">
+          <div class="card-title">
+            <div class="premium-card-header">
+              <div class="card-icon">🚔</div>
+              <h2 class="card-title-text">LAW ENFORCEMENT</h2>
+              <div class="card-accent-line"></div>
+            </div>
+            <p class="card-subtitle">Police department metrics</p>
+          </div>
+        </div>
+        <div class="card-back">
+          <div class="card-back-content">
+            <h3>Law Enforcement</h3>
+            <p>STOP data, arrest patterns, and enforcement performance visualized through community outcomes.</p>
+          </div>
+          <div class="card-graph-container">
+            <h4 class="card-graph-title">Arrest Pattern Trends</h4>
+            <div class="card-graph">
+              <div class="graph-bar" style="--target-height: 75%;"></div>
+              <div class="graph-bar" style="--target-height: 60%;"></div>
+              <div class="graph-bar" style="--target-height: 85%;"></div>
+              <div class="graph-bar" style="--target-height: 40%;"></div>
+              <div class="graph-bar" style="--target-height: 70%;"></div>
+            </div>
+            <div class="card-graph-legend">
+              <div class="legend-item"><div class="legend-color"></div><span>Community impact</span></div>
+            </div>
+          </div>
+          <div class="card-back-actions"><a href="{{ '/law-enforcement/' | relative_url }}" class="card-link">View Law Enforcement</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-card flip-card" id="community-supervision">
+      <div class="card-inner">
+        <div class="card-front">
+          <div class="card-title">
+            <div class="premium-card-header">
+              <div class="card-icon">👁️</div>
+              <h2 class="card-title-text">COMMUNITY SUPERVISION</h2>
+              <div class="card-accent-line"></div>
+            </div>
+            <p class="card-subtitle">Probation & parole data</p>
+          </div>
+        </div>
+        <div class="card-back">
+          <div class="card-back-content">
+            <h3>Community Supervision</h3>
+            <p>Revocation rates, supervision outcomes, and community corrections signals in one place.</p>
+          </div>
+          <div class="card-graph-container">
+            <h4 class="card-graph-title">Supervision Success Rates</h4>
+            <div class="card-graph">
+              <div class="graph-bar" style="--target-height: 65%;"></div>
+              <div class="graph-bar" style="--target-height: 80%;"></div>
+              <div class="graph-bar" style="--target-height: 50%;"></div>
+              <div class="graph-bar" style="--target-height: 75%;"></div>
+              <div class="graph-bar" style="--target-height: 60%;"></div>
+            </div>
+            <div class="card-graph-legend">
+              <div class="legend-item"><div class="legend-color"></div><span>Revocation trends</span></div>
+            </div>
+          </div>
+          <div class="card-back-actions"><a href="{{ '/parole-probation.html' | relative_url }}" class="card-link">Explore Supervision</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-card flip-card" id="juris-lab">
+      <div class="card-inner">
+        <div class="card-front">
+          <div class="card-title">
+            <div class="premium-card-header">
+              <div class="card-icon">🔬</div>
+              <h2 class="card-title-text">JURIS LAB</h2>
+              <div class="card-accent-line"></div>
+            </div>
+            <p class="card-subtitle">Legal research tools</p>
+          </div>
+        </div>
+        <div class="card-back">
+          <div class="card-back-content">
+            <h3>Juris Lab</h3>
+            <p>Legal research, case law insights, and AI-assisted drafting for data-informed legal strategy.</p>
+          </div>
+          <div class="card-graph-container">
+            <h4 class="card-graph-title">Research Tool Usage</h4>
+            <div class="card-graph">
+              <div class="graph-bar" style="--target-height: 90%;"></div>
+              <div class="graph-bar" style="--target-height: 70%;"></div>
+              <div class="graph-bar" style="--target-height: 85%;"></div>
+              <div class="graph-bar" style="--target-height: 60%;"></div>
+              <div class="graph-bar" style="--target-height: 80%;"></div>
+            </div>
+            <div class="card-graph-legend">
+              <div class="legend-item"><div class="legend-color"></div><span>AI-assisted analysis</span></div>
+            </div>
+          </div>
+          <div class="card-back-actions"><a href="{{ '/juris-lab/' | relative_url }}" class="card-link">Enter Juris Lab</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
