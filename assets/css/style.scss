@@ -3594,3 +3594,238 @@ body.home-page {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ============================================================
+   DARK THEME BASE OVERRIDES
+   These rules override light-theme defaults from aptitude-base.scss,
+   hero-modern.scss, improved-flip-cards.scss, and minima theme.
+   Placed at end of file to win by source order.
+   ============================================================ */
+
+html {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text);
+}
+
+p {
+  color: var(--muted);
+}
+
+strong, b {
+  color: var(--text);
+}
+
+em, i {
+  color: var(--muted-strong);
+}
+
+a {
+  color: var(--periwinkle);
+  &:hover { color: var(--periwinkle-light); }
+  &:visited { color: var(--periwinkle-dark); }
+  &:focus { outline-color: var(--signal); }
+}
+
+dl dt {
+  color: var(--muted-strong);
+}
+
+dl dd {
+  color: var(--muted);
+}
+
+code, kbd, samp {
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: var(--line);
+  color: var(--signal);
+}
+
+pre {
+  background-color: rgba(255, 255, 255, 0.04);
+  border-color: var(--line);
+  code { color: var(--text); }
+}
+
+blockquote {
+  border-left-color: var(--signal);
+  background-color: rgba(255, 255, 255, 0.03);
+  color: var(--muted-strong);
+  cite { color: var(--muted); }
+}
+
+table {
+  border-color: var(--line);
+}
+
+thead, th {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--muted-strong);
+  border-color: var(--line);
+}
+
+td {
+  border-color: var(--line);
+  color: var(--muted);
+}
+
+tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+label {
+  color: var(--muted-strong);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="url"],
+input[type="tel"],
+input[type="date"],
+input[type="time"],
+input[type="number"],
+textarea,
+select {
+  background-color: rgba(9, 12, 19, 0.82);
+  border-color: var(--line-strong);
+  color: var(--text);
+  &::placeholder { color: var(--muted); }
+  &:focus { border-color: var(--signal); box-shadow: 0 0 0 3px var(--signal-soft); }
+  &:disabled { background-color: rgba(255, 255, 255, 0.04); color: var(--muted); }
+}
+
+.btn-primary {
+  background-color: var(--periwinkle-dark);
+  color: var(--bg);
+  border-color: var(--periwinkle-dark);
+  &:hover { background-color: var(--periwinkle); border-color: var(--periwinkle); }
+}
+
+.btn-secondary {
+  color: var(--periwinkle);
+  border-color: var(--periwinkle-dark);
+  &:hover { background-color: var(--signal-soft); }
+}
+
+.btn-outline {
+  color: var(--muted-strong);
+  border-color: var(--line-strong);
+  &:hover { background-color: rgba(255, 255, 255, 0.06); border-color: var(--signal); }
+}
+
+.text-muted { color: var(--muted) !important; }
+.text-primary { color: var(--periwinkle) !important; }
+.text-secondary { color: var(--muted-strong) !important; }
+
+/* hero-modern.scss overrides */
+.hero-section {
+  background: transparent;
+}
+
+.hero-title {
+  color: var(--text);
+  .title-subtitle { color: var(--muted-strong); }
+}
+
+.hero-acronym {
+  color: var(--muted);
+  p strong { color: var(--periwinkle); }
+}
+
+.fact-number {
+  color: var(--periwinkle);
+}
+
+.fact-label {
+  color: var(--muted);
+}
+
+.featured-section {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.section-text h2 { color: var(--text); }
+.section-text p { color: var(--muted); }
+.section-link { color: var(--periwinkle); &:hover { color: var(--periwinkle-light); } }
+
+.recent-updates {
+  background-color: transparent;
+}
+
+.update-card {
+  background-color: rgba(255, 255, 255, 0.04);
+  border-color: var(--line);
+  h3 { color: var(--text); }
+  p { color: var(--muted); }
+  &:hover { border-color: var(--signal); }
+}
+
+/* improved-flip-cards.scss override */
+.flip-card-front,
+.flip-card-back {
+  color: var(--text);
+}
+
+/* hero-modern.scss: site-logo, nav, hamburger, search overrides */
+.site-logo,
+.site-logo .logo-text {
+  color: var(--periwinkle);
+  background: none;
+  -webkit-text-fill-color: unset;
+  background-clip: unset;
+}
+
+.site-nav a {
+  color: var(--muted-strong);
+  &::after { background-color: var(--periwinkle); }
+  &:hover { color: var(--text); }
+}
+
+.hamburger span {
+  background-color: var(--muted-strong) !important;
+}
+
+.hamburger.open span {
+  background-color: var(--periwinkle) !important;
+}
+
+.search-button {
+  background-color: var(--periwinkle-dark);
+  color: var(--bg);
+  border: none;
+  &:hover { background-color: var(--periwinkle); }
+}
+
+.hero-cube {
+  border-color: rgba(154, 169, 223, 0.18);
+}
+
+.featured-sections {
+  background-color: transparent;
+}
+
+/* explicit body late-pass override */
+body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+/* minima theme overrides */
+.site-header {
+  background: rgba(9, 12, 18, 0.9) !important;
+  border-bottom-color: var(--line) !important;
+}
+
+.site-footer {
+  background: rgba(10, 12, 18, 0.96) !important;
+  border-top-color: var(--line) !important;
+}
