@@ -5,89 +5,98 @@ permalink: /
 body_class: home-page
 ---
 
-<section class="hero-section">
-  <div class="hero-background">
-    <div class="hero-content">
-      <div class="hero-copy">
-        <p class="eyebrow">Public accountability, elevated.</p>
-        <h1>Oregon justice data built for meaning, not noise.</h1>
-        <p class="hero-lead">A.P.T.I.T.U.D.E. renders judges, courts, enforcement, and supervision into a premium intelligence experience with rich visual signal and accountability-ready context.</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="{{ '/bias-beacon/' | relative_url }}">Open Bias Beacon</a>
-          <a class="button button-secondary" href="{{ '/bias-beacon/judges/' | relative_url }}">Search Judges</a>
+<!-- ═══════════════════════════════════════════════════════════
+     HERO SECTION — Clean landing: logo + hamburger (in header),
+     centered floating search bar, filter chips below
+     ═══════════════════════════════════════════════════════════ -->
+<section class="hero-section hero-landing">
+  <div class="hero-landing-content">
+    <div class="floating-search-container">
+      <form class="floating-search-form" action="{{ '/bias-beacon/judges/' | relative_url }}" method="get">
+        <div class="search-input-wrap">
+          <svg class="search-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input id="hero-search" name="q" type="search" class="floating-search-input" placeholder="Search judges, cases, counties, or agencies..." autocomplete="off" />
+          <button type="submit" class="floating-search-btn">Search</button>
         </div>
-      </div>
-      <div class="hero-search-panel">
-        <form class="main-search-form" action="{{ '/bias-beacon/judges/' | relative_url }}" method="get">
-          <label class="visually-hidden" for="hero-search">Search Oregon records</label>
-          <input id="hero-search" name="q" type="search" class="main-search-input" placeholder="Search judges, cases, counties, or agencies" />
-          <button type="submit" class="search-submit-btn">Search</button>
-        </form>
+      </form>
+      <div class="search-filter-chips">
+        <button class="filter-chip active" data-filter="all">All Records</button>
+        <button class="filter-chip" data-filter="judges">Judges</button>
+        <button class="filter-chip" data-filter="prosecutors">Prosecutors</button>
+        <button class="filter-chip" data-filter="law-enforcement">Law Enforcement</button>
+        <button class="filter-chip" data-filter="probation">Probation</button>
+        <button class="filter-chip" data-filter="caselaw">Case Law</button>
       </div>
     </div>
   </div>
-</section>
 
-<section class="hero-metrics-section">
-  <div class="hero-metrics-container">
-    <div class="hero-metric">
-      <div class="metric-number">210</div>
-      <div class="metric-label">Circuit Judges</div>
-      <div class="metric-description">Every judge in every county.</div>
-    </div>
-    <div class="hero-metric">
-      <div class="metric-number">27</div>
-      <div class="metric-label">Oregon Counties</div>
-      <div class="metric-description">Complete statewide coverage.</div>
-    </div>
-    <div class="hero-metric">
-      <div class="metric-number">24/7</div>
-      <div class="metric-label">Evidence Access</div>
-      <div class="metric-description">Dynamic insight into judicial behavior.</div>
-    </div>
+  <!-- Scroll indicator -->
+  <div class="scroll-indicator">
+    <span>Scroll to explore</span>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
   </div>
 </section>
 
-<section class="mission-section">
+<!-- ═══════════════════════════════════════════════════════════
+     MISSION SECTION — Appears after scrolling
+     ═══════════════════════════════════════════════════════════ -->
+<section class="mission-section" data-reveal>
   <div class="mission-content">
-    <div class="mission-text">
-      <h2>Our mission</h2>
-      <p>A.P.T.I.T.U.D.E. transforms public justice records into intelligence that exposes patterns, compares performance, and makes accountability actionable.</p>
-      <p>We build a premium experience where data is presented with clarity, context, and ethical transparency so decision makers and the public can use it with confidence.</p>
+    <div class="mission-accent-line"></div>
+    <h2 class="mission-title">Our Mission</h2>
+    <p class="mission-lead">A.P.T.I.T.U.D.E. transforms public justice records into intelligence that exposes patterns, compares performance, and makes accountability actionable.</p>
+    <p class="mission-body">We build a premium experience where data is presented with clarity, context, and ethical transparency so decision makers and the public can use it with confidence.</p>
+    <div class="mission-stats">
+      <div class="mission-stat">
+        <span class="mission-stat-number">210</span>
+        <span class="mission-stat-label">Circuit Judges</span>
+      </div>
+      <div class="mission-stat">
+        <span class="mission-stat-number">27</span>
+        <span class="mission-stat-label">Oregon Counties</span>
+      </div>
+      <div class="mission-stat">
+        <span class="mission-stat-number">24/7</span>
+        <span class="mission-stat-label">Evidence Access</span>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="main-cards-section">
+<!-- ═══════════════════════════════════════════════════════════
+     MAIN CARDS SECTION — 6 flip cards with working 3D flip
+     Structure: .main-card.flip-card > .flip-card-inner > .flip-card-front/.flip-card-back
+     ═══════════════════════════════════════════════════════════ -->
+<section class="main-cards-section" data-reveal>
   <div class="cards-container">
-    <div class="main-card flip-card" id="bias-beacon">
-      <div class="card-inner">
-        <div class="card-front">
-          <div class="card-title">
-            <div class="premium-card-header">
-              <div class="card-icon">📊</div>
-              <h2 class="card-title-text">BIAS BEACON</h2>
-              <div class="card-accent-line"></div>
-            </div>
+
+    <!-- BIAS BEACON -->
+    <div class="main-card flip-card" id="bias-beacon" tabindex="0" role="button" aria-label="Bias Beacon - flip for details">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="card-front-content">
+            <div class="card-icon-3d">📊</div>
+            <h2 class="card-title-text">BIAS BEACON</h2>
+            <div class="card-accent-line"></div>
             <p class="card-subtitle">Real-time judicial monitoring</p>
           </div>
         </div>
-        <div class="card-back">
+        <div class="flip-card-back">
           <div class="card-back-content">
             <h3>Bias Beacon</h3>
             <p>Track judicial behavior, sentencing disparities, and institutional drift across Oregon's justice system.</p>
-          </div>
-          <div class="card-graph-container">
-            <h4 class="card-graph-title">Judicial Bias Trends</h4>
-            <div class="card-graph">
-              <div class="graph-bar" style="--target-height: 85%;"></div>
-              <div class="graph-bar" style="--target-height: 65%;"></div>
-              <div class="graph-bar" style="--target-height: 90%;"></div>
-              <div class="graph-bar" style="--target-height: 45%;"></div>
-              <div class="graph-bar" style="--target-height: 75%;"></div>
-            </div>
-            <div class="card-graph-legend">
-              <div class="legend-item"><div class="legend-color"></div><span>Bias score distribution</span></div>
+            <div class="card-graph-container">
+              <h4 class="card-graph-title">Judicial Bias Trends</h4>
+              <div class="card-graph">
+                <div class="graph-bar" style="--target-height: 85%;"></div>
+                <div class="graph-bar" style="--target-height: 65%;"></div>
+                <div class="graph-bar" style="--target-height: 90%;"></div>
+                <div class="graph-bar" style="--target-height: 45%;"></div>
+                <div class="graph-bar" style="--target-height: 75%;"></div>
+              </div>
+              <div class="card-graph-legend">
+                <div class="legend-item"><div class="legend-color"></div><span>Bias score distribution</span></div>
+              </div>
             </div>
           </div>
           <div class="card-back-actions"><a href="{{ '/bias-beacon/' | relative_url }}" class="card-link">Explore Bias Beacon</a></div>
@@ -95,34 +104,33 @@ body_class: home-page
       </div>
     </div>
 
-    <div class="main-card flip-card" id="judiciary">
-      <div class="card-inner">
-        <div class="card-front">
-          <div class="card-title">
-            <div class="premium-card-header">
-              <div class="card-icon">⚖️</div>
-              <h2 class="card-title-text">THE JUDICIARY</h2>
-              <div class="card-accent-line"></div>
-            </div>
+    <!-- THE JUDICIARY -->
+    <div class="main-card flip-card" id="judiciary" tabindex="0" role="button" aria-label="The Judiciary - flip for details">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="card-front-content">
+            <div class="card-icon-3d">⚖️</div>
+            <h2 class="card-title-text">THE JUDICIARY</h2>
+            <div class="card-accent-line"></div>
             <p class="card-subtitle">Circuit court profiles</p>
           </div>
         </div>
-        <div class="card-back">
+        <div class="flip-card-back">
           <div class="card-back-content">
             <h3>The Judiciary</h3>
             <p>Judge profiles, bias scores, caseload context, and accountability signals consolidated by circuit.</p>
-          </div>
-          <div class="card-graph-container">
-            <h4 class="card-graph-title">Judge Performance Metrics</h4>
-            <div class="card-graph">
-              <div class="graph-bar" style="--target-height: 70%;"></div>
-              <div class="graph-bar" style="--target-height: 85%;"></div>
-              <div class="graph-bar" style="--target-height: 60%;"></div>
-              <div class="graph-bar" style="--target-height: 90%;"></div>
-              <div class="graph-bar" style="--target-height: 55%;"></div>
-            </div>
-            <div class="card-graph-legend">
-              <div class="legend-item"><div class="legend-color"></div><span>Caseload efficiency</span></div>
+            <div class="card-graph-container">
+              <h4 class="card-graph-title">Judge Performance Metrics</h4>
+              <div class="card-graph">
+                <div class="graph-bar" style="--target-height: 70%;"></div>
+                <div class="graph-bar" style="--target-height: 85%;"></div>
+                <div class="graph-bar" style="--target-height: 60%;"></div>
+                <div class="graph-bar" style="--target-height: 90%;"></div>
+                <div class="graph-bar" style="--target-height: 55%;"></div>
+              </div>
+              <div class="card-graph-legend">
+                <div class="legend-item"><div class="legend-color"></div><span>Caseload efficiency</span></div>
+              </div>
             </div>
           </div>
           <div class="card-back-actions"><a href="{{ '/bias-beacon/judges/' | relative_url }}" class="card-link">View Judiciary</a></div>
@@ -130,34 +138,33 @@ body_class: home-page
       </div>
     </div>
 
-    <div class="main-card flip-card" id="prosecutors">
-      <div class="card-inner">
-        <div class="card-front">
-          <div class="card-title">
-            <div class="premium-card-header">
-              <div class="card-icon">👔</div>
-              <h2 class="card-title-text">PROSECUTORS</h2>
-              <div class="card-accent-line"></div>
-            </div>
+    <!-- PROSECUTORS -->
+    <div class="main-card flip-card" id="prosecutors" tabindex="0" role="button" aria-label="Prosecutors - flip for details">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="card-front-content">
+            <div class="card-icon-3d">👔</div>
+            <h2 class="card-title-text">PROSECUTORS</h2>
+            <div class="card-accent-line"></div>
             <p class="card-subtitle">District attorney analysis</p>
           </div>
         </div>
-        <div class="card-back">
+        <div class="flip-card-back">
           <div class="card-back-content">
             <h3>Prosecutors Office</h3>
             <p>Compare charging patterns, plea outcomes, and public safety narratives on a county-by-county basis.</p>
-          </div>
-          <div class="card-graph-container">
-            <h4 class="card-graph-title">Charging Pattern Analysis</h4>
-            <div class="card-graph">
-              <div class="graph-bar" style="--target-height: 80%;"></div>
-              <div class="graph-bar" style="--target-height: 45%;"></div>
-              <div class="graph-bar" style="--target-height: 65%;"></div>
-              <div class="graph-bar" style="--target-height: 90%;"></div>
-              <div class="graph-bar" style="--target-height: 55%;"></div>
-            </div>
-            <div class="card-graph-legend">
-              <div class="legend-item"><div class="legend-color"></div><span>Conviction rate trends</span></div>
+            <div class="card-graph-container">
+              <h4 class="card-graph-title">Charging Pattern Analysis</h4>
+              <div class="card-graph">
+                <div class="graph-bar" style="--target-height: 80%;"></div>
+                <div class="graph-bar" style="--target-height: 45%;"></div>
+                <div class="graph-bar" style="--target-height: 65%;"></div>
+                <div class="graph-bar" style="--target-height: 90%;"></div>
+                <div class="graph-bar" style="--target-height: 55%;"></div>
+              </div>
+              <div class="card-graph-legend">
+                <div class="legend-item"><div class="legend-color"></div><span>Conviction rate trends</span></div>
+              </div>
             </div>
           </div>
           <div class="card-back-actions"><a href="{{ '/prosecutors/' | relative_url }}" class="card-link">Explore Prosecutors</a></div>
@@ -165,34 +172,33 @@ body_class: home-page
       </div>
     </div>
 
-    <div class="main-card flip-card" id="law-enforcement">
-      <div class="card-inner">
-        <div class="card-front">
-          <div class="card-title">
-            <div class="premium-card-header">
-              <div class="card-icon">🚔</div>
-              <h2 class="card-title-text">LAW ENFORCEMENT</h2>
-              <div class="card-accent-line"></div>
-            </div>
+    <!-- LAW ENFORCEMENT -->
+    <div class="main-card flip-card" id="law-enforcement" tabindex="0" role="button" aria-label="Law Enforcement - flip for details">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="card-front-content">
+            <div class="card-icon-3d">🚔</div>
+            <h2 class="card-title-text">LAW ENFORCEMENT</h2>
+            <div class="card-accent-line"></div>
             <p class="card-subtitle">Police department metrics</p>
           </div>
         </div>
-        <div class="card-back">
+        <div class="flip-card-back">
           <div class="card-back-content">
             <h3>Law Enforcement</h3>
             <p>STOP data, arrest patterns, and enforcement performance visualized through community outcomes.</p>
-          </div>
-          <div class="card-graph-container">
-            <h4 class="card-graph-title">Arrest Pattern Trends</h4>
-            <div class="card-graph">
-              <div class="graph-bar" style="--target-height: 75%;"></div>
-              <div class="graph-bar" style="--target-height: 60%;"></div>
-              <div class="graph-bar" style="--target-height: 85%;"></div>
-              <div class="graph-bar" style="--target-height: 40%;"></div>
-              <div class="graph-bar" style="--target-height: 70%;"></div>
-            </div>
-            <div class="card-graph-legend">
-              <div class="legend-item"><div class="legend-color"></div><span>Community impact</span></div>
+            <div class="card-graph-container">
+              <h4 class="card-graph-title">Arrest Pattern Trends</h4>
+              <div class="card-graph">
+                <div class="graph-bar" style="--target-height: 75%;"></div>
+                <div class="graph-bar" style="--target-height: 60%;"></div>
+                <div class="graph-bar" style="--target-height: 85%;"></div>
+                <div class="graph-bar" style="--target-height: 40%;"></div>
+                <div class="graph-bar" style="--target-height: 70%;"></div>
+              </div>
+              <div class="card-graph-legend">
+                <div class="legend-item"><div class="legend-color"></div><span>Community impact</span></div>
+              </div>
             </div>
           </div>
           <div class="card-back-actions"><a href="{{ '/law-enforcement/' | relative_url }}" class="card-link">View Law Enforcement</a></div>
@@ -200,34 +206,33 @@ body_class: home-page
       </div>
     </div>
 
-    <div class="main-card flip-card" id="community-supervision">
-      <div class="card-inner">
-        <div class="card-front">
-          <div class="card-title">
-            <div class="premium-card-header">
-              <div class="card-icon">👁️</div>
-              <h2 class="card-title-text">COMMUNITY SUPERVISION</h2>
-              <div class="card-accent-line"></div>
-            </div>
+    <!-- COMMUNITY SUPERVISION -->
+    <div class="main-card flip-card" id="community-supervision" tabindex="0" role="button" aria-label="Community Supervision - flip for details">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="card-front-content">
+            <div class="card-icon-3d">👁️</div>
+            <h2 class="card-title-text">COMMUNITY SUPERVISION</h2>
+            <div class="card-accent-line"></div>
             <p class="card-subtitle">Probation & parole data</p>
           </div>
         </div>
-        <div class="card-back">
+        <div class="flip-card-back">
           <div class="card-back-content">
             <h3>Community Supervision</h3>
             <p>Revocation rates, supervision outcomes, and community corrections signals in one place.</p>
-          </div>
-          <div class="card-graph-container">
-            <h4 class="card-graph-title">Supervision Success Rates</h4>
-            <div class="card-graph">
-              <div class="graph-bar" style="--target-height: 65%;"></div>
-              <div class="graph-bar" style="--target-height: 80%;"></div>
-              <div class="graph-bar" style="--target-height: 50%;"></div>
-              <div class="graph-bar" style="--target-height: 75%;"></div>
-              <div class="graph-bar" style="--target-height: 60%;"></div>
-            </div>
-            <div class="card-graph-legend">
-              <div class="legend-item"><div class="legend-color"></div><span>Revocation trends</span></div>
+            <div class="card-graph-container">
+              <h4 class="card-graph-title">Supervision Success Rates</h4>
+              <div class="card-graph">
+                <div class="graph-bar" style="--target-height: 65%;"></div>
+                <div class="graph-bar" style="--target-height: 80%;"></div>
+                <div class="graph-bar" style="--target-height: 50%;"></div>
+                <div class="graph-bar" style="--target-height: 75%;"></div>
+                <div class="graph-bar" style="--target-height: 60%;"></div>
+              </div>
+              <div class="card-graph-legend">
+                <div class="legend-item"><div class="legend-color"></div><span>Revocation trends</span></div>
+              </div>
             </div>
           </div>
           <div class="card-back-actions"><a href="{{ '/parole-probation.html' | relative_url }}" class="card-link">Explore Supervision</a></div>
@@ -235,39 +240,326 @@ body_class: home-page
       </div>
     </div>
 
-    <div class="main-card flip-card" id="juris-lab">
-      <div class="card-inner">
-        <div class="card-front">
-          <div class="card-title">
-            <div class="premium-card-header">
-              <div class="card-icon">🔬</div>
-              <h2 class="card-title-text">JURIS LAB</h2>
-              <div class="card-accent-line"></div>
-            </div>
+    <!-- JURIS LAB -->
+    <div class="main-card flip-card" id="juris-lab" tabindex="0" role="button" aria-label="Juris Lab - flip for details">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="card-front-content">
+            <div class="card-icon-3d">🔬</div>
+            <h2 class="card-title-text">JURIS LAB</h2>
+            <div class="card-accent-line"></div>
             <p class="card-subtitle">Legal research tools</p>
           </div>
         </div>
-        <div class="card-back">
+        <div class="flip-card-back">
           <div class="card-back-content">
             <h3>Juris Lab</h3>
             <p>Legal research, case law insights, and AI-assisted drafting for data-informed legal strategy.</p>
-          </div>
-          <div class="card-graph-container">
-            <h4 class="card-graph-title">Research Tool Usage</h4>
-            <div class="card-graph">
-              <div class="graph-bar" style="--target-height: 90%;"></div>
-              <div class="graph-bar" style="--target-height: 70%;"></div>
-              <div class="graph-bar" style="--target-height: 85%;"></div>
-              <div class="graph-bar" style="--target-height: 60%;"></div>
-              <div class="graph-bar" style="--target-height: 80%;"></div>
+            <div class="card-graph-container">
+              <h4 class="card-graph-title">Research Tool Usage</h4>
+              <div class="card-graph">
+                <div class="graph-bar" style="--target-height: 90%;"></div>
+                <div class="graph-bar" style="--target-height: 70%;"></div>
+                <div class="graph-bar" style="--target-height: 85%;"></div>
+                <div class="graph-bar" style="--target-height: 60%;"></div>
+                <div class="graph-bar" style="--target-height: 80%;"></div>
+              </div>
+              <div class="card-graph-legend">
+                <div class="legend-item"><div class="legend-color"></div><span>AI-assisted analysis</span></div>
+              </div>
             </div>
-            <div class="card-graph-legend">
-              <div class="legend-item"><div class="legend-color"></div><span>AI-assisted analysis</span></div>
-            </div>
           </div>
-          <div class="card-back-actions"><a href="{{ '/juris-lab/' | relative_url }}" class="card-link">Enter Juris Lab</a></div>
+          <div class="card-back-actions"><a href="{{ '/legal-assistant.html' | relative_url }}" class="card-link">Enter Juris Lab</a></div>
         </div>
       </div>
     </div>
+
   </div>
 </section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     COMPARISON MODAL — Global so compare button works on any page
+     ═══════════════════════════════════════════════════════════ -->
+<div class="modal" id="comparison-modal">
+  <div class="modal-backdrop"></div>
+  <div class="modal-content comparison-modal-content">
+    <button class="modal-close close" aria-label="Close">&times;</button>
+    <div id="comparison-results"></div>
+  </div>
+</div>
+
+<!-- Judge Detail Modal -->
+<div class="modal" id="judge-detail-modal">
+  <div class="modal-backdrop"></div>
+  <div class="modal-content detail-modal-content">
+    <button class="modal-close close" aria-label="Close">&times;</button>
+    <div id="judge-detail-content"></div>
+  </div>
+</div>
+
+<noscript><style>[data-reveal]{opacity:1;transform:none;}</style></noscript>
+<!-- Scroll-reveal + flip-card + search-filter JS -->
+<script>
+(function() {
+  'use strict';
+
+  /* ── Scroll Reveal ── */
+  var revealEls = document.querySelectorAll('[data-reveal]');
+  function checkReveal() {
+    revealEls.forEach(function(el) {
+      var rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.88) {
+        el.classList.add('revealed');
+      }
+    });
+  }
+  window.addEventListener('scroll', checkReveal, { passive: true });
+  checkReveal();
+
+  /* ── Homepage Flip Cards ── */
+  var homeCards = document.querySelectorAll('.main-card.flip-card');
+  homeCards.forEach(function(card) {
+    card.addEventListener('click', function(e) {
+      // Don't flip if clicking a link or button inside
+      if (e.target.closest('a, button')) return;
+      card.classList.toggle('is-flipped');
+      card.classList.toggle('is-pinned', card.classList.contains('is-flipped'));
+    });
+    card.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        card.classList.toggle('is-flipped');
+        card.classList.toggle('is-pinned', card.classList.contains('is-flipped'));
+      }
+    });
+    // Hover flip (only if not pinned)
+    card.addEventListener('mouseenter', function() {
+      if (!card.classList.contains('is-pinned')) {
+        card.classList.add('is-flipped');
+      }
+    });
+    card.addEventListener('mouseleave', function() {
+      if (!card.classList.contains('is-pinned')) {
+        card.classList.remove('is-flipped');
+      }
+    });
+  });
+
+  /* ── Search Filter Chips ── */
+  var chips = document.querySelectorAll('.filter-chip');
+  var searchInput = document.getElementById('hero-search');
+  chips.forEach(function(chip) {
+    chip.addEventListener('click', function() {
+      chips.forEach(function(c) { c.classList.remove('active'); });
+      chip.classList.add('active');
+      var filter = chip.dataset.filter;
+      if (searchInput) {
+        switch(filter) {
+          case 'judges':
+            searchInput.placeholder = 'Search judges by name, county, or court...';
+            document.querySelector('.floating-search-form').action = '{{ "/bias-beacon/judges/" | relative_url }}';
+            break;
+          case 'prosecutors':
+            searchInput.placeholder = 'Search prosecutors by name or county...';
+            document.querySelector('.floating-search-form').action = '{{ "/prosecutors/" | relative_url }}';
+            break;
+          case 'law-enforcement':
+            searchInput.placeholder = 'Search law enforcement agencies...';
+            document.querySelector('.floating-search-form').action = '{{ "/law-enforcement/" | relative_url }}';
+            break;
+          case 'probation':
+            searchInput.placeholder = 'Search probation and parole records...';
+            document.querySelector('.floating-search-form').action = '{{ "/parole-probation/" | relative_url }}';
+            break;
+          case 'caselaw':
+            searchInput.placeholder = 'Search case law and legal research...';
+            document.querySelector('.floating-search-form').action = '{{ "/legal-assistant/" | relative_url }}';
+            break;
+          default:
+            searchInput.placeholder = 'Search judges, cases, counties, or agencies...';
+            document.querySelector('.floating-search-form').action = '{{ "/bias-beacon/judges/" | relative_url }}';
+        }
+      }
+    });
+  });
+
+  /* ── Modal Helpers (used by both Compare and Detail modals) ── */
+  function openModal(modalEl) {
+    if (modalEl) { modalEl.classList.add('active'); }
+  }
+  function closeModal(modalEl) {
+    if (modalEl) { modalEl.classList.remove('active'); }
+  }
+
+  // Close any modal on backdrop or close button click
+  document.querySelectorAll('.modal-backdrop, .modal-close').forEach(function(el) {
+    el.addEventListener('click', function() {
+      closeModal(el.closest('.modal'));
+    });
+  });
+
+  /* ── Comparison Modal Logic (homepage guard to avoid double-fire with site-ui.js) ── */
+  var compareModal = document.getElementById('comparison-modal');
+  var selectedForCompare = [];
+  var compareResults = document.getElementById('comparison-results');
+
+  // Compare buttons on judge cards (delegated)
+  document.addEventListener('click', function(e) {
+    var addBtn = e.target.closest('.add-compare-btn, .compare-btn');
+    if (addBtn) {
+      var judgeId = addBtn.dataset.judgeId;
+      var judgeName = addBtn.dataset.judgeName || 'Unknown';
+      if (!judgeId) return;
+
+      // Toggle selection
+      var idx = selectedForCompare.findIndex(function(j) { return j.id === judgeId; });
+      if (idx >= 0) {
+        selectedForCompare.splice(idx, 1);
+        addBtn.textContent = 'Compare';
+        addBtn.classList.remove('active');
+      } else {
+        if (selectedForCompare.length >= 2) {
+          selectedForCompare.push({ id: judgeId, name: judgeName });
+          runComparison();
+          return;
+        }
+        selectedForCompare.push({ id: judgeId, name: judgeName });
+        addBtn.textContent = '✓ Selected';
+        addBtn.classList.add('active');
+      }
+      return;
+    }
+
+    var execBtn = e.target.closest('.compare-execute-btn, #compare-btn');
+    if (execBtn) {
+      runComparison();
+      return;
+    }
+  });
+
+  function runComparison() {
+    if (!compareModal) return;
+    if (selectedForCompare.length < 2) {
+      if (compareResults) {
+        compareResults.innerHTML = '<p style="color:var(--muted);text-align:center;padding:2rem">Select at least 2 judges to compare.</p>';
+      }
+      openModal(compareModal);
+      return;
+    }
+
+    var j1 = selectedForCompare[0];
+    var j2 = selectedForCompare[1];
+
+    // Find the judge data from the DOM or loaded data
+    var card1 = document.querySelector('[data-id="' + j1.id + '"]');
+    var card2 = document.querySelector('[data-id="' + j2.id + '"]');
+
+    function extractMetrics(card) {
+      if (!card) return {};
+      var metrics = {};
+      metrics.name = card.dataset.name || 'Unknown';
+      metrics.score = card.dataset.score || 'N/A';
+      metrics.level = card.dataset.level || 'N/A';
+      metrics.county = card.dataset.county || 'N/A';
+
+      // Try to extract from bias metric items
+      var items = card.querySelectorAll('.bias-metric-item');
+      items.forEach(function(item) {
+        var label = item.querySelector('.bias-metric-label');
+        var value = item.querySelector('.bias-metric-value');
+        if (label && value) metrics[label.textContent.trim()] = value.textContent.trim();
+      });
+
+      // Also grab metric-minis
+      var minis = card.querySelectorAll('.metric-mini');
+      minis.forEach(function(m) {
+        var label = m.querySelector('.metric-label');
+        var value = m.querySelector('.metric-value');
+        if (label && value) metrics[label.textContent.trim()] = value.textContent.trim();
+      });
+
+      return metrics;
+    }
+
+    var m1 = extractMetrics(card1);
+    var m2 = extractMetrics(card2);
+
+    // Build comparison HTML
+    var html = '<h2 style="color:var(--text);font-size:1.6rem;margin-bottom:1.5rem">Judge Comparison</h2>';
+
+    // Side-by-side header
+    html += '<div class="compare-judges-row">';
+    html += '<div class="compare-judge-card"><h3>' + (m1.name || j1.name) + '</h3><p style="color:var(--muted)">' + (m1.county || '') + ' County &middot; Score: ' + (m1.score || 'N/A') + '</p></div>';
+    html += '<div class="compare-vs-divider">VS</div>';
+    html += '<div class="compare-judge-card"><h3>' + (m2.name || j2.name) + '</h3><p style="color:var(--muted)">' + (m2.county || '') + ' County &middot; Score: ' + (m2.score || 'N/A') + '</p></div>';
+    html += '</div>';
+
+    // Metric comparison rows
+    var allKeys = [];
+    var seen = {};
+    Object.keys(m1).concat(Object.keys(m2)).forEach(function(k) {
+      if (!seen[k] && k !== 'name') { seen[k] = true; allKeys.push(k); }
+    });
+
+    allKeys.forEach(function(key) {
+      var v1 = m1[key] || 'N/A';
+      var v2 = m2[key] || 'N/A';
+      var n1 = parseFloat(v1);
+      var n2 = parseFloat(v2);
+      var cls1 = '', cls2 = '';
+      if (!isNaN(n1) && !isNaN(n2) && n1 !== n2) {
+        cls1 = n1 > n2 ? 'higher' : 'lower';
+        cls2 = n2 > n1 ? 'higher' : 'lower';
+      }
+      html += '<div class="compare-metric-row">';
+      html += '<div class="compare-metric-value ' + cls1 + '">' + v1 + '</div>';
+      html += '<div class="compare-metric-label">' + key + '</div>';
+      html += '<div class="compare-metric-value ' + cls2 + '">' + v2 + '</div>';
+      html += '</div>';
+    });
+
+    // Generate insight
+    var scoreDiff = Math.abs(parseFloat(m1.score || 0) - parseFloat(m2.score || 0));
+    var insightText = '';
+    if (scoreDiff > 20) {
+      insightText = 'Significant disparity in bias scores (' + Math.round(scoreDiff) + ' point difference). This warrants deeper analysis of sentencing patterns and case outcomes.';
+    } else if (scoreDiff > 10) {
+      insightText = 'Moderate difference in bias scores (' + Math.round(scoreDiff) + ' points). Review specific metric breakdowns for contextual understanding.';
+    } else {
+      insightText = 'Similar bias profiles (' + Math.round(scoreDiff) + ' point difference). Look to individual metric disparities for nuanced insights.';
+    }
+
+    html += '<div class="compare-insight">';
+    html += '<h4>Comparative Insight</h4>';
+    html += '<p>' + insightText + '</p>';
+    html += '</div>';
+
+    if (compareResults) compareResults.innerHTML = html;
+    openModal(compareModal);
+
+    // Reset selection after compare
+    selectedForCompare = [];
+    document.querySelectorAll('.add-compare-btn.active, .compare-btn.active').forEach(function(b) {
+      b.textContent = 'Compare';
+      b.classList.remove('active');
+    });
+  }
+
+  /* ── Judge Detail Modal ── */
+  document.addEventListener('click', function(e) {
+    var detailBtn = e.target.closest('.view-details-btn');
+    if (detailBtn) {
+      var judgeId = detailBtn.dataset.judgeId;
+      var card = document.querySelector('[data-id="' + judgeId + '"]');
+      if (!card) return;
+
+      var detailContent = document.getElementById('judge-detail-content');
+      if (detailContent) {
+        var backContent = card.querySelector('.card-back-content');
+        detailContent.innerHTML = backContent ? backContent.innerHTML : '<p>Detailed profile data not available.</p>';
+      }
+      openModal(document.getElementById('judge-detail-modal'));
+    }
+  });
+})();
+</script>
