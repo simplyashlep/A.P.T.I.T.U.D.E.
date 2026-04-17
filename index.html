@@ -12,12 +12,14 @@ body_class: home-page
 <section class="hero-section hero-landing">
   <div class="hero-landing-content">
     <div class="floating-search-container">
-      <form class="floating-search-form" action="{{ '/bias-beacon/judges/' | relative_url }}" method="get">
+      <form class="floating-search-form" id="hero-search-form">
         <div class="search-input-wrap">
           <svg class="search-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-          <input id="hero-search" name="q" type="search" class="floating-search-input" placeholder="Search judges, cases, counties, or agencies..." autocomplete="off" />
+          <input id="hero-search" type="search" class="floating-search-input" placeholder="Search judges, cases, counties, or agencies..." autocomplete="off" />
           <button type="submit" class="floating-search-btn">Search</button>
         </div>
+        <!-- Live search results dropdown -->
+        <div id="hero-search-results" class="hero-search-results" hidden></div>
       </form>
       <div class="search-filter-chips">
         <button class="filter-chip active" data-filter="all">All Records</button>
@@ -75,8 +77,7 @@ body_class: home-page
       <div class="flip-card-inner">
         <div class="flip-card-front">
           <div class="card-front-content">
-            <div class="card-icon-3d">📊</div>
-            <h2 class="card-title-text">BIAS BEACON</h2>
+            <img class="card-title-asset" src="{{ '/assets/images/titles/NEW ASSETS/BIAS BEACON ASSET.png' | relative_url }}" alt="Bias Beacon">
             <div class="card-accent-line"></div>
             <p class="card-subtitle">Real-time judicial monitoring</p>
           </div>
@@ -109,8 +110,7 @@ body_class: home-page
       <div class="flip-card-inner">
         <div class="flip-card-front">
           <div class="card-front-content">
-            <div class="card-icon-3d">⚖️</div>
-            <h2 class="card-title-text">THE JUDICIARY</h2>
+            <img class="card-title-asset" src="{{ '/assets/images/titles/NEW ASSETS/JUDICIARY ASSET.png' | relative_url }}" alt="The Judiciary">
             <div class="card-accent-line"></div>
             <p class="card-subtitle">Circuit court profiles</p>
           </div>
@@ -143,8 +143,7 @@ body_class: home-page
       <div class="flip-card-inner">
         <div class="flip-card-front">
           <div class="card-front-content">
-            <div class="card-icon-3d">👔</div>
-            <h2 class="card-title-text">PROSECUTORS</h2>
+            <img class="card-title-asset" src="{{ '/assets/images/titles/NEW ASSETS/PROSECUTOR PROFILES ASSET.png' | relative_url }}" alt="Prosecutor Profiles">
             <div class="card-accent-line"></div>
             <p class="card-subtitle">District attorney analysis</p>
           </div>
@@ -177,8 +176,7 @@ body_class: home-page
       <div class="flip-card-inner">
         <div class="flip-card-front">
           <div class="card-front-content">
-            <div class="card-icon-3d">🚔</div>
-            <h2 class="card-title-text">LAW ENFORCEMENT</h2>
+            <img class="card-title-asset" src="{{ '/assets/images/titles/NEW ASSETS/WATCHTOWER ASSET.png' | relative_url }}" alt="Law Enforcement">
             <div class="card-accent-line"></div>
             <p class="card-subtitle">Police department metrics</p>
           </div>
@@ -211,8 +209,7 @@ body_class: home-page
       <div class="flip-card-inner">
         <div class="flip-card-front">
           <div class="card-front-content">
-            <div class="card-icon-3d">👁️</div>
-            <h2 class="card-title-text">COMMUNITY SUPERVISION</h2>
+            <img class="card-title-asset" src="{{ '/assets/images/titles/NEW ASSETS/COMMUNITY CORRECTIONS TITLE ASSET.png' | relative_url }}" alt="Community Supervision">
             <div class="card-accent-line"></div>
             <p class="card-subtitle">Probation & parole data</p>
           </div>
@@ -245,8 +242,7 @@ body_class: home-page
       <div class="flip-card-inner">
         <div class="flip-card-front">
           <div class="card-front-content">
-            <div class="card-icon-3d">🔬</div>
-            <h2 class="card-title-text">JURIS LAB</h2>
+            <img class="card-title-asset" src="{{ '/assets/images/titles/NEW ASSETS/JURIS LAB ASSET.png' | relative_url }}" alt="Juris Lab">
             <div class="card-accent-line"></div>
             <p class="card-subtitle">Legal research tools</p>
           </div>
@@ -348,40 +344,121 @@ body_class: home-page
   /* ── Search Filter Chips ── */
   var chips = document.querySelectorAll('.filter-chip');
   var searchInput = document.getElementById('hero-search');
+  var activeFilter = 'all';
   chips.forEach(function(chip) {
     chip.addEventListener('click', function() {
       chips.forEach(function(c) { c.classList.remove('active'); });
       chip.classList.add('active');
-      var filter = chip.dataset.filter;
+      activeFilter = chip.dataset.filter;
       if (searchInput) {
-        switch(filter) {
+        switch(activeFilter) {
           case 'judges':
-            searchInput.placeholder = 'Search judges by name, county, or court...';
-            document.querySelector('.floating-search-form').action = '{{ "/bias-beacon/judges/" | relative_url }}';
-            break;
+            searchInput.placeholder = 'Search judges by name, county, or court...'; break;
           case 'prosecutors':
-            searchInput.placeholder = 'Search prosecutors by name or county...';
-            document.querySelector('.floating-search-form').action = '{{ "/prosecutors/" | relative_url }}';
-            break;
+            searchInput.placeholder = 'Search prosecutors by name or county...'; break;
           case 'law-enforcement':
-            searchInput.placeholder = 'Search law enforcement agencies...';
-            document.querySelector('.floating-search-form').action = '{{ "/law-enforcement/" | relative_url }}';
-            break;
+            searchInput.placeholder = 'Search law enforcement agencies...'; break;
           case 'probation':
-            searchInput.placeholder = 'Search probation and parole records...';
-            document.querySelector('.floating-search-form').action = '{{ "/parole-probation/" | relative_url }}';
-            break;
+            searchInput.placeholder = 'Search probation and parole records...'; break;
           case 'caselaw':
-            searchInput.placeholder = 'Search case law and legal research...';
-            document.querySelector('.floating-search-form').action = '{{ "/legal-assistant/" | relative_url }}';
-            break;
+            searchInput.placeholder = 'Search case law and legal research...'; break;
           default:
             searchInput.placeholder = 'Search judges, cases, counties, or agencies...';
-            document.querySelector('.floating-search-form').action = '{{ "/bias-beacon/judges/" | relative_url }}';
         }
       }
     });
   });
+
+  /* ── Live Search (searches judges from JSON) ── */
+  var searchResults = document.getElementById('hero-search-results');
+  var searchForm = document.getElementById('hero-search-form');
+  var judgeDataCache = null;
+
+  function getTargetPage() {
+    switch(activeFilter) {
+      case 'prosecutors': return '{{ "/prosecutors.html" | relative_url }}';
+      case 'law-enforcement': return '{{ "/law-enforcement.html" | relative_url }}';
+      case 'probation': return '{{ "/parole-probation.html" | relative_url }}';
+      default: return '{{ "/bias-beacon/judges/" | relative_url }}';
+    }
+  }
+
+  function loadJudgeData() {
+    if (judgeDataCache) return Promise.resolve(judgeDataCache);
+    return fetch('{{ "/assets/data/judges.json" | relative_url }}')
+      .then(function(r) { return r.ok ? r.json() : { judges: [] }; })
+      .then(function(data) { judgeDataCache = data.judges || []; return judgeDataCache; })
+      .catch(function() { return []; });
+  }
+
+  function renderSearchResults(judges, query) {
+    if (!judges.length) {
+      searchResults.innerHTML = '<div class="search-result-item search-no-results">No judges found for "' + escapeHtml(query) + '"</div>';
+      searchResults.hidden = false;
+      return;
+    }
+    var html = judges.slice(0, 8).map(function(j) {
+      var name = j.name || 'Unknown';
+      var county = j.county || 'Unknown';
+      var score = j.score || 'N/A';
+      return '<a class="search-result-item" href="{{ "/bias-beacon/judges/" | relative_url }}?q=' + encodeURIComponent(name) + '">' +
+        '<span class="search-result-name">' + escapeHtml(name) + '</span>' +
+        '<span class="search-result-county">' + escapeHtml(county) + ' County</span>' +
+        '<span class="search-result-score">Score: ' + score + '</span>' +
+        '</a>';
+    }).join('');
+    if (judges.length > 8) {
+      html += '<a class="search-result-item search-view-all" href="{{ "/bias-beacon/judges/" | relative_url }}?q=' + encodeURIComponent(query) + '">View all ' + judges.length + ' results →</a>';
+    }
+    searchResults.innerHTML = html;
+    searchResults.hidden = false;
+  }
+
+  function escapeHtml(str) {
+    return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  var searchDebounce = null;
+  if (searchInput) {
+    searchInput.addEventListener('input', function() {
+      clearTimeout(searchDebounce);
+      var query = searchInput.value.trim().toLowerCase();
+      if (query.length < 2) {
+        searchResults.hidden = true;
+        return;
+      }
+      searchDebounce = setTimeout(function() {
+        loadJudgeData().then(function(judges) {
+          var filtered = judges.filter(function(j) {
+            var name = (j.name || '').toLowerCase();
+            var county = (j.county || '').toLowerCase();
+            var focus = (j.case_specialization || []).join(' ').toLowerCase();
+            return name.indexOf(query) !== -1 || county.indexOf(query) !== -1 || focus.indexOf(query) !== -1;
+          });
+          renderSearchResults(filtered, query);
+        });
+      }, 250);
+    });
+
+    // Close results when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!searchForm.contains(e.target)) {
+        searchResults.hidden = true;
+      }
+    });
+  }
+
+  // Form submit navigates to the appropriate page with query
+  if (searchForm) {
+    searchForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var query = searchInput ? searchInput.value.trim() : '';
+      if (!query) return;
+      var target = getTargetPage();
+      // For judges/all, navigate to judges page with query param
+      window.location.href = target + (target.indexOf('?') === -1 ? '?' : '&') + 'q=' + encodeURIComponent(query);
+    });
+  }
 
   /* ── Modal Helpers (used by both Compare and Detail modals) ── */
   function openModal(modalEl) {

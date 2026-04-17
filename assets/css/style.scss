@@ -358,6 +358,17 @@ body,
   gap: 1.5rem;
 }
 
+/* ── FOOTER LINKS — vertical orientation ── */
+.footer-links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.footer-link {
+  display: block;
+}
+
 .footer-heading,
 .footer-deck,
 .footer-label,
@@ -1241,12 +1252,17 @@ body,
   flex-wrap: wrap;
 }
 
+/* Judiciary page flip cards — fix front content visibility */
 .flip-card-front {
   background: linear-gradient(160deg, rgba(15, 20, 30, 0.98), rgba(23, 29, 41, 0.96));
   border-color: rgba(154, 169, 223, 0.26);
   box-shadow:
     0 20px 44px rgba(0, 0, 0, 0.28),
     inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  /* Ensure front content is always visible */
+  z-index: 2;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .flip-card-back {
@@ -1255,6 +1271,51 @@ body,
   box-shadow:
     0 18px 40px rgba(0, 0, 0, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  /* Ensure back is behind front when not flipped */
+  z-index: 1;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Fix judge card front content — ensure text is visible */
+.flip-card-front .card-front-content {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.flip-card-front .judge-name-display,
+.flip-card-front .county-label,
+.flip-card-front .card-front-summary,
+.flip-card-front .hover-hint,
+.flip-card-front .score-label {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Fix flip card inner transform — only rotate when explicitly flipped */
+.flip-card .flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.flip-card.is-flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Judge photo shell — larger, more prominent */
+.judge-photo-shell {
+  display: grid;
+  place-items: center;
+  width: min(100%, 12rem);
+  margin: 0.85rem auto 0;
+  aspect-ratio: 0.82;
+  border-radius: 6px;
+  overflow: hidden;
+  background: rgba(160, 192, 240, 0.07);
+  border: 1px solid rgba(182, 209, 245, 0.12);
 }
 
 .judge-name-display,
@@ -4240,12 +4301,16 @@ body {
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
-/* FRONT FACE */
+/* FRONT FACE — no visible outline, only depth shadow */
 .main-card .flip-card-front {
   background:
     radial-gradient(ellipse at 50% 0%, rgba(153, 153, 255, 0.12), transparent 60%),
     linear-gradient(160deg, rgba(18, 24, 38, 0.98), rgba(12, 16, 26, 0.98));
-  border: 1px solid rgba(153, 153, 255, 0.15);
+  border: none;
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.35),
+    0 8px 20px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 .main-card .card-front-content {
@@ -4257,6 +4322,22 @@ body {
   padding: 2.5rem 2rem;
   text-align: center;
   gap: 0.75rem;
+}
+
+/* ── CARD TITLE ASSET (uploaded images) ── */
+.card-title-asset {
+  display: block;
+  max-width: 85%;
+  max-height: 140px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.4));
+  transition: transform 280ms ease, filter 280ms ease;
+}
+
+.main-card.flip-card:hover .card-title-asset {
+  transform: scale(1.03);
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.5));
 }
 
 .card-icon-3d {
@@ -4294,13 +4375,17 @@ body {
   margin: 0;
 }
 
-/* BACK FACE */
+/* BACK FACE — no visible outline, only depth shadow */
 .main-card .flip-card-back {
   transform: rotateY(180deg);
   background:
     radial-gradient(ellipse at 50% 0%, rgba(153, 153, 255, 0.08), transparent 50%),
     linear-gradient(160deg, rgba(22, 28, 42, 0.98), rgba(10, 14, 22, 0.98));
-  border: 1px solid rgba(153, 153, 255, 0.2);
+  border: none;
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.35),
+    0 8px 20px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
   display: flex;
   flex-direction: column;
 }
@@ -4585,22 +4670,10 @@ body {
   filter: drop-shadow(0 8px 20px rgba(153, 153, 255, 0.12)) brightness(1.02);
 }
 
-/* 3D card inner highlight edge */
+/* Remove inner highlight edge — no outlines on cards */
 .main-card .flip-card-front::after,
 .main-card .flip-card-back::after {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  pointer-events: none;
-  background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.08), transparent 25%),
-    linear-gradient(315deg, rgba(0, 0, 0, 0.12), transparent 30%);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  padding: 1px;
-  mask-composite: exclude;
-  -webkit-mask-composite: xor;
+  display: none;
 }
 
 /* 3D floating shadow on search bar */
@@ -4630,7 +4703,39 @@ body {
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
-/* ── HAMBURGER MENU LINES ── */
+/* ── HAMBURGER MENU — flush right, shadow-only (no outlines) ── */
+.site-nav {
+  justify-self: end !important;
+}
+
+.menu-launcher {
+  border: none !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: blur(12px);
+  transition: box-shadow 280ms ease, transform 280ms ease !important;
+}
+
+.menu-launcher:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(153, 153, 255, 0.08) !important;
+}
+
+.menu-launcher[aria-expanded="true"] {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45) !important;
+}
+
+.nav-system-link {
+  border: none !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3) !important;
+}
+
+.nav-system-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4) !important;
+}
+
 .hamburger-lines {
   display: flex;
   flex-direction: column;
@@ -4666,17 +4771,63 @@ body {
   margin-left: 0.6rem;
 }
 
-/* ── ENLARGED SITE LOGO ── */
+/* ── ENLARGED SITE LOGO — prominent, flush-left, glint animation ── */
+.site-title {
+  justify-self: start !important;
+}
+
 .site-title-image {
-  max-height: 3.2rem !important;
+  max-height: 4rem !important;
   height: auto;
   filter: drop-shadow(0 2px 8px rgba(153, 153, 255, 0.2));
   transition: filter 180ms ease, transform 180ms ease;
+  position: relative;
+  animation: brand-shiver 4s ease-in-out infinite;
 }
 
 .site-title:hover .site-title-image {
   filter: drop-shadow(0 4px 16px rgba(153, 153, 255, 0.35));
   transform: scale(1.03);
+}
+
+/* Glint sweep across logo on hover */
+.site-title::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 40%,
+    rgba(255, 255, 255, 0.18) 50%,
+    rgba(255, 255, 255, 0.08) 60%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+.site-title:hover::after {
+  animation: brand-glint 0.8s ease-out forwards;
+}
+
+@keyframes brand-glint {
+  0%   { left: -100%; }
+  100% { left: 160%; }
+}
+
+@keyframes brand-shiver {
+  0%, 92%, 100% { transform: translateX(0); }
+  93%  { transform: translateX(-1.5px); }
+  94%  { transform: translateX(1.5px); }
+  95%  { transform: translateX(-1px); }
+  96%  { transform: translateX(1px); }
+  97%  { transform: translateX(-0.5px); }
+  98%  { transform: translateX(0.5px); }
+  99%  { transform: translateX(0); }
 }
 
 /* ── MEGA MENU FIXES: lower position, 6 columns, larger titles ── */
@@ -4779,5 +4930,160 @@ body {
   }
   .mega-menu-grid {
     grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── LIVE SEARCH RESULTS DROPDOWN ── */
+.hero-search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 0.5rem;
+  max-height: 420px;
+  overflow-y: auto;
+  border-radius: 16px;
+  background: rgba(14, 18, 28, 0.96);
+  border: 1px solid rgba(153, 153, 255, 0.15);
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.5),
+    0 8px 20px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(24px);
+  z-index: 100;
+  padding: 0.5rem;
+}
+
+.search-result-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5rem;
+  padding: 0.85rem 1.1rem;
+  border-radius: 12px;
+  color: var(--text);
+  text-decoration: none;
+  transition: background 180ms ease;
+}
+
+.search-result-item:hover {
+  background: rgba(153, 153, 255, 0.1);
+}
+
+.search-result-name {
+  font-weight: 700;
+  color: var(--periwinkle-light);
+}
+
+.search-result-county {
+  font-size: 0.82rem;
+  color: var(--muted-strong);
+}
+
+.search-result-score {
+  grid-column: 1 / -1;
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.search-no-results {
+  text-align: center;
+  padding: 1.5rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.search-view-all {
+  text-align: center;
+  font-weight: 600;
+  color: var(--periwinkle) !important;
+  padding: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+/* ── PROSECUTOR / ACTOR CARD GRID (shared across pages) ── */
+.prosecutor-controls {
+  margin-bottom: 1.5rem;
+}
+
+.prosecutor-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.35rem;
+  align-items: stretch;
+}
+
+.prosecutor-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.4rem;
+  border-radius: 12px;
+  background:
+    linear-gradient(180deg, rgba(153, 153, 255, 0.06), transparent 26%),
+    rgba(255, 255, 255, 0.035);
+  border: 1px solid var(--line);
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.prosecutor-card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 20px 44px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.prosecutor-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.prosecutor-card-header h3 {
+  font-size: 1.15rem;
+  color: var(--text) !important;
+  margin: 0;
+}
+
+.prosecutor-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.55rem;
+  margin-bottom: 1rem;
+}
+
+.prosecutor-card-body {
+  flex: 1;
+}
+
+.prosecutor-card-body p {
+  color: var(--muted-strong) !important;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.prosecutor-card-footer {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media screen and (max-width: 1080px) {
+  .prosecutor-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .prosecutor-grid {
+    grid-template-columns: 1fr;
+  }
+  .prosecutor-metrics {
+    grid-template-columns: 1fr;
   }
 }
