@@ -3871,11 +3871,6 @@ body.home-page {
 @media screen and (max-width: 1240px) {
   .main-menu-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-=======
-  * {
-    animation: none !important;
-    transition: none !important;
->>>>>>> 1c4138e95269a44f9ab97a2b45862695e6f1c9f3
   }
   .main-menu-grid-7 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
