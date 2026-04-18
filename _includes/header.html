@@ -1,18 +1,17 @@
 <header class="site-header" role="banner">
   <div class="wrapper site-header-inner">
-    <a class="site-home-link" href="{{ '/' | relative_url }}">Home</a>
-
     <a class="site-title" rel="author" href="{{ '/' | relative_url }}">
       <img class="site-title-image"
-           src="{{ '/assets/images/titles/A-P-T-I-T-U-D-E-3-29-2026 (1).png' | relative_url }}"
+           src="{{ '/assets/images/titles/NEW ASSETS/v2 Main Page Title Aptitude.png' | relative_url }}"
            alt="A.P.T.I.T.U.D.E.">
-      <span class="site-title-submark">Civic Intelligence Archive</span>
     </a>
 
     <nav class="site-nav" aria-label="Primary navigation">
-      <a class="page-link nav-system-link" href="{{ '/bias-beacon/dashboard/' | relative_url }}">Dashboard</a>
       <button class="menu-launcher" type="button" data-menu-toggle aria-expanded="false" aria-controls="mega-menu-panel">
-        Menu
+        <span class="hamburger-lines">
+          <span></span><span></span><span></span>
+        </span>
+        <span class="menu-label">Menu</span>
       </button>
     </nav>
   </div>
@@ -101,6 +100,7 @@
         <a class="mega-menu-link" href="https://www.portland.gov/ipr" target="_blank" rel="noreferrer">Oversight Bodies</a>
       </section>
 
+<<<<<<< HEAD
       <section class="mega-menu-column mega-menu-column-movement">
         <a class="mega-menu-title" href="{{ '/community-forum.html' | relative_url }}">
           <span class="mega-menu-title-text">The Movement</span>
@@ -113,6 +113,20 @@
         <a class="mega-menu-link" href="{{ '/community-forum.html' | relative_url }}#public-comment">Public Comment</a>
         <a class="mega-menu-link" href="{{ '/community-forum.html' | relative_url }}#groups">Groups</a>
         <a class="mega-menu-link" href="{{ '/community-forum.html' | relative_url }}#news">News &amp; For You</a>
+=======
+      <section class="mega-menu-column">
+        <a class="mega-menu-title" href="{{ '/bias-beacon/' | relative_url }}">
+          <span class="mega-menu-title-text">Bias Beacon</span>
+          <span class="mega-menu-title-hover">Real-time monitoring</span>
+        </a>
+        <div class="mega-menu-reveal">
+          <p>Judicial bias tracking, sentencing disparities, and institutional drift analysis.</p>
+        </div>
+        <a class="mega-menu-link" href="{{ '/bias-beacon/' | relative_url }}">Dashboard</a>
+        <a class="mega-menu-link" href="{{ '/bias-beacon/judges/' | relative_url }}">Judge Scores</a>
+        <a class="mega-menu-link" href="{{ '/bias-beacon/counties/' | relative_url }}">County Intel</a>
+        <a class="mega-menu-link" href="{{ '/bias-beacon/methodology/' | relative_url }}">Methodology</a>
+>>>>>>> 1c4138e95269a44f9ab97a2b45862695e6f1c9f3
       </section>
     </div>
   </div>

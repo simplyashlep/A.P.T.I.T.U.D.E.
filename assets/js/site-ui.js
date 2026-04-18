@@ -939,3 +939,7 @@
     initializeHomeHeroMotion();
   });
 })();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1c4138e95269a44f9ab97a2b45862695e6f1c9f3

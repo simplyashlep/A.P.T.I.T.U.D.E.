@@ -1,258 +1,340 @@
 ---
 layout: default
-title: Prosecutor Profiles
+title: County Prosecutors — A.P.T.I.T.U.D.E.
 permalink: /prosecutors.html
-body_class: archive-page actor-directory-page prosecutors-page
+body_class: page-prosecutor actor-directory-page
 ---
 
-{% assign counties = site.data.bias-beacon.live-oregon-data.county_summary.by_county %}
+<section class="archive-hero">
+  <div class="archive-hero-grid">
+    <div class="archive-hero-copy">
+      <div class="hero-title-stack">
+        <span class="archive-kicker">Actor Directory</span>
+        <div class="actor-page-title-image-wrap">
+          <img class="actor-page-title-image" src="{{ '/assets/images/titles/NEW ASSETS/PROSECUTOR PROFILES ASSET.png' | relative_url }}" alt="Prosecutor Profiles">
+        </div>
+        <p class="archive-acronym">District Attorney Offices · Charging Patterns · Plea Outcomes · Public Safety Narratives</p>
+      </div>
+      <p class="actor-page-deck">Prosecutorial charging decisions set the trajectory for every case and every person who enters the criminal justice system. This section examines Oregon's 36 county DA offices, their leadership, charging patterns, and comparative metrics.</p>
 
-<div class="actor-directory actor-directory--prosecutors" data-directory-root data-directory-label="prosecutor offices">
-  <section class="actor-directory-hero actor-directory-hero--cappuccino">
-    <div class="actor-hero-copy">
-      <p class="archive-kicker">Bias Beacon</p>
-      <h1 class="actor-page-title actor-page-title-image-wrap">
-        <img class="actor-page-title-image"
-             src="{{ '/assets/images/titles/PROSECUTOR-S-OFFICES-3-29-2026.png' | relative_url }}"
-             alt="Prosecutor's Offices">
-        <span class="visually-hidden">Prosecutor's Offices</span>
-      </h1>
-      <p class="actor-page-deck">
-        Charging posture, plea leverage, and dismissal drift become legible here as county office behavior,
-        held in view long enough for the pattern to sharpen on its own.
-      </p>
       <div class="actor-hero-search">
-        <label class="visually-hidden" for="judge-search">Search county or office name</label>
         <div class="search-wrapper">
-          <input id="judge-search" class="search-input-enhanced" placeholder="Search county or office name">
-          <span class="search-icon">&#128269;</span>
+          <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input type="search" class="search-input-enhanced" placeholder="Search prosecutors by name or county..." id="prosecutor-search" autocomplete="off">
         </div>
       </div>
+
       <div class="actor-hero-actions">
-        <button class="btn btn-secondary actor-sidebar-toggle" type="button" data-sidebar-toggle aria-expanded="true">Filters</button>
-      </div>
-    </div>
-    <aside class="actor-hero-panel">
-      <p class="archive-kicker">Evidence Chain</p>
-      <p class="actor-hero-note">
-        Prosecutor offices decide how aggressively the record moves after an arrest.
-        This surface keeps county charging culture visible without pretending every office behaves the same.
-      </p>
-      <div class="actor-chain-mini">
-        <span>Charging</span>
-        <span>Plea pressure</span>
-        <span>Dismissals</span>
-        <span>County drift</span>
-      </div>
-    </aside>
-  </section>
-
-  <div class="actor-directory-layout">
-    <aside class="actor-sidebar">
-      <div class="sidebar-panel sidebar-panel-emphasis">
-        <h2>Office Filters</h2>
-        <p class="sidebar-copy">Filter, sort, and compare DA offices without leaving the page.</p>
-      </div>
-
-      <div class="sidebar-panel sidebar-filters">
-        <div class="filter-group">
-          <label for="county-filter">County</label>
-          <select id="county-filter" class="filter-select"><option value="all">All Counties</option></select>
-        </div>
-        <div class="filter-group">
-          <label for="risk-filter">Pressure Level</label>
-          <select id="risk-filter" class="filter-select">
-            <option value="all">All Levels</option>
-            <option value="critical">Critical</option>
-            <option value="high">High</option>
-            <option value="moderate">Moderate</option>
-            <option value="low">Low</option>
-            <option value="excellent">Low Drift</option>
-          </select>
-        </div>
-        <div class="filter-group">
-          <label for="sort-by">Sort By</label>
-          <select id="sort-by" class="filter-select">
-            <option value="score">Office Score</option>
-            <option value="name">Name</option>
-            <option value="county">County</option>
-            <option value="prison_rate">Charging Pressure</option>
-            <option value="reversal_rate">Dismissal Variance</option>
-          </select>
-        </div>
-        <button id="sort-order" class="sort-order-btn" title="Toggle sort order">&#8595;</button>
-      </div>
-
-      <div class="sidebar-panel comparison-panel-visible">
-        <div class="compare-panel-header">
-          <div>
-            <h3>Compare Offices</h3>
-            <p class="comparison-help">Select any two or more prosecutor offices to isolate them.</p>
-          </div>
-          <button id="compare-btn" disabled class="btn btn-primary">Compare</button>
-        </div>
-        <div id="selected-judges" class="selected-judges-area"></div>
-        <button id="clear-comparison" class="btn btn-secondary">Clear Selection</button>
-      </div>
-
-      <nav class="sidebar-panel directory-cross-nav" aria-label="Actor navigation">
-        <h3>Open Another Actor View</h3>
-        <a class="directory-cross-link" href="{{ '/bias-beacon/judges/' | relative_url }}">Judges</a>
-        <a class="directory-cross-link active" href="{{ '/prosecutors.html' | relative_url }}">Prosecutors</a>
-        <a class="directory-cross-link" href="{{ '/law-enforcement.html' | relative_url }}">Law Enforcement</a>
-        <a class="directory-cross-link" href="{{ '/parole-probation.html' | relative_url }}">Community Supervision</a>
-      </nav>
-    </aside>
-
-    <section class="actor-main">
-      <div class="actor-toolbar">
-        <div class="results-info"><span id="results-count" class="results-count">Loading prosecutor cards...</span></div>
+        <a href="{{ '/bias-beacon/dashboard/' | relative_url }}" class="btn btn-primary">Statewide Dashboard</a>
         <a href="{{ '/bias-beacon/methodology/' | relative_url }}" class="btn btn-outline">Methodology</a>
       </div>
+    </div>
 
-      <div id="bias-stats" class="bias-stats-bar"></div>
-
-      <div id="judges-grid" class="flip-cards-grid actor-card-grid" data-directory-grid>
-        {% for county in counties %}
-          {% assign county_key = county[0] %}
-          {% assign judges_count = county[1] %}
-          {% assign office_score = judges_count | times: 3 | plus: 18 %}
-          {% if office_score > 90 %}{% assign office_score = 90 %}{% endif %}
-          {% assign pressure = judges_count | times: 2 | plus: 28 %}
-          {% assign variance = judges_count | plus: 9 %}
-          {% assign leverage = judges_count | times: 2 | plus: 36 %}
-          {% assign level = 'low' %}
-          {% assign accent = '#9FA8FF' %}
-          {% assign accent_text = '#0B0F12' %}
-          {% if office_score > 80 %}
-            {% assign level = 'critical' %}
-            {% assign accent = '#5F0F40' %}
-            {% assign accent_text = '#FFFFFF' %}
-          {% elsif office_score > 64 %}
-            {% assign level = 'high' %}
-            {% assign accent = '#9A031E' %}
-            {% assign accent_text = '#FFFFFF' %}
-          {% elsif office_score > 44 %}
-            {% assign level = 'moderate' %}
-            {% assign accent = '#8F6F5D' %}
-            {% assign accent_text = '#FFFFFF' %}
-          {% elsif office_score <= 24 %}
-            {% assign level = 'excellent' %}
-            {% assign accent = '#A3FF05' %}
-          {% endif %}
-          {% assign county_name = county_key | replace: '_', ' ' | capitalize %}
-          {% capture office_name %}{{ county_name }} District Attorney's Office{% endcapture %}
-          {% capture summary %}County-level prosecutor profile focused on charging pressure, plea leverage, and dismissal drift in {{ county_name }} County.{% endcapture %}
-          <article class="flip-card"
-                   data-card-id="prosecutor-{{ county_key }}"
-                   data-id="prosecutor-{{ county_key }}"
-                   data-name="{{ office_name }}"
-                   data-county="{{ county_name | downcase }}"
-                   data-level="{{ level }}"
-                   data-score="{{ office_score }}"
-                   data-prison-rate="{{ pressure }}"
-                   data-reversal-rate="{{ variance }}"
-                   data-specialization="charging pressure, plea bargaining, dismissal variance"
-                   data-summary="{{ summary }}"
-                   data-court="District Attorney"
-                   data-tenure="Current county office"
-                   data-caseload="{{ judges_count | times: 110 | plus: 240 }}"
-                   data-flags="Charging pressure index {{ pressure }} | Plea leverage {{ leverage }} | Dismissal variance {{ variance }}"
-                   data-focus="Charging, plea bargaining, diversion, dismissals"
-                   data-actor-type="prosecutor office">
-            <div class="flip-card-inner">
-              <div class="flip-card-front" style="--card-accent: {{ accent }};">
-                <div class="card-selection-bar">
-                  <label class="compare-toggle-pill">
-                    <input class="compare-toggle-input" type="checkbox" data-compare-toggle value="prosecutor-{{ county_key }}">
-                    <span>Compare</span>
-                  </label>
-                  <div class="status-indicator active">Active</div>
-                </div>
-                <div class="card-front-content">
-                  <div class="judge-name-container">
-                    <h2 class="judge-name-display">{{ office_name }}</h2>
-                    <div class="county-label">{{ county_name }} County</div>
-                  </div>
-                  <div class="bias-score-indicator">
-                    <div class="score-circle" style="background: {{ accent }}; color: {{ accent_text }};"><span class="score-value">{{ office_score }}</span></div>
-                    <span class="score-label">{{ level | capitalize }}</span>
-                  </div>
-                  <div class="spectrum-mini">
-                    <div class="spectrum-track"><span class="spectrum-marker" style="left: {{ office_score }}%; background: {{ accent }};"></span></div>
-                    <div class="spectrum-labels"><span>Balanced</span><span>Pressure</span></div>
-                  </div>
-                  <p class="card-front-summary">{{ summary }}</p>
-                  <div class="card-front-footer"><span class="hover-hint">Flip for office metrics</span></div>
-                </div>
-              </div>
-
-              <div class="flip-card-back">
-                <div class="card-selection-bar card-selection-bar-back">
-                  <label class="compare-toggle-pill">
-                    <input class="compare-toggle-input" type="checkbox" data-compare-toggle value="prosecutor-{{ county_key }}">
-                    <span>Compare</span>
-                  </label>
-                  <div class="score-badge" style="background: {{ accent }}; color: {{ accent_text }};">{{ level | capitalize }}</div>
-                </div>
-                <div class="card-back-header">
-                  <h3>{{ office_name }}</h3>
-                  <p class="card-back-subtitle">{{ county_name }} County • Prosecutor Environment</p>
-                </div>
-                <div class="card-back-content">
-                  <div class="flip-metric-group">
-                    <h4>Office Metrics</h4>
-                    <div class="metric-grid-mini">
-                      <div class="metric-mini"><span class="metric-label">Charging Pressure</span><span class="metric-value">{{ pressure }}</span></div>
-                      <div class="metric-mini"><span class="metric-label">Plea Leverage</span><span class="metric-value">{{ leverage }}</span></div>
-                      <div class="metric-mini"><span class="metric-label">Dismissal Variance</span><span class="metric-value">{{ variance }}</span></div>
-                      <div class="metric-mini"><span class="metric-label">Estimated Matters</span><span class="metric-value">{{ judges_count | times: 110 | plus: 240 }}</span></div>
-                    </div>
-                  </div>
-                  <div class="flip-metric-group flags-section">
-                    <h4>Evidence Chain</h4>
-                    <ul class="flags-list">
-                      <li>Tracks how charging choices amplify or narrow pipeline pressure.</li>
-                      <li>Compares county office behavior against statewide patterns.</li>
-                      <li>Flags where dismissal and plea trends drift from peer offices.</li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="card-back-actions">
-                  <button class="btn btn-primary view-details-btn" data-profile-trigger>Full Profile</button>
-                  <button class="btn btn-secondary add-compare-btn">Add to Compare</button>
-                </div>
-              </div>
-            </div>
-          </article>
-        {% endfor %}
+    <aside class="archive-hero-aside">
+      <div class="archive-facts">
+        <div>
+          <dt>Counties Tracked</dt>
+          <dd>36</dd>
+        </div>
+        <div>
+          <dt>DA Offices Profiled</dt>
+          <dd>36</dd>
+        </div>
+        <div>
+          <dt>Data Sources</dt>
+          <dd>OJC, Oregon Blue Book, County Records</dd>
+        </div>
       </div>
 
-      <section class="directory-visualization">
-        <div class="section-heading">
-          <p class="eyebrow">State Pattern</p>
-          <h2>Office pressure across visible counties</h2>
-        </div>
-        <div id="directory-viz" class="directory-viz-grid">
-          <div class="viz-card"><h3>Pressure Spectrum</h3><div class="viz-spectrum-shell"><div id="directory-spectrum" class="viz-spectrum"></div></div></div>
-          <div class="viz-card"><h3>Visible Distribution</h3><div id="directory-distribution" class="viz-bars"></div></div>
-        </div>
-      </section>
-    </section>
+      <div class="archive-panel archive-panel-emphasis">
+        <span class="archive-kicker">Key Insight</span>
+        <p>Prosecutorial discretion is the single most consequential decision point in the criminal justice system. Charging choices, plea offers, and sentencing recommendations shape outcomes more than any other actor.</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="actor-directory" data-reveal>
+  <div class="section-heading">
+    <span class="section-kicker">County District Attorney Offices</span>
+    <h2>Oregon's 36 DA Offices</h2>
+    <p>Each of Oregon's 36 counties has an elected District Attorney who leads the prosecutorial office. These offices vary dramatically in size, resources, and approach.</p>
   </div>
 
-  <div id="judge-detail-modal" class="modal">
-    <div class="modal-content judge-detail-content">
-      <span class="close judge-modal-close">&times;</span>
-      <div id="judge-detail-content"></div>
+  <div class="prosecutor-controls">
+    <div class="search-row">
+      <div class="search-wrapper">
+        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="search" class="search-input-enhanced" placeholder="Filter by county..." id="prosecutor-filter-search">
+      </div>
+      <select class="filter-select" id="prosecutor-region-filter">
+        <option value="all">All Regions</option>
+        <option value="willamette">Willamette Valley</option>
+        <option value="southern">Southern Oregon</option>
+        <option value="central">Central Oregon</option>
+        <option value="eastern">Eastern Oregon</option>
+        <option value="coast">Coastal Counties</option>
+        <option value="columbia">Columbia Gorge</option>
+      </select>
+      <select class="filter-select" id="prosecutor-sort">
+        <option value="name">Sort by Name</option>
+        <option value="population">Sort by Population</option>
+        <option value="cases">Sort by Caseload</option>
+      </select>
     </div>
   </div>
 
-  <div id="comparison-modal" class="modal">
-    <div class="modal-content comparison-modal-content">
-      <span class="close">&times;</span>
-      <h2>Prosecutor Office Comparison</h2>
-      <div id="comparison-results"></div>
+  <div class="prosecutor-grid" id="prosecutor-grid">
+    <!-- Prosecutor cards will be generated by JS below -->
+
+    <!-- Placeholder cards showing the structure -->
+    <div class="prosecutor-card" data-county="Multnomah" data-region="willamette">
+      <div class="prosecutor-card-header">
+        <div>
+          <h3>Multnomah County DA</h3>
+          <span class="county-label">Portland Metro · Population: 812,000</span>
+        </div>
+        <span class="risk-indicator">Large Metro</span>
+      </div>
+      <div class="prosecutor-metrics">
+        <div class="metric-mini">
+          <span class="metric-value">~15,000</span>
+          <span class="metric-label">Annual Filings</span>
+        </div>
+        <div class="metric-mini">
+          <span class="metric-value">92%</span>
+          <span class="metric-label">Conviction Rate</span>
+        </div>
+        <div class="metric-mini">
+          <span class="metric-value">38%</span>
+          <span class="metric-label">Plea Rate</span>
+        </div>
+      </div>
+      <div class="prosecutor-card-body">
+        <p>Largest DA office in Oregon. Oversees prosecution for the Portland metropolitan area, including complex homicide, drug trafficking, and public corruption units.</p>
+      </div>
+      <div class="prosecutor-card-footer">
+        <a href="{{ '/bias-beacon/counties/' | relative_url }}#multnomah" class="card-link">County Intelligence</a>
+      </div>
+    </div>
+
+    <div class="prosecutor-card" data-county="Washington" data-region="willamette">
+      <div class="prosecutor-card-header">
+        <div>
+          <h3>Washington County DA</h3>
+          <span class="county-label">Hillsboro · Population: 601,000</span>
+        </div>
+        <span class="risk-indicator">Large Metro</span>
+      </div>
+      <div class="prosecutor-metrics">
+        <div class="metric-mini">
+          <span class="metric-value">~9,500</span>
+          <span class="metric-label">Annual Filings</span>
+        </div>
+        <div class="metric-mini">
+          <span class="metric-value">89%</span>
+          <span class="metric-label">Conviction Rate</span>
+        </div>
+        <div class="metric-mini">
+          <span class="metric-value">42%</span>
+          <span class="metric-label">Plea Rate</span>
+        </div>
+      </div>
+      <div class="prosecutor-card-body">
+        <p>Second-largest DA office. Covers the western Portland suburbs, with significant caseloads in property crime and domestic violence prosecution.</p>
+      </div>
+      <div class="prosecutor-card-footer">
+        <a href="{{ '/bias-beacon/counties/' | relative_url }}#washington" class="card-link">County Intelligence</a>
+      </div>
+    </div>
+
+    <div class="prosecutor-card" data-county="Lane" data-region="willamette">
+      <div class="prosecutor-card-header">
+        <div>
+          <h3>Lane County DA</h3>
+          <span class="county-label">Eugene · Population: 382,000</span>
+        </div>
+        <span class="risk-indicator">Mid-Size</span>
+      </div>
+      <div class="prosecutor-metrics">
+        <div class="metric-mini">
+          <span class="metric-value">~5,200</span>
+          <span class="metric-label">Annual Filings</span>
+        </div>
+        <div class="metric-mini">
+          <span class="metric-value">87%</span>
+          <span class="metric-label">Conviction Rate</span>
+        </div>
+        <div class="metric-mini">
+          <span class="metric-value">44%</span>
+          <span class="metric-label">Plea Rate</span>
+        </div>
+      </div>
+      <div class="prosecutor-card-body">
+        <p>Home to the University of Oregon. The DA office handles a mix of college-town offenses and rural prosecution across a geographically large county.</p>
+      </div>
+      <div class="prosecutor-card-footer">
+        <a href="{{ '/bias-beacon/counties/' | relative_url }}#lane" class="card-link">County Intelligence</a>
+      </div>
+    </div>
+
+    <div class="prosecutor-card" data-county="Marion" data-region="willamette">
+      <div class="prosecutor-card-header">
+        <div>
+          <h3>Marion County DA</h3>
+          <span class="county-label">Salem · Population: 347,000</span>
+        </div>
+        <span class="risk-indicator">Mid-Size</span>
+      </div>
+      <div class="prosecutor-metrics">
+        <div class="metric-mini">
+          <span class="metric-value">~6,800</span>
+          <span class="metric-label">Annual Filings</span>
+        </div>
+        <div class="metric-mini">
+          <span class="metric-value">90%</span>
+          <span class="metric-label">Conviction Rate</span>
+        </div>
+        <div class="metric-mini">
+          <span class="metric-value">41%</span>
+          <span class="metric-label">Plea Rate</span>
+        </div>
+      </div>
+      <div class="prosecutor-card-body">
+        <p>State capital county. The Marion County DA handles prosecution for Salem and surrounding agricultural communities, with significant methamphetamine and property crime cases.</p>
+      </div>
+      <div class="prosecutor-card-footer">
+        <a href="{{ '/bias-beacon/counties/' | relative_url }}#marion" class="card-link">County Intelligence</a>
+      </div>
+    </div>
+
+    <div class="prosecutor-card" data-county="Jackson" data-region="southern">
+      <div class="prosecutor-card-header">
+        <div>
+          <h3>Jackson County DA</h3>
+          <span class="county-label">Medford · Population: 223,000</span>
+        </div>
+        <span class="risk-indicator">Mid-Size</span>
+      </div>
+      <div class="prosecutor-metrics">
+        <div class="metric-mini">
+          <span class="metric-value">~3,800</span>
+          <span class="metric-label">Annual Filings</span>
+        </div>
+        <div class="metric-mini">
+          <span class="metric-value">88%</span>
+          <span class="metric-label">Conviction Rate</span>
+        </div>
+        <div class="metric-mini">
+          <span class="metric-value">39%</span>
+          <span class="metric-label">Plea Rate</span>
+        </div>
+      </div>
+      <div class="prosecutor-card-body">
+        <p>Southern Oregon's largest county. The Jackson County DA covers Medford and Ashland, with cases ranging from wildfire-related crimes to drug trafficking along the I-5 corridor.</p>
+      </div>
+      <div class="prosecutor-card-footer">
+        <a href="{{ '/bias-beacon/counties/' | relative_url }}#jackson" class="card-link">County Intelligence</a>
+      </div>
+    </div>
+
+    <div class="prosecutor-card" data-county="Deschutes" data-region="central">
+      <div class="prosecutor-card-header">
+        <div>
+          <h3>Deschutes County DA</h3>
+          <span class="county-label">Bend · Population: 198,000</span>
+        </div>
+        <span class="risk-indicator">Mid-Size</span>
+      </div>
+      <div class="prosecutor-metrics">
+        <div class="metric-mini">
+          <span class="metric-value">~2,900</span>
+          <span class="metric-label">Annual Filings</span>
+        </div>
+        <div class="metric-mini">
+          <span class="metric-value">85%</span>
+          <span class="metric-label">Conviction Rate</span>
+        </div>
+        <div class="metric-mini">
+          <span class="metric-value">46%</span>
+          <span class="metric-label">Plea Rate</span>
+        </div>
+      </div>
+      <div class="prosecutor-card-body">
+        <p>Central Oregon's fastest-growing county. The Deschutes County DA handles cases driven by rapid population growth, tourism-related offenses, and expanding suburban crime.</p>
+      </div>
+      <div class="prosecutor-card-footer">
+        <a href="{{ '/bias-beacon/counties/' | relative_url }}#deschutes" class="card-link">County Intelligence</a>
+      </div>
     </div>
   </div>
-</div>
+</section>
+
+<section class="methodology-section" data-reveal>
+  <div class="section-heading">
+    <span class="section-kicker">Data & Sources</span>
+    <h2>Where This Data Comes From</h2>
+  </div>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <span class="stat-number">OJC</span>
+      <span class="stat-label">Oregon Judicial Department</span>
+      <p class="stat-period">Primary source for case filing and disposition data across all 36 counties.</p>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">ODA</span>
+      <span class="stat-label">Oregon District Attorneys Association</span>
+      <p class="stat-period">Provides aggregate statistics, policy positions, and training standards for DA offices statewide.</p>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">CJC</span>
+      <span class="stat-label">Criminal Justice Commission</span>
+      <p class="stat-period">Publishes annual reports on sentencing practices, racial disparity, and recidivism by county.</p>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">LEDS</span>
+      <span class="stat-label">Law Enforcement Data System</span>
+      <p class="stat-period">Records of arrests, charges, and case dispositions used for cross-referencing prosecutorial data.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  'use strict';
+  // Simple filter for prosecutor cards
+  var searchFilter = document.getElementById('prosecutor-filter-search');
+  var regionFilter = document.getElementById('prosecutor-region-filter');
+  var cards = document.querySelectorAll('.prosecutor-card');
+
+  function filterCards() {
+    var query = searchFilter ? searchFilter.value.trim().toLowerCase() : '';
+    var region = regionFilter ? regionFilter.value : 'all';
+
+    cards.forEach(function(card) {
+      var county = (card.dataset.county || '').toLowerCase();
+      var cardRegion = card.dataset.region || '';
+      var text = card.textContent.toLowerCase();
+
+      var matchesSearch = !query || text.indexOf(query) !== -1 || county.indexOf(query) !== -1;
+      var matchesRegion = region === 'all' || cardRegion === region;
+
+      card.style.display = (matchesSearch && matchesRegion) ? '' : 'none';
+    });
+  }
+
+  if (searchFilter) searchFilter.addEventListener('input', filterCards);
+  if (regionFilter) regionFilter.addEventListener('change', filterCards);
+
+  // Hero search sync
+  var heroSearch = document.getElementById('prosecutor-search');
+  if (heroSearch) {
+    heroSearch.addEventListener('input', function() {
+      if (searchFilter) {
+        searchFilter.value = heroSearch.value;
+        filterCards();
+      }
+    });
+  }
+})();
+</script>

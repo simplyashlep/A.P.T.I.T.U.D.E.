@@ -1,0 +1,166 @@
+// ===========================
+// Premium Luxury Color System — Electric Noir
+// ===========================
+
+// === CORE PALETTE ===
+$color-primary: #2b2d42;
+$color-primary-light: #3d4060;
+$color-primary-lighter: #525678;
+$color-secondary: #f8f32b;
+$color-secondary-light: #faf664;
+$color-muted: #8d99ae;
+$color-muted-light: #a8b2c1;
+$color-white: #ffffff;
+$color-off-white: #f7f7f9;
+$color-light-gray: #eeeef2;
+$color-medium-gray: #d1d3dc;
+$color-stone-gray: #8d99ae;
+$color-dark-gray: #3d4060;
+$color-charcoal: #2b2d42;
+$color-black: #000000;
+
+// === SEMANTIC ===
+$color-success: #2b7b4f;  $color-success-light: #4a9b6f;
+$color-warning: #c68642;  $color-warning-light: #d9a062;
+$color-danger: #9b2f2f;   $color-danger-light: #c94444;
+$color-info: #2b2d42;     $color-info-light: #3d4060;
+
+// === TEXT / BG / BORDERS ===
+$text-primary: $color-black;   $text-secondary: $color-muted;
+$text-light: $color-muted-light; $text-inverse: $color-white;
+$bg-primary: $color-white;  $bg-secondary: $color-off-white;
+$bg-tertiary: $color-light-gray; $bg-dark: $color-primary;
+$border-color: $color-medium-gray;
+$border-color-light: $color-light-gray;
+$border-color-dark: $color-muted;
+$link-color: $color-primary; $link-hover: $color-secondary; $link-visited: $color-primary-lighter;
+
+// === PAGE PALETTES (unified luxury) ===
+$bias-beacon-primary: $color-primary; $bias-beacon-accent: $color-secondary; $bias-beacon-accent-light: $color-secondary-light;
+$judiciary-primary: $color-primary; $judiciary-accent: $color-muted; $judiciary-accent-light: $color-muted-light;
+$prosecutor-primary: $color-primary; $prosecutor-accent: $color-muted; $prosecutor-accent-light: $color-muted-light;
+$law-enforcement-primary: $color-primary; $law-enforcement-accent: $color-muted; $law-enforcement-accent-light: $color-muted-light;
+$community-primary: $color-primary; $community-accent: $color-secondary; $community-accent-light: $color-secondary-light;
+$juris-lab-primary: $color-primary; $juris-lab-accent: $color-muted; $juris-lab-accent-light: $color-muted-light;
+
+// === BIAS SCORES ===
+$bias-excellent: #2b7b4f; $bias-low-risk: $color-primary;
+$bias-moderate: $color-muted; $bias-high-risk: #9b2f2f; $bias-critical: #7c4a6d;
+
+// === SHADOWS (luxury depth with navy tint) ===
+$shadow-xs: 0 1px 2px rgba($color-primary, 0.06);
+$shadow-sm: 0 2px 8px rgba($color-primary, 0.08);
+$shadow-md: 0 4px 16px rgba($color-primary, 0.10);
+$shadow-lg: 0 12px 32px rgba($color-primary, 0.12);
+$shadow-xl: 0 24px 48px rgba($color-primary, 0.14);
+
+// === TRANSITIONS ===
+$transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+$transition-base: 280ms cubic-bezier(0.4, 0, 0.2, 1);
+$transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+
+// ===========================
+// CSS CUSTOM PROPERTIES
+// ===========================
+:root {
+  --color-primary: #{$color-primary};  --color-primary-light: #{$color-primary-light};
+  --color-primary-lighter: #{$color-primary-lighter};
+  --color-secondary: #{$color-secondary}; --color-secondary-light: #{$color-secondary-light};
+  --color-muted: #{$color-muted};
+  --color-success: #{$color-success}; --color-warning: #{$color-warning};
+  --color-danger: #{$color-danger};   --color-info: #{$color-info};
+  --color-white: #{$color-white}; --color-off-white: #{$color-off-white};
+  --color-light-gray: #{$color-light-gray}; --color-medium-gray: #{$color-medium-gray};
+  --color-stone-gray: #{$color-muted}; --color-dark-gray: #{$color-dark-gray};
+  --color-charcoal: #{$color-charcoal}; --color-black: #{$color-black};
+  --font-display: 'Cormorant Garamond', 'Libre Caslon Display', Georgia, serif;
+  --font-body: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-accent: 'Libre Caslon Display', 'Cormorant Garamond', Georgia, serif;
+  --space-xs: 0.5rem; --space-sm: 1rem; --space-md: 1.75rem;
+  --space-lg: 2.5rem; --space-xl: 4rem; --space-2xl: 6rem;
+  --shadow-sm: #{$shadow-sm}; --shadow-md: #{$shadow-md}; --shadow-lg: #{$shadow-lg};
+  --border-radius-sm: 3px; --border-radius-md: 6px; --border-radius-lg: 10px;
+  --page-primary: #{$color-primary}; --page-secondary: #{$color-secondary};
+  --gradient-dark: linear-gradient(135deg, #{$color-primary} 0%, #{$color-primary-light} 100%);
+  --gradient-accent: linear-gradient(135deg, #{$color-secondary} 0%, #{$color-secondary-light} 100%);
+  --gradient-subtle: linear-gradient(180deg, #{$color-off-white} 0%, #{$color-white} 100%);
+  --border-premium: 1px solid #{$color-medium-gray};
+  --border-accent: 2px solid #{$color-secondary};
+}
+
+// ===========================
+// PREMIUM COMPONENT OVERRIDES
+// ===========================
+.btn, button, [type="button"], [type="submit"] {
+  background: $color-primary; color: $color-white;
+  border: 2px solid $color-primary; padding: 0.85rem 2rem;
+  border-radius: 3px; font-family: var(--font-body);
+  font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase; font-size: 0.85rem;
+  cursor: pointer; transition: all $transition-base;
+  &:hover { background: $color-secondary; color: $color-primary; border-color: $color-secondary; box-shadow: $shadow-md; }
+  &:focus { outline: none; box-shadow: 0 0 0 3px rgba($color-secondary, 0.35); }
+  &:active { transform: scale(0.98); }
+}
+.btn-secondary {
+  background: transparent; color: $color-primary; border: 2px solid $color-muted;
+  &:hover { border-color: $color-primary; background: rgba($color-primary, 0.04); }
+}
+.btn-danger {
+  background: $color-danger; border-color: $color-danger; color: $color-white;
+  &:hover { background: $color-danger-light; border-color: $color-danger-light; }
+}
+
+a {
+  color: $color-primary; text-decoration: none; font-weight: 500;
+  transition: color $transition-fast;
+  &:hover { color: $color-primary-light; }
+  &:visited { color: $color-primary-lighter; }
+  &:focus { outline: 2px solid $color-primary; outline-offset: 2px; }
+}
+
+.card {
+  background: $color-white; border: 1px solid $color-light-gray;
+  border-radius: 10px; padding: var(--space-md); box-shadow: $shadow-sm;
+  transition: all $transition-base;
+  &:hover { box-shadow: $shadow-lg; border-color: $color-medium-gray; transform: translateY(-2px); }
+}
+
+input[type="text"], input[type="email"], input[type="password"],
+input[type="search"], textarea, select {
+  background: $color-white; border: 1px solid $color-medium-gray;
+  border-radius: 3px; padding: 0.85rem 1rem; font-family: var(--font-body);
+  color: $text-primary; transition: all $transition-base;
+  &:focus { outline: none; border-color: $color-primary; box-shadow: 0 0 0 3px rgba($color-primary, 0.08); }
+  &::placeholder { color: $color-muted; }
+}
+
+// === Section themes ===
+.section-bias-beacon, .section-judiciary, .section-prosecutor,
+.section-law-enforcement, .section-community, .section-juris-lab {
+  background: linear-gradient(135deg, rgba($color-primary, 0.02) 0%, rgba($color-muted, 0.03) 100%);
+  border-left: 3px solid $color-primary; }
+
+// === Badges ===
+.badge {
+  display: inline-block; padding: 0.35rem 0.85rem; border-radius: 2px;
+  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase;
+  &.badge-primary { background: rgba($color-primary, 0.1); color: $color-primary; }
+  &.badge-success { background: rgba($color-success, 0.1); color: $color-success; }
+  &.badge-warning { background: rgba($color-warning, 0.1); color: $color-warning; }
+  &.badge-danger  { background: rgba($color-danger, 0.1); color: $color-danger; }
+}
+
+// === Bias scores ===
+.bias-score {
+  &.excellent { color: $bias-excellent; background: rgba($bias-excellent, 0.08); }
+  &.low-risk  { color: $bias-low-risk; background: rgba($bias-low-risk, 0.08); }
+  &.moderate  { color: $bias-moderate; background: rgba($bias-moderate, 0.08); }
+  &.high-risk { color: $bias-high-risk; background: rgba($bias-high-risk, 0.08); }
+  &.critical  { color: $bias-critical; background: rgba($bias-critical, 0.08); } }
+
+*:focus-visible { outline: 2px solid $color-secondary; outline-offset: 2px; }
+@media print {
+  body { background: $color-white; color: $text-primary; }
+  a { text-decoration: underline; }
+}
