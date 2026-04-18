@@ -18,30 +18,28 @@
   </div>
 
   <div class="mega-menu-shell" id="mega-menu-panel" data-mega-menu hidden>
-    <div class="wrapper mega-menu-grid">
+    <div class="wrapper mega-menu-grid mega-menu-grid-7">
       <section class="mega-menu-column">
         <a class="mega-menu-title" href="{{ '/bias-beacon/judges/' | relative_url }}">
-          <span class="mega-menu-title-text">Judicial System</span>
+          <span class="mega-menu-title-text">The Judiciary</span>
           <span class="mega-menu-title-hover">Judges &amp; Accountability</span>
         </a>
         <div class="mega-menu-reveal">
-          <p>The actor archive where public behavior becomes comparable and searchable.</p>
+          <p>Oregon's first judicial dataset. Every sitting judge, scored and searchable.</p>
         </div>
-        <a class="mega-menu-link" href="{{ '/bias-beacon/judges/' | relative_url }}">Judges</a>
+        <a class="mega-menu-link" href="{{ '/bias-beacon/judges/' | relative_url }}">Judge Profiles</a>
         <a class="mega-menu-link" href="{{ '/bias-beacon/presiding-judges/' | relative_url }}">Presiding Judges</a>
         <a class="mega-menu-link" href="{{ '/bias-beacon/pro-tem-judges/' | relative_url }}">Pro Tem Judges</a>
-        <a class="mega-menu-link" href="{{ '/prosecutors.html' | relative_url }}">Prosecutors</a>
-        <a class="mega-menu-link" href="{{ '/parole-probation.html' | relative_url }}">Probation</a>
-        <a class="mega-menu-link" href="{{ '/law-enforcement.html' | relative_url }}">Law Enforcement</a>
+        <a class="mega-menu-link" href="{{ '/bias-beacon/methodology/' | relative_url }}">Scoring Framework</a>
       </section>
 
       <section class="mega-menu-column mega-menu-column-centered">
         <a class="mega-menu-title" href="{{ '/bias-beacon/dashboard/' | relative_url }}">
-          <span class="mega-menu-title-text">Watchtower</span>
-          <span class="mega-menu-title-hover">System intelligence</span>
+          <span class="mega-menu-title-text">The Watchtower</span>
+          <span class="mega-menu-title-hover">System Intelligence</span>
         </a>
         <div class="mega-menu-reveal">
-          <p>The command surface for statewide drift, intelligence, and trend concentration.</p>
+          <p>Statewide drift, county concentration, and trend intelligence in one surface.</p>
         </div>
         <a class="mega-menu-link" href="{{ '/bias-beacon/dashboard/' | relative_url }}">Statewide Dashboard</a>
         <a class="mega-menu-link" href="{{ '/bias-beacon/counties/' | relative_url }}">County Intelligence</a>
@@ -50,32 +48,43 @@
       </section>
 
       <section class="mega-menu-column">
+        <a class="mega-menu-title" href="{{ '/law-enforcement.html' | relative_url }}">
+          <span class="mega-menu-title-text">Law Enforcement</span>
+          <span class="mega-menu-title-hover">Intake &amp; Oversight</span>
+        </a>
+        <div class="mega-menu-reveal">
+          <p>Where the intake side of the system first becomes visible.</p>
+        </div>
+        <a class="mega-menu-link" href="{{ '/law-enforcement.html' | relative_url }}">Agency Profiles</a>
+        <a class="mega-menu-link" href="{{ '/law-enforcement.html' | relative_url }}#stops">Stops &amp; Searches</a>
+        <a class="mega-menu-link" href="{{ '/law-enforcement.html' | relative_url }}#arrests">Arrest Patterns</a>
+      </section>
+
+      <section class="mega-menu-column">
+        <a class="mega-menu-title" href="{{ '/parole-probation.html' | relative_url }}">
+          <span class="mega-menu-title-text">Community Corrections</span>
+          <span class="mega-menu-title-hover">Supervision &amp; Return</span>
+        </a>
+        <div class="mega-menu-reveal">
+          <p>How monitoring, support, and return pressure shape the pipeline.</p>
+        </div>
+        <a class="mega-menu-link" href="{{ '/parole-probation.html' | relative_url }}">County Supervision</a>
+        <a class="mega-menu-link" href="{{ '/parole-probation.html' | relative_url }}#revocation">Revocation Pressure</a>
+        <a class="mega-menu-link" href="{{ '/prosecutors.html' | relative_url }}">Prosecutor Profiles</a>
+      </section>
+
+      <section class="mega-menu-column">
         <a class="mega-menu-title" href="{{ '/bias-beacon/methodology/' | relative_url }}">
           <span class="mega-menu-title-text">Juris Lab</span>
           <span class="mega-menu-title-hover">Law &amp; Application</span>
         </a>
         <div class="mega-menu-reveal">
-          <p>The legal layer for cases, filings, issues, and research support.</p>
+          <p>Cases, filings, legal issues, and AI-assisted research.</p>
         </div>
         <a class="mega-menu-link" href="{{ '/bias-beacon/' | relative_url }}">Cases &amp; Law</a>
         <a class="mega-menu-link" href="{{ '/reports/' | relative_url }}">Cases &amp; Filings</a>
-        <a class="mega-menu-link" href="{{ '/bias-beacon/methodology/' | relative_url }}">Legal Issues</a>
+        <a class="mega-menu-link" href="{{ '/legal-assistant.html' | relative_url }}">AI Legal Assistant</a>
         <a class="mega-menu-link" href="https://soll.libguides.com/" target="_blank" rel="noreferrer">Library</a>
-      </section>
-
-      <section class="mega-menu-column">
-        <a class="mega-menu-title" href="{{ '/workspace/' | relative_url }}">
-          <span class="mega-menu-title-text">Sui Generis</span>
-          <span class="mega-menu-title-hover">Workspace &amp; Community</span>
-        </a>
-        <div class="mega-menu-reveal">
-          <p>The user workspace for documents, AI assistance, drafting, and public discussion.</p>
-        </div>
-        <a class="mega-menu-link" href="{{ '/workspace/' | relative_url }}">My Documents</a>
-        <a class="mega-menu-link" href="{{ '/legal-assistant.html' | relative_url }}">AI Assistant</a>
-        <a class="mega-menu-link" href="{{ '/workspace/' | relative_url }}#drafting-lab">Drafting Lab</a>
-        <a class="mega-menu-link" href="{{ '/community-forum.html' | relative_url }}">Forums</a>
-        <a class="mega-menu-link" href="{{ '/community-forum.html' | relative_url }}">Discussions</a>
       </section>
 
       <section class="mega-menu-column">
@@ -84,14 +93,26 @@
           <span class="mega-menu-title-hover">Public oversight routes</span>
         </a>
         <div class="mega-menu-reveal">
-          <p>Live entry points into public institutions, directories, and oversight bodies.</p>
+          <p>Live entry points into public institutions and oversight bodies.</p>
         </div>
         <a class="mega-menu-link" href="{{ '/about/' | relative_url }}">Attorney Directory</a>
-        <a class="mega-menu-link" href="https://www.oregonlegislature.gov/" target="_blank" rel="noreferrer">Oregon State Legislature</a>
         <a class="mega-menu-link" href="https://www.osbar.org/" target="_blank" rel="noreferrer">Oregon State Bar</a>
-        <a class="mega-menu-link" href="https://www.oregon.gov/osp/Pages/index.aspx" target="_blank" rel="noreferrer">Law Enforcement Contacts</a>
         <a class="mega-menu-link" href="https://www.oregon.gov/cjc/Pages/default.aspx" target="_blank" rel="noreferrer">Criminal Justice Commission</a>
         <a class="mega-menu-link" href="https://www.portland.gov/ipr" target="_blank" rel="noreferrer">Oversight Bodies</a>
+      </section>
+
+      <section class="mega-menu-column mega-menu-column-movement">
+        <a class="mega-menu-title" href="{{ '/community-forum.html' | relative_url }}">
+          <span class="mega-menu-title-text">The Movement</span>
+          <span class="mega-menu-title-hover">Voice &amp; Community</span>
+        </a>
+        <div class="mega-menu-reveal">
+          <p>News, community forum, public comment, groups, and a curated feed.</p>
+        </div>
+        <a class="mega-menu-link" href="{{ '/community-forum.html' | relative_url }}">Community Forum</a>
+        <a class="mega-menu-link" href="{{ '/community-forum.html' | relative_url }}#public-comment">Public Comment</a>
+        <a class="mega-menu-link" href="{{ '/community-forum.html' | relative_url }}#groups">Groups</a>
+        <a class="mega-menu-link" href="{{ '/community-forum.html' | relative_url }}#news">News &amp; For You</a>
       </section>
     </div>
   </div>

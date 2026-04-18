@@ -939,14 +939,3 @@
     initializeHomeHeroMotion();
   });
 })();
-
-
-    }
-
-    initializeMegaMenu();
-    initializeFlipCards();
-    initializeActorDirectory();
-    initializeHomeHeroMotion();
-  });
-})();
-

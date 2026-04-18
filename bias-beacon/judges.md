@@ -172,7 +172,7 @@ body_class: archive-page actor-directory-page judges-page
       <div id="bias-stats" class="bias-stats-bar"></div>
 
       <div id="judges-grid" class="flip-cards-grid actor-card-grid" data-directory-grid>
-        {% assign judge_directory = site.data.bias-beacon.judges-directory.judges %}
+        {% assign judge_directory = site.data.bias-beacon.judges-directory_with_mock.judges %}
         {% for judge_data in judge_directory %}
             {% assign score = judge_data.score %}
             {% assign score_display = score | default: 'Pending' %}
@@ -317,6 +317,8 @@ body_class: archive-page actor-directory-page judges-page
                         <div class="bias-metric-item"><span class="bias-metric-label">Racial Disparity</span><span class="bias-metric-value">{{ judge_data.racialDisparity | default: "Pending" }}</span></div>
                         <div class="bias-metric-item"><span class="bias-metric-label">Counsel Disparity</span><span class="bias-metric-value">{{ judge_data.counselDisparity | default: "Pending" }}</span></div>
                         <div class="bias-metric-item"><span class="bias-metric-label">Reversal Rate</span><span class="bias-metric-value">{% if judge_data.reversalRate %}{{ judge_data.reversalRate }}%{% else %}Pending{% endif %}</span></div>
+                        <div class="bias-metric-item"><span class="bias-metric-label">Dismissals</span><span class="bias-metric-value">{{ judge_data.dismissalRate | default: "Pending" }}</span></div>
+                        <div class="bias-metric-item"><span class="bias-metric-label">Time to Disposition</span><span class="bias-metric-value">{{ judge_data.timeToDisposition | default: "Pending" }}</span></div>
                       </div>
                     </div>
 

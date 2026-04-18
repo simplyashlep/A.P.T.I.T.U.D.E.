@@ -4492,11 +4492,11 @@ body.home-page {
 
 /* Current pass: darker raised actor cards, tighter outline buttons, pinned flips, image header, official photo shells */
 
-/* Premium card stabilization: keep front/back faces stacked in place, improve spacing, and calm the layout */
+/* Premium card stabilization: stable 3D flip, generous spacing, proper layering */
 .flip-cards-grid.actor-card-grid,
 .actor-directory .flip-cards-grid {
-  gap: clamp(1.5rem, 2vw, 2.25rem);
-  align-items: stretch;
+  gap: clamp(2rem, 3vw, 3rem);
+  align-items: start;
 }
 
 .flip-card,
@@ -4504,9 +4504,9 @@ body.home-page {
 .actor-directory .flip-card {
   position: relative;
   isolation: isolate;
-  perspective: 1600px;
-  min-height: 31.5rem;
-  height: 31.5rem;
+  perspective: 1200px;
+  min-height: 34rem;
+  height: 34rem;
 }
 
 .flip-card-inner {
@@ -4515,7 +4515,7 @@ body.home-page {
   height: 100%;
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
-  transition: transform 0.72s cubic-bezier(0.22, 0.7, 0.18, 1);
+  transition: transform 0.85s cubic-bezier(0.22, 0.7, 0.18, 1);
 }
 
 .flip-card-front,
@@ -4528,16 +4528,16 @@ body.home-page {
   height: 100%;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  transform-style: preserve-3d;
-  -webkit-transform-style: preserve-3d;
 }
 
 .flip-card-front {
   transform: rotateY(0deg);
+  z-index: 2;
 }
 
 .flip-card-back {
   transform: rotateY(180deg);
+  z-index: 1;
 }
 
 .flip-card:not(.is-pinned):hover .flip-card-inner,
@@ -4576,8 +4576,8 @@ body.home-page {
   .flip-card,
   .home-actor-card,
   .actor-directory .flip-card {
-    min-height: 30rem;
-    height: 30rem;
+    min-height: 32rem;
+    height: 32rem;
   }
 }
 
@@ -4585,8 +4585,8 @@ body.home-page {
   .flip-card,
   .home-actor-card,
   .actor-directory .flip-card {
-    min-height: 28rem;
-    height: 28rem;
+    min-height: 30rem;
+    height: 30rem;
   }
 
   .home-actor-card .judge-name-display {
@@ -4647,12 +4647,19 @@ body.home-page {
 .viz-card,
 .archive-panel,
 .detail-panel,
-.comparison-card,
-.actor-directory .flip-card-front,
-.actor-directory .flip-card-back {
+.comparison-card {
   position: relative;
   overflow: hidden;
   border-radius: 8px;
+}
+
+.actor-directory .flip-card-front,
+.actor-directory .flip-card-back {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  overflow-y: auto;
+  border-radius: 22px;
 }
 
 .actor-hero-copy,
@@ -4872,6 +4879,31 @@ body.home-page {
   margin: 0 auto;
 }
 
+.main-menu-grid-7 {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.main-menu-column-accent {
+  border-color: rgba(193, 119, 149, 0.32);
+  background:
+    linear-gradient(145deg, rgba(193, 119, 149, 0.14), rgba(255, 255, 255, 0.02)),
+    linear-gradient(180deg, rgba(28, 14, 22, 0.76), rgba(12, 8, 16, 0.84));
+}
+
+.main-menu-column-accent:hover,
+.main-menu-column-accent:focus-within {
+  border-color: rgba(193, 119, 149, 0.52);
+  box-shadow:
+    0 24px 48px rgba(4, 10, 24, 0.36),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 0 24px rgba(193, 119, 149, 0.16);
+}
+
+.main-menu-column-accent .main-menu-title-sub {
+  color: #e8b4cc;
+}
+
 .main-menu-column {
   position: relative;
   display: flex;
@@ -4998,8 +5030,17 @@ body.home-page {
   text-decoration: none;
 }
 
+@media screen and (max-width: 1440px) {
+  .main-menu-grid-7 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
 @media screen and (max-width: 1240px) {
   .main-menu-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .main-menu-grid-7 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
@@ -5199,15 +5240,15 @@ body.home-page {
 }
 
 /* ==========================================================================
-   FLIP CARD FIXES - Slower flip, more spacing, stable position
+   FLIP CARD FINAL FIXES - stable 3D, generous spacing, photo on back
    ========================================================================== */
 
 .flip-card-inner {
-  transition: transform 1.2s cubic-bezier(0.4, 0.2, 0.2, 1) !important;
+  transition: transform 0.85s cubic-bezier(0.22, 0.7, 0.18, 1) !important;
 }
 
 .flip-cards-grid.actor-card-grid {
-  gap: 2.5rem !important;
+  gap: clamp(2rem, 3vw, 3rem) !important;
 }
 
 .home-actor-card {
@@ -5220,8 +5261,73 @@ body.home-page {
   inset: 0;
 }
 
+/* Judge photo on the back of flipped card */
+.judge-photo-shell {
+  width: 96px;
+  height: 96px;
+  margin: 0.5rem auto 0.75rem;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255,255,255,0.2), transparent 28%),
+    linear-gradient(180deg, rgba(162,173,220,0.6), rgba(108,83,99,0.6));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255,255,255,0.15);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+.judge-photo-shell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.judge-photo-placeholder {
+  color: rgba(255,255,255,0.4);
+  font-size: 0.65rem;
+  text-align: center;
+  padding: 0.4rem;
+  line-height: 1.3;
+}
+
+/* Card front metrics row */
+.card-front-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  width: 100%;
+  margin-top: 0.75rem;
+}
+
+.front-metric-chip {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.45rem 0.5rem;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.06);
+  text-align: center;
+}
+
+.front-metric-label {
+  font-size: 0.62rem;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.front-metric-value {
+  font-size: 0.82rem;
+  color: #eef3fb;
+}
+
 /* ==========================================================================
-   BRANDING / CONTRAST FIXES - Lighter, more readable
+   BRANDING / CONTRAST FIXES
    ========================================================================== */
 
 .home-actor-card .home-card-front-caption {
@@ -5247,12 +5353,25 @@ body.home-page {
   color: #eef2f7 !important;
 }
 
+.card-back-subtitle {
+  color: #b0bacc !important;
+  font-size: 0.82rem;
+}
+
 .card-back-content .metric-label {
-  color: #999 !important;
+  color: #9aa6b8 !important;
 }
 
 .card-back-content .metric-value {
-  color: #1a1a1a !important;
+  color: #eef3fb !important;
+}
+
+.card-back-content .bias-metric-label {
+  color: #9aa6b8 !important;
+}
+
+.card-back-content .bias-metric-value {
+  color: #eef3fb !important;
 }
 
 .card-back-actions .btn.btn-primary {
@@ -5262,4 +5381,35 @@ body.home-page {
 
 .card-back-actions .btn.btn-primary:hover {
   background: linear-gradient(135deg, #b8c3e8, #a2addc);
+}
+
+/* Filter dropdown visibility fix */
+.filter-select,
+.sidebar-filters .filter-select,
+#county-filter,
+#district-filter,
+#risk-filter,
+#sort-by {
+  appearance: auto;
+  -webkit-appearance: auto;
+  -moz-appearance: auto;
+  background-color: rgba(9, 12, 19, 0.82);
+  color: var(--text, #eef1f6);
+  padding: 0.75rem 1rem;
+  border: 1px solid rgba(219,227,240,0.2);
+  border-radius: 8px;
+  width: 100%;
+  cursor: pointer;
+  font-size: 0.92rem;
+}
+
+.filter-select:focus,
+.sidebar-filters .filter-select:focus {
+  outline: 2px solid rgba(162,173,220,0.4);
+  border-color: rgba(162,173,220,0.5);
+}
+
+.filter-select option {
+  background: #1a2330;
+  color: #eef1f6;
 }

@@ -9,7 +9,24 @@
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 1.2rem;
   padding: 1.35rem 0 1.6rem;
-  align-items: start; /* Ensure all columns start at same vertical position */
+  align-items: start;
+}
+
+.mega-menu-grid-7 {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.mega-menu-column-movement {
+  border-color: rgba(193, 119, 149, 0.28);
+  background:
+    linear-gradient(145deg, rgba(193, 119, 149, 0.12), rgba(255, 255, 255, 0.02)),
+    linear-gradient(180deg, rgba(28, 14, 22, 0.76), rgba(12, 8, 16, 0.84));
+}
+
+.mega-menu-column-movement:hover,
+.mega-menu-column-movement:focus-within {
+  border-color: rgba(193, 119, 149, 0.48);
 }
 
 .mega-menu-column {

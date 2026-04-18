@@ -4,122 +4,116 @@
    ========================================================================== */
 
 :root {
-  /* Enhanced color palette */
   --card-bg: linear-gradient(145deg, rgba(15, 23, 35, 0.95), rgba(8, 15, 28, 0.98));
+  --card-bg-back: linear-gradient(160deg, rgba(19, 24, 35, 0.98), rgba(12, 15, 22, 0.98));
   --card-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
   --card-hover-shadow: 0 20px 48px rgba(0, 0, 0, 0.3);
   --card-border: 1px solid rgba(255, 255, 255, 0.1);
-  
-  /* Bias score colors (with refined shadows) */
+
   --bias-excellent: #10B981;
   --bias-excellent-glow: rgba(16, 185, 129, 0.2);
-  
   --bias-low: #3B82F6;
   --bias-low-glow: rgba(59, 130, 246, 0.2);
-  
   --bias-moderate: #6B7280;
   --bias-moderate-glow: rgba(107, 114, 128, 0.2);
-  
   --bias-high: #EF4444;
   --bias-high-glow: rgba(239, 68, 68, 0.2);
-  
   --bias-critical: #7C3AED;
   --bias-critical-glow: rgba(124, 58, 237, 0.2);
 }
 
 /* ==========================================================================
-   IMPROVED JUDGE CARD GRID
+   CARD GRID - generous spacing for premium feel
    ========================================================================== */
 
 .flip-cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 2rem;
-  padding: 1.5rem;
-  max-width: 1600px;
+  gap: 2.4rem;
+  padding: 1.5rem 0;
+  max-width: 1680px;
   margin: 0 auto;
-  
+
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
-    padding: 1rem;
+    gap: 1.8rem;
+    padding: 1rem 0;
   }
 }
 
+.actor-card-grid {
+  gap: 2.4rem !important;
+}
+
 /* ==========================================================================
-   FIXED FLIP CARD CONTAINER
+   FLIP CARD - the perspective wrapper
    ========================================================================== */
 
 .flip-card {
-  perspective: 1500px;
+  perspective: 1200px;
   width: 100%;
-  height: 420px;
+  min-height: 480px;
+  height: auto;
   cursor: pointer;
   position: relative;
-  
-  /* Ensure cards are always visible */
   visibility: visible !important;
   opacity: 1 !important;
-  
+
   @media (max-width: 768px) {
-    height: 380px;
+    min-height: 440px;
   }
 }
 
 /* ==========================================================================
-   FIXED INNER CONTAINER - NO BLANK SPACES
+   INNER - relative container, NOT absolute
    ========================================================================== */
 
 .flip-card-inner {
-  position: absolute;
+  position: relative;
   width: 100%;
-  height: 100%;
+  min-height: 480px;
   transform-style: preserve-3d;
-  transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
-  will-change: transform;
+  transition: transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
+
+  @media (max-width: 768px) {
+    min-height: 440px;
+  }
 }
 
-/* Flip on hover (only if not pinned) */
 .flip-card:not(.is-pinned):hover .flip-card-inner {
   transform: rotateY(180deg);
 }
 
-/* Flip on click (stays flipped) */
 .flip-card.is-flipped .flip-card-inner {
   transform: rotateY(180deg);
 }
 
 /* ==========================================================================
-   SIMPLIFIED FRONT CARD - MINIMAL INFORMATION
+   FACES - absolute inside the relative inner
    ========================================================================== */
 
-.flip-card-front {
+.flip-card-front,
+.flip-card-back {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  border-radius: 24px;
+  border-radius: 28px;
   overflow: hidden;
-  
-  /* Premium background */
-  background: var(--card-bg);
-  box-shadow: var(--card-shadow);
-  border: var(--card-border);
-  
-  /* Subtle glow effect based on bias score */
-  box-shadow: 
-    var(--card-shadow),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  
-  /* Flex layout */
   display: flex;
   flex-direction: column;
+}
+
+.flip-card-front {
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  border: var(--card-border);
   align-items: center;
   justify-content: center;
   padding: 2rem;
   text-align: center;
-  transition: all 0.3s ease;
+  transition: box-shadow 0.3s ease;
+  border-color: var(--card-accent, rgba(255,255,255,0.1));
 }
 
 /* Dynamic glow effect */
@@ -239,28 +233,17 @@
 }
 
 /* ==========================================================================
-   BACK CARD - DETAILED INFORMATION
+   BACK CARD - PHOTO + DEEPER METRICS
    ========================================================================== */
 
 .flip-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  border-radius: 24px;
-  overflow: hidden;
   transform: rotateY(180deg);
-  
-  /* Premium background */
-  background: var(--card-bg);
+  background: var(--card-bg-back);
   box-shadow: var(--card-shadow);
   border: var(--card-border);
-  
-  /* Flex layout */
-  display: flex;
-  flex-direction: column;
-  padding: 1.5rem;
+  padding: 1.25rem;
+  overflow-y: auto;
+  border-color: var(--line-strong, rgba(255,255,255,0.15));
 }
 
 /* ==========================================================================
@@ -287,36 +270,45 @@
   color: rgba(255, 255, 255, 0.7);
 }
 
-.judge-photo-container {
-  width: 120px;
-  height: 120px;
-  margin: 1rem auto;
+.judge-photo-container,
+.judge-photo-shell {
+  width: 100px;
+  height: 100px;
+  margin: 0.75rem auto;
   border-radius: 50%;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.05);
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255,255,255,0.24), transparent 28%),
+    linear-gradient(180deg, rgba(198,154,121,0.75), rgba(108,83,99,0.75));
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  flex-shrink: 0;
 }
 
+.judge-photo-shell img,
+.judge-photo-container img,
 .judge-photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 50%;
 }
 
+.judge-photo-placeholder,
 .photo-placeholder {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
-  background: rgba(255, 255, 255, 0.05);
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.68rem;
   text-align: center;
-  padding: 1rem;
+  padding: 0.5rem;
+  line-height: 1.3;
 }
 
 /* ==========================================================================
@@ -517,25 +509,15 @@
 }
 
 /* ==========================================================================
-   FIXED POSITIONING TO PREVENT BLANK SPACES
+   3D RENDERING FIX - only faces get backface-visibility, inner keeps preserve-3d
    ========================================================================== */
 
-.flip-card {
+.flip-card-inner {
   transform-style: preserve-3d;
 }
 
-.flip-card-inner,
 .flip-card-front,
 .flip-card-back {
-  transform-style: preserve-3d;
-  backface-visibility: hidden;
-}
-
-/* Ensure both sides are always rendered correctly */
-.flip-card-front,
-.flip-card-back {
-  -webkit-transform-style: preserve-3d;
-  transform-style: preserve-3d;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }

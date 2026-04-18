@@ -79,25 +79,23 @@ wrapper_class: home-wrapper
 </section>
 
 <section class="home-main-menu" id="main-menu">
-  <div class="main-menu-grid">
+  <div class="main-menu-grid main-menu-grid-7">
     <div class="main-menu-column" data-menu-col>
       <a class="main-menu-title" href="{{ '/bias-beacon/judges/' | relative_url }}">
         <span class="main-menu-title-text">The Judiciary</span>
         <span class="main-menu-title-sub">Judges &amp; Accountability</span>
       </a>
       <div class="main-menu-dropdown" data-menu-dropdown>
-        <a class="main-menu-link" href="{{ '/bias-beacon/judges/' | relative_url }}">Judges</a>
+        <a class="main-menu-link" href="{{ '/bias-beacon/judges/' | relative_url }}">Judge Profiles</a>
         <a class="main-menu-link" href="{{ '/bias-beacon/presiding-judges/' | relative_url }}">Presiding Judges</a>
         <a class="main-menu-link" href="{{ '/bias-beacon/pro-tem-judges/' | relative_url }}">Pro Tem Judges</a>
-        <a class="main-menu-link" href="{{ '/prosecutors.html' | relative_url }}">Prosecutors</a>
-        <a class="main-menu-link" href="{{ '/parole-probation.html' | relative_url }}">Probation</a>
-        <a class="main-menu-link" href="{{ '/law-enforcement.html' | relative_url }}">Law Enforcement</a>
+        <a class="main-menu-link" href="{{ '/bias-beacon/methodology/' | relative_url }}">Scoring &amp; Methodology</a>
       </div>
     </div>
 
     <div class="main-menu-column" data-menu-col>
       <a class="main-menu-title" href="{{ '/bias-beacon/dashboard/' | relative_url }}">
-        <span class="main-menu-title-text">Watchtower</span>
+        <span class="main-menu-title-text">The Watchtower</span>
         <span class="main-menu-title-sub">System Intelligence</span>
       </a>
       <div class="main-menu-dropdown" data-menu-dropdown>
@@ -109,6 +107,44 @@ wrapper_class: home-wrapper
     </div>
 
     <div class="main-menu-column" data-menu-col>
+      <a class="main-menu-title" href="{{ '/law-enforcement.html' | relative_url }}">
+        <span class="main-menu-title-text">Law Enforcement</span>
+        <span class="main-menu-title-sub">Intake &amp; Oversight</span>
+      </a>
+      <div class="main-menu-dropdown" data-menu-dropdown>
+        <a class="main-menu-link" href="{{ '/law-enforcement.html' | relative_url }}">Agency Profiles</a>
+        <a class="main-menu-link" href="{{ '/law-enforcement.html' | relative_url }}#stops">Stops &amp; Searches</a>
+        <a class="main-menu-link" href="{{ '/law-enforcement.html' | relative_url }}#arrests">Arrest Patterns</a>
+        <a class="main-menu-link" href="{{ '/law-enforcement.html' | relative_url }}#oversight">Oversight Bodies</a>
+      </div>
+    </div>
+
+    <div class="main-menu-column" data-menu-col>
+      <a class="main-menu-title" href="{{ '/parole-probation.html' | relative_url }}">
+        <span class="main-menu-title-text">Community Corrections</span>
+        <span class="main-menu-title-sub">Supervision &amp; Return</span>
+      </a>
+      <div class="main-menu-dropdown" data-menu-dropdown>
+        <a class="main-menu-link" href="{{ '/parole-probation.html' | relative_url }}">County Supervision</a>
+        <a class="main-menu-link" href="{{ '/parole-probation.html' | relative_url }}#revocation">Revocation Pressure</a>
+        <a class="main-menu-link" href="{{ '/parole-probation.html' | relative_url }}#support">Support Capacity</a>
+      </div>
+    </div>
+
+    <div class="main-menu-column" data-menu-col>
+      <a class="main-menu-title" href="{{ '/prosecutors.html' | relative_url }}">
+        <span class="main-menu-title-text">Prosecutor Profiles</span>
+        <span class="main-menu-title-sub">Charging &amp; Disposition</span>
+      </a>
+      <div class="main-menu-dropdown" data-menu-dropdown>
+        <a class="main-menu-link" href="{{ '/prosecutors.html' | relative_url }}">County Offices</a>
+        <a class="main-menu-link" href="{{ '/prosecutors.html' | relative_url }}#charging">Charging Patterns</a>
+        <a class="main-menu-link" href="{{ '/prosecutors.html' | relative_url }}#plea">Plea Leverage</a>
+        <a class="main-menu-link" href="{{ '/prosecutors.html' | relative_url }}#dismissals">Dismissal Rates</a>
+      </div>
+    </div>
+
+    <div class="main-menu-column" data-menu-col>
       <a class="main-menu-title" href="{{ '/bias-beacon/methodology/' | relative_url }}">
         <span class="main-menu-title-text">Juris Lab</span>
         <span class="main-menu-title-sub">Law &amp; Application</span>
@@ -116,48 +152,21 @@ wrapper_class: home-wrapper
       <div class="main-menu-dropdown" data-menu-dropdown>
         <a class="main-menu-link" href="{{ '/bias-beacon/' | relative_url }}">Cases &amp; Law</a>
         <a class="main-menu-link" href="{{ '/reports/' | relative_url }}">Cases &amp; Filings</a>
-        <a class="main-menu-link" href="{{ '/bias-beacon/methodology/' | relative_url }}">Legal Issues</a>
+        <a class="main-menu-link" href="{{ '/legal-assistant.html' | relative_url }}">AI Legal Assistant</a>
         <a class="main-menu-link" href="https://soll.libguides.com/" target="_blank" rel="noreferrer">Library</a>
       </div>
     </div>
 
-    <div class="main-menu-column" data-menu-col>
-      <a class="main-menu-title" href="{{ '/workspace/' | relative_url }}">
-        <span class="main-menu-title-text">Sui Generis</span>
-        <span class="main-menu-title-sub">Workspace &amp; Community</span>
+    <div class="main-menu-column main-menu-column-accent" data-menu-col>
+      <a class="main-menu-title" href="{{ '/community-forum.html' | relative_url }}">
+        <span class="main-menu-title-text">The Movement</span>
+        <span class="main-menu-title-sub">Voice &amp; Community</span>
       </a>
       <div class="main-menu-dropdown" data-menu-dropdown>
-        <a class="main-menu-link" href="{{ '/workspace/' | relative_url }}">My Documents</a>
-        <a class="main-menu-link" href="{{ '/legal-assistant.html' | relative_url }}">AI Assistant</a>
-        <a class="main-menu-link" href="{{ '/workspace/' | relative_url }}#drafting-lab">Drafting Lab</a>
-        <a class="main-menu-link" href="{{ '/community-forum.html' | relative_url }}">Forums</a>
-      </div>
-    </div>
-
-    <div class="main-menu-column" data-menu-col>
-      <a class="main-menu-title" href="{{ '/about/' | relative_url }}">
-        <span class="main-menu-title-text">Contacts &amp; Oversight</span>
-        <span class="main-menu-title-sub">Public Oversight Routes</span>
-      </a>
-      <div class="main-menu-dropdown" data-menu-dropdown>
-        <a class="main-menu-link" href="{{ '/about/' | relative_url }}">Attorney Directory</a>
-        <a class="main-menu-link" href="https://www.oregonlegislature.gov/" target="_blank" rel="noreferrer">Oregon State Legislature</a>
-        <a class="main-menu-link" href="https://www.osbar.org/" target="_blank" rel="noreferrer">Oregon State Bar</a>
-        <a class="main-menu-link" href="https://www.oregon.gov/cjc/Pages/default.aspx" target="_blank" rel="noreferrer">Criminal Justice Commission</a>
-        <a class="main-menu-link" href="https://www.portland.gov/ipr" target="_blank" rel="noreferrer">Oversight Bodies</a>
-      </div>
-    </div>
-
-    <div class="main-menu-column" data-menu-col>
-      <a class="main-menu-title" href="{{ '/bias-beacon/methodology/' | relative_url }}">
-        <span class="main-menu-title-text">Methodology</span>
-        <span class="main-menu-title-sub">Data &amp; Scoring</span>
-      </a>
-      <div class="main-menu-dropdown" data-menu-dropdown>
-        <a class="main-menu-link" href="{{ '/bias-beacon/methodology/' | relative_url }}">Scoring Framework</a>
-        <a class="main-menu-link" href="{{ '/bias-beacon/' | relative_url }}">System View</a>
-        <a class="main-menu-link" href="{{ '/privacy-compliance/' | relative_url }}">Privacy &amp; Compliance</a>
-        <a class="main-menu-link" href="{{ '/about/' | relative_url }}">About A.P.T.I.T.U.D.E.</a>
+        <a class="main-menu-link" href="{{ '/community-forum.html' | relative_url }}">Community Forum</a>
+        <a class="main-menu-link" href="{{ '/community-forum.html' | relative_url }}#public-comment">Public Comment</a>
+        <a class="main-menu-link" href="{{ '/community-forum.html' | relative_url }}#groups">Groups</a>
+        <a class="main-menu-link" href="{{ '/community-forum.html' | relative_url }}#news">News &amp; For You</a>
       </div>
     </div>
   </div>
