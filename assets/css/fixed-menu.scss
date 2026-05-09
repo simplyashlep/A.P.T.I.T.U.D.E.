@@ -1,0 +1,215 @@
+/* ==========================================================================
+   FIXED MEGA MENU ALIGNMENT
+   Ensures column titles are aligned evenly across all columns
+   ========================================================================== */
+
+/* Fix for mega menu column alignment */
+.mega-menu-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 1.2rem;
+  padding: 1.35rem 0 1.6rem;
+  align-items: start; /* Ensure all columns start at same vertical position */
+}
+
+.mega-menu-column {
+  position: relative;
+  display: grid;
+  gap: 0.75rem;
+  align-content: start; /* Standardized alignment */
+  min-height: 18.5rem;
+  padding: 1.2rem 1.1rem 1.2rem;
+  text-align: center; /* Center all content */
+  
+  /* Consistent styling */
+  border: 1px solid rgba(173, 208, 255, 0.2);
+  border-radius: 20px;
+  background:
+    linear-gradient(145deg, rgba(188, 221, 255, 0.12), rgba(255, 255, 255, 0.03)),
+    linear-gradient(180deg, rgba(12, 24, 52, 0.76), rgba(8, 16, 32, 0.84));
+  box-shadow:
+    0 18px 34px rgba(4, 10, 24, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset -10px -14px 24px rgba(0, 0, 0, 0.16);
+  overflow: hidden;
+}
+
+/* Standardized title positioning */
+.mega-menu-title {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: center;
+  text-align: center;
+  min-height: 4.8rem;
+  margin-bottom: 1rem; /* Consistent spacing */
+  color: #f4f8ff;
+  text-decoration: none;
+  align-self: start; /* Ensure titles start at same position */
+}
+
+/* Standardized title text */
+.mega-menu-title-text {
+  display: block;
+  font-family: 'Inter', sans-serif; /* Modern font */
+  font-size: clamp(1.3rem, 2vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.35),
+    0 4px 0 rgba(18, 38, 76, 0.9);
+  margin: 0;
+  padding: 0;
+}
+
+/* Standardized hover text */
+.mega-menu-title-hover {
+  color: #b7cff7;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.mega-menu-column:hover .mega-menu-title-hover,
+.mega-menu-column:focus-within .mega-menu-title-hover {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Standardized reveal section */
+.mega-menu-reveal {
+  margin-bottom: 1rem;
+  padding: 0.7rem 0.8rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  align-self: start; /* Consistent positioning */
+}
+
+.mega-menu-reveal p {
+  margin: 0;
+  color: #d8c9bf;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Standardized menu links */
+.mega-menu-link {
+  display: block;
+  padding: 0.5rem 0.65rem;
+  border-radius: 12px;
+  color: #e7edf7;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-align: center;
+  transition: all 0.2s ease;
+  align-self: start; /* Consistent link positioning */
+}
+
+.mega-menu-link:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: white;
+  text-decoration: none;
+}
+
+/* Fix for "System View" button */
+.nav-system-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.85rem 1.1rem;
+  border-radius: 18px;
+  border: 1px solid rgba(112, 163, 255, 0.34);
+  background: linear-gradient(135deg, rgba(32, 77, 164, 0.9), rgba(15, 39, 84, 0.94));
+  color: #eff5ff;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.86rem;
+  font-weight: 600;
+  box-shadow: 0 14px 30px rgba(9, 20, 43, 0.34);
+  transition: all 0.2s ease;
+}
+
+.nav-system-link:hover {
+  background: linear-gradient(135deg, rgba(46, 105, 212, 0.9), rgba(28, 69, 148, 0.94));
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+/* Menu launcher button */
+.menu-launcher {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  padding: 0.85rem 1.2rem;
+  border-radius: 18px;
+  border: 1px solid rgba(149, 194, 255, 0.32);
+  background: linear-gradient(135deg, rgba(15, 35, 78, 0.94), rgba(23, 67, 156, 0.82));
+  color: #f1f6ff;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 12px 26px rgba(6, 14, 32, 0.34);
+}
+
+.menu-launcher:hover,
+.menu-launcher[aria-expanded="true"] {
+  transform: translateY(-1px);
+  background: linear-gradient(135deg, rgba(25, 58, 122, 0.95), rgba(46, 105, 212, 0.88));
+  border-color: rgba(176, 214, 255, 0.48);
+}
+
+/* Remove Times New Roman fonts */
+body,
+.site-header,
+.site-nav,
+.mega-menu-grid,
+.mega-menu-column,
+.mega-menu-title,
+.mega-menu-link {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Enhanced typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .mega-menu-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .mega-menu-column {
+    min-height: auto;
+    padding: 1rem;
+  }
+  
+  .mega-menu-title-text {
+    font-size: 1.2rem;
+  }
+  
+  .nav-system-link,
+  .menu-launcher {
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+  }
+}

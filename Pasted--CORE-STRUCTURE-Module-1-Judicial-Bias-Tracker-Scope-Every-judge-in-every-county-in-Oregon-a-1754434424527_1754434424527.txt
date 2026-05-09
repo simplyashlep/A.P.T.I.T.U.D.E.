@@ -1,0 +1,217 @@
+🧱 CORE STRUCTURE
+🔹 Module 1: Judicial Bias Tracker
+Scope: Every judge in every county in Oregon, all case types, past 5 years minimum, including granular outcome and demographic data.
+
+📚 DATA SOURCES (ALL REQUIRED)
+Pull and integrate regularly from:
+
+Oregon Judicial Department (OJD)
+
+Oregon Criminal Justice Commission (OCJC)
+
+Oregon Department of Corrections (DOC)
+
+Oregon Department of Justice (DOJ)
+
+Open Oregon Public Records
+
+STOP Data (Statewide Traffic Stop data from LE agencies)
+
+State of Oregon Law Library (for appellate data)
+
+📊 DATA TRACKER REQUIREMENTS
+⚖️ Judge-Level Metrics (Required for ALL Judges)
+Total cases assigned (by type: felony, misdemeanor, etc.)
+
+% of defendants sentenced to:
+
+Prison
+
+Probation
+
+Local control
+
+Post-prison supervision
+
+Probation revocation rate per judge
+
+Sanctions used for revocation (jail, treatment, fines, reinstatement, etc.)
+
+Case outcomes based on counsel type:
+
+Court-appointed
+
+Retained private attorney
+
+Demographic disparities in sentencing (race, gender, ethnicity, age)
+
+% of cases that go up on appeal, and:
+
+% reversed
+
+Reversal grounds (if available)
+
+🌐 County-Level Metrics
+Aggregate rates of incarceration, revocation, etc.
+
+Average outcomes by representation type
+
+County-wide STOP → conviction conversion rates
+
+Most active judges per county
+
+Most active DA offices per county
+
+🧑‍⚖️ Prosecutorial Layer (If Available)
+DA office name or lead prosecutor (by case, when extractable)
+
+Compare DA influence on outcomes
+
+Sentencing disparity correlated with DA office
+
+🧑‍⚖️ Counsel-Type Outcome Disparity
+Breakdown by court-appointed vs retained:
+
+Prison rate
+
+Probation grant rate
+
+Revocation rate
+
+Appeal rate/success
+
+👥 Defendant Demographics
+Outcome disparities cross-tabulated by:
+
+Counsel type
+
+Race, gender, age
+
+County
+
+Specific judge
+
+🔍 STOP Data Integration
+% of traffic stops leading to arrest
+
+% leading to charges
+
+% resulting in conviction
+
+Demographics of stops vs convictions
+
+Map STOP → conviction by county + judge
+
+🧠 Module 2: A.P.T.I.T.U.D.E. Legal Assistant (AI Agent)
+🤖 Core Functions
+Legal question answering (statutes, caselaw, court procedure)
+
+Integrated case law search and filtering:
+
+Oregon Supreme Court
+
+Court of Appeals
+
+Circuit Courts
+
+U.S. District Court (Oregon)
+
+Shepardizing cases (using open-source case graphing or integrations)
+
+Statutory search across ORS / OAR
+
+Issue-spotting and motion-type suggestion
+
+Case-specific judge flagging:
+
+“Judge X has high reversal rate” or “Judge X revokes probation 3x more often than peers”
+
+📄 Template Generator
+User inputs issue + court level → system returns editable template for:
+
+Motions (to compel, to appear telephonically, etc.)
+
+Letters to supervising officer
+
+Judicial misconduct complaints
+
+Bar complaints
+
+Affidavits/declarations
+
+Landlord/tenant notices
+
+Police complaints
+
+Administrative review appeals
+
+General responses to lawsuits
+
+🖥️ UX / UI Requirements
+🔸 Layout
+Sidebar navigation: Judges / Counties / Compare / Templates / Assistant
+
+Responsive design for desktop and mobile
+
+Dual-panel “Compare View” for judges or counties
+
+Map of Oregon counties with hover/click filters
+
+Visual trendlines over time (5-year view default)
+
+🎨 Theme
+Color Palette:
+
+Deep navy, steel gray, teal, caution amber/red
+
+Typography:
+
+Open Sans, Roboto Slab, or Montserrat
+
+Accessibility:
+
+High contrast mode
+
+Font resize
+
+Keyboard navigability
+
+Screen reader support
+
+📊 Charts/Visualization
+Bar graphs (e.g., % prison by judge)
+
+Line charts (revocation trend over time)
+
+Donut/pie charts (counsel-type distributions)
+
+Heatmaps (county outcomes)
+
+Radial disparity wheels (demographic analysis)
+
+⚙️ TECH STACK (Suggested)
+Frontend: React.js + Tailwind CSS
+
+Backend: Python (FastAPI or Flask)
+
+DB: PostgreSQL (or Supabase for hosted option)
+
+ETL: Python ETL pipelines to pull OJD, OCJC, DOC data (auto-updating if possible)
+
+AI: OpenAI GPT-4 or Claude + LangChain/RAG pipelines
+
+Search: Typesense or Elasticsearch (for fast judge/county/case queries)
+
+🛠 FUTURE EXPANSION (Optional Phase 2+)
+User watchlists (follow a judge or county and get alerts)
+
+FOIA template generator (when data gaps are detected)
+
+Motion wizard (auto-fill pleadings)
+
+Community reporting (crowd-sourced accounts of judicial behavior)
+
+✅ MANDATORY: All metrics and visualizations must include data for every judge from every Oregon county for the most recent five-year period (2019–2024 or rolling).
+✅ All sentencing and outcome data must be broken down by counsel type (court-appointed vs retained) and demographics (race, gender, age, where available).
+✅ The tool must permit side-by-side comparison of judges and counties, searchable and exportable.
+
