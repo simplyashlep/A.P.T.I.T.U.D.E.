@@ -1,0 +1,563 @@
+// Judge Profile Styling
+// Comprehensive styling for judge detail pages with comparative metrics
+
+.judge-profile-wrapper {
+  --judge-primary: #2d4a7b;     // Judiciary deep blue
+  --judge-accent: #7a9b7f;      // Sage green
+  --judge-secondary: #d4af8f;   // Gold
+  background: linear-gradient(135deg, #f5f3f0 0%, rgba(45, 74, 123, 0.04) 100%);
+}
+
+.judge-profile-hero {
+  background: linear-gradient(135deg, var(--judge-primary) 0%, var(--judge-accent) 100%);
+  color: white;
+  padding: 3rem 2rem;
+  margin-bottom: 2rem;
+
+  .judge-hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .judge-court-type {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0;
+    opacity: 0.85;
+  }
+
+  .judge-name {
+    margin: 0.5rem 0 0.25rem;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  .judge-position {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    opacity: 0.9;
+  }
+
+  .judge-badge {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    margin-right: 0.5rem;
+    margin-bottom: 1rem;
+
+    &.badge-presiding {
+      background: rgba(212, 175, 143, 0.3);
+      border-color: rgba(212, 175, 143, 0.5);
+    }
+  }
+
+  .judge-status {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    margin-top: 1rem;
+  }
+}
+
+.judge-photo-container {
+  width: 140px;
+  height: 180px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.judge-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.judge-photo-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--judge-primary), var(--judge-accent));
+
+  .placeholder-initials {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+    opacity: 0.8;
+  }
+}
+
+.judge-quick-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+
+  .stat-item {
+    background: white;
+    padding: 1rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-left: 4px solid var(--judge-primary);
+
+    .stat-label {
+      display: block;
+      font-size: 0.85rem;
+      color: #6b7280;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-value {
+      display: block;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--judge-primary);
+    }
+  }
+}
+
+.judge-profile-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 2rem;
+}
+
+.profile-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+  h2 {
+    margin-top: 0;
+    color: var(--judge-primary);
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    color: var(--judge-primary);
+    font-size: 1.1rem;
+  }
+}
+
+.profile-metrics {
+  .metrics-intro {
+    color: #6b7280;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.metric-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(45, 74, 123, 0.02) 0%, rgba(122, 155, 127, 0.02) 100%);
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(45, 74, 123, 0.1);
+    border-color: var(--judge-primary);
+  }
+
+  .metric-header {
+    margin-bottom: 1rem;
+
+    h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1rem;
+      color: var(--judge-primary);
+    }
+
+    .metric-help {
+      margin: 0;
+      font-size: 0.85rem;
+      color: #6b7280;
+      line-height: 1.4;
+    }
+  }
+
+  .metric-display {
+    margin-bottom: 1rem;
+  }
+
+  .metric-value-large {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--judge-primary);
+    margin: 0.5rem 0;
+  }
+
+  .metric-comparison {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-top: 1rem;
+
+    strong {
+      color: var(--judge-primary);
+      font-weight: 600;
+    }
+  }
+
+  .metric-bar {
+    height: 6px;
+    background: #e5e7eb;
+    border-radius: 3px;
+    overflow: hidden;
+
+    .bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--judge-primary) 0%, var(--judge-accent) 100%);
+      transition: width 0.5s ease;
+    }
+  }
+}
+
+.profile-risk-score {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 2px solid #e5e7eb;
+
+  .risk-score-display {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 2rem;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  .risk-gauge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, rgba(45, 74, 123, 0.05) 0%, rgba(122, 155, 127, 0.05) 100%);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 2px solid var(--judge-primary);
+
+    .risk-label {
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+
+      &.risk-label-low {
+        color: #10b981;
+      }
+
+      &.risk-label-moderate {
+        color: #f59e0b;
+      }
+
+      &.risk-label-high {
+        color: #ef4444;
+      }
+    }
+
+    .risk-value {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--judge-primary);
+    }
+  }
+
+  .risk-explanation {
+    color: #6b7280;
+    line-height: 1.6;
+    margin: 0;
+    font-size: 0.95rem;
+  }
+}
+
+.profile-pending {
+  .pending-metrics {
+    text-align: center;
+    padding: 2rem;
+
+    ul {
+      text-align: left;
+      list-style: none;
+      padding: 1rem 2rem;
+      background: #f9fafb;
+      border-radius: 6px;
+      margin: 1rem 0;
+    }
+
+    li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+      color: #6b7280;
+
+      &:before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: var(--judge-primary);
+        font-weight: bold;
+      }
+    }
+
+    .metrics-note {
+      font-size: 0.85rem;
+      color: #9ca3af;
+      margin-top: 1rem;
+      font-style: italic;
+    }
+  }
+}
+
+.comparison-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+  border-bottom: 2px solid #e5e7eb;
+
+  .tab-button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #6b7280;
+    font-weight: 500;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+    margin-bottom: -2px;
+
+    &:hover {
+      color: var(--judge-primary);
+    }
+
+    &.tab-active {
+      color: var(--judge-primary);
+      border-bottom-color: var(--judge-primary);
+    }
+  }
+}
+
+.comparison-content {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 1.5rem;
+
+  &.hidden {
+    display: none;
+  }
+
+  .comparison-group {
+    h4 {
+      margin: 0 0 1rem;
+      color: var(--judge-primary);
+    }
+  }
+
+  .judge-list-mini {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .placeholder {
+    grid-column: 1 / -1;
+    color: #9ca3af;
+    text-align: center;
+    padding: 2rem;
+  }
+}
+
+.judge-profile-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sidebar-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-left: 4px solid var(--judge-primary);
+
+  h3 {
+    margin-top: 0;
+    color: var(--judge-primary);
+    font-size: 1rem;
+  }
+}
+
+.summary-item {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f0f0f0;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .label {
+    font-weight: 600;
+    color: #6b7280;
+    font-size: 0.85rem;
+  }
+
+  .value {
+    color: #2a3a52;
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+}
+
+.sources-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    padding: 0.5rem 0;
+    color: #6b7280;
+    font-size: 0.9rem;
+  }
+}
+
+.profile-navigation {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  text-align: center;
+
+  .btn {
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+
+    &.btn-secondary {
+      background: transparent;
+      color: var(--judge-primary);
+      border: 2px solid var(--judge-primary);
+
+      &:hover {
+        background: var(--judge-primary);
+        color: white;
+      }
+    }
+  }
+}
+
+.contact-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.contact-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  .contact-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .contact-value {
+    color: var(--judge-primary);
+    font-weight: 500;
+    text-decoration: none;
+    word-break: break-all;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .judge-profile-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .judge-profile-hero {
+    padding: 2rem 1rem;
+  }
+
+  .judge-hero-content {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .judge-quick-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .risk-score-display {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .comparison-tabs {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .judge-quick-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .judge-hero-content {
+    padding: 0 1rem;
+  }
+
+  .judge-profile-container {
+    padding: 0 1rem;
+  }
+}

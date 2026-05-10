@@ -1,0 +1,89 @@
+<!-- Featured Judge Cards for Homepage Archive Grid -->
+{% assign judge_directory = site.data.bias-beacon.judges-directory.judges %}
+{% assign featured_count = 0 %}
+
+{% for judge_data in judge_directory %}
+  {% if featured_count < 6 %}
+    {% assign score = judge_data.score | default: 'Pending' %}
+    {% assign accent = '#6f7b8c' %}
+    {% assign accent_text = '#FFFFFF' %}
+    
+    {% if judge_data.riskLevel == 'critical' %}
+      {% assign accent = '#5F0F40' %}
+    {% elsif judge_data.riskLevel == 'high' %}
+      {% assign accent = '#9A031E' %}
+    {% elsif judge_data.riskLevel == 'moderate' %}
+      {% assign accent = '#666666' %}
+    {% elsif judge_data.riskLevel == 'low' %}
+      {% assign accent = '#9FA8FF' %}
+    {% elsif judge_data.riskLevel == 'excellent' %}
+      {% assign accent = '#A3FF05' %}
+      {% assign accent_text = '#0B0F12' %}
+    {% endif %}
+    
+    <article class="flip-card flip-card-featured"
+             data-card-id="{{ judge_data.id }}"
+             data-id="{{ judge_data.id }}"
+             data-name="{{ judge_data.name }}"
+             data-county="{{ judge_data.county | downcase }}"
+             data-level="{{ judge_data.riskLevel }}"
+             data-score="{{ judge_data.score | default: 0 }}"
+             data-score-display="{{ score }}"
+             data-actor-type="judge">
+      <div class="flip-card-inner">
+        <div class="flip-card-front" style="--card-accent: {{ accent }};">
+          <div class="judge-name-container">
+            <h3 class="judge-name-display">{{ judge_data.name }}</h3>
+            <div class="county-label">{{ judge_data.county }}{% unless judge_data.county == 'Statewide' %} County{% endunless %}</div>
+          </div>
+          
+          <div class="bias-score-indicator">
+            <div class="score-circle" style="background: {{ accent }}; color: {{ accent_text }};">
+              <span class="score-value">{{ score }}</span>
+            </div>
+            <span class="score-label">{{ judge_data.scoreLabel }}</span>
+          </div>
+          
+          <p class="card-front-summary">{{ judge_data.summary }}</p>
+          
+          <div class="card-front-footer"><span class="hover-hint">Flip for more</span></div>
+        </div>
+        
+        <div class="flip-card-back" style="--card-accent: {{ accent }};">
+          <div class="card-back-header">
+            <h3>{{ judge_data.name }}</h3>
+            <p class="card-back-subtitle">{{ judge_data.county }}{% unless judge_data.county == 'Statewide' %} County{% endunless %}</p>
+            
+            {% if judge_data.officialPhotoUrl %}
+              <img src="{{ judge_data.officialPhotoUrl }}" alt="{{ judge_data.name }}" class="judge-card-photo" loading="lazy">
+            {% else %}
+              <span class="judge-photo-placeholder">Photo pending</span>
+            {% endif %}
+          </div>
+          
+          <div class="card-back-content">
+            <div class="flip-metric-group">
+              <h4>Key Metrics</h4>
+              <div class="bias-metrics-grid">
+                <div class="bias-metric-item">
+                  <span class="bias-metric-label">Prison Usage</span>
+                  <span class="bias-metric-value">{% if judge_data.prisonUsage %}{{ judge_data.prisonUsage }}%{% else %}Pending{% endif %}</span>
+                </div>
+                <div class="bias-metric-item">
+                  <span class="bias-metric-label">Reversal Rate</span>
+                  <span class="bias-metric-value">{% if judge_data.reversalRate %}{{ judge_data.reversalRate }}%{% else %}Pending{% endif %}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card-back-actions">
+            <a href="{{ '/bias-beacon/judges/' | relative_url }}" class="btn btn-primary">View All Judges</a>
+          </div>
+        </div>
+      </div>
+    </article>
+    
+    {% assign featured_count = featured_count | plus: 1 %}
+  {% endif %}
+{% endfor %}

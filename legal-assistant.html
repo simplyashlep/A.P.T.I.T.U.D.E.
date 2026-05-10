@@ -1,43 +1,211 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Legal Assistant — Public Accountability Project</title>
-  <link rel="stylesheet" href="/assets/css/style.css">
-</head>
-<body class="page-theme page-theme--5 dark-theme">
-  <div class="sticky-menu page-theme--5">
-    <a href="/">Home</a>
-    <a href="/community-forum.html">Forum</a>
-    <a href="/bias-beacon/">Bias Beacon</a>
-    <a href="/legal-assistant.html">Legal Assistant</a>
-  </div>
+---
+layout: default
+title: Legal Assistant — A.P.T.I.T.U.D.E.
+permalink: /legal-assistant.html
+body_class: actor-directory-page
+---
 
-  <main class="wrapper">
-    <header class="page-header-3d">
-      <h1>Legal Assistant</h1>
-      <p>Conversational assistant, templates, and case law snippets</p>
-    </header>
-
-    <section class="legal-assistant">
-      <div class="assistant-chat">
-        <div class="chat-window" style="height:320px;overflow:auto;border:1px solid #eee;padding:8px;border-radius:8px">
-          <p><strong>Assistant:</strong> Hi — how can I help with your case?</p>
+<section class="archive-hero">
+  <div class="archive-hero-grid">
+    <div class="archive-hero-copy">
+      <div class="hero-title-stack">
+        <span class="archive-kicker">Juris Lab</span>
+        <div class="actor-page-title-image-wrap">
+          <img class="actor-page-title-image" src="{{ '/assets/images/titles/NEW ASSETS/JURIS LAB ASSET.png' | relative_url }}" alt="Juris Lab">
         </div>
-        <div style="margin-top:8px"><input style="width:100%;padding:8px;border-radius:6px" placeholder="Ask the assistant..." /></div>
+        <p class="archive-acronym">AI Assistant · Legal Templates · Case Law Research · Drafting Tools</p>
+      </div>
+      <p class="actor-page-deck">Conversational AI assistant for legal research, case law analysis, and document drafting. Ask questions about Oregon statutes, find relevant case precedents, and generate legal document frameworks.</p>
+
+      <div class="actor-hero-actions">
+        <a href="{{ '/legal-templates/' | relative_url }}" class="btn btn-primary">Legal Templates</a>
+        <a href="{{ '/bias-beacon/ai-caselaw/' | relative_url }}" class="btn btn-outline">Case Law</a>
+      </div>
+    </div>
+
+    <aside class="archive-hero-aside">
+      <div class="archive-facts">
+        <div>
+          <dt>AI Model</dt>
+          <dd>GPT-4 Legal</dd>
+        </div>
+        <div>
+          <dt>Templates</dt>
+          <dd>72+</dd>
+        </div>
+        <div>
+          <dt>Case Coverage</dt>
+          <dd>OR + 9th Cir.</dd>
+        </div>
       </div>
 
-      <aside class="assistant-side">
-        <div class="collapse">
-          <h4>Quick Links</h4>
-          <ul><li><a href="/legal-templates/">Legal templates</a></li><li><a href="/case-law/">Case law</a></li></ul>
-          <h4>Relevant case snippets</h4>
-          <p id="case-snippet">(Will display court opinions when queried)</p>
-        </div>
-      </aside>
-    </section>
-  </main>
+      <div class="archive-panel archive-panel-emphasis">
+        <span class="archive-kicker">Disclaimer</span>
+        <p>This AI assistant provides general legal information only. It does not constitute legal advice and should not replace consultation with a licensed attorney.</p>
+      </div>
+    </aside>
+  </div>
+</section>
 
-  <script type="module" src="/assets/js/site-ui.js"></script>
-</body>
-</html>
+<section class="actor-directory" data-reveal>
+  <div class="section-heading">
+    <span class="section-kicker">AI Chat</span>
+    <h2>Legal Research Assistant</h2>
+    <p>Ask questions about Oregon statutes, case law, or legal procedures. The assistant can help with research, drafting, and finding relevant precedents.</p>
+  </div>
+
+  <div class="legal-assistant-shell">
+    <div class="assistant-chat-window" id="chat-window">
+      <div class="chat-message system">
+        <div class="chat-avatar">AI</div>
+        <div class="chat-bubble">
+          <p>Welcome to Juris Lab. I can help you research Oregon case law, find legal templates, or analyze statutes. What are you working on?</p>
+        </div>
+      </div>
+    </div>
+    <div class="assistant-input-area">
+      <input type="text" id="chat-input" class="search-input-enhanced" placeholder="Ask about Oregon law, statutes, or case precedents..." autocomplete="off">
+      <button id="chat-send" class="btn btn-primary">Send</button>
+    </div>
+  </div>
+</section>
+
+<section data-reveal>
+  <div class="section-heading">
+    <span class="section-kicker">Quick Links</span>
+    <h2>Legal Resources</h2>
+  </div>
+  <div class="workspace-grid">
+    <div class="workspace-card">
+      <span class="archive-kicker">Templates</span>
+      <h2>Document Templates</h2>
+      <ul class="workspace-list">
+        <li><a href="{{ '/legal-templates/' | relative_url }}#motions">Motion Practice templates</a></li>
+        <li><a href="{{ '/legal-templates/' | relative_url }}#filing">Court Filing templates</a></li>
+        <li><a href="{{ '/legal-templates/' | relative_url }}#discovery">Discovery templates</a></li>
+        <li><a href="{{ '/legal-templates/' | relative_url }}#appellate">Appellate templates</a></li>
+        <li><a href="{{ '/legal-templates/' | relative_url }}#evidence">Evidence & Records templates</a></li>
+        <li><a href="{{ '/legal-templates/' | relative_url }}#oversight">Oversight & Complaints</a></li>
+      </ul>
+    </div>
+    <div class="workspace-card">
+      <span class="archive-kicker">Research</span>
+      <h2>Case Law & Statutes</h2>
+      <ul class="workspace-list">
+        <li><a href="{{ '/bias-beacon/' | relative_url }}">Bias Beacon — case analysis</a></li>
+        <li><a href="https://www.oregonlegislature.gov/bills_laws/Pages/ORS.aspx" target="_blank" rel="noreferrer">Oregon Revised Statutes (ORS)</a></li>
+        <li><a href="https://www.osbar.org/" target="_blank" rel="noreferrer">Oregon State Bar resources</a></li>
+        <li><a href="https://soll.libguides.com/" target="_blank" rel="noreferrer">State of Oregon Law Library</a></li>
+        <li><a href="https://www.courts.oregon.gov" target="_blank" rel="noreferrer">Oregon Judicial Department</a></li>
+        <li><a href="https://law.justia.com/cases/oregon/" target="_blank" rel="noreferrer">Oregon Case Law (Justia)</a></li>
+      </ul>
+    </div>
+    <div class="workspace-card">
+      <span class="archive-kicker">Data</span>
+      <h2>Judicial Data</h2>
+      <ul class="workspace-list">
+        <li><a href="{{ '/bias-beacon/judges/' | relative_url }}">Judge Profiles & Scores</a></li>
+        <li><a href="{{ '/bias-beacon/dashboard/' | relative_url }}">Statewide Dashboard</a></li>
+        <li><a href="{{ '/bias-beacon/counties/' | relative_url }}">County Intelligence</a></li>
+        <li><a href="{{ '/prosecutors.html' | relative_url }}">Prosecutor Offices</a></li>
+        <li><a href="{{ '/law-enforcement.html' | relative_url }}">Law Enforcement Agencies</a></li>
+        <li><a href="{{ '/parole-probation.html' | relative_url }}">Community Supervision</a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+.legal-assistant-shell {
+  max-width: 800px;
+  margin: 0 auto;
+  display: grid;
+  gap: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 14px 32px rgba(0,0,0,0.18);
+}
+.assistant-chat-window {
+  min-height: 380px;
+  max-height: 500px;
+  overflow-y: auto;
+  padding: 1.5rem;
+  background: rgba(14, 18, 28, 0.6);
+}
+.chat-message {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.chat-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+.chat-message.system .chat-avatar {
+  background: rgba(153,153,255,0.2);
+  color: var(--periwinkle-light);
+}
+.chat-bubble p {
+  margin: 0;
+  color: var(--muted-strong);
+  line-height: 1.55;
+}
+.assistant-input-area {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-top: 1px solid var(--line);
+  background: rgba(14, 18, 28, 0.8);
+}
+.assistant-input-area input {
+  flex: 1;
+}
+</style>
+
+<script>
+(function() {
+  'use strict';
+  var chatWindow = document.getElementById('chat-window');
+  var chatInput = document.getElementById('chat-input');
+  var chatSend = document.getElementById('chat-send');
+
+  function addMessage(text, isUser) {
+    var msg = document.createElement('div');
+    msg.className = 'chat-message ' + (isUser ? 'user' : 'system');
+    var avatar = document.createElement('div');
+    avatar.className = 'chat-avatar';
+    avatar.textContent = isUser ? 'You' : 'AI';
+    var bubble = document.createElement('div');
+    bubble.className = 'chat-bubble';
+    bubble.innerHTML = '<p>' + text + '</p>';
+    msg.appendChild(avatar);
+    msg.appendChild(bubble);
+    chatWindow.appendChild(msg);
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+  }
+
+  function handleSend() {
+    var text = chatInput.value.trim();
+    if (!text) return;
+    addMessage(text, true);
+    chatInput.value = '';
+    // Simulated response
+    setTimeout(function() {
+      addMessage('I\'m currently in demo mode. Connect your AI provider to enable live legal research. In the meantime, browse the <a href="/legal-templates/">template library</a> or explore <a href="/bias-beacon/judges/">judge profiles</a>.', false);
+    }, 800);
+  }
+
+  if (chatSend) chatSend.addEventListener('click', handleSend);
+  if (chatInput) chatInput.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') { e.preventDefault(); handleSend(); }
+  });
+})();
+</script>

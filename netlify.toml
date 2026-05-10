@@ -9,7 +9,7 @@
 # Enable Visual Editor
 [visual-editor]
   enabled = true
-
+  entry_point = "/"
 # Headers for security and performance
 [[headers]]
   for = "/*"

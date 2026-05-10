@@ -1,544 +1,661 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>County Comparisons - Bias Beacon | Public Accountability Project</title>
-<meta name="generator" content="Jekyll v4.4.1" />
-<meta property="og:title" content="County Comparisons - Bias Beacon" />
-<meta property="og:locale" content="en_US" />
-<meta name="description" content="County-by-county analysis of judicial sentencing patterns and criminal justice outcomes across all 36 counties." />
-<meta property="og:description" content="County-by-county analysis of judicial sentencing patterns and criminal justice outcomes across all 36 counties." />
-<link rel="canonical" href="http://0.0.0.0:3000/bias-beacon/counties/" />
-<meta property="og:url" content="http://0.0.0.0:3000/bias-beacon/counties/" />
-<meta property="og:site_name" content="Public Accountability Project" />
-<meta property="og:type" content="website" />
-<meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="County Comparisons - Bias Beacon" />
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"County-by-county analysis of judicial sentencing patterns and criminal justice outcomes across all 36 counties.","headline":"County Comparisons - Bias Beacon","url":"http://0.0.0.0:3000/bias-beacon/counties/"}</script>
-<!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://0.0.0.0:3000/feed.xml" title="Public Accountability Project" /></head><body><header class="site-header" role="banner">
+---
+layout: default
+title: A.P.T.I.T.U.D.E. | Advanced Platform Tabulating Institutional Trends Unmasking Disparity Epidemics
+permalink: /
+body_class: home-page
+---
 
-  <div class="wrapper"><a class="site-title" rel="author" href="/">Public Accountability Project</a><nav class="site-nav">
-        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
-        <label for="nav-trigger">
-          <span class="menu-icon">
-            <svg viewBox="0 0 18 15" width="18px" height="15px">
-              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.484C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.484l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.001,18,12.665,18,13.484L18,13.484z"/>
-            </svg>
-          </span>
-        </label>
-
-        <div class="trigger">
-          <a class="page-link" href="/">Home</a>
-          <a class="page-link" href="/bias-beacon/">Bias Beacon</a>
-          <a class="page-link" href="/reports/">Reports</a>
-          <a class="page-link" href="/investigations/">Investigations</a>
-          <a class="page-link" href="/posts/">Posts</a>
-          <a class="page-link" href="/about/">About</a>
-        </div>
-      </nav></div>
-</header><main class="page-content" aria-label="Content">
-      <div class="wrapper">
-        <article class="post">
-
-  <header class="post-header">
-    <h1 class="post-title">County Comparisons - Bias Beacon</h1>
-  </header>
-
-  <div class="post-content">
-    <h1 id="county-comparisons">County Comparisons</h1>
-
-      <!-- Quick judge search and cards demo (real data) -->
-      <section id="judges-explorer" class="judges-explorer">
-        <h2>Judge Profiles</h2>
-        <div class="search-controls">
-          <input id="judge-search" class="search-input" placeholder="Search judges, court, or specialization" />
-          <select id="judge-county-filter" class="filter-select">
-            <option value="all">All counties</option>
-          </select>
-        </div>
-
-        <div id="judge-list" class="judges-grid">
-          <div class="loading-message"><h3>Loading judge profiles…</h3></div>
-        </div>
-      </section>
-
-<div class="counties-header">
-  <p>Comparative analysis of criminal justice outcomes across all 36 counties, revealing regional variations in sentencing patterns, resource allocation, and judicial consistency.</p>
-</div>
-
-<h2 id="interactive-county-map">Interactive County Map</h2>
-
-<div id="county-map" class="county-map-container">
-  <div class="map-placeholder">
-    <h3>Interactive County Map</h3>
-    <p>A visual map showing sentencing severity, demographic disparities, and key justice metrics by county will be displayed here once data is loaded.</p>
-    <div class="map-legend">
-      <h4>Legend (Sample)</h4>
-      <div class="legend-item"><span class="color-box severe"></span> High Sentencing Severity</div>
-      <div class="legend-item"><span class="color-box moderate"></span> Moderate Sentencing</div>
-      <div class="legend-item"><span class="color-box lenient"></span> Lower Sentencing Severity</div>
-    </div>
-  </div>
-</div>
-
-<h2 id="county-rankings">County Rankings</h2>
-
-<div class="county-controls">
-  <h3>Rank Counties By:</h3>
-  <div class="ranking-buttons">
-    <button class="ranking-btn active" data-metric="severity">Sentencing Severity</button>
-    <button class="ranking-btn" data-metric="disparity">Demographic Disparity</button>
-    <button class="ranking-btn" data-metric="representation">Representation Gap</button>
-    <button class="ranking-btn" data-metric="consistency">Judicial Consistency</button>
-    <button class="ranking-btn" data-metric="volume">Case Volume</button>
-  </div>
-</div>
-
-<div id="county-rankings" class="county-rankings">
-  <!-- Rankings will be populated via JavaScript -->
-  <div class="loading-message">
-    <h3>Loading County Data...</h3>
-    <p>County rankings and comparisons will appear here once the judicial data is processed.</p>
-  </div>
-</div>
-
-<h2 id="key-county-metrics">Key County Metrics</h2>
-
-<div class="county-metrics-grid">
-  <div class="metric-card">
-    <h3>📊 Sentencing Severity Index</h3>
-    <p>Average sentence length and incarceration rates compared to state benchmarks. Helps identify counties with particularly harsh or lenient sentencing patterns.</p>
-    <div class="metric-details">
-      <strong>Includes:</strong>
-      <ul>
-        <li>Average prison sentence length</li>
-        <li>Incarceration vs. probation rates</li>
-        <li>Fine amounts and community service</li>
-        <li>Suspended sentence frequency</li>
-      </ul>
+<!-- ═══════════════════════════════════════════════════════════
+     HERO SECTION — Clean landing: logo + hamburger (in header),
+     centered floating search bar, filter chips below
+     Video background with overlay and animated elements
+     ═══════════════════════════════════════════════════════════ -->
+<section class="hero-section hero-landing">
+  <!-- Background video layer -->
+  <div class="hero-background">
+    <video autoplay muted loop playsinline>
+      <source src="https://media.cloudflare.com/files/bg-video-justice.mp4" type="video/mp4" />
+      <!-- Fallback for browsers that don't support HTML5 video -->
+      <source src="https://videos.pexels.com/video-files/3130424/3130424-hd_1920_1080_24fps.mp4" type="video/mp4" />
+    </video>
+    <!-- Animated cube field overlay -->
+    <div class="hero-cube-field">
+      <div class="hero-cube"></div>
+      <div class="hero-cube"></div>
+      <div class="hero-cube"></div>
+      <div class="hero-cube"></div>
+      <div class="hero-cube"></div>
+      <div class="hero-cube"></div>
     </div>
   </div>
 
-    <!-- include client-side scripts for judge explorer -->
-    <script type="module" src="/assets/js/search.js"></script>
-
-  <div class="metric-card">
-    <h3>⚖️ Demographic Disparity Score</h3>
-    <p>Statistical measure of sentencing differences across racial, gender, and socioeconomic lines within each county.</p>
-    <div class="metric-details">
-      <strong>Analyzes:</strong>
-      <ul>
-        <li>Racial sentencing disparities</li>
-        <li>Gender-based differences</li>
-        <li>Age-related patterns</li>
-        <li>Economic status impact</li>
-      </ul>
+  <div class="hero-landing-content">
+    <div class="floating-search-container">
+      <form class="floating-search-form" id="hero-search-form">
+        <div class="search-input-wrap">
+          <svg class="search-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input id="hero-search" type="search" class="floating-search-input" placeholder="Search judges, cases, counties, or agencies..." autocomplete="off" />
+          <button type="submit" class="floating-search-btn">Search</button>
+        </div>
+        <!-- Live search results dropdown -->
+        <div id="hero-search-results" class="hero-search-results" hidden></div>
+      </form>
+      <div class="search-filter-chips">
+        <button class="filter-chip active" data-filter="all">All Records</button>
+        <button class="filter-chip" data-filter="judges">Judges</button>
+        <button class="filter-chip" data-filter="prosecutors">Prosecutors</button>
+        <button class="filter-chip" data-filter="law-enforcement">Law Enforcement</button>
+        <button class="filter-chip" data-filter="probation">Probation</button>
+        <button class="filter-chip" data-filter="caselaw">Case Law</button>
+      </div>
     </div>
   </div>
 
-  <div class="metric-card">
-    <h3>🏛️ Judicial Resources</h3>
-    <p>Assessment of court resources, case loads, and their impact on justice outcomes in each county.</p>
-    <div class="metric-details">
-      <strong>Measures:</strong>
-      <ul>
-        <li>Judge-to-population ratio</li>
-        <li>Average case processing time</li>
-        <li>Public defender caseloads</li>
-        <li>Court facility adequacy</li>
-      </ul>
+  <!-- Scroll indicator -->
+  <div class="scroll-indicator">
+    <span>Scroll to explore</span>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     MISSION SECTION — Appears after scrolling
+     ═══════════════════════════════════════════════════════════ -->
+<section class="mission-section" data-reveal>
+  <div class="mission-content">
+    <div class="mission-accent-line"></div>
+    <h2 class="mission-title">Our Mission</h2>
+    <p class="mission-lead">A.P.T.I.T.U.D.E. transforms public justice records into intelligence that exposes patterns, compares performance, and makes accountability actionable.</p>
+    <p class="mission-body">We build a premium experience where data is presented with clarity, context, and ethical transparency so decision makers and the public can use it with confidence.</p>
+    <div class="mission-stats">
+      <div class="mission-stat">
+        <span class="mission-stat-number">210</span>
+        <span class="mission-stat-label">Circuit Judges</span>
+      </div>
+      <div class="mission-stat">
+        <span class="mission-stat-number">27</span>
+        <span class="mission-stat-label">Oregon Counties</span>
+      </div>
+      <div class="mission-stat">
+        <span class="mission-stat-number">24/7</span>
+        <span class="mission-stat-label">Evidence Access</span>
+      </div>
     </div>
   </div>
+</section>
 
-  <div class="metric-card">
-    <h3>📈 Consistency Rating</h3>
-    <p>How consistent sentencing is within each county for similar cases and circumstances.</p>
-    <div class="metric-details">
-      <strong>Evaluates:</strong>
-      <ul>
-        <li>Inter-judge consistency</li>
-        <li>Sentence predictability</li>
-        <li>Appeal rates</li>
-        <li>Reversal frequencies</li>
-      </ul>
+<!-- ═══════════════════════════════════════════════════════════
+     MAIN CARDS SECTION — 6 flip cards with working 3D flip
+     Structure: .main-card.flip-card > .flip-card-inner > .flip-card-front/.flip-card-back
+     ═══════════════════════════════════════════════════════════ -->
+<section class="main-cards-section" data-reveal>
+  <div class="cards-container">
+
+    <!-- BIAS BEACON -->
+    <div class="main-card flip-card" id="bias-beacon" tabindex="0" role="button" aria-label="Bias Beacon - flip for details">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="card-front-content">
+            <img class="card-title-asset" src="{{ '/assets/images/titles/NEW ASSETS/BIAS BEACON ASSET.png' | relative_url }}" alt="Bias Beacon">
+            <div class="card-accent-line"></div>
+            <p class="card-subtitle">Real-time judicial monitoring</p>
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <div class="card-back-content">
+            <h3>Bias Beacon</h3>
+            <p>Track judicial behavior, sentencing disparities, and institutional drift across Oregon's justice system.</p>
+            <div class="card-graph-container">
+              <h4 class="card-graph-title">Judicial Bias Trends</h4>
+              <div class="card-graph">
+                <div class="graph-bar" style="--target-height: 85%;"></div>
+                <div class="graph-bar" style="--target-height: 65%;"></div>
+                <div class="graph-bar" style="--target-height: 90%;"></div>
+                <div class="graph-bar" style="--target-height: 45%;"></div>
+                <div class="graph-bar" style="--target-height: 75%;"></div>
+              </div>
+              <div class="card-graph-legend">
+                <div class="legend-item"><div class="legend-color"></div><span>Bias score distribution</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="card-back-actions"><a href="{{ '/bias-beacon/' | relative_url }}" class="card-link">Explore Bias Beacon</a></div>
+        </div>
+      </div>
     </div>
+
+    <!-- THE JUDICIARY -->
+    <div class="main-card flip-card" id="judiciary" tabindex="0" role="button" aria-label="The Judiciary - flip for details">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="card-front-content">
+            <img class="card-title-asset" src="{{ '/assets/images/titles/NEW ASSETS/JUDICIARY ASSET.png' | relative_url }}" alt="The Judiciary">
+            <div class="card-accent-line"></div>
+            <p class="card-subtitle">Circuit court profiles</p>
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <div class="card-back-content">
+            <h3>The Judiciary</h3>
+            <p>Judge profiles, bias scores, caseload context, and accountability signals consolidated by circuit.</p>
+            <div class="card-graph-container">
+              <h4 class="card-graph-title">Judge Performance Metrics</h4>
+              <div class="card-graph">
+                <div class="graph-bar" style="--target-height: 70%;"></div>
+                <div class="graph-bar" style="--target-height: 85%;"></div>
+                <div class="graph-bar" style="--target-height: 60%;"></div>
+                <div class="graph-bar" style="--target-height: 90%;"></div>
+                <div class="graph-bar" style="--target-height: 55%;"></div>
+              </div>
+              <div class="card-graph-legend">
+                <div class="legend-item"><div class="legend-color"></div><span>Caseload efficiency</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="card-back-actions"><a href="{{ '/bias-beacon/judges/' | relative_url }}" class="card-link">View Judiciary</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROSECUTORS -->
+    <div class="main-card flip-card" id="prosecutors" tabindex="0" role="button" aria-label="Prosecutors - flip for details">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="card-front-content">
+            <img class="card-title-asset" src="{{ '/assets/images/titles/NEW ASSETS/PROSECUTOR PROFILES ASSET.png' | relative_url }}" alt="Prosecutor Profiles">
+            <div class="card-accent-line"></div>
+            <p class="card-subtitle">District attorney analysis</p>
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <div class="card-back-content">
+            <h3>Prosecutors Office</h3>
+            <p>Compare charging patterns, plea outcomes, and public safety narratives on a county-by-county basis.</p>
+            <div class="card-graph-container">
+              <h4 class="card-graph-title">Charging Pattern Analysis</h4>
+              <div class="card-graph">
+                <div class="graph-bar" style="--target-height: 80%;"></div>
+                <div class="graph-bar" style="--target-height: 45%;"></div>
+                <div class="graph-bar" style="--target-height: 65%;"></div>
+                <div class="graph-bar" style="--target-height: 90%;"></div>
+                <div class="graph-bar" style="--target-height: 55%;"></div>
+              </div>
+              <div class="card-graph-legend">
+                <div class="legend-item"><div class="legend-color"></div><span>Conviction rate trends</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="card-back-actions"><a href="{{ '/prosecutors/' | relative_url }}" class="card-link">Explore Prosecutors</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LAW ENFORCEMENT -->
+    <div class="main-card flip-card" id="law-enforcement" tabindex="0" role="button" aria-label="Law Enforcement - flip for details">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="card-front-content">
+            <img class="card-title-asset" src="{{ '/assets/images/titles/NEW ASSETS/WATCHTOWER ASSET.png' | relative_url }}" alt="Law Enforcement">
+            <div class="card-accent-line"></div>
+            <p class="card-subtitle">Police department metrics</p>
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <div class="card-back-content">
+            <h3>Law Enforcement</h3>
+            <p>STOP data, arrest patterns, and enforcement performance visualized through community outcomes.</p>
+            <div class="card-graph-container">
+              <h4 class="card-graph-title">Arrest Pattern Trends</h4>
+              <div class="card-graph">
+                <div class="graph-bar" style="--target-height: 75%;"></div>
+                <div class="graph-bar" style="--target-height: 60%;"></div>
+                <div class="graph-bar" style="--target-height: 85%;"></div>
+                <div class="graph-bar" style="--target-height: 40%;"></div>
+                <div class="graph-bar" style="--target-height: 70%;"></div>
+              </div>
+              <div class="card-graph-legend">
+                <div class="legend-item"><div class="legend-color"></div><span>Community impact</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="card-back-actions"><a href="{{ '/law-enforcement/' | relative_url }}" class="card-link">View Law Enforcement</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMMUNITY SUPERVISION -->
+    <div class="main-card flip-card" id="community-supervision" tabindex="0" role="button" aria-label="Community Supervision - flip for details">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="card-front-content">
+            <img class="card-title-asset" src="{{ '/assets/images/titles/NEW ASSETS/COMMUNITY CORRECTIONS TITLE ASSET.png' | relative_url }}" alt="Community Supervision">
+            <div class="card-accent-line"></div>
+            <p class="card-subtitle">Probation & parole data</p>
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <div class="card-back-content">
+            <h3>Community Supervision</h3>
+            <p>Revocation rates, supervision outcomes, and community corrections signals in one place.</p>
+            <div class="card-graph-container">
+              <h4 class="card-graph-title">Supervision Success Rates</h4>
+              <div class="card-graph">
+                <div class="graph-bar" style="--target-height: 65%;"></div>
+                <div class="graph-bar" style="--target-height: 80%;"></div>
+                <div class="graph-bar" style="--target-height: 50%;"></div>
+                <div class="graph-bar" style="--target-height: 75%;"></div>
+                <div class="graph-bar" style="--target-height: 60%;"></div>
+              </div>
+              <div class="card-graph-legend">
+                <div class="legend-item"><div class="legend-color"></div><span>Revocation trends</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="card-back-actions"><a href="{{ '/parole-probation.html' | relative_url }}" class="card-link">Explore Supervision</a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JURIS LAB -->
+    <div class="main-card flip-card" id="juris-lab" tabindex="0" role="button" aria-label="Juris Lab - flip for details">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="card-front-content">
+            <img class="card-title-asset" src="{{ '/assets/images/titles/NEW ASSETS/JURIS LAB ASSET.png' | relative_url }}" alt="Juris Lab">
+            <div class="card-accent-line"></div>
+            <p class="card-subtitle">Legal research tools</p>
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <div class="card-back-content">
+            <h3>Juris Lab</h3>
+            <p>Legal research, case law insights, and AI-assisted drafting for data-informed legal strategy.</p>
+            <div class="card-graph-container">
+              <h4 class="card-graph-title">Research Tool Usage</h4>
+              <div class="card-graph">
+                <div class="graph-bar" style="--target-height: 90%;"></div>
+                <div class="graph-bar" style="--target-height: 70%;"></div>
+                <div class="graph-bar" style="--target-height: 85%;"></div>
+                <div class="graph-bar" style="--target-height: 60%;"></div>
+                <div class="graph-bar" style="--target-height: 80%;"></div>
+              </div>
+              <div class="card-graph-legend">
+                <div class="legend-item"><div class="legend-color"></div><span>AI-assisted analysis</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="card-back-actions"><a href="{{ '/legal-assistant.html' | relative_url }}" class="card-link">Enter Juris Lab</a></div>
+        </div>
+      </div>
+    </div>
+
   </div>
+</section>
 
-  <div class="metric-card">
-    <h3>👥 Representation Impact</h3>
-    <p>Difference in outcomes between public defender and private attorney representation by county.</p>
-    <div class="metric-details">
-      <strong>Compares:</strong>
-      <ul>
-        <li>Conviction rates by representation</li>
-        <li>Sentence length differences</li>
-        <li>Plea bargain success rates</li>
-        <li>Trial outcome variations</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="metric-card">
-    <h3>🔍 Case Type Distribution</h3>
-    <p>Breakdown of case types and specializations across different counties and their impact on outcomes.</p>
-    <div class="metric-details">
-      <strong>Tracks:</strong>
-      <ul>
-        <li>Drug offense patterns</li>
-        <li>Violent crime handling</li>
-        <li>Property crime sentences</li>
-        <li>Traffic violation outcomes</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<h2 id="detailed-county-profiles">Detailed County Profiles</h2>
-
-<div class="county-directory">
-  <h3>All Oregon Counties - Detailed Profiles:</h3>
-  <div class="county-grid">
-    
-    <div class="county-profile-card critical" data-county="multnomah">
-      <div class="county-card-header">
-        <h4>Multnomah County</h4>
-        <div class="county-risk-badge critical">
-          CRITICAL
-        </div>
-      </div>
-      
-      <div class="county-key-stats">
-        <div class="stat-grid">
-          <div class="stat-item">
-            <div class="stat-label">Population</div>
-            <div class="stat-value">815428</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-label">Judges</div>
-            <div class="stat-value">38</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-label">2024 Cases</div>
-            <div class="stat-value">18947</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-label">Prison Rate</div>
-            <div class="stat-value">32.4%</div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="bias-summary">
-        <div class="bias-metric">
-          <span class="metric-name">Racial Disparity:</span>
-          <span class="metric-value disparity-36">12.1</span>
-        </div>
-        <div class="bias-metric">
-          <span class="metric-name">Counsel Disparity:</span>
-          <span class="metric-value disparity-36">18.2</span>
-        </div>
-        <div class="bias-metric">
-          <span class="metric-name">Unrepresented:</span>
-          <span class="metric-value crisis-1">78.3%</span>
-        </div>
-      </div>
-      
-      <div class="crisis-indicator">
-        
-        <div class="crisis-alert emergency">
-          🚨 EMERGENCY: 78.3% unrepresented
-        </div>
-        
-      </div>
-      
-      <div class="county-actions">
-        <button class="view-details-btn" onclick="showCountyDetails('multnomah')">View Details</button>
-        <button class="compare-btn" onclick="addToComparison('multnomah')">Compare</button>
-      </div>
-    </div>
-    
-    <div class="county-profile-card moderate" data-county="washington">
-      <div class="county-card-header">
-        <h4>Washington County</h4>
-        <div class="county-risk-badge moderate">
-          MODERATE
-        </div>
-      </div>
-      
-      <div class="county-key-stats">
-        <div class="stat-grid">
-          <div class="stat-item">
-            <div class="stat-label">Population</div>
-            <div class="stat-value">695115</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-label">Judges</div>
-            <div class="stat-value">16</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-label">2024 Cases</div>
-            <div class="stat-value">12834</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-label">Prison Rate</div>
-            <div class="stat-value">29.1%</div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="bias-summary">
-        <div class="bias-metric">
-          <span class="metric-name">Racial Disparity:</span>
-          <span class="metric-value disparity-7">2.4</span>
-        </div>
-        <div class="bias-metric">
-          <span class="metric-name">Counsel Disparity:</span>
-          <span class="metric-value disparity-17">8.3</span>
-        </div>
-        <div class="bias-metric">
-          <span class="metric-name">Unrepresented:</span>
-          <span class="metric-value crisis-1">67.9%</span>
-        </div>
-      </div>
-      
-      <div class="crisis-indicator">
-        
-        <div class="crisis-alert critical">
-          ⚠️ CRITICAL: 67.9% unrepresented
-        </div>
-        
-      </div>
-      
-      <div class="county-actions">
-        <button class="view-details-btn" onclick="showCountyDetails('washington')">View Details</button>
-        <button class="compare-btn" onclick="addToComparison('washington')">Compare</button>
-      </div>
-    </div>
-    
-    <div class="county-profile-card excellent" data-county="lane">
-      <div class="county-card-header">
-        <h4>Lane County</h4>
-        <div class="county-risk-badge excellent">
-          EXCELLENT
-        </div>
-      </div>
-      
-      <div class="county-key-stats">
-        <div class="stat-grid">
-          <div class="stat-item">
-            <div class="stat-label">Population</div>
-            <div class="stat-value">382067</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-label">Judges</div>
-            <div class="stat-value">16</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-label">2024 Cases</div>
-            <div class="stat-value">8923</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-label">Prison Rate</div>
-            <div class="stat-value">24.3%</div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="bias-summary">
-        <div class="bias-metric">
-          <span class="metric-name">Racial Disparity:</span>
-          <span class="metric-value disparity--3">-1.1</span>
-        </div>
-        <div class="bias-metric">
-          <span class="metric-name">Counsel Disparity:</span>
-          <span class="metric-value disparity-4">1.8</span>
-        </div>
-        <div class="bias-metric">
-          <span class="metric-name">Unrepresented:</span>
-          <span class="metric-value crisis-1">64.2%</span>
-        </div>
-      </div>
-      
-      <div class="crisis-indicator">
-        
-        <div class="crisis-alert manageable">
-          ℹ️ Manageable: 64.2% unrepresented
-        </div>
-        
-      </div>
-      
-      <div class="county-actions">
-        <button class="view-details-btn" onclick="showCountyDetails('lane')">View Details</button>
-        <button class="compare-btn" onclick="addToComparison('lane')">Compare</button>
-      </div>
-    </div>
-    
+<!-- ═══════════════════════════════════════════════════════════
+     COMPARISON MODAL — Global so compare button works on any page
+     ═══════════════════════════════════════════════════════════ -->
+<div class="modal" id="comparison-modal">
+  <div class="modal-backdrop"></div>
+  <div class="modal-content comparison-modal-content">
+    <button class="modal-close close" aria-label="Close">&times;</button>
+    <div id="comparison-results"></div>
   </div>
 </div>
 
-<h2 id="county-comparison-tool">County Comparison Tool</h2>
-
-<div class="comparison-tool">
-  <h3>📊 Compare Counties Side-by-Side</h3>
-  <div class="comparison-interface">
-    <div class="comparison-selectors">
-      <div class="selector-group">
-        <label for="county1">County 1:</label>
-        <select id="county1" class="county-selector">
-          <option value="">Select County...</option>
-          
-          <option value="multnomah">Multnomah</option>
-          
-          <option value="washington">Washington</option>
-          
-          <option value="lane">Lane</option>
-          
-        </select>
-      </div>
-      <div class="vs-indicator">VS</div>
-      <div class="selector-group">
-        <label for="county2">County 2:</label>
-        <select id="county2" class="county-selector">
-          <option value="">Select County...</option>
-          
-          <option value="multnomah">Multnomah</option>
-          
-          <option value="washington">Washington</option>
-          
-          <option value="lane">Lane</option>
-          
-        </select>
-      </div>
-      <button id="compareButton" class="compare-execute-btn">Compare</button>
-    </div>
-    
-    <div id="comparisonResults" class="comparison-results">
-      <div class="comparison-placeholder">
-        <p>Select two counties above to see a detailed side-by-side comparison of their judicial bias metrics.</p>
-      </div>
-    </div>
+<!-- Judge Detail Modal -->
+<div class="modal" id="judge-detail-modal">
+  <div class="modal-backdrop"></div>
+  <div class="modal-content detail-modal-content">
+    <button class="modal-close close" aria-label="Close">&times;</button>
+    <div id="judge-detail-content"></div>
   </div>
 </div>
 
-<h2 id="regional-analysis">Regional Analysis</h2>
+<noscript><style>[data-reveal]{opacity:1;transform:none;}</style></noscript>
+<!-- Scroll-reveal + flip-card + search-filter JS -->
+<script>
+(function() {
+  'use strict';
 
-<div class="regional-analysis">
-  <h3>🗺️ Regional Patterns</h3>
-  
-  <div class="region-cards">
-    <div class="region-card">
-      <h4>Metro Portland Area</h4>
-      <div class="region-counties">Multnomah, Washington, Clackamas</div>
-      <div class="region-stats">
-        <div class="region-stat">
-          <span class="label">Avg Prison Rate:</span>
-          <span class="value">29.4%</span>
-        </div>
-        <div class="region-stat">
-          <span class="label">Avg Unrepresented:</span>
-          <span class="value">70.5%</span>
-        </div>
-        <div class="region-challenges">
-          <strong>Key Challenges:</strong> High case volumes, counsel shortage, urban crime patterns
-        </div>
-      </div>
-    </div>
-    
-    <div class="region-card">
-      <h4>Willamette Valley</h4>
-      <div class="region-counties">Marion, Polk, Yamhill, Benton, Lane, Linn</div>
-      <div class="region-stats">
-        <div class="region-stat">
-          <span class="label">Avg Prison Rate:</span>
-          <span class="value">24.1%</span>
-        </div>
-        <div class="region-stat">
-          <span class="label">Avg Unrepresented:</span>
-          <span class="value">65.3%</span>
-        </div>
-        <div class="region-challenges">
-          <strong>Key Challenges:</strong> Rural-urban divide, resource allocation, agricultural crime
-        </div>
-      </div>
-    </div>
-    
-    <div class="region-card">
-      <h4>Southern Oregon</h4>
-      <div class="region-counties">Jackson, Josephine, Douglas, Coos, Curry</div>
-      <div class="region-stats">
-        <div class="region-stat">
-          <span class="label">Avg Prison Rate:</span>
-          <span class="value">26.8%</span>
-        </div>
-        <div class="region-stat">
-          <span class="label">Avg Unrepresented:</span>
-          <span class="value">68.9%</span>
-        </div>
-        <div class="region-challenges">
-          <strong>Key Challenges:</strong> Limited resources, geographic isolation, drug-related crime
-        </div>
-      </div>
-    </div>
-    
-    <div class="region-card">
-      <h4>Eastern Oregon</h4>
-      <div class="region-counties">Baker, Grant, Harney, Malheur, Union, Wallowa, Wheeler</div>
-      <div class="region-stats">
-        <div class="region-stat">
-          <span class="label">Avg Prison Rate:</span>
-          <span class="value">23.2%</span>
-        </div>
-        <div class="region-stat">
-          <span class="label">Avg Unrepresented:</span>
-          <span class="value">61.7%</span>
-        </div>
-        <div class="region-challenges">
-          <strong>Key Challenges:</strong> Rural isolation, limited court resources, travel distances
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+  /* ── Scroll Reveal ── */
+  var revealEls = document.querySelectorAll('[data-reveal]');
+  function checkReveal() {
+    revealEls.forEach(function(el) {
+      var rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.88) {
+        el.classList.add('revealed');
+      }
+    });
+  }
+  window.addEventListener('scroll', checkReveal, { passive: true });
+  checkReveal();
 
-<script src="/assets/js/bias-beacon/counties.js"></script>
+  /* ── Homepage Flip Cards ── */
+  var homeCards = document.querySelectorAll('.main-card.flip-card');
+  homeCards.forEach(function(card) {
+    card.addEventListener('click', function(e) {
+      // Don't flip if clicking a link or button inside
+      if (e.target.closest('a, button')) return;
+      card.classList.toggle('is-flipped');
+      card.classList.toggle('is-pinned', card.classList.contains('is-flipped'));
+    });
+    card.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        card.classList.toggle('is-flipped');
+        card.classList.toggle('is-pinned', card.classList.contains('is-flipped'));
+      }
+    });
+    // Hover flip (only if not pinned)
+    card.addEventListener('mouseenter', function() {
+      if (!card.classList.contains('is-pinned')) {
+        card.classList.add('is-flipped');
+      }
+    });
+    card.addEventListener('mouseleave', function() {
+      if (!card.classList.contains('is-pinned')) {
+        card.classList.remove('is-flipped');
+      }
+    });
+  });
 
-<hr />
+  /* ── Search Filter Chips ── */
+  var chips = document.querySelectorAll('.filter-chip');
+  var searchInput = document.getElementById('hero-search');
+  var activeFilter = 'all';
+  chips.forEach(function(chip) {
+    chip.addEventListener('click', function() {
+      chips.forEach(function(c) { c.classList.remove('active'); });
+      chip.classList.add('active');
+      activeFilter = chip.dataset.filter;
+      if (searchInput) {
+        switch(activeFilter) {
+          case 'judges':
+            searchInput.placeholder = 'Search judges by name, county, or court...'; break;
+          case 'prosecutors':
+            searchInput.placeholder = 'Search prosecutors by name or county...'; break;
+          case 'law-enforcement':
+            searchInput.placeholder = 'Search law enforcement agencies...'; break;
+          case 'probation':
+            searchInput.placeholder = 'Search probation and parole records...'; break;
+          case 'caselaw':
+            searchInput.placeholder = 'Search case law and legal research...'; break;
+          default:
+            searchInput.placeholder = 'Search judges, cases, counties, or agencies...';
+        }
+      }
+    });
+  });
 
-<p><em>County data is updated in real-time from Oregon Judicial Department sources. For detailed methodology and data sources, see the <a href="/about/">About section</a>.</em></p>
+  /* ── Live Search (searches judges from JSON) ── */
+  var searchResults = document.getElementById('hero-search-results');
+  var searchForm = document.getElementById('hero-search-form');
+  var judgeDataCache = null;
 
-  </div>
+  function getTargetPage() {
+    switch(activeFilter) {
+      case 'prosecutors': return '{{ "/prosecutors.html" | relative_url }}';
+      case 'law-enforcement': return '{{ "/law-enforcement.html" | relative_url }}';
+      case 'probation': return '{{ "/parole-probation.html" | relative_url }}';
+      default: return '{{ "/bias-beacon/judges/" | relative_url }}';
+    }
+  }
 
-</article>
-      </div>
-    </main><footer class="site-footer h-card">
-  <data class="u-url" href="/"></data>
+  function loadJudgeData() {
+    if (judgeDataCache) return Promise.resolve(judgeDataCache);
+    return fetch('{{ "/assets/data/judges.json" | relative_url }}')
+      .then(function(r) { return r.ok ? r.json() : { judges: [] }; })
+      .then(function(data) { judgeDataCache = data.judges || []; return judgeDataCache; })
+      .catch(function() { return []; });
+  }
 
-  <div class="wrapper">
+  function renderSearchResults(judges, query) {
+    if (!judges.length) {
+      searchResults.innerHTML = '<div class="search-result-item search-no-results">No judges found for "' + escapeHtml(query) + '"</div>';
+      searchResults.hidden = false;
+      return;
+    }
+    var html = judges.slice(0, 8).map(function(j) {
+      var name = j.name || 'Unknown';
+      var county = j.county || 'Unknown';
+      var score = j.score || 'N/A';
+      return '<a class="search-result-item" href="{{ "/bias-beacon/judges/" | relative_url }}?q=' + encodeURIComponent(name) + '">' +
+        '<span class="search-result-name">' + escapeHtml(name) + '</span>' +
+        '<span class="search-result-county">' + escapeHtml(county) + ' County</span>' +
+        '<span class="search-result-score">Score: ' + score + '</span>' +
+        '</a>';
+    }).join('');
+    if (judges.length > 8) {
+      html += '<a class="search-result-item search-view-all" href="{{ "/bias-beacon/judges/" | relative_url }}?q=' + encodeURIComponent(query) + '">View all ' + judges.length + ' results →</a>';
+    }
+    searchResults.innerHTML = html;
+    searchResults.hidden = false;
+  }
 
-    <h2 class="footer-heading">Public Accountability Project</h2>
+  function escapeHtml(str) {
+    return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
 
-    <div class="footer-col-wrapper">
-      <div class="footer-col footer-col-1">
-        <ul class="contact-list">
-          <li class="p-name">Public Accountability Project</li><li><a class="u-email" href="mailto:your-email@example.com">your-email@example.com</a></li></ul>
-      </div>
+  var searchDebounce = null;
+  if (searchInput) {
+    searchInput.addEventListener('input', function() {
+      clearTimeout(searchDebounce);
+      var query = searchInput.value.trim().toLowerCase();
+      if (query.length < 2) {
+        searchResults.hidden = true;
+        return;
+      }
+      searchDebounce = setTimeout(function() {
+        loadJudgeData().then(function(judges) {
+          var filtered = judges.filter(function(j) {
+            var name = (j.name || '').toLowerCase();
+            var county = (j.county || '').toLowerCase();
+            var focus = (j.case_specialization || []).join(' ').toLowerCase();
+            return name.indexOf(query) !== -1 || county.indexOf(query) !== -1 || focus.indexOf(query) !== -1;
+          });
+          renderSearchResults(filtered, query);
+        });
+      }, 250);
+    });
 
-      <div class="footer-col footer-col-2"><ul class="social-media-list"></ul></div>
+    // Close results when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!searchForm.contains(e.target)) {
+        searchResults.hidden = true;
+      }
+    });
+  }
 
-      <div class="footer-col footer-col-3">
-        <p>Discernment. Accountability. Held to Answer. A platform dedicated to promoting transparency and accountability  in public institutions and processes.</p>
-      </div>
-    </div>
+  // Form submit navigates to the appropriate page with query
+  if (searchForm) {
+    searchForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var query = searchInput ? searchInput.value.trim() : '';
+      if (!query) return;
+      var target = getTargetPage();
+      // For judges/all, navigate to judges page with query param
+      window.location.href = target + (target.indexOf('?') === -1 ? '?' : '&') + 'q=' + encodeURIComponent(query);
+    });
+  }
 
-    <div class="footer-bottom">
-      <p>&copy; 2025 Public Accountability Project. Promoting transparency and accountability.</p>
-    </div>
+  /* ── Modal Helpers (used by both Compare and Detail modals) ── */
+  function openModal(modalEl) {
+    if (modalEl) { modalEl.classList.add('active'); }
+  }
+  function closeModal(modalEl) {
+    if (modalEl) { modalEl.classList.remove('active'); }
+  }
 
-  </div>
+  // Close any modal on backdrop or close button click
+  document.querySelectorAll('.modal-backdrop, .modal-close').forEach(function(el) {
+    el.addEventListener('click', function() {
+      closeModal(el.closest('.modal'));
+    });
+  });
 
-</footer></body>
+  /* ── Comparison Modal Logic (homepage guard to avoid double-fire with site-ui.js) ── */
+  var compareModal = document.getElementById('comparison-modal');
+  var selectedForCompare = [];
+  var compareResults = document.getElementById('comparison-results');
 
-</html>
+  // Compare buttons on judge cards (delegated)
+  document.addEventListener('click', function(e) {
+    var addBtn = e.target.closest('.add-compare-btn, .compare-btn');
+    if (addBtn) {
+      var judgeId = addBtn.dataset.judgeId;
+      var judgeName = addBtn.dataset.judgeName || 'Unknown';
+      if (!judgeId) return;
+
+      // Toggle selection
+      var idx = selectedForCompare.findIndex(function(j) { return j.id === judgeId; });
+      if (idx >= 0) {
+        selectedForCompare.splice(idx, 1);
+        addBtn.textContent = 'Compare';
+        addBtn.classList.remove('active');
+      } else {
+        if (selectedForCompare.length >= 2) {
+          selectedForCompare.push({ id: judgeId, name: judgeName });
+          runComparison();
+          return;
+        }
+        selectedForCompare.push({ id: judgeId, name: judgeName });
+        addBtn.textContent = '✓ Selected';
+        addBtn.classList.add('active');
+      }
+      return;
+    }
+
+    var execBtn = e.target.closest('.compare-execute-btn, #compare-btn');
+    if (execBtn) {
+      runComparison();
+      return;
+    }
+  });
+
+  function runComparison() {
+    if (!compareModal) return;
+    if (selectedForCompare.length < 2) {
+      if (compareResults) {
+        compareResults.innerHTML = '<p style="color:var(--muted);text-align:center;padding:2rem">Select at least 2 judges to compare.</p>';
+      }
+      openModal(compareModal);
+      return;
+    }
+
+    var j1 = selectedForCompare[0];
+    var j2 = selectedForCompare[1];
+
+    // Find the judge data from the DOM or loaded data
+    var card1 = document.querySelector('[data-id="' + j1.id + '"]');
+    var card2 = document.querySelector('[data-id="' + j2.id + '"]');
+
+    function extractMetrics(card) {
+      if (!card) return {};
+      var metrics = {};
+      metrics.name = card.dataset.name || 'Unknown';
+      metrics.score = card.dataset.score || 'N/A';
+      metrics.level = card.dataset.level || 'N/A';
+      metrics.county = card.dataset.county || 'N/A';
+
+      // Try to extract from bias metric items
+      var items = card.querySelectorAll('.bias-metric-item');
+      items.forEach(function(item) {
+        var label = item.querySelector('.bias-metric-label');
+        var value = item.querySelector('.bias-metric-value');
+        if (label && value) metrics[label.textContent.trim()] = value.textContent.trim();
+      });
+
+      // Also grab metric-minis
+      var minis = card.querySelectorAll('.metric-mini');
+      minis.forEach(function(m) {
+        var label = m.querySelector('.metric-label');
+        var value = m.querySelector('.metric-value');
+        if (label && value) metrics[label.textContent.trim()] = value.textContent.trim();
+      });
+
+      return metrics;
+    }
+
+    var m1 = extractMetrics(card1);
+    var m2 = extractMetrics(card2);
+
+    // Build comparison HTML
+    var html = '<h2 style="color:var(--text);font-size:1.6rem;margin-bottom:1.5rem">Judge Comparison</h2>';
+
+    // Side-by-side header
+    html += '<div class="compare-judges-row">';
+    html += '<div class="compare-judge-card"><h3>' + (m1.name || j1.name) + '</h3><p style="color:var(--muted)">' + (m1.county || '') + ' County &middot; Score: ' + (m1.score || 'N/A') + '</p></div>';
+    html += '<div class="compare-vs-divider">VS</div>';
+    html += '<div class="compare-judge-card"><h3>' + (m2.name || j2.name) + '</h3><p style="color:var(--muted)">' + (m2.county || '') + ' County &middot; Score: ' + (m2.score || 'N/A') + '</p></div>';
+    html += '</div>';
+
+    // Metric comparison rows
+    var allKeys = [];
+    var seen = {};
+    Object.keys(m1).concat(Object.keys(m2)).forEach(function(k) {
+      if (!seen[k] && k !== 'name') { seen[k] = true; allKeys.push(k); }
+    });
+
+    allKeys.forEach(function(key) {
+      var v1 = m1[key] || 'N/A';
+      var v2 = m2[key] || 'N/A';
+      var n1 = parseFloat(v1);
+      var n2 = parseFloat(v2);
+      var cls1 = '', cls2 = '';
+      if (!isNaN(n1) && !isNaN(n2) && n1 !== n2) {
+        cls1 = n1 > n2 ? 'higher' : 'lower';
+        cls2 = n2 > n1 ? 'higher' : 'lower';
+      }
+      html += '<div class="compare-metric-row">';
+      html += '<div class="compare-metric-value ' + cls1 + '">' + v1 + '</div>';
+      html += '<div class="compare-metric-label">' + key + '</div>';
+      html += '<div class="compare-metric-value ' + cls2 + '">' + v2 + '</div>';
+      html += '</div>';
+    });
+
+    // Generate insight
+    var scoreDiff = Math.abs(parseFloat(m1.score || 0) - parseFloat(m2.score || 0));
+    var insightText = '';
+    if (scoreDiff > 20) {
+      insightText = 'Significant disparity in bias scores (' + Math.round(scoreDiff) + ' point difference). This warrants deeper analysis of sentencing patterns and case outcomes.';
+    } else if (scoreDiff > 10) {
+      insightText = 'Moderate difference in bias scores (' + Math.round(scoreDiff) + ' points). Review specific metric breakdowns for contextual understanding.';
+    } else {
+      insightText = 'Similar bias profiles (' + Math.round(scoreDiff) + ' point difference). Look to individual metric disparities for nuanced insights.';
+    }
+
+    html += '<div class="compare-insight">';
+    html += '<h4>Comparative Insight</h4>';
+    html += '<p>' + insightText + '</p>';
+    html += '</div>';
+
+    if (compareResults) compareResults.innerHTML = html;
+    openModal(compareModal);
+
+    // Reset selection after compare
+    selectedForCompare = [];
+    document.querySelectorAll('.add-compare-btn.active, .compare-btn.active').forEach(function(b) {
+      b.textContent = 'Compare';
+      b.classList.remove('active');
+    });
+  }
+
+  /* ── Judge Detail Modal ── */
+  document.addEventListener('click', function(e) {
+    var detailBtn = e.target.closest('.view-details-btn');
+    if (detailBtn) {
+      var judgeId = detailBtn.dataset.judgeId;
+      var card = document.querySelector('[data-id="' + judgeId + '"]');
+      if (!card) return;
+
+      var detailContent = document.getElementById('judge-detail-content');
+      if (detailContent) {
+        var backContent = card.querySelector('.card-back-content');
+        detailContent.innerHTML = backContent ? backContent.innerHTML : '<p>Detailed profile data not available.</p>';
+      }
+      openModal(document.getElementById('judge-detail-modal'));
+    }
+  });
+})();
+</script>

@@ -1,3 +1,10 @@
+---
+layout: page
+title: Privacy Compliance
+permalink: /privacy-compliance/
+body_class: archive-page
+---
+
 # Bias Beacon - Data Privacy and Anonymization Compliance Report
 
 ## Overview

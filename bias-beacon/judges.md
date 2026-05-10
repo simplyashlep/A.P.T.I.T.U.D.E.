@@ -2,440 +2,415 @@
 layout: default
 title: Judge Profiles - Bias Beacon
 permalink: /bias-beacon/judges/
+body_class: archive-page actor-directory-page judges-page
 ---
 
-<div class="bias-beacon-container">
-  <h1>Oregon Judge Profiles</h1>
-  
-  <div class="methodology-link">
-    <p>📊 <a href="{{ '/bias-beacon/methodology/' | relative_url }}" class="methodology-btn">View Bias Calculation Methodology</a> - Learn how our bias metrics are calculated and validated</p>
-  </div>
-  
-  <div class="judges-controls">
-    <div class="filter-controls">
-      <select id="county-filter">
-        <option value="">All Counties</option>
-        <option value="multnomah">Multnomah County</option>
-        <option value="washington">Washington County</option>
-        <option value="clackamas">Clackamas County</option>
-        <option value="lane">Lane County</option>
-        <option value="jackson">Jackson County</option>
-        <option value="marion">Marion County</option>
-        <option value="deschutes">Deschutes County</option>
-        <option value="yamhill">Yamhill County</option>
-      </select>
-      
-      <select id="risk-filter">
-        <option value="">All Risk Levels</option>
-        <option value="low">Low Risk</option>
-        <option value="moderate">Moderate Risk</option>
-        <option value="high">High Risk</option>
-      </select>
-      
-      <select id="department-filter">
-        <option value="">All Departments</option>
-        <option value="criminal">Criminal</option>
-        <option value="civil">Civil</option>
-        <option value="family">Family</option>
-        <option value="juvenile">Juvenile</option>
-      </select>
-      
-      <input type="text" id="judge-search" placeholder="Search judges by name...">
-    </div>
-    
-    <div class="comparison-controls">
-      <div id="comparison-panel" class="comparison-panel-visible">
-        <h3>🔍 Judge Comparison Tool</h3>
-        <div id="selected-judges" class="selected-judges-area">
-          <p class="comparison-help">Click "Add to Compare" on judge cards to compare up to 3 judges side-by-side</p>
-        </div>
-        <div class="comparison-buttons">
-          <button id="compare-btn" disabled class="btn btn-primary">Compare Selected Judges</button>
-          <button id="clear-comparison" class="btn btn-secondary">Clear All</button>
+<div class="actor-directory actor-directory--judges"
+     data-directory-root
+     data-directory-label="judges"
+     data-directory-updated="{{ site.data.bias-beacon.judges-directory.generatedAt | date: '%b %-d, %Y' }}"
+     data-directory-official-source="{{ site.data.bias-beacon.judges-directory.sourceNotes.officialRoster }}">
+  <section class="actor-directory-hero">
+    <div class="actor-hero-copy">
+      <p class="archive-kicker">Bias Beacon</p>
+      <h1 class="actor-page-title actor-page-title-image-wrap">
+        <img class="actor-page-title-image"
+             src="{{ '/assets/images/titles/THE-JUDICIARY-3-29-2026.png' | relative_url }}"
+             alt="The Judiciary">
+        <span class="visually-hidden">The Judiciary</span>
+      </h1>
+      <p class="actor-page-deck">
+        Judicial behavior becomes legible here through comparison, pressure points, reversals,
+        and the quiet patterns that only appear when enough of the record is held together at once.
+      </p>
+      <div class="actor-hero-search">
+        <label class="visually-hidden" for="judge-search">Search judges, counties, or focus areas</label>
+        <div class="search-wrapper">
+          <input type="text"
+                 id="judge-search"
+                 class="search-input-enhanced"
+                 placeholder="Search judges, counties, or focus areas">
+          <span class="search-icon">&#128269;</span>
         </div>
       </div>
+      <div class="actor-hero-actions">
+        <button class="btn btn-secondary actor-sidebar-toggle" type="button" data-sidebar-toggle aria-expanded="true">Filters</button>
+      </div>
     </div>
+    <aside class="actor-hero-panel">
+      <p class="archive-kicker">Evidence Chain</p>
+      <p class="actor-hero-note">
+        Courtroom discretion leaves a pattern when enough rulings, sentences, and reversals are read together.
+        The directory keeps that pattern visible without flattening the judge, the county, or the record that produced it.
+      </p>
+      <div class="actor-chain-mini">
+        <span>Sentencing</span>
+        <span>Reversal history</span>
+        <span>Representation disparities</span>
+        <span>Accountability flags</span>
+      </div>
+    </aside>
+  </section>
+
+  <div class="actor-directory-layout">
+    <aside class="actor-sidebar">
+      <div class="sidebar-panel sidebar-panel-emphasis">
+        <h2>Directory Filters</h2>
+        <p class="sidebar-copy">Glass-filter controls stay pinned so the cards remain the focus.</p>
+      </div>
+
+      <div class="sidebar-panel sidebar-filters">
+        <div class="filter-group">
+          <label for="county-filter">County</label>
+          <select id="county-filter" class="filter-select">
+            <option value="all">All Counties</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="district-filter">District</label>
+          <select id="district-filter" class="filter-select">
+            <option value="all">All Districts</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="risk-filter">Bias Level</label>
+          <select id="risk-filter" class="filter-select">
+            <option value="all">All Levels</option>
+            <option value="critical">Critical</option>
+            <option value="high">High Risk</option>
+            <option value="moderate">Moderate</option>
+            <option value="low">Low Risk</option>
+            <option value="excellent">Excellent</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="sort-by">Sort By</label>
+          <select id="sort-by" class="filter-select">
+            <option value="score">Bias Score</option>
+            <option value="name">Name</option>
+            <option value="county">County</option>
+            <option value="prison_rate">Prison Rate</option>
+            <option value="reversal_rate">Reversal Rate</option>
+          </select>
+        </div>
+
+        <button id="sort-order" class="sort-order-btn" title="Toggle sort order">&#8595;</button>
+      </div>
+
+      <div class="sidebar-panel comparison-panel-visible">
+        <div class="compare-panel-header">
+          <div>
+            <h3>Compare Judges</h3>
+            <p class="comparison-help">Select two or more judges to isolate them and generate live comparison insights.</p>
+          </div>
+          <button id="compare-btn" disabled class="btn btn-primary">Compare</button>
+        </div>
+        <div id="selected-judges" class="selected-judges-area"></div>
+        <button id="clear-comparison" class="btn btn-secondary">Clear Selection</button>
+      </div>
+
+      <nav class="sidebar-panel directory-cross-nav" aria-label="Actor navigation">
+        <h3>Open Another Actor View</h3>
+        <a class="directory-cross-link active" href="{{ '/bias-beacon/judges/' | relative_url }}">Judges</a>
+        <a class="directory-cross-link" href="{{ '/bias-beacon/presiding-judges/' | relative_url }}">Presiding Judges</a>
+        <a class="directory-cross-link" href="{{ '/bias-beacon/pro-tem-judges/' | relative_url }}">Pro Tem Judges</a>
+        <a class="directory-cross-link" href="{{ '/prosecutors.html' | relative_url }}">Prosecutors</a>
+        <a class="directory-cross-link" href="{{ '/law-enforcement.html' | relative_url }}">Law Enforcement</a>
+        <a class="directory-cross-link" href="{{ '/parole-probation.html' | relative_url }}">Community Supervision</a>
+      </nav>
+    </aside>
+
+    <section class="actor-main">
+      <div class="actor-top-panels">
+        <section class="bias-legend-bar actor-top-panel">
+          <div>
+            <p class="eyebrow">Scoring Legend</p>
+            <h2>Bias Beacon Score at a glance</h2>
+          </div>
+          <div class="legend-items-horizontal legend-items-stacked">
+            <div class="legend-chip excellent"><span class="legend-color"></span><span class="legend-text">0-20 Excellent</span></div>
+            <div class="legend-chip low"><span class="legend-color"></span><span class="legend-text">21-40 Low Risk</span></div>
+            <div class="legend-chip moderate"><span class="legend-color"></span><span class="legend-text">41-60 Moderate</span></div>
+            <div class="legend-chip high"><span class="legend-color"></span><span class="legend-text">61-80 High Risk</span></div>
+            <div class="legend-chip critical"><span class="legend-color"></span><span class="legend-text">81-100 Critical</span></div>
+          </div>
+        </section>
+        <section class="actor-top-panel actor-top-panel--evidence">
+          <p class="eyebrow">Evidence Chain</p>
+          <h2>How the surface opens up</h2>
+          <p>
+            Start with the score and spectrum, flip for the pressure points, then open the full profile
+            for the deeper context that gives each signal its weight.
+          </p>
+        </section>
+        <section class="actor-top-panel actor-top-panel--sources">
+          <p class="eyebrow">Source Stack</p>
+          <h2>Roster and photos are official. Metrics still need verification.</h2>
+          <p>
+            Judge names, roles, districts, and photos are now being matched against Oregon Judicial Department and Oregon Blue Book
+            records. The prison-usage, reversal, and counsel-disparity figures remain the site's analytic layer and should be treated
+            as provisional until each metric is tied to a reviewable source trail.
+          </p>
+          <div class="source-link-row">
+            <a class="btn btn-outline" href="https://www.courts.oregon.gov/courts/Pages/judges.aspx?wp9116=so:[[42569,0]]" target="_blank" rel="noreferrer">Official Judges</a>
+            <a class="btn btn-outline" href="https://www.courts.oregon.gov/courts/Pages/presiding-judges.aspx" target="_blank" rel="noreferrer">Presiding Judges</a>
+            <a class="btn btn-outline" href="https://www.courts.oregon.gov/courts/Pages/pro-tem.aspx" target="_blank" rel="noreferrer">Pro Tem Judges</a>
+          </div>
+        </section>
+      </div>
+
+      <div class="actor-toolbar">
+        <div class="results-info">
+          <span id="results-count" class="results-count">Loading judge cards...</span>
+        </div>
+        <a href="{{ '/bias-beacon/methodology/' | relative_url }}" class="btn btn-outline">Methodology</a>
+      </div>
+
+      <div id="bias-stats" class="bias-stats-bar"></div>
+
+      <div id="judges-grid" class="flip-cards-grid actor-card-grid" data-directory-grid>
+        {% assign judge_directory = site.data.bias-beacon.judges-directory.judges %}
+        {% for judge_data in judge_directory %}
+            {% assign score = judge_data.score %}
+            {% assign score_display = score | default: 'Pending' %}
+            {% assign accent = '#6f7b8c' %}
+            {% assign accent_text = '#FFFFFF' %}
+            {% if judge_data.riskLevel == 'critical' %}
+              {% assign accent = '#5F0F40' %}
+            {% elsif judge_data.riskLevel == 'high' %}
+              {% assign accent = '#9A031E' %}
+            {% elsif judge_data.riskLevel == 'moderate' %}
+              {% assign accent = '#666666' %}
+            {% elsif judge_data.riskLevel == 'low' %}
+              {% assign accent = '#9FA8FF' %}
+            {% elsif judge_data.riskLevel == 'excellent' %}
+              {% assign accent = '#A3FF05' %}
+              {% assign accent_text = '#0B0F12' %}
+            {% endif %}
+            {% capture flags_joined %}{% if judge_data.flags %}{% for flag in judge_data.flags %}{% unless forloop.first %} | {% endunless %}{{ flag }}{% endfor %}{% endif %}{% endcapture %}
+            <article class="flip-card"
+                     data-card-id="{{ judge_data.id }}"
+                     data-id="{{ judge_data.id }}"
+                     data-name="{{ judge_data.name }}"
+                     data-county="{{ judge_data.county | downcase }}"
+                     data-level="{{ judge_data.riskLevel }}"
+                     data-score="{{ judge_data.score | default: 0 }}"
+                     data-score-display="{{ score_display }}"
+                     data-prison-rate="{{ judge_data.prisonUsage | default: 0 }}"
+                     data-reversal-rate="{{ judge_data.reversalRate | default: 0 }}"
+                     data-counsel-disparity="{{ judge_data.counselDisparity | default: 0 }}"
+                     data-specialization="{{ judge_data.focus | downcase }}"
+                     data-summary="{{ judge_data.summary }}"
+                     data-court="{{ judge_data.category | default: 'Judicial Officer' }}"
+                     data-tenure="{{ judge_data.tenureDisplay }}"
+                     data-caseload="{{ judge_data.caseload2024 | default: 'Pending verification' }}"
+                     data-flags="{{ flags_joined | strip }}"
+                     data-focus="{{ judge_data.focus }}"
+                     data-actor-type="judge"
+                     data-official-role="{{ judge_data.roleTitle }}"
+                     data-official-district="{{ judge_data.district }}"
+                     data-photo-url="{{ judge_data.officialPhotoUrl }}"
+                     data-bio-url="{{ judge_data.bioUrl }}"
+                     data-email="{{ judge_data.email }}"
+                     data-phone="{{ judge_data.phone }}"
+                     data-term-expires="{{ judge_data.termExpiresDisplay }}"
+                     data-metrics-verified="{{ judge_data.metricsVerified }}">
+              <div class="flip-card-inner">
+                <div class="flip-card-front" style="--card-accent: {{ accent }};">
+                  <div class="card-selection-bar">
+                    <label class="compare-toggle-pill">
+                      <input class="compare-toggle-input" type="checkbox" data-compare-toggle value="{{ judge_data.id }}">
+                      <span>Compare</span>
+                    </label>
+                    <div class="status-indicator active">
+                      {% if judge_data.metricsVerified %}Scored{% else %}Official{% endif %}
+                    </div>
+                  </div>
+
+                  <div class="card-front-content">
+                    <div class="judge-name-container">
+                      <h2 class="judge-name-display">{{ judge_data.name }}</h2>
+                      <div class="county-label">{{ judge_data.county }}{% unless judge_data.county == 'Statewide' %} County{% endunless %}</div>
+                    </div>
+
+                    <div class="bias-score-indicator">
+                      <div class="score-circle" style="background: {{ accent }}; color: {{ accent_text }};">
+                        <span class="score-value">{{ score_display }}</span>
+                      </div>
+                      <span class="score-label">{{ judge_data.scoreLabel }}</span>
+                    </div>
+
+                    <div class="spectrum-mini">
+                      <div class="spectrum-track">
+                        <span class="spectrum-marker" style="left: {{ judge_data.score | default: 4 }}%; background: {{ accent }};"></span>
+                      </div>
+                      <div class="spectrum-labels">
+                        <span>Equity</span>
+                        <span>Concern</span>
+                      </div>
+                    </div>
+
+                    <p class="card-front-summary">{{ judge_data.summary }}</p>
+                    <div class="card-front-metrics">
+                      <div class="front-metric-chip">
+                        <span class="front-metric-label">Score</span>
+                        <strong class="front-metric-value">{{ score_display }}</strong>
+                      </div>
+                      <div class="front-metric-chip">
+                        <span class="front-metric-label">Prison Usage</span>
+                        <strong class="front-metric-value">{% if judge_data.prisonUsage %}{{ judge_data.prisonUsage }}%{% else %}Pending{% endif %}</strong>
+                      </div>
+                      <div class="front-metric-chip">
+                        <span class="front-metric-label">Reversal Rate</span>
+                        <strong class="front-metric-value">{% if judge_data.reversalRate %}{{ judge_data.reversalRate }}%{% else %}Pending{% endif %}</strong>
+                      </div>
+                      <div class="front-metric-chip">
+                        <span class="front-metric-label">Bench Term</span>
+                        <strong class="front-metric-value">{{ judge_data.termExpiresDisplay | default: 'Unknown' }}</strong>
+                      </div>
+                    </div>
+                    <div class="card-front-footer"><span class="hover-hint">Flip for evidence and profile links</span></div>
+                  </div>
+                </div>
+
+                <div class="flip-card-back">
+                  <div class="card-selection-bar card-selection-bar-back">
+                    <label class="compare-toggle-pill">
+                      <input class="compare-toggle-input" type="checkbox" data-compare-toggle value="{{ judge_data.id }}">
+                      <span>Compare</span>
+                    </label>
+                    <div class="score-badge" style="background: {{ accent }}; color: {{ accent_text }};">
+                      {{ judge_data.scoreLabel }}
+                    </div>
+                  </div>
+
+                  <div class="card-back-header">
+                    <h3>{{ judge_data.name }}</h3>
+                    <p class="card-back-subtitle">{{ judge_data.county }}{% unless judge_data.county == 'Statewide' %} County{% endunless %} | {{ judge_data.roleTitle }}</p>
+                    <div class="judge-photo-shell" data-photo-slot>
+                      {% if judge_data.officialPhotoUrl %}
+                        <img src="{{ judge_data.officialPhotoUrl }}" alt="{{ judge_data.name }}" loading="lazy">
+                      {% else %}
+                        <span class="judge-photo-placeholder">Official photo pending match</span>
+                      {% endif %}
+                    </div>
+                  </div>
+
+                  <div class="card-back-content">
+                    <div class="flip-metric-group">
+                      <h4>Profile</h4>
+                      <div class="metric-grid-mini">
+                        <div class="metric-mini"><span class="metric-label">Term / Coverage</span><span class="metric-value">{{ judge_data.tenureDisplay }}</span></div>
+                        <div class="metric-mini"><span class="metric-label">Bench Position</span><span class="metric-value">{% if judge_data.position %}{{ judge_data.position }}{% else %}N/A{% endif %}</span></div>
+                        <div class="metric-mini"><span class="metric-label">Focus</span><span class="metric-value truncate">{{ judge_data.focus }}</span></div>
+                        <div class="metric-mini"><span class="metric-label">Appeals</span><span class="metric-value">{{ judge_data.appeals2024 | default: "Pending" }}</span></div>
+                      </div>
+                    </div>
+
+                    <div class="flip-metric-group">
+                      <h4>Bias Signals</h4>
+                      <div class="bias-metrics-grid">
+                        <div class="bias-metric-item"><span class="bias-metric-label">Prison Usage</span><span class="bias-metric-value">{% if judge_data.prisonUsage %}{{ judge_data.prisonUsage }}%{% else %}Pending{% endif %}</span></div>
+                        <div class="bias-metric-item"><span class="bias-metric-label">Racial Disparity</span><span class="bias-metric-value">{{ judge_data.racialDisparity | default: "Pending" }}</span></div>
+                        <div class="bias-metric-item"><span class="bias-metric-label">Counsel Disparity</span><span class="bias-metric-value">{{ judge_data.counselDisparity | default: "Pending" }}</span></div>
+                        <div class="bias-metric-item"><span class="bias-metric-label">Reversal Rate</span><span class="bias-metric-value">{% if judge_data.reversalRate %}{{ judge_data.reversalRate }}%{% else %}Pending{% endif %}</span></div>
+                      </div>
+                    </div>
+
+                    {% if judge_data.flags and judge_data.flags.size > 0 %}
+                      <div class="flip-metric-group flags-section">
+                        <h4>Evidence Chain Flags</h4>
+                        <ul class="flags-list">
+                          {% for flag in judge_data.flags %}
+                            <li>{{ flag }}</li>
+                          {% endfor %}
+                        </ul>
+                      </div>
+                    {% else %}
+                      <div class="flip-metric-group flags-section">
+                        <h4>Verification Status</h4>
+                        <ul class="flags-list">
+                          <li>Official roster, role, term, and photo are source-backed.</li>
+                          <li>Analytic metrics are {% if judge_data.metricsVerified %}present but still require source-by-source audit{% else %}still pending verification for this judge{% endif %}.</li>
+                        </ul>
+                      </div>
+                    {% endif %}
+                  </div>
+
+                  <div class="card-back-actions">
+                    <button class="btn btn-primary view-details-btn" data-profile-trigger>Full Profile</button>
+                    <button class="btn btn-secondary add-compare-btn">Add to Compare</button>
+                  </div>
+                </div>
+              </div>
+            </article>
+        {% endfor %}
+      </div>
+
+      <section class="directory-visualization">
+        <div class="section-heading">
+          <p class="eyebrow">Spectrum View</p>
+          <h2>Where the visible judges sit right now</h2>
+        </div>
+        <div id="directory-viz" class="directory-viz-grid">
+          <div class="viz-card">
+            <h3>Bias Spectrum</h3>
+            <div class="viz-spectrum-shell"><div id="directory-spectrum" class="viz-spectrum"></div></div>
+          </div>
+          <div class="viz-card">
+            <h3>Visible Distribution</h3>
+            <div id="directory-distribution" class="viz-bars"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="score-explainer compact-explainer">
+        <div class="section-heading">
+          <p class="eyebrow">Understanding Judge Score</p>
+          <h2>Compact guide to the Bias Beacon model</h2>
+        </div>
+        <div class="metrics-explanation compact-grid">
+          <div class="metric-item"><h3>Racial disparity</h3><p>Sentence variation that persists after similar case framing is held in view.</p></div>
+          <div class="metric-item"><h3>Counsel disparity</h3><p>Outcome separation linked to whether a person had meaningful representation.</p></div>
+          <div class="metric-item"><h3>Prison rate</h3><p>The share of visible cases pushed toward incarceration rather than alternatives.</p></div>
+          <div class="metric-item"><h3>Reversal trend</h3><p>How often higher courts interrupt, narrow, or undo the underlying decision.</p></div>
+        </div>
+      </section>
+
+      <section class="directory-visualization">
+        <div class="section-heading">
+          <p class="eyebrow">Verification Path</p>
+          <h2>What is official and what still needs audit</h2>
+        </div>
+        <div class="directory-viz-grid">
+          <article class="viz-card">
+            <h3>Official layer</h3>
+            <p>Roster identity, judicial role, district, term dates, and photo space are sourced from Oregon State Courts and Oregon Blue Book records.</p>
+          </article>
+          <article class="viz-card">
+            <h3>Analytic layer</h3>
+            <p>Prison usage, reversal rate, counsel disparity, and the proprietary score currently come from the local Bias Beacon analytic layer where a current official judge could be matched. Unmatched judges remain visible with pending analytics instead of being omitted.</p>
+          </article>
+        </div>
+      </section>
+    </section>
   </div>
 
-  <!-- Bias Heat Map Dashboard -->
-  <div class="heat-map-section">
-    <h2>🗺️ Oregon Judicial Bias Heat Map</h2>
-    <p>Visual representation of bias patterns across Oregon counties and demographic factors</p>
-    
-    <div class="heat-map-controls">
-      <div class="heat-map-filters">
-        <select id="heat-map-metric">
-          <option value="racial_disparity">Racial Disparity Score</option>
-          <option value="counsel_disparity">Counsel Disparity Score</option>
-          <option value="prison_rate">Prison Rate</option>
-          <option value="reversal_rate">Reversal Rate</option>
-        </select>
-        
-        <select id="heat-map-view">
-          <option value="county">By County</option>
-          <option value="department">By Department</option>
-          <option value="risk_level">By Risk Level</option>
-        </select>
-        
-        <button id="heat-map-refresh" class="btn btn-secondary">Update Heat Map</button>
-      </div>
-    </div>
-    
-    <div class="heat-map-container">
-      <div class="heat-map-legend">
-        <h4>📊 Bias Level Scale</h4>
-        <div class="legend-items">
-          <div class="legend-item excellent">Excellent (Low Bias)</div>
-          <div class="legend-item low">Low Risk</div>
-          <div class="legend-item moderate">Moderate Risk</div>
-          <div class="legend-item high">High Risk</div>
-          <div class="legend-item critical">Critical (High Bias)</div>
-        </div>
-      </div>
-      
-      <div id="heat-map-grid" class="heat-map-grid">
-        <!-- Dynamic heat map tiles will be generated here -->
-      </div>
-      
-      <div class="heat-map-stats">
-        <div class="stat-summary">
-          <h4>📈 Summary Statistics</h4>
-          <div id="heat-map-summary">
-            <!-- Dynamic summary statistics -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="judges-grid" id="judges-grid">
-    <!-- Dynamic judge cards for all counties -->
-    {% for county_data in site.data.bias-beacon.live-oregon-data.oregon_judges %}
-      {% assign county_name = county_data[0] %}
-      {% assign judges = county_data[1] %}
-      
-      {% for judge_data in judges %}
-      <div class="judge-card {{ judge_data.risk_assessment }}" 
-           data-county="{{ judge_data.county | downcase }}" 
-           data-department="{{ judge_data.department | downcase }}" 
-           data-risk="{{ judge_data.risk_assessment }}"
-           data-period="{{ judge_data.time_period_coverage }}"
-           data-id="{{ judge_data.id }}"
-           data-name="{{ judge_data.name }}">
-        
-        <!-- Risk Badge -->
-        <div class="risk-badge {{ judge_data.risk_assessment }}">
-          {{ judge_data.risk_assessment | replace: '_', ' ' | upcase }}
-        </div>
-        
-        <!-- Judge Header -->
-        <div class="judge-header">
-          <h3 class="judge-name">{{ judge_data.name }}</h3>
-          <div class="judge-court">{{ judge_data.county }} County {{ judge_data.court }}</div>
-          <div class="judge-department">{{ judge_data.department }} Department</div>
-          
-          {% if judge_data.specialization %}
-          <div class="specialization">
-            <strong>Specializes in:</strong> {{ judge_data.specialization | join: ", " }}
-          </div>
-          {% endif %}
-        </div>
-        
-        <!-- Key Metrics -->
-        <div class="key-metrics">
-          <div class="metric-item">
-            <span class="metric-value">{{ judge_data.bias_metrics.prison_rate }}%</span>
-            <span class="metric-label">Prison Rate</span>
-          </div>
-          <div class="metric-item">
-            <span class="metric-value">{{ judge_data.appellate_record.total_appeals_2024 }}</span>
-            <span class="metric-label">2024 Appeals</span>
-          </div>
-          <div class="metric-item">
-            <span class="metric-value">{{ judge_data.appellate_record.reversal_rate }}%</span>
-            <span class="metric-label">Reversal Rate</span>
-          </div>
-        </div>
-        
-        <!-- Bias Indicators -->
-        <div class="bias-indicators">
-          <div class="bias-metric">
-            <span class="bias-label">Racial Disparity:</span>
-            <span class="bias-score disparity-{{ judge_data.bias_metrics.sentence_disparity.racial.disparity_score | divided_by: 3 | round }}">{{ judge_data.bias_metrics.sentence_disparity.racial.disparity_score }}</span>
-          </div>
-          <div class="bias-metric">
-            <span class="bias-label">Counsel Disparity:</span>
-            <span class="bias-score disparity-{{ judge_data.bias_metrics.sentence_disparity.counsel_representation.disparity_score | divided_by: 5 | round }}">{{ judge_data.bias_metrics.sentence_disparity.counsel_representation.disparity_score }}</span>
-          </div>
-        </div>
-        
-        <!-- Card Actions -->
-        <div class="card-actions">
-          <button class="btn btn-primary view-details-btn" data-judge-id="{{ judge_data.id }}">
-            View Full Profile
-          </button>
-          <button class="btn btn-secondary add-compare-btn" data-judge-id="{{ judge_data.id }}" data-judge-name="{{ judge_data.name }}">
-            Add to Compare
-          </button>
-        </div>
-        
-        <!-- Hidden detailed data for modal/search -->
-        <div class="judge-details" style="display: none;">
-          <p><strong>Court:</strong> {{ judge_data.county }} County {{ judge_data.court }}</p>
-          <p><strong>Department:</strong> {{ judge_data.department }}</p>
-          <p><strong>Tenure:</strong> {{ judge_data.tenure_start }}{% if judge_data.tenure_end %} - {{ judge_data.tenure_end }}{% else %} - Present{% endif %}</p>
-          <p><strong>Data Period:</strong> {{ judge_data.time_period_coverage }}</p>
-          <p><strong>2024 Caseload:</strong> {{ judge_data.caseload_2024 | number_with_delimiter }} cases</p>
-        </div>
-        
-        <!-- Representation Type Analysis -->
-        {% if judge_data.representation_analysis %}
-        <div class="representation-breakdown" style="display: none;">
-          <h4>📋 Representation Type Analysis</h4>
-          <div class="rep-stats">
-            <div class="rep-type">
-              <span class="rep-label">Self-Represented:</span>
-              <span class="rep-count">{{ judge_data.representation_analysis.by_representation_type.self_represented.count }} cases ({{ judge_data.representation_analysis.by_representation_type.self_represented.percentage }}%)</span>
-              <span class="rep-outcome">Avg: {{ judge_data.representation_analysis.by_representation_type.self_represented.avg_sentence_months }}mo, {{ judge_data.representation_analysis.by_representation_type.self_represented.conviction_rate }}% conviction</span>
-            </div>
-            <div class="rep-type">
-              <span class="rep-label">Court-Appointed:</span>  
-              <span class="rep-count">{{ judge_data.representation_analysis.by_representation_type.court_appointed.count }} cases ({{ judge_data.representation_analysis.by_representation_type.court_appointed.percentage }}%)</span>
-              <span class="rep-outcome">Avg: {{ judge_data.representation_analysis.by_representation_type.court_appointed.avg_sentence_months }}mo, {{ judge_data.representation_analysis.by_representation_type.court_appointed.conviction_rate }}% conviction</span>
-            </div>
-            <div class="rep-type">
-              <span class="rep-label">Retained Counsel:</span>
-              <span class="rep-count">{{ judge_data.representation_analysis.by_representation_type.retained_counsel.count }} cases ({{ judge_data.representation_analysis.by_representation_type.retained_counsel.percentage }}%)</span>
-              <span class="rep-outcome">Avg: {{ judge_data.representation_analysis.by_representation_type.retained_counsel.avg_sentence_months }}mo, {{ judge_data.representation_analysis.by_representation_type.retained_counsel.conviction_rate }}% conviction</span>
-            </div>
-          </div>
-          
-          <div class="disparity-alerts">
-            <div class="disparity-item">
-              <strong>Self-Rep vs Retained:</strong> +{{ judge_data.representation_analysis.disparity_analysis.self_vs_retained.sentence_difference }} months, +{{ judge_data.representation_analysis.disparity_analysis.self_vs_retained.conviction_rate_difference }}% conviction rate
-            </div>
-            <div class="disparity-item">
-              <strong>Court-Appointed vs Retained:</strong> +{{ judge_data.representation_analysis.disparity_analysis.appointed_vs_retained.sentence_difference }} months, +{{ judge_data.representation_analysis.disparity_analysis.appointed_vs_retained.conviction_rate_difference }}% conviction rate
-            </div>
-          </div>
-        </div>
-        {% endif %}
-        
-        <div class="bias-metrics" style="display: none;">
-          <h4>⚖️ Bias Analysis</h4>
-          <div class="metric">
-            <span class="metric-label">Prison Rate:</span>
-            <span class="metric-value">{{ judge_data.bias_metrics.prison_rate }}%</span>
-          </div>
-          <div class="metric">
-            <span class="metric-label">Racial Disparity Score:</span>
-            <span class="metric-value disparity-{{ judge_data.bias_metrics.sentence_disparity.racial.disparity_score | divided_by: 3 | round }}">{{ judge_data.bias_metrics.sentence_disparity.racial.disparity_score }}</span>
-          </div>
-          <div class="metric">
-            <span class="metric-label">Counsel Disparity Score:</span>
-            <span class="metric-value disparity-{{ judge_data.bias_metrics.sentence_disparity.counsel_representation.disparity_score | divided_by: 5 | round }}">{{ judge_data.bias_metrics.sentence_disparity.counsel_representation.disparity_score }}</span>
-          </div>
-        </div>
-        
-        <div class="appellate-record" style="display: none;">
-          <h4>📋 2024 Appeals Record</h4>
-          <div class="appeals-stats">
-            <span class="appeals-count">{{ judge_data.appellate_record.total_appeals_2024 }} appeals</span>
-            <span class="reversal-rate">{{ judge_data.appellate_record.reversal_rate }}% reversed</span>
-          </div>
-        </div>
-        
-        {% if judge_data.awards_recognition %}
-        <div class="awards-recognition" style="display: none;">
-          <h4>🏆 Recognition & Awards</h4>
-          <ul>
-            {% for award in judge_data.awards_recognition %}
-            <li>{{ award }}</li>
-            {% endfor %}
-          </ul>
-        </div>
-        {% endif %}
-        
-        {% if judge_data.stop_data_correlation %}
-        <div class="stop-correlation" style="display: none;">
-          <h4>🚔 STOP Data Correlation Analysis</h4>
-          <div class="stop-stats">
-            <div class="pipeline-analysis">
-              <h5>Traffic Stop to Court Pipeline</h5>
-              <div class="demographic-flow">
-                <div class="demo-row">
-                  <span class="demo-label">Black defendants:</span>
-                  <span class="stop-rate">{{ judge_data.stop_data_correlation.county_stop_patterns.demographic_breakdown.black }}% in stops</span>
-                  <span class="court-rate">→ {{ judge_data.stop_data_correlation.judicial_caseload_demographics.black_defendants }}% in court</span>
-                  <span class="overrep {{ judge_data.stop_data_correlation.correlation_analysis.stop_to_court_pipeline.black_overrepresentation | plus: 0 | times: 1.0 }}">{{ judge_data.stop_data_correlation.correlation_analysis.stop_to_court_pipeline.black_overrepresentation }}% overrepresentation</span>
-                </div>
-                <div class="demo-row">
-                  <span class="demo-label">Hispanic defendants:</span>
-                  <span class="stop-rate">{{ judge_data.stop_data_correlation.county_stop_patterns.demographic_breakdown.hispanic }}% in stops</span>
-                  <span class="court-rate">→ {{ judge_data.stop_data_correlation.judicial_caseload_demographics.hispanic_defendants }}% in court</span>
-                  <span class="overrep {{ judge_data.stop_data_correlation.correlation_analysis.stop_to_court_pipeline.hispanic_overrepresentation | plus: 0 | times: 1.0 }}">{{ judge_data.stop_data_correlation.correlation_analysis.stop_to_court_pipeline.hispanic_overrepresentation }}% overrepresentation</span>
-                </div>
-                <div class="demo-row">
-                  <span class="demo-label">White defendants:</span>
-                  <span class="stop-rate">{{ judge_data.stop_data_correlation.county_stop_patterns.demographic_breakdown.white }}% in stops</span>
-                  <span class="court-rate">→ {{ judge_data.stop_data_correlation.judicial_caseload_demographics.white_defendants }}% in court</span>
-                  <span class="underrep">{{ judge_data.stop_data_correlation.correlation_analysis.stop_to_court_pipeline.white_underrepresentation }}% underrepresentation</span>
-                </div>
-              </div>
-            </div>
-            
-            <div class="search-analysis">
-              <h5>Racial Search Rate Disparities</h5>
-              <div class="search-rates">
-                <div class="search-row">
-                  <span class="race-label">White:</span>
-                  <span class="search-rate">{{ judge_data.stop_data_correlation.correlation_analysis.search_rate_correlation.racial_search_disparities.white_search_rate }}%</span>
-                </div>
-                <div class="search-row">
-                  <span class="race-label">Black:</span>
-                  <span class="search-rate high-rate">{{ judge_data.stop_data_correlation.correlation_analysis.search_rate_correlation.racial_search_disparities.black_search_rate }}%</span>
-                </div>
-                <div class="search-row">
-                  <span class="race-label">Hispanic:</span>
-                  <span class="search-rate high-rate">{{ judge_data.stop_data_correlation.correlation_analysis.search_rate_correlation.racial_search_disparities.hispanic_search_rate }}%</span>
-                </div>
-              </div>
-              <div class="contraband-found">
-                <span class="contraband-label">Contraband Found Rate:</span>
-                <span class="contraband-rate">{{ judge_data.stop_data_correlation.correlation_analysis.search_rate_correlation.contraband_found_rate }}%</span>
-              </div>
-            </div>
-            
-            <div class="correlation-interpretation">
-              <h5>Analysis</h5>
-              <p class="interpretation-text">{{ judge_data.stop_data_correlation.correlation_analysis.interpretation }}</p>
-            </div>
-          </div>
-        </div>
-        {% endif %}
-        
-        {% if judge_data.specialization %}
-        <div class="specialization" style="display: none;">
-          <strong>Specializes in:</strong> {{ judge_data.specialization | join: ", " }}
-        </div>
-        {% endif %}
-        
-        <div class="judge-actions" style="display: none;">
-          <button class="view-details-btn" data-judge-id="{{ judge_data.id }}">View Full Profile</button>
-          <button class="add-compare-btn" data-judge-id="{{ judge_data.id }}" data-judge-name="{{ judge_data.name }}">Add to Compare</button>
-        </div>
-      </div>
-      {% endfor %}
-    {% endfor %}
-  </div>
-  
-  <!-- Judge Detail Modal -->
   <div id="judge-detail-modal" class="modal">
     <div class="modal-content judge-detail-content">
       <span class="close judge-modal-close">&times;</span>
-      <div id="judge-detail-content">
-        <!-- Dynamic judge profile content -->
-      </div>
+      <div id="judge-detail-content"></div>
     </div>
   </div>
-  
-  <!-- Judge Comparison Modal -->
+
   <div id="comparison-modal" class="modal">
-    <div class="modal-content">
+    <div class="modal-content comparison-modal-content">
       <span class="close">&times;</span>
       <h2>Judge Comparison</h2>
       <div id="comparison-results"></div>
     </div>
   </div>
 </div>
-
-
-## Judge Directory
-
-<div id="judges-list" class="judges-grid">
-  <!-- All available judges will be loaded here via JavaScript when data is available -->
-  <div class="loading-message">
-    <h3>Loading All Judge Data...</h3>
-    <p>All judge profiles from the Bias Beacon dataset will be displayed here once loaded.</p>
-    <p><em>Note: Upload your complete judicial data zip file to populate this section with every judge record available.</em></p>
-  </div>
-</div>
-
-## Key Metrics Tracked
-
-<div class="metrics-explanation">
-  <div class="metric-item">
-    <h3>📊 Sentencing Severity Index</h3>
-    <p>Comparative measure of how harsh a judge's sentences are relative to county and state averages for similar cases.</p>
-  </div>
-
-  <div class="metric-item">
-    <h3>⚖️ Representation Disparity</h3>
-    <p>Difference in outcomes between defendants with public defenders versus private attorneys.</p>
-  </div>
-
-  <div class="metric-item">
-    <h3>👥 Demographic Impact Score</h3>
-    <p>Statistical analysis of sentencing patterns across different demographic groups.</p>
-  </div>
-
-  <div class="metric-item">
-    <h3>🎯 Consistency Rating</h3>
-    <p>Measure of how consistent a judge's sentencing is for similar cases and circumstances.</p>
-  </div>
-
-  <div class="metric-item">
-    <h3>🏛️ Case Specialization</h3>
-    <p>Types of cases a judge most commonly presides over and their expertise areas.</p>
-  </div>
-
-  <div class="metric-item">
-    <h3>⏱️ Total Prison Time</h3>
-    <p>Cumulative prison time attributed to the judge's sentencing decisions over the analysis period.</p>
-  </div>
-</div>
-
-## Understanding the Profiles
-
-Each judge profile includes:
-
-### Basic Information
-- **Name and Title**: Full judicial title and current position
-- **County/Jurisdiction**: Primary court location and jurisdiction
-- **Years on Bench**: Length of service covered in our analysis
-- **Case Volume**: Total cases presided over during analysis period
-
-### Sentencing Analysis
-- **Average Sentence Length**: By crime type and severity
-- **Incarceration Rate**: Percentage of cases resulting in prison time
-- **Probation vs. Prison**: Alternative sentencing preferences
-- **Fine Amounts**: Monetary penalty patterns
-
-### Demographic Patterns
-- **Racial Disparities**: Sentencing differences across racial lines
-- **Gender Differences**: Male vs. female defendant outcomes
-- **Age-based Patterns**: How defendant age affects sentencing
-- **Socioeconomic Indicators**: Impact of defendant economic status
-
-### Legal Representation Impact
-- **Public Defender Outcomes**: Conviction and sentencing rates
-- **Private Attorney Outcomes**: Comparative success rates
-- **Self-Representation**: Pro se defendant outcomes
-- **Appointed Counsel**: Court-appointed attorney effectiveness
-
-### Case Type Specialization
-- **Primary Case Types**: Most common case categories
-- **Expertise Areas**: Specialized court assignments
-- **Sentence Variation**: Consistency within case types
-- **Appeal Rates**: Frequency of sentence appeals
-
-### Comparative Analysis
-- **County Rankings**: How the judge compares locally
-- **Statewide Percentiles**: Position among all state judges
-- **Peer Comparisons**: Similar judges in similar jurisdictions
-- **Trend Analysis**: Changes in patterns over time
-
----
-
-*Judge profiles are generated from official court records and are updated quarterly. All statistics are presented with appropriate context and statistical significance indicators.*
->>>>>>> 5361f0859af1e2017b0adccf65496b898c10a2ef
