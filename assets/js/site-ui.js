@@ -940,13 +940,3 @@
   });
 })();
 
-
-    }
-
-    initializeMegaMenu();
-    initializeFlipCards();
-    initializeActorDirectory();
-    initializeHomeHeroMotion();
-  });
-})();
-
