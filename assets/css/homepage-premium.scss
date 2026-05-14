@@ -392,14 +392,14 @@ button:not(.modal-close):not(.close) {
 }
 
 .home-page .mega-menu-shell {
-  top: calc(100% + 0.9rem) !important;
-  max-height: calc(100vh - 7rem);
+  top: calc(100% + 3.5rem) !important;
+  max-height: calc(100vh - 2rem);
   overflow-y: auto;
-  padding-top: 1.1rem;
+  padding-top: 6.1rem;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.015)),
     rgba(5, 7, 13, 0.94) !important;
-  border: 0 !important;
+  border: 50 !important;
   box-shadow:
     0 38px 90px rgba(0, 0, 0, 0.66),
     0 0 52px rgba(79, 231, 224, 0.12) !important;
@@ -409,8 +409,8 @@ button:not(.modal-close):not(.close) {
 .home-page .mega-menu-title-text {
   font-family: "Inter", "Aptos", system-ui, sans-serif !important;
   font-size: clamp(1.05rem, 1.2vw, 1.35rem) !important;
-  letter-spacing: 0.08em !important;
-  color: var(--premium-gold) !important;
+  letter-spacing: 0.25em !important;
+  color: var(--premium-blue) !important;
   text-shadow:
     0 10px 24px rgba(0, 0, 0, 0.42),
     0 0 22px rgba(215, 179, 106, 0.14) !important;
@@ -422,7 +422,7 @@ button:not(.modal-close):not(.close) {
 }
 
 .home-page .main-card .flip-card-front {
-  transform: rotateX(1deg);
+  transform: rotateX(2deg);
 }
 
 .home-page .main-card.flip-card {
