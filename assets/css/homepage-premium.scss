@@ -120,7 +120,7 @@ button:not(.modal-close):not(.close) {
 .home-page .hero-bg-video,
 .home-page .hero-background video {
   position: absolute;
-  top: 52%;
+  top: 75%;
   right: clamp(-1rem, 3vw, 6rem);
   left: auto;
   width: auto;
@@ -131,10 +131,10 @@ button:not(.modal-close):not(.close) {
   object-fit: contain;
   object-position: center center;
   opacity: 0.48;
-  filter: saturate(1.04) contrast(1.12) brightness(0.78);
+  filter: saturate(0.85) contrast(1.0) brightness(0.98);
   mix-blend-mode: screen;
-  -webkit-mask-image: radial-gradient(ellipse at 57% 56%, #000 28%, rgba(0, 0, 0, 0.58) 54%, transparent 76%);
-  mask-image: radial-gradient(ellipse at 57% 56%, #000 28%, rgba(0, 0, 0, 0.58) 54%, transparent 76%);
+  -webkit-mask-image: radial-gradient(ellipse at 57% 56%, #000 28%, rgba(0, 0, 0, 0.58) 54%, transparent 65%);
+  mask-image: radial-gradient(ellipse at 57% 56%, #000 28%, rgba(0, 0, 0, 0.58) 54%, transparent 65%);
 }
 
 .home-page .hero-background::before {
@@ -193,7 +193,7 @@ button:not(.modal-close):not(.close) {
 .home-page .search-input-wrap {
   min-height: 86px;
   border: 0;
-  border-radius: 18px;
+  border-radius: 2px;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.025)),
     rgba(6, 9, 17, 0.8);
@@ -202,7 +202,7 @@ button:not(.modal-close):not(.close) {
     0 14px 34px rgba(0, 0, 0, 0.42),
     0 0 44px rgba(79, 231, 224, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(28px) saturate(1.2);
+  backdrop-filter: blur(65px) saturate(0.85);
 }
 
 .home-page .search-input-wrap:focus-within {
