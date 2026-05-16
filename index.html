@@ -311,6 +311,27 @@ body_class: home-page
 </div>
 
 <noscript><style>[data-reveal]{opacity:1;transform:none;}</style></noscript>
+<!-- Video loop fade — hides the hard restart seam -->
+<script>
+(function() {
+  var heroVideo = document.querySelector('.hero-background video');
+  if (!heroVideo) return;
+  var TARGET_OPACITY = 0.45;
+  var FADE_SECS = 1.8;
+
+  heroVideo.addEventListener('timeupdate', function() {
+    if (!heroVideo.duration || heroVideo.duration < 3) return;
+    var timeLeft = heroVideo.duration - heroVideo.currentTime;
+    if (timeLeft < FADE_SECS) {
+      heroVideo.style.opacity = Math.max(0, (timeLeft / FADE_SECS) * TARGET_OPACITY).toFixed(3);
+    } else if (heroVideo.currentTime < FADE_SECS) {
+      heroVideo.style.opacity = Math.min(TARGET_OPACITY, (heroVideo.currentTime / FADE_SECS) * TARGET_OPACITY).toFixed(3);
+    } else {
+      heroVideo.style.opacity = TARGET_OPACITY;
+    }
+  });
+})();
+</script>
 <!-- Scroll-reveal + flip-card + search-filter JS -->
 <script>
 (function() {

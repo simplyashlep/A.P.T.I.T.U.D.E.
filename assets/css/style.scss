@@ -160,7 +160,7 @@ html {
 }
 
 body {
-  font: 400 16px/1.65 "IBM Plex Sans", sans-serif;
+  font: 400 16px/1.65 "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--text);
   background: var(--bg);
   letter-spacing: 0.01em;
@@ -222,8 +222,10 @@ body,
 .home-page h2,
 .archive-title,
 .archive-value,
-.proof-value {
-  font-family: "Source Serif 4", serif;
+.proof-value,
+.mission-title,
+.actor-page-title {
+  font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .wrapper {
@@ -1978,7 +1980,7 @@ body.home-page {
 }
 
 .trend-value {
-  font: 700 2rem/1 "Libre Caslon Display", serif;
+  font: 700 2rem/1 "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--home-accent-strong);
 }
 
@@ -2101,7 +2103,7 @@ body.home-page {
 
 .budget-donut-center text:last-child {
   fill: var(--text);
-  font-family: "Libre Caslon Display", serif;
+  font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 1.25rem;
   font-weight: 700;
 }
@@ -2155,7 +2157,7 @@ body.home-page {
 }
 
 .budget-detail-value {
-  font: 700 clamp(2rem, 5vw, 3.2rem)/0.95 "Libre Caslon Display", serif;
+  font: 700 clamp(2rem, 5vw, 3.2rem)/0.95 "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--home-accent-strong);
 }
 
@@ -2408,7 +2410,7 @@ body.home-page {
 }
 
 .wordmark-dropcap {
-  font-family: "Cormorant Garamond", serif;
+  font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
   font-style: italic;
   font-size: 1.28em;
   color: #ead3dc;
@@ -2604,7 +2606,7 @@ body.home-page {
 }
 
 .layer-index {
-  font-family: "Libre Caslon Display", serif;
+  font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 2rem;
   color: #d7a4b8;
 }
@@ -2881,9 +2883,9 @@ body.home-page {
 }
 
 .mega-menu-link {
-  font-family: "Libre Caslon Display", serif;
-  font-size: 1rem;
-  letter-spacing: 0.03em;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
 }
 
 .mega-menu-title-text {
@@ -3143,7 +3145,7 @@ body.home-page {
 }
 
 .mega-menu-title-text {
-  font-family: "Cormorant Garamond", "Libre Caslon Display", serif;
+  font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(1.18rem, 1.45vw, 1.7rem);
   line-height: 1;
   letter-spacing: 0.1em;
@@ -3162,7 +3164,7 @@ body.home-page {
 }
 
 .mega-menu-link {
-  font-family: "Cormorant Garamond", "Libre Caslon Display", serif;
+  font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 1.14rem;
   font-weight: 600;
   line-height: 1.1;
@@ -3229,7 +3231,7 @@ body.home-page {
 
 .home-actor-card .judge-name-display {
   margin: 0;
-  font-family: "Cormorant Garamond", "Libre Caslon Display", serif;
+  font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(2.05rem, 3vw, 2.9rem);
   line-height: 0.95;
   letter-spacing: 0.05em;
@@ -4209,7 +4211,7 @@ body {
 }
 
 .card-title-text {
-  font-family: "Cormorant Garamond", "Libre Caslon Display", serif;
+  font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: clamp(1.6rem, 2.5vw, 2.1rem);
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -4705,7 +4707,7 @@ body {
 }
 
 .mega-menu-title-text {
-  font-family: "Cormorant Garamond", "Libre Caslon Display", serif !important;
+  font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif !important;
   font-size: clamp(1.4rem, 1.8vw, 2rem) !important;
   font-weight: 700 !important;
   line-height: 1.05 !important;
@@ -4718,7 +4720,7 @@ body {
 }
 
 .mega-menu-link {
-  font-family: "Cormorant Garamond", "Libre Caslon Display", serif !important;
+  font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif !important;
   font-size: 1.05rem !important;
   font-weight: 600 !important;
   color: #f6efe7 !important;
