@@ -19,6 +19,8 @@
       padding: 0.75rem 1rem;
       border: 0.2px solid rgba(255, 255, 255, 0.3);
       border-radius: 1px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 4px;
       background: rgba(255, 255, 255, 0.1);
       color: white;
       font-size: 1rem;
@@ -42,12 +44,15 @@
       border: none;
       border-radius: 1px;
       font-weight: 1100;
+      border-radius: 4px;
+      font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
 
       &:hover {
         background: rgba(255, 255, 255, 0.9);
         transform: translateY(-0.2px);
+        transform: translateY(-2px);
       }
     }
   }
@@ -81,6 +86,11 @@
         color: white;
         cursor: pointer;
         font-weight: 1100;
+        border-radius: 3px;
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        cursor: pointer;
+        font-weight: 500;
 
         &:focus {
           outline: 2px solid white;
@@ -101,6 +111,7 @@
   border-left: 4px solid white;
   padding: 1.5rem;
   border-radius: 1px;
+  border-radius: 6px;
   margin: 1.5rem 0 0;
   backdrop-filter: blur(10px);
 

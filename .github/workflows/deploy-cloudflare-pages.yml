@@ -7,11 +7,16 @@ on:
   pull_request:
     branches:
       - main
+      - claude/judge-bias-beacon-scoring-8qAT3
+  pull_request:
+    branches:
+      - claude/judge-bias-beacon-scoring-8qAT3
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
+    
     permissions:
       contents: read
       deployments: write
@@ -39,6 +44,16 @@ jobs:
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
+          bundler-cache: true
+
+      - name: Build Jekyll site
+        run: |
+          JEKYLL_ENV=production bundle exec jekyll build --config _config.yml
+        env:
+          JEKYLL_ENV: production
+
+      - name: Upload artifact for Cloudflare Pages
+        uses: actions/upload-artifact@v3
         with:
           name: build-artifact
           path: _site/
@@ -50,6 +65,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy _site/ --project-name aptitude-site
+          command: pages deploy _site/
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
