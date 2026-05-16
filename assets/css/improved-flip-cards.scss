@@ -887,6 +887,8 @@
     }
   }
 }
+}
+
 
 // PINNED STATE
 .flip-card.pinned,
@@ -902,6 +904,8 @@
       inset 0 1px 0 rgba(255, 255, 255, 0.06),
       0 0 30px rgba(153, 153, 255, 0.08);
   }
+}
+
 /* ==========================================================================
    3D RENDERING FIX - only faces get backface-visibility, inner keeps preserve-3d
    ========================================================================== */
@@ -915,230 +919,7 @@
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
-=======
-// BACK SIDE — darker gradient
-.flip-card-back {
-  background:
-    radial-gradient(circle at top center, rgba(153, 153, 255, 0.06), transparent 40%),
-    linear-gradient(160deg, rgba(18, 24, 36, 0.98), rgba(10, 14, 22, 0.98));
-  color: var(--text, #d8e4f5);
-  transform: rotateY(180deg);
-  z-index: 1;
-  box-shadow:
-    0 22px 48px rgba(0, 0, 0, 0.35),
-    0 8px 18px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04);
-  overflow-y: auto;
 
-  &::-webkit-scrollbar { width: 4px; }
-  &::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.03); }
-  &::-webkit-scrollbar-thumb { background: rgba(153, 153, 255, 0.2); border-radius: 2px; }
-
-  .back-header {
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(153, 153, 255, 0.1);
-  }
-
-// LOADING STATE
-.flip-card.loading {
-  opacity: 0.7;
-  pointer-events: none;
-
-  .flip-card-inner {
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.8; }
-}
-
-// FOCUS STATE (Accessibility)
-.flip-card:focus-within .flip-card-front,
-.flip-card:focus-within .flip-card-back {
-  outline: 2px solid var(--periwinkle, #9FA8FF);
-  outline-offset: -4px;
-}
-
-// MOBILE RESPONSIVENESS
-@media (max-width: 480px) {
-  .flip-cards-grid { gap: 1.5rem; }
-
-  .flip-card-front,
-  .flip-card-back {
-    padding: 1.25rem;
-    font-size: 0.95rem;
-  }
-
-  .flip-card-front .judge-name { font-size: 1.15rem; }
-  .flip-card-front .judge-county { font-size: 0.85rem; }
-  .flip-card-back .judge-name-back { font-size: 1.1rem; }
-  .flip-card-back .section-title { font-size: 0.75rem; }
-  .flip-card-back .metric { font-size: 0.85rem; }
-}
-
-// TABLET RESPONSIVENESS
-@media (min-width: 481px) and (max-width: 1024px) {
-  .flip-cards-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-  .judge-name-back {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin: 0 0 0.5rem 0;
-    color: var(--text, #d8e4f5);
-  }
-
-  .back-subtitle {
-    font-size: 0.9rem;
-    color: var(--muted-strong, #9aa8c2);
-    margin: 0;
-  }
-
-  // Data sections
-  .back-section {
-    margin-bottom: 1.25rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(153, 153, 255, 0.08);
-
-    &:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-  }
-
-  .section-title {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
-    font-weight: 700;
-    color: var(--periwinkle-light, #B8C4FF);
-    margin: 0 0 0.75rem 0;
-    opacity: 0.9;
-  }
-
-  .metric {
-    margin-bottom: 0.75rem;
-    font-size: 0.9rem;
-    line-height: 1.4;
-
-    .metric-label {
-      color: var(--muted-strong, #9aa8c2);
-      font-weight: 500;
-      display: block;
-      margin-bottom: 0.2rem;
-    }
-
-    .metric-value {
-      color: var(--text, #d8e4f5);
-      font-weight: 600;
-      font-size: 1.05rem;
-    }
-  }
-
-  .metric-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-
-    li {
-      margin-bottom: 0.5rem;
-      padding-left: 1.25rem;
-      position: relative;
-      color: var(--muted-strong, #9aa8c2);
-      font-size: 0.9rem;
-
-      &:before {
-        content: '→';
-        position: absolute;
-        left: 0;
-        color: rgba(153, 153, 255, 0.4);
-        font-weight: bold;
-      }
-
-      &:last-child { margin-bottom: 0; }
-    }
-  }
-
-  // Stats grid
-  .stats-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.75rem;
-    margin-top: 0.75rem;
-
-    .stat {
-      background-color: rgba(153, 153, 255, 0.06);
-      padding: 0.75rem;
-      border-radius: 6px;
-      border: 1px solid rgba(153, 153, 255, 0.08);
-      text-align: center;
-
-      .stat-label {
-        font-size: 0.75rem;
-        color: var(--muted, #7b8ba5);
-        text-transform: uppercase;
-        letter-spacing: 0.2px;
-        font-weight: 600;
-        margin-bottom: 0.3rem;
-      }
-
-      .stat-value {
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: var(--text, #d8e4f5);
-      }
-    }
-  }
-
-  // Action buttons area
-  .back-actions {
-    margin-top: 1.5rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(153, 153, 255, 0.1);
-    display: flex;
-    gap: 0.75rem;
-
-    button, a {
-      flex: 1;
-      padding: 0.65rem 0.75rem;
-      font-size: 0.8rem;
-      text-align: center;
-      border-radius: 6px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.2px;
-      transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
-      border: 1px solid rgba(153, 153, 255, 0.15);
-      background-color: rgba(153, 153, 255, 0.08);
-      color: var(--text, #d8e4f5);
-      text-decoration: none;
-      cursor: pointer;
-
-      &:hover {
-        background-color: rgba(153, 153, 255, 0.16);
-        border-color: rgba(153, 153, 255, 0.3);
-      }
-    }
-  }
-}
-
-// PINNED STATE
-.flip-card.pinned,
-.flip-card.is-pinned {
-  .flip-card-inner {
-    transform: rotateY(180deg);
-  }
-
-  .flip-card-back {
-    box-shadow:
-      0 26px 54px rgba(0, 0, 0, 0.4),
-      0 12px 24px rgba(0, 0, 0, 0.24),
-      inset 0 1px 0 rgba(255, 255, 255, 0.06),
-      0 0 30px rgba(153, 153, 255, 0.08);
-  }
-}
 
 // LOADING STATE
 .flip-card.loading {
