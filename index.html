@@ -13,10 +13,8 @@ body_class: home-page
 <section class="hero-section hero-landing">
   <!-- Background video layer -->
   <div class="hero-background">
-    <video autoplay muted loop playsinline>
-      <source src="https://media.cloudflare.com/files/bg-video-justice.mp4" type="video/mp4" />
-      <!-- Fallback for browsers that don't support HTML5 video -->
-      <source src="https://videos.pexels.com/video-files/3130424/3130424-hd_1920_1080_24fps.mp4" type="video/mp4" />
+    <video class="hero-bg-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+      <source src="{{ '/assets/videos/lj.mp4' | relative_url }}" type="video/mp4" />
     </video>
     <!-- Animated cube field overlay -->
     <div class="hero-cube-field">

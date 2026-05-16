@@ -216,7 +216,7 @@ body_class: archive-page actor-directory-page judges-page
                       <div class="county-label">{{ judge_data.county }}{% unless judge_data.county == 'Statewide' %} County{% endunless %}</div>
                     </div>
 
-                    <div class="bias-score-indicator">
+                    <div class="bias-score-indicator minimal-score-indicator">
                       <div class="score-circle" style="background: {{ accent }}; color: {{ accent_text }};">
                         <span class="score-value">{{ score_display }}</span>
                       </div>
@@ -228,6 +228,20 @@ body_class: archive-page actor-directory-page judges-page
                       {% endif %}
                       <span class="hover-hint">Flip for evidence →</span>
                     </div>
+                      <span class="score-label">{{ judge_data.scoreLabel }}</span>
+                    </div>
+
+                    <div class="card-front-metrics minimal-front-metrics">
+                      <div class="front-metric-chip">
+                        <span class="front-metric-label">Bias Score</span>
+                        <strong class="front-metric-value">{{ score_display }}</strong>
+                      </div>
+                      <div class="front-metric-chip">
+                        <span class="front-metric-label">Term / Seat</span>
+                        <strong class="front-metric-value">{{ judge_data.termExpiresDisplay | default: 'Unknown' }}</strong>
+                      </div>
+                    </div>
+                    <div class="card-front-footer"><span class="hover-hint">Flip for signals</span></div>
                   </div>
                 </div>
 

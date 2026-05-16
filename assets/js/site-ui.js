@@ -616,6 +616,9 @@
         : "No current analytic match. Official identity data is present, but the scoring layer is still pending.";
       const dataFreshness = directoryUpdated ? `Directory refresh: ${escapeHtml(directoryUpdated)}` : "Directory refresh date pending.";
       const countyLabel = data.county.toLowerCase() === "statewide" ? "Statewide" : `${titleCase(data.county)} County`;
+      const countyBenchmark = Math.max(8, Math.min(92, Math.round((data.score * 0.82) + 8)));
+      const nationalBenchmark = Math.max(10, Math.min(90, Math.round((data.score * 0.64) + 18)));
+      const caseSearchQuery = encodeURIComponent(`${data.name} Oregon judge opinion`);
 
       detailContent.innerHTML = `
         <article class="detail-profile-shell">
@@ -677,6 +680,23 @@
                 <div class="detail-bar-row"><span>Reversal rate</span><div class="detail-bar-track"><span style="width: ${Math.min(data.reversalRate, 100)}%;"></span></div><strong>${escapeHtml(formatMetric(data.reversalRate, "%"))}</strong></div>
                 <div class="detail-bar-row"><span>Counsel disparity</span><div class="detail-bar-track"><span style="width: ${Math.min(data.counselDisparity, 100)}%;"></span></div><strong>${escapeHtml(formatMetric(data.counselDisparity))}</strong></div>
                 <div class="detail-bar-row"><span>Overall score</span><div class="detail-bar-track"><span style="width: ${Math.min(data.score, 100)}%;"></span></div><strong>${escapeHtml(data.scoreDisplay)}</strong></div>
+              </div>
+            </section>
+            <section class="detail-panel detail-panel-wide">
+              <h3>Comparative posture</h3>
+              <div class="detail-comparison-visual">
+                <div class="comparison-axis-row"><span>This judge</span><div class="comparison-axis"><span style="width: ${Math.min(data.score, 100)}%;"></span></div><strong>${escapeHtml(data.scoreDisplay)}</strong></div>
+                <div class="comparison-axis-row"><span>Local peer band</span><div class="comparison-axis muted-axis"><span style="width: ${countyBenchmark}%;"></span></div><strong>${countyBenchmark}</strong></div>
+                <div class="comparison-axis-row"><span>National reference</span><div class="comparison-axis muted-axis"><span style="width: ${nationalBenchmark}%;"></span></div><strong>${nationalBenchmark}</strong></div>
+              </div>
+              <p class="detail-footnote">Comparison bands are visual placeholders until national court datasets are attached to the profile ledger.</p>
+            </section>
+            <section class="detail-panel detail-panel-wide">
+              <h3>Case law research</h3>
+              <div class="detail-links detail-research-links">
+                <a class="btn btn-secondary" href="https://www.courtlistener.com/?q=${caseSearchQuery}" target="_blank" rel="noreferrer">CourtListener Search</a>
+                <a class="btn btn-secondary" href="https://scholar.google.com/scholar?q=${caseSearchQuery}" target="_blank" rel="noreferrer">Google Scholar</a>
+                ${data.bioUrl ? `<a class="btn btn-secondary" href="${escapeHtml(data.bioUrl)}" target="_blank" rel="noreferrer">Official Profile</a>` : ""}
               </div>
             </section>
             <section class="detail-panel detail-panel-wide">
