@@ -3,6 +3,10 @@ name: Deploy to Cloudflare Pages
 on:
   push:
     branches:
+      - main
+  pull_request:
+    branches:
+      - main
       - claude/judge-bias-beacon-scoring-8qAT3
   pull_request:
     branches:
@@ -11,6 +15,7 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+
     
     permissions:
       contents: read
@@ -24,6 +29,21 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3.5'
+          bundler-cache: false
+
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle lock --add-platform x86_64-linux
+          bundle install --jobs 4 --retry 3
+
+      - name: Build Jekyll site
+        run: bundle exec jekyll build --config _config.yml
+        env:
+          JEKYLL_ENV: production
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
           bundler-cache: true
 
       - name: Build Jekyll site
@@ -44,6 +64,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy _site/ --project-name aptitude-site
           command: pages deploy _site/
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

@@ -8,6 +8,25 @@ body_class: home-page
 <!-- ═══════════════════════════════════════════════════════════
      HERO SECTION — Clean landing: logo + hamburger (in header),
      centered floating search bar, filter chips below
+     Video background with overlay and animated elements
+     ═══════════════════════════════════════════════════════════ -->
+<section class="hero-section hero-landing">
+  <!-- Background video layer -->
+  <div class="hero-background">
+    <video class="hero-bg-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+      <source src="{{ '/assets/videos/lj.mp4' | relative_url }}" type="video/mp4" />
+    </video>
+    <!-- Animated cube field overlay -->
+    <div class="hero-cube-field">
+      <div class="hero-cube"></div>
+      <div class="hero-cube"></div>
+      <div class="hero-cube"></div>
+      <div class="hero-cube"></div>
+      <div class="hero-cube"></div>
+      <div class="hero-cube"></div>
+    </div>
+  </div>
+
      ═══════════════════════════════════════════════════════════ -->
 <section class="hero-section hero-landing">
   <div class="hero-landing-content">
@@ -39,7 +58,6 @@ body_class: home-page
   </div>
 </section>
 
-<<<<<<< HEAD
 <section class="home-main-menu" id="main-menu">
   <div class="main-menu-grid main-menu-grid-7">
     <div class="main-menu-column" data-menu-col>
@@ -54,7 +72,36 @@ body_class: home-page
         <a class="main-menu-link" href="{{ '/bias-beacon/methodology/' | relative_url }}">Scoring &amp; Methodology</a>
       </div>
     </div>
+  </div>
 
+  <!-- Scroll indicator -->
+  <div class="scroll-indicator">
+    <span>Scroll to explore</span>
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     MISSION SECTION — Appears after scrolling
+     ═══════════════════════════════════════════════════════════ -->
+<section class="mission-section" data-reveal>
+  <div class="mission-content">
+    <div class="mission-accent-line"></div>
+    <h2 class="mission-title">Our Mission</h2>
+    <p class="mission-lead">A.P.T.I.T.U.D.E. transforms public justice records into intelligence that exposes patterns, compares performance, and makes accountability actionable.</p>
+    <p class="mission-body">We build a premium experience where data is presented with clarity, context, and ethical transparency so decision makers and the public can use it with confidence.</p>
+    <div class="mission-stats">
+      <div class="mission-stat">
+        <span class="mission-stat-number">210</span>
+        <span class="mission-stat-label">Circuit Judges</span>
+      </div>
+      <div class="mission-stat">
+        <span class="mission-stat-number">27</span>
+        <span class="mission-stat-label">Oregon Counties</span>
+      </div>
+      <div class="mission-stat">
+        <span class="mission-stat-number">24/7</span>
+        <span class="mission-stat-label">Evidence Access</span>
     <div class="main-menu-column" data-menu-col>
       <a class="main-menu-title" href="{{ '/bias-beacon/dashboard/' | relative_url }}">
         <span class="main-menu-title-text">The Watchtower</span>
@@ -129,7 +176,6 @@ body_class: home-page
         <a class="main-menu-link" href="{{ '/community-forum.html' | relative_url }}#public-comment">Public Comment</a>
         <a class="main-menu-link" href="{{ '/community-forum.html' | relative_url }}#groups">Groups</a>
         <a class="main-menu-link" href="{{ '/community-forum.html' | relative_url }}#news">News &amp; For You</a>
-=======
 <!-- ═══════════════════════════════════════════════════════════
      MISSION SECTION — Appears after scrolling
      ═══════════════════════════════════════════════════════════ -->
@@ -151,7 +197,6 @@ body_class: home-page
       <div class="mission-stat">
         <span class="mission-stat-number">24/7</span>
         <span class="mission-stat-label">Evidence Access</span>
->>>>>>> 1c4138e95269a44f9ab97a2b45862695e6f1c9f3
       </div>
     </div>
   </div>
@@ -386,6 +431,27 @@ body_class: home-page
 </div>
 
 <noscript><style>[data-reveal]{opacity:1;transform:none;}</style></noscript>
+<!-- Video loop fade — hides the hard restart seam -->
+<script>
+(function() {
+  var heroVideo = document.querySelector('.hero-background video');
+  if (!heroVideo) return;
+  var TARGET_OPACITY = 0.45;
+  var FADE_SECS = 1.8;
+
+  heroVideo.addEventListener('timeupdate', function() {
+    if (!heroVideo.duration || heroVideo.duration < 3) return;
+    var timeLeft = heroVideo.duration - heroVideo.currentTime;
+    if (timeLeft < FADE_SECS) {
+      heroVideo.style.opacity = Math.max(0, (timeLeft / FADE_SECS) * TARGET_OPACITY).toFixed(3);
+    } else if (heroVideo.currentTime < FADE_SECS) {
+      heroVideo.style.opacity = Math.min(TARGET_OPACITY, (heroVideo.currentTime / FADE_SECS) * TARGET_OPACITY).toFixed(3);
+    } else {
+      heroVideo.style.opacity = TARGET_OPACITY;
+    }
+  });
+})();
+</script>
 <!-- Scroll-reveal + flip-card + search-filter JS -->
 <script>
 (function() {

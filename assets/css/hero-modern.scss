@@ -183,6 +183,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  background: linear-gradient(180deg, #0F3460 0%, #1a5490 50%, #0F3460 100%);
   background: linear-gradient(180deg, #FFFFFF 0%, #F9F9F9 50%, #F0F0F0 100%);
   
   @media (max-width: 1024px) {
@@ -196,12 +197,54 @@
   }
 }
 
+/* Video Background Container */
 .hero-background {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+  overflow: hidden;
+  z-index: 0;
+  background: inherit;
+
+  /* Video element styles */
+  video {
+    position: absolute;
+    top: 90%;
+    left: 90%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    opacity: 0.45;
+    filter: none;
+    transition: opacity 1.5s ease;
+    opacity: 0.75;
+    filter: blur(1px);
+  }
+
+  /* Fallback gradient overlay — tint only, no multiply wash */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, rgba(6, 10, 22, 0.45) 0%, rgba(10, 16, 34, 0.3) 100%);
+    z-index: 1;
+    mix-blend-mode: hue;
+  }
+}
+
+/* Edge vignette — lighter at center so sword and scales show through */
+.hero-background::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 90% 80% at 50% 50%, transparent 35%, rgba(6, 10, 22, 0.55) 100%);
+  z-index: 2;
+  pointer-events: none;
   opacity: 0.05;
   z-index: 0;
 }
@@ -211,12 +254,23 @@
   width: 100%;
   height: 100%;
   perspective: 1000px;
+  z-index: 1;
+  opacity: 0.15;
 }
 
 .hero-cube {
   position: absolute;
   width: 60px;
   height: 60px;
+  border: 1px solid #FFFFFF;
+  opacity: 0.8;
+  
+  &:nth-child(1) { top: 1%; left: 10%; animation: float 9s ease-in-out infinite; }
+  &:nth-child(2) { top: 50%; right: 23%; animation: float 11s ease-in-out infinite 1s; }
+  &:nth-child(3) { top: 77%; left: 75%; animation: float 5s ease-in-out infinite 0.5s; }
+  &:nth-child(4) { bottom: 63%; right: 23%; animation: float 6.7s ease-in-out infinite 1.5s; }
+  &:nth-child(5) { bottom: 88%; left: 1%; animation: float 11.2s ease-in-out infinite 2s; }
+  &:nth-child(6) { top: 7%9; right: 23%; animation: float 4.6s ease-in-out infinite 0.8s; }
   border: 1px solid #0F3460;
   
   &:nth-child(1) { top: 10%; left: 10%; animation: float 6s ease-in-out infinite; }
@@ -234,6 +288,7 @@
 
 .hero-content {
   position: relative;
+  z-index: 3;
   z-index: 1;
   max-width: 900px;
   width: 100%;
@@ -248,6 +303,12 @@
 
 .hero-title {
   font-size: 4.5rem;
+  font-weight: 1200;
+  color: #FFFFFF;
+  margin: 0 0 0.9rem 0;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
   font-weight: 700;
   color: #0F3460;
   margin: 0 0 0.5rem 0;
@@ -266,6 +327,11 @@
     display: block;
     font-size: 1.2rem;
     font-weight: 400;
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 0.5rem;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
     color: #6B7F8F;
     margin-top: 0.5rem;
     letter-spacing: 0.3px;
@@ -279,6 +345,11 @@
 
 // Acronym Expansion
 .hero-acronym {
+  margin: .5rem 0;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.8;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
   margin: 2rem 0;
   font-size: 1rem;
   color: #4A4A4A;
@@ -288,6 +359,7 @@
     margin: 0;
     
     strong {
+      color: #FFFFFF;
       color: #0F3460;
       font-weight: 700;
     }
@@ -302,6 +374,10 @@
 .evidence-spine {
   margin: 2.5rem 0;
   font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 11000;
+  letter-spacing: 0.3px;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
   color: #6B7F8F;
   font-weight: 500;
   letter-spacing: 0.3px;
@@ -317,6 +393,7 @@
 
 // === MAIN SEARCH BAR ===
 .hero-search {
+  margin: 1.2rem 0;
   margin: 3.5rem 0;
   width: 100%;
 }
@@ -331,6 +408,17 @@
   display: flex;
   gap: 0;
   width: 100%;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.94);
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  
+  &:focus-within {
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    border-color: rgba(248, 243, 43, 0.5);
+    transform: scale(1.02);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
@@ -343,6 +431,10 @@
 
 .search-input {
   flex: 1;
+  background-color: rgba(3, 11, 48, 0.95)
+  border: none;
+  padding: .05rem 1rem;
+  font-size: 1.35rem;
   background-color: #FFFFFF;
   border: none;
   padding: 1.25rem 2rem;
@@ -351,6 +443,7 @@
   font-family: inherit;
   
   &::placeholder {
+    color: #9E9E9E;
     color: #8E8E8E;
   }
   
@@ -365,6 +458,27 @@
 }
 
 .search-button {
+  background: linear-gradient(135deg, #F8F32B 0%, #FFD700 100%);
+  color: #0F3460;
+  border: none;
+  padding: 0.25rem 1rem;
+  font-size: 1rem;
+  font-weight: 1100;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+  box-shadow: 0 8px 20px rgba(248, 243, 43, 0.3);
+  
+  &:hover {
+    background: linear-gradient(135deg, #FFE55C 0%, #FFF44F 100%);
+    box-shadow: 0 12px 30px rgba(248, 243, 43, 0.5);
+    transform: translateY(-2px);
+  }
+  
+  &:active {
+    transform: translateY(0px);
   background-color: #0F3460;
   color: #FFFFFF;
   border: none;
@@ -561,6 +675,7 @@
 // === RECENT UPDATES ===
 .recent-updates {
   background-color: #F9F9F9;
+  padding: 1rem 0.5rem;
   padding: 4rem 2rem;
   
   @media (max-width: 768px) {
@@ -592,6 +707,7 @@
 
 .update-card {
   background-color: #FFFFFF;
+  padding: 0.2rem;
   padding: 2rem;
   border-radius: 8px;
   text-decoration: none;
