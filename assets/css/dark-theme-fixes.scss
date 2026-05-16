@@ -83,10 +83,21 @@
    2. MAIN PAGE 6 CARDS — Remove white outline, increase spacing
    ══════════════════════════════════════════════════════════════ */
 
+/* Dark fill on the card container itself prevents the 3D-transform
+   white-background bleed that appears when the inner faces rotate */
+.main-card.flip-card {
+  background: #080d1a !important;
+}
+
+.main-card .flip-card-inner {
+  background: #080d1a !important;
+}
+
 .main-card .flip-card-front,
 .main-card .flip-card-back {
   border: none !important;
   outline: none !important;
+  box-sizing: border-box !important;
 }
 
 /* Remove any pseudo-element outlines on cards */
@@ -94,6 +105,14 @@
 .main-card .flip-card-back::after {
   display: none !important;
   content: none !important;
+}
+
+/* Ensure the judge-flip-card grid (jfc) has no white backgrounds */
+.jfc-card {
+  background: transparent !important;
+}
+.jfc-card-inner {
+  background: transparent !important;
 }
 
 /* Wider card spacing */
@@ -644,6 +663,9 @@
   background: rgba(6, 10, 18, 0.92) !important;
   border-bottom: 1px solid rgba(153, 153, 255, 0.08) !important;
   backdrop-filter: blur(18px) !important;
+  /* Allow header to grow when mega-menu is open */
+  height: auto !important;
+  display: block !important;
 }
 
 .site-footer {
@@ -711,4 +733,217 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   7. ACTOR DIRECTORY (JUDGES PAGE) — Convert from cream/light to
+   dark premium theme. These panels default to a white gradient
+   in style.scss; we override the entire set here.
+   ══════════════════════════════════════════════════════════════ */
+
+/* Hero panels & sidebar — dark glass */
+.actor-hero-copy,
+.actor-hero-panel,
+.sidebar-panel,
+.actor-top-panel,
+.actor-toolbar,
+.directory-visualization,
+.viz-card,
+.archive-panel,
+.detail-panel,
+.comparison-card {
+  background:
+    linear-gradient(160deg, rgba(16, 22, 38, 0.92), rgba(10, 14, 24, 0.88)) !important;
+  color: var(--text, #d8e4f5) !important;
+  border: 1px solid rgba(159, 168, 255, 0.1) !important;
+  backdrop-filter: blur(14px) !important;
+}
+
+/* Text inside those panels */
+.actor-hero-copy .archive-kicker,
+.actor-hero-panel .archive-kicker,
+.actor-page-title,
+.sidebar-panel h2,
+.sidebar-panel h3,
+.actor-top-panel h2,
+.directory-visualization h2,
+.viz-card h3,
+.card-back-header h3,
+.comparison-card h3,
+.detail-hero-copy h2 {
+  color: var(--text, #d8e4f5) !important;
+}
+
+.actor-page-deck,
+.actor-hero-note,
+.sidebar-copy,
+.comparison-help,
+.county-label,
+.card-back-subtitle,
+.hover-hint,
+.metric-label,
+.flags-list,
+.results-info,
+.stat-label,
+.detail-flag-list,
+.comparison-summary,
+.comparison-chip-meta {
+  color: var(--muted-strong, #9aa8c2) !important;
+}
+
+/* Search bar on judges page — dark not cream */
+.actor-hero-search .search-input-enhanced {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(159, 168, 255, 0.2) !important;
+  color: var(--text, #d8e4f5) !important;
+  border-radius: 12px !important;
+}
+
+.actor-hero-search .search-input-enhanced::placeholder {
+  color: rgba(141, 153, 174, 0.55) !important;
+}
+
+.actor-hero-search .search-input-enhanced:focus {
+  border-color: rgba(159, 168, 255, 0.4) !important;
+  box-shadow: 0 0 0 3px rgba(159, 168, 255, 0.1) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Filter sidebar selects — dark */
+.sidebar-filters .filter-select,
+.filter-select {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(159, 168, 255, 0.15) !important;
+  color: var(--text, #d8e4f5) !important;
+  border-radius: 8px !important;
+}
+
+.sidebar-filters .filter-select option,
+.filter-select option {
+  background: #0f1428 !important;
+  color: #d8e4f5 !important;
+}
+
+.sidebar-filters label,
+.filter-group label {
+  color: var(--muted-strong, #9aa8c2) !important;
+  font-size: 0.78rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+}
+
+/* Sidebar toggle button */
+.actor-sidebar-toggle {
+  background: rgba(159, 168, 255, 0.1) !important;
+  color: var(--text, #d8e4f5) !important;
+  border: 1px solid rgba(159, 168, 255, 0.2) !important;
+}
+
+/* Metric values stay bright */
+.metric-value,
+.bias-metric-value,
+.detail-metric-grid strong {
+  color: var(--periwinkle-light, #B8C4FF) !important;
+}
+
+/* actor chain-mini tags */
+.actor-chain-mini span {
+  background: rgba(159, 168, 255, 0.08) !important;
+  border: 1px solid rgba(159, 168, 255, 0.15) !important;
+  color: var(--muted-strong, #9aa8c2) !important;
+  padding: 0.3rem 0.7rem !important;
+  border-radius: 999px !important;
+  font-size: 0.72rem !important;
+}
+
+/* Mega menu links — Space Grotesk for premium geometric weight */
+.mega-menu-link {
+  font-family: "IBM Plex Sans", sans-serif !important;
+  font-size: 0.9rem !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   15. JUDGES PAGE — Compact legend panel, clean card fronts
+   ══════════════════════════════════════════════════════════════ */
+
+/* Single-row compact legend strip */
+.actor-top-panels--compact {
+  display: block !important;
+}
+
+.actor-top-panel--full {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1.5rem !important;
+  flex-wrap: wrap !important;
+  padding: 0.85rem 1.25rem !important;
+  border-radius: 10px !important;
+  margin-bottom: 1.25rem !important;
+  background: rgba(15, 22, 40, 0.7) !important;
+  border: 1px solid rgba(153, 153, 255, 0.1) !important;
+}
+
+.legend-label-group {
+  flex: 0 0 auto;
+}
+
+.legend-label-group .eyebrow {
+  margin: 0 !important;
+  font-size: 0.68rem !important;
+  letter-spacing: 0.12em !important;
+  color: rgba(153, 153, 255, 0.6) !important;
+  text-transform: uppercase !important;
+}
+
+.actor-top-panel--full .legend-items-horizontal {
+  display: flex !important;
+  gap: 0.75rem !important;
+  flex-wrap: wrap !important;
+  flex: 1 1 auto !important;
+}
+
+.legend-source-links {
+  display: flex;
+  gap: 0.5rem;
+  flex: 0 0 auto;
+}
+
+.btn-sm {
+  padding: 0.35rem 0.8rem !important;
+  font-size: 0.72rem !important;
+  border-radius: 5px !important;
+}
+
+/* Clean card front — remove visual noise */
+.actor-directory .flip-card-front .card-front-content {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  height: 100% !important;
+}
+
+.actor-directory .flip-card-front .card-front-footer {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding-top: 0.5rem !important;
+  border-top: 1px solid rgba(153, 153, 255, 0.08) !important;
+}
+
+.actor-directory .flip-card-front .front-metric-label {
+  font-size: 0.72rem !important;
+  color: rgba(141, 153, 174, 0.7) !important;
+  font-weight: 500 !important;
+}
+
+.actor-directory .flip-card-front .hover-hint {
+  font-size: 0.68rem !important;
+  color: rgba(153, 153, 255, 0.4) !important;
+  letter-spacing: 0.08em !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+}
+
+.actor-directory .flip-card:hover .hover-hint {
+  opacity: 1 !important;
 }

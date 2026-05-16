@@ -218,27 +218,27 @@
     height: auto;
     transform: translate(-50%, -50%);
     object-fit: cover;
-    opacity: 0.25;
-    filter: blur(1px);
+    opacity: 0.45;
+    filter: none;
+    transition: opacity 1.5s ease;
   }
 
-  /* Fallback gradient overlay */
+  /* Fallback gradient overlay — tint only, no multiply wash */
   &::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(15, 52, 96, 0.7) 0%, rgba(26, 84, 144, 0.7) 100%);
+    background: linear-gradient(160deg, rgba(6, 10, 22, 0.45) 0%, rgba(10, 16, 34, 0.3) 100%);
     z-index: 1;
-    mix-blend-mode: multiply;
   }
 }
 
-/* Dark overlay for better text readability */
+/* Edge vignette — lighter at center so sword and scales show through */
 .hero-background::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%);
+  background: radial-gradient(ellipse 90% 80% at 50% 50%, transparent 35%, rgba(6, 10, 22, 0.55) 100%);
   z-index: 2;
   pointer-events: none;
 }

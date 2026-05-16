@@ -124,40 +124,21 @@ body_class: archive-page actor-directory-page judges-page
     </aside>
 
     <section class="actor-main">
-      <div class="actor-top-panels">
-        <section class="bias-legend-bar actor-top-panel">
-          <div>
-            <p class="eyebrow">Scoring Legend</p>
-            <h2>Bias Beacon Score at a glance</h2>
+      <div class="actor-top-panels actor-top-panels--compact">
+        <section class="bias-legend-bar actor-top-panel actor-top-panel--full">
+          <div class="legend-label-group">
+            <p class="eyebrow">Score Key</p>
           </div>
-          <div class="legend-items-horizontal legend-items-stacked">
-            <div class="legend-chip excellent"><span class="legend-color"></span><span class="legend-text">0-20 Excellent</span></div>
-            <div class="legend-chip low"><span class="legend-color"></span><span class="legend-text">21-40 Low Risk</span></div>
-            <div class="legend-chip moderate"><span class="legend-color"></span><span class="legend-text">41-60 Moderate</span></div>
-            <div class="legend-chip high"><span class="legend-color"></span><span class="legend-text">61-80 High Risk</span></div>
-            <div class="legend-chip critical"><span class="legend-color"></span><span class="legend-text">81-100 Critical</span></div>
+          <div class="legend-items-horizontal">
+            <div class="legend-chip excellent"><span class="legend-color"></span><span class="legend-text">0–20 Excellent</span></div>
+            <div class="legend-chip low"><span class="legend-color"></span><span class="legend-text">21–40 Low</span></div>
+            <div class="legend-chip moderate"><span class="legend-color"></span><span class="legend-text">41–60 Moderate</span></div>
+            <div class="legend-chip high"><span class="legend-color"></span><span class="legend-text">61–80 High</span></div>
+            <div class="legend-chip critical"><span class="legend-color"></span><span class="legend-text">81–100 Critical</span></div>
           </div>
-        </section>
-        <section class="actor-top-panel actor-top-panel--evidence">
-          <p class="eyebrow">Evidence Chain</p>
-          <h2>How the surface opens up</h2>
-          <p>
-            Start with the score and spectrum, flip for the pressure points, then open the full profile
-            for the deeper context that gives each signal its weight.
-          </p>
-        </section>
-        <section class="actor-top-panel actor-top-panel--sources">
-          <p class="eyebrow">Source Stack</p>
-          <h2>Roster and photos are official. Metrics still need verification.</h2>
-          <p>
-            Judge names, roles, districts, and photos are now being matched against Oregon Judicial Department and Oregon Blue Book
-            records. The prison-usage, reversal, and counsel-disparity figures remain the site's analytic layer and should be treated
-            as provisional until each metric is tied to a reviewable source trail.
-          </p>
-          <div class="source-link-row">
-            <a class="btn btn-outline" href="https://www.courts.oregon.gov/courts/Pages/judges.aspx?wp9116=so:[[42569,0]]" target="_blank" rel="noreferrer">Official Judges</a>
-            <a class="btn btn-outline" href="https://www.courts.oregon.gov/courts/Pages/presiding-judges.aspx" target="_blank" rel="noreferrer">Presiding Judges</a>
-            <a class="btn btn-outline" href="https://www.courts.oregon.gov/courts/Pages/pro-tem.aspx" target="_blank" rel="noreferrer">Pro Tem Judges</a>
+          <div class="legend-source-links">
+            <a class="btn btn-outline btn-sm" href="https://www.courts.oregon.gov/courts/Pages/judges.aspx" target="_blank" rel="noreferrer">OJD Roster</a>
+            <a class="btn btn-outline btn-sm" href="{{ '/bias-beacon/methodology/' | relative_url }}">Methodology</a>
           </div>
         </section>
       </div>
@@ -166,7 +147,6 @@ body_class: archive-page actor-directory-page judges-page
         <div class="results-info">
           <span id="results-count" class="results-count">Loading judge cards...</span>
         </div>
-        <a href="{{ '/bias-beacon/methodology/' | relative_url }}" class="btn btn-outline">Methodology</a>
       </div>
 
       <div id="bias-stats" class="bias-stats-bar"></div>
@@ -240,39 +220,14 @@ body_class: archive-page actor-directory-page judges-page
                       <div class="score-circle" style="background: {{ accent }}; color: {{ accent_text }};">
                         <span class="score-value">{{ score_display }}</span>
                       </div>
-                      <span class="score-label">{{ judge_data.scoreLabel }}</span>
                     </div>
 
-                    <div class="spectrum-mini">
-                      <div class="spectrum-track">
-                        <span class="spectrum-marker" style="left: {{ judge_data.score | default: 4 }}%; background: {{ accent }};"></span>
-                      </div>
-                      <div class="spectrum-labels">
-                        <span>Equity</span>
-                        <span>Concern</span>
-                      </div>
+                    <div class="card-front-footer">
+                      {% if judge_data.termExpiresDisplay %}
+                      <span class="front-metric-label">{{ judge_data.termExpiresDisplay }}</span>
+                      {% endif %}
+                      <span class="hover-hint">Flip for evidence →</span>
                     </div>
-
-                    <p class="card-front-summary">{{ judge_data.summary }}</p>
-                    <div class="card-front-metrics">
-                      <div class="front-metric-chip">
-                        <span class="front-metric-label">Score</span>
-                        <strong class="front-metric-value">{{ score_display }}</strong>
-                      </div>
-                      <div class="front-metric-chip">
-                        <span class="front-metric-label">Prison Usage</span>
-                        <strong class="front-metric-value">{% if judge_data.prisonUsage %}{{ judge_data.prisonUsage }}%{% else %}Pending{% endif %}</strong>
-                      </div>
-                      <div class="front-metric-chip">
-                        <span class="front-metric-label">Reversal Rate</span>
-                        <strong class="front-metric-value">{% if judge_data.reversalRate %}{{ judge_data.reversalRate }}%{% else %}Pending{% endif %}</strong>
-                      </div>
-                      <div class="front-metric-chip">
-                        <span class="front-metric-label">Bench Term</span>
-                        <strong class="front-metric-value">{{ judge_data.termExpiresDisplay | default: 'Unknown' }}</strong>
-                      </div>
-                    </div>
-                    <div class="card-front-footer"><span class="hover-hint">Flip for evidence and profile links</span></div>
                   </div>
                 </div>
 
