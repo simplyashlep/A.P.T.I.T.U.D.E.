@@ -5727,7 +5727,6 @@ body.home-page {
   max-height: 2.45rem;
   width: auto;
 }
-=======
 /* Current pass: darker raised actor cards, pinned flips, image header, official photo shells */
 /* NOTE: logo size and button styles are controlled by dark-theme-fixes.scss */
 
@@ -5790,6 +5789,7 @@ body.home-page {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: stretch;
+}
 .site-title-mark,
 .mega-menu-title-text,
 .sidebar-panel h2,
@@ -5891,7 +5891,6 @@ body.home-page {
   mask-composite: exclude;
   -webkit-mask-composite: xor;
 }
-=======
 /* NOTE: panel/card backgrounds are controlled by dark-theme-fixes.scss */
 /* Previous light-theme panel styles removed to prevent override conflicts */
 
@@ -6206,6 +6205,7 @@ body.home-page {
   transform: translateY(-5px);
   filter: drop-shadow(0 28px 32px rgba(0, 0, 0, 0.3));
 }
+}
 
 .actor-directory .flip-card-front,
 .actor-directory .flip-card-back {
@@ -6357,6 +6357,7 @@ body.home-page {
   body {
     background: white;
   }
+}
 
 .main-menu-grid {
   display: grid;
@@ -7618,6 +7619,7 @@ body {
 
 .flip-cards-grid.actor-card-grid {
   gap: clamp(2rem, 3vw, 3rem) !important;
+}
 /* ── SEARCH FILTER CHIPS ── */
 .search-filter-chips {
   display: flex;
@@ -7820,6 +7822,7 @@ body {
   max-width: 800px;
   margin: 0 auto;
   text-align: center;
+}
 .main-cards-section::before {
   content: "";
   position: absolute;
@@ -8572,6 +8575,7 @@ body {
   font-size: 0.92rem;
   line-height: 1.5;
   margin-top: 0.6rem;
+}
 .modal-content {
   position: relative;
   z-index: 1;
@@ -8671,6 +8675,7 @@ body {
 .compare-metric-label {
   color: var(--muted-strong) !important;
   font-size: 0.82rem;
+}
 .card-back-subtitle {
   color: #b0bacc !important;
   font-size: 0.82rem;
