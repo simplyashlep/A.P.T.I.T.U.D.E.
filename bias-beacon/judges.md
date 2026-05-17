@@ -4,6 +4,139 @@ title: Judge Profiles - Bias Beacon
 permalink: /bias-beacon/judges/
 body_class: archive-page actor-directory-page judges-page
 ---
+<style>
+/* ── Judges page: holographic card fronts ─────────────────── */
+
+/* Grid frame — dark rounded container with subtle border */
+.judges-page #judges-grid {
+  position: relative;
+  background: rgba(8, 10, 22, 0.6);
+  border: 1px solid rgba(90, 130, 220, 0.18);
+  border-radius: 20px;
+  padding: 2rem 1.5rem;
+  box-shadow:
+    inset 0 0 60px rgba(30, 50, 140, 0.12),
+    0 0 0 1px rgba(60, 100, 200, 0.08);
+}
+
+/* Corner bracket accents via pseudo-elements */
+.judges-page #judges-grid::before,
+.judges-page #judges-grid::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-color: rgba(100, 160, 255, 0.55);
+  border-style: solid;
+  pointer-events: none;
+}
+.judges-page #judges-grid::before {
+  top: -1px; left: -1px;
+  border-width: 2px 0 0 2px;
+  border-radius: 4px 0 0 0;
+}
+.judges-page #judges-grid::after {
+  bottom: -1px; right: -1px;
+  border-width: 0 2px 2px 0;
+  border-radius: 0 0 4px 0;
+}
+
+/* Holographic gradient card front */
+.judges-page .flip-card-front {
+  background:
+    radial-gradient(ellipse at 42% 42%, rgba(150, 175, 255, 0.55) 0%, transparent 62%),
+    linear-gradient(148deg,
+      #151090 0%,
+      #2430c8 22%,
+      #3858d8 48%,
+      #50a0ec 76%,
+      #68c8fc 100%
+    ) !important;
+  box-shadow:
+    0 0 30px 5px rgba(90, 150, 255, 0.8),
+    0 0 65px 14px rgba(70, 120, 240, 0.45),
+    0 8px 30px rgba(0, 0, 0, 0.55) !important;
+  border: 1px solid rgba(160, 210, 255, 0.22) !important;
+}
+
+/* Compare bar — keep it minimal so it doesn't break the holographic look */
+.judges-page .flip-card-front .card-selection-bar {
+  background: rgba(10, 14, 40, 0.45);
+  border-bottom: 1px solid rgba(120, 170, 255, 0.12);
+  backdrop-filter: blur(4px);
+}
+.judges-page .flip-card-front .compare-toggle-pill span,
+.judges-page .flip-card-front .status-indicator {
+  color: rgba(200, 225, 255, 0.8);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+}
+
+/* Judge name */
+.judges-page .judge-name-display {
+  font-size: 0.72rem !important;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: rgba(225, 238, 255, 0.97) !important;
+  text-shadow: 0 1px 10px rgba(80, 140, 255, 0.65);
+  margin-bottom: 0.4rem;
+  line-height: 1.3;
+}
+
+/* County label */
+.judges-page .county-label {
+  font-size: 0.63rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(175, 210, 255, 0.78);
+  margin-bottom: 0;
+}
+
+/* Score circle — outlined ring, no solid fill */
+.judges-page .score-circle {
+  width: 66px !important;
+  height: 66px !important;
+  border-radius: 50% !important;
+  background: transparent !important;
+  color: rgba(225, 238, 255, 0.97) !important;
+  border: 2px solid rgba(200, 225, 255, 0.75) !important;
+  box-shadow:
+    0 0 18px rgba(140, 185, 255, 0.5),
+    inset 0 0 18px rgba(100, 160, 255, 0.12);
+  font-size: 1.55rem !important;
+  font-weight: 800;
+  text-shadow: 0 0 14px rgba(140, 200, 255, 0.9);
+}
+
+/* Front footer — term + flip hint */
+.judges-page .card-front-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+.judges-page .card-front-footer .front-metric-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(180, 215, 255, 0.72);
+}
+.judges-page .card-front-footer .hover-hint {
+  font-size: 0.58rem;
+  color: rgba(160, 200, 255, 0.45);
+  letter-spacing: 0.06em;
+}
+
+/* Hover — intensify the bloom */
+.judges-page .flip-card:not(.is-flipped):hover .flip-card-front {
+  box-shadow:
+    0 0 45px 10px rgba(100, 165, 255, 0.9),
+    0 0 90px 22px rgba(80, 135, 245, 0.55),
+    0 12px 40px rgba(0, 0, 0, 0.6) !important;
+}
+</style>
 
 <div class="actor-directory actor-directory--judges"
      data-directory-root
