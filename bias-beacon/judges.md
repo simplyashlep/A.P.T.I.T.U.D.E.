@@ -152,7 +152,7 @@ body_class: archive-page actor-directory-page judges-page
       <div id="bias-stats" class="bias-stats-bar"></div>
 
       <div id="judges-grid" class="flip-cards-grid actor-card-grid" data-directory-grid>
-        {% assign judge_directory = site.data.bias-beacon.judges-directory_with_mock.judges %}
+        {% assign judge_directory = site.data.bias-beacon.judges-directory.judges %}
         {% for judge_data in judge_directory %}
             {% assign score = judge_data.score %}
             {% assign score_display = score | default: 'Pending' %}
@@ -228,20 +228,6 @@ body_class: archive-page actor-directory-page judges-page
                       {% endif %}
                       <span class="hover-hint">Flip for evidence →</span>
                     </div>
-                      <span class="score-label">{{ judge_data.scoreLabel }}</span>
-                    </div>
-
-                    <div class="card-front-metrics minimal-front-metrics">
-                      <div class="front-metric-chip">
-                        <span class="front-metric-label">Bias Score</span>
-                        <strong class="front-metric-value">{{ score_display }}</strong>
-                      </div>
-                      <div class="front-metric-chip">
-                        <span class="front-metric-label">Term / Seat</span>
-                        <strong class="front-metric-value">{{ judge_data.termExpiresDisplay | default: 'Unknown' }}</strong>
-                      </div>
-                    </div>
-                    <div class="card-front-footer"><span class="hover-hint">Flip for signals</span></div>
                   </div>
                 </div>
 

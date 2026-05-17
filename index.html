@@ -4,19 +4,83 @@ title: A.P.T.I.T.U.D.E. | Advanced Platform Tabulating Institutional Trends Unma
 permalink: /
 body_class: home-page
 ---
+<style>
+.hero-headline-group {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+.hero-eyebrow {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(159,168,255,0.9);
+  margin: 0 0 0.85rem;
+}
+.hero-tagline {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-weight: 800;
+  color: #e8eeff;
+  margin: 0 0 0.8rem;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+}
+.hero-tagline em {
+  font-style: normal;
+  color: #9fa8ff;
+}
+.hero-deck {
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  color: rgba(216, 228, 245, 0.78);
+  margin: 0 auto;
+  max-width: 52ch;
+}
+.hero-live-counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2.25rem;
+  flex-wrap: wrap;
+}
+.live-counter-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.18rem;
+}
+.counter-number {
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 800;
+  color: #9fa8ff;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.counter-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(141, 153, 174, 0.8);
+}
+.live-counter-sep {
+  color: rgba(159,168,255,0.25);
+  font-size: 2rem;
+  font-weight: 200;
+  line-height: 1;
+  padding-bottom: 0.6rem;
+  user-select: none;
+}
+</style>
 
 <!-- ═══════════════════════════════════════════════════════════
-     HERO SECTION — Clean landing: logo + hamburger (in header),
-     centered floating search bar, filter chips below
-     Video background with overlay and animated elements
+     HERO SECTION — Lady Justice video background, search, counter
      ═══════════════════════════════════════════════════════════ -->
 <section class="hero-section hero-landing">
-  <!-- Background video layer -->
   <div class="hero-background">
     <video class="hero-bg-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
       <source src="{{ '/assets/videos/lj.mp4' | relative_url }}" type="video/mp4" />
     </video>
-    <!-- Animated cube field overlay -->
     <div class="hero-cube-field">
       <div class="hero-cube"></div>
       <div class="hero-cube"></div>
@@ -27,9 +91,13 @@ body_class: home-page
     </div>
   </div>
 
-     ═══════════════════════════════════════════════════════════ -->
-<section class="hero-section hero-landing">
   <div class="hero-landing-content">
+    <div class="hero-headline-group">
+      <p class="hero-eyebrow">Oregon's First Judicial Intelligence Platform</p>
+      <h2 class="hero-tagline">Every judge. Every county. Every <em>pattern</em>.</h2>
+      <p class="hero-deck">Public records transformed into accountability intelligence — scored, mapped, and searchable by anyone.</p>
+    </div>
+
     <div class="floating-search-container">
       <form class="floating-search-form" id="hero-search-form">
         <div class="search-input-wrap">
@@ -37,7 +105,6 @@ body_class: home-page
           <input id="hero-search" type="search" class="floating-search-input" placeholder="Search judges, cases, counties, or agencies..." autocomplete="off" />
           <button type="submit" class="floating-search-btn">Search</button>
         </div>
-        <!-- Live search results dropdown -->
         <div id="hero-search-results" class="hero-search-results" hidden></div>
       </form>
       <div class="search-filter-chips">
@@ -49,17 +116,37 @@ body_class: home-page
         <button class="filter-chip" data-filter="caselaw">Case Law</button>
       </div>
     </div>
+
+    <div class="hero-live-counter">
+      <div class="live-counter-item">
+        <span class="counter-number">210</span>
+        <span class="counter-label">Judges Tracked</span>
+      </div>
+      <div class="live-counter-sep">·</div>
+      <div class="live-counter-item">
+        <span class="counter-number">27</span>
+        <span class="counter-label">Counties Mapped</span>
+      </div>
+      <div class="live-counter-sep">·</div>
+      <div class="live-counter-item">
+        <span class="counter-number">15K+</span>
+        <span class="counter-label">Cases Analyzed</span>
+      </div>
+    </div>
   </div>
 
-  <!-- Scroll indicator -->
   <div class="scroll-indicator">
     <span>Scroll to explore</span>
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
   </div>
 </section>
 
+<!-- ═══════════════════════════════════════════════════════════
+     MAIN MENU SECTION — 7 equal columns
+     ═══════════════════════════════════════════════════════════ -->
 <section class="home-main-menu" id="main-menu">
   <div class="main-menu-grid main-menu-grid-7">
+
     <div class="main-menu-column" data-menu-col>
       <a class="main-menu-title" href="{{ '/bias-beacon/judges/' | relative_url }}">
         <span class="main-menu-title-text">The Judiciary</span>
@@ -72,36 +159,7 @@ body_class: home-page
         <a class="main-menu-link" href="{{ '/bias-beacon/methodology/' | relative_url }}">Scoring &amp; Methodology</a>
       </div>
     </div>
-  </div>
 
-  <!-- Scroll indicator -->
-  <div class="scroll-indicator">
-    <span>Scroll to explore</span>
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════════════════════
-     MISSION SECTION — Appears after scrolling
-     ═══════════════════════════════════════════════════════════ -->
-<section class="mission-section" data-reveal>
-  <div class="mission-content">
-    <div class="mission-accent-line"></div>
-    <h2 class="mission-title">Our Mission</h2>
-    <p class="mission-lead">A.P.T.I.T.U.D.E. transforms public justice records into intelligence that exposes patterns, compares performance, and makes accountability actionable.</p>
-    <p class="mission-body">We build a premium experience where data is presented with clarity, context, and ethical transparency so decision makers and the public can use it with confidence.</p>
-    <div class="mission-stats">
-      <div class="mission-stat">
-        <span class="mission-stat-number">210</span>
-        <span class="mission-stat-label">Circuit Judges</span>
-      </div>
-      <div class="mission-stat">
-        <span class="mission-stat-number">27</span>
-        <span class="mission-stat-label">Oregon Counties</span>
-      </div>
-      <div class="mission-stat">
-        <span class="mission-stat-number">24/7</span>
-        <span class="mission-stat-label">Evidence Access</span>
     <div class="main-menu-column" data-menu-col>
       <a class="main-menu-title" href="{{ '/bias-beacon/dashboard/' | relative_url }}">
         <span class="main-menu-title-text">The Watchtower</span>
@@ -176,8 +234,14 @@ body_class: home-page
         <a class="main-menu-link" href="{{ '/community-forum.html' | relative_url }}#public-comment">Public Comment</a>
         <a class="main-menu-link" href="{{ '/community-forum.html' | relative_url }}#groups">Groups</a>
         <a class="main-menu-link" href="{{ '/community-forum.html' | relative_url }}#news">News &amp; For You</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- ═══════════════════════════════════════════════════════════
-     MISSION SECTION — Appears after scrolling
+     MISSION SECTION
      ═══════════════════════════════════════════════════════════ -->
 <section class="mission-section" data-reveal>
   <div class="mission-content">
@@ -431,12 +495,12 @@ body_class: home-page
 </div>
 
 <noscript><style>[data-reveal]{opacity:1;transform:none;}</style></noscript>
-<!-- Video loop fade — hides the hard restart seam -->
+<!-- Video loop fade — smooth opacity transition on loop seam -->
 <script>
 (function() {
   var heroVideo = document.querySelector('.hero-background video');
   if (!heroVideo) return;
-  var TARGET_OPACITY = 0.45;
+  var TARGET_OPACITY = 0.80;
   var FADE_SECS = 1.8;
 
   heroVideo.addEventListener('timeupdate', function() {
