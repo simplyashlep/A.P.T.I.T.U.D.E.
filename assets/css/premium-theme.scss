@@ -5,12 +5,12 @@
 
 :root {
   // === COLOR VARIABLES ===
-  --color-primary: #0F3460;
-  --color-primary-light: #1A5490;
+  --color-primary: #001428;
+  --color-primary-light: #0F3460;
   --color-primary-lighter: #2E7BB4;
   --color-secondary: #D4784A;
   --color-secondary-light: #E89E6E;
-  --color-success: #2B7B4F;
+  --color-success: #6a5acd;
   --color-warning: #C68642;
   --color-danger: #9B2F2F;
   --color-info: #1A5A8E;
@@ -227,7 +227,7 @@ nav a {
 
 .card {
   /* Dark theme: semi-transparent card backgrounds */
-  background-color: rgba(255, 255, 255, 0.04);
+  background-color: rgba(0, 2, 85, 0.04);
   border: 1px solid var(--line);
   border-radius: var(--border-radius-lg);
   padding: var(--space-md);
@@ -283,12 +283,12 @@ nav a {
 
 .btn-primary, .button-primary {
   background-color: var(--color-primary);
-  color: var(--color-white);
+  color: var(--color-primary);
   border-color: var(--color-primary);
   
   &:hover {
-    background-color: var(--color-primary-light);
-    border-color: var(--color-primary-light);
+    background-color: var(--color-sucess);
+    border-color: var(--color-success);
   }
 }
 
@@ -308,7 +308,7 @@ nav a {
   border-color: var(--line-strong);
   
   &:hover {
-    background-color: rgba(255, 255, 255, 0.06);
+    background-color: rgba(0, 2, 85, 0.06);
     border-color: var(--signal);
   }
 }
