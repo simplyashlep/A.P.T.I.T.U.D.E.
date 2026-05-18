@@ -9106,13 +9106,7 @@ body {
   margin-top: 0.5rem;
 }
 
-/* Override both fixed-menu.scss and earlier style.scss late-pass */
-.mega-menu-shell .mega-menu-grid,
-#mega-menu-panel .mega-menu-grid,
-.mega-menu-grid {
-  grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
-}
-
+/* mega-menu grid set in later override block — see below */
 .mega-menu-title-text {
   font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, sans-serif !important;
   font-size: clamp(1.4rem, 1.8vw, 2rem) !important;
@@ -9199,31 +9193,45 @@ body {
   margin-top: 0.5rem;
 }
 
-/* Override both fixed-menu.scss and earlier style.scss late-pass */
+/* Mega-menu grid: 7 equal columns */
 .mega-menu-shell .mega-menu-grid,
 #mega-menu-panel .mega-menu-grid,
 .mega-menu-grid {
-  grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+  display: grid !important;
+  grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+  gap: 0 1.5rem !important;
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
+.mega-menu-column {
+  min-width: 0 !important;
+  width: 100% !important;
+  overflow: hidden;
 }
 
 .mega-menu-title-text {
-  font-family: "Cormorant Garamond", "Libre Caslon Display", serif !important;
-  font-size: clamp(1.4rem, 1.8vw, 2rem) !important;
+  font-family: "Space Grotesk", system-ui, sans-serif !important;
+  font-size: clamp(0.85rem, 1.1vw, 1.05rem) !important;
   font-weight: 700 !important;
-  line-height: 1.05 !important;
+  line-height: 1.15 !important;
   letter-spacing: 0.06em !important;
   text-transform: uppercase !important;
-  color: #efd0a0 !important;
+  color: #c8b8f0 !important;
   text-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.2),
+    0 1px 0 rgba(255, 255, 255, 0.15),
     0 4px 16px rgba(0, 0, 0, 0.4) !important;
 }
 
 .mega-menu-link {
-  font-family: "Cormorant Garamond", "Libre Caslon Display", serif !important;
-  font-size: 1.05rem !important;
-  font-weight: 600 !important;
-  color: #f6efe7 !important;
+  font-family: "Space Grotesk", system-ui, sans-serif !important;
+  font-size: 0.88rem !important;
+  font-weight: 500 !important;
+  color: #d8e4f5 !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
 }
 
 /* ── CONTRAST FIXES ── */
@@ -9454,3 +9462,78 @@ body {
 /* === FINAL OVERRIDE IMPORT — must be last to win all specificity === */
 @import "dark-theme-fixes";
 @import "homepage-premium";
+
+/* ══════════════════════════════════════════════════════════════
+   APTITUDE GLOBAL OVERRIDES — background, typography, menu
+   Applied after all other imports to guarantee precedence
+   ══════════════════════════════════════════════════════════════ */
+
+/* Periwinkle-gray page background — boxes/cards stay dark navy */
+html, body {
+  background-color: #1e2040 !important;
+  background-image: radial-gradient(ellipse at 30% 20%, rgba(80, 90, 160, 0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 70% 80%, rgba(60, 70, 140, 0.14) 0%, transparent 55%) !important;
+}
+
+/* Replace Cormorant Garamond with Space Grotesk everywhere */
+.mission-title,
+.main-card .card-back-content h3,
+.actor-directory .judge-name-display,
+.judge-name-display,
+h1, h2, h3, h4 {
+  font-family: "Space Grotesk", system-ui, sans-serif !important;
+}
+
+/* Remove serif from mission copy */
+.mission-section,
+.mission-lead,
+.mission-body {
+  font-family: "Space Grotesk", system-ui, sans-serif !important;
+}
+
+/* Ensure cards-container and main-cards-section sit on the periwinkle bg */
+.main-cards-section,
+.mission-section,
+.home-main-menu,
+.cards-intro-band {
+  background: transparent !important;
+}
+
+/* Mega-menu shell: ensure it spans full width with no clip */
+.mega-menu-shell {
+  width: 100% !important;
+  left: 0 !important;
+  right: 0 !important;
+  overflow: visible !important;
+}
+
+.mega-menu-grid.mega-menu-grid-7 {
+  display: grid !important;
+  grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+  gap: 0 1.25rem !important;
+  padding: 1.5rem !important;
+  width: 100% !important;
+}
+
+/* Main homepage menu — same 7-column treatment */
+.main-menu-grid.main-menu-grid-7 {
+  display: grid !important;
+  grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+  gap: 0 1rem !important;
+  width: 100% !important;
+}
+
+/* Site title CSS text on all pages */
+.site-title-css {
+  text-decoration: none !important;
+}
+.site-title-text {
+  font-family: "Space Grotesk", system-ui, sans-serif !important;
+}
+
+/* Remove responsive clamp that breaks 7-col at mid widths */
+@media screen and (min-width: 900px) {
+  .mega-menu-grid {
+    grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+  }
+}

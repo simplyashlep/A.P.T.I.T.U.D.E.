@@ -7,56 +7,53 @@ body_class: archive-page actor-directory-page judges-page
 <style>
 /* ── Judges page: holographic card fronts ─────────────────── */
 
-/* Grid frame — dark rounded container with subtle border */
+/* Grid frame — card grid as horizontal playing-card layout */
 .judges-page #judges-grid {
   position: relative;
-  background: rgba(8, 10, 22, 0.6);
-  border: 1px solid rgba(90, 130, 220, 0.18);
-  border-radius: 20px;
-  padding: 2rem 1.5rem;
-  box-shadow:
-    inset 0 0 60px rgba(30, 50, 140, 0.12),
-    0 0 0 1px rgba(60, 100, 200, 0.08);
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 1.75rem 1.5rem !important;
+  align-items: start !important;
+  padding: 1rem 0;
 }
 
-/* Corner bracket accents via pseudo-elements */
-.judges-page #judges-grid::before,
-.judges-page #judges-grid::after {
-  content: '';
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  border-color: rgba(100, 160, 255, 0.55);
-  border-style: solid;
-  pointer-events: none;
-}
-.judges-page #judges-grid::before {
-  top: -1px; left: -1px;
-  border-width: 2px 0 0 2px;
-  border-radius: 4px 0 0 0;
-}
-.judges-page #judges-grid::after {
-  bottom: -1px; right: -1px;
-  border-width: 0 2px 2px 0;
-  border-radius: 0 0 4px 0;
+/* Alternating card heights for depth/rhythm */
+.judges-page #judges-grid .flip-card:nth-child(3n+1) { margin-top: 0; }
+.judges-page #judges-grid .flip-card:nth-child(3n+2) { margin-top: 1.5rem; }
+.judges-page #judges-grid .flip-card:nth-child(3n)   { margin-top: 0.75rem; }
+
+@media screen and (min-width: 1100px) {
+  .judges-page #judges-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+  .judges-page #judges-grid .flip-card:nth-child(4n+1) { margin-top: 0; }
+  .judges-page #judges-grid .flip-card:nth-child(4n+2) { margin-top: 1.75rem; }
+  .judges-page #judges-grid .flip-card:nth-child(4n+3) { margin-top: 0.875rem; }
+  .judges-page #judges-grid .flip-card:nth-child(4n)   { margin-top: 1.25rem; }
 }
 
-/* Holographic gradient card front */
+@media screen and (max-width: 700px) {
+  .judges-page #judges-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* Holographic gradient card front — deeper indigo/periwinkle, less electric */
 .judges-page .flip-card-front {
   background:
-    radial-gradient(ellipse at 42% 42%, rgba(150, 175, 255, 0.55) 0%, transparent 62%),
+    radial-gradient(ellipse at 42% 42%, rgba(110, 130, 200, 0.45) 0%, transparent 62%),
     linear-gradient(148deg,
-      #151090 0%,
-      #2430c8 22%,
-      #3858d8 48%,
-      #50a0ec 76%,
-      #68c8fc 100%
+      #0e0c60 0%,
+      #1a1e90 22%,
+      #2538b0 48%,
+      #3468c8 76%,
+      #4888dc 100%
     ) !important;
   box-shadow:
-    0 0 30px 5px rgba(90, 150, 255, 0.8),
-    0 0 65px 14px rgba(70, 120, 240, 0.45),
-    0 8px 30px rgba(0, 0, 0, 0.55) !important;
-  border: 1px solid rgba(160, 210, 255, 0.22) !important;
+    0 0 22px 4px rgba(60, 100, 200, 0.65),
+    0 0 50px 10px rgba(50, 80, 180, 0.35),
+    0 8px 30px rgba(0, 0, 0, 0.6) !important;
+  border: 1px solid rgba(100, 150, 220, 0.2) !important;
 }
 
 /* Compare bar — keep it minimal so it doesn't break the holographic look */
@@ -91,6 +88,43 @@ body_class: archive-page actor-directory-page judges-page
   text-transform: uppercase;
   color: rgba(175, 210, 255, 0.78);
   margin-bottom: 0;
+}
+
+/* Card dimensions — horizontal playing-card shape */
+.judges-page .flip-card {
+  height: 200px !important;
+  min-height: 200px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  filter:
+    drop-shadow(0 12px 24px rgba(0, 0, 0, 0.45))
+    drop-shadow(0 0 16px rgba(50, 80, 200, 0.25)) !important;
+}
+
+.judges-page .flip-card-front,
+.judges-page .flip-card-back {
+  border-radius: 14px !important;
+  padding: 1rem 1.25rem !important;
+}
+
+.judges-page .card-front-content {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 1rem !important;
+  padding: 0 !important;
+  text-align: left !important;
+  height: 100% !important;
+}
+
+.judges-page .judge-name-container {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.judges-page .bias-score-indicator {
+  flex: 0 0 auto;
 }
 
 /* Score circle — outlined ring, no solid fill */

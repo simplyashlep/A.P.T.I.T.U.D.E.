@@ -1,9 +1,7 @@
 <header class="site-header" role="banner">
   <div class="wrapper site-header-inner">
-    <a class="site-title" rel="author" href="{{ '/' | relative_url }}">
-      <img class="site-title-image"
-           src="{{ '/assets/images/titles/NEW ASSETS/v2 Main Page Title Aptitude.png' | relative_url }}"
-           alt="A.P.T.I.T.U.D.E.">
+    <a class="site-title site-title-css" rel="author" href="{{ '/' | relative_url }}" aria-label="A.P.T.I.T.U.D.E. — Home">
+      <span class="site-title-text">A·P·T·I·T·U·D·E·</span>
     </a>
 
     <nav class="site-nav" aria-label="Primary navigation">
@@ -18,6 +16,7 @@
 
   <div class="mega-menu-shell" id="mega-menu-panel" data-mega-menu hidden>
     <div class="wrapper mega-menu-grid mega-menu-grid-7">
+
       <section class="mega-menu-column">
         <a class="mega-menu-title" href="{{ '/bias-beacon/judges/' | relative_url }}">
           <span class="mega-menu-title-text">The Judiciary</span>
@@ -32,7 +31,7 @@
         <a class="mega-menu-link" href="{{ '/bias-beacon/methodology/' | relative_url }}">Scoring Framework</a>
       </section>
 
-      <section class="mega-menu-column mega-menu-column-centered">
+      <section class="mega-menu-column">
         <a class="mega-menu-title" href="{{ '/bias-beacon/dashboard/' | relative_url }}">
           <span class="mega-menu-title-text">The Watchtower</span>
           <span class="mega-menu-title-hover">System Intelligence</span>
@@ -42,8 +41,8 @@
         </div>
         <a class="mega-menu-link" href="{{ '/bias-beacon/dashboard/' | relative_url }}">Statewide Dashboard</a>
         <a class="mega-menu-link" href="{{ '/bias-beacon/counties/' | relative_url }}">County Intelligence</a>
-        <a class="mega-menu-link" href="{{ '/reports/' | relative_url }}">Budget Analysis</a>
-        <a class="mega-menu-link" href="{{ '/investigations/' | relative_url }}">Pattern Explorer</a>
+        <a class="mega-menu-link" href="{{ '/bias-beacon/' | relative_url }}">Bias Beacon</a>
+        <a class="mega-menu-link" href="{{ '/bias-beacon/methodology/' | relative_url }}">Methodology</a>
       </section>
 
       <section class="mega-menu-column">
@@ -57,6 +56,7 @@
         <a class="mega-menu-link" href="{{ '/law-enforcement.html' | relative_url }}">Agency Profiles</a>
         <a class="mega-menu-link" href="{{ '/law-enforcement.html' | relative_url }}#stops">Stops &amp; Searches</a>
         <a class="mega-menu-link" href="{{ '/law-enforcement.html' | relative_url }}#arrests">Arrest Patterns</a>
+        <a class="mega-menu-link" href="{{ '/law-enforcement.html' | relative_url }}#oversight">Oversight Bodies</a>
       </section>
 
       <section class="mega-menu-column">
@@ -69,35 +69,35 @@
         </div>
         <a class="mega-menu-link" href="{{ '/parole-probation.html' | relative_url }}">County Supervision</a>
         <a class="mega-menu-link" href="{{ '/parole-probation.html' | relative_url }}#revocation">Revocation Pressure</a>
-        <a class="mega-menu-link" href="{{ '/prosecutors.html' | relative_url }}">Prosecutor Profiles</a>
+        <a class="mega-menu-link" href="{{ '/parole-probation.html' | relative_url }}#support">Support Capacity</a>
       </section>
 
       <section class="mega-menu-column">
-        <a class="mega-menu-title" href="{{ '/bias-beacon/methodology/' | relative_url }}">
+        <a class="mega-menu-title" href="{{ '/prosecutors.html' | relative_url }}">
+          <span class="mega-menu-title-text">Prosecutor Profiles</span>
+          <span class="mega-menu-title-hover">Charging &amp; Disposition</span>
+        </a>
+        <div class="mega-menu-reveal">
+          <p>Charging patterns, plea outcomes, and public safety narratives by county.</p>
+        </div>
+        <a class="mega-menu-link" href="{{ '/prosecutors.html' | relative_url }}">County Offices</a>
+        <a class="mega-menu-link" href="{{ '/prosecutors.html' | relative_url }}#charging">Charging Patterns</a>
+        <a class="mega-menu-link" href="{{ '/prosecutors.html' | relative_url }}#plea">Plea Leverage</a>
+        <a class="mega-menu-link" href="{{ '/prosecutors.html' | relative_url }}#dismissals">Dismissal Rates</a>
+      </section>
+
+      <section class="mega-menu-column">
+        <a class="mega-menu-title" href="{{ '/legal-assistant.html' | relative_url }}">
           <span class="mega-menu-title-text">Juris Lab</span>
           <span class="mega-menu-title-hover">Law &amp; Application</span>
         </a>
         <div class="mega-menu-reveal">
-          <p>Cases, filings, legal issues, and AI-assisted research.</p>
+          <p>Cases, filings, legal issues, and AI-assisted research tools.</p>
         </div>
         <a class="mega-menu-link" href="{{ '/bias-beacon/' | relative_url }}">Cases &amp; Law</a>
         <a class="mega-menu-link" href="{{ '/reports/' | relative_url }}">Cases &amp; Filings</a>
         <a class="mega-menu-link" href="{{ '/legal-assistant.html' | relative_url }}">AI Legal Assistant</a>
         <a class="mega-menu-link" href="https://soll.libguides.com/" target="_blank" rel="noreferrer">Library</a>
-      </section>
-
-      <section class="mega-menu-column">
-        <a class="mega-menu-title" href="{{ '/about/' | relative_url }}">
-          <span class="mega-menu-title-text">Contacts &amp; Oversight</span>
-          <span class="mega-menu-title-hover">Public oversight routes</span>
-        </a>
-        <div class="mega-menu-reveal">
-          <p>Live entry points into public institutions and oversight bodies.</p>
-        </div>
-        <a class="mega-menu-link" href="{{ '/about/' | relative_url }}">Attorney Directory</a>
-        <a class="mega-menu-link" href="https://www.osbar.org/" target="_blank" rel="noreferrer">Oregon State Bar</a>
-        <a class="mega-menu-link" href="https://www.oregon.gov/cjc/Pages/default.aspx" target="_blank" rel="noreferrer">Criminal Justice Commission</a>
-        <a class="mega-menu-link" href="https://www.portland.gov/ipr" target="_blank" rel="noreferrer">Oversight Bodies</a>
       </section>
 
       <section class="mega-menu-column mega-menu-column-movement">
@@ -112,21 +112,9 @@
         <a class="mega-menu-link" href="{{ '/community-forum.html' | relative_url }}#public-comment">Public Comment</a>
         <a class="mega-menu-link" href="{{ '/community-forum.html' | relative_url }}#groups">Groups</a>
         <a class="mega-menu-link" href="{{ '/community-forum.html' | relative_url }}#news">News &amp; For You</a>
+        <a class="mega-menu-link" href="{{ '/meet-us/' | relative_url }}">Meet The Team</a>
       </section>
 
-      <section class="mega-menu-column">
-        <a class="mega-menu-title" href="{{ '/bias-beacon/' | relative_url }}">
-          <span class="mega-menu-title-text">Bias Beacon</span>
-          <span class="mega-menu-title-hover">Real-time monitoring</span>
-        </a>
-        <div class="mega-menu-reveal">
-          <p>Judicial bias tracking, sentencing disparities, and institutional drift analysis.</p>
-        </div>
-        <a class="mega-menu-link" href="{{ '/bias-beacon/' | relative_url }}">Dashboard</a>
-        <a class="mega-menu-link" href="{{ '/bias-beacon/judges/' | relative_url }}">Judge Scores</a>
-        <a class="mega-menu-link" href="{{ '/bias-beacon/counties/' | relative_url }}">County Intel</a>
-        <a class="mega-menu-link" href="{{ '/bias-beacon/methodology/' | relative_url }}">Methodology</a>
-      </section>
     </div>
   </div>
 </header>

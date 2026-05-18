@@ -72,34 +72,47 @@ button:not(.modal-close):not(.close) {
   justify-self: start !important;
 }
 
-.home-page .site-title {
+/* ── Site title: CSS text, premium glass/embossed 3D ─── */
+.site-title-css {
   order: 2;
   justify-self: end !important;
   margin-left: auto;
   overflow: visible;
-  perspective: 700px;
+  text-decoration: none;
 }
 
-.home-page .site-title-image {
-  max-height: clamp(4.4rem, 7vw, 6.7rem) !important;
-  filter:
-    drop-shadow(0 18px 28px rgba(0, 0, 0, 0.5))
-    drop-shadow(0 0 28px rgba(79, 231, 224, 0.18));
-  transform: rotateY(-8deg) translateZ(0);
-  transform-origin: right center;
-  animation: aptitude-title-breathe 2s ease-in-out infinite;
+.site-title-text {
+  display: block;
+  font-family: 'Space Grotesk', 'Outfit', system-ui, sans-serif;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  color: #8ba0f8;
+  text-shadow:
+    1px 1px 0 rgba(5, 10, 40, 0.9),
+    2px 2px 0 rgba(4, 8, 34, 0.8),
+    3px 3px 0 rgba(3, 6, 26, 0.7),
+    4px 4px 2px rgba(2, 4, 18, 0.5),
+    0 0 22px rgba(100, 140, 255, 0.55),
+    0 0 48px rgba(70, 110, 240, 0.25);
+  -webkit-text-stroke: 0.5px rgba(160, 190, 255, 0.35);
+  transition: text-shadow 0.3s ease, color 0.3s ease;
 }
 
-.home-page .site-title:hover .site-title-image {
-  transform: rotateY(-26deg) translateY(-6px) scale(4.03);
-  filter:
-    drop-shadow(0 22px 34px rgba(0, 0, 0, 0.55))
-    drop-shadow(0 0 40px rgba(79, 231, 224, 0.28));
+.site-title-css:hover .site-title-text {
+  color: #a0b8ff;
+  text-shadow:
+    1px 1px 0 rgba(5, 10, 40, 0.9),
+    2px 2px 0 rgba(4, 8, 34, 0.8),
+    3px 3px 0 rgba(3, 6, 26, 0.7),
+    4px 4px 2px rgba(2, 4, 18, 0.5),
+    0 0 30px rgba(120, 160, 255, 0.75),
+    0 0 60px rgba(90, 130, 250, 0.35);
 }
 
 @keyframes aptitude-title-breathe {
-  0%, 100% { transform: rotateY(-8deg) translateY(0) scale(1); }
-  50% { transform: rotateY(-33deg) translateY(-5px) scale(1.015); }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.95; }
 }
 
 .home-page .hero-landing {
@@ -120,21 +133,21 @@ button:not(.modal-close):not(.close) {
 .home-page .hero-bg-video,
 .home-page .hero-background video {
   position: absolute;
-  top: 90%;
-  right: clamp(-1rem, 3vw, 12rem);
-  left: auto;
+  top: 50%;
+  left: 50%;
+  right: auto;
   width: auto;
-  height: min(90vh, 980px);
+  height: 95%;
   min-width: 0;
   min-height: 0;
-  transform: translateY(-50%) scale(0.88);
+  transform: translate(-50%, -50%);
   object-fit: contain;
   object-position: center center;
-  opacity: 0.77;
-  filter: saturate(0.99) contrast(3.0) brightness(1.98);
-  mix-blend-mode: screen;
-  -webkit-mask-image: radial-gradient(ellipse at 57% 56%, #000 28%, rgba(0, 0, 0, 0.58) 54%, transparent 98%);
-  mask-image: radial-gradient(ellipse at 57% 56%, #000 28%, rgba(0, 0, 0, 0.58) 76%, transparent 99%);
+  opacity: 0.68;
+  filter: brightness(1.15) contrast(1.05) saturate(1.1);
+  mix-blend-mode: normal;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 8%, #000 80%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 8%, #000 80%, transparent 100%);
 }
 
 .home-page .hero-background::before {
