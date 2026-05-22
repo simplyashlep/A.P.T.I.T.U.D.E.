@@ -86,23 +86,111 @@ def test_oregon_facts_returns_six_facts(session):
     assert 380000 in values, "Expected 380000 (STOP traffic stops)"
 
 
-# ------------------- Actors -------------------
-def test_actors_empty_pending_dataset(session):
+# ------------------- Actors (now backed by judges directory) -------------------
+def test_actors_default_returns_judges_loaded(session):
     r = session.get(f"{API}/actors", timeout=30)
     assert r.status_code == 200
     data = r.json()
-    assert data["data_status"] == "pending_dataset"
-    assert data["count"] == 0
-    assert data["actors"] == []
+    assert data["data_status"] == "loaded"
+    assert data["role"] == "judge"
+    assert data["count"] == 211
+    assert isinstance(data["actors"], list)
+    assert len(data["actors"]) == 211
 
 
 def test_actors_role_filter_judge(session):
     r = session.get(f"{API}/actors", params={"role": "judge"}, timeout=30)
     assert r.status_code == 200
     data = r.json()
+    assert data["data_status"] == "loaded"
+    assert data["count"] == 211
+
+
+def test_actors_other_role_still_pending(session):
+    r = session.get(f"{API}/actors", params={"role": "da"}, timeout=30)
+    assert r.status_code == 200
+    data = r.json()
     assert data["data_status"] == "pending_dataset"
     assert data["count"] == 0
-    assert data["actors"] == []
+
+
+# ------------------- Judges -------------------
+def test_judges_stats(session):
+    r = session.get(f"{API}/judges/stats", timeout=30)
+    assert r.status_code == 200
+    data = r.json()
+    assert data["totals"]["judges"] == 211
+    assert data["totals"]["judgesWithMetrics"] == 35
+    assert "by_court" in data
+    assert data["by_court"].get("Circuit Court") == 187
+    for k in ("critical", "high", "moderate", "low", "pending"):
+        assert k in data["by_risk"], f"missing risk bucket: {k}"
+
+
+def test_judges_list_all(session):
+    r = session.get(f"{API}/judges", timeout=30)
+    assert r.status_code == 200
+    data = r.json()
+    assert data["total"] == 211
+    assert isinstance(data["judges"], list)
+    assert len(data["judges"]) > 0
+    sample = data["judges"][0]
+    for k in ("id", "name", "county", "category", "scoreLabel"):
+        assert k in sample, f"missing slim field: {k}"
+    # No mongo _id leakage
+    assert "_id" not in sample
+
+
+def test_judges_filter_by_name_query(session):
+    r = session.get(f"{API}/judges", params={"q": "shirtcliff"}, timeout=30)
+    assert r.status_code == 200
+    data = r.json()
+    assert data["total"] >= 1
+    names = " ".join(j["name"].lower() for j in data["judges"])
+    assert "shirtcliff" in names
+
+
+def test_judges_filter_by_county(session):
+    r = session.get(f"{API}/judges", params={"county": "Multnomah"}, timeout=30)
+    assert r.status_code == 200
+    data = r.json()
+    assert data["total"] > 0
+    for j in data["judges"]:
+        assert j["county"].lower() == "multnomah"
+
+
+def test_judges_filter_by_risk_critical(session):
+    r = session.get(f"{API}/judges", params={"risk": "critical"}, timeout=30)
+    assert r.status_code == 200
+    data = r.json()
+    assert data["total"] >= 1
+    names = [j["name"] for j in data["judges"]]
+    assert any("Souede" in n for n in names), f"Expected Benjamin N Souede in critical risk list; got: {names}"
+
+
+def test_judge_detail_full_record(session):
+    # First, fetch a metrics-verified judge id
+    r = session.get(f"{API}/judges", params={"with_metrics": "true"}, timeout=30)
+    assert r.status_code == 200
+    judges = r.json()["judges"]
+    assert len(judges) > 0
+    jid = judges[0]["id"]
+
+    r2 = session.get(f"{API}/judges/{jid}", timeout=30)
+    assert r2.status_code == 200
+    detail = r2.json()
+    assert detail["id"] == jid
+    assert "_id" not in detail
+    # Verified judges should expose analytic fields
+    assert detail.get("metricsVerified") is True
+    # At least one analytic key should be present
+    has_metric = any(k in detail for k in ("caseload2024", "prisonUsage", "reversalRate", "counselDisparity", "racialDisparity", "appeals2024"))
+    assert has_metric, f"Expected at least one analytic field on verified judge {jid}"
+
+
+def test_judge_detail_not_found(session):
+    r = session.get(f"{API}/judges/nope-not-a-real-id", timeout=30)
+    assert r.status_code == 404
 
 
 # ------------------- Oregon-focused search -------------------

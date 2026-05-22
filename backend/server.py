@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter, HTTPException
+from fastapi import FastAPI, APIRouter, HTTPException, Query
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -11,6 +11,7 @@ from typing import List, Optional
 from datetime import datetime, timezone
 
 from emergentintegrations.llm.chat import LlmChat, UserMessage
+from judges_data import filter_judges, get_judge, stats as judge_stats, slim
 
 
 ROOT_DIR = Path(__file__).parent
@@ -107,23 +108,55 @@ async def oregon_facts():
 
 @api_router.get("/actors")
 async def list_actors(role: Optional[str] = None, county: Optional[str] = None):
-    """Returns the list of actor records.
+    """Returns actor records.
 
-    Returns an empty list with a clear data-status flag while the official
-    OJD / DAA / DPSST / DOC datasets are being wired in. Roles will include:
-    judge, prosecutor, law_enforcement, parole_probation.
+    For role='judge' (or role unset), returns the real Oregon judiciary roster
+    loaded from the bundled directory. Other roles remain pending_dataset.
     """
-    query = {}
-    if role:
-        query["role"] = role
-    if county:
-        query["county"] = county
-    docs = await db.actors.find(query, {"_id": 0}).to_list(2000)
+    if role in (None, "judge", "judges"):
+        judges = filter_judges(county=county)
+        return {
+            "data_status": "loaded",
+            "role": "judge",
+            "count": len(judges),
+            "actors": [slim(j) for j in judges],
+        }
+    return {"data_status": "pending_dataset", "role": role, "count": 0, "actors": []}
+
+
+@api_router.get("/judges")
+async def list_judges(
+    q: Optional[str] = None,
+    county: Optional[str] = None,
+    court: Optional[str] = None,
+    risk: Optional[str] = None,
+    with_metrics: Optional[bool] = None,
+    limit: int = Query(default=300, ge=1, le=500),
+    offset: int = Query(default=0, ge=0),
+):
+    judges = filter_judges(q=q, county=county, court=court, risk=risk, with_metrics=with_metrics)
+    total = len(judges)
+    page = judges[offset : offset + limit]
     return {
-        "data_status": "pending_dataset" if not docs else "loaded",
-        "count": len(docs),
-        "actors": docs,
+        "total": total,
+        "count": len(page),
+        "offset": offset,
+        "limit": limit,
+        "judges": [slim(j) for j in page],
     }
+
+
+@api_router.get("/judges/stats")
+async def judges_stats():
+    return judge_stats()
+
+
+@api_router.get("/judges/{judge_id}")
+async def judge_detail(judge_id: str):
+    j = get_judge(judge_id)
+    if not j:
+        raise HTTPException(status_code=404, detail="Judge not found")
+    return j
 
 
 @api_router.post("/status", response_model=StatusCheck)

@@ -354,6 +354,12 @@ body {
 .flip-card { will-change: transform; }
 .flip-card-inner > div { box-sizing: border-box; }
 
+/* Judge card flip (explicit) */
+.judge-card .card-3d-raised {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
 /* Hero walking pan — subtle infinite parallax */
 .hero-walk {
     transform-origin: center 40%;
@@ -381,4 +387,25 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
     .hero-walk { animation: none; transform: scale(1.05); }
+}
+
+/* Native select styling */
+select.apt-search-soft {
+    background-color: rgba(245, 241, 230, 0.025);
+    color: var(--apt-ivory-dim);
+}
+select.apt-search-soft option {
+    background-color: #0A0F1A;
+    color: var(--apt-ivory);
+    padding: 8px;
+}
+
+/* Judge card subtle highlight when selected */
+.judge-card.is-selected .card-3d-raised {
+    border-color: rgba(200, 169, 126, 0.5);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.08) inset,
+        0 -1px 0 rgba(0, 0, 0, 0.6) inset,
+        0 18px 40px -20px rgba(0, 0, 0, 0.75),
+        0 40px 80px -40px rgba(200, 169, 126, 0.3);
 }
