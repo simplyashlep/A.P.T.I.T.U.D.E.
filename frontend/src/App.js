@@ -207,6 +207,66 @@ const Hero = () => {
   );
 };
 
+/* ----------------- Tiny Markdown renderer (bold, italic, bullets) ----------------- */
+const renderInline = (text) => {
+  // bold **x**, then italic *x* / _x_
+  const nodes = [];
+  let key = 0;
+  const boldSplit = text.split(/(\*\*[^*]+\*\*)/g);
+  boldSplit.forEach((chunk) => {
+    if (/^\*\*[^*]+\*\*$/.test(chunk)) {
+      nodes.push(
+        <strong key={key++} className="text-ivory font-medium tracking-[0.04em]">
+          {chunk.slice(2, -2)}
+        </strong>
+      );
+    } else {
+      const itSplit = chunk.split(/(\*[^*]+\*|_[^_]+_)/g);
+      itSplit.forEach((c) => {
+        if (/^(\*[^*]+\*|_[^_]+_)$/.test(c)) {
+          nodes.push(
+            <em key={key++} className="font-serif-h italic text-ivory-dim">
+              {c.slice(1, -1)}
+            </em>
+          );
+        } else if (c) {
+          nodes.push(<span key={key++}>{c}</span>);
+        }
+      });
+    }
+  });
+  return nodes;
+};
+
+const Markdown = ({ text }) => {
+  const blocks = text.split(/\n{2,}/);
+  return (
+    <div className="space-y-5">
+      {blocks.map((block, i) => {
+        const lines = block.split("\n").map((l) => l.trim()).filter(Boolean);
+        const isList = lines.every((l) => l.startsWith("- ") || l.startsWith("* "));
+        if (isList && lines.length) {
+          return (
+            <ul key={i} className="space-y-2 pl-1">
+              {lines.map((l, j) => (
+                <li key={j} className="flex gap-3 text-[15px] leading-relaxed">
+                  <span className="text-gold mt-[0.4em] w-3 h-px bg-[var(--apt-gold)] flex-shrink-0" />
+                  <span>{renderInline(l.replace(/^[-*]\s+/, ""))}</span>
+                </li>
+              ))}
+            </ul>
+          );
+        }
+        return (
+          <p key={i} className="text-[15px] leading-relaxed">
+            {renderInline(block)}
+          </p>
+        );
+      })}
+    </div>
+  );
+};
+
 /* ----------------- Search Bar ----------------- */
 const SearchBar = () => {
   const [q, setQ] = useState("");
@@ -287,8 +347,8 @@ const SearchBar = () => {
               <span className="font-serif-h italic">Consulting the record…</span>
             </div>
           ) : (
-            <article className="font-ui text-ivory-dim leading-relaxed whitespace-pre-wrap text-[15px]">
-              {result.answer}
+            <article className="font-ui text-ivory-dim leading-relaxed text-[15px]">
+              <Markdown text={result.answer} />
             </article>
           )}
         </div>
