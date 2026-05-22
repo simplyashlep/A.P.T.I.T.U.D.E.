@@ -29,6 +29,17 @@ Premium dark legal-tech landing → pivoted (iteration 2) into **A Platform Trac
 - Initial premium dark landing page, custom SVG wordmark, glassmorphic search, Claude Sonnet 4.5 integration, MongoDB persistence, Markdown render
 - 100% tests passing (6/6 pytest)
 
+### Iteration 3 (2026-05-22) — User data + cleaner hero
+- Lady Justice MP4 (user-supplied) integrated at `/media/lady-justice.mp4` as primary hero source; Pixabay as fallback
+- Hero acronym cleaned: now a single italic serif line "A Platform Tracking Institutional Trends Uncovering Disparate Enforcement" — no letter-prefix clutter
+- 211 Oregon judges loaded from `judges-directory.json` (Circuit 187 + COA 13 + Supreme 7 + Tax 4)
+- Backend endpoints `/api/judges`, `/api/judges/stats`, `/api/judges/{id}` with filters (q, county, court, risk, with_metrics)
+- `/api/actors?role=judge` now returns real data (data_status='loaded')
+- Full `/judiciary` page rebuilt: live search, county/court/risk filter dropdowns, stat strip (211 / 35 / 28 / 34), Reveal More pagination, hover-flip + click-select judge cards with photo or initials avatar
+- 3-tier card content: Tier I front (identity + risk + presiding), Tier II back (prison usage / reversal rate / counsel disparity / racial disparity bars + caseload + appeals + critical flags) or pending message
+- Compare flow: sticky drawer (0-3 cap), chips, "Open Comparison" modal with side-by-side cards + 10-row analytic table
+- 100% tests passing (18/18 pytest)
+
 ### Iteration 2 — Oregon Judicial Platform Pivot
 - Full acronym expansion under wordmark + 3D embossed metallic wordmark (text-shadow stack + gold gradient text fill)
 - Borderless soft-underline search bar (replaced hard pill outline)
