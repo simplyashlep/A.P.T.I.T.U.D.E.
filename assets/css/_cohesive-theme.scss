@@ -1,0 +1,1460 @@
+// ==========================================================================
+// COHESIVE THEME v2 — Unified Color & Typography System
+// Light periwinkle background + blue-tinted dark containers
+// Premium, sophisticated, LexisNexis-caliber
+// Loads AFTER style.css to override all variables
+// Fonts loaded via <link> in head.html
+// ==========================================================================
+
+// ==========================================================================
+// CSS VARIABLES — Light periwinkle foundation
+// These OVERRIDE the same-named variables in style.scss
+// ==========================================================================
+
+:root {
+  // === PAGE BACKGROUND (lightest pale periwinkle) ===
+  --bg: #eceff8;
+  --bg-dark: #e2e5f2;
+  --chalk-grey: #eceff1;
+  --light-grey: #e8eaf0;
+  --white: #ffffff;
+  --black: #0a0d16;
+
+  // === PERIWINKLE SPECTRUM (refined) ===
+  --periwinkle: #727ac8;
+  --periwinkle-dark: #5b63b0;
+  --periwinkle-light: #8b93d8;
+  --periwinkle-pale: #c4c9ee;
+  --periwinkle-ghost: rgba(114, 122, 200, 0.08);
+
+  // === BRAND PALETTE (muted, sophisticated) ===
+  --brand-deep: #7b4d6e;
+  --brand-red: #c4746f;
+  --brand-orange: #c9a96e;
+  --brand-orange-2: #b8945a;
+  --brand-teal: #4ecdc4;
+
+  // === ACCENT COLORS ===
+  --bright-green: #5b9a6b;
+  --bright-magenta: #c47a8a;
+  --dark-purple: #5a4596;
+  --neon-hot-pink: #c4746f;
+  --neon-hot-pink-light: #d9a0a8;
+  --good: #8b9d83;
+  --success: #5b9a6b;
+  --warning: #c9a96e;
+  --danger: #c4746f;
+
+  // === SEMANTIC TEXT (on light periwinkle bg) ===
+  --text: #1a1d2e;
+  --muted: #5a5e75;
+  --muted-strong: #3a3e52;
+
+  // === SIGNAL / ACCENT ===
+  --signal: #727ac8;
+  --signal-soft: rgba(114, 122, 200, 0.08);
+
+  // === BORDERS ===
+  --line: rgba(114, 122, 200, 0.12);
+  --line-strong: rgba(114, 122, 200, 0.22);
+
+  // === PANEL BACKGROUNDS (light, translucent) ===
+  --panel: rgba(255, 255, 255, 0.65);
+  --panel-strong: rgba(255, 255, 255, 0.85);
+
+  // === BIAS SCORES ===
+  --bias-excellent: #5b9a6b;
+  --bias-low: #6b84c2;
+  --bias-moderate: #8a8fa0;
+  --bias-high: #c4746f;
+  --bias-critical: #7b4d6e;
+
+  // === CARD SHADOWS ===
+  --card-shadow-subtle: 0 4px 20px rgba(20, 24, 50, 0.1);
+  --card-shadow-raised: 0 12px 40px rgba(20, 24, 50, 0.15);
+  --card-shadow-hover: 0 20px 60px rgba(20, 24, 50, 0.18);
+
+  // === REMIX SWATCHES (adjusted) ===
+  --remix-1: #c4746f; --remix-2: #c47a8a; --remix-3: #b0708a;
+  --remix-4: #9b6090; --remix-5: #805090; --remix-6: #6b4d80;
+  --remix-7: #5a4596; --remix-8: #4a3d86; --remix-9: #3d3570;
+
+  // === PAGE THEME DEFAULTS ===
+  --theme-a: var(--remix-1);
+  --theme-b: var(--remix-3);
+
+  // === JUDGE PROFILE ===
+  --judge-primary: #2d4a7b;
+  --judge-accent: #7a9b7f;
+
+  // === PREMIUM THEME COLORS (adjusted) ===
+  --color-primary: #2d4a7b;
+  --color-primary-light: #3a6099;
+  --color-primary-lighter: #4e7cba;
+  --color-secondary: #c9a96e;
+  --color-secondary-light: #d4ba8a;
+  --color-success: #5b9a6b;
+  --color-warning: #c9a96e;
+  --color-danger: #c4746f;
+  --color-info: #3a6099;
+  --color-white: #FFFFFF;
+  --color-off-white: #F9F9F9;
+  --color-light-gray: #F0F0F0;
+  --color-medium-gray: #D4D4D4;
+  --color-stone-gray: #8E8E8E;
+  --color-dark-gray: #4A4A4A;
+  --color-charcoal: #2B2B2B;
+  --color-black: #0a0d16;
+
+  // === TYPOGRAPHY — Premium fonts ===
+  --font-display: 'Cinzel', 'Cormorant Garamond', Georgia, serif;
+  --font-heading: 'Outfit', 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Public Sans', 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-family-base: var(--font-body);
+
+  // === TYPE SCALE ===
+  --font-size-base: 16px;
+  --font-size-small: 14px;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  // === SPACING ===
+  --space-xs: 0.4rem;
+  --space-sm: 0.8rem;
+  --space-md: 1.4rem;
+  --space-lg: 2.2rem;
+  --space-xl: 3.5rem;
+
+  // === SHADOWS ===
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 14px 32px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.12);
+
+  // === TRANSITIONS ===
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 280ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  // === BORDER RADIUS ===
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 14px;
+  --radius-xl: 28px;
+  --radius-lg: 18px;
+  --radius-md: 12px;
+
+  // === Z-INDEX ===
+  --z-sticky: 1020;
+
+  // === LAYOUT ===
+  --wrapper: 1280px;
+  --pipeline-width: 50%;
+  --target-height: 100%;
+
+  // === HOME PAGE DEFAULTS ===
+  --home-accent: #727ac8;
+  --home-accent-strong: #8b93d8;
+  --home-bg-deep: #161c36;
+  --home-bg-gradient: #12182e;
+  --home-glass: rgba(22, 28, 54, 0.7);
+  --home-glass-strong: rgba(18, 24, 46, 0.88);
+
+  // === COHESIVE-SPECIFIC ===
+  --container-bg: #161c36;
+  --container-bg-hover: #1b2240;
+  --container-bg-strong: #12182e;
+  --ease-fast: 160ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-base: 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  --shadow-glow: 0 0 32px rgba(114, 122, 200, 0.2);
+}
+
+// ==========================================================================
+// BASE STYLES — Light periwinkle background with texture
+// ==========================================================================
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg) !important;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Override dark-theme-fixes.scss and homepage-premium.scss background forcing
+.home-page,
+.actor-directory-page {
+  background:
+    radial-gradient(ellipse at 15% 10%, rgba(114, 122, 200, 0.04), transparent 40%),
+    radial-gradient(ellipse at 85% 20%, rgba(78, 205, 196, 0.03), transparent 35%),
+    var(--bg) !important;
+}
+
+// Override dark body background pseudo-elements from style.scss
+// Use background-image directly (not background shorthand) to ensure proper cascade
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -2;
+  background-image:
+    radial-gradient(ellipse at 15% 10%, rgba(114, 122, 200, 0.06), transparent 50%),
+    radial-gradient(ellipse at 85% 20%, rgba(78, 205, 196, 0.04), transparent 45%),
+    radial-gradient(ellipse at 50% 80%, rgba(196, 122, 138, 0.03), transparent 50%);
+  background-size: auto;
+  mask-image: none;
+  opacity: 1;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(114, 122, 200, 0.03) 0px, rgba(114, 122, 200, 0.03) 1px, transparent 1px, transparent 48px),
+    repeating-linear-gradient(90deg, rgba(114, 122, 200, 0.03) 0px, rgba(114, 122, 200, 0.03) 1px, transparent 1px, transparent 48px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(circle at center, black 20%, transparent 70%);
+  opacity: 0.4;
+  mix-blend-mode: normal;
+}
+
+// ==========================================================================
+// DARK CONTAINERS — Reset text colors to light for inner content
+// All panels, cards, headers that use dark backgrounds
+// ==========================================================================
+
+// Any element that needs dark bg with light text
+// Only includes classes VERIFIED as used in the codebase
+.flip-card-front,
+.flip-card-back,
+.flip-card .flip-card-inner,
+.mega-menu-column,
+.mega-menu-shell,
+.mega-menu-reveal,
+.site-header,
+.site-footer,
+.modal-content,
+.judge-photo-shell,
+.judge-photo-container,
+.card-back-header,
+.card-back-content,
+.dashboard-hero,
+.dashboard-summary .summary-card,
+.dashboard-heatmap,
+.dashboard-metrics,
+.dashboard-rankings,
+.dashboard-counties,
+.dashboard-info,
+.archive-hero,
+.archive-hero-copy,
+.archive-hero-aside,
+.archive-panel,
+.archive-hero-grid,
+.prosecutor-card,
+.main-card .flip-card-front,
+.main-card .flip-card-back,
+.mission-stat,
+.actor-hero-copy,
+.actor-hero-panel,
+.actor-top-panel,
+.actor-toolbar,
+.sidebar-panel,
+.directory-visualization,
+.viz-card,
+.detail-panel,
+.comparison-card,
+.judge-detail-content,
+.comparison-modal-content {
+  // Override text variables for dark backgrounds
+  --text: #e2e7f8;
+  --muted: #9da4c2;
+  --muted-strong: #d0d6f0;
+  --signal: #8b93d8;
+  --signal-soft: rgba(114, 122, 200, 0.12);
+  --line: rgba(114, 122, 200, 0.15);
+  --line-strong: rgba(114, 122, 200, 0.25);
+  --panel: rgba(22, 28, 54, 0.84);
+  --panel-strong: rgba(18, 24, 46, 0.92);
+  color: var(--text);
+}
+
+// ==========================================================================
+// SIDEBAR PANEL STYLING — Glass filter panels
+// ==========================================================================
+
+.sidebar-panel {
+  background:
+    linear-gradient(160deg, rgba(22, 28, 54, 0.92), rgba(14, 18, 36, 0.92)) !important;
+  border: 1px solid rgba(114, 122, 200, 0.12) !important;
+  border-radius: 14px !important;
+  padding: 1.35rem !important;
+  margin-bottom: 1.25rem !important;
+  box-shadow: 0 12px 28px rgba(10, 14, 36, 0.2) !important;
+}
+
+.sidebar-panel h2,
+.sidebar-panel h3 {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #e2e7f8 !important;
+  margin: 0 0 0.5rem;
+}
+
+.sidebar-panel .sidebar-copy,
+.sidebar-panel .comparison-help {
+  font-size: 0.82rem;
+  color: #9da4c2 !important;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.sidebar-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.filter-group label {
+  font-family: var(--font-heading) !important;
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  color: #9da4c2 !important;
+}
+
+.filter-select {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  padding: 0.65rem 0.9rem;
+  border: none !important;
+  border-radius: 8px !important;
+  background: rgba(22, 28, 54, 0.7) !important;
+  color: #e2e7f8 !important;
+  box-shadow:
+    inset 0 2px 6px rgba(0, 0, 0, 0.12),
+    0 0 0 1px rgba(114, 122, 200, 0.15) !important;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+
+  option {
+    background: #161c36;
+    color: #e2e7f8;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow:
+      inset 0 2px 6px rgba(0, 0, 0, 0.15),
+      0 0 0 1px var(--periwinkle),
+      0 0 20px rgba(114, 122, 200, 0.15) !important;
+  }
+}
+
+.sort-order-btn {
+  align-self: flex-start;
+  background: rgba(114, 122, 200, 0.1) !important;
+  border: 1px solid rgba(114, 122, 200, 0.2) !important;
+  color: #e2e7f8 !important;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all var(--ease-fast);
+
+  &:hover {
+    background: rgba(114, 122, 200, 0.18) !important;
+    border-color: rgba(114, 122, 200, 0.35) !important;
+  }
+}
+
+.sidebar-panel-emphasis {
+  background:
+    linear-gradient(160deg, rgba(114, 122, 200, 0.12), rgba(22, 28, 54, 0.85)) !important;
+  border: 1px solid rgba(114, 122, 200, 0.18) !important;
+  box-shadow: 0 14px 32px rgba(10, 14, 36, 0.25), 0 0 20px rgba(114, 122, 200, 0.06) !important;
+}
+
+.comparison-panel-visible {
+  .compare-panel-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .selected-judges-area {
+    min-height: 2rem;
+    padding: 0.5rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+}
+
+.directory-cross-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.directory-cross-link {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.84rem !important;
+  color: #9da4c2 !important;
+  text-decoration: none;
+  padding: 0.5rem 0.7rem;
+  border-radius: 6px;
+  transition: all var(--ease-fast);
+
+  &:hover,
+  &.active {
+    background: rgba(114, 122, 200, 0.12) !important;
+    color: #f0f3ff !important;
+  }
+
+  &.active {
+    background: rgba(114, 122, 200, 0.18) !important;
+    font-weight: 600;
+  }
+}
+
+// ==========================================================================
+// DASHBOARD COMPONENTS — Dark premium styling
+// ==========================================================================
+
+.dashboard-hero {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(114, 122, 200, 0.08), transparent 40%),
+    linear-gradient(180deg, rgba(22, 28, 54, 0.95), rgba(14, 18, 36, 0.98)) !important;
+  padding: 3rem 2rem 2.5rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(114, 122, 200, 0.1);
+}
+
+.dashboard-hero h1 {
+  font-family: var(--font-display) !important;
+  font-size: clamp(2rem, 4vw, 3rem) !important;
+  font-weight: 600 !important;
+  color: #f0f3ff !important;
+  letter-spacing: 0.04em !important;
+  margin: 0 0 1rem;
+}
+
+.dashboard-hero .dashboard-intro {
+  font-size: 1.1rem;
+  color: #9da4c2;
+  max-width: 48ch;
+  margin: 0 auto;
+}
+
+.dashboard-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: transparent;
+}
+
+.dashboard-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.35rem;
+  margin: 0 0 2rem;
+}
+
+.summary-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background:
+    linear-gradient(160deg, rgba(22, 28, 54, 0.9), rgba(14, 18, 36, 0.95)) !important;
+  padding: 1.65rem 1.25rem !important;
+  border: 1px solid rgba(114, 122, 200, 0.12) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 14px 28px rgba(10, 14, 36, 0.2) !important;
+  border-left: none !important;
+}
+
+.summary-card .card-value {
+  font-family: var(--font-display);
+  font-size: 2.8rem !important;
+  font-weight: 700 !important;
+  color: var(--periwinkle-light) !important;
+  margin: 0 0 0.35rem;
+}
+
+.summary-card .card-label {
+  font-family: var(--font-heading) !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  color: #e2e7f8 !important;
+  margin: 0 0 0.3rem;
+}
+
+.summary-card .card-detail {
+  font-size: 0.82rem !important;
+  color: #9da4c2 !important;
+}
+
+.dashboard-heatmap,
+.dashboard-metrics,
+.dashboard-rankings,
+.dashboard-counties,
+.dashboard-info {
+  background:
+    linear-gradient(160deg, rgba(22, 28, 54, 0.85), rgba(14, 18, 36, 0.92)) !important;
+  padding: 2rem !important;
+  border: 1px solid rgba(114, 122, 200, 0.1) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 14px 28px rgba(10, 14, 36, 0.2) !important;
+  margin: 2rem 0;
+}
+
+.dashboard-heatmap h2,
+.dashboard-metrics h2,
+.dashboard-rankings h2,
+.dashboard-counties h2,
+.dashboard-info h2 {
+  font-family: var(--font-heading) !important;
+  color: #f0f3ff !important;
+  margin-top: 0;
+}
+
+.dashboard-heatmap .section-intro,
+.dashboard-metrics .metric-description,
+.dashboard-rankings .section-intro,
+.dashboard-counties .section-intro,
+.dashboard-info p,
+.dashboard-info li {
+  color: #9da4c2 !important;
+}
+
+.metric-card {
+  background:
+    linear-gradient(160deg, rgba(114, 122, 200, 0.08), rgba(22, 28, 54, 0.7)) !important;
+  border: 1px solid rgba(114, 122, 200, 0.1) !important;
+  border-radius: 10px !important;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.stat-large {
+  font-family: var(--font-display) !important;
+  font-size: 2.2rem !important;
+  font-weight: 700 !important;
+  color: var(--periwinkle-light) !important;
+  margin: 0.4rem 0;
+}
+
+.stat-description {
+  color: #9da4c2 !important;
+  font-size: 0.88rem;
+}
+
+.ranking-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.ranking-tabs .tab-button {
+  font-family: var(--font-body) !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  padding: 0.55rem 1.1rem;
+  border: none !important;
+  border-radius: 999px;
+  background: rgba(114, 122, 200, 0.08) !important;
+  color: #9da4c2 !important;
+  cursor: pointer;
+  transition: all var(--ease-fast);
+
+  &:hover,
+  &.tab-active {
+    background: rgba(114, 122, 200, 0.2) !important;
+    color: #f0f3ff !important;
+    box-shadow: 0 4px 14px rgba(114, 122, 200, 0.15) !important;
+  }
+}
+
+.ranking-table {
+  overflow-x: auto;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th {
+    font-family: var(--font-heading) !important;
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #9da4c2 !important;
+    padding: 0.7rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(114, 122, 200, 0.15);
+  }
+
+  td {
+    padding: 0.7rem 1rem;
+    color: #e2e7f8;
+    border-bottom: 1px solid rgba(114, 122, 200, 0.08);
+    font-size: 0.9rem;
+  }
+
+  .placeholder {
+    color: #9da4c2;
+    background: transparent;
+  }
+}
+
+.placeholder {
+  background: rgba(22, 28, 54, 0.4) !important;
+  color: #9da4c2 !important;
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+// Override body-like elements that should stay light
+body, .page-content, .home-page .page-content {
+  --text: #1a1d2e;
+  --muted: #5a5e75;
+  --muted-strong: #3a3e52;
+  --signal: #727ac8;
+  --signal-soft: rgba(114, 122, 200, 0.08);
+  --line: rgba(114, 122, 200, 0.12);
+  --line-strong: rgba(114, 122, 200, 0.22);
+  --panel: rgba(255, 255, 255, 0.65);
+  --panel-strong: rgba(255, 255, 255, 0.85);
+}
+
+// ==========================================================================
+// FORUM LAYOUT — Community forum page
+// ==========================================================================
+
+.forum-main {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 2rem;
+  padding: 2rem 0;
+
+  @media screen and (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.forum-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.forum-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.forum-right .sidebar-panel textarea,
+.forum-right .sidebar-panel input[type="text"] {
+  background: rgba(22, 28, 54, 0.7) !important;
+  color: #e2e7f8 !important;
+  border: 1px solid rgba(114, 122, 200, 0.15) !important;
+  border-radius: 8px !important;
+  padding: 0.7rem !important;
+  font-family: var(--font-body);
+
+  &::placeholder {
+    color: #9da4c2;
+    opacity: 0.7;
+  }
+}
+
+.post-card {
+  margin-bottom: 0;
+
+  .flip-card-front,
+  .flip-card-back {
+    padding: 1.25rem !important;
+    min-height: 120px;
+  }
+
+  .flip-card-front h3 {
+    font-family: var(--font-heading) !important;
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    color: #f0f3ff !important;
+    margin: 0 0 0.5rem;
+  }
+
+  .flip-card-front p,
+  .flip-card-back p {
+    color: #9da4c2 !important;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+}
+
+// ==========================================================================
+// TYPOGRAPHY HIERARCHY — Premium feel
+// ==========================================================================
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  color: var(--text);
+}
+
+// Override the mixed font declarations from style.scss
+.site-title-mark,
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-title,
+.footer-heading,
+.home-page h1,
+.home-page h2,
+.archive-title,
+.archive-value,
+.proof-value,
+.mission-title,
+.actor-page-title {
+  font-family: var(--font-heading);
+}
+
+.proof-value {
+  font-family: var(--font-display);
+}
+
+// Display headings (Cinzel for hero/main titles)
+.display-heading,
+.archive-title-main,
+.bias-beacon-wordmark,
+.home-page h1,
+.mission-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+// Page headings upgrade - no more "pedestrian"
+.page-content h1:first-of-type,
+.post-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.08;
+  color: var(--text);
+}
+
+// Section headings
+.section-heading h2,
+.home-page h2,
+.story-block h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+// Subheadings
+h3, .card-back-content h3 {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+// ==========================================================================
+// LADY JUSTICE — Off-center, blended, smooth fade
+// ==========================================================================
+
+// Override the centered/full-width video to be off-right and blended
+.home-page .hero-bg-video,
+.home-page .hero-background video {
+  position: absolute;
+  top: 50% !important;
+  left: 65% !important; // Move to right side
+  right: auto !important;
+  width: auto !important;
+  height: 90% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  transform: translate(-50%, -50%) !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  opacity: 0.55 !important; // More transparent, blended
+  filter: brightness(2.5) contrast(0.8) saturate(1.8) blur(0.5px) !important;
+  mix-blend-mode: soft-light !important; // Blend with background
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 5%, #000 85%, transparent 100%) !important;
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 5%, #000 85%, transparent 100%) !important;
+  transition: opacity 0.3s ease-out; // Smooth video loop fade
+}
+
+// Soften the overlay gradients to let more of Lady Justice through
+.home-page .hero-background::before {
+  background:
+    linear-gradient(90deg, rgba(236, 239, 248, 0.5) 0%, rgba(236, 239, 248, 0.15) 50%, rgba(236, 239, 248, 0.35) 100%) !important;
+}
+
+.home-page .hero-background::after {
+  background:
+    linear-gradient(180deg, rgba(236, 239, 248, 0.1) 0%, rgba(236, 239, 248, 0.2) 62%, rgba(236, 239, 248, 0.9) 100%),
+    radial-gradient(ellipse at center, transparent 0%, rgba(236, 239, 248, 0.4) 100%) !important;
+}
+
+// Make hero landing content properly positioned with LJ on the right
+.home-page .hero-landing-content {
+  position: relative;
+  z-index: 5;
+  margin-right: auto;
+}
+
+// ==========================================================================
+// FLIP CARDS — No white boxes, dark premium, proper 3D
+// ==========================================================================
+
+// Remove ALL white backgrounds from flip cards
+.flip-card-front,
+.flip-card-back,
+.main-card .flip-card-front,
+.main-card .flip-card-back,
+.home-actor-card .flip-card-front,
+.home-actor-card .flip-card-back {
+  background:
+    linear-gradient(160deg, rgba(22, 28, 54, 0.98), rgba(14, 18, 36, 0.98)) !important;
+  border: none !important;
+  border-radius: 16px !important;
+  box-shadow:
+    0 18px 44px rgba(10, 14, 36, 0.35),
+    0 6px 16px rgba(10, 14, 36, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+  color: #e2e7f8 !important;
+  overflow: hidden;
+}
+
+.flip-card-front {
+  z-index: 2;
+}
+
+.flip-card-back {
+  z-index: 1;
+  background:
+    linear-gradient(160deg, rgba(18, 24, 42, 0.98), rgba(10, 14, 28, 0.98)) !important;
+}
+
+// Remove the !important border:none from homepage-premium that's too aggressive
+.main-card .flip-card-front,
+.main-card .flip-card-back {
+  border: 1px solid rgba(114, 122, 200, 0.12) !important;
+}
+
+// Card hover glow
+.flip-card:hover .flip-card-front,
+.flip-card:focus-within .flip-card-front {
+  box-shadow:
+    0 24px 52px rgba(10, 14, 36, 0.4),
+    0 0 30px rgba(114, 122, 200, 0.1),
+    0 6px 16px rgba(10, 14, 36, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+// Fix card front content visibility
+.flip-card-front .card-front-content,
+.flip-card-front .judge-name-display,
+.flip-card-front .county-label,
+.flip-card-front .card-front-summary,
+.flip-card-front .score-label,
+.flip-card-front .hover-hint {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+// Fix card title assets
+.card-title-asset {
+  filter: drop-shadow(0 8px 16px rgba(10, 14, 36, 0.3));
+}
+
+// Card accent line
+.card-accent-line {
+  background: linear-gradient(90deg, var(--periwinkle), var(--periwinkle-light));
+  height: 2px;
+  width: 48px;
+  margin: 0.75rem auto;
+  border-radius: 1px;
+}
+
+// Card subtitle
+.card-subtitle {
+  color: #9da4c2 !important;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+// ==========================================================================
+// JUDGE CARDS — Smaller photos, better spacing
+// ==========================================================================
+
+.judge-photo-shell,
+.judge-photo-container {
+  width: 90px !important;
+  height: 90px !important;
+  margin: 0.5rem auto !important;
+  border-radius: 50% !important;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.12), transparent 50%),
+    linear-gradient(180deg, rgba(114, 122, 200, 0.3), rgba(22, 28, 54, 0.3)) !important;
+  border: 2px solid rgba(114, 122, 200, 0.2) !important;
+  box-shadow: 0 6px 18px rgba(10, 14, 36, 0.25);
+  flex-shrink: 0;
+}
+
+.judge-photo-shell img,
+.judge-photo-container img,
+.judge-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+// Judge name on front
+.judge-name-display {
+  font-family: var(--font-heading) !important;
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  color: #f0f3ff !important;
+  text-align: center;
+}
+
+// County label
+.county-label {
+  font-size: 0.78rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #9da4c2 !important;
+}
+
+// ==========================================================================
+// FORM ELEMENTS — Glowing, no-outline, shadowed
+// ==========================================================================
+
+input[type="text"],
+input[type="email"],
+input[type="search"],
+input[type="url"],
+input[type="tel"],
+textarea,
+select,
+.search-input,
+.search-input-enhanced,
+.filter-select,
+.dashboard-judge-dropdown,
+.dashboard-filter,
+.case-type-dropdown,
+.county-selector,
+.floating-search-input,
+.hero-search-form input,
+.hero-search-form select {
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  width: 100%;
+  padding: 0.85rem 1.1rem;
+  border: none !important;
+  border-radius: 10px !important;
+  background: rgba(255, 255, 255, 0.7) !important;
+  color: #1a1d2e !important;
+  box-shadow:
+    inset 0 2px 6px rgba(20, 24, 50, 0.06),
+    0 0 0 1px rgba(114, 122, 200, 0.12),
+    0 0 18px rgba(114, 122, 200, 0.04) !important;
+  transition: all var(--ease-fast);
+  outline: none !important;
+
+  &::placeholder {
+    color: #8a8fa0;
+    opacity: 0.7;
+  }
+
+  &:focus {
+    outline: none !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    box-shadow:
+      inset 0 2px 6px rgba(20, 24, 50, 0.08),
+      0 0 0 1px var(--periwinkle),
+      0 0 24px rgba(114, 122, 200, 0.14),
+      0 0 48px rgba(114, 122, 200, 0.06) !important;
+    color: #1a1d2e !important;
+  }
+}
+
+// Dark container inputs
+.flip-card-back input,
+.flip-card-back textarea,
+.flip-card-back select,
+.mega-menu-shell input,
+.mega-menu-column input,
+.site-header input,
+.dark-container input,
+.dark-container textarea,
+.dark-container select,
+.dashboard-hero-copy input,
+.dashboard-hero-panel input,
+.modal-content input,
+.modal-content textarea,
+.modal-content select {
+  background: rgba(22, 28, 54, 0.7) !important;
+  color: #e2e7f8 !important;
+  box-shadow:
+    inset 0 2px 6px rgba(0, 0, 0, 0.12),
+    0 0 0 1px rgba(114, 122, 200, 0.15),
+    0 0 18px rgba(114, 122, 200, 0.08) !important;
+
+  &::placeholder {
+    color: #9da4c2;
+    opacity: 0.7;
+  }
+
+  &:focus {
+    background: rgba(22, 28, 54, 0.85) !important;
+    box-shadow:
+      inset 0 2px 6px rgba(0, 0, 0, 0.15),
+      0 0 0 1px rgba(114, 122, 200, 0.4),
+      0 0 24px rgba(114, 122, 200, 0.16),
+      0 0 48px rgba(114, 122, 200, 0.06) !important;
+    color: #f0f3ff !important;
+  }
+}
+
+// Hero floating search - keep its premium dark style but enhance
+.home-page .floating-search-input {
+  background: rgba(22, 28, 54, 0.5) !important;
+  color: #e2e7f8 !important;
+  border: none !important;
+  box-shadow: none !important;
+
+  &::placeholder {
+    color: #9da4c2 !important;
+    opacity: 0.7;
+  }
+}
+
+// ==========================================================================
+// BUTTONS — Premium 3D feel
+// ==========================================================================
+
+.btn, button, [role="button"],
+.nav-cta, .button, .button-primary, .btn-primary {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all var(--ease-fast);
+  border-radius: 999px;
+  outline: none;
+}
+
+.btn-primary, .button-primary {
+  background: linear-gradient(135deg, var(--periwinkle), rgba(114, 122, 200, 0.85)) !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow:
+    0 4px 16px rgba(114, 122, 200, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow:
+      0 6px 24px rgba(114, 122, 200, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  }
+}
+
+.btn-secondary, .button-secondary, .btn-outline {
+  background: rgba(114, 122, 200, 0.08) !important;
+  color: var(--periwinkle) !important;
+  border: none !important;
+  box-shadow: 0 0 0 1px rgba(114, 122, 200, 0.15) !important;
+
+  &:hover {
+    background: rgba(114, 122, 200, 0.14) !important;
+    box-shadow:
+      0 0 0 1px rgba(114, 122, 200, 0.3),
+      0 0 24px rgba(114, 122, 200, 0.1) !important;
+  }
+}
+
+// ==========================================================================
+// SITE HEADER — Refined for light bg
+// ==========================================================================
+
+.site-header {
+  background: rgba(236, 239, 248, 0.88) !important;
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(114, 122, 200, 0.1) !important;
+  box-shadow: 0 2px 16px rgba(20, 24, 50, 0.06) !important;
+}
+
+.site-title-text {
+  color: var(--periwinkle) !important;
+  text-shadow:
+    0 0 18px rgba(114, 122, 200, 0.15),
+    0 1px 0 rgba(255, 255, 255, 0.5) !important;
+  -webkit-text-stroke: 0 !important;
+}
+
+// Menu launcher button
+.menu-launcher {
+  background: linear-gradient(135deg, rgba(114, 122, 200, 0.15), rgba(114, 122, 200, 0.05)) !important;
+  border: 1px solid rgba(114, 122, 200, 0.2) !important;
+  color: var(--periwinkle-dark) !important;
+  box-shadow: 0 4px 12px rgba(114, 122, 200, 0.08) !important;
+
+  &:hover, &[aria-expanded="true"] {
+    background: rgba(114, 122, 200, 0.18) !important;
+    border-color: rgba(114, 122, 200, 0.35) !important;
+    box-shadow: 0 6px 18px rgba(114, 122, 200, 0.15) !important;
+  }
+}
+
+// ==========================================================================
+// MEGA MENU — Dark dropdown, refined
+// ==========================================================================
+
+.mega-menu-shell {
+  background:
+    linear-gradient(180deg, rgba(22, 28, 54, 0.98), rgba(14, 18, 36, 0.99)) !important;
+  border: 1px solid rgba(114, 122, 200, 0.12) !important;
+  box-shadow:
+    0 24px 64px rgba(10, 14, 36, 0.4),
+    0 0 32px rgba(114, 122, 200, 0.08) !important;
+  backdrop-filter: blur(24px);
+}
+
+.mega-menu-column {
+  background:
+    linear-gradient(145deg, rgba(22, 28, 54, 0.7), rgba(18, 24, 46, 0.8)) !important;
+  border: 1px solid rgba(114, 122, 200, 0.1) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 24px rgba(10, 14, 36, 0.15) !important;
+  min-height: auto !important;
+}
+
+.mega-menu-title-text {
+  font-family: var(--font-heading) !important;
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: none !important;
+  color: #e2e7f8 !important;
+  text-shadow: none !important;
+}
+
+.mega-menu-title-hover {
+  color: var(--periwinkle-light) !important;
+  font-size: 0.72rem !important;
+  font-weight: 500 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.mega-menu-link {
+  font-family: var(--font-body) !important;
+  font-size: 0.88rem !important;
+  color: #9da4c2 !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-radius: 8px !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0.55rem 0.8rem !important;
+
+  &:hover {
+    background: rgba(114, 122, 200, 0.1) !important;
+    color: #f0f3ff !important;
+    transform: translateX(4px);
+  }
+}
+
+.mega-menu-reveal {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(114, 122, 200, 0.08) !important;
+  border-radius: 8px !important;
+
+  p {
+    color: #9da4c2 !important;
+    font-size: 0.82rem !important;
+    font-family: var(--font-body) !important;
+  }
+}
+
+// ==========================================================================
+// FOOTER — Light background
+// ==========================================================================
+
+.site-footer {
+  background: rgba(236, 239, 248, 0.95) !important;
+  border-top: 1px solid rgba(114, 122, 200, 0.1) !important;
+  color: var(--text) !important;
+}
+
+// ==========================================================================
+// PAGE CONTENT — Light bg
+// ==========================================================================
+
+.page-content {
+  background: transparent;
+}
+
+// Override dark background panels to be light
+.hero-copy,
+.hero-panel,
+.story-block,
+.contact-form,
+.resource-panel,
+.archive-shell,
+.archive-card,
+.signal-card,
+.environment-card,
+.what-panel,
+.archive-index-card,
+.casefile-panel {
+  background:
+    linear-gradient(180deg, rgba(114, 122, 200, 0.04), transparent 26%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.5), transparent 56%),
+    rgba(255, 255, 255, 0.7) !important;
+  border: 1px solid rgba(114, 122, 200, 0.1) !important;
+  box-shadow: 0 8px 24px rgba(20, 24, 50, 0.06) !important;
+}
+
+// Hero section on homepage should stay dark
+.home-page .hero-landing,
+.home-page .hero-background {
+  background: #0a0d18 !important;
+}
+
+.home-page .hero-landing-content {
+  color: #e2e7f8;
+}
+
+// ==========================================================================
+// MAIN MENU (homepage 7-column grid) — Dark cards
+// ==========================================================================
+
+.home-main-menu .main-menu-column {
+  background:
+    linear-gradient(145deg, rgba(22, 28, 54, 0.9), rgba(18, 24, 46, 0.95)) !important;
+  border: 1px solid rgba(114, 122, 200, 0.12) !important;
+  border-radius: 14px !important;
+  box-shadow:
+    0 12px 32px rgba(10, 14, 36, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+}
+
+.main-menu-title {
+  font-family: var(--font-heading) !important;
+  color: #e2e7f8 !important;
+  text-decoration: none;
+}
+
+.main-menu-title-text {
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  color: #f0f3ff !important;
+}
+
+.main-menu-title-sub {
+  font-size: 0.7rem !important;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9da4c2 !important;
+}
+
+.main-menu-link {
+  font-family: var(--font-body) !important;
+  font-size: 0.85rem !important;
+  color: #9da4c2 !important;
+  border-radius: 6px !important;
+  padding: 0.45rem 0.7rem !important;
+  transition: all var(--ease-fast);
+
+  &:hover {
+    background: rgba(114, 122, 200, 0.1) !important;
+    color: #f0f3ff !important;
+  }
+}
+
+// ==========================================================================
+// MISSION SECTION
+// ==========================================================================
+
+.mission-section {
+  background: transparent;
+}
+
+.mission-title {
+  font-family: var(--font-display) !important;
+  font-size: clamp(2.2rem, 4vw, 3.2rem) !important;
+  color: var(--text);
+}
+
+.mission-lead {
+  color: var(--muted-strong);
+  font-size: 1.15rem;
+}
+
+.mission-body {
+  color: var(--muted);
+}
+
+// ==========================================================================
+// BIAS BEACON / DASHBOARD COMPONENTS
+// ==========================================================================
+
+.bias-beacon-container,
+.dashboard-header,
+.counties-header,
+.dashboard-judge-selection,
+.case-type-analysis,
+.crisis-alert-card,
+.indicator-section,
+.county-card,
+.county-map-container,
+.county-profile-card,
+.comparison-tool,
+.region-card,
+.dashboard-filters,
+.download-section,
+.methodology-section,
+.loading-message,
+.comparison-panel-visible,
+.bias-legend-bar,
+.bias-stats-bar,
+.judges-controls-enhanced,
+.methodology-link,
+.no-results {
+  background:
+    linear-gradient(180deg, rgba(114, 122, 200, 0.04), transparent 26%),
+    rgba(255, 255, 255, 0.7) !important;
+  border: 1px solid rgba(114, 122, 200, 0.1) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 8px 24px rgba(20, 24, 50, 0.06) !important;
+}
+
+// ==========================================================================
+// CARDS INTRO BAND
+// ==========================================================================
+
+.cards-intro-eyebrow {
+  font-family: var(--font-heading) !important;
+  font-size: 0.78rem !important;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--periwinkle) !important;
+}
+
+.cards-intro-tagline {
+  font-family: var(--font-display) !important;
+  font-size: clamp(2rem, 4vw, 3rem) !important;
+  font-weight: 700 !important;
+  color: var(--text) !important;
+  letter-spacing: -0.02em;
+
+  em {
+    font-style: normal;
+    color: var(--periwinkle) !important;
+  }
+}
+
+.cards-intro-deck {
+  color: var(--muted) !important;
+  font-size: 1.05rem;
+}
+
+// ==========================================================================
+// SCROLL INDICATOR
+// ==========================================================================
+
+.scroll-indicator {
+  color: rgba(154, 164, 194, 0.6) !important;
+  z-index: 6;
+}
+
+// ==========================================================================
+// UTILITY
+// ==========================================================================
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// ==========================================================================
+// RESPONSIVE
+// ==========================================================================
+
+@media screen and (max-width: 1024px) {
+  .mega-menu-grid-7 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 768px) {
+  :root {
+    --text-4xl: 2.4rem;
+    --text-3xl: 1.9rem;
+  }
+
+  .mega-menu-grid,
+  .mega-menu-grid-7 {
+    grid-template-columns: 1fr;
+  }
+
+  .home-page .hero-bg-video,
+  .home-page .hero-background video {
+    left: 60% !important;
+    height: 70% !important;
+    opacity: 0.35 !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .mega-menu-column {
+    min-height: auto;
+    padding: 1rem;
+  }
+}

@@ -1,34 +1,45 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Community Forum — Public Accountability Project</title>
-  <link rel="stylesheet" href="/assets/css/style.css">
-</head>
-<body class="page-theme page-theme--1 dark-theme">
-  <div class="sticky-menu page-theme--1">
-    <a href="/">Home</a>
-    <a href="/community-forum.html">Forum</a>
-    <a href="/bias-beacon/">Bias Beacon</a>
-    <a href="/prosecutors.html">Prosecutors</a>
-    <a href="/law-enforcement.html">Law Enforcement</a>
+---
+layout: default
+title: Community Forum — A.P.T.I.T.U.D.E.
+permalink: /community-forum.html
+body_class: actor-directory-page
+---
+
+<section class="archive-hero">
+  <div class="archive-hero-grid">
+    <div class="archive-hero-copy">
+      <div class="hero-title-stack">
+        <span class="archive-kicker">Community</span>
+        <h1 class="actor-page-title">Community Forum</h1>
+        <p class="archive-acronym">Groups · Rate My Judge · Tell Your Story · Tips &amp; Organizing</p>
+      </div>
+      <p class="actor-page-deck">Connect with others working toward justice accountability. Share experiences, rate judicial interactions, join advocacy groups, and organize for systemic change across Oregon's judicial system.</p>
+    </div>
+
+    <aside class="archive-hero-aside">
+      <div class="archive-panel archive-panel-emphasis">
+        <span class="archive-kicker">Community Guidelines</span>
+        <p>This is a space for constructive dialogue about the justice system. Respectful discourse, evidence-backed claims, and actionable organizing are encouraged. Personal attacks, harassment, and misinformation are not tolerated.</p>
+      </div>
+    </aside>
   </div>
+</section>
 
-  <main class="wrapper">
-    <header class="page-header-3d">
-      <h1>Community Forum</h1>
-      <p>Groups, Rate My Judge, Tell Your Story, Tips & Organizing</p>
-    </header>
-
-    <section class="forum-main">
+<section class="actor-directory" data-reveal>
+  <div class="section-heading">
+    <span class="section-kicker">Discuss & Organize</span>
+    <h2>Community Conversations</h2>
+  </div>
+    <div class="forum-main">
       <div class="forum-left">
-        <div class="post-box">
-          <textarea placeholder="Share something..." style="width:100%;min-height:120px;padding:12px;border-radius:8px"></textarea>
+        <div class="sidebar-panel">
+          <h3>Share Your Experience</h3>
+          <textarea placeholder="Share something relevant to the community..." style="width:100%;min-height:100px;padding:12px;border-radius:8px;background:rgba(22,28,54,0.7);border:1px solid rgba(114,122,200,0.15);color:#e2e7f8;font-family:var(--font-body);resize:vertical;"></textarea>
           <div style="margin-top:8px"><button class="btn btn-primary">Post</button></div>
         </div>
 
-        <h2>Recent posts</h2>
-        <div class="post-list">
+        <h2 style="font-family:var(--font-heading);color:#f0f3ff;margin:1.5rem 0 1rem;">Recent Discussions</h2>
+        <div class="post-list" style="display:flex;flex-direction:column;gap:1rem;">
           <article class="post-card flip-card">
             <div class="flip-card-inner">
               <div class="flip-card-front">
@@ -44,22 +55,29 @@
       </div>
 
       <aside class="forum-right">
-        <div class="module">
-          <h4>Groups</h4>
-          <ul>
-            <li>Public Defenders Network</li>
-            <li>Survivor Stories</li>
-            <li>Policy & Lobbying</li>
+        <div class="sidebar-panel">
+          <h3>Community Groups</h3>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:0.5rem;">
+            <li><a class="directory-cross-link" href="#">Public Defenders Network</a></li>
+            <li><a class="directory-cross-link" href="#">Survivor Stories</a></li>
+            <li><a class="directory-cross-link" href="#">Policy &amp; Lobbying</a></li>
+            <li><a class="directory-cross-link" href="#">Reform Initiatives</a></li>
           </ul>
         </div>
-        <div class="module">
-          <h4>Legislative Contacts</h4>
-          <p>County-level contact lists available — <a href="/about/">View directory</a></p>
+        <div class="sidebar-panel">
+          <h3>Legislative Contacts</h3>
+          <p style="color:#9da4c2;font-size:0.88rem;">County-level contact lists available — <a href="/about/" style="color:var(--periwinkle-light);">View directory</a></p>
+        </div>
+        <div class="sidebar-panel">
+          <h3>Quick Links</h3>
+          <nav style="display:flex;flex-direction:column;gap:0.3rem;">
+            <a class="directory-cross-link" href="/bias-beacon/judges/">Judge Profiles</a>
+            <a class="directory-cross-link" href="/bias-beacon/dashboard/">System Dashboard</a>
+            <a class="directory-cross-link" href="/bias-beacon/methodology/">Methodology</a>
+            <a class="directory-cross-link" href="/reports/">Reports</a>
+          </nav>
         </div>
       </aside>
-    </section>
-  </main>
-
-  <script type="module" src="/assets/js/site-ui.js"></script>
-</body>
-</html>
+    </div>
+  </div>
+</section>
