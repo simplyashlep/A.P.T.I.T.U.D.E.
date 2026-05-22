@@ -1,0 +1,90 @@
+{
+  "theme": "dark",
+  "archetype": "5 (Jewel & Luxury)",
+  "vibe": "Cinematic, moody, expensive feel, restrained legal aesthetic, authoritative",
+  "colors": {
+    "background": "#0A0F1A",
+    "surface": "#131A26",
+    "surface_glass": "rgba(19, 26, 38, 0.6)",
+    "text_primary": "#F5F5F0",
+    "text_secondary": "#A1A9B8",
+    "accent_gold": "#C8A97E",
+    "highlight_steel": "#5B7B9A",
+    "border_subtle": "rgba(255, 255, 255, 0.08)"
+  },
+  "typography": {
+    "headings": "Cormorant Garamond",
+    "body": "Outfit",
+    "brand_title": "Playfair Display"
+  },
+  "spacing_and_layout": {
+    "philosophy": "Generous Spacing Philosophy, strong negative space, editorial minimalism.",
+    "hero": "Full viewport height. Central alignment for brand title and search bar. Sparse and powerful composition.",
+    "grid": "Bento grids or strict geometric grids for principles and capabilities. 1px borders for technical/legal precision.",
+    "paddings": "py-24 or py-32 for sections."
+  },
+  "components": {
+    "nav": "Refined minimal top nav. Glassmorphism `backdrop-blur-xl bg-[#0A0F1A]/60 border-b border-white/10`. Minimal links.",
+    "hero_search_bar": "Central product interaction. Refined minimal glassmorphism. `bg-white/5 backdrop-blur-md border border-white/20`. Tall input field, soft gold icon or focus ring. NO glowing blobs.",
+    "cards": "Dark near-black surfaces, 1px subtle steel-blue or gold-tinted border. No generic SaaS shadows. Use text contrast instead.",
+    "buttons": "Restrained. Soft gold borders or text. No neon backgrounds.",
+    "logo": "Custom SVG wordmark treatment for A.P.T.I.T.U.D.E."
+  },
+  "motion": {
+    "hover": "Smooth hover/focus states, soft text color transitions to gold or steel-blue.",
+    "video_bg": "Subtle looping video layer in the hero section, darkened for readability."
+  },
+  "media": {
+    "hero_video": "Agent to use a standard HTML5 <video> tag with autoplay, loop, muted, playsinline. If valid Pexels video URL is unknown, use the fallback image.",
+    "image_urls": [
+      {
+        "url": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHwzfHxsYWR5JTIwanVzdGljZSUyMHN0YXR1ZXxlbnwwfHx8fDE3Nzk0Mzc4ODl8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Lady justice statue",
+        "category": "hero_fallback_image"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1508174516034-a466529afd78?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzR8MHwxfHNlYXJjaHwyfHxtYXJibGUlMjBjb2x1bW5zJTIwYXJjaGl0ZWN0dXJlJTIwZGFya3xlbnwwfHx8fDE3Nzk0Mzc4ODl8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Dark marble columns",
+        "category": "principles_section_bg"
+      }
+    ]
+  },
+  "sections": [
+    {
+      "name": "Hero",
+      "content": "Video background with dark deep-navy overlay and soft gradient wash. Brand title 'A.P.T.I.T.U.D.E.', Tagline 'Accountability Is Real...'. Central full-width premium search bar spanning most of hero width. No other buttons."
+    },
+    {
+      "name": "Principles / Pillars",
+      "content": "3 bespoke pillars. High-end, not generic. Strict borders, large serif numbers (I, II, III). Soft gold accents."
+    },
+    {
+      "name": "Capabilities",
+      "content": "Legal research and capabilities. Geometric layout, deep navy surfaces."
+    },
+    {
+      "name": "Trust / Quote",
+      "content": "Large cinematic editorial quote using serif font. Muted ivory text."
+    },
+    {
+      "name": "Footer",
+      "content": "Minimal, refined. Brand mark and minimal links."
+    }
+  ],
+  "accessibility": {
+    "contrast": "Ensure text meets APCA standards. Ivory on deep navy.",
+    "testing": "All interactive elements MUST include data-testid attribute (e.g., data-testid='hero-search-input')"
+  },
+  "instructions_to_main_agent": [
+    "Strictly adhere to the dark theme and Jewel & Luxury archetype.",
+    "Avoid Inter for headings, use Cormorant Garamond or similar serif. Use Outfit or clean sans-serif for UI text.",
+    "Use standard HTML <video> tag for the hero background. Source it with a placeholder video URL or a Pexels stock video link, and use the fallback unsplash image as the poster.",
+    "Do not use generic SaaS gradients, shadows, or glowing blobs.",
+    "For the hero search bar, use a polished glassmorphism approach: bg-white/5, backdrop-blur-md, soft white border, gold focus ring.",
+    "Implement the SVG wordmark for A.P.T.I.T.U.D.E.",
+    "Every section below the hero must feel bespoke. Use 1px borders, subtle steel-blue accents, and rich typography.",
+    "Ensure the hero overlay has a gradient that improves contrast while letting the background show through (e.g., bg-gradient-to-b from-[#0A0F1A]/70 to-[#0A0F1A]).",
+    "All interactive elements MUST have a data-testid attribute.",
+    "Install and use lucide-react or @phosphor-icons/react for icons if needed."
+  ]
+}
