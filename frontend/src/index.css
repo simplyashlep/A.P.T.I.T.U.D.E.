@@ -2,114 +2,257 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    margin: 0;
-    font-family:
-        -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-        sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+:root {
+    --apt-bg: #0A0F1A;
+    --apt-bg-2: #070B14;
+    --apt-surface: #131A26;
+    --apt-surface-2: #0E1420;
+    --apt-ivory: #F5F1E6;
+    --apt-ivory-dim: #C8C3B4;
+    --apt-text-secondary: #8C93A3;
+    --apt-gold: #C8A97E;
+    --apt-gold-soft: #D9BE93;
+    --apt-steel: #5B7B9A;
+    --apt-line: rgba(245, 241, 230, 0.08);
+    --apt-line-strong: rgba(245, 241, 230, 0.18);
 }
 
-code {
-    font-family:
-        source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+html, body, #root {
+    background: var(--apt-bg);
+    color: var(--apt-ivory);
+}
+
+body {
+    margin: 0;
+    font-family: 'Outfit', ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background:
+        radial-gradient(1200px 700px at 80% -10%, rgba(91, 123, 154, 0.10), transparent 60%),
+        radial-gradient(900px 600px at 0% 100%, rgba(200, 169, 126, 0.06), transparent 60%),
+        linear-gradient(180deg, #070B14 0%, #0A0F1A 40%, #0A0F1A 100%);
+    background-attachment: fixed;
+}
+
+::selection {
+    background: rgba(200, 169, 126, 0.35);
+    color: #fff;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #070B14; }
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #1a2434, #0e1420);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover { background: #1f2a3e; }
+
+/* Focus states */
+*:focus { outline: none; }
+*:focus-visible {
+    outline: 1px solid var(--apt-gold);
+    outline-offset: 2px;
 }
 
 @layer base {
     :root {
-        --background: 0 0% 100%;
-        --foreground: 0 0% 3.9%;
-        --card: 0 0% 100%;
-        --card-foreground: 0 0% 3.9%;
-        --popover: 0 0% 100%;
-        --popover-foreground: 0 0% 3.9%;
-        --primary: 0 0% 9%;
-        --primary-foreground: 0 0% 98%;
-        --secondary: 0 0% 96.1%;
-        --secondary-foreground: 0 0% 9%;
-        --muted: 0 0% 96.1%;
-        --muted-foreground: 0 0% 45.1%;
-        --accent: 0 0% 96.1%;
-        --accent-foreground: 0 0% 9%;
-        --destructive: 0 84.2% 60.2%;
+        --background: 222 33% 6%;
+        --foreground: 45 35% 92%;
+        --card: 222 28% 11%;
+        --card-foreground: 45 35% 92%;
+        --popover: 222 28% 11%;
+        --popover-foreground: 45 35% 92%;
+        --primary: 36 38% 64%;
+        --primary-foreground: 222 33% 6%;
+        --secondary: 222 28% 14%;
+        --secondary-foreground: 45 35% 92%;
+        --muted: 222 25% 16%;
+        --muted-foreground: 220 10% 65%;
+        --accent: 36 38% 64%;
+        --accent-foreground: 222 33% 6%;
+        --destructive: 0 62% 45%;
         --destructive-foreground: 0 0% 98%;
-        --border: 0 0% 89.8%;
-        --input: 0 0% 89.8%;
-        --ring: 0 0% 3.9%;
-        --chart-1: 12 76% 61%;
-        --chart-2: 173 58% 39%;
-        --chart-3: 197 37% 24%;
-        --chart-4: 43 74% 66%;
-        --chart-5: 27 87% 67%;
-        --radius: 0.5rem;
-    }
-    .dark {
-        --background: 0 0% 3.9%;
-        --foreground: 0 0% 98%;
-        --card: 0 0% 3.9%;
-        --card-foreground: 0 0% 98%;
-        --popover: 0 0% 3.9%;
-        --popover-foreground: 0 0% 98%;
-        --primary: 0 0% 98%;
-        --primary-foreground: 0 0% 9%;
-        --secondary: 0 0% 14.9%;
-        --secondary-foreground: 0 0% 98%;
-        --muted: 0 0% 14.9%;
-        --muted-foreground: 0 0% 63.9%;
-        --accent: 0 0% 14.9%;
-        --accent-foreground: 0 0% 98%;
-        --destructive: 0 62.8% 30.6%;
-        --destructive-foreground: 0 0% 98%;
-        --border: 0 0% 14.9%;
-        --input: 0 0% 14.9%;
-        --ring: 0 0% 83.1%;
-        --chart-1: 220 70% 50%;
-        --chart-2: 160 60% 45%;
-        --chart-3: 30 80% 55%;
-        --chart-4: 280 65% 60%;
-        --chart-5: 340 75% 55%;
+        --border: 220 15% 20%;
+        --input: 220 15% 20%;
+        --ring: 36 38% 64%;
+        --radius: 0.25rem;
     }
 }
 
 @layer base {
-    * {
-        @apply border-border;
-    }
-    body {
-        @apply bg-background text-foreground;
-    }
+    body { @apply text-foreground; }
 }
 
-@layer base {
-    [data-debug-wrapper="true"] {
-        display: contents !important;
-    }
+/* ---------- Typography utilities ---------- */
+.font-display {
+    font-family: 'Playfair Display', 'Cormorant Garamond', serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+}
+.font-serif-h {
+    font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+    font-weight: 400;
+    letter-spacing: -0.005em;
+}
+.font-ui {
+    font-family: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+}
 
-    [data-debug-wrapper="true"] > * {
-        margin-left: inherit;
-        margin-right: inherit;
-        margin-top: inherit;
-        margin-bottom: inherit;
-        padding-left: inherit;
-        padding-right: inherit;
-        padding-top: inherit;
-        padding-bottom: inherit;
-        column-gap: inherit;
-        row-gap: inherit;
-        gap: inherit;
-        border-left-width: inherit;
-        border-right-width: inherit;
-        border-top-width: inherit;
-        border-bottom-width: inherit;
-        border-left-style: inherit;
-        border-right-style: inherit;
-        border-top-style: inherit;
-        border-bottom-style: inherit;
-        border-left-color: inherit;
-        border-right-color: inherit;
-        border-top-color: inherit;
-        border-bottom-color: inherit;
+.text-ivory { color: var(--apt-ivory); }
+.text-ivory-dim { color: var(--apt-ivory-dim); }
+.text-secondary { color: var(--apt-text-secondary); }
+.text-gold { color: var(--apt-gold); }
+.text-steel { color: var(--apt-steel); }
+.bg-apt { background: var(--apt-bg); }
+.bg-apt-surface { background: var(--apt-surface); }
+.border-line { border-color: var(--apt-line); }
+.border-line-strong { border-color: var(--apt-line-strong); }
+
+/* Hero overlay gradient */
+.hero-overlay {
+    background:
+        radial-gradient(80% 60% at 50% 35%, rgba(10, 15, 26, 0.45) 0%, rgba(10, 15, 26, 0.82) 60%, rgba(7, 11, 20, 0.95) 100%),
+        linear-gradient(180deg, rgba(7, 11, 20, 0.55) 0%, rgba(7, 11, 20, 0.65) 60%, #0A0F1A 100%);
+}
+
+/* Subtle grain */
+.grain::before {
+    content: "";
+    position: absolute; inset: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.35;
+    mix-blend-mode: overlay;
+    z-index: 1;
+}
+
+/* Search bar */
+.apt-search {
+    background: rgba(245, 241, 230, 0.04);
+    border: 1px solid rgba(245, 241, 230, 0.14);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    transition: border-color 350ms ease, background 350ms ease, box-shadow 350ms ease, transform 350ms ease;
+}
+.apt-search:focus-within {
+    border-color: rgba(200, 169, 126, 0.55);
+    background: rgba(245, 241, 230, 0.06);
+    box-shadow:
+        0 0 0 1px rgba(200, 169, 126, 0.25),
+        0 20px 60px -20px rgba(200, 169, 126, 0.18);
+}
+.apt-search input {
+    background: transparent;
+    color: var(--apt-ivory);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.01em;
+}
+.apt-search input::placeholder {
+    color: rgba(245, 241, 230, 0.45);
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+}
+
+/* Gold hairline */
+.gold-rule {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(200,169,126,0.55), transparent);
+}
+
+/* Section reveal */
+.reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 900ms cubic-bezier(.22,.61,.36,1), transform 900ms cubic-bezier(.22,.61,.36,1);
+}
+.reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Number plate */
+.numeral {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--apt-gold);
+    letter-spacing: 0.02em;
+}
+
+/* Small caps eyebrow */
+.eyebrow {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--apt-gold);
+    font-weight: 400;
+}
+
+/* Underline link */
+.link-quiet {
+    position: relative;
+    color: var(--apt-ivory-dim);
+    transition: color 300ms ease;
+}
+.link-quiet:hover { color: var(--apt-gold); }
+.link-quiet::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -4px;
+    height: 1px;
+    background: var(--apt-gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 400ms cubic-bezier(.22,.61,.36,1);
+}
+.link-quiet:hover::after { transform: scaleX(1); }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
     }
+    .reveal { opacity: 1; transform: none; }
+    video.hero-video { display: none; }
+    .hero-fallback-img { display: block !important; }
+}
+
+/* Cursor caret animation on tagline */
+@keyframes caret-blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+.caret {
+    display: inline-block;
+    width: 0.55ch;
+    margin-left: 2px;
+    color: var(--apt-gold);
+    animation: caret-blink 1.1s steps(1) infinite;
+}
+
+/* Marquee for trust strip */
+@keyframes drift {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+.drift-track {
+    animation: drift 50s linear infinite;
+}
+
+/* Heading kerning for the wordmark */
+.wordmark-letters > span {
+    display: inline-block;
+    transition: transform 600ms cubic-bezier(.22,.61,.36,1), color 600ms ease;
+}
+.wordmark-letters:hover > span {
+    color: var(--apt-gold-soft);
 }
