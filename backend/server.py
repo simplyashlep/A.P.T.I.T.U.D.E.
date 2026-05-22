@@ -59,25 +59,71 @@ class SearchResponse(BaseModel):
 
 
 SYSTEM_PROMPT = (
-    "You are A.P.T.I.T.U.D.E., a disciplined legal research assistant. "
-    "Your purpose is precision, principle, and proof. "
-    "Answer with the restraint of a senior appellate clerk: calm, exact, and grounded in law and reason. "
-    "When the user submits a query, respond in this exact structure using plain text and Markdown:\n\n"
-    "**Principle.** One precise sentence stating the controlling legal principle.\n\n"
-    "**Analysis.** 3-6 disciplined sentences. Cite doctrines, statutes, or canonical cases by name where relevant. "
-    "Acknowledge ambiguity rather than inventing facts.\n\n"
-    "**Proof.** A short bulleted list (2-4 items) of the authorities, frameworks, or further reading worth consulting.\n\n"
-    "Rules: never fabricate citations or pinpoints; if you are not certain a case exists, name only the doctrine. "
-    "Never give individualized legal advice. Always close with a single italic line: "
-    "_For research orientation only — not a substitute for counsel._ "
-    "Keep total length under 220 words. Use jurisdiction-neutral framing unless the query specifies one."
+    "You are A.P.T.I.T.U.D.E. — A Platform Tracking Institutional Trends Uncovering Disparate Enforcement. "
+    "You are the first public dataset instrument for Oregon's justice system. "
+    "Your purpose is precision, principle, and proof — making siloed public information cohere into the actual record. "
+    "Users may ask three kinds of questions: (1) general questions about how Oregon's justice system works, "
+    "(2) lookups about a particular actor (judge, district attorney, law enforcement officer, parole/probation officer, or agency), "
+    "or (3) caselaw and statute questions (Oregon Revised Statutes (ORS), Oregon Administrative Rules (OAR), Oregon Court of Appeals or Supreme Court decisions). "
+    "Detect which kind of question is being asked and respond in this structure using Markdown:\n\n"
+    "**Principle.** One precise sentence: for general questions state the controlling rule or process; "
+    "for actor questions state what is and is not publicly known about that role in Oregon; "
+    "for caselaw questions state the holding or rule.\n\n"
+    "**Analysis.** 3-6 disciplined sentences grounding the answer in Oregon-specific sources where possible — "
+    "the Oregon Judicial Department (OJD), ORS, OAR, the Oregon Criminal Justice Commission, the STOP Data dashboard (HB 2355), "
+    "or the Oregon State Bar. Acknowledge data gaps and siloing rather than inventing facts. "
+    "If individual-actor data is not yet loaded into the platform, say so plainly and point to where the public record lives.\n\n"
+    "**Proof.** A short bulleted list (2-4 items) of authorities, datasets, or further reading worth consulting.\n\n"
+    "Rules: never fabricate case names, statute pinpoints, or individual records; "
+    "if uncertain whether a case or person exists, name only the doctrine or role. "
+    "Never give individualized legal advice. Keep total length under 240 words. "
+    "Close with a single italic line: _For research orientation only — not a substitute for counsel or the official record._"
 )
 
 
 # ------------------- Routes -------------------
 @api_router.get("/")
 async def root():
-    return {"message": "A.P.T.I.T.U.D.E. — Precision. Principle. Proof."}
+    return {"message": "A.P.T.I.T.U.D.E. — A Platform Tracking Institutional Trends Uncovering Disparate Enforcement."}
+
+
+# Oregon judicial system high-level facts/stats for the hero counter.
+# Sources are public; numbers are conservative approximations and will be
+# replaced with live data once the official datasets are wired in.
+OREGON_FACTS = [
+    {"value": 211, "label": "Sitting trial-court judges across Oregon's 36 counties", "kind": "count", "source": "Oregon Judicial Department"},
+    {"value": 36, "label": "Counties — each with its own pattern of enforcement", "kind": "count", "source": "Oregon Blue Book"},
+    {"value": 27, "label": "Elected District Attorneys — the prosecutorial gatekeepers", "kind": "count", "source": "Oregon DAA"},
+    {"value": 380000, "label": "Traffic stops disclosed under Oregon HB 2355 in a recent year", "kind": "count", "source": "Oregon STOP Data Dashboard"},
+    {"value": 411, "label": "Oregon's prison incarceration rate per 100,000 — below the U.S. average of 565", "kind": "ratio", "source": "Oregon DOC / BJS"},
+    {"value": 95, "label": "Percent of Oregon felony convictions resolved by plea, not trial", "kind": "percent", "source": "Oregon Criminal Justice Commission"},
+]
+
+
+@api_router.get("/oregon-facts")
+async def oregon_facts():
+    return {"facts": OREGON_FACTS}
+
+
+@api_router.get("/actors")
+async def list_actors(role: Optional[str] = None, county: Optional[str] = None):
+    """Returns the list of actor records.
+
+    Returns an empty list with a clear data-status flag while the official
+    OJD / DAA / DPSST / DOC datasets are being wired in. Roles will include:
+    judge, prosecutor, law_enforcement, parole_probation.
+    """
+    query = {}
+    if role:
+        query["role"] = role
+    if county:
+        query["county"] = county
+    docs = await db.actors.find(query, {"_id": 0}).to_list(2000)
+    return {
+        "data_status": "pending_dataset" if not docs else "loaded",
+        "count": len(docs),
+        "actors": docs,
+    }
 
 
 @api_router.post("/status", response_model=StatusCheck)

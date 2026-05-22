@@ -68,6 +68,56 @@ def test_search_persists_and_listed(session, first_search):
         assert "_id" not in it
 
 
+# ------------------- Oregon Facts -------------------
+def test_oregon_facts_returns_six_facts(session):
+    r = session.get(f"{API}/oregon-facts", timeout=30)
+    assert r.status_code == 200
+    data = r.json()
+    assert "facts" in data
+    assert isinstance(data["facts"], list)
+    assert len(data["facts"]) == 6
+    for f in data["facts"]:
+        assert "value" in f and isinstance(f["value"], (int, float))
+        assert "label" in f and isinstance(f["label"], str)
+        assert "kind" in f
+        assert "source" in f
+    values = [f["value"] for f in data["facts"]]
+    assert 211 in values, "Expected 211 (sitting trial-court judges)"
+    assert 380000 in values, "Expected 380000 (STOP traffic stops)"
+
+
+# ------------------- Actors -------------------
+def test_actors_empty_pending_dataset(session):
+    r = session.get(f"{API}/actors", timeout=30)
+    assert r.status_code == 200
+    data = r.json()
+    assert data["data_status"] == "pending_dataset"
+    assert data["count"] == 0
+    assert data["actors"] == []
+
+
+def test_actors_role_filter_judge(session):
+    r = session.get(f"{API}/actors", params={"role": "judge"}, timeout=30)
+    assert r.status_code == 200
+    data = r.json()
+    assert data["data_status"] == "pending_dataset"
+    assert data["count"] == 0
+    assert data["actors"] == []
+
+
+# ------------------- Oregon-focused search -------------------
+def test_search_oregon_focused_query(session):
+    payload = {"query": "Who oversees prosecutorial misconduct in Oregon?"}
+    r = session.post(f"{API}/search", json=payload, timeout=120)
+    assert r.status_code == 200, f"Unexpected status: {r.status_code} {r.text}"
+    data = r.json()
+    assert "answer" in data and len(data["answer"]) > 50
+    answer = data["answer"]
+    assert "Principle" in answer
+    assert "Analysis" in answer
+    assert "Proof" in answer
+
+
 def test_search_session_continuation(session, first_search):
     payload = {
         "query": "Apply that doctrine to a single-owner LLC with commingled funds.",
