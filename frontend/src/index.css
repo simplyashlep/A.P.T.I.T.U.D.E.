@@ -360,15 +360,32 @@ body {
     backface-visibility: hidden;
 }
 
-/* Hero walking pan — subtle infinite parallax */
+/* Hero — Lady Justice framed off-side, contained (not cropped) */
+.hero-justice-frame {
+    /* nothing here — sizing on the wrapper */
+}
+.hero-justice-media {
+    object-fit: cover;
+    object-position: center 30%;
+    transform-origin: center 35%;
+    animation: heroWalk 36s ease-in-out infinite alternate;
+}
+@media (max-width: 768px) {
+    .hero-justice-media {
+        object-position: center 20%;
+        opacity: 0.55;
+    }
+}
+
+/* Walking pan keyframes (kept for compat with class .hero-walk) */
 .hero-walk {
     transform-origin: center 40%;
     animation: heroWalk 36s ease-in-out infinite alternate;
 }
 @keyframes heroWalk {
-    0%   { transform: scale(1.08) translateX(-1.2%) translateY(0); }
-    50%  { transform: scale(1.12) translateX(1.4%) translateY(-0.6%); }
-    100% { transform: scale(1.10) translateX(-0.6%) translateY(0.4%); }
+    0%   { transform: scale(1.04) translateY(0); }
+    50%  { transform: scale(1.08) translateY(-0.6%); }
+    100% { transform: scale(1.06) translateY(0.4%); }
 }
 
 /* Counter & chart anims */
@@ -386,7 +403,7 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .hero-walk { animation: none; transform: scale(1.05); }
+    .hero-walk, .hero-justice-media { animation: none; transform: scale(1.02); }
 }
 
 /* Native select styling */

@@ -32,11 +32,15 @@ export const Hero = () => {
       className="relative min-h-[100svh] flex flex-col w-full overflow-hidden grain"
       data-testid="hero-section"
     >
-      <div className="absolute inset-0 z-0 hero-walk-wrap">
+      {/* Base dark canvas */}
+      <div className="absolute inset-0 z-0 bg-[#070B14]" />
+
+      {/* Lady Justice — positioned to the right, contained (not cropped), framed */}
+      <div className="absolute inset-y-0 right-0 z-[1] w-full md:w-[58%] lg:w-[52%] hero-justice-frame">
         {videoOk ? (
           <video
             ref={videoRef}
-            className="hero-video hero-walk absolute inset-0 w-full h-full object-cover"
+            className="hero-video hero-justice-media absolute inset-0 w-full h-full"
             autoPlay
             loop
             muted
@@ -52,42 +56,53 @@ export const Hero = () => {
           <img
             src={HERO_FALLBACK_IMAGE}
             alt="Lady Justice"
-            className="hero-fallback-img hero-walk absolute inset-0 w-full h-full object-cover"
+            className="hero-fallback-img hero-justice-media absolute inset-0 w-full h-full"
             data-testid="hero-fallback-image"
           />
         )}
+
+        {/* Left-edge gradient that blends her into the dark canvas */}
+        <div className="absolute inset-y-0 left-0 w-2/3 bg-gradient-to-r from-[#070B14] via-[#070B14]/85 to-transparent pointer-events-none" />
+        {/* Top + bottom soft vignette so she feels framed like a portrait */}
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#070B14] to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#070B14] to-transparent pointer-events-none" />
       </div>
 
-      <div className="absolute inset-0 hero-overlay z-[2]" />
-      <div
-        className="pointer-events-none absolute inset-0 z-[3]"
-        style={{ boxShadow: "inset 0 0 240px 40px rgba(0,0,0,0.88)" }}
-      />
-      <div className="absolute left-6 md:left-10 top-24 bottom-44 w-px bg-gradient-to-b from-transparent via-[rgba(200,169,126,0.22)] to-transparent z-[4]" />
-      <div className="absolute right-6 md:right-10 top-24 bottom-44 w-px bg-gradient-to-b from-transparent via-[rgba(200,169,126,0.22)] to-transparent z-[4]" />
+      {/* Decorative gold hairlines */}
+      <div className="absolute left-6 md:left-10 top-24 bottom-44 w-px bg-gradient-to-b from-transparent via-[rgba(200,169,126,0.22)] to-transparent z-[3]" />
+      <div className="absolute right-6 md:right-10 top-24 bottom-44 w-px bg-gradient-to-b from-transparent via-[rgba(200,169,126,0.22)] to-transparent z-[3]" />
 
-      <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-6 md:px-10 pt-28 pb-10">
-        <div className="eyebrow mb-6 opacity-90" data-testid="hero-eyebrow">
-          Oregon  ·  MMXXV  ·  The First Judicial Dataset
-        </div>
+      {/* Content — left-anchored on desktop, centered on mobile */}
+      <div className="relative z-10 flex-1 flex flex-col px-6 md:px-10 pt-28 pb-10">
+        <div className="max-w-3xl xl:max-w-4xl flex-1 flex flex-col items-center md:items-start justify-center text-center md:text-left">
+          <div className="eyebrow mb-6 opacity-90" data-testid="hero-eyebrow">
+            Oregon  ·  MMXXV  ·  The First Judicial Dataset
+          </div>
 
-        <Wordmark size="lg" embossed className="text-ivory text-center justify-center" />
+          <Wordmark
+            size="lg"
+            embossed
+            className="text-ivory justify-center md:justify-start"
+          />
 
-        {/* Clean spelled-out acronym — single italic line, no letter prefixes */}
-        <p
-          className="mt-6 md:mt-7 font-serif-h italic text-[13px] md:text-base text-ivory-dim tracking-[0.06em] text-center max-w-3xl"
-          data-testid="hero-acronym"
-        >
-          A&nbsp;Platform Tracking Institutional Trends Uncovering Disparate Enforcement
-        </p>
+          <p
+            className="mt-6 md:mt-7 font-serif-h italic text-[13px] md:text-base text-ivory-dim tracking-[0.06em]"
+            data-testid="hero-acronym"
+          >
+            A&nbsp;Platform Tracking Institutional Trends Uncovering Disparate Enforcement
+          </p>
 
-        <div className="mt-9 md:mt-10 max-w-2xl text-center">
-          <p className="font-serif-h text-2xl md:text-3xl text-ivory italic leading-snug" data-testid="hero-tagline">
+          <p
+            className="mt-9 md:mt-10 font-serif-h text-2xl md:text-3xl text-ivory italic leading-snug"
+            data-testid="hero-tagline"
+          >
             Accountability Is Real<span className="text-gold">.</span>
           </p>
-        </div>
 
-        <SearchBar />
+          <div className="w-full">
+            <SearchBar />
+          </div>
+        </div>
       </div>
 
       <OregonCounter />

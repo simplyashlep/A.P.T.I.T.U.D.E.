@@ -12,6 +12,7 @@ from datetime import datetime, timezone
 
 from emergentintegrations.llm.chat import LlmChat, UserMessage
 from judges_data import filter_judges, get_judge, stats as judge_stats, slim
+from live_data import stop_summary, stop_counties, disparity_indicators, dashboards as ocjc_dashboards
 
 
 ROOT_DIR = Path(__file__).parent
@@ -157,6 +158,26 @@ async def judge_detail(judge_id: str):
     if not j:
         raise HTTPException(status_code=404, detail="Judge not found")
     return j
+
+
+@api_router.get("/beacon/stop-summary")
+async def beacon_stop_summary():
+    return stop_summary()
+
+
+@api_router.get("/beacon/stop-counties")
+async def beacon_stop_counties():
+    return stop_counties()
+
+
+@api_router.get("/beacon/disparity")
+async def beacon_disparity():
+    return disparity_indicators()
+
+
+@api_router.get("/beacon/dashboards")
+async def beacon_dashboards():
+    return {"dashboards": ocjc_dashboards()}
 
 
 @api_router.post("/status", response_model=StatusCheck)
