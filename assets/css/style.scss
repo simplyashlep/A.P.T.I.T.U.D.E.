@@ -9537,3 +9537,249 @@ h1, h2, h3, h4 {
     grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
   }
 }
+
+/* ============================================================
+   JEWEL & LUXURY DESIGN SYSTEM — Global Overrides
+   ============================================================ */
+
+:root {
+  --jewel-bg: #0A0F1A;
+  --jewel-surface: #131A26;
+  --jewel-glass: rgba(19, 26, 38, 0.6);
+  --jewel-text: #F5F5F0;
+  --jewel-muted: #A1A9B8;
+  --jewel-gold: #C8A97E;
+  --jewel-steel: #5B7B9A;
+  --jewel-border: rgba(255, 255, 255, 0.08);
+  --jewel-border-light: rgba(255, 255, 255, 0.04);
+  --jewel-overlay: rgba(10, 15, 26, 0.7);
+}
+
+/* -- Glassmorphism Header -- */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(10, 15, 26, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0 1.5rem;
+}
+
+.site-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 60px;
+}
+
+.site-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--jewel-text);
+  text-decoration: none;
+}
+
+.brand-accent {
+  color: var(--jewel-gold);
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-link {
+  font-family: "Outfit", system-ui, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--jewel-muted);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--jewel-gold);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--jewel-gold);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* -- Minimal Footer -- */
+.site-footer {
+  background: var(--jewel-surface);
+  border-top: 1px solid var(--jewel-border);
+  padding: 3rem 1.5rem;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.footer-mark {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--jewel-text);
+}
+
+.footer-tagline {
+  font-family: "Outfit", system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: var(--jewel-muted);
+  margin-top: 0.3rem;
+  max-width: 400px;
+  line-height: 1.5;
+}
+
+.footer-links {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-links a {
+  font-family: "Outfit", system-ui, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--jewel-muted);
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--jewel-gold);
+}
+
+.footer-legal {
+  font-family: "Outfit", system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.2);
+  line-height: 1.6;
+}
+
+.footer-source {
+  color: rgba(255,255,255,0.15);
+  font-style: italic;
+}
+
+/* -- Mega Menu -- */
+.mega-menu-panel {
+  background: rgba(10, 15, 26, 0.95);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid var(--jewel-border);
+  padding: 2rem 1.5rem;
+}
+
+.mega-menu-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 2rem;
+}
+
+.mega-menu-heading {
+  font-family: "Outfit", system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--jewel-gold);
+  margin-bottom: 0.5rem;
+}
+
+.mega-menu-desc {
+  font-family: "Outfit", system-ui, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: var(--jewel-muted);
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+
+.mega-menu-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.mega-menu-links a {
+  font-family: "Outfit", system-ui, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--jewel-muted);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.mega-menu-links a:hover {
+  color: var(--jewel-gold);
+}
+
+/* -- Body background -- */
+body {
+  background: var(--jewel-bg);
+  color: var(--jewel-text);
+}
+
+/* -- Menu launcher (hamburger) -- */
+.menu-launcher {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.menu-bar {
+  display: block;
+  width: 20px;
+  height: 1.5px;
+  background: var(--jewel-muted);
+  border-radius: 1px;
+  transition: background 0.3s ease;
+}
+
+.menu-launcher:hover .menu-bar {
+  background: var(--jewel-gold);
+}
