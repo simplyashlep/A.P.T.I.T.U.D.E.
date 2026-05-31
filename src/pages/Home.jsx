@@ -1,107 +1,198 @@
-import React from "react"
-import { Hero } from "../components/aptitude/Hero"
-import { PagesGrid } from "../components/aptitude/PagesGrid"
-import { Footer } from "../components/aptitude/Footer"
-import { TopNav } from "../components/aptitude/TopNav"
+import React, { useEffect } from "react";
+import axios from "axios";
+import { Toaster } from "sonner";
+import { TopNav } from "../components/aptitude/TopNav";
+import { Hero } from "../components/aptitude/Hero";
+import { PagesGrid } from "../components/aptitude/PagesGrid";
+import { Footer } from "../components/aptitude/Footer";
+import { Quote, ArrowUpRight } from "lucide-react";
+import { ScaleLogo } from "../components/aptitude/Brand";
+import { Link } from "react-router-dom";
 
-const PRINCIPLES = [
+const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+
+const useReveal = () => {
+  useEffect(() => {
+    const els = document.querySelectorAll(".reveal");
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.14 }
+    );
+    els.forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+};
+
+const TENETS = [
   {
     n: "I",
-    h: "Why Oregon",
-    b: "Oregon was an early adopter of mandated stop-data disclosure (HB 2355) and runs one of the most county-fragmented justice systems in the United States. If a public record dataset can be built anywhere, it can be built here.",
+    name: "Precision",
+    body:
+      "Every figure measured against the controlling rule. What is uncertain is named uncertain — never improvised.",
   },
   {
     n: "II",
-    h: "Methodology",
-    b: "Every bias score, every disparity figure, every ranking is documented end-to-end — the source dataset, the refresh cadence, the formula, and the gaps. If we cannot show our work, we do not publish the number.",
+    name: "Principle",
+    body:
+      "Methodology over disposition. How a bias score is calculated, where its data lives, and what it cannot yet see — all in the open.",
   },
   {
     n: "III",
-    h: "Promise",
-    b: "We do not give legal advice and we do not file documents. We surface the public record, organize it, and let it speak. The judgment remains with you, your counsel, and the court.",
+    name: "Proof",
+    body:
+      "Public record as primary source. Every metric links back to the dataset, the statute, the case, or the agency that issued it.",
   },
-]
+];
 
-const CAPABILITIES = [
-  { icon: "chart", label: "Disparity Analytics", desc: "Stop, charge, and sentencing data broken down by race, county, and agency." },
-  { icon: "clock", label: "Historical Trends", desc: "Multi-year comparisons so you can see if Oregon is moving forward or standing still." },
-  { icon: "grid", label: "Unified Record", desc: "28 datasets merged into one searchable index. Every judge, every officer, every county." },
-  { icon: "document", label: "Document Assembly", desc: "Generate public-records requests, filings, and research memos from live data." },
-  { icon: "users", label: "Community Portal", desc: "File observations, attend oversight meetings, and track agency responses." },
-  { icon: "edit", label: "Bias Beacon", desc: "Live dashboards visualizing racial disparity across Oregon's justice system." },
-]
+const TenetsSection = () => (
+  <section
+    id="principles"
+    className="relative py-28 md:py-36 px-6 md:px-10 overflow-hidden"
+    data-testid="tenets-section"
+  >
+    <div className="relative max-w-\[1360px] mx-auto">
+      <div className="reveal flex items-baseline justify-between flex-wrap gap-6 mb-16 md:mb-20">
+        <div>
+          <div className="eyebrow mb-4">The Tenets</div>
+          <h2 className="font-display text-4xl md:text-6xl text-ivory leading-\[1.05] max-w-3xl">
+            Three rules.
+
+            <span className="italic text-gold">No exceptions.</span>
+          </h2>
+        </div>
+        <p className="font-serif-h italic text-lg md:text-xl text-ivory-dim max-w-md">
+          Oregon's record deserves the same discipline as the best chambers.
+          These are ours.
+        </p>
+      </div>
+
+      <div className="gold-rule mb-14" />
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-\[var(--apt-line)]" data-testid="tenets-grid">
+        {TENETS.map((p, i) => (
+          <div
+            key={p.n}
+            className="reveal bg-[#0A0F1A] p-8 md:p-12 group"
+            style={{ transitionDelay: `${i * 120}ms` }}
+            data-testid={`tenet-${p.name.toLowerCase()}`}
+          >
+            <div className="flex items-baseline gap-6 mb-8">
+              <span className="numeral text-5xl md:text-6xl">{p.n}</span>
+              <span className="text-\[11px] uppercase tracking-\[0.36em] text-secondary group-hover:text-gold transition-colors duration-500">
+                {p.name}
+              </span>
+            </div>
+            <h3 className="font-display text-2xl md:text-3xl text-ivory mb-5 leading-snug">
+              {p.name}.
+            </h3>
+            <p className="text-ivory-dim leading-relaxed text-\[15px] max-w-sm">{p.body}</p>
+            <div className="mt-10 h-px w-12 bg-\[var(--apt-gold)] opacity-50 group-hover:w-24 transition-all duration-700" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+const QuoteSection = () => (
+  <section className="relative py-32 md:py-44 px-6 md:px-10 overflow-hidden" data-testid="quote-section">
+    <div className="absolute inset-0 flex items-center justify-center opacity-\[0.04] pointer-events-none">
+      <ScaleLogo className="w-\[560px] h-\[560px] md:w-\[820px] md:h-\[820px]" />
+    </div>
+    <div className="relative max-w-4xl mx-auto text-center">
+      <Quote className="w-7 h-7 text-gold mx-auto mb-10 opacity-80" strokeWidth={1} />
+      <blockquote className="reveal font-display text-3xl md:text-5xl lg:text-6xl leading-\[1.15] text-ivory">
+        “Sunlight is said to be the best of disinfectants;
+
+        <span className="italic text-gold">electric light the most efficient policeman.”</span>
+      </blockquote>
+      <div className="reveal mt-10 text-[11px] uppercase tracking-[0.4em] text-secondary" style={{ transitionDelay: "120ms" }}>
+        Louis Brandeis  ·  Harper's Weekly, 1913
+      </div>
+
+      <div className="gold-rule mt-20 mb-20 max-w-md mx-auto" />
+
+      <p className="reveal font-serif-h italic text-lg md:text-xl text-ivory-dim max-w-2xl mx-auto leading-relaxed" style={{ transitionDelay: "200ms" }}>
+        A.P.T.I.T.U.D.E. exists to bring siloed public information into the same
+        room — county by county, actor by actor — until the record reads like a
+        record.
+      </p>
+
+      <Link
+        to="/bias-beacon"
+        className="reveal mt-14 inline-flex items-center gap-3 text-[12px] uppercase tracking-[0.36em] text-gold border-b border-[var(--apt-gold)] pb-1 hover:gap-5 transition-all duration-500"
+        style={{ transitionDelay: "260ms" }}
+        data-testid="quote-cta-beacon"
+      >
+        Open the Bias Beacon
+        <ArrowUpRight className="w-3.5 h-3.5" />
+      </Link>
+    </div>
+  </section>
+);
+
+const SUBJECTS = [
+  "STOP Data",
+  "ORS · OAR",
+  "Conviction Rates",
+  "Sentencing Disparity",
+  "Appellate Reversals",
+  "Probation Revocations",
+  "Plea Patterns",
+  "Public Comment",
+  "County Heat Maps",
+  "Budget Flow",
+];
+
+const TrustStrip = () => {
+  const all = [...SUBJECTS, ...SUBJECTS];
+  return (
+    <section className="relative border-y border-line py-6 overflow-hidden" aria-hidden="true" data-testid="trust-strip">
+      <div className="drift-track flex whitespace-nowrap gap-14 text-\[11px] uppercase tracking-\[0.36em] text-secondary">
+        {all.map((t, i) => (
+          <span key={i} className="flex items-center gap-14">
+            {t}
+            <span className="w-1 h-1 rounded-full bg-\[var(--apt-gold)] opacity-60" />
+          </span>
+        ))}
+      </div>
+    </section>
+  );
+};
 
 export default function Home() {
+  useReveal();
+  useEffect(() => {
+    axios.get(`${API}/`).catch(() => {});
+  }, []);
   return (
-    <div className="relative min-h-screen bg-[#0A0F1A]" data-testid="home-page">
+    <div className="relative">
       <TopNav />
       <Hero />
-
-      {/* Principles / Pillars */}
-      <section className="relative px-6 md:px-10 py-24 md:py-32" data-testid="principles-section">
-        <div className="max-w-[1360px] mx-auto">
-          <div className="eyebrow mb-5">The Foundation</div>
-          <h2 className="font-display text-4xl md:text-5xl text-ivory leading-tight mb-12">
-            Three pillars.
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[var(--apt-line)]" data-testid="principles-grid">
-            {PRINCIPLES.map((p) => (
-              <div key={p.n} className="bg-[#0A0F1A] p-8 md:p-10" data-testid={`principle-${p.n}`}>
-                <div className="flex items-baseline gap-5 mb-5">
-                  <span className="numeral text-4xl md:text-5xl">{p.n}</span>
-                  <span className="text-[10.5px] uppercase tracking-[0.36em] text-secondary">{p.h}</span>
-                </div>
-                <p className="text-ivory-dim leading-relaxed text-[15px]">{p.b}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Capabilities */}
-      <section className="relative px-6 md:px-10 py-24 md:py-32" data-testid="capabilities-section">
-        <div className="max-w-[1360px] mx-auto">
-          <div className="eyebrow mb-5">What It Does</div>
-          <h2 className="font-display text-4xl md:text-5xl text-ivory leading-tight mb-12">
-            Capabilities.
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" data-testid="capabilities-grid">
-            {CAPABILITIES.map((c, i) => (
-              <div key={c.label} className="card-3d-raised p-7 md:p-8 reveal" style={{ transitionDelay: `${i * 80}ms` }} data-testid={`capability-${c.label.toLowerCase().replace(/\s+/g, '-')}`}>
-                <h3 className="font-display text-xl text-ivory mb-3">{c.label}</h3>
-                <p className="text-ivory-dim text-[14px] leading-relaxed">{c.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Pages Grid */}
-      <section className="relative px-6 md:px-10 py-24 md:py-16" data-testid="pages-section">
-        <div className="max-w-[1360px] mx-auto">
-          <PagesGrid />
-        </div>
-      </section>
-
-      {/* Quote */}
-      <section className="relative px-6 md:px-10 py-24 md:py-32" data-testid="quote-section">
-        <div className="max-w-[1360px] mx-auto">
-          <div className="max-w-3xl">
-            <div className="text-gold text-6xl font-serif-h leading-none mb-6">“</div>
-            <blockquote className="font-serif-h italic text-2xl md:text-3xl lg:text-4xl text-ivory-dim leading-[1.2] tracking-tight">
-              The public record is not a secret. It is not a privilege. It is the
-              contract between the people and the institutions that serve them.
-            </blockquote>
-            <div className="mt-8 pt-6 border-t border-line">
-              <cite className="not-italic text-[11px] uppercase tracking-[0.36em] text-secondary">
-                A.P.T.I.T.U.D.E. — The Record-Keepers
-              </cite>
-            </div>
-          </div>
-        </div>
-      </section>
-
+      <TrustStrip />
+      <PagesGrid />
+      <TenetsSection />
+      <QuoteSection />
       <Footer />
+      <Toaster
+        theme="dark"
+        position="bottom-center"
+        toastOptions={{
+          style: {
+            background: "#0E1420",
+            border: "1px solid rgba(245,241,230,0.12)",
+            color: "#F5F1E6",
+            fontFamily: "'Outfit', sans-serif",
+          },
+        }}
+      />
     </div>
-  )
+  );
 }

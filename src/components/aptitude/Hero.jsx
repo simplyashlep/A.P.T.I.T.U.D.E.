@@ -1,73 +1,111 @@
-import React from "react"
-import { Search } from "lucide-react"
+import React, { useEffect, useRef, useState } from "react";
+import { Wordmark } from "./Brand";
+import { SearchBar } from "./SearchBar";
+import { OregonCounter } from "./OregonCounter";
 
-export function Hero() {
+const HERO_VIDEO_SOURCES = [
+  "/media/lady-justice.mp4",
+  "https://cdn.pixabay.com/video/2023/10/14/185079-873431597_large.mp4",
+];
+const HERO_FALLBACK_IMAGE =
+  "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHwzfHxsYWR5JTIwanVzdGljZSUyMHN0YXR1ZXxlbnwwfHx8fDE3Nzk0Mzc4ODl8MA&ixlib=rb-4.1.0&q=85";
+
+export const Hero = () => {
+  const videoRef = useRef(null);
+  const [videoOk, setVideoOk] = useState(true);
+  const [srcIdx, setSrcIdx] = useState(0);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    const onErr = () => {
+      if (srcIdx + 1 < HERO_VIDEO_SOURCES.length) setSrcIdx((i) => i + 1);
+      else setVideoOk(false);
+    };
+    v.addEventListener("error", onErr);
+    return () => v.removeEventListener("error", onErr);
+  }, [srcIdx]);
+
   return (
-    <section className="relative w-full h-screen min-h-[600px] flex items-center justify-center overflow-hidden bg-[#0A0F1A]" data-testid="hero-section">
-      {/* Background */}
-      <div className="absolute inset-0 z-0">
-        <video
-          className="w-full h-full object-cover opacity-40"
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHwzfHxsYWR5JTIwanVzdGljZSUyMHN0YXR1ZXxlbnwwfHx8fDE3Nzk0Mzc4ODl8MA&ixlib=rb-4.1.0&q=85"
-        >
-          <source
-            src="https://videos.pexels.com/video-files/5940603/5940603-uhd_2560_1440_30fps.mp4"
-            type="video/mp4"
+    <section
+      id="top"
+      className="relative min-h-[100svh] flex flex-col w-full overflow-hidden grain"
+      data-testid="hero-section"
+    >
+      {/* Base dark canvas */}
+      <div className="absolute inset-0 z-0 bg-[#070B14]" />
+
+      {/* Lady Justice — positioned to the right, contained (not cropped), framed */}
+      <div className="absolute inset-y-0 right-0 z-[1] w-full md:w-[58%] lg:w-[52%] hero-justice-frame">
+        {videoOk ? (
+          <video
+            ref={videoRef}
+            className="hero-video hero-justice-media absolute inset-0 w-full h-full"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+            poster={HERO_FALLBACK_IMAGE}
+            key={HERO_VIDEO_SOURCES[srcIdx]}
+            data-testid="hero-video"
+          >
+            <source src={HERO_VIDEO_SOURCES[srcIdx]} type="video/mp4" />
+          </video>
+        ) : (
+          <img
+            src={HERO_FALLBACK_IMAGE}
+            alt="Lady Justice"
+            className="hero-fallback-img hero-justice-media absolute inset-0 w-full h-full"
+            data-testid="hero-fallback-image"
           />
-        </video>
-        <div className="absolute inset-0 hero-overlay" />
+        )}
+
+        {/* Left-edge gradient that blends her into the dark canvas */}
+        <div className="absolute inset-y-0 left-0 w-2/3 bg-gradient-to-r from-[#070B14] via-[#070B14]/85 to-transparent pointer-events-none" />
+        {/* Top + bottom soft vignette so she feels framed like a portrait */}
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#070B14] to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#070B14] to-transparent pointer-events-none" />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 text-center max-w-[900px] w-full px-8">
-        {/* Wordmark */}
-        <div
-          className="wordmark-3d wordmark-letters text-[clamp(2.5rem,6vw,5rem)] font-bold tracking-[0.18em] text-ivory mb-4 leading-[1.15]"
-          data-testid="brand-wordmark"
-        >
-          A<span className="text-gold">.</span>P<span className="text-gold">.</span>T<span className="text-gold">.</span>I<span className="text-gold">.</span>T<span className="text-gold">.</span>U<span className="text-gold">.</span>D<span className="text-gold">.</span>E<span className="text-gold">.</span>
-        </div>
+      {/* Decorative gold hairlines */}
+      <div className="absolute left-6 md:left-10 top-24 bottom-44 w-px bg-gradient-to-b from-transparent via-[rgba(200,169,126,0.22)] to-transparent z-[3]" />
+      <div className="absolute right-6 md:right-10 top-24 bottom-44 w-px bg-gradient-to-b from-transparent via-[rgba(200,169,126,0.22)] to-transparent z-[3]" />
 
-        {/* Tagline */}
-        <p className="font-serif-h italic text-[clamp(1rem,2vw,1.4rem)] text-ivory-dim tracking-[0.08em] mb-10 leading-relaxed" data-testid="hero-tagline">
-          Accountability Is Real. Transparency Is The Standard. 
-          <span className="text-gold">The Record Is Yours.</span>
-          <span className="caret" aria-hidden="true">|</span>
-        </p>
+      {/* Content — left-anchored on desktop, centered on mobile */}
+      <div className="relative z-10 flex-1 flex flex-col px-6 md:px-10 pt-28 pb-10">
+        <div className="max-w-3xl xl:max-w-4xl flex-1 flex flex-col items-center md:items-start justify-center text-center md:text-left">
+          <div className="eyebrow mb-6 opacity-90" data-testid="hero-eyebrow">
+            Oregon  ·  MMXXV  ·  The First Judicial Dataset
+          </div>
 
-        {/* Search bar */}
-        <div className="max-w-[720px] mx-auto w-full" data-testid="hero-search-wrapper">
-          <div className="apt-search-soft flex items-center w-full py-4 px-5">
-            <Search className="w-5 h-5 text-ivory-dim/60 mr-3 flex-shrink-0" strokeWidth={1.25} />
-            <input
-              type="text"
-              placeholder="Search the record — judges, statutes, cases, agencies…"
-              className="flex-1 bg-transparent border-none outline-none text-ivory font-ui text-[1.05rem] font-light"
-              data-testid="hero-search-input"
-            />
-            <kbd className="hidden md:inline-flex text-[0.7rem] font-medium text-ivory-dim/40 bg-white/5 border border-white/10 rounded px-2 py-0.5 ml-3 tracking-[0.05em] font-ui">
-              /
-            </kbd>
+          <Wordmark
+            size="lg"
+            embossed
+            className="text-ivory justify-center md:justify-start"
+          />
+
+          <p
+            className="mt-6 md:mt-7 font-serif-h italic text-[13px] md:text-base text-ivory-dim tracking-[0.06em]"
+            data-testid="hero-acronym"
+          >
+            A&nbsp;Platform Tracking Institutional Trends Uncovering Disparate Enforcement
+          </p>
+
+          <p
+            className="mt-9 md:mt-10 font-serif-h text-2xl md:text-3xl text-ivory italic leading-snug"
+            data-testid="hero-tagline"
+          >
+            Accountability Is Real<span className="text-gold">.</span>
+          </p>
+
+          <div className="w-full">
+            <SearchBar />
           </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 cursor-pointer hidden md:block"
-        data-testid="hero-scroll-indicator"
-        onClick={() => {
-          const tenets = document.getElementById("principles")
-          if (tenets) tenets.scrollIntoView({ behavior: "smooth" })
-        }}
-      >
-        <div className="w-[1px] h-12 bg-gradient-to-b from-gold/60 to-transparent mx-auto mb-2" />
-        <p className="text-[9px] uppercase tracking-[0.36em] text-ivory-dim/50">Scroll</p>
-      </div>
+      <OregonCounter />
     </section>
-  )
-}
+  );
+};

@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { TopNav } from "../components/aptitude/TopNav";
 import { Footer } from "../components/aptitude/Footer";
-import { Activity, ExternalLink, Loader2, Map as MapIcon, Scale, BarChart3 } from "lucide-react";
+import { Activity, ExternalLink, Loader2, Map as MapIcon, Scale, BarChart3, TrendingUp } from "lucide-react";
 
-const API = `${import.meta.env.VITE_BACKEND_URL || ""}/api`;
+const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 const RACE_COLORS = {
   white: "#A1A9B8",
@@ -36,67 +36,297 @@ const useReveal = () => {
   }, []);
 };
 
-const DEMOGRAPHICS = [
-  { key: "white", group: "White", stops_pct: 72.4, population_pct: 75.1 },
-  { key: "hispanic_latino", group: "Hispanic/Latino", stops_pct: 14.8, population_pct: 13.9 },
-  { key: "black_african_american", group: "Black/African American", stops_pct: 5.2, population_pct: 2.2 },
-  { key: "asian", group: "Asian", stops_pct: 3.1, population_pct: 4.5 },
-  { key: "native_american", group: "Native American", stops_pct: 2.8, population_pct: 1.8 },
-  { key: "pacific_islander", group: "Pacific Islander", stops_pct: 1.7, population_pct: 2.5 },
-];
-
-const COUNTIES_FALLBACK = [
-  { key: "multnomah", name: "Multnomah", total_stops_2024: 58120 },
-  { key: "washington", name: "Washington", total_stops_2024: 42340 },
-  { key: "clackamas", name: "Clackamas", total_stops_2024: 31890 },
-  { key: "marion", name: "Marion", total_stops_2024: 28450 },
-  { key: "lane", name: "Lane", total_stops_2024: 25120 },
-  { key: "jackson", name: "Jackson", total_stops_2024: 19870 },
-];
-
 const StatBlock = ({ label, value, suffix, tone }) => (
-  <div className="bg-[#0A0F1A] p-6 md:p-8" data-testid={
-    `beacon-stat-${label.toLowerCase().replace(/\s+/g, "-")}`
-  }>
-    <div className="text-[10.5px] uppercase tracking-[0.36em] text-gold mb-3">{label}</div>
+  <div className="bg-[#0A0F1A] p-6 md:p-8" data-testid={`beacon-stat-${label.toLowerCase().replace(/\\s+/g, "-")}`}>
+    <div className="text-\[10.5px] uppercase tracking-\[0.36em] text-gold mb-3">{label}</div>
     <div className="font-display text-3xl md:text-5xl text-ivory counter-tabular leading-none">
-      <span>{fmt(value)}</span>
+      {fmt(value)}
       {tone && <span className="text-gold text-2xl ml-1">{tone}</span>}
     </div>
-    {suffix && <div className="text-[11px] uppercase tracking-[0.22em] text-secondary mt-3">{suffix}</div>}
+    {suffix && (
+      <div className="text-\[11px] uppercase tracking-\[0.22em] text-secondary mt-3">{suffix}</div>
+    )}
   </div>
 );
 
-const STATE_STATS = [
-  { label: "Total Stops (2024)", value: 284710, tone: "↑ 3.2%", suffix: "Statewide" },
-  { label: "Search Rate", value: 8.4, tone: "%", suffix: "Of all stops" },
-  { label: "Contraband Hit Rate", value: 18.6, tone: "%", suffix: "When searched" },
-  { label: "Citations Issued", value: 142355, tone: "50%", suffix: "Of all stops" },
-  { label: "Arrests", value: 28471, tone: "10%", suffix: "Of all stops" },
-  { label: "Use of Force Incidents", value: 1423, tone: "0.5%", suffix: "Of all stops" },
-];
+const StopDisparityPanel = ({ summary }) => {
+  if (!summary) return null;
+  const rows = (summary.demographics || []).filter(
+    (d) => d.stops_pct != null && d.population_pct != null
+  );
+  // Disparity ratio: stops_pct / population_pct (1.0 == parity)
+  const enriched = rows.map((r) => ({
+    ...r,
+    ratio: r.population_pct ? +(r.stops_pct / r.population_pct).toFixed(2) : null,
+  }));
+  return (
+    <div className="card-3d-raised p-7 md:p-9" data-testid="beacon-disparity-panel">
+      <div className="flex items-center justify-between mb-5">
+        <div>
+          <div className="text-\[10.5px] uppercase tracking-\[0.36em] text-gold">
+            Stop · Population Disparity
+          </div>
+          <h3 className="font-display text-2xl md:text-3xl text-ivory mt-2">
+            Where the stops fall.
+          </h3>
+        </div>
+        <Scale className="w-4 h-4 text-steel" strokeWidth={1.25} />
+      </div>
+      <p className="text-ivory-dim text-\[14px] leading-relaxed max-w-2xl mb-7">
+        Each demographic's share of Oregon traffic stops in 2024, set against their share
+        of the state population. A ratio above 1.00 is overrepresentation; below 1.00 is
+        under.
+      </p>
+      <div className="space-y-5">
+        {enriched.map((r) => {
+          const stopsPct = r.stops_pct || 0;
+          const popPct = r.population_pct || 0;
+          const max = Math.max(stopsPct, popPct, 12);
+          const color = RACE_COLORS[r.key] || "#C8A97E";
+          const over = r.ratio > 1;
+          return (
+            <div key={r.key} data-testid={`disparity-row-${r.key}`}>
+              <div className="flex items-baseline justify-between mb-2">
+                <span className="text-\[12px] text-ivory">{r.group}</span>
+                <span
+                  className={`font-display text-lg counter-tabular ${
+                    over ? "text-[#CF6B6B]" : "text-[#7CA88B]"
+                  }`}
+                  title="Stops % ÷ Population %"
+                >
+                  {r.ratio}×
+                </span>
+              </div>
+              <div className="relative h-2 rounded-full bg-\[rgba(245,241,230,0.04)] overflow-hidden">
+                <div
+                  className="absolute inset-y-0 left-0 rounded-full opacity-90"
+                  style={{ width: `${(stopsPct / max) * 100}%`, background: color, transition: "width 900ms cubic-bezier(.22,.61,.36,1)" }}
+                  aria-label="Share of stops"
+                />
+                <div
+                  className="absolute inset-y-0 left-0 border-l border-r border-dashed border-ivory/30"
+                  style={{
+                    left: `${(popPct / max) * 100}%`,
+                    width: 0,
+                    height: "100%",
+                  }}
+                  aria-label="Share of population"
+                />
+              </div>
+              <div className="flex justify-between text-\[10.5px] uppercase tracking-\[0.22em] text-secondary mt-1.5">
+                <span>{stopsPct}% of stops</span>
+                <span>{popPct}% of population</span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      <div className="mt-7 pt-5 border-t border-line text-\[11.5px] text-secondary italic">
+        Source · Oregon STOP Database under ORS 131.362, 2024 reporting year. Parity line
+        (dashed) = each group's share of the Oregon population.
+      </div>
+    </div>
+  );
+};
 
-const BiasBeaconPage = () => {
+const CountyTotalsPanel = ({ counties }) => {
+  if (!counties?.length) return null;
+  const max = Math.max(...counties.map((c) => c.total_stops_2024 || 0));
+  return (
+    <div className="card-3d-raised p-7 md:p-9" data-testid="beacon-counties-panel">
+      <div className="flex items-center justify-between mb-5">
+        <div>
+          <div className="text-\[10.5px] uppercase tracking-\[0.36em] text-gold">
+            Stops by County · 2024
+          </div>
+          <h3 className="font-display text-2xl md:text-3xl text-ivory mt-2">
+            Where Oregon is being stopped.
+          </h3>
+        </div>
+        <MapIcon className="w-4 h-4 text-steel" strokeWidth={1.25} />
+      </div>
+      <div className="space-y-4">
+        {counties.map((c, i) => (
+          <div key={c.key} data-testid={`county-row-${c.key}`}>
+            <div className="flex items-baseline justify-between mb-1.5">
+              <span className="text-\[13px] text-ivory">
+                <span className="text-gold mr-2 font-serif-h italic">{String(i + 1).padStart(2, "0")}</span>
+                {c.name} County
+              </span>
+              <span className="font-display text-base text-ivory counter-tabular">{fmt(c.total_stops_2024)}</span>
+            </div>
+            <div className="h-1.5 rounded-full bg-\[rgba(245,241,230,0.04)] overflow-hidden">
+              <div
+                className="h-full rounded-full bg-gradient-to-r from-[rgba(200,169,126,0.6)] to-[rgba(200,169,126,0.95)]"
+                style={{
+                  width: `${((c.total_stops_2024 || 0) / max) * 100}%`,
+                  transition: "width 1100ms cubic-bezier(.22,.61,.36,1)",
+                }}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+      <p className="mt-6 text-\[11.5px] text-secondary italic">
+        Top reporting counties surfaced from the STOP feed. Full 36-county view ingests
+        next.
+      </p>
+    </div>
+  );
+};
+
+const TABLEAU_SCRIPT = "https://public.tableau.com/javascripts/api/tableau-2.min.js";
+let tableauScriptPromise = null;
+
+const loadTableau = () => {
+  if (tableauScriptPromise) return tableauScriptPromise;
+  tableauScriptPromise = new Promise((resolve, reject) => {
+    if (typeof window === "undefined") return reject(new Error("ssr"));
+    if (window.tableau && window.tableau.Viz) return resolve(window.tableau);
+    const s = document.createElement("script");
+    s.src = TABLEAU_SCRIPT;
+    s.async = true;
+    s.onload = () => resolve(window.tableau);
+    s.onerror = () => reject(new Error("Failed to load Tableau JS API"));
+    document.head.appendChild(s);
+  });
+  return tableauScriptPromise;
+};
+
+const TableauEmbed = ({ dashboard, idx }) => {
+  const containerRef = useRef(null);
+  const [state, setState] = useState("thumb"); // thumb | loading | loaded | error
+
+  const launch = async () => {
+    setState("loading");
+    try {
+      const t = await loadTableau();
+      if (!containerRef.current) return;
+      // Clear any previous viz
+      containerRef.current.innerHTML = "";
+      // eslint-disable-next-line no-new
+      new t.Viz(containerRef.current, dashboard.viz_url, {
+        hideTabs: true,
+        hideToolbar: true,
+        width: "100%",
+        height: "100%",
+        onFirstInteractive: () => setState("loaded"),
+      });
+      // safety timeout to mark loaded even if event doesn't fire
+      setTimeout(() => setState((s) => (s === "loading" ? "loaded" : s)), 5000);
+    } catch (e) {
+      console.error(e);
+      setState("error");
+    }
+  };
+
+  return (
+    <div
+      className="card-3d-raised p-5 md:p-6 reveal"
+      style={{ transitionDelay: `${idx * 80}ms` }}
+      data-testid={`tableau-${dashboard.id}`}
+    >
+      <div className="flex items-start justify-between mb-4 gap-4">
+        <div>
+          <div className="text-\[10px] uppercase tracking-\[0.34em] text-gold">
+            OCJC  ·  {dashboard.label}
+          </div>
+          <h3 className="font-display text-xl md:text-2xl text-ivory mt-1 leading-tight">
+            {dashboard.title}
+          </h3>
+          <p className="mt-1.5 text-ivory-dim text-\[13px] leading-snug max-w-xl">
+            {dashboard.description}
+          </p>
+        </div>
+        <a
+          href={dashboard.viz_url}
+          target="_blank"
+          rel="noreferrer"
+          className="flex-shrink-0 inline-flex items-center gap-1.5 text-[10.5px] uppercase tracking-[0.28em] text-secondary hover:text-gold transition-colors"
+          data-testid={`tableau-open-${dashboard.id}`}
+        >
+          Open <ExternalLink className="w-3 h-3" />
+        </a>
+      </div>
+
+      <div
+        className="relative bg-[#070B14] border border-line rounded-sm overflow-hidden"
+        style={{ aspectRatio: "16 / 10" }}
+      >
+        {state === "thumb" && (
+          <button
+            type="button"
+            onClick={launch}
+            className="group absolute inset-0 w-full h-full"
+            data-testid={`tableau-launch-${dashboard.id}`}
+            aria-label={`Launch ${dashboard.title} viz`}
+          >
+            <img
+              src={dashboard.thumbnail_url}
+              alt={`${dashboard.title} preview`}
+              className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500"
+              loading="lazy"
+              onError={(e) => {
+                e.currentTarget.style.display = "none";
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-\[#070B14]/85 via-\[#070B14]/20 to-transparent" />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="inline-flex items-center gap-3 px-5 py-3 rounded-full bg-\[#0A0F1A]/85 backdrop-blur-md border border-\[rgba(200,169,126,0.45)] text-\[11px] uppercase tracking-\[0.32em] text-gold group-hover:bg-\[var(--apt-gold)] group-hover:text-\[#0A0F1A] transition-all duration-300">
+                <BarChart3 className="w-3.5 h-3.5" />
+                Launch Interactive Viz
+              </span>
+            </div>
+          </button>
+        )}
+
+        {state === "loading" && (
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-ivory-dim">
+            <Loader2 className="w-5 h-5 animate-spin text-gold" />
+            <span className="text-\[11px] uppercase tracking-\[0.32em]">Loading OCJC viz…</span>
+          </div>
+        )}
+
+        {state === "error" && (
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center">
+            <span className="text-\[11px] uppercase tracking-\[0.32em] text-\[#CF6B6B]">Embed blocked</span>
+            <p className="text-ivory-dim text-\[13px] max-w-xs">
+              The Tableau viz couldn't load in this frame.
+              
+
+              Open it on Tableau Public instead.
+            </p>
+            <a
+              href={dashboard.viz_url}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-2 inline-flex items-center gap-2 px-5 py-2 rounded-full text-[10.5px] uppercase tracking-[0.32em] text-[#0A0F1A] bg-[var(--apt-gold)]"
+            >
+              Open on Tableau
+              <ExternalLink className="w-3 h-3" />
+            </a>
+          </div>
+        )}
+
+        <div ref={containerRef} className={`absolute inset-0 w-full h-full ${state === "thumb" ? "pointer-events-none" : ""}`} />
+      </div>
+    </div>
+  );
+};
+
+export default function BiasBeacon() {
   useReveal();
-  const [data, setData] = useState(null);
-  const [tab, setTab] = useState("demographics");
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [summary, setSummary] = useState(null);
+  const [counties, setCounties] = useState([]);
+  const [dashboards, setDashboards] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get(`${API}/bias-beacon/summary`);
-        setData(res.data);
-        setLoading(false);
-      } catch {
-        setData(null);
-        setLoading(false);
-        setError("Could not load live data. Showing fallback.");
-      }
-    };
-    fetchData();
+    axios.get(`${API}/beacon/stop-summary`).then((r) => setSummary(r.data)).catch(() => {});
+    axios.get(`${API}/beacon/stop-counties`).then((r) => setCounties(r.data.counties || [])).catch(() => {});
+    axios.get(`${API}/beacon/dashboards`).then((r) => setDashboards(r.data.dashboards || [])).catch(() => {});
   }, []);
+
+  const sw = summary?.statewide;
 
   return (
     <div className="relative min-h-screen" data-testid="bias-beacon-page">
@@ -104,199 +334,74 @@ const BiasBeaconPage = () => {
 
       {/* Header */}
       <header className="relative pt-32 md:pt-40 pb-10 md:pb-12 px-6 md:px-10 overflow-hidden">
-        <div className="relative max-w-[1360px] mx-auto">
-          <div className="eyebrow mb-5">
-            <Activity className="inline w-4 h-4 mr-2 text-gold" />
-            DISPARITY TRACKER
-          </div>
-          <h1 className="font-display text-5xl md:text-7xl text-ivory leading-[1.02] max-w-4xl">
-            Bias
-            <span className="italic text-gold"> Beacon</span>
+        <div className="absolute inset-0 opacity-\[0.05] pointer-events-none">
+          <Activity className="absolute right-\[6%] top-1/2 -translate-y-1/2 w-\[420px] h-\[420px] text-gold" strokeWidth={0.4} />
+        </div>
+        <div className="relative max-w-\[1360px] mx-auto">
+          <div className="eyebrow mb-5">The Dashboard  ·  The Engine</div>
+          <h1 className="font-display text-5xl md:text-7xl text-ivory leading-\[1.02] max-w-4xl">
+            The Bias Beacon.
+
+            <span className="italic text-gold">Where the patterns sit.</span>
           </h1>
-          <p className="mt-7 font-serif-h italic text-lg md:text-xl text-ivory-dim leading-snug max-w-2xl">
-            Live disparity dashboards measuring racial, ethnic, and geographic
-            inequities across Oregon’s justice system.
+          <p className="mt-7 font-serif-h italic text-lg md:text-xl text-ivory-dim leading-relaxed max-w-3xl">
+            Two layers, one record. The top reads Oregon's own STOP feed — who is being
+            pulled over, how often, and against what share of the population. The bottom
+            mirrors the Oregon Criminal Justice Commission's own Tableau dashboards so
+            the official record sits next to ours, on the same page, at the same time.
           </p>
         </div>
       </header>
 
-      {/* Loading */}
-      {loading && (
-        <div className="flex justify-center items-center py-20">
-          <Loader2 className="animate-spin text-gold w-8 h-8" />
-          <span className="ml-3 text-secondary text-sm uppercase tracking-widest">Loading data...</span>
-        </div>
-      )}
-
-      {/* Error */}
-      {error && !loading && (
-        <div className="max-w-[1360px] mx-auto px-6 md:px-10 mb-6">
-          <div className="bg-[#1A0A0A] border border-[#3A1010] text-[#CF6B6B] px-5 py-3 text-sm rounded-sm">
-            {error}
-          </div>
-        </div>
-      )}
-
-      {/* Stat blocks */}
-      <section className="px-6 md:px-10 pb-10">
-        <div className="max-w-[1360px] mx-auto">
-          <h2 className="font-display text-2xl md:text-3xl text-ivory mb-6">Statewide Overview</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {STATE_STATS.map((s, i) => (
-              <div className="reveal" style={{ transitionDelay: `${i * 80}ms` }} key={s.label}>
-                <StatBlock {...s} />
-              </div>
-            ))}
-          </div>
+      {/* Stat strip from STOP */}
+      <section className="max-w-\[1360px] mx-auto px-6 md:px-10 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-\[var(--apt-line)]" data-testid="beacon-stat-strip">
+          <StatBlock label="2024 Stops" value={sw?.total_stops_2024} suffix="recorded under HB 2355" />
+          <StatBlock label="Agencies" value={sw?.reporting_agencies} suffix="reporting" />
+          <StatBlock label="Counties" value={sw?.counties_covered} suffix="covered" />
+          <StatBlock label="Period" value={sw?.analysis_period?.split("-")?.[1] || sw?.analysis_period} suffix="end of window" />
         </div>
       </section>
 
-      {/* Tabbed dashboards */}
-      <section className="px-6 md:px-10 pb-20">
-        <div className="max-w-[1360px] mx-auto">
-          {/* Tabs */}
-          <div className="flex gap-6 border-b border-[var(--apt-line)] mb-8">
-            {[
-              { id: "demographics", label: "Demographics", icon: "BarChart3" },
-              { id: "counties", label: "By County", icon: "MapIcon" },
-              { id: "officers", label: "Officer-level", icon: "Scale" },
-            ].map((t) => {
-              const IconComp = t.id === "demographics" ? BarChart3 : t.id === "counties" ? MapIcon : Scale;
-              return (
-                <button
-                  key={t.id}
-                  onClick={() => setTab(t.id)}
-                  className={
-                    `pb-3 flex items-center gap-2 text-[11px] uppercase tracking-[0.28em] transition-colors ${tab === t.id
-                      ? "text-gold border-b border-gold"
-                      : "text-secondary hover:text-ivory border-b border-transparent"
-                    }`
-                  }
-                  data-testid={`tab-${t.id}`}
-                >
-                  <IconComp className="w-4 h-4" />
-                  {t.label}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Demographics tab */}
-          {tab === "demographics" && (
-            <div className="space-y-6">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="card-3d-raised p-6 reveal">
-                  <h3 className="font-display text-xl text-ivory mb-5">Stop Demographics vs. Population</h3>
-                  <div className="space-y-4">
-                    {DEMOGRAPHICS.map((d, i) => {
-                      const color = RACE_COLORS[d.key] || "#555";
-                      const pct = ((d.stops_pct - d.population_pct) / d.population_pct * 100);
-                      const isOver = pct > 0;
-                      return (
-                        <div key={d.key} className="flex items-center gap-4" data-testid={"demo-row-" + d.key}>
-                          <div className="w-28 text-right text-[11px] uppercase tracking-[0.2em] text-secondary shrink-0">
-                            {d.group}
-                          </div>
-                          {/* Bar container */}
-                          <div className="flex-1 h-8 relative overflow-hidden">
-                            {/* Population bar */}
-                            <div
-                              className="absolute bottom-0 h-full opacity-40 transition-all"
-                              style={{ width: (d.population_pct * 1.3) + "%", background: color }}
-                            />
-                            {/* Stops bar */}
-                            <div
-                              className="absolute bottom-0 h-3/4 transition-all"
-                              style={{ width: (d.stops_pct * 1.3) + "%", background: color }}
-                            />
-                          </div>
-                          <div className="w-24 text-right">
-                            <span className="text-ivory text-sm counter-tabular">{d.stops_pct}%</span>
-                            <span className="text-secondary text-xs ml-1">/ {d.population_pct}%</span>
-                          </div>
-                          <div className={
-                            "w-12 text-right text-xs font-medium " + (isOver ? "text-[#CF6B6B]" : "text-[#7CA88B]")
-                          }>
-                            {isOver ? "+" : ""}{pct.toFixed(0)}%
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-                <div className="card-3d-raised p-6 reveal" style={{ transitionDelay: "150ms" }}>
-                  <h3 className="font-display text-xl text-ivory mb-4">Disparity Index</h3>
-                  <p className="text-ivory-dim text-sm leading-relaxed mb-6">
-                    The Disparity Index compares each demographic group’s representation
-                    in police stops against their share of the general population. A value
-                    above 1.0 indicates over-representation in stops.
-                  </p>
-                  <div className="space-y-3">
-                    {DEMOGRAPHICS.map((d) => {
-                      const index = d.stops_pct / d.population_pct;
-                      return (
-                        <div key={d.key} className="flex items-center justify-between py-2 border-b border-[var(--apt-line)] last:border-0">
-                          <span className="text-[11px] uppercase tracking-[0.2em] text-secondary">{d.group}</span>
-                          <span className={
-                            "font-display text-lg counter-tabular " + (index > 1.0 ? "text-[#CF6B6B]" : "text-[#7CA88B]")
-                          }>
-                            {index.toFixed(2)}
-                          </span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Counties tab */}
-          {tab === "counties" && (
-            <div className="card-3d-raised p-6 reveal">
-              <h3 className="font-display text-xl text-ivory mb-5">Stops by County (2024)</h3>
-              <div className="overflow-x-auto">
-                <table className="w-full text-left">
-                  <thead>
-                    <tr className="border-b border-[var(--apt-line)] text-[10.5px] uppercase tracking-[0.28em] text-secondary">
-                      <th className="pb-3 font-normal">County</th>
-                      <th className="pb-3 font-normal text-right">Total Stops</th>
-                      <th className="pb-3 font-normal text-right">Search Rate</th>
-                      <th className="pb-3 font-normal text-right">Contraband Hit Rate</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {COUNTIES_FALLBACK.map((c) => (
-                      <tr key={c.key} className="border-b border-[var(--apt-line)] last:border-0 hover:bg-[#0A0F1A]/50 transition-colors">
-                        <td className="py-3 text-ivory text-sm">{c.name}</td>
-                        <td className="py-3 text-ivory text-sm text-right counter-tabular">{fmt(c.total_stops_2024)}</td>
-                        <td className="py-3 text-ivory text-sm text-right counter-tabular">{(Math.random() * 5 + 5).toFixed(1)}%</td>
-                        <td className="py-3 text-ivory text-sm text-right counter-tabular">{(Math.random() * 15 + 10).toFixed(1)}%</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          )}
-
-          {/* Officers tab */}
-          {tab === "officers" && (
-            <div className="card-3d-raised p-10 text-center reveal">
-              <Scale className="w-10 h-10 text-steel mx-auto mb-4" />
-              <h3 className="font-display text-xl text-ivory mb-2">Officer-level Disparity</h3>
-              <p className="text-ivory-dim text-sm max-w-lg mx-auto">
-                Individual officer stop-and-search disparity profiles are under development.
-                This module will be available in a future release.
-              </p>
-            </div>
-          )}
+      {/* Disparity + County panels */}
+      <section className="max-w-\[1360px] mx-auto px-6 md:px-10 mb-16 md:mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6">
+          <StopDisparityPanel summary={summary} />
+          <CountyTotalsPanel counties={counties} />
         </div>
+      </section>
+
+      {/* OCJC Tableau dashboards */}
+      <section className="max-w-\[1360px] mx-auto px-6 md:px-10 pb-24">
+        <div className="reveal mb-10 md:mb-14 flex items-baseline justify-between flex-wrap gap-5">
+          <div>
+            <div className="eyebrow mb-4">Official Dashboards  ·  OCJC</div>
+            <h2 className="font-display text-3xl md:text-5xl text-ivory leading-\[1.05] max-w-2xl">
+              The state's own reading,
+
+              <span className="italic text-gold">embedded.</span>
+            </h2>
+          </div>
+          <p className="font-serif-h italic text-ivory-dim max-w-md text-base md:text-lg leading-relaxed">
+            From the Oregon Criminal Justice Commission's Justice Reinvestment Initiative
+            and the statewide prison population forecast. We don't replicate — we surface.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6" data-testid="tableau-grid">
+          {dashboards.map((d, i) => (
+            <TableauEmbed key={d.id} dashboard={d} idx={i} />
+          ))}
+        </div>
+
+        <p className="mt-10 text-\[11.5px] text-secondary italic" data-testid="beacon-attribution">
+          Source · Oregon Criminal Justice Commission (OCJC), Justice Reinvestment
+          Initiative dashboards published on Tableau Public. The embeds above are official
+          OCJC visualizations, displayed under public-data fair use.
+        </p>
       </section>
 
       <Footer />
     </div>
   );
-};
-
-export default BiasBeaconPage;
+}

@@ -18,14 +18,14 @@ export default function Community() {
       eyebrow="The Commons"
       title="Community."
       italicTitle="The record is yours, too."
-      intro="The Community wing of A.P.T.I.T.U.D.E. is your resource for engaging with Oregon's justice system — public comments, statewide meetings, agency contacts, statutory text, and complaint pathways, all in one place."
+      intro="The Community wing of A.P.T.I.T.U.D.E. is your resource for engaging with Oregon's justice system *�*�*� public comments, statewide meetings, agency contacts, statutory text, and complaint pathways, all in one place."
       dataStatus="Structure live. Contacts and pathways being verified against relevant oversight bodies."
     >
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" data-testid="community-pillars">
         {PILLARS.map((p, i) => {
           const Icon = p.icon
           return (
-            <div key={p.label} className="card-3d-raised p-7 md:p-8 reveal" style={{ transitionDelay: `${i * 70}ms` }} data-testid={`pillar-${p.label.toLowerCase().replace(/\s+/g, '-')}`}>
+            <div key={p.label} className="card-3d-raised p-7 md:p-8 reveal" style={{ transitionDelay: `${i ** 70}ms` }} data-testid={`pillar-${p.label.toLowerCase().replace(/s+/g, '-')}`}>
               <Icon className="w-5 h-5 text-gold mb-5" strokeWidth={1.25} />
               <h3 className="font-display text-xl text-ivory mb-3">{p.label}</h3>
               <p className="text-ivory-dim text-[14px] leading-relaxed">{p.desc}</p>

@@ -1,78 +1,79 @@
-import React, { useState } from "react"
-import { PageShell } from "../components/aptitude/PageShell"
-import { FlaskConical, Upload, Search, FileText, MessageSquare, Eye, Loader2, ExternalLink } from "lucide-react"
+import React from "react";
+import { PageShell } from "../components/aptitude/PageShell";
+import { FlaskConical, FileSearch, PenTool, Library, Upload } from "lucide-react";
 
 const AGENTS = [
-  { icon: Search, label: "Analyst", desc: "Read and summarize uploaded documents — case filings, court opinions, statutes, and briefs — extracting key facts, holdings, and procedural history." },
-  { icon: FileText, label: "Researcher", desc: "Search across Oregon case law, statutes, and the A.P.T.I.T.U.D.E. dataset to find relevant precedents, patterns, and procedural references." },
-  { icon: MessageSquare, label: "Draft Counsel", desc: "Generate draft filings, motions, public-records requests, and legal memos based on your specific needs and the data in the record." },
-  { icon: Eye, label: "Informer", desc: "Monitor changes in Oregon justice data — new filings, policy shifts, and emerging disparity signals — and alert you to what matters." },
-]
+  {
+    icon: FileSearch,
+    name: "Analyst",
+    role: "Reads your document and returns a structured legal summary — issues, parties, exposure, missing facts.",
+  },
+  {
+    icon: Library,
+    name: "Researcher",
+    role: "Finds comparable Oregon cases and ORS sections, surfaces precedent, and flags appellate trends.",
+  },
+  {
+    icon: PenTool,
+    name: "Draft Counsel",
+    role: "Co-drafts letters, motions, declarations, and complaints — from a chosen template, never auto-filed.",
+  },
+  {
+    icon: FlaskConical,
+    name: "Informer",
+    role: "Plain-language explainer for clients and self-represented users. Translates jargon, not advice.",
+  },
+];
 
 export default function JurisLab() {
-  const [dragOver, setDragOver] = useState(false)
-  const [uploaded, setUploaded] = useState(null)
-
-  const handleDrop = (e) => {
-    e.preventDefault()
-    setDragOver(false)
-    const file = e.dataTransfer?.files?.[0]
-    if (file) setUploaded(file.name)
-  }
-
   return (
     <PageShell
       testId="juris-lab-page"
-      eyebrow="The Workshop"
+      eyebrow="Your Tools"
       title="Juris Lab."
-      italicTitle="Your document workshop."
-      intro="Upload a filing, a statute, or any justice document and let A.P.T.I.T.U.D.E.'s agents analyze, research, and draft from it. The lab combines AI reading with Oregon-specific justice data."
-      dataStatus="Agent tools active. Document analysis and research functions operational."
+      italicTitle="A workshop, not a vending machine."
+      intro="Bring your own documents. Four agents take it from there — analyze, inform, research, draft. Templates live in the library and the community curates the best of them. Nothing is filed for you. Everything is yours."
+      dataStatus={{
+        title: "Agent shells ready · uploader wiring next",
+        description:
+          "Document upload, agent orchestration, and the shared template library activate together in the next iteration.",
+      }}
     >
       {/* Upload zone */}
-      <div
-        className={`card-3d-raised p-10 md:p-12 mb-10 text-center ${dragOver ? "border-gold" : ""}`}
-        onDragOver={(e) => { e.preventDefault(); setDragOver(true) }}
-        onDragLeave={() => setDragOver(false)}
-        onDrop={handleDrop}
-        data-testid="juris-upload-zone"
-      >
-        <Upload className="w-8 h-8 text-gold/60 mx-auto mb-4" strokeWidth={1.25} />
-        <h3 className="font-display text-xl text-ivory mb-2">
-          {uploaded ? `Uploaded: ${uploaded}` : "Drop a document here"}
-        </h3>
-        <p className="text-ivory-dim text-[14px] mb-6">
-          Accepted formats: PDF, DOCX, TXT — case filings, briefs, statutes, or court opinions
+      <div className="card-3d-raised p-10 md:p-14 mb-14 text-center border-dashed" data-testid="juris-upload">
+        <Upload className="w-7 h-7 text-gold mx-auto mb-5 opacity-80" strokeWidth={1.25} />
+        <h3 className="font-display text-3xl md:text-4xl text-ivory mb-3">Drop a document.</h3>
+        <p className="font-serif-h italic text-ivory-dim max-w-xl mx-auto">
+          PDF, DOCX, plain text. The Analyst will read it first; then you choose which agent works next.
         </p>
-        <label className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-[rgba(200,169,126,0.45)] text-[11px] uppercase tracking-[0.32em] text-gold cursor-pointer hover:bg-gold hover:text-[#0A0F1A] transition-all duration-300" data-testid="juris-browse-button">
-          <Upload className="w-3.5 h-3.5" strokeWidth={1.5} />
-          Browse files
-          <input type="file" className="hidden" accept=".pdf,.docx,.txt" onChange={(e) => {
-            const file = e.target.files?.[0]
-            if (file) setUploaded(file.name)
-          }} />
-        </label>
+        <button
+          type="button"
+          disabled
+          className="mt-7 inline-flex items-center gap-2 px-6 py-3 rounded-full text-[11px] uppercase tracking-[0.32em] text-[#0A0F1A] bg-[var(--apt-gold)] opacity-50 cursor-not-allowed"
+          data-testid="juris-upload-btn"
+        >
+          Upload — coming soon
+        </button>
       </div>
 
-      {/* Agent grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5" data-testid="juris-agents">
-        {AGENTS.map((agent, i) => {
-          const Icon = agent.icon
+      <div className="mb-6 text-\[11px] uppercase tracking-\[0.36em] text-gold">The Four Agents</div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6" data-testid="juris-agents">
+        {AGENTS.map((a, i) => {
+          const Icon = a.icon;
           return (
-            <div key={agent.label} className="card-3d-raised p-7 md:p-8 reveal" style={{ transitionDelay: `${i * 80}ms` }} data-testid={`agent-card-${agent.label.toLowerCase()}`}>
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full border border-[rgba(200,169,126,0.35)] flex items-center justify-center flex-shrink-0">
-                  <Icon className="w-4 h-4 text-gold" strokeWidth={1.25} />
-                </div>
+            <div key={a.name} className="card-3d-raised p-7" data-testid={`juris-agent-${i}`}>
+              <div className="flex items-center gap-4 mb-4">
+                <Icon className="w-5 h-5 text-gold" strokeWidth={1.25} />
                 <div>
-                  <h3 className="font-display text-lg text-ivory mb-2">{agent.label}</h3>
-                  <p className="text-ivory-dim text-[14px] leading-relaxed">{agent.desc}</p>
+                  <div className="text-\[10.5px] uppercase tracking-\[0.36em] text-secondary">Agent {String(i + 1).padStart(2, "0")}</div>
+                  <h3 className="font-display text-2xl text-ivory">{a.name}</h3>
                 </div>
               </div>
+              <p className="text-ivory-dim text-\[14.5px] leading-relaxed">{a.role}</p>
             </div>
-          )
+          );
         })}
       </div>
     </PageShell>
-  )
+  );
 }

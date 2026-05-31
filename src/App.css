@@ -41,6 +41,7 @@ body {
     color: #fff;
 }
 
+/* Custom scrollbar */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: #070B14; }
 ::-webkit-scrollbar-thumb {
@@ -50,6 +51,7 @@ body {
 }
 ::-webkit-scrollbar-thumb:hover { background: #1f2a3e; }
 
+/* Focus states */
 *:focus { outline: none; }
 *:focus-visible {
     outline: 1px solid var(--apt-gold);
@@ -85,7 +87,7 @@ body {
     body { @apply text-foreground; }
 }
 
-/* Typography utilities */
+/* ---------- Typography utilities ---------- */
 .font-display {
     font-family: 'Playfair Display', 'Cormorant Garamond', serif;
     font-weight: 500;
@@ -117,7 +119,7 @@ body {
         linear-gradient(180deg, rgba(7, 11, 20, 0.55) 0%, rgba(7, 11, 20, 0.65) 60%, #0A0F1A 100%);
 }
 
-/* Grain texture */
+/* Subtle grain */
 .grain::before {
     content: "";
     position: absolute; inset: 0; pointer-events: none;
@@ -127,7 +129,7 @@ body {
     z-index: 1;
 }
 
-/* Search bar — soft underline */
+/* Search bar — soft underline (replaces hard pill outline) */
 .apt-search-soft {
     background: linear-gradient(180deg, rgba(245, 241, 230, 0.025), rgba(245, 241, 230, 0.01));
     border: none;
@@ -153,8 +155,7 @@ body {
     background: linear-gradient(180deg, rgba(245, 241, 230, 0.05), rgba(245, 241, 230, 0.015));
     box-shadow: 0 30px 80px -30px rgba(200, 169, 126, 0.14);
 }
-.apt-search-soft input,
-.apt-search-soft select {
+.apt-search-soft input {
     background: transparent;
     color: var(--apt-ivory);
     font-family: 'Outfit', sans-serif;
@@ -169,7 +170,7 @@ body {
     letter-spacing: 0.02em;
 }
 
-/* Legacy pill search */
+/* Legacy pill — kept for any disabled inputs on sub-pages */
 .apt-search {
     background: rgba(245, 241, 230, 0.04);
     border: 1px solid rgba(245, 241, 230, 0.14);
@@ -246,7 +247,7 @@ body {
     .hero-fallback-img { display: block !important; }
 }
 
-/* Cursor caret on tagline */
+/* Cursor caret animation on tagline */
 @keyframes caret-blink {
     0%, 49% { opacity: 1; }
     50%, 100% { opacity: 0; }
@@ -259,7 +260,7 @@ body {
     animation: caret-blink 1.1s steps(1) infinite;
 }
 
-/* Marquee trust strip */
+/* Marquee for trust strip */
 @keyframes drift {
     from { transform: translateX(0); }
     to   { transform: translateX(-50%); }
@@ -268,7 +269,7 @@ body {
     animation: drift 50s linear infinite;
 }
 
-/* Wordmark letter hover */
+/* Heading kerning for the wordmark */
 .wordmark-letters > span {
     display: inline-block;
     transition: transform 600ms cubic-bezier(.22,.61,.36,1), color 600ms ease;
@@ -277,7 +278,7 @@ body {
     color: var(--apt-gold-soft);
 }
 
-/* 3D Embossed wordmark - premium engraved look */
+/* 3D Embossed wordmark — premium engraved look */
 .wordmark-3d {
     color: #F5F1E6;
     text-shadow:
@@ -302,7 +303,7 @@ body {
     transition: transform 700ms cubic-bezier(.22,.61,.36,1);
 }
 
-/* 3D Raised card - textile, shadowed, premium */
+/* 3D Raised card — textile, shadowed, premium */
 .card-3d-raised {
     position: relative;
     background:
@@ -344,8 +345,6 @@ body {
         0 28px 50px -20px rgba(0, 0, 0, 0.8),
         0 40px 80px -40px rgba(200, 169, 126, 0.18);
 }
-
-/* Card back variant */
 .card-3d-back {
     background:
         linear-gradient(180deg, rgba(24, 32, 48, 0.92) 0%, rgba(14, 20, 32, 0.97) 100%);
@@ -355,13 +354,16 @@ body {
 .flip-card { will-change: transform; }
 .flip-card-inner > div { box-sizing: border-box; }
 
-/* Judge card flip (backface hidden) */
+/* Judge card flip (explicit) */
 .judge-card .card-3d-raised {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 }
 
-/* Hero - Lady Justice framed off-side */
+/* Hero — Lady Justice framed off-side, contained (not cropped) */
+.hero-justice-frame {
+    /* nothing here — sizing on the wrapper */
+}
 .hero-justice-media {
     object-fit: cover;
     object-position: center 30%;
@@ -375,7 +377,7 @@ body {
     }
 }
 
-/* Walking pan keyframes */
+/* Walking pan keyframes (kept for compat with class .hero-walk) */
 .hero-walk {
     transform-origin: center 40%;
     animation: heroWalk 36s ease-in-out infinite alternate;
@@ -386,7 +388,7 @@ body {
     100% { transform: scale(1.06) translateY(0.4%); }
 }
 
-/* Counter & chart animations */
+/* Counter & chart anims */
 @keyframes fadeUp {
     from { opacity: 0; transform: translateY(8px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -395,17 +397,13 @@ body {
     from { transform: scaleY(0); transform-origin: bottom; }
     to   { transform: scaleY(1); transform-origin: bottom; }
 }
-
-/* Tabular number style */
 .counter-tabular {
     font-variant-numeric: tabular-nums;
     letter-spacing: -0.01em;
 }
 
-/* Reduced-motion overrides for hero animations */
 @media (prefers-reduced-motion: reduce) {
-    .hero-walk,
-    .hero-justice-media { animation: none; transform: scale(1.02); }
+    .hero-walk, .hero-justice-media { animation: none; transform: scale(1.02); }
 }
 
 /* Native select styling */
@@ -419,7 +417,7 @@ select.apt-search-soft option {
     padding: 8px;
 }
 
-/* Judge card selected state */
+/* Judge card subtle highlight when selected */
 .judge-card.is-selected .card-3d-raised {
     border-color: rgba(200, 169, 126, 0.5);
     box-shadow:

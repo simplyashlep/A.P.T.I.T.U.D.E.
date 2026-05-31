@@ -1,48 +1,47 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import React from "react";
+import { Link } from "react-router-dom";
+import { ScaleLogo, Wordmark } from "./Brand";
 
-const FOOTER_LINKS = [
-  { to: "/bias-beacon", label: "Bias Beacon" },
-  { to: "/about", label: "Methodology" },
-  { to: "/about", label: "Disclaimers" },
-  { to: "/about", label: "Contact" },
-]
-
-export function Footer() {
-  return (
-    <footer className="border-t border-[var(--apt-line)]" data-testid="site-footer">
-      <div className="max-w-[1360px] mx-auto px-6 md:px-10 py-10 md:py-14">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <div>
-            <div className="font-display text-lg text-ivory tracking-[0.18em]">
-              A<span className="text-gold">.</span>P<span className="text-gold">.</span>T<span className="text-gold">.</span>I<span className="text-gold">.</span>T<span className="text-gold">.</span>U<span className="text-gold">.</span>D<span className="text-gold">.</span>E<span className="text-gold">.</span>
-            </div>
-            <p className="text-[12px] text-ivory-dim/60 italic font-serif-h mt-1 max-w-md">
-              Advanced Platform Tabulating Institutional Trends Unmasking Disparity Epidemics
-            </p>
+export const Footer = () => (
+  <footer className="relative border-t border-line py-14 md:py-16 px-6 md:px-10" data-testid="footer">
+    <div className="max-w-[1360px] mx-auto">
+      <div className="flex flex-col md:flex-row md:items-start justify-between gap-10">
+        <div className="max-w-md">
+          <div className="flex items-center gap-3 mb-5">
+            <ScaleLogo />
+            <Wordmark size="sm" />
           </div>
-
-          <div className="flex items-center gap-6">
-            {FOOTER_LINKS.map((link) => (
-              <Link
-                key={link.label}
-                to={link.to}
-                className="text-[10.5px] uppercase tracking-[0.28em] text-ivory-dim/60 hover:text-gold transition-colors duration-300"
-                data-testid={`footer-${link.label.toLowerCase()}`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-8 pt-6 border-t border-[var(--apt-line)] flex flex-col md:flex-row items-start md:items-center justify-between gap-2 text-[11px] text-ivory-dim/40">
-          <p>&copy; {new Date().getFullYear()} A.P.T.I.T.U.D.E. All rights reserved.</p>
-          <p className="font-serif-h italic">
-            Data sourced from the Oregon Judicial Department and Oregon Blue Book.
+          <p className="font-serif-h italic text-ivory-dim text-base leading-relaxed">
+            A Platform Tracking Institutional Trends Uncovering Disparate
+            Enforcement — Oregon's first public judicial dataset instrument.
+          </p>
+          <p className="mt-4 text-[11px] uppercase tracking-[0.36em] text-secondary">
+            Precision · Principle · Proof
           </p>
         </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-x-12 gap-y-3 text-[11.5px] uppercase tracking-[0.28em]">
+          <Link to="/judiciary" className="link-quiet" data-testid="footer-judiciary">Judiciary</Link>
+          <Link to="/watchtower" className="link-quiet" data-testid="footer-watchtower">Watchtower</Link>
+          <Link to="/law-enforcement" className="link-quiet" data-testid="footer-law-enforcement">Law Enforcement</Link>
+          <Link to="/community-corrections" className="link-quiet" data-testid="footer-community-corrections">Corrections</Link>
+          <Link to="/bias-beacon" className="link-quiet" data-testid="footer-bias-beacon">Bias Beacon</Link>
+          <Link to="/juris-lab" className="link-quiet" data-testid="footer-juris-lab">Juris Lab</Link>
+          <Link to="/community" className="link-quiet" data-testid="footer-community">Community</Link>
+          <Link to="/about" className="link-quiet" data-testid="footer-about">About</Link>
+          <Link to="/" className="link-quiet" data-testid="footer-search">The Record</Link>
+        </div>
       </div>
-    </footer>
-  )
-}
+
+      <div className="gold-rule my-10" />
+
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-[10.5px] uppercase tracking-[0.36em] text-secondary">
+        <span>© MMXXV — A.P.T.I.T.U.D.E.  ·  Oregon</span>
+        <span className="italic font-serif-h normal-case tracking-normal text-ivory-dim text-sm">
+          For research orientation only — not a substitute for counsel or the official record.
+        </span>
+        <span>Local · Public · Disciplined</span>
+      </div>
+    </div>
+  </footer>
+);
