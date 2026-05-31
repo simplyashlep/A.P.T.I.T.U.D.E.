@@ -1,31 +1,36 @@
 {
-  "name": "attitude-judicial-bias-tracker",
+  "name": "aptitude-react",
+  "private": true,
   "version": "1.0.0",
-  "description": "A.P.T.I.T.U.D.E. - Public Accountability Project for Judicial Bias Tracking",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "bundle exec jekyll serve --livereload",
-    "build": "bundle exec jekyll build",
-    "dev": "bundle exec jekyll serve",
-    "preview": "python3 -m http.server 5500 --bind 0.0.0.0"
-  },
-  "keywords": [
-    "judicial-bias",
-    "oregon",
-    "transparency"
-  ],
-  "author": "",
-  "license": "MIT",
-  "devDependencies": {
-    "@stackbit/cms-git": "^1.0.36",
-    "@stackbit/types": "^2.1.15",
-    "typescript": "^5.3.3"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.0.0",
+    "axios": "^1.7.0",
+    "lucide-react": "^0.460.0",
+    "sonner": "^1.7.0",
+    "@radix-ui/react-accordion": "^1.2.0",
+    "@radix-ui/react-alert-dialog": "^1.1.0",
+    "@radix-ui/react-aspect-ratio": "^1.1.0",
+    "@radix-ui/react-avatar": "^1.1.0",
+    "@radix-ui/react-slot": "^1.1.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "tailwind-merge": "^2.6.0",
+    "react-day-picker": "^9.5.0",
+    "date-fns": "^4.1.0"
   },
-  "engines": {
-    "node": ">=16.0.0"
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.0",
+    "vite": "^6.0.0",
+    "tailwindcss": "^3.4.0",
+    "postcss": "^8.4.0",
+    "autoprefixer": "^10.4.0"
   }
 }

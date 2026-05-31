@@ -4,15 +4,14 @@ on:
   push:
     branches:
       - main
+      - claude/judge-bias-beacon-scoring-8qAT3
   pull_request:
     branches:
       - main
-      - claude/judge-bias-beacon-scoring-8qAT3
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     permissions:
       contents: read
       deployments: write
@@ -21,33 +20,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          ruby-version: '3.3.5'
-          bundler-cache: true
+          node-version: '20'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: |
-          gem install bundler
-          bundle lock --add-platform x86_64-linux
-          bundle install --jobs 4 --retry 3
+        run: npm ci
 
-      - name: Build Jekyll site
-        run: bundle exec jekyll build --config _config.yml
-        env:
-          JEKYLL_ENV: production
-
-      - name: Upload artifact for Cloudflare Pages
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-artifact
-          path: _site/
-          retention-days: 1
+      - name: Build React site
+        run: npm run build
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy _site/ --project-name aptitude-site
+          command: pages deploy _site --project-name aptitude-site
