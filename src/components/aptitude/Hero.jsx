@@ -5,7 +5,6 @@ import { OregonCounter } from "./OregonCounter";
 
 const HERO_VIDEO_SOURCES = [
   "/media/lady-justice.mp4",
-  "https://cdn.pixabay.com/video/2023/10/14/185079-873431597_large.mp4",
 ];
 const HERO_FALLBACK_IMAGE =
   "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHwzfHxsYWR5JTIwanVzdGljZSUyMHN0YXR1ZXxlbnwwfHx8fDE3Nzk0Mzc4ODl8MA&ixlib=rb-4.1.0&q=85";
@@ -18,12 +17,36 @@ export const Hero = () => {
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
-    const onErr = () => {
-      if (srcIdx + 1 < HERO_VIDEO_SOURCES.length) setSrcIdx((i) => i + 1);
-      else setVideoOk(false);
+
+    // Attempt playback on mount — browsers may block autoplay without a user gesture
+    const tryPlay = async () => {
+      try {
+        await v.play();
+      } catch (_) {
+        // Muted autoplay should still work; if not, fall through to error handler
+      }
     };
+    tryPlay();
+
+    const onErr = () => {
+      if (srcIdx + 1 < HERO_VIDEO_SOURCES.length) {
+        setSrcIdx((i) => i + 1);
+      } else {
+        setVideoOk(false);
+      }
+    };
+
+    const onCanPlay = () => {
+      // Video loaded successfully — ensure it plays
+      try { v.play().catch(() => {}); } catch (_) {}
+    };
+
     v.addEventListener("error", onErr);
-    return () => v.removeEventListener("error", onErr);
+    v.addEventListener("canplay", onCanPlay);
+    return () => {
+      v.removeEventListener("error", onErr);
+      v.removeEventListener("canplay", onCanPlay);
+    };
   }, [srcIdx]);
 
   return (
@@ -45,7 +68,7 @@ export const Hero = () => {
             loop
             muted
             playsInline
-            preload="metadata"
+            preload="auto"
             poster={HERO_FALLBACK_IMAGE}
             key={HERO_VIDEO_SOURCES[srcIdx]}
             data-testid="hero-video"

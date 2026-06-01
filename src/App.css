@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -426,3 +427,4 @@ select.apt-search-soft option {
         0 18px 40px -20px rgba(0, 0, 0, 0.75),
         0 40px 80px -40px rgba(200, 169, 126, 0.3);
 }
+

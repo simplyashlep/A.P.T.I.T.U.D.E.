@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
+import staticJudges from "../data/judges.json";
 import { Gavel, Search, X, GitCompare, ExternalLink, AlertTriangle, Award, MapPin } from "lucide-react";
 import { TopNav } from "../components/aptitude/TopNav";
 import { Footer } from "../components/aptitude/Footer";
@@ -389,6 +390,23 @@ const CompareModal = ({ judges, onClose }) => {
   );
 };
 
+/* -----------------------------------------------
+   Static fallback helpers
+   ----------------------------------------------- */
+const buildStaticStats = (judges) => {
+  const counties = [...new Set(judges.map((j) => j.county).filter(Boolean))].sort();
+  const judgesWithMetrics = judges.filter((j) => j.metricsVerified).length;
+  const presidingJudges = judges.filter((j) => j.isPresiding).length;
+  return {
+    totals: {
+      judges: judges.length,
+      judgesWithMetrics,
+      presidingJudges,
+    },
+    counties: counties.map((name) => ({ name })),
+  };
+};
+
 export default function Judiciary() {
   const [judges, setJudges] = useState([]);
   const [stats, setStats] = useState(null);
@@ -402,7 +420,7 @@ export default function Judiciary() {
   const [limit, setLimit] = useState(24);
 
   useEffect(() => {
-    axios.get(`${API}/judges/stats`).then((r) => setStats(r.data)).catch(() => {});
+    axios.get(`${API}/judges/stats`).then((r) => setStats(r.data)).catch(() => { setStats(buildStaticStats(staticJudges)); });
   }, []);
 
   useEffect(() => {
@@ -414,7 +432,21 @@ export default function Judiciary() {
         signal: ctrl.signal,
       })
       .then((r) => setJudges(r.data.judges || []))
-      .catch(() => {})
+      .catch(() => {
+        let filtered = [...staticJudges];
+        if (q) {
+          const lowerQ = q.toLowerCase();
+          filtered = filtered.filter((j) =>
+            j.name.toLowerCase().includes(lowerQ) ||
+            j.county.toLowerCase().includes(lowerQ) ||
+            (j.category || "").toLowerCase().includes(lowerQ)
+          );
+        }
+        if (county) filtered = filtered.filter((j) => j.county === county);
+        if (risk) filtered = filtered.filter((j) => j.riskLevel === risk);
+        if (court) filtered = filtered.filter((j) => j.category === court || j.court === court);
+        setJudges(filtered);
+      })
       .finally(() => setLoading(false));
     return () => ctrl.abort();
   }, [q, county, risk, court]);
