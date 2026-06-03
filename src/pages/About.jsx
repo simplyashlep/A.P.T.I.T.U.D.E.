@@ -24,7 +24,7 @@ export default function About() {
     <PageShell
       testId="about-page"
       eyebrow="The Record-Keepers"
-      title="About."
+      title="The Premise"
       italicTitle="Why we built this."
       intro="A.P.T.I.T.U.D.E. exists because Oregon's public information lives in too many places for the public to actually use it. We are clerks, technologists, and people the system has touched — building the dataset we wished existed when we were inside it."
     >

@@ -39,7 +39,7 @@ body {
     position: relative;
 }
 
-/* Ambient moving gradient � barely perceptible, site-wide cohesion */
+/* Ambient moving gradient � barely perceptible, site-wide cohesion */
 body::before {
     content: "";
     position: fixed;
@@ -471,36 +471,32 @@ select.apt-search-soft option {
 /* ── Courthouse nav icon — 3D embossed metallic ── */
 .nav-courthouse {
     position: relative;
-    padding: 8px;
+    padding: 10px;
     border-radius: 6px;
-    background: linear-gradient(180deg, rgba(200,169,126,0.06) 0%, rgba(200,169,126,0.02) 100%);
-    border: 1px solid rgba(200,169,126,0.2);
+    background: linear-gradient(180deg, rgba(200,169,126,0.08) 0%, rgba(200,169,126,0.03) 100%);
+    border: none;
     box-shadow:
         0 1px 0 rgba(255,255,255,0.06) inset,
         0 -1px 0 rgba(0,0,0,0.5) inset,
-        0 4px 12px rgba(0,0,0,0.5),
-        0 0 0 1px rgba(0,0,0,0.3);
+        0 6px 18px rgba(0,0,0,0.55),
+        0 0 24px rgba(200,169,126,0.1);
     transition: all 500ms cubic-bezier(.22,.61,.36,1);
     cursor: pointer;
 }
 .nav-courthouse:hover {
-    border-color: rgba(200,169,126,0.5);
     box-shadow:
         0 1px 0 rgba(255,255,255,0.1) inset,
         0 -1px 0 rgba(0,0,0,0.5) inset,
-        0 6px 20px rgba(0,0,0,0.6),
-        0 0 28px rgba(200,169,126,0.18),
-        0 0 0 1px rgba(0,0,0,0.3);
+        0 8px 28px rgba(0,0,0,0.65),
+        0 0 36px rgba(200,169,126,0.22);
     transform: translateY(-1px);
 }
 .nav-courthouse-open {
-    border-color: rgba(200,169,126,0.55) !important;
     box-shadow:
-        0 1px 0 rgba(255,255,255,0.08) inset,
+        0 1px 0 rgba(255,255,255,0.1) inset,
         0 -1px 0 rgba(0,0,0,0.5) inset,
-        0 6px 24px rgba(0,0,0,0.65),
-        0 0 36px rgba(200,169,126,0.24),
-        0 0 0 1px rgba(0,0,0,0.3) !important;
+        0 8px 30px rgba(0,0,0,0.7),
+        0 0 44px rgba(200,169,126,0.28);
 }
 
 /* ── Nav link description hover ── */

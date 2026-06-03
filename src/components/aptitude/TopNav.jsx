@@ -50,7 +50,7 @@ export function TopNav() {
       <div className="max-w-[1360px] mx-auto px-6 md:px-10 flex items-center justify-between h-16">
         <Link
           to="/"
-          className="font-display text-lg text-ivory tracking-[0.18em] hover:text-gold transition-colors duration-300"
+          className="font-display text-xl text-ivory tracking-[0.24em] hover:text-gold transition-colors duration-300"
           data-testid="nav-logo"
         >
           A<span className="text-gold">.</span>P<span className="text-gold">.</span>T<span className="text-gold">.</span>I<span className="text-gold">.</span>T<span className="text-gold">.</span>U<span className="text-gold">.</span>D<span className="text-gold">.</span>E<span className="text-gold">.</span>
@@ -71,7 +71,7 @@ export function TopNav() {
             className={`w-6 h-6 transition-all duration-500 ${
               open ? "text-gold" : "text-ivory-dim"
             }`}
-            strokeWidth={1.25}
+            strokeWidth={2}
           />
         </button>
       </div>
