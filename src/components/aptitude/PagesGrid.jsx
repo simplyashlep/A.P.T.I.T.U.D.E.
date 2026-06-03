@@ -191,7 +191,7 @@ export const PagesGrid = () => (
     <div className="relative max-w-[1360px] mx-auto">
       <div className="reveal mb-16 md:mb-20 flex items-baseline justify-between flex-wrap gap-6">
         <div>
-          <div className="eyebrow mb-4">The Connecting of Dots</div>
+          <div className="eyebrow mb-4">Accountability Is Real</div>
           <h2 className="font-display text-4xl md:text-6xl text-ivory leading-[1.05] max-w-3xl">
             Eight wings of one<br />
             <span className="italic text-gold">public record.</span>

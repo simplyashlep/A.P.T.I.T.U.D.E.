@@ -98,10 +98,6 @@ export const Hero = () => {
       {/* Content — left-anchored on desktop, centered on mobile */}
       <div className="relative z-10 flex-1 flex flex-col px-6 md:px-10 pt-28 pb-10">
         <div className="max-w-3xl xl:max-w-4xl flex-1 flex flex-col items-center md:items-start justify-center text-center md:text-left">
-          <div className="eyebrow mb-6 opacity-90" data-testid="hero-eyebrow">
-            Oregon  ·  MMXXV  ·  The First Judicial Dataset
-          </div>
-
           <Wordmark
             size="lg"
             embossed
@@ -112,7 +108,7 @@ export const Hero = () => {
             className="mt-6 md:mt-7 font-serif-h italic text-[13px] md:text-base text-ivory-dim tracking-[0.06em]"
             data-testid="hero-acronym"
           >
-            A&nbsp;Platform Tracking Institutional Trends Uncovering Disparate Enforcement
+            A&nbsp;Platform&ensp;&middot;&ensp;Tracking&ensp;&middot;&ensp;Institutional&ensp;&middot;&ensp;Trends&ensp;&middot;&ensp;Uncovering&ensp;&middot;&ensp;Disparate&ensp;&middot;&ensp;Enforcement
           </p>
 
           <p
