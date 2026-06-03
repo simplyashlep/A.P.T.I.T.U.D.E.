@@ -1,0 +1,9 @@
+# Cloudflare Pages configuration for aptitude-site
+# This ensures proper build and deployment regardless of dashboard settings
+
+name = "aptitude-site"
+pages_build_output_dir = "_site"
+compatibility_date = "2025-06-03"
+
+# The build is handled by the GitHub Action (npm run build),
+# so wrangler just needs to know where to find the output.
