@@ -143,7 +143,7 @@ const FlipCard = ({ page, idx }) => {
             </p>
           </div>
           <div className="flex items-center justify-between text-[10.5px] uppercase tracking-[0.32em] text-secondary">
-            <span>Hover to reveal</span>
+            
             <span className="w-8 h-px bg-[var(--apt-gold)] opacity-50" />
           </div>
         </div>

@@ -28,16 +28,16 @@ export default function About() {
       italicTitle="Why we built this."
       intro="A.P.T.I.T.U.D.E. exists because Oregon's public information lives in too many places for the public to actually use it. We are clerks, technologists, and people the system has touched — building the dataset we wished existed when we were inside it."
     >
-            {/* Founder */}
+      {/* Founder */}
       <div className="mb-16">
         <div className="text-[11px] uppercase tracking-[0.36em] text-gold mb-6">The Founder</div>
         <div className="card-3d-raised p-8 md:p-10 max-w-3xl" data-testid="about-founder">
           <div className="flex flex-col md:flex-row gap-6 md:gap-8">
-            <div className="flex-shrink-0">
+            <div className="flex-shrink-0 flex justify-center md:justify-start">
               <img
                 src="/media/ashle-penn.jpg"
                 alt="AshLe' Penn"
-                className="w-24 h-24 md:w-28 md:h-28 rounded-full object-cover border-2 border-[rgba(200,169,126,0.55)]"
+                className="w-32 h-32 md:w-36 md:h-36 rounded-full object-cover border-2 border-[rgba(200,169,126,0.55)] gold-circle shadow-[0_0_24px_rgba(200,169,126,0.15)]"
                 data-testid="founder-photo"
               />
             </div>
@@ -64,14 +64,14 @@ export default function About() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-\[var(--apt-line)]" data-testid="about-tenets">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[var(--apt-line)]" data-testid="about-tenets">
         {TENETS.map((t, i) => (
-          <div key={t.n} className="bg-\[#0A0F1A] p-8 md:p-10">
+          <div key={t.n} className="bg-[#0A0F1A] p-8 md:p-10">
             <div className="flex items-baseline gap-5 mb-5">
               <span className="numeral text-4xl md:text-5xl">{t.n}</span>
-              <span className="text-\[10.5px] uppercase tracking-\[0.36em] text-secondary">{t.h}</span>
+              <span className="text-[10.5px] uppercase tracking-[0.36em] text-secondary">{t.h}</span>
             </div>
-            <p className="text-ivory-dim leading-relaxed text-\[15px]">{t.b}</p>
+            <p className="text-ivory-dim leading-relaxed text-[15px]">{t.b}</p>
           </div>
         ))}
       </div>

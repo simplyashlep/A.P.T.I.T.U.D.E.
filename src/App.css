@@ -22,6 +22,10 @@ html, body, #root {
     background: var(--apt-bg);
     color: var(--apt-ivory);
 }
+#root {
+    position: relative;
+    z-index: 1;
+}
 
 body {
     margin: 0;
@@ -30,11 +34,52 @@ body {
     letter-spacing: 0.01em;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background:
-        radial-gradient(1200px 700px at 80% -10%, rgba(91, 123, 154, 0.10), transparent 60%),
-        radial-gradient(900px 600px at 0% 100%, rgba(200, 169, 126, 0.06), transparent 60%),
-        linear-gradient(180deg, #070B14 0%, #0A0F1A 40%, #0A0F1A 100%);
+    background: #070B14;
     background-attachment: fixed;
+    position: relative;
+}
+
+/* Ambient moving gradient � barely perceptible, site-wide cohesion */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+        radial-gradient(1200px 700px at 20% -15%, rgba(91, 123, 154, 0.12), transparent 55%),
+        radial-gradient(1100px 650px at 80% 110%, rgba(200, 169, 126, 0.07), transparent 55%),
+        radial-gradient(900px 600px at 50% 50%, rgba(91, 123, 154, 0.05), transparent 60%),
+        radial-gradient(800px 550px at 10% 60%, rgba(200, 169, 126, 0.04), transparent 55%);
+    background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+    animation: ambientDrift 42s ease-in-out infinite;
+}
+
+@keyframes ambientDrift {
+    0% {
+        background-position: 0% 0%, 100% 100%, 50% 50%, 0% 100%;
+        opacity: 0.55;
+    }
+    20% {
+        background-position: 8% 6%, 85% 90%, 55% 55%, 5% 95%;
+        opacity: 0.8;
+    }
+    40% {
+        background-position: 4% 10%, 78% 85%, 45% 45%, 8% 90%;
+        opacity: 0.6;
+    }
+    60% {
+        background-position: 12% 3%, 92% 95%, 60% 60%, 3% 98%;
+        opacity: 0.85;
+    }
+    80% {
+        background-position: 6% 8%, 82% 88%, 48% 48%, 10% 92%;
+        opacity: 0.65;
+    }
+    100% {
+        background-position: 0% 0%, 100% 100%, 50% 50%, 0% 100%;
+        opacity: 0.55;
+    }
 }
 
 ::selection {
@@ -307,18 +352,20 @@ body {
 /* 3D Raised card — textile, shadowed, premium */
 .card-3d-raised {
     position: relative;
-    background:
-        linear-gradient(180deg, rgba(20, 28, 42, 0.85) 0%, rgba(12, 17, 26, 0.95) 100%);
-    border: 1px solid rgba(245, 241, 230, 0.08);
+    background: rgba(12, 18, 30, 0.68);
+    backdrop-filter: blur(18px) saturate(120%);
+    -webkit-backdrop-filter: blur(18px) saturate(120%);
+    border: 1px solid rgba(245, 241, 230, 0.10);
     border-radius: 4px;
     box-shadow:
-        0 1px 0 rgba(255, 255, 255, 0.04) inset,
-        0 -1px 0 rgba(0, 0, 0, 0.6) inset,
+        0 1px 0 rgba(255, 255, 255, 0.06) inset,
+        0 -1px 0 rgba(0, 0, 0, 0.5) inset,
         0 18px 40px -20px rgba(0, 0, 0, 0.75),
         0 30px 60px -40px rgba(0, 0, 0, 0.85);
     transition: transform 600ms cubic-bezier(.22,.61,.36,1),
                 box-shadow 600ms cubic-bezier(.22,.61,.36,1),
-                border-color 600ms ease;
+                border-color 600ms ease,
+                background 800ms ease;
     overflow: hidden;
 }
 .card-3d-raised::before {
@@ -339,26 +386,18 @@ body {
 }
 .card-3d-raised:hover {
     transform: translateY(-3px);
-    border-color: rgba(200, 169, 126, 0.32);
+    border-color: rgba(200, 169, 126, 0.38);
+    background: rgba(16, 22, 36, 0.72);
     box-shadow:
-        0 1px 0 rgba(255, 255, 255, 0.08) inset,
-        0 -1px 0 rgba(0, 0, 0, 0.6) inset,
+        0 1px 0 rgba(255, 255, 255, 0.10) inset,
+        0 -1px 0 rgba(0, 0, 0, 0.5) inset,
         0 28px 50px -20px rgba(0, 0, 0, 0.8),
         0 40px 80px -40px rgba(200, 169, 126, 0.18);
 }
 .card-3d-back {
-    background:
-        linear-gradient(180deg, rgba(24, 32, 48, 0.92) 0%, rgba(14, 20, 32, 0.97) 100%);
-}
-
-/* Flip card 3D context */
-.flip-card { will-change: transform; }
-.flip-card-inner > div { box-sizing: border-box; }
-
-/* Judge card flip (explicit) */
-.judge-card .card-3d-raised {
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+    background: rgba(14, 20, 32, 0.78);
+    backdrop-filter: blur(20px) saturate(130%);
+    -webkit-backdrop-filter: blur(20px) saturate(130%);
 }
 
 /* Hero — Lady Justice framed off-side, contained (not cropped) */
@@ -419,12 +458,111 @@ select.apt-search-soft option {
 }
 
 /* Judge card subtle highlight when selected */
-.judge-card.is-selected .card-3d-raised {
+.judge-card.is-selected.card-3d-raised, .judge-card.is-selected .card-3d-raised {
     border-color: rgba(200, 169, 126, 0.5);
     box-shadow:
         0 1px 0 rgba(255, 255, 255, 0.08) inset,
         0 -1px 0 rgba(0, 0, 0, 0.6) inset,
         0 18px 40px -20px rgba(0, 0, 0, 0.75),
         0 40px 80px -40px rgba(200, 169, 126, 0.3);
+}
+
+
+/* ── Courthouse nav icon — 3D embossed metallic ── */
+.nav-courthouse {
+    position: relative;
+    padding: 8px;
+    border-radius: 6px;
+    background: linear-gradient(180deg, rgba(200,169,126,0.06) 0%, rgba(200,169,126,0.02) 100%);
+    border: 1px solid rgba(200,169,126,0.2);
+    box-shadow:
+        0 1px 0 rgba(255,255,255,0.06) inset,
+        0 -1px 0 rgba(0,0,0,0.5) inset,
+        0 4px 12px rgba(0,0,0,0.5),
+        0 0 0 1px rgba(0,0,0,0.3);
+    transition: all 500ms cubic-bezier(.22,.61,.36,1);
+    cursor: pointer;
+}
+.nav-courthouse:hover {
+    border-color: rgba(200,169,126,0.5);
+    box-shadow:
+        0 1px 0 rgba(255,255,255,0.1) inset,
+        0 -1px 0 rgba(0,0,0,0.5) inset,
+        0 6px 20px rgba(0,0,0,0.6),
+        0 0 28px rgba(200,169,126,0.18),
+        0 0 0 1px rgba(0,0,0,0.3);
+    transform: translateY(-1px);
+}
+.nav-courthouse-open {
+    border-color: rgba(200,169,126,0.55) !important;
+    box-shadow:
+        0 1px 0 rgba(255,255,255,0.08) inset,
+        0 -1px 0 rgba(0,0,0,0.5) inset,
+        0 6px 24px rgba(0,0,0,0.65),
+        0 0 36px rgba(200,169,126,0.24),
+        0 0 0 1px rgba(0,0,0,0.3) !important;
+}
+
+/* ── Nav link description hover ── */
+.nav-link-desc {
+    transform: translateX(-8px);
+    transition: color 500ms ease, transform 500ms cubic-bezier(.22,.61,.36,1), opacity 500ms ease;
+}
+.nav-link-item:hover .nav-link-desc {
+    transform: translateX(0);
+}
+
+/* ── Gold circle photo frame ── */
+.gold-circle {
+    box-shadow:
+        0 0 0 2px rgba(200,169,126,0.25),
+        0 0 20px rgba(200,169,126,0.12),
+        inset 0 1px 0 rgba(255,255,255,0.05);
+    transition: box-shadow 500ms ease, transform 500ms cubic-bezier(.22,.61,.36,1);
+}
+.gold-circle:hover {
+    box-shadow:
+        0 0 0 2px rgba(200,169,126,0.45),
+        0 0 32px rgba(200,169,126,0.2),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+    transform: scale(1.03);
+}
+
+/* ── Compare radio selector ── */
+.compare-radio {
+    position: relative;
+}
+.compare-radio-dot {
+    transition: all 400ms cubic-bezier(.22,.61,.36,1);
+}
+.compare-radio:hover .compare-radio-dot {
+    box-shadow: 0 0 14px rgba(200,169,126,0.25);
+}
+.compare-radio-selected {
+    background: rgba(200,169,126,0.06);
+    border-radius: 4px;
+}
+
+/* ── Judge card selected glow ── */
+.judge-card.is-selected .flip-card-inner > div {
+    border-color: rgba(200,169,126,0.5) !important;
+}
+.judge-card.is-selected .flip-card-inner > .card-3d-raised {
+    border-color: rgba(200,169,126,0.5);
+    box-shadow:
+        0 1px 0 rgba(255,255,255,0.08) inset,
+        0 -1px 0 rgba(0,0,0,0.6) inset,
+        0 18px 40px -20px rgba(0,0,0,0.75),
+        0 40px 80px -40px rgba(200,169,126,0.3);
+}
+
+/* ── Nav gold bar ── */
+.nav-gold-bar {
+    box-shadow: 0 0 12px rgba(200,169,126,0.25);
+}
+
+/* Flip card inner — shared between judge cards and pages grid */
+.flip-card-inner {
+    will-change: transform;
 }
 

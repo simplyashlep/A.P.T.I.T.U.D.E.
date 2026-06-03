@@ -34,7 +34,7 @@ const RiskBadge = ({ risk, score }) => {
   );
 };
 
-const JudgeAvatar = ({ judge, size = 56 }) => {
+const JudgeAvatar = ({ judge, size = 80 }) => {
   const [errored, setErrored] = useState(false);
   const initials = (judge.name || "?")
     .split(" ")
@@ -45,7 +45,7 @@ const JudgeAvatar = ({ judge, size = 56 }) => {
   if (!judge.officialPhotoUrl || errored) {
     return (
       <div
-        className="rounded-full border border-[rgba(200,169,126,0.45)] bg-[#0E1420] flex items-center justify-center flex-shrink-0"
+        className="rounded-full border-2 border-[rgba(200,169,126,0.55)] bg-[#0E1420] flex items-center justify-center flex-shrink-0 gold-circle"
         style={{ width: size, height: size }}
         data-testid="judge-avatar-initials"
       >
@@ -60,7 +60,7 @@ const JudgeAvatar = ({ judge, size = 56 }) => {
       src={judge.officialPhotoUrl}
       alt={judge.name}
       onError={() => setErrored(true)}
-      className="rounded-full object-cover border border-[rgba(200,169,126,0.45)] flex-shrink-0"
+      className="rounded-full object-cover border-2 border-[rgba(200,169,126,0.55)] flex-shrink-0 gold-circle"
       style={{ width: size, height: size }}
       data-testid="judge-avatar-photo"
       loading="lazy"
@@ -90,47 +90,103 @@ const MetricBar = ({ label, value, suffix = "%", max = 100 }) => {
   );
 };
 
+const CompareRadio = ({ selected, onSelect, disabled }) => (
+  <button
+    type="button"
+    onClick={(e) => { e.stopPropagation(); onSelect(); }}
+    disabled={disabled && !selected}
+    className={`compare-radio group flex items-center gap-2.5 px-3 py-2 rounded-sm transition-all duration-400 ${
+      selected
+        ? "compare-radio-selected"
+        : disabled
+        ? "opacity-40 cursor-not-allowed"
+        : "hover:bg-[rgba(200,169,126,0.06)]"
+    }`}
+  >
+    <span
+      className={`compare-radio-dot w-4 h-4 rounded-full border flex items-center justify-center transition-all duration-400 ${
+        selected
+          ? "border-[var(--apt-gold)] bg-[var(--apt-gold)] shadow-[0_0_12px_rgba(200,169,126,0.4)]"
+          : "border-[rgba(200,169,126,0.45)] group-hover:border-[var(--apt-gold)]"
+      }`}
+    >
+      {selected && (
+        <span className="w-1.5 h-1.5 rounded-full bg-[#0A0F1A]" />
+      )}
+    </span>
+    <span
+      className={`text-[10.5px] uppercase tracking-[0.28em] transition-colors duration-300 ${
+        selected ? "text-gold" : "text-secondary group-hover:text-ivory-dim"
+      }`}
+    >
+      {selected ? "Selected" : "Compare"}
+    </span>
+  </button>
+);
+
 const JudgeCard = ({ judge, selected, onSelect, disabled }) => {
   const [flipped, setFlipped] = useState(false);
+  const [locked, setLocked] = useState(false);
   const isCritical = judge.riskLevel === "critical";
+
+  const handleMouseEnter = () => {
+    if (!locked) setFlipped(true);
+  };
+  const handleMouseLeave = () => {
+    if (!locked) setFlipped(false);
+  };
+  const handleCardClick = () => {
+    if (locked) {
+      setLocked(false);
+      setFlipped(false);
+    } else {
+      setLocked(true);
+      setFlipped(true);
+    }
+  };
 
   return (
     <div
-      className={`judge-card relative h-\[400px] \[perspective:1600px] ${selected ? "is-selected" : ""}`}
-      onMouseEnter={() => !selected && setFlipped(true)}
-      onMouseLeave={() => !selected && setFlipped(false)}
+      className={`judge-card h-[420px] md:h-[460px] [perspective:1400px] ${selected ? "is-selected" : ""}`}
       data-testid={`judge-card-${judge.id}`}
     >
       <div
-        className={`relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] ${
-          flipped || selected ? "[transform:rotateY(180deg)]" : ""
+        className={`flip-card-inner relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] ${
+          flipped ? "[transform:rotateY(180deg)]" : ""
         }`}
       >
-        {/* FRONT - Tier I */}
-        <div className="absolute inset-0 \[backface-visibility:hidden] card-3d-raised p-6 flex flex-col justify-between">
+        {/* ── FRONT ── */}
+        <div
+          className="absolute inset-0 [backface-visibility:hidden] card-3d-raised p-6 flex flex-col justify-between cursor-pointer"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onClick={handleCardClick}
+        >
           <div>
-            <div className="flex items-start justify-between mb-5">
-              <span className="text-\[10px] uppercase tracking-\[0.34em] text-gold">{TIER_PILLS[0]}</span>
+            <div className="flex items-start justify-between mb-4">
+              <span className="text-[10px] uppercase tracking-[0.34em] text-gold">
+                {judge.isPresiding ? "Presiding Judge" : "Sitting Judge"}
+              </span>
               {judge.isPresiding && (
-                <span className="text-\[9.5px] uppercase tracking-\[0.28em] text-gold border border-\[rgba(200,169,126,0.45)] px-2 py-0.5">
+                <span className="text-[9.5px] uppercase tracking-[0.28em] text-gold border border-[rgba(200,169,126,0.45)] px-2 py-0.5">
                   Presiding
                 </span>
               )}
             </div>
 
-            <div className="flex items-start gap-4">
-              <JudgeAvatar judge={judge} size={60} />
-              <div className="min-w-0">
-                <h3 className="font-display text-\[22px] text-ivory leading-tight truncate" title={judge.name}>
+            <div className="flex items-start gap-5">
+              <JudgeAvatar judge={judge} size={80} />
+              <div className="min-w-0 flex-1">
+                <h3 className="font-display text-[22px] md:text-[24px] text-ivory leading-tight truncate" title={judge.name}>
                   {judge.name}
                 </h3>
-                <div className="mt-1 text-\[12px] uppercase tracking-\[0.22em] text-secondary">
+                <div className="mt-1.5 text-[12px] uppercase tracking-[0.22em] text-secondary">
                   {judge.category}
                 </div>
               </div>
             </div>
 
-            <div className="mt-6 space-y-3 text-\[13px]">
+            <div className="mt-5 space-y-2.5 text-[13px]">
               <div className="flex items-center gap-2 text-ivory-dim">
                 <MapPin className="w-3.5 h-3.5 text-gold opacity-60" strokeWidth={1.4} />
                 {judge.county} County
@@ -139,99 +195,18 @@ const JudgeCard = ({ judge, selected, onSelect, disabled }) => {
                 )}
               </div>
               <div className="text-ivory-dim">{judge.roleTitle}</div>
-              <div className="text-secondary text-\[12px] italic font-serif-h">
+              <div className="text-secondary text-[12px] italic font-serif-h">
                 {judge.tenureDisplay || "—"}
               </div>
             </div>
-          </div>
 
-          <div className="flex items-center justify-between">
-            <RiskBadge risk={judge.riskLevel} score={judge.score} />
-            <span className="text-\[10px] uppercase tracking-\[0.28em] text-secondary opacity-70">
-              hover · select
-            </span>
-          </div>
-        </div>
-
-        {/* BACK - Tier II (with optional Tier III if metrics) */}
-        <div className="absolute inset-0 \[backface-visibility:hidden] \[transform:rotateY(180deg)] card-3d-raised card-3d-back p-6 flex flex-col">
-          <div className="flex items-center justify-between mb-4">
-            <span className="text-\[10px] uppercase tracking-\[0.34em] text-gold">
-              {judge.metricsVerified ? TIER_PILLS[1] : "Identity · expanded"}
-            </span>
-            <RiskBadge risk={judge.riskLevel} score={judge.score} />
-          </div>
-
-          <div className="flex items-center gap-3 mb-4">
-            <JudgeAvatar judge={judge} size={42} />
-            <div className="min-w-0">
-              <div className="font-display text-base text-ivory truncate">{judge.name}</div>
-              <div className="text-\[10.5px] uppercase tracking-\[0.22em] text-secondary">{judge.county}</div>
+            <div className="mt-5">
+              <RiskBadge risk={judge.riskLevel} score={judge.score} />
             </div>
           </div>
 
-          {judge.metricsVerified ? (
-            <div className="space-y-3 flex-1 overflow-hidden">
-              <MetricBar label="Prison Usage" value={judge.prisonUsage} />
-              <MetricBar label="Reversal Rate" value={judge.reversalRate} />
-              <MetricBar label="Counsel Disparity" value={judge.counselDisparity} />
-              <MetricBar label="Racial Disparity" value={judge.racialDisparity} />
-              <div className="flex items-center justify-between text-\[11px] pt-1">
-                <span className="uppercase tracking-\[0.24em] text-secondary text-\[10px]">2024 Caseload</span>
-                <span className="font-display text-ivory">{fmt(judge.caseload2024)}</span>
-              </div>
-              <div className="flex items-center justify-between text-\[11px]">
-                <span className="uppercase tracking-\[0.24em] text-secondary text-\[10px]">2024 Appeals</span>
-                <span className="font-display text-ivory">{fmt(judge.appeals2024)}</span>
-              </div>
-              {isCritical && judge.flags && judge.flags.length > 0 && (
-                <div className="mt-2 border-t border-\[rgba(207,107,107,0.25)] pt-3">
-                  <div className="flex items-center gap-1.5 text-\[10px] uppercase tracking-\[0.24em] text-\[#CF6B6B] mb-1.5">
-                    <AlertTriangle className="w-3 h-3" />
-                    Flags
-                  </div>
-                  <div className="text-\[11.5px] text-ivory-dim leading-snug">
-                    {judge.flags[0]}
-                  </div>
-                </div>
-              )}
-            </div>
-          ) : (
-            <div className="flex-1 flex flex-col justify-center">
-              <p className="font-serif-h italic text-ivory-dim/80 text-\[14px] leading-relaxed">
-                Tier II analytics pending verification. Identity, term, and role are
-                confirmed against the Oregon Judicial Department roster.
-              </p>
-              {judge.focus && (
-                <p className="mt-3 text-\[12px] uppercase tracking-\[0.22em] text-secondary">
-                  Focus · {judge.focus}
-                </p>
-              )}
-            </div>
-          )}
-
-          <div className="mt-4 flex items-center justify-between gap-3 pt-3 border-t border-line">
-            <button
-              type="button"
-              onClick={() => onSelect(judge)}
-              disabled={disabled && !selected}
-              className={`flex-1 text-[10.5px] uppercase tracking-[0.28em] py-2 rounded-sm transition-all duration-300 ${
-                selected
-                  ? "bg-[var(--apt-gold)] text-[#0A0F1A]"
-                  : disabled
-                  ? "border border-line text-secondary cursor-not-allowed opacity-50"
-                  : "border border-[rgba(200,169,126,0.45)] text-gold hover:bg-[rgba(200,169,126,0.08)]"
-              }`}
-              data-testid={`judge-compare-${judge.id}`}
-            >
-              {selected ? (
-                <span className="inline-flex items-center justify-center gap-2">
-                  <X className="w-3 h-3" /> Selected
-                </span>
-              ) : (
-                "Select for Compare"
-              )}
-            </button>
+          <div className="flex items-center justify-between pt-4 border-t border-[rgba(255,255,255,0.07)]">
+            <CompareRadio selected={selected} onSelect={() => onSelect(judge)} disabled={disabled} />
             {judge.bioUrl && (
               <a
                 href={judge.bioUrl}
@@ -240,6 +215,81 @@ const JudgeCard = ({ judge, selected, onSelect, disabled }) => {
                 className="px-3 py-2 border border-line text-secondary hover:text-gold hover:border-[rgba(200,169,126,0.45)] transition-colors"
                 title="Official bio"
                 data-testid={`judge-bio-${judge.id}`}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            )}
+          </div>
+        </div>
+
+        {/* ── BACK ── */}
+        <div
+          className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] card-3d-raised card-3d-back p-6 flex flex-col justify-between cursor-pointer"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onClick={handleCardClick}
+        >
+          <div className="flex-1">
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-[10px] uppercase tracking-[0.34em] text-gold">
+                {judge.metricsVerified ? "Verified Metrics" : "Pending Verification"}
+              </span>
+              <RiskBadge risk={judge.riskLevel} score={judge.score} />
+            </div>
+
+            {judge.metricsVerified ? (
+              <div className="space-y-3">
+                <MetricBar label="Prison Usage" value={judge.prisonUsage} />
+                <MetricBar label="Reversal Rate" value={judge.reversalRate} />
+                <MetricBar label="Counsel Disparity" value={judge.counselDisparity} />
+                <MetricBar label="Racial Disparity" value={judge.racialDisparity} />
+                <div className="flex items-center justify-between text-[11px] pt-1">
+                  <span className="uppercase tracking-[0.24em] text-secondary text-[10px]">2024 Caseload</span>
+                  <span className="font-display text-ivory">{fmt(judge.caseload2024)}</span>
+                </div>
+                <div className="flex items-center justify-between text-[11px]">
+                  <span className="uppercase tracking-[0.24em] text-secondary text-[10px]">2024 Appeals</span>
+                  <span className="font-display text-ivory">{fmt(judge.appeals2024)}</span>
+                </div>
+                {isCritical && judge.flags && judge.flags.length > 0 && (
+                  <div className="mt-2 border-t border-[rgba(207,107,107,0.25)] pt-3">
+                    <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.24em] text-[#CF6B6B] mb-1.5">
+                      <AlertTriangle className="w-3 h-3" />
+                      Flags
+                    </div>
+                    <div className="text-[11.5px] text-ivory-dim leading-snug">
+                      {judge.flags[0]}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div>
+                <p className="font-serif-h italic text-ivory-dim/80 text-[14px] leading-relaxed">
+                  Tier II analytics pending verification. Identity, term, and role are
+                  confirmed against the Oregon Judicial Department roster.
+                </p>
+                {judge.focus && (
+                  <p className="mt-3 text-[12px] uppercase tracking-[0.22em] text-secondary">
+                    Focus · {judge.focus}
+                  </p>
+                )}
+              </div>
+            )}
+          </div>
+
+          <div className="flex items-center justify-between pt-4 border-t border-[rgba(255,255,255,0.07)]">
+            <CompareRadio selected={selected} onSelect={() => onSelect(judge)} disabled={disabled} />
+            {judge.bioUrl && (
+              <a
+                href={judge.bioUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="px-3 py-2 border border-line text-secondary hover:text-gold hover:border-[rgba(200,169,126,0.45)] transition-colors"
+                title="Official bio"
+                data-testid={`judge-bio-${judge.id}`}
+                onClick={(e) => e.stopPropagation()}
               >
                 <ExternalLink className="w-3 h-3" />
               </a>
