@@ -1,0 +1,10 @@
+{
+  "deterministic_edge_types": [
+    {"from": "Event", "to": "Claim", "type": "supports", "description": "Factual event provides predicates for the claim"},
+    {"from": "Claim", "to": "Doctrine", "type": "governed_by", "description": "Claim is interpreted and bounded by the doctrine"},
+    {"from": "Doctrine", "to": "Statute", "type": "codified_in", "description": "Doctrine is expressed in statute or rule"},
+    {"from": "Event", "to": "Policy", "type": "violates", "description": "Event facts show breach of agency policy"},
+    {"from": "Claim", "to": "Remedy", "type": "resolved_by", "description": "Claim is redressed via this procedural or substantive remedy"}
+  ],
+  "notes": "All edges must carry jurisdiction filter and weight. No orphan nodes."
+}

@@ -1,0 +1,37 @@
+{
+  "module": "misidentification_false_arrest",
+  "jurisdiction_default": "Oregon",
+  "event_types": [
+    {
+      "type": "warrant_misidentification_arrest",
+      "description": "Arrest on a warrant intended for a different person due to name/DOB/identity mismatch.",
+      "required_attributes": ["actor_type", "identification_failure_mode", "detention_status", "probable_cause_basis", "verification_steps_taken"]
+    },
+    {
+      "type": "eyewitness_misidentification",
+      "description": "Detention or arrest based on eyewitness identification that later proved incorrect.",
+      "required_attributes": ["actor_type", "identification_failure_mode", "detention_status"]
+    },
+    {
+      "type": "database_identity_error",
+      "description": "Identity error originating from law enforcement, court, or commercial database.",
+      "required_attributes": ["actor_type", "identification_failure_mode"]
+    },
+    {
+      "type": "biometric_false_match",
+      "description": "False positive from fingerprint, facial recognition, or other biometric system.",
+      "required_attributes": ["actor_type", "identification_failure_mode", "biometric_type"]
+    },
+    {
+      "type": "mixed_identity_detention",
+      "description": "Detention where multiple individuals' identities were conflated.",
+      "required_attributes": ["actor_type", "detention_status"]
+    }
+  ],
+  "common_attributes": {
+    "actor_type": ["law_enforcement", "court", "agency", "private_actor"],
+    "identification_failure_mode": ["name_dob_match_fail", "warrant_alias", "database_record_error", "eyewitness_error", "biometric_error", "clerical_error"],
+    "detention_status": ["arrested", "detained", "cited_released", "booked_jail", "none"],
+    "probable_cause_basis": ["warrant", "eyewitness", "database_hit", "officer_observation", "other"]
+  }
+}

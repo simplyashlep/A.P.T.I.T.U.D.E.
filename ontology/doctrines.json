@@ -1,0 +1,10 @@
+{
+  "module": "misidentification_false_arrest",
+  "doctrines": [
+    {"type": "probable_cause_standard", "description": "Fourth Amendment requirement that arrest be supported by probable cause particularized to the individual."},
+    {"type": "reasonable_suspicion_threshold", "description": "Terry stop standard; insufficient alone for full arrest on identity mismatch."},
+    {"type": "seizure_under_fourth_amendment", "description": "Arrest and detention constitute seizures requiring constitutional justification."},
+    {"type": "qualified_immunity_framework", "description": "Official immunity analysis; clearly established right to be free from arrest on mistaken identity warrant."},
+    {"type": "due_process_identity_verification", "description": "Procedural due process requires reasonable steps to verify identity before prolonged detention."}
+  ]
+}

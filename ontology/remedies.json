@@ -1,0 +1,11 @@
+{
+  "module": "misidentification_false_arrest",
+  "remedies": [
+    {"type": "motion_to_suppress", "applies_to": ["criminal"], "prerequisites": ["illegal_seizure"]},
+    {"type": "motion_to_dismiss", "applies_to": ["criminal"], "prerequisites": ["false_arrest_or_due_process"]},
+    {"type": "habeas_corpus_petition", "applies_to": ["custody"], "prerequisites": ["ongoing_detention"]},
+    {"type": "section_1983_civil_action", "applies_to": ["damages"], "prerequisites": ["state_actor", "constitutional_violation"]},
+    {"type": "internal_affairs_complaint", "applies_to": ["administrative"], "prerequisites": ["officer_misconduct"]},
+    {"type": "administrative_review_petition", "applies_to": ["licensing_or_agency"], "prerequisites": ["agency_involvement"]}
+  ]
+}

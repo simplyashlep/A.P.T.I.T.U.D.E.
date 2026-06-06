@@ -1,0 +1,10 @@
+{
+  "module": "misidentification_false_arrest",
+  "claims": [
+    {"type": "false_arrest", "required_predicates": ["detention_without_valid_legal_basis", "identity_mismatch_proven"], "burden": "preponderance_or_clear", "jurisdictions": ["Oregon", "federal"]},
+    {"type": "unlawful_detention", "required_predicates": ["deprivation_of_liberty", "no_probable_cause_or_warrant_valid_for_this_person"], "burden": "preponderance", "jurisdictions": ["Oregon"]},
+    {"type": "due_process_violation", "required_predicates": ["state_action", "inadequate_identity_verification"], "burden": "preponderance", "jurisdictions": ["Oregon", "federal"]},
+    {"type": "negligence_identity_verification", "required_predicates": ["duty_of_care", "breach", "causation", "damages"], "burden": "preponderance", "jurisdictions": ["Oregon"]},
+    {"type": "civil_rights_violation_42usc1983", "required_predicates": ["under_color_of_law", "deprivation_of_rights", "identity_error"], "burden": "preponderance", "jurisdictions": ["federal", "Oregon"]}
+  ]
+}
