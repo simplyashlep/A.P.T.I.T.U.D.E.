@@ -14,6 +14,10 @@ from emergentintegrations.llm.chat import LlmChat, UserMessage
 from judges_data import filter_judges, get_judge, stats as judge_stats, slim
 from live_data import stop_summary, stop_counties, disparity_indicators, dashboards as ocjc_dashboards
 
+# NEW: Aptitude Brain imports (orchestration + incident router on aptitude-emergent)
+from orchestration.pipeline import AptitudeOrchestrator
+from incident_router import router as incident_router
+
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -257,6 +261,23 @@ async def list_searches(limit: int = 20):
             created_at=ca,
         ))
     return out
+
+
+# ------------------- NEW: Aptitude Brain (Legal Intelligence Graph) -------------------
+# Full multi-agent pipeline per the Aptitude System Technical Manual (Volumes I-VI).
+# Reuses the existing mongo client (db) and EMERGENT_LLM_KEY for LLM-backed agents.
+# Mounts /api/incident/submit and /api/incident/{id}/result
+
+brain_llm_client = None
+if EMERGENT_LLM_KEY:
+    # The orchestrator accepts an optional llm_client; the agents will use it when available.
+    # For now we pass the key; agents fall back gracefully if not configured for a specific call.
+    brain_llm_client = EMERGENT_LLM_KEY
+
+brain_orchestrator = AptitudeOrchestrator(db=db, llm_client=brain_llm_client)
+
+# Include the dedicated incident brain router (defined in incident_router.py)
+app.include_router(incident_router)
 
 
 app.include_router(api_router)
