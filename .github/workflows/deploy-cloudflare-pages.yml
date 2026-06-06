@@ -20,17 +20,27 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          ruby-version: '3.3.5'
-          bundler-cache: true
+          node-version: '22'
+          cache: 'yarn'
+
+      - name: Enable Corepack (for Yarn 4)
+        run: corepack enable
 
       - name: Install dependencies
-        run: bundle install
+        run: yarn install --immutable
 
-      - name: Build with Jekyll
-        run: bundle exec jekyll build --trace
+      - name: Build React site (premium UI)
+        run: yarn build
+
+      - name: Include brain docs and updated status in the deploy
+        run: |
+          mkdir -p _site/brain
+          cp APTITUDE-BRAIN.md INCIDENT-INTAKE-DEMO.md PROJECT-STATUS.md README.md _site/brain/ || true
+          # Also copy to root for easy access if the app serves static
+          cp APTITUDE-BRAIN.md INCIDENT-INTAKE-DEMO.md _site/ || true
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
