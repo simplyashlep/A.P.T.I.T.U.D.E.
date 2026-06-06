@@ -15,12 +15,12 @@ A full platform with two tightly integrated layers:
 
 ## Current State
 
-- **UI (Cloudflare-deployed from this branch `claude/judge-bias-beacon-scoring-8qAT3`)**: Advanced Jekyll static site with interactive judge cards, search, filters across 36 counties, color-themed modules, dashboard scaffolding, and now documentation + static preview for the Brain.
+- **UI (Cloudflare-deployed from this branch `claude/judge-bias-beacon-scoring-8qAT3`)**: Advanced React/Vite premium UI with interactive judge cards, search, filters across 36 counties, color-themed modules, dashboard scaffolding, and now the full brain documentation + static preview for the Brain.
 - **Brain core (implemented on `aptitude-emergent`)**: Ontology, 5 agents with exact spec prompts, full orchestration pipeline, incident submit/result API, audit everything. Runnable today (see the demo).
 
 See:
-- [APTITUDE-BRAIN.md](./APTITUDE-BRAIN.md) — full architecture, agents, invariants
-- [INCIDENT-INTAKE-DEMO.md](./INCIDENT-INTAKE-DEMO.md) — interactive static simulation of a full brain run (replaceable with real API call)
+- [APTITUDE-BRAIN.md](./brain/APTITUDE-BRAIN.md) — full architecture, agents, invariants
+- [INCIDENT-INTAKE-DEMO.md](./brain/INCIDENT-INTAKE-DEMO.md) — interactive static simulation of a full brain run (replaceable with real API call)
 - The living **Aptitude System Technical Manual** (LaTeX) for every volume, prompt, schema, and cross-dependency
 - Bias Beacon docs (BIAS-BEACON-SETUP.md, JUDGE-DATA-IMPLEMENTATION.md, etc.)
 
@@ -31,10 +31,10 @@ cd backend
 python tools/run_brain_demo.py
 ```
 
-Or open INCIDENT-INTAKE-DEMO.md in the deployed site for the in-browser preview.
+Or open the brain docs in the deployed site (they are copied into the build).
 
 ## Deployment
-- This branch (`claude/judge-bias-beacon-scoring-8qAT3`) → Cloudflare Pages (the public site you are reading).
+- This branch (`claude/judge-bias-beacon-scoring-8qAT3`) → Cloudflare Pages (the public site you are reading). **Premium React UI + brain content**.
 - Brain backend (FastAPI) deployed separately; the UI will call it.
 
 ## Contributing / Next
@@ -44,3 +44,5 @@ The goal: every piece of the platform is auditable, reproducible, and grounded i
 
 ---
 _For research orientation only — not a substitute for counsel or the official record._
+
+**Force rebuild commit:** $(date -u +%Y-%m-%dT%H:%M:%SZ) - premium UI + brain docs should now be live.
