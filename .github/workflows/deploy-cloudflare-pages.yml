@@ -20,20 +20,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
         with:
-          node-version: '22'
-          cache: 'yarn'
-
-      - name: Enable Corepack (for Yarn 4)
-        run: corepack enable
+          ruby-version: '3.3.5'
+          bundler-cache: true
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: bundle install
 
-      - name: Build React site
-        run: yarn build
+      - name: Build with Jekyll
+        run: bundle exec jekyll build --trace
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
