@@ -23,14 +23,17 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: '22'
+          cache: 'yarn'
+
+      - name: Enable Corepack (for Yarn 4)
+        run: corepack enable
 
       - name: Install dependencies
-        run: npm ci
+        run: yarn install --immutable
 
       - name: Build React site
-        run: npm run build
+        run: yarn build
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
