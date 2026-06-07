@@ -5,6 +5,18 @@
 
 Public accountability tools for Oregon's justice system — judge bias tracking (Bias Beacon), prosecutorial and law-enforcement transparency, community corrections oversight, and the core **Aptitude Brain** legal intelligence engine.
 
+## Current CF Pages Build Settings (as of now)
+
+These are the exact settings configured in the Cloudflare dashboard for the direct Git integration on this branch:
+
+- **Build command**: `yarn install && yarn build && mkdir -p _site/brain && cp APTITUDE-BRAIN.md INCIDENT-INTAKE-DEMO.md PROJECT-STATUS.md README.md _site/brain/ || true && cp APTITUDE-BRAIN.md INCIDENT-INTAKE-DEMO.md _site/ || true`
+- **Deploy command**: `npx wrangler versions upload`
+- **Root directory**: `/`
+- **Build token**: `CLOUDFLARE_GROK`
+- **Build variables**: `NODE_VERSION`
+
+This ensures the React premium UI is built to _site and the brain docs are copied in for the deployed site.
+
 ## What We Are Building
 
 A full platform with two tightly integrated layers:
@@ -15,34 +27,18 @@ A full platform with two tightly integrated layers:
 
 ## Current State
 
-- **UI (Cloudflare-deployed from this branch `claude/judge-bias-beacon-scoring-8qAT3`)**: Advanced React/Vite premium UI with interactive judge cards, search, filters across 36 counties, color-themed modules, dashboard scaffolding, and now the full brain documentation + static preview for the Brain.
-- **Brain core (implemented on `aptitude-emergent`)**: Ontology, 5 agents with exact spec prompts, full orchestration pipeline, incident submit/result API, audit everything. Runnable today (see the demo).
+- **UI (Cloudflare-deployed from this branch `claude/judge-bias-beacon-scoring-8qAT3`)**: Advanced React/Vite premium UI with interactive judge cards, search, filters across 36 counties, color-themed modules, dashboard scaffolding, and the brain documentation.
+- **Brain core (implemented on `aptitude-emergent`)**: Ontology, 5 agents with exact spec prompts, full orchestration pipeline, incident submit/result API, audit everything.
 
-See:
-- [APTITUDE-BRAIN.md](./APTITUDE-BRAIN.md) — full architecture, agents, invariants
-- [INCIDENT-INTAKE-DEMO.md](./INCIDENT-INTAKE-DEMO.md) — interactive static simulation of a full brain run (replaceable with real API call)
-- The living **Aptitude System Technical Manual** (LaTeX) for every volume, prompt, schema, and cross-dependency
-- Bias Beacon docs (BIAS-BEACON-SETUP.md, JUDGE-DATA-IMPLEMENTATION.md, etc.)
-
-## Quick Start (Brain Demo)
-On the brain branch:
-```bash
-cd backend
-python tools/run_brain_demo.py
-```
-
-Or open the brain docs in the deployed site (they are copied into the build).
+See the brain docs in the deployed site (copied into the build at / and /brain/).
 
 ## Deployment
-- This branch (`claude/judge-bias-beacon-scoring-8qAT3`) → Cloudflare Pages (the public site you are reading). **Premium React UI + brain content**.
-- Brain backend (FastAPI) deployed separately; the UI will call it.
-
-## Contributing / Next
-See PROJECT-STATUS.md for the current checklist (Beacon data population + brain UI integration points).
+- Pushes to this branch trigger the CF Git integration using the above build/deploy commands.
+- The "Create a new deployment" in CF may show the asset uploader for manual uploads; for Git-triggered builds from this branch, just push code or use the GitHub workflow.
 
 The goal: every piece of the platform is auditable, reproducible, and grounded in structured legal truth — not model weights.
 
 ---
 _For research orientation only — not a substitute for counsel or the official record._
 
-**Force push note:** Pushed small change to trigger fresh CF Git build using your current dashboard settings (the long build command with brain doc copies into _site). After this build completes and uploads the new version, go to Deployments in CF, find the new version from this commit on the claude branch, and deploy/promote it to production to update the live site to the premium UI + brain docs. (The 'Create a new deployment' uploader is the manual asset upload path - not needed for the Git flow; just push to the branch to trigger from GitHub.)
+**Latest trigger:** Pushed to force a new build with the current CF dashboard settings and brain docs included.
