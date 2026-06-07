@@ -5,7 +5,7 @@
 
 Public accountability tools for Oregon's justice system — judge bias tracking (Bias Beacon), prosecutorial and law-enforcement transparency, community corrections oversight, and the core **Aptitude Brain** legal intelligence engine.
 
-## Current CF Pages Build Settings (from dashboard)
+## Current Cloudflare Pages Build Settings (from dashboard)
 
 - **Build command**: `yarn install && yarn build && mkdir -p _site/brain && cp APTITUDE-BRAIN.md INCIDENT-INTAKE-DEMO.md PROJECT-STATUS.md README.md _site/brain/ || true && cp APTITUDE-BRAIN.md INCIDENT-INTAKE-DEMO.md _site/ || true`
 - **Deploy command**: `npx wrangler versions upload`
@@ -13,7 +13,7 @@ Public accountability tools for Oregon's justice system — judge bias tracking 
 - **Build token**: `CLOUDFLARE_GROK`
 - **Build variables**: `NODE_VERSION`
 
-These settings are used by the Cloudflare Git integration for builds on the production branch `claude/judge-bias-beacon-scoring-8qAT3`.
+**Note**: To force clean build and bust output cache, prepend `rm -rf _site || true && ` to the build command in the CF dashboard before triggering. The copies ensure brain docs are included in the deployed _site.
 
 ## What We Are Building
 
@@ -31,13 +31,14 @@ A full platform with two tightly integrated layers:
 See the brain docs in the deployed site (copied into the build).
 
 ## Deployment
-- Pushes to this branch trigger the CF Git integration using the above build/deploy commands from the dashboard.
-- The "Create a new deployment" in CF may show the asset uploader for manual uploads; for Git-triggered builds from this branch, push code to the branch.
-- After a build, new versions are uploaded via wrangler versions upload. Use the CF Deployments tab to manage and deploy the desired version to the production branch if needed.
+- Pushes to this branch trigger the CF Git integration using the build/deploy commands set in the dashboard.
+- The build command includes the copies for brain docs into _site.
+- After the build and wrangler versions upload, go to the Deployments tab in CF, find the new version from this branch/commit, and deploy/promote it to update the production site.
+- The "Create a new deployment" may show the asset uploader (for manual uploads); the Git flow is triggered by push to the production branch.
 
 The goal: every piece of the platform is auditable, reproducible, and grounded in structured legal truth — not model weights.
 
 ---
 _For research orientation only — not a substitute for counsel or the official record._
 
-**Latest push**: Small change to trigger a fresh build with current code and the dashboard build command (including brain doc copies). This should produce a new version with the premium UI + brain content.
+**Latest trigger push:** Small update to force a clean build with the current CF dashboard settings (including rm -rf recommendation for cache bust). The brain docs and premium UI should be in the new version.
