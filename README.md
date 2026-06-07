@@ -19,8 +19,8 @@ A full platform with two tightly integrated layers:
 - **Brain core (implemented on `aptitude-emergent`)**: Ontology, 5 agents with exact spec prompts, full orchestration pipeline, incident submit/result API, audit everything. Runnable today (see the demo).
 
 See:
-- [APTITUDE-BRAIN.md](./brain/APTITUDE-BRAIN.md) — full architecture, agents, invariants
-- [INCIDENT-INTAKE-DEMO.md](./brain/INCIDENT-INTAKE-DEMO.md) — interactive static simulation of a full brain run (replaceable with real API call)
+- [APTITUDE-BRAIN.md](./APTITUDE-BRAIN.md) — full architecture, agents, invariants
+- [INCIDENT-INTAKE-DEMO.md](./INCIDENT-INTAKE-DEMO.md) — interactive static simulation of a full brain run (replaceable with real API call)
 - The living **Aptitude System Technical Manual** (LaTeX) for every volume, prompt, schema, and cross-dependency
 - Bias Beacon docs (BIAS-BEACON-SETUP.md, JUDGE-DATA-IMPLEMENTATION.md, etc.)
 
@@ -45,4 +45,4 @@ The goal: every piece of the platform is auditable, reproducible, and grounded i
 ---
 _For research orientation only — not a substitute for counsel or the official record._
 
-**Force rebuild commit:** $(date -u +%Y-%m-%dT%H:%M:%SZ) - premium UI + brain docs should now be live.
+**Last forced deploy by Grok:** 2026-06-06T17:39:52Z - Triggered fresh build on claude branch to ensure premium UI + brain docs are live. If site still shows old UI, promote the new version in CF dashboard after this build completes.
