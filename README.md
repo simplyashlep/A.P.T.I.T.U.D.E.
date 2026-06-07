@@ -31,13 +31,14 @@ A full platform with two tightly integrated layers:
 See the brain docs in the deployed site (copied into the build at / and /brain/).
 
 ## Deployment
-- Pushes to this branch trigger the CF Git integration, which runs the Build command you set in the dashboard (the long one with copies for brain docs), then the Deploy command (wrangler versions upload).
-- The "Create a new deployment" in CF shows the asset uploader for manual direct uploads of pre-built assets (hence the static-only warning); this is not the Git flow. The Git-triggered builds happen automatically on push to the production branch using your dashboard settings.
-- After a build, a new version is uploaded. In the CF Deployments tab, look for the list of Git deployments from the claude branch; find the new one and use any "Deploy" or "Deploy to production" option for that version if the production site doesn't auto-update to the latest on the branch.
+- Pushes to this branch trigger the CF Git integration using the build/deploy commands set in the dashboard.
+- The build command includes the copies for brain docs into _site.
+- After the build and wrangler versions upload, the new version is created. In the CF Deployments tab, find the new version from the claude branch and deploy it to production if the production site doesn't auto-update to the latest on the branch.
+- The "Create a new deployment" shows the asset uploader for manual uploads (hence the static-only warning); this is not the Git flow. The Git-triggered builds happen automatically on push to the production branch using your dashboard settings.
 
 The goal: every piece of the platform is auditable, reproducible, and grounded in structured legal truth — not model weights.
 
 ---
 _For research orientation only — not a substitute for counsel or the official record._
 
-**Latest push:** Small change to trigger a fresh build using your current CF dashboard settings. Prepend the rm -rf to the build command in CF to force clean (no cache restore of old _site). The new version should have the premium UI + brain docs.
+**Latest push:** Small change to trigger a fresh build using your current CF dashboard settings. Prepend the rm -rf _site || true to the build command in CF to force clean output and bust cache. The new version should have the premium UI + brain content.
