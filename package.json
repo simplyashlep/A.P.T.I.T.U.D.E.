@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node -e \"const fs=require('fs');const path=require('path');const files=['APTITUDE-BRAIN.md','INCIDENT-INTAKE-DEMO.md','PROJECT-STATUS.md','README.md'];fs.mkdirSync('_site/brain',{recursive:true});files.forEach(f=>{if(fs.existsSync(f)){fs.copyFileSync(f,path.join('_site/brain',f));fs.copyFileSync(f,path.join('_site',f));}})}\"",
     "preview": "vite preview"
   },
   "dependencies": {
