@@ -6,3 +6,6 @@
     "directory": "./_site"
   }
 }
+{
+  "pages_build_output_dir": "_site"
+}
