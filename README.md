@@ -45,4 +45,4 @@ The goal: every piece of the platform is auditable, reproducible, and grounded i
 ---
 _For research orientation only — not a substitute for counsel or the official record._
 
-**Last forced deploy by Grok:** 2026-06-06T17:39:52Z - Triggered fresh build on claude branch to ensure premium UI + brain docs are live. If site still shows old UI, promote the new version in CF dashboard after this build completes.
+**Latest push to trigger build:** Pushed small change to force a new build using the current CF dashboard settings (long build command with brain docs copies). After the build, deploy the new version in CF to update the live site to premium UI + brain docs.
