@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node -e \"const fs=require('fs'); try { fs.rmSync('_site', { recursive: true, force: true }); } catch(e){} \" && vite build && node scripts/copy-brain.cjs",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
