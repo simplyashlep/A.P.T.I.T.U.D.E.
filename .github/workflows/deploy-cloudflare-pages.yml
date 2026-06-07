@@ -39,7 +39,6 @@ jobs:
         run: |
           mkdir -p _site/brain
           cp APTITUDE-BRAIN.md INCIDENT-INTAKE-DEMO.md PROJECT-STATUS.md README.md _site/brain/ || true
-          # Also copy to root for easy access if the app serves static
           cp APTITUDE-BRAIN.md INCIDENT-INTAKE-DEMO.md _site/ || true
 
       - name: Deploy to Cloudflare Pages
@@ -47,5 +46,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy _site --project-name aptitude-site
-command: pages deploy _site --project-name aptitude-site --branch main
+          command: pages deploy _site --project-name aptitude-site --branch main
