@@ -13,7 +13,7 @@ Public accountability tools for Oregon's justice system — judge bias tracking 
 - Build token: `CLOUDFLARE_GROK`
 - Build variables: `NODE_VERSION`
 
-**Important for clean build (to bust output cache):** Edit the build command in the CF dashboard to start with `rm -rf _site || true && ` followed by the rest. This deletes any restored old _site from cache, forcing a fresh build with the current code and the brain doc copies.
+**To force a clean build and bust output cache (important!):** In the CF dashboard, edit the Build command to prepend `rm -rf _site || true && ` to the above. This deletes any restored old _site from cache before the build, ensuring a fresh build from the current source code on the branch, and the copies will include the current brain docs in the deployed _site.
 
 ## What We Are Building
 
@@ -31,14 +31,13 @@ A full platform with two tightly integrated layers:
 See the brain docs in the deployed site (copied into the build at / and /brain/).
 
 ## Deployment
-- Pushes to this branch trigger the CF Git integration using the build/deploy commands you set in the dashboard.
-- The build command includes the copies for the brain docs into _site.
-- After the build and wrangler versions upload, a new version is created. In the CF Deployments tab, find the new version from the claude branch and use the deploy option to make it the production if the site doesn't update automatically.
-- Note: The "Create a new deployment" shows the asset uploader for manual asset uploads (which only supports static and shows the warning); for Git-triggered builds from this branch, push to the branch to trigger the configured build command.
+- Pushes to this branch trigger the CF Git integration, which runs the Build command you set in the dashboard (the long one with copies for brain docs), then the Deploy command (wrangler versions upload).
+- The "Create a new deployment" in CF shows the asset uploader for manual direct uploads of pre-built assets (hence the static-only warning); this is not the Git flow. The Git-triggered builds happen automatically on push to the production branch using your dashboard settings.
+- After a build, a new version is uploaded. In the CF Deployments tab, look for the list of Git deployments from the claude branch; find the new one and use any "Deploy" or "Deploy to production" option for that version if the production site doesn't auto-update to the latest on the branch.
 
 The goal: every piece of the platform is auditable, reproducible, and grounded in structured legal truth — not model weights.
 
 ---
 _For research orientation only — not a substitute for counsel or the official record._
 
-**Latest trigger:** Pushed a small change to force a build using your current CF dashboard settings. Prepend `rm -rf _site || true && ` to the build command in CF to force a clean build without cache restore. The new version should include the premium UI and brain docs.
+**Latest push:** Small change to trigger a fresh build using your current CF dashboard settings. Prepend the rm -rf to the build command in CF to force clean (no cache restore of old _site). The new version should have the premium UI + brain docs.
