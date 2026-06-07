@@ -45,4 +45,4 @@ The goal: every piece of the platform is auditable, reproducible, and grounded i
 ---
 _For research orientation only — not a substitute for counsel or the official record._
 
-**Latest push to trigger build:** Pushed small change to force a new build using the current CF dashboard settings (long build command with brain docs copies). After the build, deploy the new version in CF to update the live site to premium UI + brain docs.
+**Force push note:** Pushed small change to trigger fresh CF Git build using your current dashboard settings (the long build command with brain doc copies into _site). After this build completes and uploads the new version, go to Deployments in CF, find the new version from this commit on the claude branch, and deploy/promote it to production to update the live site to the premium UI + brain docs. (The 'Create a new deployment' uploader is the manual asset upload path - not needed for the Git flow; just push to the branch to trigger from GitHub.)
