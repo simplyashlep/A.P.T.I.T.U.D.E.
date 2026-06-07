@@ -30,6 +30,7 @@ html, body, #root {
 body {
     margin: 0;
     font-family: 'Outfit', ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", sans-serif;
+    font-size: 1.125rem;
     font-weight: 300;
     letter-spacing: 0.01em;
     -webkit-font-smoothing: antialiased;
@@ -39,7 +40,7 @@ body {
     position: relative;
 }
 
-/* Ambient moving gradient � barely perceptible, site-wide cohesion */
+/* Ambient moving gradient — barely perceptible, site-wide cohesion */
 body::before {
     content: "";
     position: fixed;

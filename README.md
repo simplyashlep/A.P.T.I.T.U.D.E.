@@ -5,15 +5,25 @@
 
 Public accountability tools for Oregon's justice system — judge bias tracking (Bias Beacon), prosecutorial and law-enforcement transparency, community corrections oversight, and the core **Aptitude Brain** legal intelligence engine.
 
-## Current CF Pages Build Settings (from your dashboard)
+## Cloudflare Deployment (recommended settings)
 
-- Build command: `yarn install && yarn build && mkdir -p _site/brain && cp APTITUDE-BRAIN.md INCIDENT-INTAKE-DEMO.md PROJECT-STATUS.md README.md _site/brain/ || true && cp APTITUDE-BRAIN.md INCIDENT-INTAKE-DEMO.md _site/ || true`
-- Deploy command: `npx wrangler versions upload`
-- Root directory: `/`
-- Build token: `CLOUDFLARE_GROK`
-- Build variables: `NODE_VERSION`
+This branch (`claude/judge-bias-beacon-scoring-8qAT3`) deploys the premium React UI + Aptitude Brain docs.
 
-**To force a clean build and bust output cache (important!):** In the CF dashboard, edit the Build command to prepend `rm -rf _site || true && ` to the above. This deletes any restored old _site from cache before the build, ensuring a fresh build from the current source code on the branch, and the copies will include the current brain docs in the deployed _site.
+### CF Pages / Git integration settings (set once in dashboard)
+- **Root directory**: `/`
+- **Build command**: `yarn install && yarn build`   (or `npm install && npm run build`)
+  - The `package.json` build script handles:
+    - clean _site (forces clean output, busts any restored cache from prior builds)
+    - `vite build` (outputs to `_site` per vite.config.js — this is the full UI)
+    - `node scripts/copy-brain.cjs` (copies the brain .md docs into `_site/` and `_site/brain/`)
+- **Output directory**: `_site`
+- **Deploy command** (if using Wrangler versions upload for your setup): `npx wrangler versions upload`
+
+**Do not** put long copy/cp commands or repeated `rm` in the dashboard Build command. Keep it simple — all logic lives in `package.json` + `scripts/copy-brain.cjs` (source controlled, no more escaping nightmares or drift).
+
+After pushing to this branch, CF will trigger a build. In the **Deployments** tab, select the new version built from this branch and deploy it to production if it doesn't promote automatically. This is how you "go back" to a known-good UI build.
+
+If a deploy ever shows the old UI again: the build used a cached `_site` — the clean step in the script + a fresh push should resolve it. You can also manually trigger a new deployment from a known commit (like dce0229) in the CF UI.
 
 ## What We Are Building
 
@@ -41,4 +51,4 @@ The goal: every piece of the platform is auditable, reproducible, and grounded i
 ---
 _For research orientation only — not a substitute for counsel or the official record._
 
-**Latest push:** Small change to trigger a fresh build using your current CF dashboard settings. Prepend the rm -rf _site || true to the build command in CF to force clean output and bust cache. The new version should have the premium UI + brain content.
+**Latest update:** Polished the exact UI from commit dce0229 (thicker courthouse icon strokeWidth=2.5 + no border, larger site name text-2xl, body font 1.125rem, About page titled "The Premise"). Build stabilized with clean `scripts/copy-brain.cjs` and simple dashboard settings. Push to this branch for deploys. Use CF Deployments to promote the version with the good UI if needed.

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "rm -rf _site || true && vite build && node -e \"const fs=require('fs');const path=require('path');const files=['APTITUDE-BRAIN.md','INCIDENT-INTAKE-DEMO.md','PROJECT-STATUS.md','README.md'];fs.mkdirSync('_site/brain',{recursive:true});files.forEach(f=>{if(fs.existsSync(f)){fs.copyFileSync(f,path.join('_site/brain',f));fs.copyFileSync(f,path.join('_site',f));}})}\"",
+    "build": "node -e \"const fs=require('fs'); try { fs.rmSync('_site', { recursive: true, force: true }); } catch(e){} \" && vite build && node scripts/copy-brain.cjs",
     "preview": "vite preview"
   },
   "dependencies": {

@@ -51,13 +51,13 @@ export function TopNav() {
         <div className="flex flex-col">
           <Link
             to="/"
-            className="font-display text-xl text-ivory tracking-[0.24em] hover:text-gold transition-colors duration-300"
+            className="font-display text-2xl text-ivory tracking-[0.22em] hover:text-gold transition-colors duration-300"
             data-testid="nav-logo"
           >
             A<span className="text-gold">.</span>P<span className="text-gold">.</span>T<span className="text-gold">.</span>I<span className="text-gold">.</span>T<span className="text-gold">.</span>U<span className="text-gold">.</span>D<span className="text-gold">.</span>E<span className="text-gold">.</span>
           </Link>
           <span className="hidden md:block text-[9.5px] uppercase tracking-[0.38em] text-secondary/40 leading-none mt-0.5">
-            Oregon&rsquo;s First Judicial Dataset &middot; MMXXVI
+            Oregon’s First Judicial Dataset &middot; MMXXVI
           </span>
         </div>
 
@@ -76,7 +76,7 @@ export function TopNav() {
             className={`w-6 h-6 transition-all duration-500 ${
               open ? "text-gold" : "text-ivory-dim"
             }`}
-            strokeWidth={2}
+            strokeWidth={2.5}
           />
         </button>
       </div>
