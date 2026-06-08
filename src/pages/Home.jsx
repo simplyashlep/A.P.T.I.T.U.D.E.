@@ -75,7 +75,8 @@ const TenetsSection = () => (
 
       <div className="gold-rule mb-14" />
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-\[var(--apt-line)]" data-testid="tenets-grid">
+      <div className="grid grid-cols-1 md:grid-cols-3 md:divide-x divide-[var(--apt-line)]" data-testid="tenets-grid">
+
         {TENETS.map((p, i) => (
           <div
             key={p.n}
