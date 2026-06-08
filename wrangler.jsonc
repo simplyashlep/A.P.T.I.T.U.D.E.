@@ -2,5 +2,13 @@
   "$schema": "https://raw.githubusercontent.com/cloudflare/workers-sdk/main/packages/wrangler/config-schema.json",
   "name": "aptitude-site",
   "compatibility_date": "2026-03-29",
-  "pages_build_output_dir": "_site"
+  "pages_build_output_dir": "_site",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "aptitude-db",
+      "database_id": "c7707aa7-d867-4ac2-8e57-88268f6c25de"
+    }
+  ]
 }
+ 
