@@ -562,4 +562,12 @@ select.apt-search-soft option {
 .flip-card-inner {
     will-change: transform;
 }
+/* Prevent face hover lift from interfering with 3D flip rotation */
+.judge-card .card-3d-raised:hover {
+    transform: none;
+}
 
+/* Lift the whole card at the container level instead */
+.judge-card:not(.is-selected):hover {
+    transform: translateY(-3px);
+}
