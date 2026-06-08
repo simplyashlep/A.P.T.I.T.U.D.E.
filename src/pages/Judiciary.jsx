@@ -458,7 +458,7 @@ const buildStaticStats = (judges) => {
 };
 
 export default function Judiciary() {
-  const [judges, setJudges] = useState([]);
+  const [judges, setJudges] = useState(staticJudges);
   const [stats, setStats] = useState(null);
   const [q, setQ] = useState("");
   const [county, setCounty] = useState("");
