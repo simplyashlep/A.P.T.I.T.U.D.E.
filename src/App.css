@@ -571,3 +571,16 @@ select.apt-search-soft option {
 .judge-card:not(.is-selected):hover {
     transform: translateY(-3px);
 }
+/* ── FLIP CARD FIXES ──────────────────────────────────────────── */
+.flip-card .card-3d-raised:hover,
+.judge-card .card-3d-raised:hover {
+    transform: none;
+}
+.flip-card:hover {
+    transform: translateY(-3px);
+    transition: transform 300ms ease;
+}
+.judge-card:not(.is-selected):hover {
+    transform: translateY(-3px);
+    transition: transform 300ms ease;
+}
