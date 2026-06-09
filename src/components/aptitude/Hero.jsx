@@ -4,7 +4,7 @@ import { SearchBar } from "./SearchBar";
 import { OregonCounter } from "./OregonCounter";
 
 const HERO_VIDEO_SOURCES = [
-  "/media/lady-justice.mp4",
+  "/media/blj.mp4",
 ];
 const HERO_FALLBACK_IMAGE =
   "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHwzfHxsYWR5JTIwanVzdGljZSUyMHN0YXR1ZXxlbnwwfHx8fDE3Nzk0Mzc4ODl8MA&ixlib=rb-4.1.0&q=85";
