@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -401,24 +400,98 @@ body::before {
     -webkit-backdrop-filter: blur(20px) saturate(130%);
 }
 
-/* Hero — Lady Justice framed off-side, contained (not cropped) */
+/* ── Hero — video visible through APTITUDE letter cutouts ────────────── */
+/*
+  Effect: like "MASK" reference image — video shows only inside the letter
+  shapes. SVG <clipPath> in Hero.jsx defines the mask; ResizeObserver keeps
+  it centred. CSS here controls font size, animation, and clip-path binding.
+
+  DOM structure (Hero.jsx):
+    <section.grain>
+      <div.absolute.inset-0.z-0>                          ← dark canvas #070B14
+      <div.absolute.inset-0.z-[1].hero-justice-frame>     ← this section
+        <svg.hero-justice-clip>                            ← 0×0, defines clipPath
+          <defs><clipPath id="aptitudeWordClip"><text>
+        <video.hero-justice-media.hero-walk>               ← clipped to letters
+      <div.z-10>                                           ← wordmark / search / counter
+*/
+
 .hero-justice-frame {
-    /* nothing here — sizing on the wrapper */
+    overflow: hidden;
 }
+
+/* The SVG is hidden — it only exists to define the <clipPath> */
+.hero-justice-clip {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* Font that determines the letter cutout shapes */
+.hero-justice-clip text {
+    font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+    font-size: 170px;
+    font-weight: 900;
+    letter-spacing: 14px;
+    text-transform: uppercase;
+}
+
+/* The video — visible ONLY through the letter cutouts */
 .hero-justice-media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
     object-fit: cover;
-    object-position: center 30%;
+    object-position: center 28%;
     transform-origin: center 35%;
-    animation: heroWalk 36s ease-in-out infinite alternate;
+    clip-path: url(#aptitudeWordClip);
+    -webkit-clip-path: url(#aptitudeWordClip);
+    opacity: 0.94;
+    filter: saturate(1.05) contrast(1.06) brightness(0.88);
+    animation:
+        heroWalk        36s ease-in-out infinite alternate,
+        heroFadeMaskedIn 1.8s ease-out both;
 }
-@media (max-width: 768px) {
-    .hero-justice-media {
-        object-position: center 20%;
-        opacity: 0.55;
+
+/* Entrance animation */
+@keyframes heroFadeMaskedIn {
+    from {
+        opacity: 0;
+        filter: saturate(0.82) contrast(0.98) brightness(0.68) blur(3px);
+        transform: scale(1.10) translateY(1%);
+    }
+    to {
+        opacity: 0.94;
+        filter: saturate(1.05) contrast(1.06) brightness(0.88) blur(0px);
+        transform: scale(1.04) translateY(0);
     }
 }
 
-/* Walking pan keyframes (kept for compat with class .hero-walk) */
+/* Mobile — smaller font so all 8 letters fit */
+@media (max-width: 432px) {
+    .hero-justice-clip text {
+        font-size: 72px;
+        letter-spacing: 6px;
+    }
+    .hero-justice-media {
+        object-position: center 15%;
+        opacity: 0.88;
+    }
+}
+
+/* Tablet */
+@media (min-width: 433px) and (max-width: 768px) {
+    .hero-justice-clip text {
+        font-size: 110px;
+        letter-spacing: 10px;
+    }
+}
+
+/* Walking pan keyframes (shared with .hero-walk) */
 .hero-walk {
     transform-origin: center 40%;
     animation: heroWalk 36s ease-in-out infinite alternate;
@@ -427,6 +500,11 @@ body::before {
     0%   { transform: scale(1.04) translateY(0); }
     50%  { transform: scale(1.08) translateY(-0.6%); }
     100% { transform: scale(1.06) translateY(0.4%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-walk,
+    .hero-justice-media { animation: none; transform: scale(1.02); }
 }
 
 /* Counter & chart anims */
@@ -441,10 +519,6 @@ body::before {
 .counter-tabular {
     font-variant-numeric: tabular-nums;
     letter-spacing: -0.01em;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .hero-walk, .hero-justice-media { animation: none; transform: scale(1.02); }
 }
 
 /* Native select styling */
@@ -561,26 +635,4 @@ select.apt-search-soft option {
 /* Flip card inner — shared between judge cards and pages grid */
 .flip-card-inner {
     will-change: transform;
-}
-/* Prevent face hover lift from interfering with 3D flip rotation */
-.judge-card .card-3d-raised:hover {
-    transform: none;
-}
-
-/* Lift the whole card at the container level instead */
-.judge-card:not(.is-selected):hover {
-    transform: translateY(-3px);
-}
-/* ── FLIP CARD FIXES ──────────────────────────────────────────── */
-.flip-card .card-3d-raised:hover,
-.judge-card .card-3d-raised:hover {
-    transform: none;
-}
-.flip-card:hover {
-    transform: translateY(-3px);
-    transition: transform 300ms ease;
-}
-.judge-card:not(.is-selected):hover {
-    transform: translateY(-3px);
-    transition: transform 300ms ease;
 }
