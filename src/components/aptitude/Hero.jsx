@@ -3,7 +3,7 @@ import { Wordmark } from "./Brand";
 import { SearchBar } from "./SearchBar";
 import { OregonCounter } from "./OregonCounter";
 
-const HERO_VIDEO_SOURCES = ["/media/blj.mp4"];
+const HERO_VIDEO_SOURCES = ["/media/media/blj.mp4"];
 
 export const Hero = () => {
   const videoRef    = useRef(null);
