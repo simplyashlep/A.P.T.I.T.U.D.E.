@@ -9,7 +9,7 @@ import { Quote, ArrowUpRight } from "lucide-react";
 import { ScaleLogo } from "../components/aptitude/Brand";
 import { Link } from "react-router-dom";
 
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+const API = `${import.meta.env.VITE_BACKEND_URL || ""}/api`;
 
 const useReveal = () => {
   useEffect(() => {

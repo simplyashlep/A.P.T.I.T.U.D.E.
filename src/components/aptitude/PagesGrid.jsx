@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { Gavel, Eye, Shield, Compass, Activity, FlaskConical, Users, Info, ArrowUpRight } from "lucide-react";
 
@@ -110,21 +110,16 @@ export const PAGES = [
 ];
 
 const FlipCard = ({ page, idx }) => {
-  const [flipped, setFlipped] = useState(false);
   const Icon = page.icon;
 
   return (
     <div
-      className="flip-card reveal h-[320px] md:h-[360px] [perspective:1400px]"
+      className="flip-card group reveal h-[320px] md:h-[360px] [perspective:1400px]"
       style={{ transitionDelay: `${idx * 70}ms` }}
       data-testid={`pages-flip-card-${page.title.toLowerCase().replace(/\s+/g, "-")}`}
-      onMouseEnter={() => setFlipped(true)}
-      onMouseLeave={() => setFlipped(false)}
     >
       <div
-        className={`flip-card-inner relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] ${
-          flipped ? "[transform:rotateY(180deg)]" : ""
-        }`}
+        className="flip-card-inner relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]"
       >
         {/* Front */}
         <div className="absolute inset-0 [backface-visibility:hidden] card-3d-raised p-7 md:p-8 flex flex-col justify-between">

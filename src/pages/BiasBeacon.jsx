@@ -4,7 +4,7 @@ import { TopNav } from "../components/aptitude/TopNav";
 import { Footer } from "../components/aptitude/Footer";
 import { Activity, ExternalLink, Loader2, Map as MapIcon, Scale, BarChart3, TrendingUp } from "lucide-react";
 
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+const API = `${import.meta.env.VITE_BACKEND_URL || ""}/api`;
 
 const RACE_COLORS = {
   white: "#A1A9B8",

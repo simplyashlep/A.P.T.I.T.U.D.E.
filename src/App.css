@@ -633,6 +633,20 @@ select.apt-search-soft option {
 }
 
 /* Flip card inner — shared between judge cards and pages grid */
+.flip-card {
+  perspective: 1400px;
+  -webkit-perspective: 1400px;
+}
+
 .flip-card-inner {
-    will-change: transform;
+  will-change: transform;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+.flip-card-inner > div {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
 }

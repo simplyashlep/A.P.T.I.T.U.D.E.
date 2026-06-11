@@ -5,7 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+<<<<<<< Updated upstream
     "build": "vite build",
+=======
+    "build": "node -e \"const fs=require('fs'); try { fs.rmSync('_site', { recursive: true, force: true }); } catch(e){} \" && vite build && node scripts/copy-brain.cjs",
+>>>>>>> Stashed changes
     "preview": "vite preview"
   },
   "dependencies": {

@@ -9,7 +9,10 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  define: { "process.env.REACT_APP_BACKEND_URL": JSON.stringify(process.env.REACT_APP_BACKEND_URL || ""), }, build: {
+  // Vite exposes import.meta.env.VITE_* to the client bundle.
+  // Set VITE_BACKEND_URL in your Cloudflare build environment (or .env) if you have a live API.
+  // The frontend code now uses import.meta.env.VITE_BACKEND_URL (with "" fallback for static/local data).
+  build: {
     outDir: "_site",
   },
 });

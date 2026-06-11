@@ -5,7 +5,7 @@ import { Gavel, Search, X, GitCompare, ExternalLink, AlertTriangle, Award, MapPi
 import { TopNav } from "../components/aptitude/TopNav";
 import { Footer } from "../components/aptitude/Footer";
 
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+const API = `${import.meta.env.VITE_BACKEND_URL || ""}/api`;
 
 const RISK_STYLES = {
   pending: { label: "Pending", color: "#5B7B9A", bg: "rgba(91,123,154,0.12)" },

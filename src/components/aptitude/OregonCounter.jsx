@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { ArrowUpRight } from "lucide-react";
 
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+const API = `${import.meta.env.VITE_BACKEND_URL || ""}/api`;
 
 const formatValue = (v, kind) => {
   if (v >= 1000) return v.toLocaleString();
