@@ -47,7 +47,7 @@ export const SearchBar = () => {
   };
 
   return (
-    <div id="search" className="w-full max-w-4xl mt-10 md:mt-12 mx-auto" data-testid="hero-search-wrap">
+    <div id="search" className="w-full max-w-6xl mt-10 md:mt-12 mx-auto" data-testid="hero-search-wrap">
       <div className="text-center mb-4 text-[10.5px] uppercase tracking-[0.36em] text-secondary" data-testid="hero-search-modes">
         {SUGGESTIONS.map((s, i) => (
           <span key={s}>
