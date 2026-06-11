@@ -1,0 +1,40 @@
+/* Hero polish and flip-card corrections */
+
+.hero-video-premium {
+  will-change: opacity, transform, filter;
+}
+
+@keyframes heroVideoFloat {
+  0%   { transform: scale(1.06) translate3d(0, 0, 0); }
+  50%  { transform: scale(1.08) translate3d(0, -0.6%, 0); }
+  100% { transform: scale(1.07) translate3d(0, 0.35%, 0); }
+}
+
+@keyframes heroVideoBreath {
+  0%, 100% { opacity: 0.52; }
+  50% { opacity: 0.65; }
+}
+
+.flip-card .card-3d-raised:hover,
+.judge-card .card-3d-raised:hover,
+.flip-card:hover .card-3d-raised,
+.judge-card:hover .card-3d-raised {
+  transform: none !important;
+}
+
+.flip-card-inner,
+.judge-card-inner {
+  transform-origin: center center;
+  isolation: isolate;
+}
+
+.flip-card-inner > div,
+.judge-card-inner > div {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flip-card,
+.judge-card {
+  overflow: visible;
+}
