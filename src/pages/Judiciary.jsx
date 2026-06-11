@@ -481,7 +481,7 @@ export default function Judiciary() {
         params: { q: q || undefined, county: county || undefined, risk: risk || undefined, court: court || undefined, limit: 300 },
         signal: ctrl.signal,
       })
-      .then((r) => setJudges(r.data.judges || []))
+      .then((r) => setJudges(r?.data?.judges || []))
       .catch(() => {
         let filtered = [...staticJudges];
         if (q) {
