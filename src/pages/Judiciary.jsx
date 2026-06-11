@@ -457,7 +457,7 @@ const buildStaticStats = (judges) => {
   };
 };
 
-export default function Judiciary() {
+function JudiciaryContent() {
   const [judges, setJudges] = useState(staticJudges);
   const [stats, setStats] = useState(null);
   const [q, setQ] = useState("");
@@ -601,6 +601,14 @@ export default function Judiciary() {
   );
 }
 
+export default function Judiciary() {
+  return (
+    <ErrorBoundary>
+      <JudiciaryContent />
+    </ErrorBoundary>
+  );
+}
+
 const PageHeader = ({ stats }) => (
   <header className="relative pt-32 md:pt-40 pb-10 md:pb-12 px-6 md:px-10 overflow-hidden">
     <div className="absolute inset-0 opacity-\[0.05] pointer-events-none">
@@ -652,3 +660,27 @@ const FilterSelect = ({ value, onChange, placeholder, options, labelMap = {}, te
     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gold pointer-events-none text-\[10px]">▾</span>
   </div>
 );
+
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+  componentDidCatch(error, info) {
+    // You could log the error to an external service here
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="p-8 text-center" style={{ color: '#F5F1E6', background: '#0A0F1A' }}>
+          <h2 className="font-display text-2xl">Something went wrong rendering the Judiciary page.</h2>
+          <pre style={{ whiteSpace: 'pre-wrap', textAlign: 'left', marginTop: 12 }}>{String(this.state.error && (this.state.error.stack || this.state.error.message || this.state.error))}</pre>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
