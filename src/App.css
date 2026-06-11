@@ -394,6 +394,10 @@ body::before {
         0 28px 50px -20px rgba(0, 0, 0, 0.8),
         0 40px 80px -40px rgba(200, 169, 126, 0.18);
 }
+.flip-card:hover .card-3d-raised,
+.judge-card:hover .card-3d-raised {
+    transform: translateY(-3px);
+}
 .card-3d-back {
     background: rgba(14, 20, 32, 0.78);
     backdrop-filter: blur(20px) saturate(130%);
