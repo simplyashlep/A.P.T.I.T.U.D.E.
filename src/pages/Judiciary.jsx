@@ -539,9 +539,9 @@ function JudiciaryContent() {
         {/* Stat strip */}
         {stats && (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-\[var(--apt-line)] mb-10" data-testid="judiciary-stat-strip">
-            <Stat label="Indexed" value={stats.totals.judges} suffix="judges" />
-            <Stat label="With Metrics" value={stats.totals.judgesWithMetrics} suffix="verified" />
-            <Stat label="Presiding" value={stats.totals.presidingJudges} suffix="judges" />
+            <Stat label="Indexed" value={stats?.totals?.judges} suffix="judges" />
+            <Stat label="With Metrics" value={stats?.totals?.judgesWithMetrics} suffix="verified" />
+            <Stat label="Presiding" value={stats?.totals?.presidingJudges} suffix="judges" />
             <Stat label="Counties" value={stats.counties.length} suffix="indexed" />
           </div>
         )}
@@ -616,11 +616,11 @@ const PageHeader = ({ stats }) => (
     </div>
     <div className="relative max-w-\[1360px] mx-auto">
       <div className="eyebrow mb-5">Pillar I  ·  The Bench</div>
-      <h1 className="font-display text-5xl md:text-7xl text-ivory leading-\[1.02] max-w-4xl">
+          <h1 className="font-display text-5xl md:text-7xl text-ivory leading-\[1.02] max-w-4xl">
         The Judiciary.
 
         <span className="italic text-gold">
-          {stats ? `All ${stats.totals.judges} of them.` : "Every sitting judge."}
+          {stats?.totals?.judges ? `All ${stats.totals.judges} of them.` : "Every sitting judge."}
         </span>
       </h1>
       <p className="mt-7 font-serif-h italic text-lg md:text-xl text-ivory-dim leading-relaxed max-w-3xl">
