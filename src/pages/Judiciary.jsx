@@ -470,7 +470,7 @@ export default function Judiciary() {
   const [limit, setLimit] = useState(24);
 
   useEffect(() => {
-    axios.get(`${API}/judges/stats`).then((r) => setStats(r.data)).catch(() => { setStats(buildStaticStats(staticJudges)); });
+    axios.get(`${API}/judges/stats`).then((r) => setStats(r?.data || buildStaticStats(staticJudges))).catch(() => { setStats(buildStaticStats(staticJudges)); });
   }, []);
 
   useEffect(() => {
@@ -481,7 +481,7 @@ export default function Judiciary() {
         params: { q: q || undefined, county: county || undefined, risk: risk || undefined, court: court || undefined, limit: 300 },
         signal: ctrl.signal,
       })
-      .then((r) => setJudges(r.data.judges || []))
+      .then((r) => setJudges(r?.data?.judges || []))
       .catch(() => {
         let filtered = [...staticJudges];
         if (q) {
@@ -501,13 +501,13 @@ export default function Judiciary() {
     return () => ctrl.abort();
   }, [q, county, risk, court]);
 
-  const visible = useMemo(() => judges.slice(0, limit), [judges, limit]);
+  const visible = useMemo(() => (judges || []).slice(0, limit), [judges, limit]);
 
   const onSelect = (j) => {
     setCompare((prev) => {
       const exists = prev.find((p) => p.id === j.id);
       if (exists) return prev.filter((p) => p.id !== j.id);
-      if (prev.length >= 3) return prev;
+      if ((prev?.length ?? 0) >= 3) return prev;
       return [...prev, j];
     });
   };
@@ -539,19 +539,19 @@ export default function Judiciary() {
         {/* Stat strip */}
         {stats && (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-\[var(--apt-line)] mb-10" data-testid="judiciary-stat-strip">
-            <Stat label="Indexed" value={stats.totals.judges} suffix="judges" />
-            <Stat label="With Metrics" value={stats.totals.judgesWithMetrics} suffix="verified" />
-            <Stat label="Presiding" value={stats.totals.presidingJudges} suffix="judges" />
-            <Stat label="Counties" value={stats.counties.length} suffix="indexed" />
+            <Stat label="Indexed" value={stats?.totals?.judges ?? 0} suffix="judges" />
+            <Stat label="With Metrics" value={stats?.totals?.judgesWithMetrics ?? 0} suffix="verified" />
+            <Stat label="Presiding" value={stats?.totals?.presidingJudges ?? 0} suffix="judges" />
+            <Stat label="Counties" value={stats?.counties?.length ?? 0} suffix="indexed" />
           </div>
         )}
 
         {/* Result count */}
         <div className="mb-6 flex items-center justify-between text-\[11px] uppercase tracking-\[0.32em] text-secondary">
           <span data-testid="judiciary-result-count">
-            {loading ? "Searching the record…" : `${judges.length} ${judges.length === 1 ? "judge" : "judges"} matched`}
+            {loading ? "Searching the record…" : `${(judges?.length ?? 0)} ${(judges?.length ?? 0) === 1 ? "judge" : "judges"} matched`}
           </span>
-          <span className="text-gold">{compare.length}/3 selected</span>
+          <span className="text-gold">{(compare?.length ?? 0)}/3 selected</span>
         </div>
 
         {/* Grid */}
@@ -562,12 +562,12 @@ export default function Judiciary() {
               judge={j}
               selected={!!compare.find((c) => c.id === j.id)}
               onSelect={onSelect}
-              disabled={compare.length >= 3}
+              disabled={(compare?.length ?? 0) >= 3}
             />
           ))}
         </div>
 
-        {judges.length > limit && (
+        {(judges?.length ?? 0) > limit && (
           <div className="mt-12 flex justify-center">
             <button
               type="button"
@@ -575,12 +575,12 @@ export default function Judiciary() {
               className="inline-flex items-center gap-2 px-7 py-3 border border-[rgba(200,169,126,0.45)] rounded-full text-[11px] uppercase tracking-[0.32em] text-gold hover:bg-[rgba(200,169,126,0.08)] transition-colors"
               data-testid="judiciary-load-more"
             >
-              Reveal more  ·  +{Math.min(24, judges.length - limit)}
+              Reveal more  ·  +{Math.min(24, (judges?.length ?? 0) - limit)}
             </button>
           </div>
         )}
 
-        {!loading && judges.length === 0 && (
+        {!loading && (judges?.length ?? 0) === 0 && (
           <div className="py-20 text-center" data-testid="judiciary-empty">
             <p className="font-serif-h italic text-ivory-dim text-lg">
               No judges match these filters. Loosen the query and the record will speak again.
@@ -612,7 +612,7 @@ const PageHeader = ({ stats }) => (
         The Judiciary.
 
         <span className="italic text-gold">
-          {stats ? `All ${stats.totals.judges} of them.` : "Every sitting judge."}
+          {stats ? `All ${stats?.totals?.judges ?? 0} of them.` : "Every sitting judge."}
         </span>
       </h1>
       <p className="mt-7 font-serif-h italic text-lg md:text-xl text-ivory-dim leading-relaxed max-w-3xl">
