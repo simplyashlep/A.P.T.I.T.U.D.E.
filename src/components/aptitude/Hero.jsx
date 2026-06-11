@@ -197,7 +197,7 @@ export const Hero = () => {
       />
 
       <div className="relative z-10 flex-1 flex flex-col px-6 md:px-10 pt-28 pb-10">
-        <div className="max-w-3xl xl:max-w-5xl flex-1 flex flex-col items-center md:items-start justify-center text-center md:text-left">
+        <div className="max-w-4xl xl:max-w-6xl flex-1 flex flex-col items-center md:items-start justify-center text-center md:text-left">
           <Wordmark size="lg" embossed className="text-ivory justify-center md:justify-start" />
           <p className="mt-6 md:mt-7 font-serif-h italic text-[13px] md:text-base text-ivory-dim tracking-[0.06em]" data-testid="hero-acronym">
             A&nbsp;Platform&ensp;&middot;&ensp;Tracking&ensp;&middot;&ensp;Institutional&ensp;&middot;&ensp;Trends
