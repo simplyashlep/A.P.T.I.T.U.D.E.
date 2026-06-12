@@ -10,6 +10,7 @@ import CommunityCorrections from "./pages/CommunityCorrections";
 import BiasBeacon from "./pages/BiasBeacon";
 import JurisLab from "./pages/JurisLab";
 import Community from "./pages/Community";
+import AptitudeAdvancement from "./pages/AptitudeAdvancement";
 import About from "./pages/About";
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="/bias-beacon" element={<BiasBeacon />} />
           <Route path="/juris-lab" element={<JurisLab />} />
           <Route path="/community" element={<Community />} />
+          <Route path="/aptitude-advancement" element={<AptitudeAdvancement />} />
           <Route path="/about" element={<About />} />
         </Routes>
       </BrowserRouter>
