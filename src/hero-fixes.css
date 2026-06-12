@@ -22,19 +22,54 @@
   transform: none !important;
 }
 
+.flip-card,
+.judge-card {
+  overflow: visible;
+}
+
 .flip-card-inner,
 .judge-card-inner {
+  position: relative;
   transform-origin: center center;
   isolation: isolate;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
 }
 
 .flip-card-inner > div,
 .judge-card-inner > div {
+  position: absolute;
+  inset: 0;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+  transition: opacity 180ms ease;
 }
 
-.flip-card,
-.judge-card {
-  overflow: visible;
+.flip-card-inner > div:first-child,
+.judge-card-inner > div:first-child {
+  transform: rotateY(0deg) translateZ(1px);
+  opacity: 1;
+}
+
+.flip-card-inner > div:last-child,
+.judge-card-inner > div:last-child {
+  transform: rotateY(180deg) translateZ(1px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.flip-card:hover .flip-card-inner > div:first-child,
+.flip-card[aria-pressed="true"] .flip-card-inner > div:first-child,
+.judge-card:hover .judge-card-inner > div:first-child,
+.judge-card[aria-pressed="true"] .judge-card-inner > div:first-child {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.flip-card:hover .flip-card-inner > div:last-child,
+.flip-card[aria-pressed="true"] .flip-card-inner > div:last-child,
+.judge-card:hover .judge-card-inner > div:last-child,
+.judge-card[aria-pressed="true"] .judge-card-inner > div:last-child {
+  opacity: 1;
+  pointer-events: auto;
 }
