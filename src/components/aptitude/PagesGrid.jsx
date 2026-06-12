@@ -207,12 +207,12 @@ export const PagesGrid = () => (
         <div>
           <div className="eyebrow mb-4">Accountability Is Real</div>
           <h2 className="font-display text-4xl md:text-6xl text-ivory leading-[1.05] max-w-3xl">
-            Eight wings of one<br />
+            Nine wings of one<br />
             <span className="italic text-gold">public record.</span>
           </h2>
         </div>
         <p className="font-serif-h italic text-lg md:text-xl text-ivory-dim max-w-md">
-          Each card is a doorway. Behind each doorway are three levels of clarity 
+          Each card is a doorway. Behind each doorway are three levels of clarity —
           the same record, told at increasing depth.
         </p>
       </div>
