@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Gavel, Eye, Shield, Compass, Activity, FlaskConical, Users, Info, ArrowUpRight } from "lucide-react";
+import { Gavel, Eye, Shield, Compass, Activity, FlaskConical, Users, Info, Landmark, ArrowUpRight } from "lucide-react";
 
 export const PAGES = [
   {
@@ -92,6 +92,19 @@ export const PAGES = [
       { label: "Voice", body: "Public comment portals and statewide meeting calendars." },
       { label: "Paths", body: "Step-by-step complaint pathways: judges, lawyers, LE, CPS." },
       { label: "Groups", body: "Spaces for those navigating the system to compare experience." },
+    ],
+  },
+  {
+    to: "/aptitude-advancement",
+    title: "Aptitude Advancement",
+    eyebrow: "Pillar V",
+    icon: Landmark,
+    color: "#D9BE93",
+    description: "Financial capability and access — orientation, interpretation, action, and support.",
+    tiers: [
+      { label: "Orientation", body: "Start where you are: confusion, exclusion, or partial knowledge." },
+      { label: "Action", body: "Move into checklists, comparisons, and next-step guidance." },
+      { label: "Brain", body: "Ontology, pathways, barriers, tools, and escalation support." },
     ],
   },
   {
@@ -199,7 +212,7 @@ export const PagesGrid = () => (
           </h2>
         </div>
         <p className="font-serif-h italic text-lg md:text-xl text-ivory-dim max-w-md">
-          Each card is a doorway. Behind each doorway are three levels of clarity —
+          Each card is a doorway. Behind each doorway are three levels of clarity 
           the same record, told at increasing depth.
         </p>
       </div>
