@@ -12,8 +12,8 @@ export const Footer = () => (
             <Wordmark size="sm" />
           </div>
           <p className="font-serif-h italic text-ivory-dim text-base leading-relaxed">
-            A Platform Tracking Institutional Trends Uncovering Disparate
-            Enforcement — Oregon's first public judicial dataset instrument.
+            Accountability Pathways Through Institutional Transparency, Understanding, and Data Ecosystems —
+            measuring what public institutions promised against what the record shows.
           </p>
           <p className="mt-4 text-[11px] uppercase tracking-[0.36em] text-secondary">
             Precision · Principle · Proof
@@ -25,22 +25,22 @@ export const Footer = () => (
           <Link to="/watchtower" className="link-quiet" data-testid="footer-watchtower">Watchtower</Link>
           <Link to="/law-enforcement" className="link-quiet" data-testid="footer-law-enforcement">Law Enforcement</Link>
           <Link to="/community-corrections" className="link-quiet" data-testid="footer-community-corrections">Corrections</Link>
+          <Link to="/aptitude-advancement" className="link-quiet text-gold/70" data-testid="footer-aptitude-advancement">Aptitude Advancement</Link>
           <Link to="/bias-beacon" className="link-quiet" data-testid="footer-bias-beacon">Bias Beacon</Link>
           <Link to="/juris-lab" className="link-quiet" data-testid="footer-juris-lab">Juris Lab</Link>
           <Link to="/community" className="link-quiet" data-testid="footer-community">Community</Link>
           <Link to="/about" className="link-quiet" data-testid="footer-about">About</Link>
-          <Link to="/" className="link-quiet" data-testid="footer-search">The Record</Link>
         </div>
       </div>
 
       <div className="gold-rule my-10" />
 
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-[10.5px] uppercase tracking-[0.36em] text-secondary">
-        <span>© MMXXV — A.P.T.I.T.U.D.E.  ·  Oregon</span>
+        <span>© MMXXVI — A.P.T.I.T.U.D.E. · Oregon</span>
         <span className="italic font-serif-h normal-case tracking-normal text-ivory-dim text-sm">
-          For research orientation only — not a substitute for counsel or the official record.
+          For research and orientation only — not a substitute for counsel or the official record.
         </span>
-        <span>Local · Public · Disciplined</span>
+        <span>Public · Accountable · Disciplined</span>
       </div>
     </div>
   </footer>
