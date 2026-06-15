@@ -2,17 +2,17 @@
 import React from "react";
 
 export const APTITUDE_FULL =
-  "A Platform · Tracking · Institutional · Trends · Uncovering · Disparate · Enforcement";
+  "Accountability Pathways · Through · Institutional · Transparency · Understanding · and · Data · Ecosystems";
 
 export const APTITUDE_WORDS = [
-  { letter: "A", word: "A" },
-  { letter: "P", word: "Platform" },
-  { letter: "T", word: "Tracking" },
+  { letter: "A", word: "Accountability" },
+  { letter: "P", word: "Pathways" },
+  { letter: "T", word: "Through" },
   { letter: "I", word: "Institutional" },
-  { letter: "T", word: "Trends" },
-  { letter: "U", word: "Uncovering" },
-  { letter: "D", word: "Disparate" },
-  { letter: "E", word: "Enforcement" },
+  { letter: "T", word: "Transparency" },
+  { letter: "U", word: "Understanding" },
+  { letter: "D", word: "Data" },
+  { letter: "E", word: "Ecosystems" },
 ];
 
 export const ScaleLogo = ({ className = "w-7 h-7" }) => (
