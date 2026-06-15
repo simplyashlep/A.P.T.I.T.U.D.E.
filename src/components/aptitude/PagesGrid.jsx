@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Gavel, Eye, Shield, Compass, Activity, FlaskConical, Users, Info, Landmark, ArrowUpRight } from "lucide-react";
+import { Gavel, Eye, Shield, Compass, Activity, FlaskConical, Users, Info, TrendingUp, ArrowUpRight } from "lucide-react";
 
 export const PAGES = [
   {
@@ -9,9 +9,9 @@ export const PAGES = [
     eyebrow: "Pillar I",
     icon: Gavel,
     color: "#C8A97E",
-    description: "Every active, sitting judge in Oregon — 211 across 36 counties.",
+    description: "Every active, sitting judge in Oregon — 211 across 36 counties — with Aptitudinal Alignment indexed.",
     tiers: [
-      { label: "Tier I", body: "Name, county, term, bias score." },
+      { label: "Tier I", body: "Name, county, term, Aptitudinal Alignment index." },
       { label: "Tier II", body: "Prison usage, appellate overturns, sentencing trends, counsel disparity." },
       { label: "Tier III", body: "Full deep dive with 3D visualizations and peer comparison." },
     ],
@@ -22,7 +22,7 @@ export const PAGES = [
     eyebrow: "Pillar II",
     icon: Eye,
     color: "#D9BE93",
-    description: "Prosecutors — by office, then by individual DA / DDA.",
+    description: "Prosecutors — by office, then by individual DA / DDA. Charging patterns laid bare.",
     tiers: [
       { label: "Tier I", body: "Office, position, caseload, charging tendencies." },
       { label: "Tier II", body: "Plea ratios, dismissal patterns, charge enhancements." },
@@ -35,7 +35,7 @@ export const PAGES = [
     eyebrow: "Pillar III",
     icon: Shield,
     color: "#5B7B9A",
-    description: "Every officer in Oregon — searchable by agency.",
+    description: "Every officer in Oregon — searchable by agency, rank, and STOP-data record.",
     tiers: [
       { label: "Tier I", body: "Agency, rank, sworn date, public certifications." },
       { label: "Tier II", body: "Stop outcomes, use-of-force events, sustained complaints." },
@@ -48,11 +48,24 @@ export const PAGES = [
     eyebrow: "Pillar IV",
     icon: Compass,
     color: "#A8895F",
-    description: "Every parole/probation officer in Oregon — by county.",
+    description: "Every parole and probation officer in Oregon — caseloads, revocation rates, outcome disparity.",
     tiers: [
       { label: "Tier I", body: "County, caseload size, supervision specialty." },
       { label: "Tier II", body: "Revocation rates, sanction patterns, completion rates." },
       { label: "Tier III", body: "Outcome disparity by demographic, peer comparison." },
+    ],
+  },
+  {
+    to: "/aptitude-advancement",
+    title: "Aptitude Advancement",
+    eyebrow: "The Connection",
+    icon: TrendingUp,
+    color: "#C8A97E",
+    description: "Where the gap closes. Financial access, digital tools, open payment infrastructure, and the path forward — matched to where you actually are.",
+    tiers: [
+      { label: "Entry", body: "Name your starting point. We meet you there — no jargon, no assumptions." },
+      { label: "Connection", body: "Matched resources, open payment tools, and access pathways built for your situation." },
+      { label: "Action", body: "Specific next steps, legal rights, and the institutional friction map that explains what's in your way." },
     ],
   },
   {
@@ -74,7 +87,7 @@ export const PAGES = [
     eyebrow: "Your Tools",
     icon: FlaskConical,
     color: "#D9BE93",
-    description: "Upload your documents. Agents analyze, inform, draft, and surface comparable cases.",
+    description: "Upload your documents. Four agents analyze, inform, research, and co-draft — nothing is filed for you.",
     tiers: [
       { label: "Analyze", body: "Document intake + structured summary by AI agents." },
       { label: "Draft", body: "Letters, motions, and templates — co-written, never auto-filed." },
@@ -87,24 +100,11 @@ export const PAGES = [
     eyebrow: "The Commons",
     icon: Users,
     color: "#5B7B9A",
-    description: "Public comment, statewide meetings, agency contacts, ORS/OAR, complaint pathways, and groups.",
+    description: "Public comment, statewide meetings, agency contacts, complaint pathways, and people navigating the same system.",
     tiers: [
       { label: "Voice", body: "Public comment portals and statewide meeting calendars." },
       { label: "Paths", body: "Step-by-step complaint pathways: judges, lawyers, LE, CPS." },
       { label: "Groups", body: "Spaces for those navigating the system to compare experience." },
-    ],
-  },
-  {
-    to: "/aptitude-advancement",
-    title: "Aptitude Advancement",
-    eyebrow: "Pillar V",
-    icon: Landmark,
-    color: "#D9BE93",
-    description: "Financial capability and access — orientation, interpretation, action, and support.",
-    tiers: [
-      { label: "Orientation", body: "Start where you are: confusion, exclusion, or partial knowledge." },
-      { label: "Action", body: "Move into checklists, comparisons, and next-step guidance." },
-      { label: "Brain", body: "Ontology, pathways, barriers, tools, and escalation support." },
     ],
   },
   {
@@ -113,10 +113,10 @@ export const PAGES = [
     eyebrow: "The Record-Keepers",
     icon: Info,
     color: "#A8895F",
-    description: "The founders, the methodology, and why Oregon — for now.",
+    description: "The founders, the Aptitudinal Alignment methodology, and why public accountability is infrastructure.",
     tiers: [
       { label: "Founders", body: "Who built this and why." },
-      { label: "Method", body: "How bias scores are calculated and verified." },
+      { label: "Method", body: "How Aptitudinal Alignment is calculated and verified." },
       { label: "Sources", body: "Every dataset, every refresh cadence, every gap." },
     ],
   },
@@ -127,10 +127,11 @@ const FlipCard = ({ page, idx }) => {
   const [hovered, setHovered] = useState(false);
   const [locked, setLocked] = useState(false);
   const flipped = hovered || locked;
+  const isAA = page.to === "/aptitude-advancement";
 
   return (
     <div
-      className="flip-card group reveal h-[320px] md:h-[360px] [perspective:1400px]"
+      className={`flip-card group reveal h-[320px] md:h-[360px] [perspective:1400px] ${isAA ? "md:col-span-1 ring-1 ring-[rgba(200,169,126,0.25)]" : ""}`}
       style={{ transitionDelay: `${idx * 70}ms` }}
       data-testid={`pages-flip-card-${page.title.toLowerCase().replace(/\s+/g, "-")}`}
       onMouseEnter={() => !locked && setHovered(true)}
@@ -144,14 +145,15 @@ const FlipCard = ({ page, idx }) => {
         className="flip-card-inner relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d]"
         style={{ transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)", willChange: "transform" }}
       >
+        {/* Front */}
         <div
           className="absolute inset-0 card-3d-raised p-7 md:p-8 flex flex-col justify-between cursor-pointer"
           style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden", zIndex: flipped ? 1 : 2 }}
         >
           <div>
             <div className="flex items-center justify-between mb-5">
-              <span className="text-[10.5px] uppercase tracking-[0.36em] text-gold">{page.eyebrow}</span>
-              <Icon className="w-4 h-4 text-steel" strokeWidth={1.25} />
+              <span className={`text-[10.5px] uppercase tracking-[0.36em] ${isAA ? "text-gold" : "text-gold"}`}>{page.eyebrow}</span>
+              <Icon className={`w-4 h-4 ${isAA ? "text-gold" : "text-steel"}`} strokeWidth={1.25} />
             </div>
             <h3 className="font-display text-3xl md:text-4xl text-ivory leading-tight mb-4">{page.title}</h3>
             <p className="text-ivory-dim text-[14px] leading-relaxed pr-2">{page.description}</p>
@@ -162,6 +164,7 @@ const FlipCard = ({ page, idx }) => {
           </div>
         </div>
 
+        {/* Back */}
         <div
           className="absolute inset-0 card-3d-raised card-3d-back p-7 md:p-8 flex flex-col justify-between cursor-pointer"
           style={{
@@ -205,7 +208,7 @@ export const PagesGrid = () => (
     <div className="relative max-w-[1360px] mx-auto">
       <div className="reveal mb-16 md:mb-20 flex items-baseline justify-between flex-wrap gap-6">
         <div>
-          <div className="eyebrow mb-4">Accountability Is Real</div>
+          <div className="eyebrow mb-4">Accountability Is Infrastructure</div>
           <h2 className="font-display text-4xl md:text-6xl text-ivory leading-[1.05] max-w-3xl">
             Nine wings of one<br />
             <span className="italic text-gold">public record.</span>
@@ -213,7 +216,8 @@ export const PagesGrid = () => (
         </div>
         <p className="font-serif-h italic text-lg md:text-xl text-ivory-dim max-w-md">
           Each card is a doorway. Behind each doorway are three levels of clarity —
-          the same record, told at increasing depth.
+          the same institution, measured at increasing depth. You paid for this record.
+          Here it is.
         </p>
       </div>
 
