@@ -3,7 +3,7 @@ import { Wordmark } from "./Brand";
 import { SearchBar } from "./SearchBar";
 import { OregonCounter } from "./OregonCounter";
 
-const HERO_VIDEO_SOURCE = "/media/grok-video-7f198128-09c2-49d4-9fdf-0948e0550a26.mp4";
+const HERO_VIDEO_SOURCE = "/media/blackbackground.mp4";
 
 const GLITCH_BARS = [
   { left: "5%", width: "7%", shiftY: -5, shiftX: -1, opacity: 0.1 },
