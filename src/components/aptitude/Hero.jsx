@@ -133,7 +133,7 @@ export const Hero = () => {
     const v = videoRef.current;
     if (!v) return;
     const tryPlay = () => {
-      v.playbackRate = 0.88;
+      v.playbackRate = 0.68;
       const p = v.play();
       if (p && typeof p.catch === "function") p.catch(() => {});
     };
