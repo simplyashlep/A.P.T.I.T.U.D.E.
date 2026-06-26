@@ -4,7 +4,7 @@ import { SearchBar } from "./SearchBar";
 import { OregonCounter } from "./OregonCounter";
 
 // ── Update this to match the exact filename you uploaded to /public/media/ ──
-const HERO_VIDEO_SOURCE = "/media/Gold Digital Network.mp4";
+const HERO_VIDEO_SOURCE = "/media/hero-network.mp4";
 
 const GLITCH_BARS = [
   { left: "5%",  width: "7%",   shiftY: -5, shiftX: -1, opacity: 0.1  },
