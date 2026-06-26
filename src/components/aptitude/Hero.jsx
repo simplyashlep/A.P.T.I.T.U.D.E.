@@ -4,7 +4,7 @@ import { SearchBar } from "./SearchBar";
 import { OregonCounter } from "./OregonCounter";
 
 // ── Update this to match the exact filename you uploaded to /public/media/ ──
-const HERO_VIDEO_SOURCE = "/media/black background.mp4";
+const HERO_VIDEO_SOURCE = "/media/Gold Digital Network.mp4";
 
 const GLITCH_BARS = [
   { left: "5%",  width: "7%",   shiftY: -5, shiftX: -1, opacity: 0.1  },
@@ -60,13 +60,9 @@ const videoStyle = {
   objectFit: "cover",
   objectPosition: "center center",
   transform: "scale(1.04)",
-  // TINT TREATMENT:
-  // The video has white synaptic beams on black.
-  // mixBlendMode "screen" keeps the light and blocks the black background.
-  // The gold color-wash overlay (below) then shifts white → gold.
-  opacity: 0.75,
-  filter: "saturate(0.6) contrast(1.1) brightness(1.0)",
-  mixBlendMode: "screen",
+  opacity: 0.82,                                          // up from 0.75
+  filter: "saturate(1.1) contrast(1.15) brightness(1.05)", // let the nodes glow
+  mixBlendMode: "screen",                                 // dark BG disappears; only light survives
   animation: "heroVideoFloat 52s ease-in-out infinite alternate, heroVideoBreath 24s ease-in-out infinite",
 };
 
@@ -254,6 +250,38 @@ export const Hero = () => {
       </div>
 
       <OregonCounter />
+      {/* Lady Justice — ghost still, bottom-right, barely perceptible */}
+<div
+  className="absolute bottom-0 right-0 z-[2] pointer-events-none select-none"
+  aria-hidden="true"
+  style={{
+    width: "clamp(160px, 18vw, 280px)",
+    maskImage: [
+      "linear-gradient(135deg, transparent 0%, rgba(0,0,0,0.25) 35%, rgba(0,0,0,0.5) 65%, rgba(0,0,0,0.55) 100%)",
+      "linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 40%, transparent 80%)",
+    ].join(", "),
+    WebkitMaskImage: [
+      "linear-gradient(135deg, transparent 0%, rgba(0,0,0,0.25) 35%, rgba(0,0,0,0.5) 65%, rgba(0,0,0,0.55) 100%)",
+      "linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 40%, transparent 80%)",
+    ].join(", "),
+    maskComposite: "intersect",
+    WebkitMaskComposite: "source-in",
+  }}
+>
+  <img
+    src="/media/lady-justice-still.png"
+    alt=""
+    draggable="false"
+    style={{
+      width: "100%",
+      height: "auto",
+      display: "block",
+      opacity: 0.10,
+      filter: "grayscale(100%) contrast(0.75) brightness(0.85) sepia(0.2)",
+      mixBlendMode: "luminosity",
+    }}
+  />
+</div>
     </section>
   );
 };
