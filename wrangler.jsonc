@@ -9,6 +9,12 @@
       "database_name": "aptitude-db",
       "database_id": "c7707aa7-d867-4ac2-8e57-88268f6c25de"
     }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "DOCUMENTS",
+      "bucket_name": "aptitude-documents"
+    }
   ]
 }
  
