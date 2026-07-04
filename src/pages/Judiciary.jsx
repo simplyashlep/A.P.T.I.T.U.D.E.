@@ -14,6 +14,17 @@ const RISK_STYLES = {
 
 const fmt = (value, suffix = "") => (value == null ? "—" : `${value}${suffix}`);
 
+// Generate Ballotpedia URL from judge name — strips middle initials
+const toBallotpedia = (name) => {
+  if (!name) return null;
+  const parts = name.trim().split(/\s+/);
+  if (parts.length === 1) return `https://ballotpedia.org/${parts[0]}`;
+  const first = parts[0];
+  const last = parts[parts.length - 1];
+  const middle = parts.slice(1, -1).filter(m => !(m.length <= 2 && /^[A-Z]\.?$/.test(m)));
+  return `https://ballotpedia.org/${[first, ...middle, last].join("_")}`;
+};
+
 const buildStats = (judges) => {
   const counties = [...new Set(judges.map((j) => j.county).filter(Boolean))].sort((a, b) => a.localeCompare(b));
   const courts   = [...new Set(judges.map((j) => j.category || j.court).filter(Boolean))].sort((a, b) => a.localeCompare(b));
@@ -265,19 +276,17 @@ const JudgeCard = ({ judge }) => {
             <span className="text-[10px] uppercase tracking-[0.28em] text-secondary">
               {locked ? "Tap again to settle" : "Hover or tap to flip"}
             </span>
-            {judge.bioUrl && (
-              <a
-                href={judge.bioUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="px-3 py-2 border border-line text-secondary hover:text-gold hover:border-[rgba(200,169,126,0.45)] transition-colors"
-                title="Official bio"
-                data-testid={`judge-bio-${judge.id}`}
-                onClick={(e) => e.stopPropagation()}
-              >
-                <ExternalLink className="w-3 h-3" />
-              </a>
-            )}
+            <a
+              href={toBallotpedia(judge.name)}
+              target="_blank"
+              rel="noreferrer"
+              className="px-3 py-2 border border-line text-secondary hover:text-gold hover:border-[rgba(200,169,126,0.45)] transition-colors"
+              title="View on Ballotpedia"
+              data-testid={`judge-bio-${judge.id}`}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <ExternalLink className="w-3 h-3" />
+            </a>
           </div>
         </div>
 
@@ -344,19 +353,17 @@ const JudgeCard = ({ judge }) => {
             <span className="text-[10px] uppercase tracking-[0.28em] text-secondary">
               {locked ? "Tap again to settle" : "Hover or tap to flip"}
             </span>
-            {judge.bioUrl && (
-              <a
-                href={judge.bioUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="px-3 py-2 border border-line text-secondary hover:text-gold hover:border-[rgba(200,169,126,0.45)] transition-colors"
-                title="Official bio"
-                data-testid={`judge-bio-${judge.id}`}
-                onClick={(e) => e.stopPropagation()}
-              >
-                <ExternalLink className="w-3 h-3" />
-              </a>
-            )}
+            <a
+              href={toBallotpedia(judge.name)}
+              target="_blank"
+              rel="noreferrer"
+              className="px-3 py-2 border border-line text-secondary hover:text-gold hover:border-[rgba(200,169,126,0.45)] transition-colors"
+              title="View on Ballotpedia"
+              data-testid={`judge-bio-${judge.id}`}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <ExternalLink className="w-3 h-3" />
+            </a>
           </div>
         </div>
 

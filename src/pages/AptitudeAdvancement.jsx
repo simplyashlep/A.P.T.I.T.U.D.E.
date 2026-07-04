@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Particles from "../components/ui/Particles";
 import { TopNav } from "../components/aptitude/TopNav";
 import { Footer } from "../components/aptitude/Footer";
 import {
@@ -271,6 +272,24 @@ const EntryCard = ({ entry, idx }) => {
 export default function AptitudeAdvancement() {
   return (
     <div className="relative min-h-screen pb-24" data-testid="aptitude-advancement-page">
+
+      {/* ── Particles — layered over background, behind all content ── */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
+        <Particles
+          particleCount={860}
+          particleSpread={17}
+          speed={0.04}
+          particleColors={["#00032a", "#e1b584", "#061d73"]}
+          moveParticlesOnHover={false}
+          particleHoverFactor={1}
+          alphaParticles={false}
+          particleBaseSize={100}
+          sizeRandomness={1}
+          cameraDistance={20}
+          disableRotation={false}
+        />
+      </div>
+
       <TopNav />
 
       {/* Header */}

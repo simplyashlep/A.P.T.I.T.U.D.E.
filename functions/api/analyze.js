@@ -74,9 +74,14 @@ export async function onRequestPost(context) {
     }
 
     const fileBuffer = await r2Object.arrayBuffer();
-    const base64 = btoa(
-      String.fromCharCode(...new Uint8Array(fileBuffer))
-    );
+    // Chunked base64 — spreading a large Uint8Array as args overflows the call stack
+    const bytes = new Uint8Array(fileBuffer);
+    let binary = "";
+    const CHUNK = 8192;
+    for (let i = 0; i < bytes.length; i += CHUNK) {
+      binary += String.fromCharCode(...bytes.subarray(i, i + CHUNK));
+    }
+    const base64 = btoa(binary);
 
     const isPDF = doc.doc_type === "application/pdf" || doc.filename?.toLowerCase().endsWith(".pdf");
     const isText = doc.doc_type === "text/plain" || doc.filename?.toLowerCase().endsWith(".txt");
