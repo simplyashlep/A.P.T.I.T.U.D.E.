@@ -11,6 +11,7 @@ const NAV_LINKS = [
   { to: "/aptitude-advancement", label: "Aptitude Advancement", desc: "Where the connection is made — financial access, digital tools, and the path forward." },
   { to: "/bias-beacon", label: "Bias Beacon", desc: "The dashboard. STOP data, conviction rates, heat maps, and budget flow." },
   { to: "/juris-lab", label: "Juris Lab", desc: "Upload documents. AI agents analyze, inform, draft, and surface comparable cases." },
+  { to: "/caselaw", label: "Case Law", desc: "Search court decisions by issue, statute, or agency — with plain-language summaries and Juris Lab integration." },
   { to: "/community", label: "Community", desc: "Public comment, statewide meetings, complaint pathways, and groups." },
   { to: "/about", label: "About", desc: "The founders, the methodology, and why we built this." },
 ]

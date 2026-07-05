@@ -12,6 +12,7 @@ import JurisLab from "./pages/JurisLab";
 import Community from "./pages/Community";
 import AptitudeAdvancement from "./pages/AptitudeAdvancement";
 import About from "./pages/About";
+import Caselaw from "./pages/Caselaw";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/community" element={<Community />} />
           <Route path="/aptitude-advancement" element={<AptitudeAdvancement />} />
           <Route path="/about" element={<About />} />
+          <Route path="/caselaw" element={<Caselaw />} />
         </Routes>
       </BrowserRouter>
     </div>
