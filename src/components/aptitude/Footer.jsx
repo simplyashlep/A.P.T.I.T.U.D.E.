@@ -1,26 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { DottedGlowBackground } from "@/components/ui/dotted-glow-background";
 import { ScaleLogo, Wordmark } from "./Brand";
+import { DottedGlowBackground } from "@/components/ui/DottedGlowBackground";
 
 export const Footer = () => (
-  <footer
-    className="relative overflow-hidden border-t border-line py-14 md:py-16 px-6 md:px-10"
-    data-testid="footer"
-  >
+  <footer className="relative border-t border-line py-14 md:py-16 px-6 md:px-10 overflow-hidden" data-testid="footer">
     <DottedGlowBackground
-      className="pointer-events-none absolute inset-0 z-0 opacity-35 [mask-image:radial-gradient(circle_at_center,white,transparent_80%)]"
-      opacity={1}
-      gap={12}
-      radius={1.25}
-      colorLightVar="--color-neutral-500"
-      glowColorLightVar="--color-neutral-600"
-      colorDarkVar="--color-neutral-600"
-      glowColorDarkVar="--color-sky-800"
-      backgroundOpacity={0}
-      speedMin={0.2}
-      speedMax={0.8}
-      speedScale={1}
+      className="absolute inset-0 z-0 pointer-events-none"
+      style={{
+        maskImage: "radial-gradient(ellipse 62% 100% at 30% 30%, black 0%, black 35%, transparent 42%)",
+        WebkitMaskImage: "radial-gradient(ellipse 62% 100% at 30% 30%, black 0%, black 35%, transparent 37%)",
+      }}
     />
 
     <div className="relative z-10 max-w-[1360px] mx-auto">
