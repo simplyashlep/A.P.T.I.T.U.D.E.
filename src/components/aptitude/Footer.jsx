@@ -1,10 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { DottedGlowBackground } from "@/components/ui/dotted-glow-background";
 import { ScaleLogo, Wordmark } from "./Brand";
 
 export const Footer = () => (
-  <footer className="relative border-t border-line py-14 md:py-16 px-6 md:px-10" data-testid="footer">
-    <div className="max-w-[1360px] mx-auto">
+  <footer
+    className="relative overflow-hidden border-t border-line py-14 md:py-16 px-6 md:px-10"
+    data-testid="footer"
+  >
+    <DottedGlowBackground
+      className="pointer-events-none absolute inset-0 z-0 opacity-35 [mask-image:radial-gradient(circle_at_center,white,transparent_80%)]"
+      opacity={1}
+      gap={12}
+      radius={1.25}
+      colorLightVar="--color-neutral-500"
+      glowColorLightVar="--color-neutral-600"
+      colorDarkVar="--color-neutral-600"
+      glowColorDarkVar="--color-sky-800"
+      backgroundOpacity={0}
+      speedMin={0.2}
+      speedMax={0.8}
+      speedScale={1}
+    />
+
+    <div className="relative z-10 max-w-[1360px] mx-auto">
       <div className="flex flex-col md:flex-row md:items-start justify-between gap-10">
         <div className="max-w-md">
           <div className="flex items-center gap-3 mb-5">
