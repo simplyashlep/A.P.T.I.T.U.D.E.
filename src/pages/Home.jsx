@@ -195,14 +195,14 @@ const JusticeGhost = () => (
     }}
   >
     <img
-      src="/media/lady-justice-still.jpg"
+      src="/media/lady-justice-still.png"
       alt=""
       style={{
         width: "100%",
         height: "100%",
         objectFit: "cover",
         objectPosition: "center top",
-        opacity: 0.13,
+        opacity: 0.16,
         filter: "saturate(0) contrast(1.1) brightness(0.7)",
         mixBlendMode: "luminosity",
       }}

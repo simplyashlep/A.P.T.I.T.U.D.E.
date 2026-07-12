@@ -276,14 +276,14 @@ export default function AptitudeAdvancement() {
       {/* ── Particles — layered over background, behind all content ── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden" style={{ zIndex: 0 }}>
         <Particles
-          particleCount={860}
-          particleSpread={17}
+          particleCount={950}
+          particleSpread={11}
           speed={0.04}
-          particleColors={["#00032a", "#e1b584", "#061d73"]}
+          particleColors={["#4a6fa5", "#e1b584", "#7c9cbf"]}
           moveParticlesOnHover={false}
           particleHoverFactor={1}
           alphaParticles={false}
-          particleBaseSize={100}
+          particleBaseSize={150}
           sizeRandomness={1}
           cameraDistance={20}
           disableRotation={false}

@@ -1,17 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ScaleLogo, Wordmark } from "./Brand";
-import { DottedGlowBackground } from "@/components/ui/DottedGlowBackground";
+import MagneticGrid from "../ui/MagneticGrid";
 
 export const Footer = () => (
   <footer className="relative border-t border-line py-14 md:py-16 px-6 md:px-10 overflow-hidden" data-testid="footer">
-    <DottedGlowBackground
-      className="absolute inset-0 z-0 pointer-events-none"
-      style={{
-        maskImage: "radial-gradient(ellipse 62% 100% at 30% 30%, black 0%, black 35%, transparent 42%)",
-        WebkitMaskImage: "radial-gradient(ellipse 62% 100% at 30% 30%, black 0%, black 35%, transparent 37%)",
-      }}
-    />
+    <div className="absolute inset-0" style={{ zIndex: 0 }}>
+      <MagneticGrid
+        dotColor="rgba(200,169,126,0.5)"
+        activeColor="#F5E9D2"
+        bgColor="transparent"
+        dotSize={3}
+        dotSpacing={28}
+        influenceRadius={130}
+        maxDisplace={10}
+        dotOpacity={0.5}
+      />
+    </div>
 
     <div className="relative z-10 max-w-[1360px] mx-auto">
       <div className="flex flex-col md:flex-row md:items-start justify-between gap-10">
