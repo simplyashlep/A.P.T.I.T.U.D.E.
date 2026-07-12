@@ -1,10 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ScaleLogo, Wordmark } from "./Brand";
+import MagneticGrid from "../ui/MagneticGrid";
 
 export const Footer = () => (
-  <footer className="relative border-t border-line py-14 md:py-16 px-6 md:px-10" data-testid="footer">
-    <div className="max-w-[1360px] mx-auto">
+  <footer className="relative border-t border-line py-14 md:py-16 px-6 md:px-10 overflow-hidden" data-testid="footer">
+    <div className="absolute inset-0" style={{ zIndex: 0 }}>
+      <MagneticGrid
+        dotColor="rgba(200,169,126,0.5)"
+        activeColor="#F5E9D2"
+        bgColor="transparent"
+        dotSize={3}
+        dotSpacing={28}
+        influenceRadius={130}
+        maxDisplace={10}
+        dotOpacity={0.5}
+      />
+    </div>
+
+    <div className="relative max-w-[1360px] mx-auto" style={{ zIndex: 1 }}>
       <div className="flex flex-col md:flex-row md:items-start justify-between gap-10">
         <div className="max-w-md">
           <div className="flex items-center gap-3 mb-5">
