@@ -11,10 +11,10 @@ export const Footer = () => (
         activeColor="#F5E9D2"
         bgColor="transparent"
         dotSize={3}
-        dotSpacing={28}
-        influenceRadius={130}
-        maxDisplace={10}
-        dotOpacity={0.5}
+        dotSpacing={14}
+        influenceRadius={165}
+        maxDisplace={15}
+        dotOpacity={0.75}
       />
     </div>
 
