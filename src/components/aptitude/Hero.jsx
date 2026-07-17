@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
+import { CursorWordmark } from "./CursorWordmark";
 import { Wordmark } from "./Brand";
 import { SearchBar } from "./SearchBar";
 import { OregonCounter } from "./OregonCounter";
+import { InteractiveGrid } from "./InteractiveGrid";
 
 // ── Update this to match the exact filename you uploaded to /public/media/ ──
 const HERO_VIDEO_SOURCE = "/media/hero-network.mp4";
@@ -18,22 +20,14 @@ const GLITCH_BARS = [
   { left: "87%", width: "5%",   shiftY: -4, shiftX:  1, opacity: 0.07 },
 ];
 
-// The new video is likely wider / more square than the tall Lady Justice clip.
-// We position it top-right, cover the full right half of the viewport,
-// and fade it out toward the center-left so it bleeds behind the search bar.
 const rightPanelStyle = {
   position: "absolute",
   right: 0,
   top: 0,
-  // Wide enough to fill right half; let the mask do the blending
   width: "clamp(480px, 62vw, 1100px)",
   height: "100%",
-  // No hard clip-path — the new video shouldn't be cut into a polygon shape.
-  // The mask handles the fade entirely.
   maskImage: [
-    // Fade in from left (so it bleeds behind the wordmark / search bar)
     "linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.4) 18%, black 38%, black 100%)",
-    // Fade out at top and bottom edges
     "linear-gradient(180deg, transparent 0%, black 8%, black 92%, transparent 100%)",
   ].join(", "),
   WebkitMaskImage: [
@@ -60,18 +54,15 @@ const videoStyle = {
   objectFit: "cover",
   objectPosition: "center center",
   transform: "scale(1.04)",
-  opacity: 0.82,                                          // up from 0.75
-  filter: "saturate(1.1) contrast(1.15) brightness(1.05)", // let the nodes glow
-  mixBlendMode: "screen",                                 // dark BG disappears; only light survives
+  opacity: 0.82,
+  filter: "saturate(1.1) contrast(1.15) brightness(1.05)",
+  mixBlendMode: "screen",
   animation: "heroVideoFloat 52s ease-in-out infinite alternate, heroVideoBreath 24s ease-in-out infinite",
 };
 
-// Gold + blue tint wash — applied on top of the video via a sibling div
 const tintOverlayStyle = {
   position: "absolute",
   inset: 0,
-  // Gold bloom in center-right where the video is brightest
-  // Deep steel-blue at periphery matching site's color system
   background: [
     "radial-gradient(ellipse 55% 50% at 65% 40%, rgba(200,169,126,0.55) 0%, rgba(200,169,126,0.15) 45%, transparent 70%)",
     "radial-gradient(ellipse 90% 80% at 95% 10%,  rgba(91,123,154,0.35) 0%, transparent 55%)",
@@ -153,7 +144,11 @@ export const Hero = () => {
       className="relative min-h-[100svh] flex flex-col w-full overflow-hidden grain"
       data-testid="hero-section"
     >
+      {/* Base dark layer */}
       <div className="absolute inset-0 z-0 bg-[#070B14]" />
+
+      {/* Interactive grid — sits above the base, behind the video panel */}
+      <InteractiveGrid />
 
       {/* Video panel — top-right, fades left toward center */}
       <div className="absolute inset-0 z-[1] pointer-events-none" aria-hidden="true">
@@ -173,7 +168,6 @@ export const Hero = () => {
                 <source src={HERO_VIDEO_SOURCE} type="video/mp4" />
               </video>
             ) : (
-              // Fallback: gold radial if video can't load
               <div
                 style={{
                   ...videoStyle,
@@ -227,8 +221,7 @@ export const Hero = () => {
       {/* Hero content */}
       <div className="relative z-10 flex-1 flex flex-col px-6 md:px-10 pt-28 pb-10">
         <div className="max-w-4xl xl:max-w-6xl flex-1 flex flex-col items-center md:items-start justify-center text-center md:text-left">
-          <Wordmark size="lg" embossed className="text-ivory justify-center md:justify-start" />
-          {/* Updated acronym — matches Brand.jsx */}
+          <CursorWordmark />
           <p
             className="mt-6 md:mt-7 font-serif-h italic text-[13px] md:text-base text-ivory-dim tracking-[0.06em]"
             data-testid="hero-acronym"
@@ -250,38 +243,39 @@ export const Hero = () => {
       </div>
 
       <OregonCounter />
+
       {/* Lady Justice — ghost still, bottom-right, barely perceptible */}
-<div
-  className="absolute bottom-0 right-0 z-[2] pointer-events-none select-none"
-  aria-hidden="true"
-  style={{
-    width: "clamp(160px, 18vw, 280px)",
-    maskImage: [
-      "linear-gradient(135deg, transparent 0%, rgba(0,0,0,0.25) 35%, rgba(0,0,0,0.5) 65%, rgba(0,0,0,0.55) 100%)",
-      "linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 40%, transparent 80%)",
-    ].join(", "),
-    WebkitMaskImage: [
-      "linear-gradient(135deg, transparent 0%, rgba(0,0,0,0.25) 35%, rgba(0,0,0,0.5) 65%, rgba(0,0,0,0.55) 100%)",
-      "linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 40%, transparent 80%)",
-    ].join(", "),
-    maskComposite: "intersect",
-    WebkitMaskComposite: "source-in",
-  }}
->
-  <img
-    src="/media/lady-justice-still.png"
-    alt=""
-    draggable="false"
-    style={{
-      width: "100%",
-      height: "auto",
-      display: "block",
-      opacity: 0.10,
-      filter: "grayscale(100%) contrast(0.75) brightness(0.85) sepia(0.2)",
-      mixBlendMode: "luminosity",
-    }}
-  />
-</div>
+      <div
+        className="absolute bottom-0 right-0 z-[2] pointer-events-none select-none"
+        aria-hidden="true"
+        style={{
+          width: "clamp(160px, 18vw, 280px)",
+          maskImage: [
+            "linear-gradient(135deg, transparent 0%, rgba(0,0,0,0.25) 35%, rgba(0,0,0,0.5) 65%, rgba(0,0,0,0.55) 100%)",
+            "linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 40%, transparent 80%)",
+          ].join(", "),
+          WebkitMaskImage: [
+            "linear-gradient(135deg, transparent 0%, rgba(0,0,0,0.25) 35%, rgba(0,0,0,0.5) 65%, rgba(0,0,0,0.55) 100%)",
+            "linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 40%, transparent 80%)",
+          ].join(", "),
+          maskComposite: "intersect",
+          WebkitMaskComposite: "source-in",
+        }}
+      >
+        <img
+          src="/media/lady-justice-still.png"
+          alt=""
+          draggable="false"
+          style={{
+            width: "100%",
+            height: "auto",
+            display: "block",
+            opacity: 0.10,
+            filter: "grayscale(100%) contrast(0.75) brightness(0.85) sepia(0.2)",
+            mixBlendMode: "luminosity",
+          }}
+        />
+      </div>
     </section>
   );
 };
