@@ -7,6 +7,7 @@ import { PagesGrid } from "../components/aptitude/PagesGrid";
 import { Footer } from "../components/aptitude/Footer";
 import { Quote, ArrowUpRight } from "lucide-react";
 import { ScaleLogo } from "../components/aptitude/Brand";
+import { InteractiveGrid } from "../components/aptitude/InteractiveGrid";
 import { Link } from "react-router-dom";
 
 const API = `${import.meta.env.VITE_BACKEND_URL || ""}/api`;
@@ -57,7 +58,9 @@ const TenetsSection = () => (
     className="relative py-28 md:py-36 px-6 md:px-10 overflow-hidden"
     data-testid="tenets-section"
   >
-    <div className="relative max-w-[1360px] mx-auto">
+    <InteractiveGrid variant="section" opacity={0.4} cellSize={52} />
+
+    <div className="relative z-10 max-w-[1360px] mx-auto">
       <div className="reveal flex items-baseline justify-between flex-wrap gap-6 mb-16 md:mb-20">
         <div>
           <div className="eyebrow mb-4">The Tenets</div>
@@ -195,14 +198,14 @@ const JusticeGhost = () => (
     }}
   >
     <img
-      src="/media/lady-justice-still.png"
+      src="/media/lady-justice-still.jpg"
       alt=""
       style={{
         width: "100%",
         height: "100%",
         objectFit: "cover",
         objectPosition: "center top",
-        opacity: 0.16,
+        opacity: 0.13,
         filter: "saturate(0) contrast(1.1) brightness(0.7)",
         mixBlendMode: "luminosity",
       }}
