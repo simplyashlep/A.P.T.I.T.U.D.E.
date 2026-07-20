@@ -461,15 +461,27 @@ export const PagesGrid = () => (
         </p>
       </div>
 
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))",
-        gap: "clamp(14px, 1.6vw, 22px)",
-      }}>
+      {/* Three rows of three — the 3x3 reads as a deliberate grid of nine
+          wings rather than a reflowing list. */}
+      <div className="pages-grid-3x3">
         {PAGES.map((p, i) => (
           <PremiumCard key={p.to} page={p} idx={i} />
         ))}
       </div>
+
+      <style>{`
+        .pages-grid-3x3 {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: clamp(14px, 1.6vw, 22px);
+        }
+        @media (max-width: 900px) {
+          .pages-grid-3x3 { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+          .pages-grid-3x3 { grid-template-columns: 1fr; }
+        }
+      `}</style>
     </div>
   </section>
 );

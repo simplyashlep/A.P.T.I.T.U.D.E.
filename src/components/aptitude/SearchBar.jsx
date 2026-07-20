@@ -1,4 +1,5 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { Marquee } from "./Marquee";
 import axios from "axios";
 import { Search, Loader2, Sparkles, AlertTriangle } from "lucide-react";
 import { toast } from "sonner";
@@ -23,11 +24,69 @@ const CHIPS = [
   "DPSST — officer certification and decertification",
 ];
 
+/**
+ * Types out the sample queries one character at a time, holds, deletes, moves
+ * on. Runs only while the field is empty and unfocused — the moment the user
+ * engages, it stops and gets out of the way.
+ */
+const useTypewriter = (phrases, active) => {
+  const [text, setText] = useState("");
+  const idx = useRef(0);
+  const char = useRef(0);
+  const deleting = useRef(false);
+
+  useEffect(() => {
+    if (!active) return;
+    if (
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      setText(phrases[0]);
+      return;
+    }
+
+    let timer;
+    const step = () => {
+      const phrase = phrases[idx.current % phrases.length];
+
+      if (!deleting.current) {
+        char.current += 1;
+        setText(phrase.slice(0, char.current));
+        if (char.current >= phrase.length) {
+          deleting.current = true;
+          timer = setTimeout(step, 2200); // hold on the finished phrase
+          return;
+        }
+        timer = setTimeout(step, 38 + Math.random() * 45);
+      } else {
+        char.current -= 1;
+        setText(phrase.slice(0, char.current));
+        if (char.current <= 0) {
+          deleting.current = false;
+          idx.current += 1;
+          timer = setTimeout(step, 420);
+          return;
+        }
+        timer = setTimeout(step, 18);
+      }
+    };
+
+    timer = setTimeout(step, 700);
+    return () => clearTimeout(timer);
+  }, [active, phrases]);
+
+  return text;
+};
+
 export const SearchBar = () => {
   const [q, setQ] = useState("");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
+  const [focused, setFocused] = useState(false);
   const sessionRef = useRef(null);
+
+  // Only animate while the field is genuinely idle
+  const typing = useTypewriter(CHIPS, !q && !focused && !result);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -66,13 +125,28 @@ export const SearchBar = () => {
 
   return (
     <div id="search" className="w-full max-w-6xl mt-10 md:mt-12 mx-auto" data-testid="hero-search-wrap">
-      <div className="text-center mb-4 text-[10.5px] uppercase tracking-[0.36em] text-secondary" data-testid="hero-search-modes">
-        {SUGGESTIONS.map((s, i) => (
-          <span key={s}>
-            {i > 0 && <span className="mx-2 text-gold opacity-60">·</span>}
-            <span className="text-ivory-dim">{s}</span>
-          </span>
-        ))}
+      {/* Runs opposite the acronym marquee above it. Two directions is the
+          limit — a third would start to feel like noise. */}
+      <div className="mb-5" data-testid="hero-search-modes">
+        <Marquee
+          items={SUGGESTIONS}
+          direction="right"
+          duration={62}
+          gap="3rem"
+          renderItem={(s, i) => (
+            <span
+              className={i % 2 === 0 ? "font-ui uppercase text-secondary" : "font-serif-h italic text-ivory-dim"}
+              style={{
+                fontSize: i % 2 === 0 ? "10px" : "13px",
+                letterSpacing: i % 2 === 0 ? "0.36em" : "0.04em",
+                opacity: i % 2 === 0 ? 0.6 : 0.75,
+              }}
+            >
+              {s}
+              <span className="text-gold" style={{ opacity: 0.4, marginLeft: "3rem" }}>·</span>
+            </span>
+          )}
+        />
       </div>
 
       <form onSubmit={onSubmit} className="apt-search-soft group relative flex items-center">
@@ -81,7 +155,13 @@ export const SearchBar = () => {
           type="text"
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          placeholder="Search any institution, obligation, statute, or public record…"
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
+          placeholder={
+            typing
+              ? `${typing}│`
+              : "Search any institution, obligation, statute, or public record…"
+          }
           className="flex-1 text-base md:text-xl outline-none border-0 bg-transparent py-4 md:py-5"
           aria-label="Search the record"
           data-testid="hero-search-input"
@@ -103,7 +183,9 @@ export const SearchBar = () => {
         className="flex flex-wrap gap-x-6 gap-y-2 justify-center mt-5 text-[11px] tracking-[0.18em] uppercase text-secondary"
         data-testid="hero-search-suggestions"
       >
-        {CHIPS.map((s) => (
+        {/* The typewriter already cycles all six. Showing three keeps the
+            clickable shortcuts without rebuilding the wall of text. */}
+        {CHIPS.slice(0, 3).map((s) => (
           <button
             key={s}
             type="button"
