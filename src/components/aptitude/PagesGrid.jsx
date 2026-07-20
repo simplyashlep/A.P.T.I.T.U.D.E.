@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   Gavel, Eye, Shield, Compass, Activity,
-  FlaskConical, Users, Info, TrendingUp, ArrowUpRight
+  FlaskConical, Users, Info, TrendingUp, ArrowUpRight, X
 } from "lucide-react";
+import { InteractiveGrid } from "./InteractiveGrid";
 
 // ─── Card data — ORDER IS EXACT: 3 rows of 3 ─────────────────────────────────
 // Row 1: Judiciary · Watchtower · Bias Beacon
@@ -149,184 +150,289 @@ export const PAGES = [
 
 const PremiumCard = ({ page, idx }) => {
   const Icon = page.icon;
+  const cardRef = useRef(null);
+  const rafRef = useRef(0);
   const [flipped, setFlipped] = useState(false);
+  const [tilt, setTilt] = useState({ rx: 0, ry: 0 });
+  const [spot, setSpot] = useState({ x: 50, y: 0, on: false });
+
+  useEffect(() => () => rafRef.current && cancelAnimationFrame(rafRef.current), []);
+
+  const onMove = (e) => {
+    const el = cardRef.current;
+    if (!el) return;
+    const { clientX, clientY } = e;
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    rafRef.current = requestAnimationFrame(() => {
+      const r = el.getBoundingClientRect();
+      const px = (clientX - r.left) / r.width;
+      const py = (clientY - r.top) / r.height;
+      // Small angles only. Enough to catch the light, not enough to wobble.
+      setTilt({ rx: (0.5 - py) * 7, ry: (px - 0.5) * 9 });
+      setSpot({ x: px * 100, y: py * 100, on: true });
+    });
+  };
+
+  const onLeave = () => {
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    setTilt({ rx: 0, ry: 0 });
+    setSpot((s) => ({ ...s, on: false }));
+  };
+
+  const toggleFlip = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setFlipped((v) => !v);
+  };
+
+  const A = page.accentRgb;
+  const faceBase = {
+    position: "absolute",
+    inset: 0,
+    backfaceVisibility: "hidden",
+    WebkitBackfaceVisibility: "hidden",
+    borderRadius: "8px",
+    overflow: "hidden",
+  };
 
   return (
     <div
-      className="reveal group"
+      className="reveal"
       style={{
-        height: "clamp(260px, 30vw, 360px)",
-        perspective: "1200px",
+        height: "clamp(300px, 32vw, 400px)",
+        perspective: "1400px",
         transitionDelay: `${idx * 55}ms`,
       }}
       data-testid={`pages-flip-card-${page.title.toLowerCase().replace(/\s+/g, "-")}`}
     >
+      {/* Tilt layer — separate from the flip layer so the two transforms
+          never fight each other. */}
       <div
-        onClick={() => setFlipped(v => !v)}
-        onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && setFlipped(v => !v)}
-        role="button"
-        tabIndex={0}
-        aria-pressed={flipped}
+        ref={cardRef}
+        onMouseMove={onMove}
+        onMouseLeave={onLeave}
         style={{
-          position: "relative",
           width: "100%",
           height: "100%",
           transformStyle: "preserve-3d",
-          transition: "transform 0.65s cubic-bezier(0.23, 1, 0.32, 1)",
-          transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
-          cursor: "pointer",
-          borderRadius: "6px",
+          transform: `rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg) translateY(${spot.on ? -6 : 0}px)`,
+          transition: "transform 300ms cubic-bezier(0.23, 1, 0.32, 1)",
         }}
       >
-        {/* ── FRONT ── */}
+        {/* Flip layer */}
         <div
           style={{
-            position: "absolute",
-            inset: 0,
-            backfaceVisibility: "hidden",
-            WebkitBackfaceVisibility: "hidden",
-            borderRadius: "6px",
-            overflow: "hidden",
-            background: `linear-gradient(145deg, #1a1206, #0d1520)`,
-            border: `1px solid rgba(${page.accentRgb}, 0.18)`,
-            boxShadow: `0 4px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(${page.accentRgb}, 0.12)`,
+            position: "relative",
+            width: "100%",
+            height: "100%",
+            transformStyle: "preserve-3d",
+            transition: "transform 0.65s cubic-bezier(0.23, 1, 0.32, 1)",
+            transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
+            borderRadius: "8px",
           }}
         >
-          {/* Radial accent bloom */}
-          <div style={{
-            position: "absolute", inset: 0, zIndex: 0,
-            background: `radial-gradient(ellipse 70% 60% at 85% 15%, rgba(${page.accentRgb}, 0.22) 0%, transparent 65%)`,
-          }} />
-          {/* Accent line top */}
-          <div style={{
-            position: "absolute", top: 0, left: 0, right: 0, height: "2px", zIndex: 1,
-            background: `linear-gradient(90deg, transparent 0%, rgba(${page.accentRgb}, 0.9) 40%, rgba(${page.accentRgb}, 0.3) 100%)`,
-          }} />
-          {/* Content */}
-          <div style={{
-            position: "relative", zIndex: 2,
-            padding: "clamp(18px, 2.2vw, 28px)",
-            height: "100%",
-            display: "flex", flexDirection: "column", justifyContent: "space-between",
-          }}>
-            <div>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "14px" }}>
-                <span style={{
-                  fontSize: "9.5px", textTransform: "uppercase", letterSpacing: "0.36em",
-                  color: `rgba(${page.accentRgb}, 0.85)`, fontFamily: "Outfit, sans-serif",
-                }}>
-                  {page.eyebrow}
-                </span>
-                <div style={{
-                  width: "30px", height: "30px", borderRadius: "50%",
-                  border: `1px solid rgba(${page.accentRgb}, 0.3)`,
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  background: `rgba(${page.accentRgb}, 0.08)`,
-                }}>
-                  <Icon style={{ width: "13px", height: "13px", color: `rgba(${page.accentRgb}, 0.9)` }} strokeWidth={1.5} />
-                </div>
-              </div>
-              <h3 style={{
-                fontFamily: "'Playfair Display', serif",
-                fontSize: "clamp(18px, 2.2vw, 28px)",
-                color: "#F5F1E6", lineHeight: 1.1, marginBottom: "8px", fontWeight: 700,
-              }}>
-                {page.title}
-              </h3>
-              <p style={{
-                fontSize: "12.5px", color: "rgba(245,241,230,0.55)", lineHeight: 1.5,
-                display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden",
-              }}>
-                {page.description}
-              </p>
-            </div>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-              <div style={{ height: "1px", width: "28px", background: `rgba(${page.accentRgb}, 0.4)` }} />
-              <span style={{
-                fontSize: "9.5px", textTransform: "uppercase", letterSpacing: "0.3em",
-                color: "rgba(245,241,230,0.25)", fontFamily: "Outfit, sans-serif",
-              }}>
-                Flip to explore
-              </span>
-            </div>
-          </div>
-        </div>
+          {/* ── FRONT — the whole face is the link ── */}
+          <Link
+            to={page.to}
+            style={{
+              ...faceBase,
+              display: "block",
+              textDecoration: "none",
+              // Each card now carries its own accent instead of the shared brown
+              background: `linear-gradient(152deg, rgba(${A},0.16) 0%, rgba(13,21,32,0.97) 42%, #070B14 100%)`,
+              border: `1px solid rgba(${A}, ${spot.on ? 0.42 : 0.18})`,
+              boxShadow: spot.on
+                ? `0 18px 50px rgba(0,0,0,0.62), 0 0 0 1px rgba(${A},0.12), inset 0 1px 0 rgba(${A},0.22)`
+                : `0 4px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(${A}, 0.12)`,
+              transition: "border-color 300ms ease, box-shadow 300ms ease",
+            }}
+            data-testid={`pages-card-link-${page.title.toLowerCase().replace(/\s+/g, "-")}`}
+          >
+            {/* Accent bloom */}
+            <div style={{
+              position: "absolute", inset: 0, zIndex: 0,
+              background: `radial-gradient(ellipse 70% 60% at 85% 12%, rgba(${A}, 0.26) 0%, transparent 66%)`,
+            }} />
 
-        {/* ── BACK ── */}
-        {/* THE FIX: transform: rotateY(180deg) is ALWAYS applied here — never conditionally.
-            The parent rotates; this face starts pre-rotated 180deg so it appears
-            correctly readable when the parent completes its flip to 180deg. */}
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            backfaceVisibility: "hidden",
-            WebkitBackfaceVisibility: "hidden",
-            transform: "rotateY(180deg)",
-            borderRadius: "6px",
-            overflow: "hidden",
-            border: `1px solid rgba(${page.accentRgb}, 0.3)`,
-            boxShadow: `0 4px 32px rgba(0,0,0,0.6), inset 0 1px 0 rgba(${page.accentRgb}, 0.2)`,
-            background: "linear-gradient(160deg, rgba(10,15,26,0.98) 0%, rgba(7,11,20,1) 100%)",
-          }}
-        >
-          <div style={{
-            position: "absolute", inset: 0,
-            background: `radial-gradient(ellipse 80% 50% at 20% 90%, rgba(${page.accentRgb}, 0.1) 0%, transparent 60%)`,
-          }} />
-          <div style={{
-            position: "absolute", top: 0, left: 0, right: 0, height: "2px",
-            background: `linear-gradient(90deg, rgba(${page.accentRgb}, 0.9) 0%, rgba(${page.accentRgb}, 0.15) 100%)`,
-          }} />
-          <div style={{
-            position: "relative", zIndex: 1,
-            padding: "clamp(18px, 2.2vw, 28px)",
-            height: "100%",
-            display: "flex", flexDirection: "column", justifyContent: "space-between",
-          }}>
-            <div>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "16px" }}>
-                <span style={{
-                  fontSize: "9.5px", textTransform: "uppercase", letterSpacing: "0.36em",
-                  color: `rgba(${page.accentRgb}, 0.85)`, fontFamily: "Outfit, sans-serif",
+            {/* Spotlight that follows the cursor */}
+            <div style={{
+              position: "absolute", inset: 0, zIndex: 1, pointerEvents: "none",
+              background: `radial-gradient(circle 240px at ${spot.x}% ${spot.y}%, rgba(${A},0.20) 0%, rgba(${A},0.06) 38%, transparent 68%)`,
+              opacity: spot.on ? 1 : 0,
+              transition: "opacity 320ms ease",
+              mixBlendMode: "screen",
+            }} />
+
+            {/* Top accent rule */}
+            <div style={{
+              position: "absolute", top: 0, left: 0, right: 0, height: "2px", zIndex: 2,
+              background: `linear-gradient(90deg, transparent 0%, rgba(${A}, 0.95) 38%, rgba(${A}, 0.28) 100%)`,
+            }} />
+
+            <div style={{
+              position: "relative", zIndex: 3,
+              padding: "clamp(20px, 2.4vw, 30px)",
+              height: "100%",
+              display: "flex", flexDirection: "column", justifyContent: "space-between",
+            }}>
+              <div>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "18px" }}>
+                  <span style={{
+                    fontSize: "9.5px", textTransform: "uppercase", letterSpacing: "0.36em",
+                    color: `rgba(${A}, 0.9)`, fontFamily: "Outfit, sans-serif",
+                  }}>
+                    {page.eyebrow}
+                  </span>
+                  <div style={{
+                    width: "34px", height: "34px", borderRadius: "50%",
+                    border: `1px solid rgba(${A}, ${spot.on ? 0.55 : 0.3})`,
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    background: `rgba(${A}, ${spot.on ? 0.16 : 0.08})`,
+                    transition: "all 300ms ease",
+                  }}>
+                    <Icon style={{ width: "15px", height: "15px", color: `rgba(${A}, 0.95)` }} strokeWidth={1.5} />
+                  </div>
+                </div>
+
+                <h3 style={{
+                  fontFamily: "'Playfair Display', serif",
+                  fontSize: "clamp(22px, 2.6vw, 32px)",
+                  color: "#F5F1E6", lineHeight: 1.05, marginBottom: "12px", fontWeight: 700,
                 }}>
                   {page.title}
-                </span>
-                <Icon style={{ width: "13px", height: "13px", color: `rgba(${page.accentRgb}, 0.6)` }} strokeWidth={1.5} />
+                </h3>
+
+                {/* Short rule under the title — gives the type a spine */}
+                <div style={{
+                  height: "1px", width: spot.on ? "56px" : "32px",
+                  background: `rgba(${A}, 0.55)`, marginBottom: "12px",
+                  transition: "width 320ms cubic-bezier(0.23,1,0.32,1)",
+                }} />
+
+                <p style={{
+                  fontSize: "13px", color: "rgba(245,241,230,0.6)", lineHeight: 1.55,
+                  display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden",
+                }}>
+                  {page.description}
+                </p>
               </div>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "9px" }}>
-                {page.tiers.map((t, i) => (
-                  <li key={i} style={{ borderLeft: `2px solid rgba(${page.accentRgb}, 0.4)`, paddingLeft: "11px" }}>
-                    <div style={{
-                      fontSize: "9px", textTransform: "uppercase", letterSpacing: "0.32em",
-                      color: `rgba(${page.accentRgb}, 0.8)`, fontFamily: "Outfit, sans-serif", marginBottom: "2px",
-                    }}>
-                      {t.label}
-                    </div>
-                    <div style={{
-                      fontSize: "12.5px", color: "rgba(245,241,230,0.62)", lineHeight: 1.4, fontFamily: "Outfit, sans-serif",
-                    }}>
-                      {t.body}
-                    </div>
-                  </li>
-                ))}
-              </ul>
+
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "10px" }}>
+                <span style={{
+                  display: "inline-flex", alignItems: "center", gap: "6px",
+                  fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.3em",
+                  color: `rgba(${A}, ${spot.on ? 1 : 0.7})`, fontFamily: "Outfit, sans-serif",
+                  transition: "color 300ms ease",
+                }}>
+                  Enter
+                  <ArrowUpRight style={{
+                    width: "12px", height: "12px",
+                    transform: spot.on ? "translate(2px,-2px)" : "none",
+                    transition: "transform 300ms ease",
+                  }} />
+                </span>
+
+                {/* Flip is now its own control, so clicking the card navigates */}
+                <button
+                  type="button"
+                  onClick={toggleFlip}
+                  aria-label={`Preview what's inside ${page.title}`}
+                  style={{
+                    fontSize: "9px", textTransform: "uppercase", letterSpacing: "0.28em",
+                    color: "rgba(245,241,230,0.4)", fontFamily: "Outfit, sans-serif",
+                    background: "transparent", border: `1px solid rgba(${A},0.25)`,
+                    borderRadius: "999px", padding: "5px 11px", cursor: "pointer",
+                    transition: "all 260ms ease", whiteSpace: "nowrap",
+                  }}
+                  data-testid={`pages-flip-toggle-${page.title.toLowerCase().replace(/\s+/g, "-")}`}
+                >
+                  Tiers
+                </button>
+              </div>
             </div>
-            <Link
-              to={page.to}
-              onClick={(e) => e.stopPropagation()}
-              style={{
-                display: "inline-flex", alignItems: "center", gap: "6px",
-                fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.32em",
-                color: `rgba(${page.accentRgb}, 1)`, textDecoration: "none",
-                borderBottom: `1px solid rgba(${page.accentRgb}, 0.45)`,
-                paddingBottom: "2px", width: "fit-content", fontFamily: "Outfit, sans-serif",
-              }}
-              data-testid={`pages-enter-${page.title.toLowerCase().replace(/\s+/g, "-")}`}
-            >
-              Enter {page.title}
-              <ArrowUpRight style={{ width: "11px", height: "11px" }} />
-            </Link>
+          </Link>
+
+          {/* ── BACK ── */}
+          <div
+            style={{
+              ...faceBase,
+              transform: "rotateY(180deg)",
+              border: `1px solid rgba(${A}, 0.34)`,
+              boxShadow: `0 4px 32px rgba(0,0,0,0.6), inset 0 1px 0 rgba(${A}, 0.2)`,
+              background: "linear-gradient(160deg, rgba(10,15,26,0.98) 0%, rgba(7,11,20,1) 100%)",
+            }}
+          >
+            <div style={{
+              position: "absolute", inset: 0,
+              background: `radial-gradient(ellipse 80% 50% at 20% 90%, rgba(${A}, 0.12) 0%, transparent 62%)`,
+            }} />
+            <div style={{
+              position: "absolute", top: 0, left: 0, right: 0, height: "2px",
+              background: `linear-gradient(90deg, rgba(${A}, 0.95) 0%, rgba(${A}, 0.15) 100%)`,
+            }} />
+
+            <div style={{
+              position: "relative", zIndex: 1,
+              padding: "clamp(20px, 2.4vw, 30px)",
+              height: "100%",
+              display: "flex", flexDirection: "column", justifyContent: "space-between",
+            }}>
+              <div>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "16px" }}>
+                  <span style={{
+                    fontSize: "9.5px", textTransform: "uppercase", letterSpacing: "0.36em",
+                    color: `rgba(${A}, 0.9)`, fontFamily: "Outfit, sans-serif",
+                  }}>
+                    {page.title}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={toggleFlip}
+                    aria-label={`Close preview for ${page.title}`}
+                    style={{
+                      background: "transparent", border: "none", cursor: "pointer",
+                      color: `rgba(${A}, 0.75)`, display: "flex", padding: "2px",
+                    }}
+                    data-testid={`pages-flip-close-${page.title.toLowerCase().replace(/\s+/g, "-")}`}
+                  >
+                    <X style={{ width: "14px", height: "14px" }} strokeWidth={1.6} />
+                  </button>
+                </div>
+
+                <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "11px" }}>
+                  {page.tiers.map((t, i) => (
+                    <li key={i} style={{ borderLeft: `2px solid rgba(${A}, 0.45)`, paddingLeft: "12px" }}>
+                      <div style={{
+                        fontSize: "9px", textTransform: "uppercase", letterSpacing: "0.32em",
+                        color: `rgba(${A}, 0.85)`, fontFamily: "Outfit, sans-serif", marginBottom: "3px",
+                      }}>
+                        {t.label}
+                      </div>
+                      <div style={{
+                        fontSize: "12.5px", color: "rgba(245,241,230,0.64)", lineHeight: 1.45, fontFamily: "Outfit, sans-serif",
+                      }}>
+                        {t.body}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <Link
+                to={page.to}
+                style={{
+                  display: "inline-flex", alignItems: "center", gap: "6px",
+                  fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.32em",
+                  color: `rgba(${A}, 1)`, textDecoration: "none",
+                  borderBottom: `1px solid rgba(${A}, 0.45)`,
+                  paddingBottom: "3px", width: "fit-content", fontFamily: "Outfit, sans-serif",
+                }}
+                data-testid={`pages-enter-${page.title.toLowerCase().replace(/\s+/g, "-")}`}
+              >
+                Enter {page.title}
+                <ArrowUpRight style={{ width: "11px", height: "11px" }} />
+              </Link>
+            </div>
           </div>
         </div>
       </div>
@@ -335,8 +441,12 @@ const PremiumCard = ({ page, idx }) => {
 };
 
 export const PagesGrid = () => (
-  <section id="pages" className="relative py-28 md:py-36 px-6 md:px-10" data-testid="pages-section">
-    <div className="relative max-w-[1360px] mx-auto">
+  <section id="pages" className="relative py-28 md:py-36 px-6 md:px-10 overflow-hidden" data-testid="pages-section">
+    {/* Same lattice as the hero, but standing on its own over the navy
+        rather than blending into video light. */}
+    <InteractiveGrid variant="section" opacity={0.4} cellSize={52} />
+
+    <div className="relative z-10 max-w-[1360px] mx-auto">
       <div className="reveal mb-16 md:mb-20 flex items-baseline justify-between flex-wrap gap-6">
         <div>
           <div className="eyebrow mb-4">Accountability Is Infrastructure</div>
@@ -348,13 +458,13 @@ export const PagesGrid = () => (
         <p className="font-serif-h italic text-lg md:text-xl text-ivory-dim max-w-md">
           Every institution that operates in public accepted a standard.
           Each card is a door into how well they are keeping it.
-          Flip to see what is behind.
         </p>
       </div>
+
       <div style={{
         display: "grid",
-        gridTemplateColumns: "repeat(3, 1fr)",
-        gap: "clamp(12px, 1.4vw, 20px)",
+        gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))",
+        gap: "clamp(14px, 1.6vw, 22px)",
       }}>
         {PAGES.map((p, i) => (
           <PremiumCard key={p.to} page={p} idx={i} />

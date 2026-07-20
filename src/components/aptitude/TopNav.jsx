@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react"
 import { Link, useLocation } from "react-router-dom"
 import { Landmark } from "lucide-react"
+import { ScaleLogo } from "./Brand"
 
 const NAV_LINKS = [
   { to: "/", label: "Home", desc: "The record, organized. Every pillar, every page, every purpose." },
@@ -18,9 +19,25 @@ const NAV_LINKS = [
 
 export function TopNav() {
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const location = useLocation()
   const menuRef = useRef(null)
   const buttonRef = useRef(null)
+
+  const isHome = location.pathname === "/"
+
+  // The hero owns the wordmark. On the home page the nav lockup stays hidden
+  // until you've scrolled past the hero, so the title never appears twice.
+  // Every other page shows it immediately — there's no hero to defer to.
+  useEffect(() => {
+    if (!isHome) { setScrolled(true); return }
+    const onScroll = () => setScrolled(window.scrollY > window.innerHeight * 0.7)
+    onScroll()
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [isHome])
+
+  const showWordmark = !isHome || scrolled
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -46,18 +63,33 @@ export function TopNav() {
       data-testid="top-nav"
     >
       <div className="max-w-[1360px] mx-auto px-6 md:px-10 flex items-center justify-between h-16">
-        <div className="flex flex-col">
-          <Link
-            to="/"
-            className="font-display text-2xl text-ivory tracking-[0.22em] hover:text-gold transition-colors duration-300"
-            data-testid="nav-logo"
+        <Link
+          to="/"
+          className="flex items-center gap-3 group"
+          data-testid="nav-logo"
+          aria-label="A.P.T.I.T.U.D.E. — home"
+        >
+          {/* Always present, so the header never feels empty */}
+          <ScaleLogo className="w-6 h-6 flex-shrink-0 opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
+
+          <span
+            className="flex flex-col"
+            style={{
+              opacity: showWordmark ? 1 : 0,
+              transform: showWordmark ? "translateY(0)" : "translateY(-4px)",
+              transition: "opacity 420ms ease-out, transform 420ms ease-out",
+              pointerEvents: showWordmark ? "auto" : "none",
+            }}
+            aria-hidden={!showWordmark}
           >
-            A<span className="text-gold">.</span>P<span className="text-gold">.</span>T<span className="text-gold">.</span>I<span className="text-gold">.</span>T<span className="text-gold">.</span>U<span className="text-gold">.</span>D<span className="text-gold">.</span>E<span className="text-gold">.</span>
-          </Link>
-          <span className="hidden md:block text-[9.5px] uppercase tracking-[0.38em] text-secondary/40 leading-none mt-0.5">
-            Accountability Is Infrastructure &middot; MMXXVI
+            <span className="font-display text-2xl text-ivory tracking-[0.22em] group-hover:text-gold transition-colors duration-300 leading-none">
+              A<span className="text-gold">.</span>P<span className="text-gold">.</span>T<span className="text-gold">.</span>I<span className="text-gold">.</span>T<span className="text-gold">.</span>U<span className="text-gold">.</span>D<span className="text-gold">.</span>E<span className="text-gold">.</span>
+            </span>
+            <span className="hidden md:block text-[9.5px] uppercase tracking-[0.38em] text-secondary/40 leading-none mt-1">
+              Accountability Is Infrastructure &middot; MMXXVI
+            </span>
           </span>
-        </div>
+        </Link>
 
         <button
           ref={buttonRef}

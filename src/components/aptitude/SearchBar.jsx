@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import axios from "axios";
-import { Search, Loader2, Sparkles } from "lucide-react";
+import { Search, Loader2, Sparkles, AlertTriangle } from "lucide-react";
 import { toast } from "sonner";
 import { Markdown } from "./Markdown";
 
@@ -44,7 +44,21 @@ export const SearchBar = () => {
       setResult(res.data);
     } catch (err) {
       console.error(err);
-      toast.error("The query could not be heard. Try again in a moment.");
+      // Surface the actual cause. A generic message here hides configuration
+      // failures (missing API key, bad model access) that are trivially fixable.
+      const detail = err?.response?.data?.error;
+      const code = err?.response?.data?.code;
+      if (code === "MISSING_API_KEY") {
+        toast.error("Search is not configured on this deployment.", {
+          description: detail,
+          duration: 12000,
+        });
+      } else {
+        toast.error("The query could not be heard.", {
+          description: detail || err.message || "Try again in a moment.",
+          duration: 8000,
+        });
+      }
     } finally {
       setLoading(false);
     }
@@ -117,9 +131,85 @@ export const SearchBar = () => {
               <span className="font-serif-h italic">Consulting the record…</span>
             </div>
           ) : (
-            <article className="font-ui text-ivory-dim leading-relaxed text-[15px]">
-              <Markdown text={result.answer} />
-            </article>
+            <>
+              <article className="font-ui text-ivory-dim leading-relaxed text-[15px]">
+                <Markdown text={result.answer} />
+              </article>
+
+              {/* Retrieved authority — the cases the answer was actually built from */}
+              {result.sources?.length > 0 && (
+                <div className="mt-8 pt-6 border-t border-line" data-testid="search-sources">
+                  <div className="flex items-center gap-3 mb-4 text-[10.5px] uppercase tracking-[0.32em] text-gold">
+                    <span className="w-4 h-px bg-[var(--apt-gold)]" />
+                    Retrieved Authority · CourtListener
+                  </div>
+                  <ol className="flex flex-col gap-3">
+                    {result.sources.map((s) => (
+                      <li key={s.n} className="flex gap-3 text-[13px] leading-snug">
+                        <span className="text-gold/70 flex-shrink-0 font-mono">[S{s.n}]</span>
+                        <span>
+                          {s.url ? (
+                            <a
+                              href={s.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-ivory hover:text-gold transition-colors duration-300 underline decoration-[rgba(200,169,126,0.3)] underline-offset-2"
+                            >
+                              {s.caseName}
+                            </a>
+                          ) : (
+                            <span className="text-ivory">{s.caseName}</span>
+                          )}
+                          <span className="text-secondary">
+                            {s.court ? ` · ${s.court}` : ""}
+                            {s.date ? ` · ${s.date}` : ""}
+                            {s.citation ? ` · ${s.citation}` : ""}
+                          </span>
+                        </span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              )}
+
+              {/* Hallucination guardrail — citations that did not resolve to a
+                  real decision in CourtListener's database */}
+              {result.unresolved_citations?.length > 0 && (
+                <div
+                  className="mt-6 rounded-sm border border-[rgba(212,149,106,0.4)] bg-[rgba(212,149,106,0.07)] px-5 py-4"
+                  data-testid="search-unresolved-citations"
+                >
+                  <div className="flex items-center gap-2.5 mb-2.5 text-[10.5px] uppercase tracking-[0.28em] text-[#D4956A]">
+                    <AlertTriangle className="w-3.5 h-3.5" strokeWidth={1.8} />
+                    Unverified Citations
+                  </div>
+                  <p className="text-[12.5px] text-ivory-dim leading-relaxed mb-2.5">
+                    These citations appear in the answer but did not resolve to a decision in
+                    CourtListener. Treat them as unverified until confirmed against a primary source.
+                  </p>
+                  <ul className="flex flex-col gap-1">
+                    {result.unresolved_citations.map((c, i) => (
+                      <li key={i} className="text-[12.5px] font-mono text-[#D4956A]">
+                        {c.citation}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Honest limits of the answer above */}
+              <div
+                className="mt-6 pt-4 border-t border-line text-[11.5px] leading-relaxed text-secondary"
+                data-testid="search-verification-notice"
+              >
+                {result.grounded ? (
+                  <>Case citations above were retrieved from CourtListener and link to the source.</>
+                ) : (
+                  <>No decisions were retrieved for this query — the answer reflects general legal framework only and is unverified.</>
+                )}{" "}
+                Statutory references (ORS, OAR, CFR, USC) are <span className="text-gold/80">not retrieved from primary sources</span> and must be verified independently before use.
+              </div>
+            </>
           )}
         </div>
       )}
