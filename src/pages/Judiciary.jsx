@@ -1,8 +1,10 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useRef } from "react";
 import staticJudges from "../data/judges.json";
-import { Gavel, Search, X, ExternalLink, AlertTriangle, Award, MapPin } from "lucide-react";
+import { Gavel, SlidersHorizontal, ExternalLink, AlertTriangle, Award, MapPin } from "lucide-react";
 import { TopNav } from "../components/aptitude/TopNav";
 import { Footer } from "../components/aptitude/Footer";
+import FilterPanel from "../components/judiciary/FilterPanel";
+import { applyJudgeFilters } from "../components/judiciary/filters";
 
 const RISK_STYLES = {
   pending:  { label: "Pending",    color: "#5B7B9A", bg: "rgba(91,123,154,0.12)"   },
@@ -115,23 +117,6 @@ const Stat = ({ label, value, suffix }) => (
     <div className="text-[10px] uppercase tracking-[0.32em] text-gold mb-2">{label}</div>
     <div className="font-display text-3xl md:text-4xl text-ivory counter-tabular">{value?.toLocaleString?.() ?? value}</div>
     <div className="text-[10.5px] uppercase tracking-[0.22em] text-secondary mt-1">{suffix}</div>
-  </div>
-);
-
-const FilterSelect = ({ value, onChange, placeholder, options, labelMap = {}, testid }) => (
-  <div className="relative">
-    <select
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      className="apt-search-soft py-3 px-4 pr-10 text-[13px] uppercase tracking-[0.22em] text-ivory-dim min-w-[200px] appearance-none cursor-pointer"
-      data-testid={testid}
-    >
-      <option value="">{placeholder}</option>
-      {options.map((opt) => (
-        <option key={opt} value={opt} className="bg-[#0A0F1A]">{labelMap[opt] || opt}</option>
-      ))}
-    </select>
-    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gold pointer-events-none text-[10px]">▾</span>
   </div>
 );
 
@@ -395,66 +380,42 @@ const PageHeader = ({ stats }) => (
 );
 
 export default function Judiciary() {
-  const [q,      setQ]      = useState("");
-  const [county, setCounty] = useState("");
-  const [risk,   setRisk]   = useState("");
-  const [court,  setCourt]  = useState("");
+  const [filters, setFilters] = useState({ q: "", county: "", risk: "", court: "", caseTypes: [] });
+  const [panelOpen, setPanelOpen] = useState(false);
+  const filterTriggerRef = useRef(null);
 
   const stats          = useMemo(() => buildStats(staticJudges), []);
-  const filteredJudges = useMemo(() => {
-    const lowerQ = q.trim().toLowerCase();
-    return staticJudges.filter((judge) => {
-      const haystack = [
-        judge.name, judge.county, judge.category, judge.court,
-        judge.roleTitle, judge.tenureDisplay, judge.focus, judge.flags?.join(" "),
-      ].filter(Boolean).join(" ").toLowerCase();
-      if (lowerQ  && !haystack.includes(lowerQ))                        return false;
-      if (county  && judge.county !== county)                            return false;
-      if (risk    && judge.riskLevel !== risk)                           return false;
-      if (court   && judge.category !== court && judge.court !== court)  return false;
-      return true;
-    });
-  }, [q, county, risk, court]);
+  const filteredJudges = useMemo(
+    () => applyJudgeFilters(staticJudges, filters),
+    [filters]
+  );
 
-  const showReset = Boolean(q || county || risk || court);
+  const showReset = Object.values(filters).some((v) =>
+    Array.isArray(v) ? v.length > 0 : Boolean(v)
+  );
 
   return (
     <div className="relative min-h-screen pb-32" data-testid="judiciary-page">
       <TopNav />
+      <div style={{ perspective: "1400px" }}>
+        <div className={`judiciary-surface ${panelOpen ? "judiciary-surface-open" : ""}`}>
       <PageHeader stats={stats} />
 
       <section className="max-w-[1360px] mx-auto px-6 md:px-10 mt-12">
-        {/* Toolbar */}
-        <div className="flex flex-col xl:flex-row xl:items-end gap-4 xl:gap-4 mb-8" data-testid="judiciary-toolbar">
-          <div className="relative flex-1">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gold opacity-70" />
-            <input
-              type="text"
-              value={q}
-              onChange={(e) => setQ(e.target.value)}
-              placeholder="Search by name, county, or court…"
-              className="w-full apt-search-soft pl-11 pr-5 py-3 text-[15px]"
-              data-testid="judiciary-search"
-            />
-          </div>
-          <FilterSelect value={county} onChange={setCounty} placeholder="All counties"     options={stats.counties.map((c) => c.name)} testid="filter-county" />
-          <FilterSelect value={court}  onChange={setCourt}  placeholder="All courts"       options={stats.courts}                       testid="filter-court"  />
-          <FilterSelect
-            value={risk} onChange={setRisk} placeholder="All risk levels"
-            options={["critical","high","moderate","low","pending"]}
-            labelMap={{ critical:"Critical", high:"High", moderate:"Moderate", low:"Low", pending:"Pending" }}
-            testid="filter-risk"
-          />
-          {showReset && (
-            <button
-              type="button"
-              onClick={() => { setQ(""); setCounty(""); setRisk(""); setCourt(""); }}
-              className="inline-flex items-center gap-2 px-4 py-3 border border-[rgba(200,169,126,0.35)] text-[11px] uppercase tracking-[0.3em] text-gold hover:bg-[rgba(200,169,126,0.08)] transition-colors"
-              data-testid="judiciary-reset"
-            >
-              <X className="w-3.5 h-3.5" />Reset
-            </button>
-          )}
+        {/* Toolbar — filters live in the side panel now */}
+        <div className="flex flex-col xl:flex-row xl:items-end gap-4 mb-8" data-testid="judiciary-toolbar">
+          <div className="flex-1" />
+          <button
+            ref={filterTriggerRef}
+            type="button"
+            onClick={() => setPanelOpen(true)}
+            className="inline-flex items-center gap-3 px-6 py-3 border border-[rgba(200,169,126,0.4)] text-[11px] uppercase tracking-[0.3em] text-gold hover:bg-[rgba(200,169,126,0.08)] transition-colors"
+            data-testid="judiciary-filter-trigger"
+          >
+            <SlidersHorizontal className="w-4 h-4" />
+            {showReset ? "Refine filters" : "Filters"}
+            {showReset && <span className="w-1.5 h-1.5 rounded-full bg-[var(--apt-gold)]" />}
+          </button>
         </div>
 
         {/* Stat strip */}
@@ -489,11 +450,24 @@ export default function Judiciary() {
         <p className="mt-10 text-[11px] text-secondary italic max-w-4xl">
           <Award className="inline w-3 h-3 mr-1 text-gold" />
           Photos are sourced from the Oregon Blue Book. Hover or tap any card to flip it,
-          and use the filters above to narrow the full bench.
+          and use the filter panel to narrow the full bench.
         </p>
       </section>
 
       <Footer />
+        </div>
+      </div>
+
+      <FilterPanel
+        open={panelOpen}
+        onClose={() => setPanelOpen(false)}
+        triggerRef={filterTriggerRef}
+        filters={filters}
+        onChange={setFilters}
+        resultCount={filteredJudges.length}
+        counties={stats.counties.map((c) => c.name)}
+        courts={stats.courts}
+      />
     </div>
   );
 }
