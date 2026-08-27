@@ -1,5 +1,8 @@
 # Aptitude Brain — Legal Intelligence Core
 
+> Canonical terminology and the consolidated manual live in `docs/manual/`.
+> This file describes the implemented legal-intelligence core only.
+
 **The reasoning engine that turns unstructured legal experiences into structured, queryable, auditable legal intelligence.**
 
 This is the implementation of Volumes I–VI from the Aptitude System Technical Manual (living LaTeX architecture document).

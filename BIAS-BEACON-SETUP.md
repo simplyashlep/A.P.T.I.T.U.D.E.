@@ -1,3 +1,8 @@
+> ⚠️ **Superseded.** This describes the older Jekyll-era Bias Beacon prototype.
+> The canonical architecture, vocabulary, and scoring model live in
+> `docs/manual/`. Claims of "fully operational" behavior here do not
+> reflect the current React implementation.
+
 # 🎯 Bias Beacon Integration Complete!
 
 The Bias Beacon judicial bias tracker has been successfully integrated into your Public Accountability Project. Here's what has been implemented and how to use it.
