@@ -6,8 +6,9 @@ import { Hero } from "../components/aptitude/Hero";
 import { PagesGrid } from "../components/aptitude/PagesGrid";
 import { Footer } from "../components/aptitude/Footer";
 import { Quote, ArrowUpRight } from "lucide-react";
-import { ScaleLogo } from "../components/aptitude/Brand";
+import { ScaleLogo, Wordmark, APTITUDE_WORDS } from "../components/aptitude/Brand";
 import { InteractiveGrid } from "../components/aptitude/InteractiveGrid";
+import { Marquee } from "../components/aptitude/Marquee";
 import { Link } from "react-router-dom";
 
 const API = `${import.meta.env.VITE_BACKEND_URL || ""}/api`;
@@ -104,7 +105,7 @@ const TenetsSection = () => (
 );
 
 const QuoteSection = () => (
-  <section className="relative py-32 md:py-44 px-6 md:px-10 overflow-hidden" data-testid="quote-section">
+  <section className="relative py-32 md:py-44 px-6 md:px-10 overflow-hidden quote-to-footer-grid" data-testid="quote-section">
     <div className="absolute inset-0 flex items-center justify-center opacity-[0.04] pointer-events-none">
       <ScaleLogo className="w-[560px] h-[560px] md:w-[820px] md:h-[820px]" />
     </div>
@@ -149,38 +150,6 @@ const QuoteSection = () => (
   </section>
 );
 
-// Marquee — the mission stated plainly, with authority
-const MARQUEE_ITEMS = [
-  "Aptitudinal Alignment",
-  "Public Accountability",
-  "Credit System Transparency",
-  "Cross-System Visibility",
-  "Institutional Friction Index",
-  "Digital Financial Access",
-  "Open Payment Standards",
-  "Disparity Mapping",
-  "The Record You Were Never Shown",
-  "Pathway to What's Yours",
-  "Every Agency. Every Obligation. In the Open.",
-  "You Fund It. You Have a Right to Read It.",
-];
-
-const TrustStrip = () => {
-  const all = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS];
-  return (
-    <section className="relative border-y border-line py-6 overflow-hidden" aria-hidden="true" data-testid="trust-strip">
-      <div className="drift-track flex whitespace-nowrap gap-14 text-[11px] uppercase tracking-[0.36em] text-secondary">
-        {all.map((t, i) => (
-          <span key={i} className="flex items-center gap-14">
-            {t}
-            <span className="w-1 h-1 rounded-full bg-[var(--apt-gold)] opacity-60" />
-          </span>
-        ))}
-      </div>
-    </section>
-  );
-};
-
 // Lady Justice — persistent ghost, bottom-right, every page via Home layout
 // Used here as a fixed background element across the whole app shell
 const JusticeGhost = () => (
@@ -223,11 +192,39 @@ export default function Home() {
       <JusticeGhost />
       <TopNav />
       <Hero />
-      <TrustStrip />
       <PagesGrid />
-      <TenetsSection />
-      <QuoteSection />
-      <Footer />
+      <section className="relative quote-to-footer-grid" data-testid="post-grid-transition">
+        <div className="acronym-transition-wrap" data-testid="acronym-transition">
+          <Marquee
+            items={APTITUDE_WORDS}
+            direction="left"
+            duration={54}
+            gap="3.5rem"
+            className="acronym-transition-marquee"
+            renderItem={(w, i) => {
+              const variants = [
+                { className: "font-serif-h italic text-ivory-dim", size: "1.35rem", weight: 400, op: 0.8 },
+                { className: "font-display uppercase text-gold", size: "0.95rem", weight: 700, op: 0.95, ls: "0.34em" },
+                { className: "font-serif-h text-ivory", size: "1.6rem", weight: 600, op: 0.62 },
+                { className: "font-ui uppercase text-ivory-dim", size: "0.9rem", weight: 400, op: 0.65, ls: "0.28em" },
+              ];
+              const v = variants[i % variants.length];
+              return (
+                <span className={v.className} style={{
+                  fontSize: v.size, fontWeight: v.weight, opacity: v.op,
+                  letterSpacing: v.ls || "0.02em",
+                }}>
+                  {w.word}
+                  <span className="text-gold" style={{ opacity: 0.5, marginLeft: "3.5rem" }}>·</span>
+                </span>
+              );
+            }}
+          />
+        </div>
+        <TenetsSection />
+        <QuoteSection />
+        <Footer />
+      </section>
       <Toaster
         theme="dark"
         position="bottom-center"

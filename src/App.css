@@ -306,6 +306,45 @@ body::before {
     animation: caret-blink 1.1s steps(1) infinite;
 }
 
+/* The gold A mark — glow + glint treatment */
+.aptitude-mark {
+  filter: drop-shadow(0 0 10px rgba(200, 169, 126, 0.45))
+          drop-shadow(0 2px 18px rgba(200, 169, 126, 0.28));
+  animation: aptitude-mark-glint 9s ease-in-out infinite;
+}
+
+@keyframes aptitude-mark-glint {
+  0%, 100% { filter: drop-shadow(0 0 10px rgba(200,169,126,0.45)) drop-shadow(0 2px 18px rgba(200,169,126,0.28)); }
+  50%      { filter: drop-shadow(0 0 16px rgba(242,226,196,0.65)) drop-shadow(0 2px 26px rgba(200,169,126,0.4)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aptitude-mark { animation: none; }
+}
+
+/* Homepage transition and continuous quote-to-footer grid */
+.quote-to-footer-grid {
+  background-color: #070B14;
+  background-image:
+    linear-gradient(rgba(200,169,126,0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,169,126,0.055) 1px, transparent 1px);
+  background-size: 52px 52px;
+}
+
+.acronym-transition-wrap {
+  padding: clamp(2.5rem, 6vw, 5rem) 0 clamp(2rem, 4vw, 3.5rem);
+  border-top: 1px solid var(--apt-line);
+  border-bottom: 1px solid var(--apt-line);
+}
+
+.acronym-transition-marquee {
+  min-height: 3rem;
+}
+
+@media (max-width: 600px) {
+  .acronym-transition-wrap { padding-inline: 1rem; }
+}
+
 /* Marquee for trust strip */
 @keyframes drift {
     from { transform: translateX(0); }

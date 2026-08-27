@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { AptitudeMark } from "./Brand";
 
 /**
  * CursorWordmark — the A.P.T.I.T.U.D.E. lockup, raised and 3D, with a
@@ -17,7 +18,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
  * holding the mark in its resting gold state.
  */
 
-const LETTERS = "APTITUDE".split("");
+const LETTERS = "PTITUDE".split("");
 
 const SIZES = {
   md: "text-3xl md:text-4xl tracking-[0.18em]",
@@ -97,8 +98,45 @@ export const CursorWordmark = ({
     pointerEvents: "none",
   };
 
-  const Glyphs = ({ dotColor }) => (
+  // The mark is a real image, so it renders only in the base layer (which is
+  // in normal flow). The face/heat overlay layers clip text gradients to the
+  // glyphs; they render an invisible same-size placeholder for the A mark so
+  // the two layers stay perfectly registered while the photo shows through
+  // untouched from the base layer below.
+  const MarkSlot = ({ visible }) => (
+    <span
+      aria-hidden="true"
+      style={{
+        display: "inline-flex",
+        width: "0.92em",
+        height: "0.92em",
+        marginRight: "0.08em",
+        verticalAlign: "-0.06em",
+        overflow: "hidden",
+        position: "relative",
+        ...(visible
+          ? {
+              filter: hot
+                ? "drop-shadow(0 0 12px rgba(242,226,196,0.62))"
+                : "drop-shadow(0 0 7px rgba(200,169,126,0.32))",
+              transition: "filter 320ms ease",
+            }
+          : { visibility: "hidden" }),
+      }}
+    >
+      {visible && (
+        <AptitudeMark
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ mixBlendMode: "screen" }}
+        />
+      )}
+    </span>
+  );
+
+  const Glyphs = ({ dotColor, markVisible = true }) => (
     <>
+      <MarkSlot visible={markVisible} />
       {LETTERS.map((l, i) => (
         <span key={i}>
           {l}
@@ -153,7 +191,7 @@ export const CursorWordmark = ({
         aria-hidden="true"
         style={{ ...overlayStyle, backgroundImage: GOLD_FACE }}
       >
-        <Glyphs />
+        <Glyphs markVisible={false} />
       </span>
 
       {/* 3 — inverse heatmap, tracking the pointer */}
@@ -167,7 +205,7 @@ export const CursorWordmark = ({
           transition: "opacity 260ms ease-out",
         }}
       >
-        <Glyphs />
+        <Glyphs markVisible={false} />
       </span>
     </div>
   );

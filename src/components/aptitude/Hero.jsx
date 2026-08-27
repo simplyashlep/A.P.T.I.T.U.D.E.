@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { CursorWordmark } from "./CursorWordmark";
 import { InteractiveGrid } from "./InteractiveGrid";
-import { Marquee } from "./Marquee";
-import { APTITUDE_WORDS } from "./Brand";
 import { SearchBar } from "./SearchBar";
 import { OregonCounter } from "./OregonCounter";
 
@@ -236,33 +234,6 @@ export const Hero = () => {
         <div className="max-w-4xl xl:max-w-6xl flex-1 flex flex-col items-center md:items-start justify-center text-center md:text-left">
           <CursorWordmark size="lg" />
 
-          {/* The acronym used to sit here as one dense static line. Running it
-              as a marquee keeps the words without holding the vertical space,
-              which is what was burying the search bar. */}
-          <div className="w-full mt-6 md:mt-7" data-testid="hero-acronym">
-            <Marquee items={APTITUDE_WORDS} direction="left" duration={54} gap="2.75rem"
-              renderItem={(w, i) => {
-                // Alternating treatments so the row reads as designed rhythm
-                // rather than a uniform ticker.
-                const variants = [
-                  { className: "font-serif-h italic text-ivory-dim", size: "1.05rem", weight: 400, op: 0.75 },
-                  { className: "font-display uppercase text-gold", size: "0.72rem", weight: 700, op: 0.9, ls: "0.34em" },
-                  { className: "font-serif-h text-ivory", size: "1.25rem", weight: 600, op: 0.5 },
-                  { className: "font-ui uppercase text-ivory-dim", size: "0.68rem", weight: 400, op: 0.55, ls: "0.28em" },
-                ];
-                const v = variants[i % variants.length];
-                return (
-                  <span className={v.className} style={{
-                    fontSize: v.size, fontWeight: v.weight, opacity: v.op,
-                    letterSpacing: v.ls || "0.02em",
-                  }}>
-                    {w.word}
-                    <span className="text-gold" style={{ opacity: 0.45, marginLeft: "2.75rem" }}>·</span>
-                  </span>
-                );
-              }}
-            />
-          </div>
           <p
             className="mt-9 md:mt-10 font-serif-h text-2xl md:text-3xl text-ivory italic leading-snug"
             data-testid="hero-tagline"

@@ -15,6 +15,17 @@ export const APTITUDE_WORDS = [
   { letter: "E", word: "Ecosystems" },
 ];
 
+export const AptitudeMark = ({ className = "w-9 h-9", alt = "Aptitude", style }) => (
+  <img
+    src="/media/aptitude-a.png"
+    alt={alt}
+    className={`aptitude-mark ${className}`}
+    style={style}
+    loading="eager"
+    draggable="false"
+  />
+);
+
 export const ScaleLogo = ({ className = "w-7 h-7" }) => (
   <svg viewBox="0 0 64 64" className={className} aria-hidden="true">
     <defs>
