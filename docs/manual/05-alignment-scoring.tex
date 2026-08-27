@@ -1,0 +1,114 @@
+\section{Aptitudinal Alignment Scoring}
+
+\subsection{Flow}
+
+\begin{lstlisting}
+entity + potential profile + evidence
+  -> metric observations
+  -> normalization
+  -> six dimension evaluators
+  -> hard floors
+  -> Alignment Score
+  -> tier / status
+\end{lstlisting}
+
+Every supported entity receives the same explainable score contract, but not
+the same metric registry. A judge, court, agency, prosecutor's office, or
+credit reporting agency gets a potential profile appropriate to its mandate,
+role, jurisdiction, peer class, resources, and public obligations.
+
+\subsection{Universal Entity Contract}
+
+\begin{lstlisting}
+{
+  "entity_id": "uuid",
+  "entity_type": "judge | court | agency | office | institution",
+  "potential_profile_version": "string",
+  "alignment_score": 0.0,
+  "alignment_status": "high_alignment | adequate | at_risk | low_alignment | critical_failure | insufficient_data | suppressed",
+  "dimensions": { "F": 0.0, "C": 0.0, "T": 0.0, "E": 0.0, "Q": 0.0, "Ac": 0.0 },
+  "evidence_summary": { "count": 0, "source_types": [], "missing_requirements": [] },
+  "flags": [],
+  "audit_reference": "string"
+}
+\end{lstlisting}
+
+The numeric range is normalized to \([0,1]\) internally. A FICO-like integer
+scale may be used only through a documented presentation transform; it must
+never hide the six dimensions, evidence sufficiency, or limitations.
+
+\subsection{Default Weights}
+
+\[
+A = \sum_{i=1}^{6} w_i \cdot D_i \qquad \sum_{i=1}^{6} w_i = 1.0
+\]
+
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+Dimension & Symbol & Default weight & Rationale \\
+\midrule
+Fidelity       & \(F\)  & 0.22 & Legal mandate adherence is foundational \\
+Consistency    & \(C\)  & 0.18 & Variance in outcomes signals systemic bias \\
+Transparency   & \(T\)  & 0.17 & Public record access is a legal right \\
+Efficiency     & \(E\)  & 0.15 & Resource stewardship proxies competence \\
+Equity         & \(Q\)  & 0.16 & Demographic fairness is a constitutional floor \\
+Accountability & \(Ac\) & 0.12 & Self-correction capacity determines trajectory \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Classification Tiers}
+
+\begin{center}
+\begin{tabular}{lcc}
+\toprule
+Tier & Score range & Alignment Status \\
+\midrule
+I   & \(0.85 - 1.00\) & \texttt{high\_alignment} \\
+II  & \(0.70 - 0.84\) & \texttt{adequate} \\
+III & \(0.50 - 0.69\) & \texttt{at\_risk} \\
+IV  & \(0.30 - 0.49\) & \texttt{low\_alignment} \\
+V   & \(0.00 - 0.29\) & \texttt{critical\_failure} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Evidence Thresholds and Insufficient Data}
+
+A score is emitted only when the configured evidence thresholds pass:
+at least 12 behavioral quanta per dimension from at least 3 distinct source
+types. When any dimension fails its threshold, the result is
+\texttt{insufficient\_data}: \texttt{alignment\_score} is null, the failing
+dimensions are null, and \texttt{evidence\_summary.missing\_requirements}
+explains why. The system never estimates a missing dimension.
+
+\subsection{Hard Floors}
+
+Equity hard floors override the weighted average and cannot be bypassed:
+
+\begin{itemize}
+  \item Finding of intentional discrimination within 10 years
+        \(\Rightarrow Q_{\min} = 0.15\)
+  \item Active consent decree for a civil rights violation
+        \(\Rightarrow Q_{\min} = 0.25\)
+  \item Pattern-or-practice finding \(\Rightarrow Q_{\min} = 0.20\)
+\end{itemize}
+
+All floor applications are recorded in the score record before the Alignment
+Score is computed.
+
+\subsection{Normalization}
+
+\[
+D_{\mathrm{norm}} = \frac{D_{\mathrm{raw}} - D_{\min}}{D_{\max} - D_{\min}}
+\]
+
+Bounds are configurable per entity class. Values are clamped to \([0,1]\) ---
+no extrapolation permitted.
+
+\subsection{Reproducibility}
+
+A reproducibility record stores input hashes, configuration versions, code
+version, and output hash. Any score can be re-derived byte-for-byte from the
+quantum set and the potential profile version.

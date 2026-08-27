@@ -1,0 +1,53 @@
+\section{Evidence and Provenance Model}
+
+Both the legal-intelligence pipeline and the Alignment scoring pipeline use
+one shared evidence foundation. Each evidence item identifies the institution
+or actor, the event, the source record, source type and credibility tier,
+citation, document date, jurisdiction, dimension and sub-metric mapping,
+raw and normalized values, uncertainty, and the processing, ontology, metric
+registry, and normalization versions that produced it.
+
+Raw evidence is immutable. Derived observations and scores are append-only
+revisions linked to the input hashes and configuration versions used to
+produce them.
+
+\subsection{Source Type Allowlist}
+
+Only records with these \texttt{source\_type} values are eligible for
+institutional score computation:
+
+\begin{lstlisting}
+public_record, regulatory_filing, court_decision, agency_report,
+cfpb_complaint, ftc_action, inspector_general, individual_submission
+\end{lstlisting}
+
+Records with \texttt{source\_type = individual\_submission} are supplementary
+(credibility tier 6, weight 0.05) and cannot dominate any dimension unless
+corroborated by a public record. Their absence never degrades institutional
+score validity.
+
+\subsection{Provenance Fields}
+
+\begin{lstlisting}
+{
+  "id": "hash(entityId + eventId + sourceRecordId)",
+  "entity_id": "uuid",
+  "event_id": "uuid",
+  "source_record_id": "uuid",
+  "source_type": "court_decision",
+  "credibility_tier": 1,
+  "citation": "State v. Example, 123 Or App 45 (2024)",
+  "document_date": "2024-03-01",
+  "jurisdiction_code": "OR",
+  "dimension": "F",
+  "raw_value": 0.91,
+  "normalized_value": 0.91,
+  "confidence": 1.0,
+  "processing_version": "brain-v1",
+  "ontology_version": "ontology-v1",
+  "metric_registry_version": "metrics-v1",
+  "normalization_version": "norm-v1",
+  "input_hash": "hex",
+  "recorded_at": "ISO-8601"
+}
+\end{lstlisting}

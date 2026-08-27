@@ -1,0 +1,29 @@
+\section{Canonical Vocabulary}
+
+One vocabulary is used across the codebase, the API, and this manual.
+
+\begin{center}
+\begin{longtable}{p{4.4cm} p{10.5cm}}
+\toprule
+\textbf{Term} & \textbf{Meaning} \\
+\midrule
+\endhead
+Evidence item & A sourced institutional event, record, decision, filing, or report. \\
+Source record & Citation and provenance metadata for an evidence item: source type, credibility tier, date, jurisdiction, and retrieval details. \\
+Behavioral quantum & The normalized analytical representation of an evidence item. It is a data abstraction, not a physical particle. \\
+Metric observation & A raw measurement mapped to a dimension and sub-metric. \\
+Dimension score & A reproducible score for Fidelity, Consistency, Transparency, Efficiency, Equity, or Accountability. \\
+Alignment Score & The universal FICO-like result for an entity: a weighted, explainable measure of how closely documented conduct approaches that entity's defined potential after evidence and hard-floor checks. \\
+Entity & Any subject evaluated by the system: judge, court, agency, office, or other institution. \\
+Potential profile & The versioned standard for what an entity can and should achieve, based on mandate, role, jurisdiction, peer class, resources, and public obligations. \\
+Alignment Status & The interpreted category of the Alignment Score: \texttt{high\_alignment}, \texttt{adequate}, \texttt{at\_risk}, \texttt{low\_alignment}, \texttt{critical\_failure}, \texttt{insufficient\_data}, or \texttt{suppressed}. \\
+\bottomrule
+\end{longtable}
+\end{center}
+
+\subsection{Dimension Symbols}
+
+The six dimensions use unambiguous symbols in code and documentation:
+\(F\) Fidelity, \(C\) Consistency, \(T\) Transparency, \(E\) Efficiency,
+\(Q\) Equity, and \(Ac\) Accountability. \(Q\) means Equity; \(Ac\) means
+Accountability. No other meaning is attached to these symbols.

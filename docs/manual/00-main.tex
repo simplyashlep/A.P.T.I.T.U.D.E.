@@ -1,0 +1,68 @@
+%% Aptitudinal Alignment — Institutional Fidelity Field Theory
+%% Master document. Compartmentalized sections are \input from this file,
+%% so each concern stays independently editable while compiling as one manual.
+%% Compile: xelatex 00-main.tex   (run twice for the table of contents)
+\documentclass[a4paper,11pt]{article}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+\setmonofont{Courier New}
+
+\usepackage[margin=2.6cm]{geometry}
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{titlesec}
+
+\definecolor{navy}{HTML}{1B2A4A}
+\definecolor{aptblue}{HTML}{2563EB}
+\definecolor{teal}{HTML}{0D9488}
+\definecolor{aptred}{HTML}{DC2626}
+\definecolor{aptgreen}{HTML}{16A34A}
+\definecolor{aptslate}{HTML}{64748B}
+\definecolor{aptlight}{HTML}{F1F5F9}
+
+\titleformat{\section}{\sffamily\Large\bfseries\color{navy}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\sffamily\large\bfseries\color{aptblue}}{}{0em}{}
+\titleformat{\subsubsection}{\sffamily\normalsize\bfseries\color{teal}}{}{0em}{}
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  columns=fullflexible,
+  backgroundcolor=\color{aptlight},
+}
+
+\newcommand{\invariantbox}[1]{%
+  \par\noindent\fboxsep 8pt\fcolorbox{aptred}{white}{%
+    \parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{#1}}\par
+}
+
+\title{Aptitudinal Alignment\\Institutional Fidelity Field Theory}
+\author{Aptitude Systems}
+\date{Version 2.0 \quad August 2026}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\input{01-overview}
+\input{02-vocabulary}
+\input{03-evidence-foundation}
+\input{04-legal-intelligence}
+\input{05-alignment-scoring}
+\input{06-dimensions}
+\input{07-sources-normalization}
+\input{08-governance-reproducibility}
+\input{09-implementation-phases}
+
+\end{document}

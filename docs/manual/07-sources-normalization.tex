@@ -1,0 +1,28 @@
+\section{Source Credibility and Normalization Bounds}
+
+\subsection{Credibility Hierarchy}
+
+Conflicting quanta from multiple sources are resolved by tier weight:
+
+\begin{center}
+\begin{tabular}{ccp{10cm}}
+\toprule
+Tier & Weight & Source description \\
+\midrule
+1 & 1.00 & Court orders, consent decrees, regulatory enforcement actions \\
+2 & 0.90 & IG reports, GAO findings, examination summaries, sworn testimony \\
+3 & 0.75 & Aggregated complaint databases, formal complaints \\
+4 & 0.50 & Self-reported public filings (cross-validation required) \\
+5 & 0.20 & Third-party research and reporting (corroboration required) \\
+6 & 0.05 & Individual submissions --- supplementary only \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Normalization Bounds}
+
+Normalization bounds are configured per entity class in the metric registry
+(e.g., the NCRA peer class bounds table from \texttt{Bias Beacon
+Documentation.tex} for credit reporting agencies). Every bound records its
+calibration rationale. Values are clamped to \([0,1]\) --- no extrapolation
+permitted.

@@ -1,0 +1,38 @@
+\section{Legal Intelligence Pipeline}
+
+The legal-intelligence pipeline transforms lived legal experiences into
+structured, queryable, auditable legal intelligence. It is a separate bounded
+product from institutional scoring.
+
+\subsection{Flow}
+
+\begin{lstlisting}
+narrative -> structured event -> claims/doctrines
+         -> authority graph and retrieval -> procedural pathways
+\end{lstlisting}
+
+\subsection{Agents}
+
+\begin{itemize}
+  \item \textbf{Intake Parser}: structures observable facts only; never
+        infers legal conclusions.
+  \item \textbf{Legal Classifier}: maps to claims and doctrines using the
+        ontology only; conservative classification.
+  \item \textbf{Graph Seeder}: builds the legal knowledge graph with typed
+        edges (supports, governed\_by, codified\_in, violates, resolved\_by).
+  \item \textbf{Vector Retrieval}: returns ranked supporting authority with
+        metadata --- supporting material only, no conclusions.
+  \item \textbf{Procedural Engine}: builds ordered enforcement pathways with
+        prerequisites and jurisdiction alignment.
+\end{itemize}
+
+\subsection{Invariants}
+
+\begin{itemize}
+  \item No output without provenance.
+  \item No citation without source.
+  \item No authority without jurisdiction.
+  \item No overwrite of historical records.
+  \item No legal conclusion without supporting authorities.
+  \item An incident never silently becomes an institutional score.
+\end{itemize}

@@ -1,0 +1,69 @@
+\section{Six Dimensions and Metric Registry}
+
+Each dimension is defined once. The operational sub-metric tables, weights,
+source lists, and agent specifications come from the Beacon Scoring Engine
+specification (source: \texttt{Bias Beacon Documentation.tex}, the second of
+the two LaTeX manuals on the maintainer's desktop), reproduced verbatim where
+they define behavior. Only the rules that change scoring behavior are
+restated here; full metric tables live in the source specification and its
+metric registry.
+
+\subsection{Fidelity (\(F\))} % LMCR, PAS, RVR, SOF — weights 0.30/0.25/0.25/0.20; 12-quanta minimum; consent orders are negative evidence; self-reported compliance 0.50 credibility discount; ultra vires finding floors LMCR at 0.20.
+Measures whether an institution adheres to its legal mandate, enabling
+statutes, and constitutional obligations. Sub-metrics: Legal Mandate
+Compliance Rate (LMCR), Policy Adherence Score (PAS), Regulatory Violation
+Reversal Rate (RVR), and Statutory Override Frequency (SOF, inverted).
+Consent orders count as negative compliance evidence regardless of whether
+the institution agreed to them. Self-reported compliance documentation
+receives a 0.50 credibility discount unless corroborated. A single court
+finding of \emph{ultra vires} action floors LMCR at 0.20 for the affected
+period.
+
+\subsection{Consistency (\(C\))} % OVI, PAR, CDS, DRR — cluster-level variance; 15% protected-class disparity triggers equity cross-flag; consent decrees are permanent low-consistency markers until 5-year clean record.
+Measures variance in institutional outcomes across substantively similar
+cases. Sub-metrics: Outcome Variance Index (OVI, inverted), Precedent
+Adherence Rate (PAR), Cross-Case Disparity Score (CDS, inverted), and
+Decision Reversal Rate (DRR, inverted). A demographic disparity above 15\%
+in any protected class triggers an equity cross-flag regardless of the
+overall \(C\) score. Institutions under consent decrees carry permanent
+low-consistency markers until a 5-year clean record is established.
+
+\subsection{Transparency (\(T\))} % RDR, RTI, FCR, PAX — clock starts at receipt; in-person-only filing deducts PAX 0.10; contempt within 5 years caps T at 0.40.
+Measures whether the institution makes its records, decisions, and
+procedures accessible. Sub-metrics: Record Disclosure Rate (RDR), Response
+Time Index (RTI), FOIA/Public Records Compliance Rate (FCR), and Proactive
+Access Index (PAX). Response time is measured from institutional
+\emph{receipt}, not acknowledgment. Institutions requiring in-person filing
+only receive an automatic PAX deduction of 0.10. An institution held in
+contempt for disclosure failure within the last 5 years cannot score above
+\(T = 0.40\).
+
+\subsection{Efficiency (\(E\))} % CRR, PTS, RUI, BCR — administrative closures don't count; peer-class benchmark always displayed; budget shock grace 0.10.
+Measures how effectively an institution converts public resources into
+mandated outcomes. Sub-metrics: Case Resolution Rate (CRR), Processing Time
+Score (PTS), Resource Utilization Index (RUI, net of litigation costs), and
+Backlog Clearance Rate (BCR). Administrative closures without documented
+outcome do not count. Efficiency scores are always displayed with the
+peer-class benchmark visible. Budget cuts exceeding 20\% in a single year
+trigger a documented 0.10 grace adjustment for that year only.
+
+\subsection{Equity (\(Q\))} % DDI, GAS, PCOR, ASR — hard floors in 05; n>=100 per cell; never impute demographics; Tier V triggers regulatory referral.
+Measures whether the institution delivers its mandate fairly across
+demographic groups, geographic areas, and economic strata. Sub-metrics:
+Demographic Disparity Index (DDI, inverted), Geographic Access Score (GAS),
+Protected Class Outcome Rate (PCOR), and Appeals Success Rate for protected
+classes (ASR). Hard floors are defined in Section~5. A minimum \(n = 100\)
+per demographic cell is required before statistical claims; the system never
+imputes demographic data. A Tier V equity score triggers a mandatory
+regulatory referral workflow regardless of the overall Alignment Score.
+
+\subsection{Accountability (\(Ac\))} % SCR, AC, CRR_c, RAR — 1.5x multiplier for proactive correction; recurring identical violations cap Ac at 0.35; RESOLUTION_FRAUD audit trigger.
+Measures the institution's capacity to identify its own failures, correct
+them, and institutionalize reforms. Sub-metrics: Self-Correction Rate (SCR,
+with a \(1.5\times\) multiplier for proactive correction), Audit Compliance
+(AC), Complaint Resolution Rate (\(\mathrm{CRR_c}\), distinct from
+Efficiency CRR), and Remediation Action Rate (RAR). A pattern of recurring
+identical violations (3+ consecutive periods) caps \(Ac\) at 0.35. Complaints
+marked resolved without documented resolution trigger a
+\texttt{RESOLUTION\_FRAUD} flag and an audit of all complaint-resolution
+scores for the preceding 24 months.
