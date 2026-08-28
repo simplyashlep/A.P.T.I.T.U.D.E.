@@ -185,7 +185,7 @@ export async function onRequestPost(context) {
 
     // ── 2. Answer, grounded ──────────────────────────────────────────────────
     const geminiRes = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${env.GEMINI_API_KEY}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${env.GEMINI_API_KEY}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -201,7 +201,7 @@ export async function onRequestPost(context) {
       const errBody = await geminiRes.text();
       const hint =
         geminiRes.status === 400 || geminiRes.status === 403
-          ? " — this usually means the GEMINI_API_KEY is invalid or lacks access to gemini-2.0-flash."
+          ? " — this usually means the GEMINI_API_KEY is invalid or lacks access to gemini-2.5-flash."
           : "";
       throw new Error(`Gemini API error ${geminiRes.status}${hint}: ${errBody.slice(0, 300)}`);
     }

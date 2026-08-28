@@ -185,7 +185,7 @@ export async function onRequestPost(context) {
 
     // ── 2. Answer, grounded ──────────────────────────────────────────────────
     const geminiRes = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${env.GEMINI_API_KEY}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${env.GEMINI_API_KEY}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -210,7 +210,7 @@ export async function onRequestPost(context) {
           ? "The Gemini project has no free-tier quota (limit: 0). This is not a temporary rate limit — a billing account must be linked to the Google Cloud project."
           : "Gemini rate limit reached. Summaries will return shortly.";
       } else if (geminiRes.status === 400 || geminiRes.status === 403) {
-        reason = "The GEMINI_API_KEY is invalid or lacks access to gemini-2.0-flash.";
+        reason = "The GEMINI_API_KEY is invalid or lacks access to gemini-2.5-flash.";
       }
 
       return Response.json(
