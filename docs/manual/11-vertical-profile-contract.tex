@@ -1,0 +1,48 @@
+\section{Vertical Profile Contract}
+
+A vertical profile defines how a class of entities expresses institutional
+potential. It supplies configuration to the universal engine without changing
+the evidence, provenance, or score-result contracts.
+
+\subsection{Profile Shape}
+
+\begin{lstlisting}
+{
+  "profile_id": "ncra-v1",
+  "vertical_family": "consumer_facing",
+  "entity_class": "nationwide_consumer_reporting_agency",
+  "legal_regimes": ["FCRA", "Regulation V"],
+  "peer_class": { "id": "ncra-primary", "minimum_size": 3 },
+  "dimensions": {
+    "F": { "metrics": ["LMCR", "PAS", "RVR", "SOF"] },
+    "C": { "metrics": ["OVI", "PAR", "CDS", "DRR"] },
+    "T": { "metrics": ["RDR", "RTI", "FCR", "PAX"] },
+    "E": { "metrics": ["CRR", "PTS", "RUI", "BCR"] },
+    "Q": { "metrics": ["DDI", "GAS", "PCOR", "ASR"] },
+    "Ac": { "metrics": ["SCR", "AC", "CRR_c", "RAR"] }
+  },
+  "normalization_version": "ncra-norm-v1",
+  "sufficiency_rules": {},
+  "hard_floors": {},
+  "caps": {}
+}
+\end{lstlisting}
+
+A corrections profile may use different metric codes, sources, peer classes,
+and thresholds while retaining the same six-dimensional result contract. The
+engine must reject incomplete profiles rather than silently substituting
+metrics from another vertical.
+
+\subsection{Entity and Activity Separation}
+
+An entity profile identifies the subject; an activity record identifies what
+that subject does. This distinction is mandatory for corporate groups and
+public departments with multiple programs.
+
+\begin{lstlisting}
+entity -> legal entity -> activity -> jurisdiction -> legal regime -> evidence
+\end{lstlisting}
+
+A label such as ``debt collector'' must therefore be attached only when the
+source supports the named legal entity, activity, jurisdiction, and applicable
+period. It must not be generalized across a corporate group without evidence.

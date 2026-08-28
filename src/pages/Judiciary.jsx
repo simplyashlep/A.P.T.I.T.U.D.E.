@@ -397,7 +397,7 @@ export default function Judiciary() {
   return (
     <div className="relative min-h-screen pb-32" data-testid="judiciary-page">
       <TopNav />
-      <div style={{ perspective: "1400px" }}>
+      <div>
         <div className={`judiciary-surface ${panelOpen ? "judiciary-surface-open" : ""}`}>
       <PageHeader stats={stats} />
 

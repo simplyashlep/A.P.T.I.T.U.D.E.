@@ -1,0 +1,32 @@
+\section{Executable Metric Registry and Cross-Vertical Validation}
+
+The detailed Beacon sub-metrics are being converted into versioned executable
+registries. The registry is the bridge between the normative specification and
+the scoring engine. It records each metric's dimension, weight, direction,
+required source types, minimum sample size where applicable, and profile
+version.
+
+\begin{lstlisting}
+metric code -> dimension -> formula -> source requirements
+            -> normalization -> sufficiency -> flags/floors
+\end{lstlisting}
+
+The first reusable registries are:
+
+\begin{itemize}
+  \item \texttt{ncra-v1}: the 24-metric Nationwide Consumer Reporting Agency
+        registry derived from the Beacon baseline;
+  \item \texttt{corrections-v1}: an independent Department of Corrections
+        registry with custody, due process, grievance, access, capacity, and
+        remediation measures.
+\end{itemize}
+
+Both profiles use the same universal entity, evidence, and score-result
+contracts. Their metric codes, source requirements, peer classes, and
+interpretive rules differ by design. Equifax is an entity instance of
+\texttt{ncra-v1}; it is not the profile itself.
+
+At this phase, registry validation and profile separation are implemented.
+Metric-specific formulas, live source adapters, raw snapshot persistence, and
+empirical calibration remain subsequent implementation phases. No registry
+fixture alone constitutes a real-world Alignment Score.

@@ -78,7 +78,7 @@ const FilterPanel = ({ open, onClose, triggerRef, filters, onChange, resultCount
         role="dialog"
         aria-modal="true"
         aria-label="Filter judges"
-        className="fixed top-0 right-0 bottom-0 z-[70] w-full max-w-[420px] flex flex-col bg-[#0A0F1A] border-l border-[rgba(200,169,126,0.25)] shadow-2xl"
+        className="fixed top-0 right-0 bottom-0 z-[70] w-full max-w-[420px] flex flex-col bg-[#0A0F1A] border-l border-[rgba(200,169,126,0.25)] shadow-2xl filter-panel-depth"
         style={{
           transform: open ? "translateX(0)" : "translateX(100%)",
           transition: "transform 460ms cubic-bezier(0.23, 1, 0.32, 1)",

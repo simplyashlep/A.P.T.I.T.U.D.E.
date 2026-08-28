@@ -1,0 +1,72 @@
+%% Alignment.V1 — Aptitudinal Alignment Institutional Fidelity Field Theory
+%% Canonical merged specification: Beacon Scoring Engine baseline + universal brain
+%% Compile with XeLaTeX twice. Individual compartments remain independently editable.
+\documentclass[a4paper,11pt]{article}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+\setmonofont{Courier New}
+\usepackage[margin=2.6cm]{geometry}
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{mdframed}
+\usepackage{enumitem}
+
+\definecolor{navy}{HTML}{1B2A4A}
+\definecolor{aptblue}{HTML}{2563EB}
+\definecolor{teal}{HTML}{0D9488}
+\definecolor{aptred}{HTML}{DC2626}
+\definecolor{aptgreen}{HTML}{16A34A}
+\definecolor{aptslate}{HTML}{64748B}
+\definecolor{aptlight}{HTML}{F1F5F9}
+\definecolor{aptorange}{HTML}{EA580C}
+
+\titleformat{\section}{\sffamily\Large\bfseries\color{navy}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\sffamily\large\bfseries\color{aptblue}}{}{0em}{}
+\titleformat{\subsubsection}{\sffamily\normalsize\bfseries\color{teal}}{}{0em}{}
+
+\lstset{basicstyle=\ttfamily\small,breaklines=true,frame=single,columns=fullflexible,backgroundcolor=\color{aptlight}}
+\newmdenv[linecolor=aptred,linewidth=2pt,backgroundcolor=aptred!5,leftmargin=0pt,rightmargin=0pt,innertopmargin=8pt,innerbottommargin=8pt,innerleftmargin=12pt,innerrightmargin=12pt]{invariantbox}
+
+\title{Aptitudinal Alignment\\Institutional Fidelity Field Theory\\[0.5em]{\large Alignment.V1}}
+\author{Aptitude Systems}
+\date{Version 1.0 \quad August 2026}
+
+\begin{document}
+\maketitle
+\begin{center}
+\textit{Canonical successor to the Beacon Scoring Engine specification.}
+\end{center}
+\tableofcontents
+\newpage
+
+% Universal foundation
+\input{01-overview}
+\input{02-vocabulary}
+\input{03-evidence-foundation}
+\input{04-legal-intelligence}
+\input{05-alignment-scoring}
+\input{06-dimensions}
+\input{07-sources-normalization}
+\input{08-governance-reproducibility}
+
+% Vertical taxonomy and profile architecture
+\input{10-vertical-taxonomy}
+\input{11-vertical-profile-contract}
+\input{12-ncra-profile}
+\input{13-corrections-profile}
+\input{14-executable-registry}
+
+% Delivery plan
+\input{09-implementation-phases}
+
+\end{document}

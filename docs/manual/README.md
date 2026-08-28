@@ -1,8 +1,11 @@
-# Aptitudinal Alignment Manual
+# Alignment.V1 Manual
 
-One manual, compartmentalized. `00-main.tex` is the master document; every
-other `NN-*.tex` file is a separately editable compartment that the master
-`\input{}`s. Compile the whole thing with `bash build.sh` (run it twice).
+`Alignment.V1.tex` is the canonical merged master document. It incorporates
+the detailed Beacon Scoring Engine specification with the universal brain
+contracts and vertical-profile architecture. Each `NN-*.tex` file remains a
+separately editable compartment; compile the whole document with XeLaTeX.
+`00-main.tex` remains as a compatibility entry point for the earlier condensed
+manual.
 
 | File | Concern |
 |------|---------|
@@ -15,6 +18,12 @@ other `NN-*.tex` file is a separately editable compartment that the master
 | 07-sources-normalization | Credibility hierarchy and normalization bounds |
 | 08-governance-reproducibility | Safeguards and audit rules |
 | 09-implementation-phases | Build phases and current status |
+| 10-vertical-taxonomy | Government branches and consumer-facing families |
+| 11-vertical-profile-contract | Universal cross-industry profile contract |
+| 12-ncra-profile | Detailed Beacon CRA baseline and Equifax pilot scope |
+| 13-corrections-profile | Department of Corrections validation profile |
+| 14-executable-registry | Versioned metric registries and cross-vertical validation |
 
 Terminology is locked: Alignment Score (never "Composite Score"), dimension
-scores, Alignment Status, entity, potential profile.
+scores, Alignment Status, entity, potential profile. The Beacon document is the
+technical baseline; Alignment.V1 is its merged, updated canonical form.

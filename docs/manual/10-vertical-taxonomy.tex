@@ -1,0 +1,46 @@
+\section{Vertical Taxonomy}
+
+Alignment.V1 uses one universal evidence and scoring framework across multiple
+verticals. Vertical profiles describe differences in mandate, legal duties,
+peer groups, data availability, and valid metrics; they do not create separate
+scoring engines.
+
+\subsection{Top-Level Families}
+
+\begin{enumerate}
+  \item \textbf{Legislative}: legislatures, councils, committees, and related
+        public oversight bodies.
+  \item \textbf{Executive}: departments, agencies, regulators, public
+        administrators, health authorities, human services, and corrections.
+  \item \textbf{Judicial}: judges, courts, clerks, prosecutors, and other
+        adjudicative or justice-system entities.
+  \item \textbf{Consumer-facing and commercial}: credit reporting agencies,
+        lenders, insurers, employers, platforms, utilities, and other entities
+        whose conduct directly affects consumers.
+\end{enumerate}
+
+These families are an organizational taxonomy, not a presumption that every
+member has identical metrics. A Department of Corrections and a health
+authority are both Executive entities but require different potential
+profiles.
+
+\subsection{First Validation Verticals}
+
+The first cross-vertical validation set is deliberately heterogeneous:
+
+\begin{center}
+\begin{tabular}{p{4cm}p{5cm}p{5cm}}
+\toprule
+Family & Example profile & Primary validation purpose \\
+\midrule
+Executive & Department of Corrections & custody, safety, due process, rehabilitation, access, and accountability \\
+Consumer-facing & Nationwide Consumer Reporting Agency & data accuracy, dispute handling, transparency, equity, and remediation \\
+Judicial & Oregon circuit court or judge & procedural consistency, timeliness, access, and reasoned decision-making \\
+Executive & Oregon Health Authority & public health administration, access, outcomes, and data stewardship \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Equifax is the first planned live entity instance, but the NCRA profile is the
+reusable vertical artifact. A corrections department is the second validation
+profile, not an Equifax-specific extension.

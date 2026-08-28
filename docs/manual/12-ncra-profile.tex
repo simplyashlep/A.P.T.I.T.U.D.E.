@@ -1,0 +1,81 @@
+\section{Nationwide Consumer Reporting Agency Profile}
+
+This section incorporates the detailed Beacon Scoring Engine baseline for the
+Nationwide Consumer Reporting Agency (NCRA) class. It is a vertical profile,
+not a special scoring engine for Equifax.
+
+\subsection{Class Definition}
+
+\begin{center}
+\begin{tabular}{p{4cm}p{10cm}}
+\toprule
+Institution class & Nationwide Consumer Reporting Agency (NCRA) \\
+Regulatory framework & FCRA, 15 U.S.C. \\S 1681 et seq.; Regulation V, 12 C.F.R. Part 1022 \\
+Primary regulator & Consumer Financial Protection Bureau \\
+Secondary regulators & FTC, state regulators, and state attorneys general \\
+Primary peer class & Three nationwide CRAs; specialty CRAs are a secondary cohort \\
+Scoring cadence & Quarterly dimensions; annual Alignment Score, subject to evidence sufficiency \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Metric Registry}
+
+The NCRA profile uses the Beacon metric registry:
+
+\begin{center}
+\begin{tabular}{p{3cm}p{9.8cm}}
+\toprule
+Dimension & Metrics \\
+\midrule
+Fidelity & LMCR, PAS, RVR, SOF \\
+Consistency & OVI, PAR, CDS, DRR \\
+Transparency & RDR, RTI, FCR, PAX \\
+Efficiency & CRR, PTS, RUI, BCR \\
+Equity & DDI, GAS, PCOR, ASR \\
+Accountability & SCR, AC, CRR$_c$, RAR \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Each metric retains the Beacon specification's definition, weight, source
+requirements, direction, normalization bounds, minimum sample rules, flags,
+and hard-floor or cap behavior. These must be represented in the executable
+metric registry before an empirical score is published.
+
+\subsection{Complete Evidence Inventory}
+
+The NCRA intake should be capable of cataloging, without treating every item
+as score-eligible:
+
+\begin{itemize}
+  \item CFPB enforcement actions, consent orders, complaint data, and public
+        research;
+  \item FTC actions, state attorney general actions, and court decisions;
+  \item SEC filings, annual reports, quarterly filings, legal proceedings,
+        risk disclosures, and cybersecurity disclosures;
+  \item FCRA litigation, class settlements, appellate decisions, and monitor
+        reports;
+  \item dispute timelines, reinvestigation outcomes, furnisher notifications,
+        security freezes, and consumer disclosure records;
+  \item demographic, geographic, language-access, thin-file, and no-file
+        research; and
+  \item remediation, audit, consent-order monitoring, and recidivism records.
+\end{itemize}
+
+Complaint records are observations about reported consumer experiences. They
+are not, by themselves, adjudicated findings of wrongdoing and cannot be
+converted directly into a negative Alignment Score component.
+
+\subsection{Equifax Pilot Scope}
+
+The first live instance is Equifax as a corporate group. The profile must
+separately resolve Equifax Inc., named subsidiaries, business segments,
+activities, jurisdictions, legal regimes, and effective periods. Debt
+collection or recovery-management activity is recorded only where a source
+supports that scoped classification. The pilot must preserve uncertainty
+rather than assigning the label to every Equifax entity.
+
+The first output is an auditable evidence and readiness profile. A final
+Alignment Score is emitted only when the NCRA profile's dimensional evidence
+requirements are satisfied.

@@ -149,18 +149,32 @@ export async function onRequestPost(context) {
 
     // Explicit, actionable failure instead of an opaque 500.
     // This is the most common cause of the search returning an error.
+    const q = query.trim();
+
+    // Retrieval remains useful even when the optional answer model is not
+    // configured. Return verified CourtListener candidates instead of making
+    // the homepage search fail completely.
     if (!env.GEMINI_API_KEY) {
+      const retrieval = await retrieveCases(q, env);
       return Response.json(
         {
-          error:
-            "Search is not configured: GEMINI_API_KEY is missing from this environment. Add it under Cloudflare Pages → Settings → Environment variables (and redeploy) to enable querying.",
-          code: "MISSING_API_KEY",
+          success: true,
+          degraded: true,
+          answer: null,
+          degraded_reason: "Answer summaries are not configured on this deployment. Retrieved authority is available below.",
+          sources: retrieval.sources,
+          grounded: retrieval.sources.length > 0,
+          retrieval_error: retrieval.ok ? null : retrieval.error,
+          citations_checked: false,
+          citations: [],
+          unresolved_citations: [],
+          statutes_verified: false,
+          session_id: session_id || crypto.randomUUID(),
         },
-        { status: 503, headers: corsHeaders }
+        { headers: corsHeaders }
       );
     }
 
-    const q = query.trim();
     const newSessionId = session_id || crypto.randomUUID();
 
     // ── 1. Retrieve ──────────────────────────────────────────────────────────
@@ -216,9 +230,8 @@ export async function onRequestPost(context) {
 
     return Response.json(
       {
-        success: true,
-        answer,
-        sources: retrieval.sources,
+        success: true,          answer,
+          sources: retrieval.sources,
         grounded: retrieval.sources.length > 0,
         retrieval_error: retrieval.ok ? null : retrieval.error,
         // Citation guardrail

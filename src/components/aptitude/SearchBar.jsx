@@ -214,9 +214,18 @@ export const SearchBar = () => {
             </div>
           ) : (
             <>
-              <article className="font-ui text-ivory-dim leading-relaxed text-[15px]">
-                <Markdown text={result.answer} />
-              </article>
+              {result.answer ? (
+                <article className="font-ui text-ivory-dim leading-relaxed text-[15px]">
+                  <Markdown text={result.answer} />
+                </article>
+              ) : (
+                <div className="border-l-2 border-[rgba(200,169,126,0.55)] pl-4" data-testid="search-degraded-message">
+                  <div className="text-[10.5px] uppercase tracking-[0.32em] text-gold mb-2">Authority retrieved</div>
+                  <p className="font-serif-h italic text-ivory-dim leading-relaxed">
+                    {result.degraded_reason || "The answer service is unavailable, but the retrieved public authority is shown below."}
+                  </p>
+                </div>
+              )}
 
               {/* Retrieved authority — the cases the answer was actually built from */}
               {result.sources?.length > 0 && (

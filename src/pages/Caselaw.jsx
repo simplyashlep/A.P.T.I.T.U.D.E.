@@ -52,6 +52,18 @@ const CHIPS = [
 ];
 
 /* ─── Friendly court label ───────────────────────────────────────── */
+const stripMarkup = (value = "") => String(value)
+  .replace(/<mark>/gi, "")
+  .replace(/<\/mark>/gi, "")
+  .replace(/<[^>]*>/g, "")
+  .replace(/&amp;/g, "&")
+  .replace(/&quot;/g, '"')
+  .replace(/&#39;/g, "'")
+  .replace(/&lt;/g, "<")
+  .replace(/&gt;/g, ">")
+  .replace(/\s+/g, " ")
+  .trim();
+
 const COURT_LABELS = {
   scotus:    "U.S. Supreme Court",
   ca9:       "9th Circuit",
@@ -66,6 +78,8 @@ function CaseCard({ result, onTakeToLab }) {
   const fm  = FAILURE_MODES[result.failure_mode] || FAILURE_MODES.other;
   const court = COURT_LABELS[result.court] || result.court_label || result.court;
   const year  = result.date ? result.date.slice(0, 4) : "";
+  const caseName = stripMarkup(result.caseName);
+  const holding = stripMarkup(result.holding || result.plain_holding || result.holding_summary);
 
   return (
     <article className="border border-white/8 rounded-xl bg-[rgba(13,18,28,0.5)] hover:border-white/16 transition-all duration-300 overflow-hidden">
@@ -94,8 +108,16 @@ function CaseCard({ result, onTakeToLab }) {
 
         {/* Case name */}
         <h3 className="font-display text-[1.1rem] text-ivory leading-tight tracking-wide">
-          {result.caseName}
+          {caseName}
         </h3>
+
+        {/* One-line holding: the answer to “what did the court decide?” */}
+        <div className="border-l-2 border-[rgba(200,169,126,0.55)] pl-4">
+          <div className="text-[10px] uppercase tracking-[0.32em] text-gold mb-1.5">Holding</div>
+          <p className="text-ivory-dim text-[14px] leading-relaxed">
+            {holding || "Holding not yet extracted — read the linked opinion for the court’s reasoning and disposition."}
+          </p>
+        </div>
 
         {/* Plain summary */}
         {result.plain_summary && (
@@ -126,7 +148,7 @@ function CaseCard({ result, onTakeToLab }) {
         {/* Fallback: raw snippet when no AI summary */}
         {!result.plain_summary && result.snippet && (
           <p className="text-ivory-dim text-[13.5px] leading-relaxed line-clamp-4">
-            {result.snippet}
+            {stripMarkup(result.snippet)}
           </p>
         )}
 
@@ -145,7 +167,7 @@ function CaseCard({ result, onTakeToLab }) {
             </button>
             {expanded && (
               <div className="mt-3 p-4 bg-white/3 rounded-lg border border-white/5 text-[13px] text-ivory-dim leading-relaxed">
-                {result.snippet}
+                {stripMarkup(result.snippet)}
               </div>
             )}
           </div>
@@ -219,7 +241,7 @@ export default function Caselaw() {
     navigate("/juris-lab", {
       state: {
         caseContext: {
-          caseName:    result.caseName,
+          caseName:    stripMarkup(result.caseName),
           citation:    result.citation,
           court:       result.court_label || result.court,
           date:        result.date,
