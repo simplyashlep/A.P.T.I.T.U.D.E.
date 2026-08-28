@@ -322,28 +322,42 @@ body::before {
   .aptitude-mark { animation: none; }
 }
 
-/* Judiciary filter panel — scale-and-rotate surface */
+/* Judiciary filter panel — crisp left-side door interaction */
 .judiciary-surface {
-  /* Keep the content in its normal 2D rendering plane so production browsers
-     preserve text sharpness. Depth is carried by the drawer/backdrop. */
-  transition: filter 220ms ease;
+  transform-origin: 50% 50%;
+  transition: transform 420ms cubic-bezier(0.22, 0.61, 0.36, 1), filter 220ms ease;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 .judiciary-surface-open {
-  filter: brightness(0.78);
+  /* A restrained 2D tilt keeps text crisp while clearly shifting the page. */
+  transform: perspective(1800px) rotateY(-1deg) translateX(18px) scale(0.992);
+  filter: brightness(0.82);
 }
 @media (max-width: 768px) {
-  .judiciary-surface-open { filter: brightness(0.72); }
+  .judiciary-surface-open {
+    transform: translateX(10px) scale(0.996);
+    filter: brightness(0.76);
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .judiciary-surface { transition: none; }
-  .judiciary-surface-open { filter: brightness(0.78); }
+  .judiciary-surface-open { transform: none; filter: brightness(0.78); }
 }
 
 .filter-panel-depth {
-  /* The drawer carries the 3D cue; the document surface stays sharp. */
-  transform: translateX(0) rotateY(-0.35deg);
-  transform-origin: right center;
-  box-shadow: -24px 0 48px rgba(0, 0, 0, 0.42), 0 0 0 1px rgba(200, 169, 126, 0.08);
+  transform-origin: left center;
+  box-shadow: 24px 0 52px rgba(0, 0, 0, 0.48), 0 0 0 1px rgba(200, 169, 126, 0.08);
+  animation: judiciary-door-in 460ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+@keyframes judiciary-door-in {
+  from { transform: perspective(1200px) rotateY(-12deg) translateX(-100%); opacity: 0.7; }
+  to { transform: perspective(1200px) rotateY(0deg) translateX(0); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .filter-panel-depth { animation: none; }
 }
 
 /* Homepage transition and continuous quote-to-footer grid */
