@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react"
 import { Link, useLocation } from "react-router-dom"
-import { Landmark } from "lucide-react"
 import { ScaleLogo } from "./Brand"
 
 const NAV_LINKS = [
@@ -100,10 +99,30 @@ export function TopNav() {
           aria-expanded={open}
           data-testid="nav-menu-toggle"
         >
-          <Landmark
-            className={`w-6 h-6 transition-all duration-500 ${open ? "text-gold" : "text-ivory-dim"}`}
-            strokeWidth={2.5}
-          />
+          {/* Courthouse glyph — the pediment and ground stay, the pillars are
+              replaced by the site's display face so the label is unmistakable. */}
+          <span className="flex flex-col items-center justify-center gap-[3px] select-none" aria-hidden="true">
+            <svg
+              viewBox="0 0 44 18"
+              className={`w-11 h-[18px] transition-colors duration-500 ${open ? "text-gold" : "text-ivory-dim"}`}
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M4 15 L22 3 L40 15" />
+              <line x1="22" y1="3" x2="22" y2="8" />
+            </svg>
+            <span
+              className={`font-display text-[11px] tracking-[0.34em] leading-none transition-colors duration-500 ${
+                open ? "text-gold" : "text-ivory-dim"
+              }`}
+            >
+              MENU
+            </span>
+            <span className="w-11 h-[2px] rounded-full bg-gradient-to-r from-transparent via-[var(--apt-gold)] to-transparent" />
+          </span>
         </button>
 
         {open && (
