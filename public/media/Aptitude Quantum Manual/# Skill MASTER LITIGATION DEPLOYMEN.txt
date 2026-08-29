@@ -1,0 +1,3842 @@
+# Skill: MASTER LITIGATION DEPLOYMENT MATRIX BUILDER
+
+## Purpose
+
+You are a litigation intelligence extraction agent. Your task is to retrieve, process, OCR, analyze, and organize official records, discovery materials, and court documents into a litigation deployment matrix.
+
+Your primary rule:
+
+**Do not summarize when the user requests extraction. Preserve the record.**
+
+You must operate as a records analyst first and a legal reasoning assistant second.
+
+---
+
+# INPUT
+
+User provides:
+
+* Repository location
+* Case number(s)
+* Folder(s)
+* Document names
+* Agency names
+* Search terms
+* Requested output structure
+
+Examples:
+
+Repository:
+OWNER/REPOSITORY
+
+Target folders:
+
+* 24CR49043
+* DHS
+
+Search terms:
+
+* case number
+* party names
+* dependency
+* discovery
+* docket terms
+
+---
+
+# PHASE 1 — REPOSITORY INGESTION
+
+1. Authenticate repository access.
+
+2. Confirm:
+
+   * owner
+   * repository
+   * branch
+   * permissions
+
+3. Enumerate repository tree.
+
+Required output internally:
+
+```
+REPOSITORY TREE
+/
+├── folder
+│   ├── file
+│   └── file
+```
+
+4. Locate requested folders.
+
+If folder does not exist:
+
+* state exact failure
+* do not invent paths
+
+---
+
+# PHASE 2 — DOCUMENT ACQUISITION
+
+For every requested document:
+
+Capture:
+
+* filename
+* path
+* file type
+* file size
+* retrieval status
+
+Example:
+
+```
+DOCUMENT:
+24CR49043/Case_File_24CR49043.pdf
+
+STATUS:
+Retrieved
+
+TYPE:
+PDF
+
+PAGES:
+___
+```
+
+If retrieval fails:
+record:
+
+```
+RETRIEVAL FAILURE:
+Reason:
+Tool limitation / unavailable / permission issue
+```
+
+Never pretend the document was reviewed.
+
+---
+
+# PHASE 3 — PDF EXTRACTION
+
+For each PDF:
+
+Perform:
+
+1. Native text extraction
+2. OCR if scanned
+3. Page indexing
+4. Preserve original pagination
+
+Every extracted item must retain:
+
+* document name
+* page number
+* quoted language
+
+---
+
+# PHASE 4 — RECORD CLASSIFICATION
+
+Classify every extracted event into:
+
+## DOCKET ENTRY
+
+Capture:
+
+* date
+* entry number
+* title
+* filing party
+* court action
+
+---
+
+## ORDER
+
+Capture:
+
+* issuing judge
+* date
+* operative language
+* obligations imposed
+* deadlines
+
+---
+
+## NOTICE
+
+Capture:
+
+* notice type
+* date
+* recipient
+* method
+
+---
+
+## SERVICE EVENT
+
+Capture:
+
+* served party
+* method
+* date
+* proof of service language
+
+---
+
+## HEARING EVENT
+
+Capture:
+
+* hearing date
+* hearing type
+* participants
+* rulings
+
+---
+
+## FINDINGS
+
+Capture:
+
+* factual findings
+* legal findings
+* statutory references
+
+---
+
+## RECORD ACCESS REQUEST / DENIAL
+
+Capture:
+
+* requesting party
+* request date
+* authority cited
+* response
+* denial reasoning
+* exact language
+
+---
+
+# PHASE 5 — QUOTATION RULE
+
+When extracting important language:
+
+Use:
+
+```
+DOCUMENT:
+PAGE:
+
+QUOTE:
+"exact text"
+
+CATEGORY:
+(order/service/hearing/finding/etc.)
+```
+
+Never paraphrase inside quotation fields.
+
+---
+
+# PHASE 6 — MASTER LITIGATION DEPLOYMENT MATRIX
+
+Produce:
+
+| Date | Document | Page | Category | Event | Authority | Exact Quote | Litigation Significance |
+| ---- | -------- | ---- | -------- | ----- | --------- | ----------- | ----------------------- |
+
+Rules:
+
+* Every row must trace to a document page.
+* Every assertion must have a source.
+* Unknown information remains blank.
+* Never fill gaps by inference.
+
+---
+
+# PHASE 7 — CONFLICT DETECTION
+
+Identify:
+
+* inconsistent dates
+* contradictory statements
+* missing notices
+* missing service
+* unexplained docket gaps
+* conflicting party descriptions
+* conflicting orders
+
+Format:
+
+```
+CONFLICT:
+
+Record A:
+Document:
+Page:
+Quote:
+
+Record B:
+Document:
+Page:
+Quote:
+
+Issue:
+```
+
+---
+
+# PHASE 8 — LEGAL RESEARCH LAYER
+
+Only after extraction:
+
+Map issues to:
+
+* statute
+* rule
+* case authority
+
+Format:
+
+```
+ISSUE:
+
+AUTHORITY:
+
+RULE:
+
+APPLICATION TO RECORD:
+```
+
+Do not replace record extraction with legal analysis.
+
+---
+
+# OUTPUT RULES
+
+The final output must contain:
+
+1. DOCUMENT INVENTORY
+2. EXTRACTION TABLE
+3. EVENT TIMELINE
+4. MASTER LITIGATION DEPLOYMENT MATRIX
+5. RECORD CONFLICT TABLE
+6. MISSING RECORDS / REQUEST LIST
+
+---
+
+# QUALITY CONTROL CHECK
+
+Before final response confirm:
+
+[ ] Every reviewed document identified
+[ ] Every quote tied to page number
+[ ] OCR completed where necessary
+[ ] No invented facts
+[ ] No missing requested documents silently omitted
+[ ] No summaries replacing evidence
+[ ] Matrix built from source records only
+
+END SKILL
+
+
+The next step is to convert the skill from a policy/instruction layer into an execution architecture: what the AI does, what tools it calls, what files it creates, and how it fails safely.
+
+For A.P.T.I.T.U.D.E.-style litigation intelligence, I would build this as a multi-stage agent pipeline rather than one giant prompt.
+
+Skill Architecture: Litigation Deployment Engine v1
+USER REQUEST
+      |
+      v
+CASE INGESTION AGENT
+      |
+      v
+DOCUMENT ACQUISITION AGENT
+      |
+      v
+OCR / TEXT EXTRACTION AGENT
+      |
+      v
+RECORD CLASSIFICATION AGENT
+      |
+      v
+TIMELINE BUILDER
+      |
+      v
+CONFLICT DETECTION ENGINE
+      |
+      v
+LEGAL ISSUE MAPPING
+      |
+      v
+MASTER LITIGATION DEPLOYMENT MATRIX
+      |
+      v
+EXPORT PACKAGE
+(PDF / DOCX / JSON / CSV / LaTeX)
+AGENT 1 — CASE INGESTION
+
+Purpose: Establish the universe of records.
+
+Inputs
+case:
+  number: "24CR49043"
+  jurisdiction: "Washington County Circuit Court"
+  repository: "simplyashlep/oregon-legal-repo"
+
+targets:
+  folders:
+    - "24CR49043"
+    - "DHS"
+
+search:
+  - "25JU04261"
+  - "dependency"
+Output
+
+Creates:
+
+/case_workspace
+    /metadata
+        case_manifest.json
+
+Example:
+
+{
+ "case":"24CR49043",
+ "source":"GitHub",
+ "branch":"main",
+ "retrieved":"timestamp",
+ "documents_found":[]
+}
+AGENT 2 — DOCUMENT ACQUISITION
+
+This agent does NOT analyze.
+
+Its only job:
+
+"Get the evidence."
+
+For every file:
+
+Creates:
+
+/documents/raw
+
+Example:
+
+24CR49043/
+ ├── Case_File_24CR49043.pdf
+ ├── OJD_Public.pdf
+ └── Filing_Package.pdf
+
+Metadata:
+
+{
+"name":"Case_File_24CR49043.pdf",
+"hash":"SHA256",
+"pages":421,
+"source":"official court record"
+}
+
+The hash matters because litigation requires proving the document did not change.
+
+AGENT 3 — OCR / EXTRACTION
+
+Pipeline:
+
+PDF
+ |
+ |
+ +--> text layer exists?
+          |
+          YES ---> extract
+          |
+          NO
+          |
+          v
+        OCR
+
+Creates:
+
+/documents/processed
+
+Case_File_24CR49043/
+    page_001.txt
+    page_002.txt
+
+Every page keeps:
+
+document:
+page:
+text:
+confidence:
+AGENT 4 — LEGAL RECORD PARSER
+
+This is where it becomes powerful.
+
+The AI searches extracted text for:
+
+Events
+
+Patterns:
+
+ORDER
+NOTICE
+SUMMONS
+SERVICE
+HEARING
+MOTION
+AFFIDAVIT
+INDICTMENT
+ARRAIGNMENT
+JUDGMENT
+Dates
+
+Regex:
+
+MM/DD/YYYY
+Month DD, YYYY
+Authorities
+
+Patterns:
+
+ORS
+ORCP
+UTCR
+OEC
+
+Creates:
+
+events.json
+
+Example:
+
+{
+"type":"HEARING",
+"date":"2025-02-24",
+"document":"OJD Public.pdf",
+"page":13,
+"quote":"..."
+}
+AGENT 5 — MASTER MATRIX BUILDER
+
+Output format:
+
+MASTER LITIGATION DEPLOYMENT MATRIX
+Date	Source	Page	Event	Quote	Authority	Issue
+
+Example:
+
+| 01/14/2025 | OJD Public.pdf | 44 | Indictment | "..." | ORS | Grand Jury |
+
+AGENT 6 — THEORY ENGINE
+
+Separate from extraction.
+
+This prevents AI from contaminating the record.
+
+It asks:
+
+"Given the record, what legal theories are supported?"
+
+Creates:
+
+analysis/
+   issues.md
+   conflicts.md
+   authorities.md
+
+Example:
+
+ISSUE:
+Grand jury authority
+
+RECORD:
+PJO reference missing
+
+SUPPORT:
+Document X page Y
+
+QUESTION:
+Whether proceeding complied with statutory requirements
+AGENT 7 — LITIGATION PACKAGE EXPORTER
+
+Creates:
+
+/OUTPUT
+
+MASTER_MATRIX.xlsx
+
+MASTER_MATRIX.docx
+
+MASTER_MATRIX.tex
+
+CASE_TIMELINE.pdf
+
+EVIDENCE_INDEX.json
+The actual AI system prompt should add these hard rules:
+YOU ARE A RECORD EXTRACTION ENGINE.
+
+You are prohibited from:
+- inventing missing documents
+- assuming dates
+- merging similar cases
+- treating allegations as facts
+- paraphrasing quoted evidence
+
+When evidence is unavailable:
+state:
+
+"NOT VERIFIED IN PROVIDED RECORDS."
+
+Every statement must trace to:
+document + page.
+
+The next layer after this would be building the A.P.T.I.T.U.D.E. Case Agent schema itself:
+
+Case
+Party
+Agency
+Judge
+Attorney
+Document
+Event
+Authority
+Conflict
+Remedy
+
+That is the database structure that turns this from a one-off AI prompt into a litigation intelligence platform.
+
+Add:
+
+Evidence_Record:
+  document_id:
+  source:
+  repository:
+  original_path:
+  retrieved_timestamp:
+  sha256_hash:
+  file_size:
+  page_count:
+  processed_by:
+  processing_version:
+
+This prevents the AI from accidentally becoming the “source.” The source remains the record.
+
+2. Case Graph / Relationship Engine
+
+A flat spreadsheet is useful, but litigation is relational.
+
+Build a graph:
+
+CASE
+ |
+ +-- DEFENDANT
+ |
+ +-- STATE
+ |
+ +-- JUDGE
+ |
+ +-- ATTORNEY
+ |
+ +-- AGENCY
+ |
+ +-- DOCUMENT
+ |
+ +-- EVENT
+ |
+ +-- AUTHORITY
+ |
+ +-- ISSUE
+
+Example:
+
+24CR49043
+
+CONNECTED TO:
+
+Document:
+Probable Cause Affidavit
+
+Event:
+Arrest
+
+Person:
+Deputy Rambin
+
+Issue:
+Identification
+
+Authority:
+ORS ___
+
+This lets the AI answer:
+
+“Show every document connected to the identification issue.”
+
+3. Procedural Posture Tracker
+
+Legal cases evolve.
+
+Add:
+
+Case_Status:
+
+criminal:
+  complaint:
+  arraignment:
+  indictment:
+  motions:
+  trial:
+  appeal:
+
+dependency:
+  petition:
+  jurisdiction:
+  disposition:
+  permanency:
+
+The AI should always know:
+
+“Where is this case procedurally?”
+
+4. Deadline Engine
+
+This is a major one.
+
+Add:
+
+Deadline:
+
+trigger_event:
+rule:
+date_calculation:
+deadline:
+status:
+
+Example:
+
+Trigger:
+Speedy trial demand
+
+Authority:
+ORS ___
+
+Calculated deadline:
+12/26/2024
+
+Status:
+Potential issue
+
+The AI should not just identify events; it should identify consequences.
+
+5. Contradiction Detection Engine
+
+You need a dedicated module.
+
+Not:
+
+“Summarize inconsistencies.”
+
+Instead:
+
+CLAIM A
+
+Source:
+Document/page
+
+Quote:
+
+
+CLAIM B
+
+Source:
+Document/page
+
+Quote:
+
+
+CONFLICT TYPE:
+
+□ date conflict
+□ identity conflict
+□ factual conflict
+□ procedural conflict
+□ authority conflict
+6. Court Record vs Discovery Separation
+
+Very important.
+
+Never blend:
+
+OFFICIAL COURT RECORD
+        |
+        |
+DISCOVERY / INVESTIGATION
+        |
+        |
+USER PROVIDED MATERIAL
+
+Each gets a confidence classification:
+
+Source_Type:
+
+A:
+Court-certified record
+
+B:
+Government discovery
+
+C:
+Party-created document
+
+D:
+User notes
+7. Citation Generator
+
+For legal drafting, the AI needs automatic citation objects:
+
+Example:
+
+{
+"citation":
+"Case_File_24CR49043.pdf p.117",
+
+"quote":
+"...",
+
+"use":
+"supporting fact"
+}
+
+Then motions can be generated without losing traceability.
+
+8. Motion Builder Layer
+
+After the matrix exists:
+
+Create:
+
+FACTS
+ |
+LEGAL STANDARD
+ |
+APPLICATION
+ |
+ARGUMENT
+ |
+RELIEF REQUESTED
+
+Automatically populate:
+
+ORCP/UTCR formatting
+Oregon citations
+exhibit references
+declaration references
+9. Judge / Agency Pattern Analysis
+
+This is where A.P.T.I.T.U.D.E. becomes differentiated.
+
+Separate from a case.
+
+Example:
+
+Judge Intelligence
+
+Cases:
+24CR49043
+25JU04261
+
+Observed:
+- repeated denial pattern
+- timing patterns
+- procedural trends
+
+Source:
+ONLY public records
+
+Important:
+The system should never say:
+
+“Judge is biased.”
+
+It should say:
+
+“Pattern detected in recorded outcomes.”
+
+10. Human Review Checkpoints
+
+Do not make the AI fully autonomous.
+
+Add approval gates:
+
+Extraction Complete
+       |
+       v
+Human verifies documents
+       |
+       v
+Matrix locked
+       |
+       v
+Analysis generated
+11. Versioned Case Timeline
+
+Every change matters.
+
+Example:
+
+TIMELINE v1
+June 1
+
+TIMELINE v2
+June 15
+
+Difference:
+New filing added
+Deadline changed
+12. Final “Litigation Readiness Score”
+
+Not a legal conclusion.
+
+A preparation metric.
+
+Example:
+
+DOCUMENT COMPLETENESS: 82%
+
+Known:
+✓ motions
+✓ orders
+✓ hearings
+
+Missing:
+□ transcript
+□ discovery index
+□ service return
+
+The complete A.P.T.I.T.U.D.E. architecture becomes:
+
+INGESTION
+   ↓
+CHAIN OF CUSTODY
+   ↓
+OCR
+   ↓
+DOCUMENT INTELLIGENCE
+   ↓
+EVENT EXTRACTION
+   ↓
+CASE GRAPH
+   ↓
+PROCEDURAL TRACKING
+   ↓
+DEADLINE ENGINE
+   ↓
+CONFLICT ENGINE
+   ↓
+LEGAL RESEARCH
+   ↓
+MOTION GENERATION
+   ↓
+DASHBOARDS
+
+The most important design decision: never let the AI jump directly from documents → argument. The evidence layer has to exist in between. That is what makes it litigation-grade instead of just a chatbot with PDFs.
+
+A.P.T.I.T.U.D.E. Litigation Intelligence Core v1
+1. Define the Data Model First
+
+Before AI agents, create the database.
+
+Core objects:
+
+CASE
+ |
+ ├── Parties
+ |
+ ├── Documents
+ |
+ ├── Events
+ |
+ ├── Hearings
+ |
+ ├── Orders
+ |
+ ├── Motions
+ |
+ ├── Authorities
+ |
+ ├── Evidence
+ |
+ ├── Conflicts
+ |
+ ├── Deadlines
+ |
+ └── Issues
+2. Database Schema
+
+Example:
+
+CASE
+cases
+
+id
+case_number
+court
+jurisdiction
+case_type
+status
+created_at
+DOCUMENT
+documents
+
+id
+case_id
+
+filename
+filepath
+document_type
+
+source_type
+(court_record/discovery/user_upload)
+
+sha256_hash
+
+page_count
+
+created_date
+EVENT
+events
+
+id
+case_id
+document_id
+
+event_type
+
+event_date
+
+page_number
+
+quote
+
+confidence
+AUTHORITY
+authorities
+
+id
+
+type
+(ORS/ORCP/UTCR/Case)
+
+citation
+
+text
+
+issue
+3. File System Structure
+
+Your repository should eventually look like:
+
+APTITUDE/
+
+cases/
+
+  24CR49043/
+
+      raw/
+
+          court_records/
+          discovery/
+
+      processed/
+
+          ocr/
+          extracted_text/
+
+      intelligence/
+
+          timeline.json
+          matrix.csv
+          conflicts.json
+
+      outputs/
+
+          master_matrix.pdf
+          motions/
+4. Agent Roles
+
+Do not use one giant AI.
+
+Create specialized agents.
+
+Agent 1
+Evidence Clerk
+
+Job:
+
+collect files
+hash files
+organize records
+
+Never analyzes.
+
+Agent 2
+Court Records Analyst
+
+Job:
+
+extract docket
+identify orders
+identify hearings
+identify service
+Agent 3
+Discovery Analyst
+
+Job:
+
+analyze police reports
+affidavits
+discovery materials
+Agent 4
+Conflict Analyst
+
+Job:
+
+Compare:
+
+Document A:
+
+"quote"
+
+Document B:
+
+"quote"
+
+Output:
+
+Potential conflict.
+
+Agent 5
+Litigation Strategist
+
+Only receives:
+
+verified facts
+citations
+timeline
+
+Then creates:
+
+arguments
+motions
+remedies
+5. Add a “Source Firewall”
+
+This is critical.
+
+The AI needs rules:
+
+UNVERIFIED INPUT
+        |
+        X
+NO LEGAL ARGUMENTS
+
+VERIFIED RECORD
+        |
+        v
+LEGAL ANALYSIS ALLOWED
+
+User uploads should never silently become “facts.”
+
+6. Build the Document Intelligence Layer
+
+Each document gets automatically tagged.
+
+Example:
+
+Input:
+
+24CR49043 OJD Public.pdf
+
+AI extracts:
+
+{
+"type":"court docket",
+
+"contains":
+[
+ "indictment",
+ "arraignment",
+ "motions",
+ "orders"
+],
+
+"importance":
+"high"
+}
+7. Add Search
+
+The user experience becomes:
+
+“Find every reference to grand jury.”
+
+System searches:
+
+PDFs
+OCR text
+metadata
+quotes
+events
+
+Returns:
+
+Document:
+OJD Public.pdf
+
+Page:
+44
+
+Match:
+Grand Jury
+
+Context:
+"..."
+8. Add Retrieval-Augmented Generation (RAG)
+
+The AI should not “remember” the case.
+
+It should retrieve.
+
+Flow:
+
+User:
+
+“Draft motion regarding speedy trial.”
+
+AI:
+
+Searches case database
+Pulls relevant pages
+Pulls statutes
+Generates draft
+9. Create the Output Templates
+
+Standard outputs:
+
+Court Timeline
+DATE
+EVENT
+SOURCE
+PAGE
+QUOTE
+LEGAL EFFECT
+Motion Support Packet
+ISSUE
+
+FACTS
+
+EXHIBITS
+
+AUTHORITIES
+
+ARGUMENT
+
+RELIEF
+Appeal Record Index
+Assignment of Error
+
+Supporting Record
+
+Transcript Page
+
+Preservation
+10. Build the First Working Version
+
+The MVP should only do:
+
+✅ Connect GitHub
+✅ Import case folder
+✅ Extract PDFs
+✅ OCR scans
+✅ Build timeline
+✅ Build matrix
+✅ Export DOCX/PDF
+
+Do not build dashboards first.
+
+The intelligence comes after the evidence model works.
+
+The next actual step after this is creating the A.P.T.I.T.U.D.E. repository structure + initial codebase:
+
+/agents
+/database
+/ocr
+/extractors
+/matrix_builder
+/exports
+/prompts
+
+Then your AI can become a deployable litigation system rather than a collection of prompts.
+
+At this point you stop designing and create the first working skeleton.
+
+A.P.T.I.T.U.D.E. Litigation Engine — Build Phase 1
+1. Create the project repository structure
+
+Recommended:
+
+aptitude-engine/
+
+├── README.md
+├── .env.example
+├── requirements.txt
+├── docker-compose.yml
+
+├── app/
+
+│   ├── main.py
+
+│   ├── agents/
+│   │   ├── ingestion_agent.py
+│   │   ├── evidence_agent.py
+│   │   ├── ocr_agent.py
+│   │   ├── extraction_agent.py
+│   │   ├── matrix_agent.py
+│   │   ├── conflict_agent.py
+│   │   └── drafting_agent.py
+│
+│   ├── models/
+│   │   ├── case.py
+│   │   ├── document.py
+│   │   ├── event.py
+│   │   ├── authority.py
+│   │   └── evidence.py
+│
+│   ├── pipelines/
+│   │   ├── ingest_pipeline.py
+│   │   ├── pdf_pipeline.py
+│   │   └── litigation_pipeline.py
+│
+│   ├── extractors/
+│   │   ├── pdf_text.py
+│   │   ├── ocr.py
+│   │   └── dates.py
+│
+│   ├── database/
+│   │   ├── schema.py
+│   │   └── migrations/
+│
+│   ├── exports/
+│   │   ├── matrix_export.py
+│   │   ├── docx_export.py
+│   │   └── latex_export.py
+│
+│   └── prompts/
+│       ├── extraction_prompts.py
+│       └── legal_prompts.py
+
+
+├── cases/
+
+│   └── 24CR49043/
+
+│       ├── raw/
+│       ├── processed/
+│       └── output/
+
+
+└── tests/
+2. Create the first pipeline
+
+The first runnable workflow:
+
+Repository
+    ↓
+Download files
+    ↓
+Hash files
+    ↓
+Extract PDFs
+    ↓
+OCR missing text
+    ↓
+Create document objects
+    ↓
+Extract events
+    ↓
+Build matrix
+    ↓
+Export
+3. First database: SQLite
+
+Do not start with a complex cloud database.
+
+Start:
+
+aptitude.db
+
+Tables:
+
+cases
+
+documents
+
+pages
+
+events
+
+quotes
+
+authorities
+
+conflicts
+
+deadlines
+
+This gives you portability.
+
+4. Create the “Evidence Object”
+
+Everything revolves around this:
+
+EvidenceRecord
+
+id
+
+case_id
+
+document_name
+
+page_number
+
+category
+
+quote
+
+source
+
+hash
+
+confidence
+
+Every AI answer eventually points back here.
+
+5. Create the ingestion command
+
+Example:
+
+aptitude ingest \
+--repo simplyashlep/oregon-legal-repo \
+--case 24CR49043
+
+Output:
+
+FOUND:
+
+24CR49043/
+    Case_File_24CR49043.pdf
+    Filing Package.pdf
+    OJD Public.pdf
+
+Pages:
+842
+
+OCR Required:
+Yes
+
+Status:
+Ready
+6. Add the OCR stack
+
+Recommended:
+
+PyMuPDF → PDF handling
+Tesseract → OCR
+OCRmyPDF → searchable PDFs
+
+Flow:
+
+PDF
+ |
+PyMuPDF
+ |
+Text?
+ |
+No
+ |
+OCRmyPDF
+ |
+Text extraction
+7. Add the extraction schema
+
+Every extracted item becomes:
+
+{
+"type":"HEARING",
+"date":"2025-02-24",
+"document":"OJD Public.pdf",
+"page":44,
+"quote":"..."
+}
+8. Add the first command interface
+
+Your AI should be able to receive:
+
+BUILD CASE 24CR49043
+
+and execute:
+
+INGEST
+PROCESS
+EXTRACT
+MATRIX
+REPORT
+9. Add validation
+
+Before output:
+
+VALIDATION REPORT
+
+Documents requested: 6
+Documents found: 6
+
+Pages processed: 842
+
+Quotes indexed: 4,921
+
+Events extracted: 313
+
+Missing:
+None
+10. First milestone
+
+The first finished version should accomplish:
+
+Input:
+
+Build 24CR49043
+
+Output:
+
+MASTER_LITIGATION_MATRIX.xlsx
+
+CASE_TIMELINE.pdf
+
+EVIDENCE_INDEX.json
+
+DOCUMENT_REPORT.md
+
+with every entry traceable to:
+
+document → page → quote
+
+A.P.T.I.T.U.D.E. Litigation Engine — Phase 2
+Agent Control Plane
+1. Create the Case Workspace Contract
+
+Every case gets its own isolated workspace.
+
+Example:
+
+CASE_WORKSPACE
+
+24CR49043/
+
+├── manifest.json
+
+├── evidence/
+│   ├── verified/
+│   ├── pending/
+│   └── rejected/
+
+├── intelligence/
+│   ├── timeline.json
+│   ├── matrix.json
+│   ├── conflicts.json
+│   └── issues.json
+
+├── drafting/
+│   ├── motions/
+│   ├── declarations/
+│   └── exhibits/
+
+└── audit/
+    └── agent_actions.log
+
+The AI never works directly from a random folder.
+
+2. Build the Agent Communication Protocol
+
+Agents should pass structured objects, not conversations.
+
+Example:
+
+{
+"task":"extract_hearing_events",
+
+"case":"24CR49043",
+
+"input_documents":[
+"24CR49043 OJD Public.pdf"
+],
+
+"required_output":
+[
+"date",
+"judge",
+"participants",
+"ruling",
+"quote",
+"page"
+]
+}
+3. Define Agent Permissions
+
+This matters.
+
+Evidence Agent
+
+CAN:
+
+✓ download
+✓ hash
+✓ classify
+
+CANNOT:
+
+✗ argue
+✗ interpret
+✗ infer
+
+Analysis Agent
+
+CAN:
+
+✓ compare
+✓ identify issues
+✓ suggest arguments
+
+CANNOT:
+
+✗ alter evidence
+✗ create facts
+
+Drafting Agent
+
+CAN:
+
+✓ write motions
+✓ format filings
+
+CANNOT:
+
+✗ cite unsupported facts
+
+4. Add the Audit Log
+
+Every AI action gets recorded.
+
+Example:
+
+{
+"time":"2026-07-01",
+
+"agent":"OCR_AGENT",
+
+"action":"processed_pdf",
+
+"document":
+"Case_File_24CR49043.pdf",
+
+"pages":
+421
+}
+
+This becomes the AI equivalent of a litigation work log.
+
+5. Add Retrieval Memory
+
+Do not let the AI rely on chat history.
+
+Create:
+
+Case Memory
+
+Contains:
+
+facts
+dates
+documents
+quotes
+issues
+
+Example:
+
+{
+"fact_id":"F-001",
+
+"fact":
+"Indictment filed",
+
+"source":
+"OJD Public.pdf",
+
+"page":
+44,
+
+"confidence":
+"verified"
+}
+6. Create the “Evidence Firewall”
+
+Before any answer:
+
+AI checks:
+
+IS THIS CLAIM:
+
+A) directly in record?
+B) inference from record?
+C) legal argument?
+
+
+Output labels:
+
+FACT
+INFERENCE
+ARGUMENT
+UNKNOWN
+
+This is one of the most important protections.
+
+7. Add the Legal Research Agent
+
+Separate database:
+
+AUTHORITIES
+
+ORS
+ORCP
+UTCR
+OEC
+Cases
+Constitution
+Federal law
+
+The workflow:
+
+Issue Found
+
+↓
+
+Research Authority
+
+↓
+
+Attach Authority
+
+↓
+
+Return to Matrix
+8. Create the “Deployment Packet”
+
+Every case produces:
+
+DEPLOYMENT PACKAGE
+
+01 Evidence Index
+02 Master Timeline
+03 Litigation Matrix
+04 Issue Map
+05 Conflict Report
+06 Authority Report
+07 Drafting Package
+08 Missing Records List
+9. Add the User Command Language
+
+Eventually you should be able to type:
+
+APTITUDE:
+
+LOAD CASE 24CR49043
+
+BUILD RECORD
+
+FIND:
+grand jury authority
+
+COMPARE:
+Rambin affidavit vs discovery
+
+GENERATE:
+motion framework
+
+The system translates commands into agent workflows.
+
+A.P.T.I.T.U.D.E. Phase 3
+Intelligence Graph Engine
+1. Move from Tables → Relationships
+
+Your data model evolves:
+
+Before:
+
+Case
+ |
+Documents
+ |
+Quotes
+
+After:
+
+                  Judge
+                    |
+                    |
+Prosecutor —— Case —— Defense Counsel
+                    |
+                    |
+                  Agency
+                    |
+                    |
+              Documents
+                    |
+                    |
+                Events
+                    |
+                    |
+              Authorities
+
+Every object becomes a node.
+
+2. Create Core Intelligence Objects
+Person Node
+Person:
+
+id:
+name:
+role:
+organization:
+cases_connected:
+
+Examples:
+
+judge
+prosecutor
+attorney
+officer
+DHS worker
+Organization Node
+Organization:
+
+name:
+
+type:
+court
+agency
+firm
+department
+
+cases:
+
+Examples:
+
+Washington County Circuit Court
+DHS
+law enforcement agency
+Event Node
+Event:
+
+type:
+hearing
+order
+arrest
+filing
+denial
+
+date:
+
+case:
+
+source:
+document/page
+3. Add Pattern Detection
+
+Not:
+
+“Judge X is biased.”
+
+Instead:
+
+The engine detects:
+
+Observed Pattern:
+
+Entity:
+Judge
+
+Metric:
+Continuances granted/denied
+
+Time period:
+2024-2026
+
+Source:
+Public docket records
+
+Observation:
+Pattern detected
+
+The system reports data.
+
+Humans interpret.
+
+4. BIAS BEACON Module
+
+Structure:
+
+BIAS BEACON
+
+├── Judicial Analytics
+
+├── Prosecutorial Analytics
+
+├── Law Enforcement Analytics
+
+├── DHS Analytics
+
+└── Defense System Analytics
+Judicial Analytics Example
+
+Tracks:
+
+case outcomes
+motions
+dismissal rates
+sentencing patterns
+appeal outcomes
+
+Output:
+
+Judge Profile
+
+Cases analyzed:
+___
+
+Orders:
+___
+
+Common procedural events:
+___
+
+Appeals:
+___
+5. Watchtower Dashboard
+
+Your statewide intelligence layer.
+
+Modules:
+
+Statewide Dashboard
+
+Tracks:
+
+counties
+case types
+timelines
+outcomes
+Agency Intelligence
+
+Tracks:
+
+agencies
+complaints
+litigation
+policies
+Budget Analysis
+
+Tracks:
+
+spending
+grants
+programs
+outcomes
+Pattern Explorer
+
+User query:
+
+"Show cases where a motion for discovery was denied before trial."
+
+Returns:
+
+cases
+dates
+judges
+documents
+6. Add Confidence Scoring
+
+Every intelligence item gets:
+
+Confidence:
+
+Verified:
+Court record
+
+Supported:
+Multiple sources
+
+Reported:
+Single source
+
+Unverified:
+Needs confirmation
+7. Create the Search Engine
+
+This becomes your Lexis-like interface.
+
+Search:
+
+"speedy trial"
+AND
+"Washington County"
+AND
+"indictment"
+
+Returns:
+
+Case:
+24CR49043
+
+Matches:
+
+Document:
+OJD Public.pdf
+
+Page:
+44
+
+Quote:
+"..."
+8. Add the Sui Generis Center
+
+Separate analytical space.
+
+Purpose:
+
+Rare or unusual issues.
+
+Examples:
+
+procedural anomalies
+novel arguments
+unusual agency behavior
+constitutional issues
+
+Schema:
+
+Issue:
+
+Description:
+
+Cases:
+
+Authorities:
+
+Status:
+emerging/recognized/settled
+9. Add the Juris Lab
+
+Research engine.
+
+Connect:
+
+statutes
+cases
+rules
+briefs
+outcomes
+
+Output:
+
+Issue:
+
+Authority:
+
+Rule:
+
+Application:
+
+Counterarguments:
+
+10. User Interface Layer
+
+Now the product begins to look like A.P.T.I.T.U.D.E.:
+
+Main navigation:
+
+A · P · T · I · T · U · D · E
+
+├── Command Center
+├── Cases
+├── Watchtower
+├── Bias Beacon
+├── Juris Lab
+├── Sui Generis
+├── Contacts
+└── LexOr Prose
+11. The next step after this
+
+After the intelligence graph, the next layer is LexOr Prose — the filing generation engine.
+
+That is where the system takes:
+
+verified facts
+
+authorities
+procedural posture
+local court rules
+
+and generates:
+
+motions
+declarations
+objections
+appeals
+exhibit indexes
+proposed orders
+
+The full stack becomes:
+
+Records
+ ↓
+Evidence
+ ↓
+Timeline
+ ↓
+Intelligence Graph
+ ↓
+Legal Analysis
+ ↓
+Document Generation
+ ↓
+Court Filing Package
+
+At this point you have the architecture of the platform. The next step is building the actual first agent implementation and codebase.
+
+A.P.T.I.T.U.D.E. Phase 4
+LexOr Prose Engine
+1. Create the Filing Object
+
+Every filing becomes structured data first.
+
+Example:
+
+Filing:
+
+type:
+  Motion
+  Response
+  Memorandum
+  Declaration
+  Notice
+  Appeal
+
+court:
+jurisdiction:
+
+case_number:
+
+moving_party:
+
+opposing_party:
+
+issue:
+
+relief_requested:
+
+supporting_facts:
+
+authorities:
+
+exhibits:
+
+The AI fills this before writing prose.
+
+2. Create the Argument Builder
+
+Use CRAC / IRAC structure.
+
+Engine:
+
+CLAIM
+ |
+RULE
+ |
+APPLICATION
+ |
+CONCLUSION
+
+Example:
+
+Issue:
+
+Whether the court should grant relief.
+
+Rule:
+
+ORS / ORCP / Case Authority
+
+Application:
+
+Facts pulled from verified matrix
+
+Conclusion:
+
+Requested order
+3. Build the Authority Engine
+
+The AI should not just cite.
+
+It should map:
+
+LEGAL ISSUE
+      |
+      |
+STATUTE
+      |
+      |
+RULE
+      |
+      |
+CASE LAW
+      |
+      |
+APPLICATION
+
+Example:
+
+{
+"issue":"record access denial",
+
+"authority":[
+
+{
+"type":"statute",
+"citation":"ORS ___"
+},
+
+{
+"type":"case",
+"holding":"..."
+}
+
+]
+}
+4. Build Exhibit Automation
+
+This is essential.
+
+The system generates:
+
+EXHIBIT A
+Document
+
+EXHIBIT B
+Order
+
+EXHIBIT C
+Transcript excerpt
+
+With:
+
+exhibit cover page
+Bates-style numbering
+index
+references inside motion
+5. Create the Citation Linker
+
+Every factual sentence gets linked.
+
+Example:
+
+Draft:
+
+The court denied Mother's request for copies.
+
+Behind the scenes:
+
+{
+sentence_id:"S44",
+
+source:
+
+"25JU04261 docket"
+
+page:
+
+"12"
+}
+
+The AI can later answer:
+
+“Prove this sentence.”
+
+6. Oregon Court Formatting Layer
+
+Create templates:
+
+Caption
+
+Case number
+
+Court
+
+Title
+
+Introduction
+
+Facts
+
+Argument
+
+Conclusion
+
+Signature block
+
+Certificate of Service
+
+Proposed Order
+
+Rules engine:
+
+Court:
+Oregon Circuit Court
+
+Formatting:
+UTCR
+
+Citation:
+Oregon style
+7. Build the “Motion Generator Workflow”
+
+User:
+
+Draft motion regarding discovery violation.
+
+System:
+
+Step 1:
+
+Find discovery events.
+
+↓
+
+Step 2:
+
+Find deadlines.
+
+↓
+
+Step 3:
+
+Find violations.
+
+↓
+
+Step 4:
+
+Find authority.
+
+↓
+
+Step 5:
+
+Generate draft.
+
+8. Add Opposing Argument Simulation
+
+Before filing:
+
+AI creates:
+
+LIKELY OPPOSITION
+
+Argument:
+_____
+
+Response:
+
+_____
+
+This becomes litigation preparation.
+
+9. Create the Filing Quality Check
+
+Before export:
+
+DOCUMENT REVIEW
+
+✓ Caption correct
+
+✓ Case number verified
+
+✓ Party names verified
+
+✓ Citations verified
+
+✓ Exhibits attached
+
+✓ Service section included
+
+✓ Every fact sourced
+
+✓ No unsupported claims
+10. Output Package
+
+One click:
+
+Motion_Package/
+
+├── Motion.pdf
+
+├── Memorandum.pdf
+
+├── Declaration.pdf
+
+├── Exhibits.pdf
+
+├── Exhibit_Index.pdf
+
+├── Proposed_Order.docx
+
+└── Filing_Checklist.pdf
+
+Next is Phase 5: Platformization — turning the engine into an actual A.P.T.I.T.U.D.E. product.
+
+Up to now:
+
+Phase 1 = ingest records
+Phase 2 = coordinate agents
+Phase 3 = analyze relationships/patterns
+Phase 4 = draft filings
+
+Phase 5 is the operating environment where humans use it.
+
+A.P.T.I.T.U.D.E. Platform Core
+1. User + Organization Layer
+
+You need identity and permissions.
+
+Model:
+
+USER
+ |
+ ├── ORGANIZATION
+ |
+ ├── CASE ACCESS
+ |
+ └── ROLE
+
+Roles:
+
+Role:
+
+Owner:
+- full access
+
+Attorney:
+- cases
+- filings
+- research
+
+Client:
+- documents
+- status
+
+Analyst:
+- records
+- dashboards
+
+Public:
+- limited datasets
+2. Case Command Center
+
+Every case gets a dashboard.
+
+Example:
+
+CASE: 24CR49043
+
+STATUS:
+Pretrial
+
+COMPLETENESS:
+84%
+
+DOCUMENTS:
+67
+
+EVENTS:
+312
+
+OPEN ISSUES:
+14
+
+DEADLINES:
+3
+
+MISSING RECORDS:
+5
+3. AI Case Assistant
+
+Not a generic chatbot.
+
+A case-specific interface.
+
+User:
+
+"What happened at the January 14 grand jury event?"
+
+AI:
+
+Retrieves:
+
+docket
+transcript
+filing
+related documents
+
+Returns:
+
+EVENT:
+
+Date:
+01/14/2025
+
+Sources:
+OJD Public.pdf p.44
+
+Quote:
+"..."
+
+Related Issues:
+Grand jury authority
+4. Document Room
+
+Think:
+
+secure litigation workspace.
+
+Features:
+
+upload
+OCR
+tagging
+exhibit creation
+annotations
+version history
+
+Structure:
+
+Documents
+
+Court Records
+
+Discovery
+
+Correspondence
+
+Research
+
+Drafts
+
+Exhibits
+5. Litigation Timeline UI
+
+Visual:
+
+2024
+ |
+Sept 18
+Arrest
+
+ |
+Sept 26
+Speedy trial demand
+
+ |
+Jan 14
+Indictment
+
+ |
+Feb 24
+Hearing
+
+ |
+Apr 29
+Court ruling
+
+Click event → source page.
+
+6. Evidence Board
+
+Visual relationship mapping:
+
+CLAIM
+
+  |
+  |
+Evidence
+
+  |
+  |
+Document
+
+  |
+  |
+Page
+
+  |
+  |
+Quote
+7. BIAS BEACON Production Version
+
+Separate from individual cases.
+
+Public-data intelligence.
+
+Modules:
+
+Judge Analytics
+
+Tracks:
+
+rulings
+motions
+timelines
+Prosecutor Analytics
+
+Tracks:
+
+charging patterns
+dismissals
+resolutions
+Agency Analytics
+
+Tracks:
+
+litigation
+policies
+complaints
+outcomes
+
+Important design rule:
+
+The system reports observable patterns, not conclusions.
+
+8. The Watchtower
+
+Statewide intelligence.
+
+Example:
+
+Query:
+
+“Show Oregon counties where criminal cases exceed statutory timelines.”
+
+Output:
+
+Map:
+
+County
+|
+Cases
+|
+Average delay
+|
+Source records
+9. Contact Intelligence
+
+A legal CRM layer:
+
+CONTACT
+
+Name
+
+Role
+
+Organization
+
+Cases
+
+Documents
+
+Notes
+
+Communications
+10. API Layer
+
+Eventually:
+
+Frontend
+   |
+API
+   |
+Agents
+   |
+Database
+   |
+Document Storage
+
+Suggested stack:
+
+Frontend:
+
+Next.js
+
+Backend:
+
+Python FastAPI
+
+Database:
+
+PostgreSQL
+
+Search:
+
+OpenSearch / Elasticsearch
+
+Vector search:
+
+pgvector
+
+Storage:
+
+S3-compatible object storage
+
+AI:
+
+model routing layer
+11. Security Layer
+
+For legal records:
+
+Must have:
+
+encryption
+access logs
+backups
+permissions
+document hashes
+audit trail
+12. MVP Definition
+
+Do not build the whole platform first.
+
+The first sellable version:
+
+A.P.T.I.T.U.D.E. MVP
+
+✓ Upload case files
+
+✓ OCR PDFs
+
+✓ Build timeline
+
+✓ Build litigation matrix
+
+✓ Ask questions about record
+
+✓ Generate filing drafts
+
+✓ Export court package
+AI
+
+↓
+
+Loads Template
+
+↓
+
+Populates Variables
+
+↓
+
+Generates Body
+
+↓
+
+Compiles XeLaTeX
+
+↓
+
+Runs Validation
+
+↓
+
+Produces PDF
+
+The AI should never regenerate your preamble.
+
+AI
+
+↓
+
+Loads Template
+
+↓
+
+Populates Variables
+
+↓
+
+Generates Body
+
+↓
+
+Compiles XeLaTeX
+
+↓
+
+Runs Validation
+
+↓
+
+Produces PDF
+
+The AI should never regenerate your preamble.
+
+template/
+
+master_preamble.tex
+
+
+----------------------------------------------
+
+
+<<COURT_NAME>>
+
+<<CASE_NUMBER>>
+
+<<PLAINTIFF>>
+
+<<DEFENDANT>>
+
+<<DOCUMENT_TITLE>>
+
+<<DOCUMENT_SUBTITLE>>
+
+<<AUTHOR>>
+
+<<AUTHOR_STATUS>>
+
+<<COUNTY>>
+
+<<FOOTER_TEXT>>
+
+No actual names live in the master template.
+
+YAML
+
+caption:
+
+court:
+
+county:
+
+case_number:
+
+plaintiff:
+
+defendant:
+
+judge:
+
+document_title:
+
+CaptionBlock()
+
+↓
+
+fills automatically
+
+YAML
+
+footer:
+
+case_style:
+
+case_number:
+
+document:
+
+SIGNATURE BLOCK
+\noindent Respectfully,
+
+\vspace{20pt}
+
+<<SIGNATURE_BLOCK>>
+
+
+
+AI is only allowed to generate inside
+
+\begin{document}
+
+BODY HERE
+
+\end{document}
+
+Everything before that stays untouched.
+
+
+Layer 7 — Section Generator
+
+Instead of asking
+
+"write headings"
+
+the AI has commands.
+
+Example
+
+SECTION
+
+↓
+
+\section{}
+
+SUBSECTION
+
+↓
+
+\subsection{}
+
+FACTS
+
+↓
+
+Paragraphs
+
+ARGUMENT
+
+↓
+
+CRAC
+
+CONCLUSION
+
+Layer 8 — Exhibit Engine
+
+\firstRefExhibit{A}{Exhibit A}
+
+\ExhibitTitle
+
+every exhibit hyperlink is created without human intervention.
+
+
+Layer 9 — Citation Objects
+
+Every citation becomes structured.
+
+Instead of
+
+(Exhibit A)
+
+the AI stores
+
+Citation
+
+document
+
+page
+
+quote
+
+exhibit
+
+label
+
+Then generates
+
+\firstRefExhibit
+
+or
+
+\ExRef
+
+automatically.
+
+Layer 10 — Compile Pipeline
+
+Instead of trusting AI,
+
+run
+
+XeLaTeX
+
+↓
+
+Check errors
+
+↓
+
+Undefined references?
+
+↓
+
+Run again
+
+↓
+
+Missing exhibit?
+
+↓
+
+Report
+
+↓
+
+PDF
+Layer 11 — Validation
+
+Before returning anything
+
+AI checks
+
+✓ Placeholder unresolved?
+
+✓ Missing case number?
+
+✓ Missing caption?
+
+✓ Undefined label?
+
+✓ Broken hyperlink?
+
+✓ Undefined exhibit?
+
+✓ Overfull boxes?
+
+✓ Missing signature?
+
+THEN...START WITH THIS FIRST: 
+
+YAML
+
+Document:
+  Title: Motion to Dismiss
+
+Caption:
+  Plaintiff:
+  Defendant:
+  Case Number:
+
+Sections:
+  - Introduction
+  - Facts
+  - Argument
+  - Relief Requested
+
+Exhibits:
+  - A
+  - B
+  - C
+
+Authorities:
+  - ORS ...
+  - ORCP ...
+
+
+A rendering engine would then merge that object with your locked XeLaTeX template.
+
+That separation has several advantages:
+
+Your typography and formatting remain consistent across every filing.
+Updating the template (for example, changing footer style or adding a new macro) affects all future documents without changing the AI prompts.
+The AI focuses on legal reasoning and document structure, while the renderer is responsible for presentation.
+You can add validation before compilation (e.g., reject a document if required placeholders are missing).
+One additional capability I'd add
+
+I would introduce a Template Manifest alongside your XeLaTeX preamble. The manifest tells the AI exactly what it is allowed to populate.
+
+For example:
+
+template_name: Oregon Circuit Court Filing
+
+locked:
+  - preamble
+  - packages
+  - macros
+  - pleading_paper
+  - geometry
+  - footer_macros
+  - exhibit_macros
+
+fillable:
+  court_name:
+    required: true
+  county:
+    required: true
+  case_number:
+    required: true
+  plaintiff:
+    required: true
+  defendant:
+    required: true
+  document_title:
+    required: true
+  footer_text:
+    required: true
+
+body:
+  format: CRAC
+
+compile:
+  engine: xelatex
+
+That manifest becomes the contract between the AI and your template. It prevents accidental changes to formatting while giving the AI precise instructions about what it is expected to supply.
+
+
+RENDERING AGENT: 
+
+It should be deterministic software.
+
+Think of it like this:
+
+                    USER
+
+                      │
+
+                      ▼
+
+          Litigation Orchestrator
+                (LLM Router)
+
+      ┌─────────────┼─────────────┐
+      ▼             ▼             ▼
+
+ Evidence      Research       Drafting
+  Agent          Agent          Agent
+
+      └─────────────┼─────────────┘
+
+                    ▼
+
+          DOCUMENT OBJECT (JSON)
+
+                    ▼
+
+          ┌────────────────────┐
+          │  RENDERING AGENT    │
+          └────────────────────┘
+
+                    ▼
+
+     XeLaTeX Template + Variables
+
+                    ▼
+
+              XeLaTeX Compiler
+
+                    ▼
+
+               Finished PDF
+
+The Rendering Agent is below the AI.
+
+It doesn't "think."
+
+It doesn't "draft."
+
+It simply assembles.
+
+the Rendering Agent literally does
+
+template.tex
+
++
+
+variables.json
+
++
+
+body.tex
+
+=
+
+motion.tex
+
+
+Think of it like React
+
+React doesn't generate HTML.
+
+It receives data.
+
+Example
+
+<Caption
+
+court="Washington County"
+
+caseNumber="24CR49043"
+
+plaintiff="State of Oregon"
+
+defendant="AshLe' Penn"
+
+/>
+
+Then renders.
+
+Same concept.
+
+Your template becomes sacred.
+master_template.tex
+
+never changes.
+
+Ever.
+
+The Rendering Agent simply fills
+
+{{COURT}}
+
+↓
+
+Washington County Circuit Court
+{{CASE_NUMBER}}
+
+↓
+
+24CR49043
+{{DOCUMENT_TITLE}}
+
+↓
+
+Motion to Compel
+
+Nothing else.
+
+This also means...
+
+You can create multiple templates.
+
+Oregon Circuit Court
+
+Federal District Court
+
+Court of Appeals
+
+Supreme Court
+
+Dependency
+
+FED
+
+Civil
+
+Criminal
+
+The Drafting Agent doesn't care.
+
+It outputs
+
+Document Object
+
+The Rendering Agent picks the correct template.
+
+Even better...
+
+The Rendering Agent can enforce rules.
+
+Suppose
+
+Case Number
+
+=
+
+blank
+
+It refuses.
+
+ERROR
+
+Required field:
+
+CASE_NUMBER
+
+Or
+
+Caption missing Plaintiff
+
+Stops.
+
+Or
+
+Undefined exhibit.
+
+Exhibit D referenced
+
+No Exhibit D exists.
+
+Stops.
+
+This becomes the last checkpoint.
+Evidence Agent
+
+↓
+
+Drafting Agent
+
+↓
+
+Rendering Agent
+
+↓
+
+Validation Agent
+
+↓
+
+XeLaTeX
+
+↓
+
+PDF
+
+Notice there are now two non-AI agents at the end.
+
+They don't think.
+
+They verify.
+
+Here's the part that excites me the most for A.P.T.I.T.U.D.E.
+
+I don't think you should have one rendering agent.
+
+I think you should have a Rendering Engine.
+
+Renderer
+
+├── Caption Renderer
+
+├── Footer Renderer
+
+├── Header Renderer
+
+├── Signature Renderer
+
+├── Exhibit Renderer
+
+├── Citation Renderer
+
+├── TOC Renderer
+
+├── Appendix Renderer
+
+├── PDF Compiler
+
+└── Validation Engine
+
+Every one of those is deterministic.
+
+No AI.
+
+No creativity.
+
+No hallucinations.
+
+promote the template itself to a first-class object in the system.
+
+Instead of:
+
+Motion.tex
+
+you would have:
+
+Oregon Circuit Court Filing Template
+
+Version:
+3.2
+
+Author:
+AshLe' Penn
+
+Engine:
+XeLaTeX
+
+Supported Documents:
+
+✓ Motion
+
+✓ Memorandum
+
+✓ Declaration
+
+✓ Affidavit
+
+✓ Notice
+
+✓ Appeal
+
+✓ Petition
+
+✓ Response
+
+✓ Objection
+
+The Rendering Engine doesn't know anything about Oregon law. It only knows how to take a validated document object and render it according to the template's rules.
+
+I think that's a significant architectural distinction. It means if you later decide to support another jurisdiction, you don't rewrite the drafting agent—you add another template package and renderer configuration. The legal reasoning layer and the presentation layer remain cleanly separated, which is exactly what you want in a long-lived system.
+
+
+               USER
+
+                 │
+
+                 ▼
+
+        CASE KNOWLEDGE
+      (documents + memory)
+
+                 │
+
+                 ▼
+
+        LITIGATION AGENT
+    (reasoning and drafting)
+
+                 │
+
+      Document Object (.json)
+
+                 ▼
+
+        RENDERING ENGINE
+
+                 │
+
+        master_template.tex
+
+                 │
+
+                 ▼
+
+         XeLaTeX Compiler
+
+                 │
+
+                 ▼
+
+               PDF
+
+
+APTITUDE/
+
+templates/
+
+    oregon/
+
+        master.tex
+
+        caption.tex
+
+        signature.tex
+
+        footer.tex
+
+        exhibits.tex
+
+        variables.yaml
+
+render/
+
+    renderer.py
+
+    compile.py
+
+    validator.py
+
+documents/
+
+    document_schema.json
+
+prompts/
+
+    drafting_prompt.md
+
+output/
+
+scratch/
+
+tests/
+
+Step 1
+
+Create
+
+master.tex
+
+using YOUR exact preamble.
+
+Not modified.
+
+Not improved.
+
+Exactly yours.
+
+Step 2
+
+Replace every case-specific thing.
+
+For example
+
+Instead of
+
+Jim Wong
+
+replace with
+
+<<PLAINTIFF>>
+
+Instead of
+
+AshLe' Penn
+<<DEFENDANT>>
+
+Instead of
+
+26LT03815
+<<CASE_NUMBER>>
+
+Everywhere.
+
+Footer.
+
+Metadata.
+
+Caption.
+
+Hyperref.
+
+Exhibit footer.
+
+Everything.
+
+Step 3
+
+Create
+
+variables.yaml
+
+Example
+
+court:
+
+county:
+
+case_number:
+
+plaintiff:
+
+defendant:
+
+judge:
+
+document_title:
+
+document_subtitle:
+
+author:
+
+author_status:
+
+footer:
+
+signature:
+
+today:
+
+This becomes the only thing the renderer reads.
+
+Step 4
+
+Now define
+
+document.json
+
+Example
+
+{
+  "title":"Motion to Compel",
+
+  "caption":{
+
+      "plaintiff":"State of Oregon",
+
+      "defendant":"AshLe' Penn",
+
+      "case_number":"24CR49043"
+
+  },
+
+  "sections":[
+
+      ...
+
+  ]
+}
+
+Notice.
+
+No LaTeX.
+
+Only data.
+
+Step 5
+
+Now write
+
+renderer.py
+
+The renderer has one job.
+
+Read
+
+↓
+
+document.json
+
+↓
+
+variables.yaml
+
+↓
+
+master.tex
+
+↓
+
+Replace placeholders
+
+↓
+
+Write
+
+output.tex
+
+That's it.
+
+No AI.
+
+Step 6
+
+Compile
+
+xelatex output.tex
+
+If compile succeeds
+
+↓
+
+PDF
+
+If compile fails
+
+↓
+
+Return the exact error.
+
+Don't let AI fix it.
+
+Step 7
+
+Validator
+
+This is huge.
+
+Before compiling
+
+Check
+
+Any <<PLACEHOLDER>> left?
+
+↓
+
+YES
+
+↓
+
+STOP
+Any missing sections?
+
+↓
+
+STOP
+Undefined exhibit?
+
+↓
+
+STOP
+Undefined citation?
+
+↓
+
+STOP
+Step 8
+
+Now comes the AI.
+
+Prompt:
+
+You are writing ONLY the document body.
+
+Do not produce:
+
+\documentclass
+
+Do not produce:
+
+\usepackage
+
+Do not produce:
+
+\begin{document}
+
+Do not produce:
+
+\end{document}
+
+Output only valid body content.
+
+That is dramatically easier than asking it to produce a whole .tex document.
+
+Step 9
+
+Now the renderer inserts
+
+BODY
+
+HERE
+
+inside
+
+\begin{document}
+
+BODY
+
+\end{document}
+Step 10
+
+Now here's what I think will make LexOr Prose feel like magic.
+
+Instead of saying
+
+Draft Motion to Dismiss
+
+you'll eventually type
+
+NEW DOCUMENT
+
+Type:
+
+Motion
+
+Issue:
+
+Speedy Trial
+
+Authorities:
+
+ORS ...
+
+Facts:
+
+Use verified timeline.
+
+Tone:
+
+Formal.
+
+Compile:
+
+Yes.
+
+The AI returns a document.json.
+
+The renderer turns it into a filing.
+
+The One Thing I Would Add Tonight
+
+I would not stop at a renderer.
+
+I would build a Template Registry.
+
+templates/
+
+    registry.yaml
+
+    oregon/
+
+    appeal/
+
+    dependency/
+
+    criminal/
+
+    federal/
+
+Example:
+
+templates:
+
+  oregon_circuit:
+
+      engine: xelatex
+
+      template: master.tex
+
+      variables: variables.yaml
+
+      validator: validator.py
+
+      pleading_paper: true
+
+      exhibits: true
+
+Then the AI simply says:
+
+template:
+
+oregon_circuit
+
+and the renderer knows exactly what to do.
+
+One architectural decision that will save you months
+
+Do not let the LLM emit arbitrary LaTeX.
+
+Instead, define a small set of legal "building blocks" that the LLM is allowed to use. For example:
+
+Section(title, paragraphs)
+Subsection(title, paragraphs)
+QuotedAuthority(citation, text)
+BlockQuote(text)
+NumberedList(items)
+ExhibitReference(label, description)
+
+The renderer maps those blocks to your exact LaTeX macros and formatting.
+
+That gives you three major advantages:
+
+You can change formatting once without retraining prompts.
+The renderer can validate the structure before compilation.
+The AI spends its capacity on legal analysis instead of remembering LaTeX syntax.
+
+If I were sitting down to build this tonight, that is the design I would implement first. It's small enough to complete, immediately useful for your own filings, and it becomes the foundation that the rest of A.P.T.I.T.U.D.E. can build on without having to be redesigned later.

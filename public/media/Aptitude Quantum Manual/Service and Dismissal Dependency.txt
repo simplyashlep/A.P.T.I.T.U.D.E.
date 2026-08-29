@@ -1,0 +1,364 @@
+So, I am, Barry is suing LifeWorks now because they submitted a mental health evaluation, drug and alcohol evaluation, that was incorrect. It had incorrect information on it about him, his drug use, his life, and his community corrections supervisor on his post-prison supervision increased his scrutiny on him. I mean, like, they jailed him almost for a full year. So now, we find out that the evaluation is wrong, and LifeWorks is responsible for it. So now, Barry is suing LifeWorks and the person who did it, Leslie Nelson, and he served LifeWorks, both of them at the same time. He even directed to her personally, but then at LifeWorks, left office service. And so now, the court is saying, Leslie Nelson, because you sue her in her personal capacity, is an individual and requires personal service. But the thing is, she's being represented by the same counsel that represents LifeWorks and was served at the same time as LifeWorks, but she doesn't work there anymore. Even though the State Board of Licensing for her clinician's LCSW or whatever, it says LifeWorks is her current employer, and she failed to update that within 10 days. So now the court's like, you know, she's, is there a reason why we shouldn't move to dismiss the service against this person because they weren't personally served, but then we did serve her at her place of business and through office service at the same time as LifeWorks.
+
+Based on the facts you've described, Barry may have several arguments against dismissal, but the answer depends on Oregon's service rules and the specific procedural posture of the case.
+
+A few things jump out:
+
+Office service is a recognized method of service in Oregon under certain circumstances, but it has technical requirements. The question becomes whether serving Leslie at LifeWorks was reasonably calculated to give her notice and whether the service complied with the applicable rule for individuals.
+
+The court appears to be focusing on the distinction between:
+
+Serving LifeWorks (the entity), and
+Serving Leslie Nelson individually.
+
+Courts often treat those as separate defendants, even when they share counsel.
+
+The fact that:
+
+Leslie performed the evaluation while employed by LifeWorks,
+LifeWorks accepted service,
+The same attorney now represents both defendants,
+Leslie apparently received actual notice of the lawsuit,
+
+all tend to support an argument that the purpose of service—notice—has been satisfied.
+
+Oregon courts sometimes apply the principle from cases interpreting ORCP 7 that the ultimate question is whether the method used was reasonably calculated under all the circumstances to apprise the defendant of the action and afford an opportunity to appear and defend.
+
+The licensing issue is potentially helpful factually:
+
+If Leslie represented to the licensing board that LifeWorks was her current employer,
+And failed to update that information,
+Barry may argue he reasonably relied on public records showing LifeWorks as her business address.
+
+That does not automatically cure defective service, but it can strengthen an argument that the service method was reasonable.
+
+The fact that counsel appeared for Leslie is not, by itself, a waiver of defective service. Attorneys frequently appear and simultaneously preserve objections to personal jurisdiction and service.
+
+The argument I would expect Barry to make is something along these lines:
+
+Service at LifeWorks was reasonably calculated to provide Leslie Nelson with notice because it was her publicly listed place of employment, the address associated with her professional licensure, the location where the challenged conduct occurred, and the location through which she was represented by counsel. Leslie in fact received notice of the action, retained counsel, and appeared. Under the totality of the circumstances, dismissal would elevate form over substance.
+
+The counterargument from defendants will be:
+
+Leslie was sued individually, no longer worked there, and ORCP requires service on the individual defendant. Actual notice alone does not cure defective service.
+
+One thing I'd want to know is:
+
+Was this filed in Oregon state court?
+Was service attempted under ORCP 7 D(2) office service?
+Did Barry file a certificate or affidavit describing the service?
+Has Leslie's attorney filed a motion to dismiss, or is the judge issuing an order to show cause on the court's own initiative?
+
+Those details matter because there may be a difference between arguing substantial compliance under ORCP 7 and needing to request additional time to perfect service. In many situations, courts prefer allowing re-service rather than dismissing a case outright, especially when the statute of limitations is a concern and the defendant clearly has notice of the lawsuit.
+
+“Legally, there are corrections facing false methamphetamine reference, and there's foreseeable liberty consequences.”
+
+Ah, that makes a lot of sense—especially since a false drug reference can have such serious
+
+Pasted text.txt
+Document
+@GitHub
+ access all of the DHS records you can find in any of these repos to apprise yourself. I'm working on a declaratory action within this proceeding after a hearing yesterday. .yesterday. during the hearing the judge asked the AAG about updates, then David Milne spoke and he said that I remain uncooperative because I gave him a list of things that are required before I would "participate" and that I wished for the agency to retract everything that they've said about me (I did not ask him to do this). I told him that it would be required that the agency be honest about not trying to prevent the removal and not offering any services aimed at preventing the removal. the agency posited that their safety plan was their attempt at preventing removal - but it was never offered and i certainly never refused it. Without this attempt to prevent the removal the agency does not have authority to have removed her from me. and David Milne, heard it with my own ears yesterday said I wanted him to retract everything they've said - you have the emails I've sent to him...this isn't true. Then the judge got to me and told me that she would give me 5 minutes to speak about my circumstances. I started to speak and told the court that the agency has not identified to me what conduct of mine bears a nexus to a harm great enough that is non-speculative and likely to happen and that they have not demonstrated that I have not exercised a minimal reasonably prudent parent standard when it comes to my child. Ultimately, they have not established that I am not a fit parent  and the judge cut me off and told me that the reasonably prudent parent standard doesn't apply here and that I was reading the wrong standard. I told the judge that I don't believe that my saying that the agency has not established that I am and unfit and/or falling below the reasonably prudent parent standard contradicts the statutory scheme of juvenile dependency and that because I have not been established as unfit. she kept cutting me off and told me that my time to challenge the action has passed. I tried to tell her that it has not because its a jurisdictional challenge and that I did object to the proceedings at the shelter hearing. then again she cut me off. I told her that I haven't had the opportunity to speak directly with the court as i
+
+Show less
+11:08 AM
+as I've been prevented from having access to the court. The judge then said that I've had every opportunity to appear before the court and that i haven't but that she's denied every filing i've made. I tried to explain to her that the default appearance in oregon is through written filing and that if the court recognized that i've filed in the past - then it should not consider me to not have appeared when that's what i did - especially in light of not having been served. So i objected to the court's characterization of me not having appeared and asked if i could state my objection. the court told me no and that i could not object. She said that she just wants to hear about my circumstances and that's it. i tried to explain that david milne just recently contacted me and told me that the safety plan would be changing because they couldn't support the one that's in place being that the two jurisdictional basis deal with dangerous parent or lacking capacity to parent and that these dont suit me and so that I was waiting for the safety plan the new one that Milne said won't measure any conduct of mine. The judge again stopped me and told me, "I know better, I know better, and that when she's talking I'm not and that if i continue to interrupt her that she'll mute me and eject me." I told the court that I haven't done anything disruptive or irregular and that I'm attempting to make/keep a record and that i have the right to be heard. I told the court that I wasn't aware of exactly why the court was treating me as if i've offended the court in some way when I saw the court exercise neutrality in speaking with the other parties. but she continued to cut me off and talk over me. She then said that I wasn't represented but that it would be at no cost to me to have an attorney appointed  - all i have to do is file for one. I attempted to answer her and tell her that i was not properly before the court and was going to reject representation as the agency has failed to serve me and was explaining this and she just kept saying over and over again, loudly and rudely, do you want a lawyer or not. Do you want a lawyer or not...then she muted me and kicked me out of the hearing.
+
+This additional context changes how I would frame the declaratory questions.
+
+Your theory is not simply "I wasn't served." It is broader:
+
+The State cannot simultaneously claim a parent is avoiding service, continue exercising authority over that parent, maintain ongoing communication with that parent, selectively deliver documents by email, decline to pursue alternative service authorized by law, and then attribute the resulting lack of participation to the parent.
+
+That is a legal theory about the State's authority and the court's obligations, not merely about service.
+
+I would develop this section as a progression.
+
+SECTION: NOTICE, SERVICE, AND THE COURT'S AUTHORITY TO PROCEED
+
+Question 1
+
+What statutory prerequisites must be satisfied before the juvenile court may conclude that a parent has been afforded notice and a meaningful opportunity to appear and be heard in a dependency proceeding?
+
+Question 2
+
+What findings, if any, must the juvenile court make concerning service, notice, or alternative methods of service before proceeding against a parent whose appearance has not been secured through the ordinary statutory process?
+
+This shifts the focus from DHS to the court's duty.
+
+Question 3
+
+When the record demonstrates that a parent remains in regular communication with ODHS by telephone, email, or other means, what obligation does the agency have to pursue any statutorily authorized alternative methods of service before asserting that the parent failed to appear or failed to participate?
+
+This captures your point that they knew exactly how to reach you.
+
+Question 4
+
+May the juvenile court continue exercising authority over a parent after the statutory period for service has expired without determining whether the statutory requirements governing service have been satisfied or whether authorized alternative methods of service should be employed?
+
+That gets directly to the court's authority.
+
+Question 5
+
+Where ODHS successfully transmits safety plans, correspondence, and other case-related documents through a particular method of communication, what legal basis permits the agency to rely upon that method for those purposes while simultaneously maintaining that service of process could not be accomplished through available procedures?
+
+Notice what this does.
+
+It isn't saying email service is legally sufficient.
+
+It's asking the court to explain the inconsistency.
+
+Question 6
+
+May a juvenile court conclude that a parent has been afforded every opportunity to appear where the parent alleges that the statutory procedures designed to secure that parent's appearance were never completed?
+
+I think this is much stronger than asking "What is an appearance?"
+
+Question 7
+
+After acknowledging, considering, and ruling upon written motions, objections, or other filings submitted by a parent, what legal significance does Oregon law assign to those filings, and may the court thereafter characterize that parent as having failed to appear?
+
+This now comes naturally after Question 6.
+
+Then transition into the records issue.
+
+I actually think this is another conditions-precedent question.
+
+What access to the court file and dependency record must be afforded to a parent who asserts that the court lacks statutory authority to proceed, and may the court deny access to records while simultaneously concluding that the parent has been afforded a meaningful opportunity to participate in the proceeding?
+
+Again, that asks about the court's obligation, not just the facts.
+
+Finally, I think there is one declaratory question that captures almost everything you've told me over the past several months:
+
+May the State rely upon a parent's alleged failure to participate as a basis for continuing dependency proceedings where the agency has not first established compliance with the statutory procedures intended to provide that parent notice, an opportunity to appear, and a meaningful opportunity to be heard?
+
+One caution
+
+One point I would avoid unless the law clearly supports it is stating that the "statutory deadline expired" as a premise in the question. That's a factual/legal conclusion that the court may dispute. Instead, phrase the question around "the statutory requirements governing service" or "the statutory period prescribed by law." Then, elsewhere in the complaint, you can allege the specific dates and explain why you contend the deadline expired. That keeps the declaratory question focused on the legal consequences rather than embedding a contested factual premise.
+
+Mother has also asked for records from the court as a party under ORS 419a.255 and the court has rejected Mother's request for copies and required mother to inspect copies of the record in person only. 
+
+I actually think this belongs in the declaratory action, but not as a public records issue. It's much more powerful if framed as a juvenile court administration and due process issue.
+
+The theory isn't:
+
+"The court violated the Public Records Law."
+
+The theory is:
+
+"The court denied a party access to the very record necessary to understand, challenge, and respond to the exercise of judicial authority over that party's parental rights."
+
+That is a much different question.
+
+I would develop several declarations around this.
+
+Access to the Court Record
+
+Question __
+
+What rights does a parent possess under ORS 419A.255 to inspect and obtain copies of the juvenile court record while a dependency proceeding remains pending?
+
+This asks the court to declare the scope of the statute.
+
+Question __
+
+Where a parent is a party to a dependency proceeding, may the juvenile court deny that parent copies of the court record while simultaneously requiring the parent to defend against the continuing exercise of dependency jurisdiction?
+
+Notice that this ties the records issue directly to jurisdiction.
+
+Question __
+
+What access to the court record must be afforded to a parent before the juvenile court may conclude that the parent has been provided a meaningful opportunity to appear, participate, and be heard?
+
+This ties together:
+
+records,
+participation,
+appearance,
+due process.
+
+Question __
+
+May the juvenile court characterize a parent as uncooperative or conclude that the parent failed to avail themselves of opportunities to participate where the court has denied the parent copies of the court record necessary to identify, prepare, and present objections to the proceedings?
+
+Notice this isn't accusing the court of misconduct. It's asking what the legal consequence is.
+
+This also creates another question that I think is even more important.
+
+Yesterday the judge said:
+
+"You've had every opportunity."
+
+But your position is:
+
+no timely service;
+no notice of initial hearings;
+requests for records denied except for in-person inspection;
+remote appearance denied on at least one dispositive motion;
+written filings acknowledged and denied;
+then later characterized as not appearing.
+
+Those facts all point to a single legal question:
+
+By what legal standard does a juvenile court determine that a parent has been afforded a meaningful opportunity to appear and be heard, and what minimum procedural protections must exist before the court may make that determination?
+
+One thing I would verify
+
+You referenced ORS 419A.255. Before making that statute a central pillar of the declaratory action, I would verify exactly what rights it grants regarding inspection, copies, and access by parties. If the statute expressly entitles a party to copies under the circumstances you describe, that strengthens the question considerably. If it primarily governs confidentiality and access rather than mandating copies, the declaratory question should be tailored to what the statute actually provides rather than assuming a broader entitlement.
+
+That approach keeps the action grounded in the statutory text while still presenting the court with the legal issue you want it to decide.
+
+i fell asleep last night and need for you to take the last several questions just formulated and add them to the list in the appropriate place and re-present the list of questions to me that we've established are key and advantageous to ask so far in one complete set please
+
+I think this is the right point to stop adding questions and instead begin organizing them into a coherent framework. Looking back over everything we've worked through over the past several days—not just this conversation—I think the strength of the declaratory action is that it proceeds in the same order the State exercised authority.
+
+The theme that ties the questions together is:
+
+At each successive stage of the dependency proceeding, what authority was the State required to possess, what findings was the court required to make, and what is the legal consequence if those prerequisites were not satisfied?
+
+With that organizing principle, this is the set I would presently use.
+
+DECLARATORY QUESTIONS
+I. CONDITIONS PRECEDENT TO EMERGENCY PROTECTIVE CUSTODY
+Question 1
+
+What statutory conditions must exist before ODHS may lawfully take a child into emergency protective custody under ORS 419B.150, and are those conditions mandatory prerequisites to the exercise of that authority?
+
+Question 2
+
+Before endorsing or continuing emergency protective custody, what findings is the juvenile court required to make from the record, and may the court authorize or ratify removal absent those findings?
+
+Question 3
+
+Must the juvenile court independently determine that the statutory requirements for emergency protective custody have been satisfied, or may it rely solely upon the agency's representations concerning those requirements?
+
+Question 4
+
+Is the authority to remove a child conditioned upon identifying the specific parental conduct alleged to create the danger necessitating removal, together with the nexus between that conduct and the imminent risk of serious harm to the child?
+
+Question 5
+
+May emergency protective custody be authorized upon generalized concerns, anticipated future harm, parental disagreement with the agency, or unsupported conclusions, absent findings identifying conduct satisfying the statutory standard for removal?
+
+Question 6
+
+When Oregon law requires reasonable efforts to prevent removal, what efforts must exist before emergency protective custody may be exercised, and what authority exists for removal where those efforts were not undertaken?
+
+Question 7
+
+May a safety plan that was never offered before removal later be characterized as a refused safety plan and relied upon by ODHS or the juvenile court to justify removal, continued substitute care, or findings that reasonable efforts were exercised?
+
+Question 8
+
+Does a parent's exercise of constitutional or statutory rights—including declining voluntary agency requests, refusing warrantless entry, insisting upon legal process, or requesting judicial review—constitute evidence of danger, parental unfitness, or grounds for emergency protective custody?
+
+II. NOTICE, SERVICE, AND THE COURT'S AUTHORITY TO PROCEED
+Question 9
+
+What statutory prerequisites must be satisfied before the juvenile court may conclude that a parent has been afforded notice and a meaningful opportunity to appear and be heard in a dependency proceeding?
+
+Question 10
+
+What findings, if any, must the juvenile court make concerning service, notice, or authorized alternative methods of service before proceeding against a parent whose appearance has not been secured through the ordinary statutory process?
+
+Question 11
+
+When the record demonstrates that a parent remains in regular communication with ODHS by telephone, email, or other means, what obligation does the agency have to pursue statutorily authorized methods of service before asserting that the parent failed to appear or failed to participate?
+
+Question 12
+
+May the juvenile court continue exercising authority over a parent after the statutory period governing service has expired without determining whether the statutory requirements governing service have been satisfied or whether authorized alternative methods of service should be employed?
+
+Question 13
+
+Where ODHS successfully transmits safety plans, correspondence, and other case-related documents through a particular method of communication, what legal basis permits the agency to rely upon that method for those purposes while simultaneously maintaining that service of process could not be accomplished through available procedures?
+
+Question 14
+
+May the juvenile court conclude that a parent has been afforded every opportunity to appear where the parent alleges that the statutory procedures designed to secure that parent's appearance were never completed?
+
+Question 15
+
+After acknowledging, considering, and ruling upon written motions, objections, or other filings submitted by a parent, what legal significance does Oregon law assign to those filings, and may the court thereafter characterize that parent as having failed to appear?
+
+III. ACCESS TO THE COURT RECORD
+Question 16
+
+What rights does a parent possess under ORS 419A.255 to inspect and obtain copies of the juvenile court record while a dependency proceeding remains pending?
+
+Question 17
+
+Where a parent is a party to a dependency proceeding, may the juvenile court deny that parent copies of the court record while simultaneously requiring the parent to defend against the continuing exercise of dependency jurisdiction?
+
+Question 18
+
+What access to the court record must be afforded to a parent before the juvenile court may conclude that the parent has been provided a meaningful opportunity to appear, participate, and be heard?
+
+Question 19
+
+May the juvenile court characterize a parent as uncooperative or conclude that the parent failed to avail themselves of opportunities to participate where the court has denied the parent copies of the court record necessary to identify, prepare, and present objections to the proceedings?
+
+IV. ACQUISITION AND CONTINUATION OF JURISDICTION
+Question 20
+
+At what point does the juvenile court acquire authority to proceed against a parent, and what statutory prerequisites must first be satisfied before that authority may be exercised?
+
+Question 21
+
+What must appear within the juvenile court record demonstrating compliance with those statutory prerequisites before the court may proceed against a parent?
+
+Question 22
+
+If a statutory prerequisite to proceeding against a parent has not been satisfied, what authority, if any, permits the juvenile court to continue exercising jurisdiction over that parent?
+
+Question 23
+
+Once emergency custody has been exercised, does Oregon law require the continuing existence of the statutory conditions justifying state intervention, or may jurisdiction continue notwithstanding the absence of those conditions?
+
+Question 24
+
+Must ODHS continue to identify the parental conduct presently relied upon to support jurisdiction, or may prior allegations substitute for current findings?
+
+Question 25
+
+What obligation does the juvenile court have to determine that the conduct presently alleged continues to satisfy the statutory basis for jurisdiction before continuing substitute care?
+
+Question 26
+
+Before the juvenile court may continue exercising dependency jurisdiction over a parent, must the court identify from the record the specific conduct presently attributable to that parent, the statutory basis to which that conduct relates, and the evidentiary nexus between that conduct and a current, non-speculative risk of serious harm to the child?
+
+V. THE PARENT'S OPPORTUNITY TO BE HEARD
+Question 27
+
+By what legal standard does a juvenile court determine that a parent has been afforded a meaningful opportunity to appear and be heard, and what minimum procedural protections must exist before the court may make that determination?
+
+Question 28
+
+What constitutes a meaningful opportunity to be heard when a parent challenges the juvenile court's statutory authority to proceed, and may the court decline to address asserted jurisdictional objections while simultaneously concluding that the parent has been afforded due process?
+
+Question 29
+
+May the juvenile court prohibit or substantially limit a parent's effort to preserve jurisdictional objections for the record while continuing to exercise dependency jurisdiction over that parent's child?
+
+Question 30
+
+May the juvenile court conclude that a parent failed to avail themselves of opportunities to appear or be heard where the record reflects that the parent repeatedly sought judicial relief through written motions, objections, requests for records, and other filings acknowledged and adjudicated by the court?
+
+VI. CONTINUED STATE INTERVENTION
+Question 31
+
+May the State rely upon a parent's alleged failure to participate or cooperate as a basis for continuing dependency proceedings where the agency has not first established compliance with the statutory procedures intended to provide that parent notice, an opportunity to appear, and a meaningful opportunity to be heard?
+
+Question 32
+
+Where the agency's asserted factual basis for an existing safety plan or continued substitute care no longer corresponds to the parent's conduct, what obligation does the juvenile court have to determine whether the statutory basis for continued jurisdiction remains?
+
+One observation after seeing the complete set
+
+Looking at these together, I think they reveal three "master questions" that your declaratory action is really asking:
+
+What authority did ODHS have to act?
+What authority did the juvenile court have to endorse or continue those actions?
+What is the legal consequence when the statutory conditions governing those authorities are not satisfied?
+
+Those three themes provide a coherent legal framework. They also keep the focus on questions of statutory authority and judicial obligations rather than on disagreements over individual factual allegations. As you refine the pleading, I'd recommend tying each question to the specific statute(s), rule(s), or constitutional provision you contend governs that issue so the court can see precisely what legal source each declaration is meant to interpret.

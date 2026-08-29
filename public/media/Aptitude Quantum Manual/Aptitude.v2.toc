@@ -1,0 +1,12 @@
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
+\contentsline {section}{\numberline {2}Quantum Ontology of Agency Behavior}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Fundamental Entities}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Quantum Interaction Equation}{2}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Data Ontology and Event Structure}{2}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Agency Event Object}{2}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Quantum Relational Schema}{3}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Quantum Scoring Model}{3}{section.4}%
+\contentsline {section}{\numberline {5}Dimensional Field Definitions}{3}{section.5}%
+\contentsline {section}{\numberline {6}Agent Architecture Integration}{3}{section.6}%
+\contentsline {section}{\numberline {7}Governance and Ethics Field Constraints}{4}{section.7}%
+\contentsline {section}{\numberline {8}Design Principle}{4}{section.8}%

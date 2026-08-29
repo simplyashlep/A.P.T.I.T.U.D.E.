@@ -1,0 +1,201 @@
+MASTER FILING ARCHITECTURE MAP
+I. 25JU04261 — Juvenile Dependency
+A. Record-Building / Preservation Filings
+1. Notice of Appearance
+
+Purpose:
+Establish party participation, receipt of filings, and eliminate ambiguity regarding participation/status.
+
+2. Objection to Characterization / Correction of Court Narrative
+
+Purpose:
+Create a record that factual/procedural characterizations are disputed.
+
+Structure:
+
+Statement made:
+Where it appears:
+Why inaccurate/incomplete:
+Supporting record:
+Requested correction:
+3. Motion to Correct Court Record
+
+Issue:
+Court-controlled record accuracy.
+
+Structure:
+
+inaccurate entry/characterization
+actual record
+legal authority
+requested correction
+4. Motion for Records / Copies / Access
+
+Split this carefully:
+
+Court records
+
+filings
+orders
+FTR
+transcripts
+register
+
+DHS records
+
+case file
+communications
+assessments
+notes
+
+Because those are different custodians and different duties.
+
+5. Motion for Written Findings
+
+Purpose:
+
+Force clarity.
+
+Questions:
+
+What was the court’s basis?
+What authority supports denial?
+What factual findings support action?
+B. Merits / Dispositive Filing
+6. Motion to Dismiss Dependency
+
+Potential grounds organized separately:
+
+jurisdiction
+service
+notice
+statutory compliance
+due process
+failure of required actions
+C. Extraordinary Relief
+7. Mandamus Petition
+
+Framework:
+
+Duty:
+
+What specific act was legally required?
+
+Example categories:
+
+provide access
+perform required procedural act
+issue required ruling/order
+Refusal:
+
+How did the court/official fail?
+
+Need:
+
+request date
+response
+denial
+omission
+Harm:
+
+Why ordinary remedy is inadequate.
+
+Requested Writ:
+
+Exact act requested.
+
+8. Declaratory Relief
+
+Framework:
+
+Rights:
+
+What right/status exists?
+
+Example:
+
+access to record
+ability to participate meaningfully
+accurate judicial record
+Obligations:
+
+Who owes what duty?
+
+Interpretation sought:
+
+What legal question needs declaration?
+
+II. 24CR49043
+A. Record Preservation
+1. FTR / Official Record Access Motion
+
+Core question:
+
+Can the court deny access to the official record necessary to review proceedings?
+
+Structure:
+
+requested record
+purpose
+court possession/control
+refusal/barrier
+requested order
+2. Motion for Written Findings
+
+Same function:
+force explanation.
+
+3. Motion to Recuse Judge Thompson
+
+Separate record:
+
+not “lost rulings”
+cumulative circumstances
+appearance of inability to be impartial
+B. Extraordinary Relief
+4. Declaratory Relief
+
+Questions:
+
+What rights exist regarding record access?
+What duties exist?
+What is the legal status of disputed procedures?
+5. Mandamus (if duty is clear)
+
+Same:
+
+Duty:
+Refusal:
+Harm:
+Writ:
+
+III. 24CR27775 / Contempt
+
+Repeat the architecture:
+
+A. Record/Preservation
+notice
+service
+orders
+register
+findings
+B. Merits
+objection
+dismissal/challenge
+C. Extraordinary Relief
+mandamus
+declaratory
+
+The additional thing I would add to the very top is:
+
+MASTER RELIEF INDEX
+
+Every issue from Penn_Master_Violations_Matrix_v7_fresh.xlsx gets a column:
+
+Violation	Case	Evidence	Duty	Filing	Relief
+
+So the matrix drives the filings.
+
+That prevents what happened earlier today — where it felt like 50 separate things flying around. They are not 50 things. They are one litigation system with multiple outputs.
+
+Next step: I would build the actual rows from your violations matrix and assign each violation to one of these filings. That becomes the filing checklist.

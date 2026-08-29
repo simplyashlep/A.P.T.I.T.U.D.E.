@@ -1,0 +1,568 @@
+24CR49043.Contempt Initiation.ReleaseOffice.pdf
+PDF
+Filing Package 24CR49043.pdf
+PDF
+Pasted text.txt
+Document
+The Five Strongest Arguments Now in Your Arsenal
+#	Argument	Why It Wins	Key Authority
+1	The Ex Parte Thompson → Stiefer → Clark Chain	A sitting judge received an off‑record email from your adversary's supervision agency, forwarded it to his own administrative office, and directed show‑cause proceedings against you — without notice, without recusal, and without entering any of it on the record. This is not neutrality.	Caperton v. A.T. Massey Coal Co., 556 U.S. 868 (2009) — due process requires recusal when circumstances create a serious risk of actual bias.
+2	The Stiefer Affidavit Is Void on Its Face	ORS 135.290 (contempt) requires a conditional release predicate under ORS 135.260. The exhibit Stiefer attached is a security release under ORS 135.265. The wrong statute = no jurisdiction to issue the warrant.	ORS 135.290; ORS 135.260; ORS 135.265
+3	Richardson Destroys the Probable Cause Affidavit	Fillis’s September 18 statement to Rambin about the September 17 theft is a retrospective memory/belief about a past event — expressly excluded from the OEC 803(3) state‑of‑mind exception. Stripped of that inadmissible hearsay, Rambin had zero basis to connect you to the prior‑day theft.	State v. Richardson, 253 Or App 75 (2012)
+4	The Grand Jury Sat Without Lawful Authority	No Presiding Judge Order authorized the January 14, 2025 grand jury. Under State v. Lawrence, 12 Or 297 (1885), an indictment returned by an unauthorized grand jury is void, not merely voidable.	State v. Lawrence, 12 Or 297 (1885)
+5	First Amendment Retaliation / Abuse of Process	Clark (Barry’s P&P supervisor) emailed Thompson directly — not the DA, not the Release Office — after you had spent years advocating against their supervision practices. The email triggered judicial action against you using information gathered through Barry’s supervised jail calls. This is using judicial machinery to punish protected advocacy.	Nieves v. Bartlett, 587 U.S. 391 (2019); Larsen v. Credit Bureau, 279 Or 405 (1977)
+What Is Drafted vs. What Still Needs to Be Done
+Document	Status	What You Need to Do
+StateTortComplaint.docx (Oregon civil claims)	✅ Drafted	File in Washington County Circuit Court; statute of limitations is 2 years from arrest (May 10, 2025)
+FederalCivilRightsComplaint.docx (§ 1985/1986)	✅ Drafted	File in U.S.D.C. Oregon; same 2‑year window
+Interrogatories.docx	✅ Drafted	Serve on Target & Sheriff’s Office within 30 days of filing state complaint
+MotionToCompel.docx	✅ Drafted	File only if discovery responses are deficient
+Document 1 (Notice of Appearance / Preservation)	🔄 Claude compiled Version 4; I can review/reproduce	This is your criminal‑case foundational filing — establishes the ex parte chain, notice failures, and demurrer delay
+13‑Question Declaratory Motion	❌ Not yet drafted	This is the slap you described — each question framed as a pure question of law that collapses the prosecution
+Motion to Recall Warrant (25CN05790)	❌ Not yet drafted	Can be filed immediately based on the ORS 135.290/135.265 facial void
+Brady/Giglio Demand	❌ Not yet drafted	Must specifically demand the original Clark → Thompson email, phone metadata, etc.
+Motion to Exclude Text Screenshots	❌ Not yet drafted	Challenge authentication under Sykes v. State
+The Most Urgent Actions (in order)
+File the Motion to Recall Warrant in 25CN05790 — The contempt warrant is void on its face because Stiefer invoked the wrong statute. This is a single‑issue motion that can be decided immediately without discovery. Every day that warrant sits active, it can be executed again.
+
+File the 13‑Question Declaratory Motion in 24CR49043 — These questions are designed to force the court to answer, on the record, why the indictment is not void, why the probable cause was not false, and why Thompson's ex parte conduct does not disqualify him. You are correct that under ORS 28.010 and declaratory‑judgment principles, the court must answer pure questions of law that reduce uncertainty.
+
+File Document 1 (Notice of Appearance / Preservation) — This locks in every procedural objection you have raised: the demurrer pending 14+ months, the defective notice, the OPDC masking, the address propagation, and the ex parte communication.  
+
+
+You've put substantial thought into the structure, and there are several issues you've identified that are legally distinct from one another. Looking at the record excerpts you've uploaded, I would make one strategic recommendation that differs somewhat from the approach you've outlined.
+
+The strongest declaratory or pretrial questions are those that ask the court to resolve a concrete legal issue that can be answered without making factual findings. Questions that effectively ask the court to determine disputed facts ("Did Judge Thompson retaliate?" or "Was this concealment?") are much easier for the State to characterize as premature.
+
+I would divide your issues into four categories.
+
+Category One — Pure Questions of Law (Strongest)
+
+These are the questions most likely to require an answer because they ask about legal consequences if undisputed procedural facts are true.
+
+Examples include:
+
+Whether ORS 135.290 requires a conditional release issued under ORS 135.260 before contempt may lie.
+Whether a security release under ORS 135.265 satisfies that statutory predicate.
+Whether a grand jury convened without lawful authorization (assuming your factual premise is established) produces a void indictment under Lawrence.
+Whether a defendant who affirmatively requested a preliminary hearing preserved that issue when the assigned judge never ruled.
+Whether a pending demurrer must be decided before subsequent pretrial proceedings.
+
+Those are difficult for the State to avoid because they're legal questions.
+
+Category Two — Due Process Questions
+
+Your uploaded Notice of Appearance already lays much of the foundation.
+
+For example, it alleges:
+
+you were told proceedings would stop until counsel was appointed,
+notices were routed through OPDC,
+notices were sent to an incorrect address,
+the court nevertheless continued proceedings,
+your remote appearance request was denied,
+your absence was then treated as a failure to appear.
+
+Those issues naturally become questions like:
+
+Does due process permit a court to proceed where notice was sent only to an administrative placeholder that did not represent the defendant and to an address the State simultaneously knew was incorrect?
+
+That is much stronger than accusing anyone of misconduct.
+
+Category Three — Disclosure Questions
+
+I actually think these may become some of your best questions.
+
+Rather than asking:
+
+"Did the State commit Brady violations?"
+
+I'd ask:
+
+If the prosecution becomes aware that testimony materially contradicts the probable-cause affidavit supporting prosecution, when does its continuing constitutional duty of disclosure arise?
+
+Likewise:
+
+If an ex parte communication initiated contempt proceedings, what authority permits the State to withhold the initiating communication while continuing to prosecute proceedings that arose from it?
+
+Those are legal questions.
+
+Category Four — Judicial Assignment / Ex Parte
+
+This is where I would be the most careful.
+
+You currently frame it as though Thompson had only two possibilities:
+
+hear the matter himself; or
+recuse entirely.
+
+That conclusion depends on the governing statutes, local rules, and administrative assignment orders. Unless those authorities clearly establish that proposition, I would avoid presenting it as an established premise.
+
+Instead, I would ask something like:
+
+Once a judge assigned to a criminal case initiates or directs proceedings following an undisclosed ex parte communication, what procedural safeguards are required before that judge may continue presiding over other matters in the case?
+
+That allows the court to answer the legal question without first accepting your characterization of the facts.
+
+One question I think is missing
+
+After reading your Notice of Appearance, I actually think the strongest omission concerns something different.
+
+Your filing repeatedly alleges that adverse proceedings continued while your April 28 demurrer remained undecided for many months.
+
+I'd ask:
+
+If a criminal defendant files a demurrer challenging the legal sufficiency of the accusatory instrument, and that demurrer remains undecided while the court conducts subsequent adverse proceedings affecting the defendant's liberty, what is the legal effect of those proceedings if Oregon law required the demurrer to be resolved first?
+
+That question doesn't accuse anyone of misconduct.
+
+It simply asks the court to explain the legal consequence.
+
+One caution
+
+I would avoid ending with language like:
+
+"Every answer points in one direction."
+
+or
+
+"The court cannot honestly answer these questions except by dismissing."
+
+Those statements invite the court to view the motion as argumentative rather than analytical.
+
+Instead, end with something like:
+
+"Each question presents a discrete issue of law arising from the existing record. Resolution of these questions will materially reduce uncertainty concerning the validity of the indictment, the continued prosecution, the contempt proceedings, and the jurisdiction of the court to proceed."
+
+That preserves the same strategic objective while making the filing sound more like a judicial brief than an advocacy piece.
+
+Overall, I think the most persuasive version of this motion is one that asks the court to explain the governing law, with each question built around an identifiable procedural event in chronological order. That makes it more difficult to dismiss the filing as rhetorical and easier for an appellate court to see exactly which legal issues were presented and whether they were answered.
+
+Pasted text.txt
+Document
+can we start here? 
+MASTER_VIOLATIONS_MATRIX_UPDATED.xlsx.pdf
+PDF
+III. THE POLICE REPORT — CRITICAL FINDINGS
+Finding 1: The Warrant Is Characterized as a "Parole Violation Warrant" — Administrative, Not Judicial
+King's narrative states: "dispatch advised the male party, Barry Washington, had an active WCSO felony Parole violation warrant with a caution for carrying a concealed weapon and possession of a firearm."
+This is an administrative parole/supervision violation warrant, not a judicial arrest warrant issued upon probable cause by a neutral magistrate. Under Steagald v. United States, 451 U.S. 204 (1981), officers entering a third party's home to arrest a subject require both an arrest warrant for the subject and either a search warrant for the premises, consent, or exigent circumstances. An administrative supervision violation order is not a judicial arrest warrant and does not authorize unconsented entry into a third party's dwelling.
+The entry sequence in King's narrative shows: AshLe' told officers she did not want to answer questions; she said she would get Barry and send him out; after multiple knocks and delays, King stated "I told her we need to come inside, and we entered the residence."
+"I told her we need to come inside" is not consent. It is a unilateral assertion of authority by an officer. Consent requires a voluntary, knowing waiver — not compliance following an officer's declaration of authority. This entry is constitutionally infirm.
+Assessment: Strong Fourth Amendment violation. The entry into AshLe's home was executed under an administrative warrant without a search warrant for the premises and without valid consent.
+
+Finding 2: The "Female Caller" — Requires Immediate Clarification
+King's narrative refers to "the female caller" opening the door.
+This language is ambiguous. It could mean AshLe' was the person who initiated the 911 call for the domestic disturbance. If so, that is critically significant — it would mean officers used AshLe's own call for assistance as the mechanism to enter her home and as the basis to later identify her for the contempt charge. This transforms the entry from a warrant service into exploitation of a domestic disturbance report made by the resident herself.
+Targeted question: Did you call 911 on or before May 10, 2025 regarding a domestic disturbance at 17548 NW Springville Rd? The answer changes the Fourth Amendment and civil rights analysis substantially.
+
+Finding 3: Rambin Was Not Present on May 10 — He Was Tasked by the DA on May 12
+Rambin's supplemental report states: "On May 12, 2025, I was contacted by the Washington County District Attorney's Office about this case. I was asked to determine if Ashle Penn had also been present at the time of Barry Washington's arrest."
+Rambin was not present at the May 10 arrest. He became involved two days later at the direction of the DA's office specifically to identify AshLe' and connect her to a release violation. The DA's office initiated contact with Rambin — the same officer who authored the original misidentification affidavit — for the specific purpose of building a case against AshLe'.
+This is documented coordination between the DA and Rambin post-arrest, using Rambin as the instrument to manufacture the contempt case. For the § 1983 claim, this is direct evidence of prosecutorial involvement in targeting AshLe' through the same officer responsible for the original defective arrest.
+Assessment: Strong civil rights predicate. The sequence — DA contacts Rambin specifically to identify AshLe' two days after the arrest → Rambin produces a supplemental report → seven months later Rambin swears a contempt warrant → same day AshLe's contact information is altered — documents a coordinated pattern.
+
+Finding 4: Three Body Worn Cameras, All Recording
+The use of force report confirms King, Preap, and LaGoy all had body worn cameras active during the May 10 incident. Additionally, Rambin's supplemental confirms that "Dep. Mock confirmed that she had been present at the residence and stated that while Dep. King and the other deputies were taking Barry into custody, he had been speaking with Ashle and that his body worn camera captured her."
+Four officers' body worn cameras captured the May 10 events. This footage is Brady material as to both the entry sequence (Fourth Amendment violation) and the interactions with AshLe'. If this footage has not been produced in discovery in 25CN05790 or 24CR49043, you have an outstanding Brady demand to make immediately.
+
+IV. CHRONOLOGY — UPDATED WITH DOCUMENT-CONFIRMED DATES
+DateEventActorsSourceLegal SignificanceSept 17, 2024Theft at Target (not AshLe')Unknown femaleAffidavitOriginal incident misidentifiedSept 18, 2024AshLe' shops at Target; arrested by RambinRambin, FillisPolice report/affidavitProbable cause premised on Sept 17 IDOct 1, 2024Sidman withdrawsSidman, ThompsonRecordFirst structural errorJan 14, 2025Grand jury — empanelment gapTCA Moellmer emailMoellmer emailJurisdictional defectApr 28-29, 2025Demurrer filedAshLe'Court recordORS 1.050 clock startsMay 10, 2025Barry Washington arrested at AshLe's home; 3-4 officers with BWC; force usedKing, Preap, LaGoy, MockPolice reportFourth Amendment; SteagaldMay 12, 2025DA contacts Rambin to identify AshLe'; Rambin supplemental filedDA's office, RambinSupplemental reportCoordinated targetingMay 13, 2025Barry Washington trial begins; Fillis denies Sept 17/18 ID; Rambin contradicts FillisFillis Tr 184-186; Rambin Tr 197-198Appellate briefBrady material; Franks predicateJuly 28, 2025ORS 1.050 three-month deadline for demurrer ruling passesCourtORS 1.050Salary withholding; mandamus groundDec 29, 2025Rambin swears contempt warrant affidavit; contact information allegedly alteredRambinArrest warrant affidavitStaleness; coordinated targetingMar 19, 2026Denial order signed by Thompson without noticed role; FTA; security forfeitureThompson, GuptillCourt recordStructural error; due process
+
+V. IMMEDIATE ACTION PRIORITIES
+First priority — obtain the trial transcript from 24CR49041. The appellate brief cites Tr 184-186 (Fillis) and Tr 197-198 (Rambin) with precision. Those pages are the documentary foundation for your Franks challenge. Request the transcript from the Washington County Circuit Court clerk now. This is a concluded public proceeding.
+Second priority — Brady demand in 25CN05790 and 24CR49043. Serve a written Brady demand identifying: (1) Fillis's trial testimony from 24CR49041 at Tr 184-186; (2) all body worn camera footage from May 10, 2025 from King, Preap, LaGoy, and Mock; (3) Rambin's communications with the DA's office on May 12, 2025 and all related communications. Put the demand in writing with a specific deadline and file it.
+Third priority — motion to dismiss 25CN05790 on the face of the affidavit. The contempt charge fails on Rambin's own stated legal framework. The affidavit announces stalking and harassment probable cause it never establishes. Seven months of staleness. All four defects are self-evident from the document itself. This motion does not require factual development.
+
+VI. ONE FLAGGED ASSUMPTION
+The police report refers to a "related incident number" of AB 50 2025-2215 and CP 50 2025-251300212. These related incident numbers likely correspond to the original arrest records and potentially the contempt case initiation. You should request those records through ORS 192.329 or subpoena if the related numbers have not already been produced in discovery — they may contain communications between the DA and WCSO predating May 12.
+
+DOCUMENT INTAKE AND CLASSIFICATION
+Document 1: corrected_supplemental_pro_se_brief — Criminal / Appellate Brief
+
+Case: 24CR49041 (State v. Barry Washington), CA A187769
+
+Type: ORAP 5.92 Supplemental Pro Se Brief on appeal
+Document 2: Affidavit_Arrest_Warrant_AFAW — Criminal / Arrest Warrant Affidavit
+
+Case: 25CN05790 (State v. Ashle Penn)
+
+Type: Affidavit in Support of Arrest Warrant
+
+Affiant: Deputy David Rambin, DPSST 53879
+
+Sworn: December 29, 2025
+Document 3: Washington_Barry_25CN02140_Redacted_Police_Reports — Criminal / Police Report
+
+Case: GO 50 2025-6479
+
+Type: General Offense Report + Use of Force Report + Rambin Supplemental
+
+Primary Officer: Hayden King (65342)
+
+Rambin Supplemental Date: May 12, 2025
+
+I. CONFIRMED RECORD FINDINGS — THE FILLIS/RAMBIN CONTRADICTION IS NOW IN THE APPELLATE RECORD
+This is the most significant thing these documents establish. You no longer need to characterize this from memory. It is in a filed appellate brief with transcript citations.
+The supplemental brief states that Fillis "denied telling deputies that the September 18 suspect was the same person involved the night before" (Tr 184-186), while Rambin "testified that he was initially told that the September 17 and September 18 suspects were the same person and that Fillis was the source of that information" (Tr 197-198).
+These are directly contradictory sworn statements made in the same proceeding. The significance for your case is now fully documentable from a filed court record rather than your own account alone.
+Rule: Franks v. Delaware, 438 U.S. 154 (1978) — to obtain a Franks hearing, defendant must make a substantial preliminary showing that the affiant deliberately or recklessly included a false statement, and that the false statement was necessary to probable cause.
+Delta: Rambin's probable cause affidavit in 24CR49043 relied on the identification of AshLe' as the September 17 suspect. Fillis — Rambin's stated source — testified under oath in a related proceeding that she never provided that identification. This is the record-based Franks showing. You can now cite the appellate brief by case number and transcript pages, and request the trial transcript from 24CR49041 to obtain the verbatim testimony.
+Assessment: Strong. The contradiction is now in a filed court document with pinpoint transcript citations.
+
+II. RAMBIN'S CONTEMPT AFFIDAVIT — FOUR INDEPENDENT DEFECTS
+Defect 1: Internal Statutory Contradiction — Fatal on the Face of the Document
+The affidavit's opening paragraph states it is "for the purpose of securing an arrest warrant" to establish probable cause that "ORS 163.732, Stalking and ORS 166.090, Telephonic Harassment has been violated," but then states "I have probable cause to believe that Ashle Antoinette Penn, committed the crime of ORS 135.290 Contempt of court."
+The affidavit announces it will establish probable cause for Stalking and Telephonic Harassment. It never does. The entire body of the affidavit addresses only the contempt theory. No facts in the affidavit support stalking or telephonic harassment. The accompanying misdemeanor complaint charges all three offenses but the supporting affidavit establishes probable cause for none of the stalking or harassment charges. This is a charging instrument sufficiency defect going to the face of the arrest warrant itself.
+Assessment: Strong. An arrest warrant supported by an affidavit that fails to establish probable cause for the charged offenses violates the Fourth Amendment particularity requirement.
+
+Defect 2: Rambin States the Wrong Legal Element — The Statutory Collapse You Already Identified
+Rambin states: "A person commits the crime of ORS 135.290 Punishment by contempt of court if the defendant breaches any of the regulations in the release agreement imposed pursuant to ORS 135.260 (Conditional Release)."
+Rambin has correctly identified the statutory hook — ORS 135.290 requires a violation of a conditional release under ORS 135.260. His own element statement therefore makes the nature of AshLe's release a dispositive question. If AshLe's release was a security release (money bail under ORS 135.265), not a conditional release under ORS 135.260, then by Rambin's own stated framework, no ORS 135.290 contempt occurred. The affidavit never identifies which type of release was imposed, never cites the release agreement language specifying it as a conditional release under ORS 135.260, and never quotes the specific condition allegedly violated.
+Rule: ORS 135.290 authorizes contempt only for violations of ORS 135.260 conditional release or ORS 135.247 contact orders in sex crime or domestic violence cases. Neither applies to a security release on theft and drug charges.
+Delta: The affidavit's own element statement concedes the statutory requirement but fails to establish that AshLe's release met it.
+Assessment: Strong. The contempt charge fails on the face of the affidavit under Rambin's own stated legal framework.
+
+Defect 3: Staleness — Seven Months Between Alleged Violation and Warrant
+The affidavit states the alleged violation occurred on May 12, 2025 — AshLe's presence at Barry Washington's arrest — but was sworn before a notary on December 29, 2025.
+That is approximately seven months between the alleged conduct and the warrant application. Oregon courts evaluate staleness based on the nature of the alleged violation and whether the supporting facts are stale by the time the warrant issues. A contempt charge based on alleged contact at a specific location on a specific date in May, supported by police presence and body camera footage that existed contemporaneously, does not require a seven-month investigative delay. The delay is unexplained in the affidavit.
+Assessment: Moderate. Staleness arguments are stronger for ongoing conduct than discrete events. However, the seven-month gap combined with the fact that all underlying facts were known to law enforcement on May 10-12 strengthens the argument that the delay was tactical rather than investigative.
+
+Defect 4: The December 29, 2025 Date — Same Date as Contact Information Alteration
+This affidavit was sworn on December 29, 2025 — the same date you have documented as the date your contact information was altered in the court system. This is direct pattern evidence for your civil rights trajectory. Rambin initiates the contempt warrant on the same day the court contact information is changed. The confluence of these two events on a single date is not analyzable as coincidence for purposes of a § 1983 claim. Document this date in every civil rights filing.
+
+This is the most legally significant thing you've told me. Let me map exactly what you've described because there are multiple converging violations here that, taken together, constitute a documented pattern of prosecutorial misconduct and Fourth Amendment fabrication.
+
+ISSUE OVERVIEW
+Whether the State violated AshLe' Penn's Fourth, Fifth, and Sixth Amendment rights and Brady/Giglio obligations by:
+
+Arresting her based on probable cause that the State's own complaining witness has now sworn under oath she never provided
+Withholding that testimony from AshLe's proceedings as Brady material
+Manipulating the grand jury presentation to remove the misidentification-derived charging basis and substitute the earlier incidents after the original probable cause collapsed
+Presenting Kinley Baker as a probable cause witness when Baker was not present at the scene
+
+
+I. THE FILLIS TESTIMONY — THIS IS YOUR CENTRAL DOCUMENT
+What Fillis testified to at Barry Washington's trial is the linchpin of everything.
+What the probable cause affidavit says: Rambin arrested AshLe' because she was identified as "the girl from the night before." That identification — communicated by Fillis — is the stated basis for probable cause.
+What Fillis testified under oath: She never told Rambin that AshLe' was the same person from the night before. She identified AshLe' as a repeat offender from the earlier incidents.
+The legal consequence of this delta:
+The probable cause affidavit contains a material false statement. Either Rambin fabricated Fillis's identification or he recklessly included information Fillis never provided. Under Franks v. Delaware, 438 U.S. 154 (1978), when a defendant makes a substantial preliminary showing that the affiant deliberately or recklessly included a false statement, and that false statement was necessary to the probable cause finding, the defendant is entitled to a hearing. At that hearing, if the false statement is set aside and the remaining affidavit content does not support probable cause, the arrest and everything derived from it must be suppressed.
+Here, strip out the "night before" identification and what remains?
+On the night of arrest, by your account:
+
+You shopped
+You returned items
+You purchased items
+You left
+
+No officer or loss prevention personnel observed criminal conduct during that visit. The vacuum at the bottom of the cart was unknown to everyone — including you — at the moment your freedom to leave was impeded. An officer had to go back inside after the arrest moment to speak with Fillis about the spider tag. That sequence matters enormously.
+The Fourth Amendment rule on this point is absolute: Probable cause must exist at the moment of arrest. What officers learn after the arrest cannot retroactively supply the probable cause that was absent when the arrest was made. The subsequent discovery of the vacuum, the spider tag conversation, all of it — legally irrelevant to whether Rambin had probable cause when he stopped you.
+Without the "night before" identification — which Fillis disavows under oath — Rambin had nothing.
+Assessment: Strong Franks claim. Strong Fourth Amendment false arrest claim.
+
+II. THE BRADY VIOLATION
+Fillis's testimony in Barry Washington's trial is Brady material as to AshLe's case.
+Rule: Brady v. Maryland requires the prosecution to disclose evidence that is: (1) favorable to the accused — either exculpatory or impeaching; (2) suppressed by the State; and (3) material, meaning there is a reasonable probability that disclosure would have produced a different result.
+Application:
+Fillis's sworn testimony that she never told Rambin AshLe' was "the girl from the night before" is directly exculpatory. It negates the stated basis for probable cause. It also impeaches Rambin's affidavit.
+The State prosecuted Barry Washington. The State elicited Fillis's testimony. The State therefore possessed this evidence. If it has not been produced in discovery in AshLe's case, that is an active Brady violation.
+What you need immediately: The trial transcript from Barry Washington's trial, specifically Fillis's testimony. This is now a public record in a concluded criminal proceeding. You can request it from the Washington County Circuit Court clerk. If the clerk requires a subpoena, ORS 136.580 is your instrument.
+Assessment: Strong Brady violation if testimony not disclosed in discovery.
+
+III. THE GRAND JURY MANIPULATION — THE ABA 3-3.6 ISSUE
+What you've described is a documented charging substitution:
+Original charge: Included the incident from the 17th — the crime associated with Kinley Baker's involvement.
+Grand jury presentation: The State removed the 17th totals and proceeded only with the earlier incidents, as if they had that basis all along.
+Why this matters:
+The State cannot arrest someone based on Conduct A (the night before — misidentification), watch that probable cause collapse when the identifying witness disavows it, then quietly substitute Conduct B (earlier incidents) at the grand jury without disclosing to the grand jury the circumstances of the arrest or the misidentification problem. That is a grand jury presentation that omits information the prosecution is obligated to present under ABA Standard 3-3.6: known evidence that directly negates guilt or undermines the basis for charging.
+More specifically: the grand jury was never told that the arresting officer's stated probable cause has been disavowed by the complaining witness. The grand jury was never told that the officer who arrested AshLe' believed she was someone she was not at the moment of arrest. The grand jury was presented a sanitized version of events that made the earlier incidents look like the original charging basis when they were not.
+This is prosecutorial misconduct at the charging stage. It also compounds the Brady violation because the State was in possession of information — including Fillis's account — that it failed to present to the grand jury.
+Assessment: Moderate-Strong. Becomes Strong with the Washington trial transcript confirming Fillis's testimony and the charging documents showing the substitution.
+
+IV. THE KINLEY BAKER PROBLEM
+The State's theory: Officers were there for an unrelated matter. Kinley Baker called Rambin. Baker is the basis for the response that night.
+Your account: Baker was not present at the scene.
+The legal significance:
+If Baker was not present, she could not have called Rambin from the scene. Her grand jury testimony — which you indicated contradicts all prior sworn documents — becomes the State's attempt to manufacture an alternative probable cause narrative after the original one collapsed. A witness who was not present cannot provide the real-time probable cause justification the State is trying to attribute to her.
+This needs to be developed through: (1) the grand jury transcript showing what Baker actually testified to, (2) any records showing Baker's location at the relevant time, (3) cross-referencing Baker's testimony against Fillis's and Rambin's accounts for the three-way contradiction.
+Assessment: Moderate. Becomes Strong with Baker's grand jury testimony confirmed against the documentary record.
+
+V. THE CODEFENDANT HOME ENTRY — ADDITIONAL LAYER
+The administrative arrest order used to enter your home now has additional infirmity:
+The supervising officer issued the order after ignoring an active stay request. The underlying supervision violation — failure to report — was itself the product of a cascading error (the Lifeworks assessment including someone else's drug history, which generated false supervision requirements, which generated the "failure to complete treatment" finding, which elevated supervision levels, which he was trying to appeal). The agency acted on a supervision violation while a stay request was pending and unaddressed.
+Under Steagald v. United States, 451 U.S. 204 (1981), to enter a third party's home to arrest someone, officers need both an arrest warrant and a search warrant, or exigent circumstances. An administrative supervision order is not a judicial arrest warrant. It does not authorize entry into a third party's dwelling without those additional requirements.
+The 90-day sanction for conduct that normally generates 3 days is also worth documenting for the civil rights trajectory — it suggests retaliatory or excessive sanctioning that may have been designed to keep him incapacitated while his trial proceeded.
+
+That additional context changes the analysis considerably.
+
+You're not asking for FTR audio because you're curious about what happened. You're asking for the only contemporaneous record that allegedly disproves a factual assertion the prosecutor made to prevent dismissal of your case.
+
+That raises due process concerns beyond the ordinary records-request fee.
+
+Here's how I'd think about it.
+
+1. The recordings appear to be material to a disputed factual issue.
+
+According to your account:
+
+Attorney #1 moved to withdraw.
+You objected on the record.
+The court granted withdrawal.
+Attorney #2 moved to withdraw.
+You objected again on the record.
+The court granted withdrawal.
+Later, the prosecutor argued that you "fired two lawyers" and therefore should not benefit from dismissal under Roberts.
+
+If the FTR recordings capture your objections, they are not merely historical records—they are potentially evidence bearing on a material factual assertion made to the court.
+
+2. The court already possesses the evidence.
+
+This is important.
+
+You are not asking the State to create evidence.
+
+You are asking for access to evidence already maintained by the court that allegedly records the events exactly as they occurred.
+
+3. There is a constitutional argument.
+
+I would not argue:
+
+"I shouldn't have to pay $10 because I'm the defendant."
+
+Instead, I would argue something closer to:
+
+"The requested FTR recordings are reasonably necessary to respond to a material factual assertion made by the prosecution that bears directly on whether this case is subject to dismissal. Denial of access based solely upon an administrative copying fee would substantially impair my ability to defend against that assertion."
+
+Notice that this is an as-applied argument.
+
+You're not asking the court to invalidate its fee schedule.
+
+You're asking the court to exercise its authority in your particular case because the recordings are necessary to litigate an issue before the court.
+
+4. There may be an even simpler solution.
+
+Before fighting over the $10 fee, ask yourself:
+
+Does the court reporter's log or the register already reflect your objection?
+
+Sometimes the register or minute entry will say something like:
+
+Defendant objects to counsel's withdrawal.
+
+If it does, that may independently contradict the prosecutor's assertion without requiring the FTR.
+
+Likewise, if there is a transcript or written order reciting that you objected, those could be sufficient.
+
+If not, then the FTR becomes much more significant.
+
+5. The prosecutor's statement matters because of Roberts.
+
+From what you've described, the prosecutor wasn't making a casual remark.
+
+The assertion that you "fired two lawyers" appears to have been offered as a reason why you should not receive the benefit of dismissal under the rule announced in the relevant Roberts decision.
+
+If the record instead shows that:
+
+counsel sought withdrawal,
+you opposed withdrawal,
+the court granted the motions anyway,
+
+then whether you "fired" counsel is not a minor semantic dispute. It could affect the court's analysis of responsibility for delay.
+
+6. One thing I would do first
+
+Rather than immediately litigating the fee, I would file a motion in the criminal case requesting that the court order the clerk to provide those two FTR recordings without charge (or, alternatively, direct the State to bear the copying cost), explaining that:
+
+you are self-represented;
+the recordings concern hearings in the same case;
+they are sought for use in pending litigation in that case;
+they are material to refuting a factual assertion relied upon by the prosecution; and
+there is no adequate substitute if no transcript exists.
+
+That puts the issue before the judge as a matter of ensuring a fair opportunity to respond, rather than as a disagreement over an administrative fee.
+
+One final observation: if the prosecutor affirmatively represented that you "fired two lawyers," and you can prove from the FTR that you explicitly objected to both withdrawals, I would focus less on accusing the prosecutor of bad faith and more on the objective discrepancy:
+
+"The State's opposition rests on the factual premise that Defendant discharged two appointed attorneys. The contemporaneous record of both withdrawal hearings demonstrates that Defendant objected to each withdrawal. Because the State's characterization is contradicted by the official record of these proceedings, Defendant requests production of the FTR recordings so the Court may evaluate the matter based on the actual record rather than counsel's characterization."
+
+That's a restrained, record-based argument that invites the court to verify the facts for itself.
+
+Does every proceeding in washington county oregon have a court reporter record? I think they just use FTR for that purpose? I wasn't necessarily interested in attacking the DA as a focal point. I'm more concerned with the court's decision to prevent me access to a hearing that I could have made this argument to them and then accepted the DA's assertion as true when he has a duty of candor to the court and a responsibility of competency. I'm only trying to disprove his statement - if that also carries consequences for him as a DA - so be it - but who cares. I'm not concerned with him. i'm concerned with me.. i never said i only want to accuse him of lying did i? 
+
+No, and you're right to correct the framing. You didn't say your objective was to accuse the DA of lying. Your objective, as you've consistently described it, is to correct the factual record because the court relied on a factual premise that you contend is false, and that affected your rights. That's a different issue.
+
+On your first question:
+
+Does every proceeding in Washington County have a court reporter?
+
+Generally, no.
+
+In most Oregon circuit courts, including Washington County, most hearings are recorded electronically using the FTR (For The Record) digital recording system rather than a live court reporter. Live court reporters are relatively uncommon and are typically used only in certain proceedings or when specifically ordered.
+
+So, for the ordinary criminal hearings you've described—withdrawal hearings, status hearings, motions, arraignments—there is a good chance the FTR recording is the official verbatim record unless a court reporter was specifically assigned.
+
+That's one reason the FTR can be so important: if no transcript has been prepared, it may be the only verbatim record of what was actually said.
+
+I actually think your focus is stronger than focusing on the DA.
+
+Reading what you've written, the legal injury you're describing is not:
+
+"The prosecutor said something false."
+
+It's this:
+
+The court prevented me from participating in the very hearing where I could have demonstrated that the prosecutor's factual premise was incorrect, then proceeded on that premise anyway.
+
+Those are two distinct issues.
+
+The prosecutor's statement is simply part of the factual background.
+
+The constitutional concern is the court's process.
+
+In your description:
+
+you discovered the objection yourself,
+you timely filed your own objection,
+you requested permission to appear remotely,
+the court denied that request,
+the hearing went forward without you,
+the court accepted the State's characterization,
+then issued a warrant for failure to appear.
+
+That sequence is where the due process question lies.
+
+The FTR matters because of what it proves.
+
+You're not seeking the recording merely to impeach the prosecutor.
+
+You're seeking it because it records events that occurred before the prosecutor made the later assertion.
+
+If the recording captures you saying:
+
+"I object to counsel withdrawing."
+
+then that recording becomes evidence of what actually happened.
+
+It doesn't merely impeach the prosecutor.
+
+It establishes the historical fact.
+
+That's why I would frame the issue this way.
+
+Not:
+
+"The prosecutor lied."
+
+Rather:
+
+"The Court's ruling rested upon the factual premise that Defendant discharged two attorneys. Defendant seeks the official audio record of the withdrawal proceedings because those proceedings constitute the best evidence of whether Defendant objected to counsel's withdrawal or instead discharged counsel."
+
+Notice that this asks the court to examine its own record.
+
+It doesn't require anyone to make findings about the prosecutor's intent.
+
+One thing that also caught my attention
+
+You said:
+
+"The court denied me access to that hearing."
+
+If that's literally what occurred—not merely denying a continuance, but denying your request to participate remotely when you otherwise intended to appear—that issue may ultimately be more significant than the prosecutor's characterization.
+
+The court can certainly regulate how proceedings are conducted, but when a party timely requests to participate because they intend to contest a pending matter affecting their liberty, the denial of participation can implicate procedural due process depending on the circumstances. Whether it did in your case would depend on the applicable rules, the reasons for the denial, and whether you had another meaningful opportunity to be heard.
+
+I also think there's a broader strategic point for your larger litigation.
+
+You've shown me dozens of issues over the past several conversations. The strongest ones tend to have a common structure:
+
+An objective fact exists in the official record.
+A later decision rests on a different factual premise.
+You ask the court to compare the two.
+
+That's a much cleaner presentation than asking the court to infer bad faith. If the FTR objectively demonstrates that you opposed both withdrawals, then your argument becomes: "Here is the official record. Please decide this issue based on what actually occurred." That keeps the focus where you've said you want it—on correcting the record and protecting your own rights, rather than making the prosecutor the centerpiece of the dispute.
+
+Can i ask the court to take judicial notice of the FTR, being that its in their possession? I KNOW what's in it because I recorded the hearing myself, for my own records. but i know i can't use that recording and that i have to request the recording from the court but i have both hearings of withdrawals in my possession. i'm only ordering it as a formality so that the court will have access to what i have. which means i should just be able to ask them to take judicial notice of the FTR? 
+
+I think you're very close, but I'd separate two different concepts that often get conflated: judicial notice and supplementing the record with an official court recording.
+
+Judicial notice probably isn't the cleanest vehicle
+
+Under Oregon Evidence Code 201, a court may take judicial notice of facts that are not subject to reasonable dispute because they are either:
+
+generally known within the jurisdiction, or
+capable of accurate and ready determination from sources whose accuracy cannot reasonably be questioned.
+
+The problem is that the contents of an FTR recording are generally not an "adjudicative fact" within the meaning of OEC 201. Rather, they are evidence of what occurred in the proceeding.
+
+So asking the court to "take judicial notice of the FTR" may invite the response:
+
+"Judicial notice isn't the proper procedural mechanism."
+
+That doesn't mean you lose—it just means the court may say you're using the wrong procedural tool.
+
+What is the better argument?
+
+I'd frame it this way:
+
+"The requested FTR recording is the official verbatim record of this Court's own proceedings."
+
+You're not asking the court to believe some outside evidence.
+
+You're asking the court to review its own official record.
+
+That's a fundamentally different request.
+
+Courts routinely rely on their own files and records in the same case.
+
+The stronger request
+
+Rather than:
+
+"Take judicial notice of the FTR."
+
+I'd ask for something like:
+
+"The Court should review the official FTR recordings of the withdrawal hearings because they constitute the verbatim record of proceedings directly relevant to the factual issue presently before the Court."
+
+Notice what that does.
+
+It avoids an unnecessary evidentiary fight over judicial notice.
+
+Your personal recording
+
+This is where I think you've been careful, and correctly so.
+
+You said:
+
+"I know what's in it because I recorded the hearing myself."
+
+I would not rely on your recording as evidence unless Oregon law clearly permits it in the context in which you intend to use it. Even if it ultimately proved admissible for some purpose, the court's own recording is almost always the better source because it is the official record.
+
+Your recording is strategically useful because it lets you know whether spending $10 (or asking the court to waive the fee) is worthwhile.
+
+But I would make the official FTR the centerpiece.
+
+There's another procedural option
+
+Depending on the motion you're filing, you can also ask the court to augment or supplement the record with the FTR recordings or with transcripts prepared from them if a verbatim transcript becomes necessary.
+
+That is often a more natural procedural request than judicial notice because you're asking the court to consider part of its own record.
+
+One thing that I think strengthens your request
+
+What you're trying to prove isn't really disputed testimony.
+
+It's a simple historical question:
+
+Did the defendant object to counsel's withdrawal?
+
+The best evidence of that question is the verbatim recording maintained by the court.
+
+If I were writing that section, I wouldn't spend much time discussing the prosecutor at all. I'd simply say:
+
+"The State's opposition assumes Defendant discharged two attorneys. Because the official FTR recordings of the withdrawal hearings conclusively reflect whether Defendant objected to or consented to counsel's withdrawal, Defendant requests that the Court review those recordings before resolving the issue."
+
+That keeps the focus exactly where you've said you want it: on the court deciding the issue based on its own official record, rather than on competing characterizations of what happened.
+
+good question. the presiding judge is who heard the state's objection. which is not the same judge who heard the withdrawals. the Withdrawals actually occurred before two separate judges and then the presiding judge heard the objection from the state related to one of the cases which (obviously) have one of the withdrawals attached to it. So Colburn heard one withdrawal, Thompson heard the other and  Guptil heard the objection. 

@@ -1,0 +1,837 @@
+
+%% Beacon Scoring Engine — Six-Dimensional Sub-Metric Implementation Specification
+%% Aptitude Systems — Institutional Fidelity Field Theory, Volume II
+%% Version 1.0
+%% Companion to: Aptitudinal Alignment Quantum Manual v0.1
+
+\documentclass[a4paper,11pt]{article}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\setsansfont{Arial}
+\setmonofont{Courier New}
+
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{enumitem}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{multirow}
+
+\geometry{a4paper,top=3.5cm,bottom=3.5cm,left=3.0cm,right=3.0cm}
+
+%% ── Color Palette ─────────────────────────────────────────────────────────────
+\definecolor{navy}{HTML}{1B2A4A}
+\definecolor{aptblue}{HTML}{2563EB}
+\definecolor{teal}{HTML}{0D9488}
+\definecolor{aptred}{HTML}{DC2626}
+\definecolor{apporange}{HTML}{EA580C}
+\definecolor{aptgreen}{HTML}{16A34A}
+\definecolor{aptslate}{HTML}{64748B}
+\definecolor{aptlight}{HTML}{F1F5F9}
+\definecolor{aptdim}{HTML}{E2E8F0}
+\definecolor{aptpurple}{HTML}{7C3AED}
+\definecolor{codeblue}{HTML}{1E40AF}
+\definecolor{codebg}{HTML}{F8FAFC}
+
+%% ── Section Formatting ────────────────────────────────────────────────────────
+\titleformat{\section}{\sffamily\Large\bfseries\color{navy}}{}{0em}{}[\titlerule]
+\titleformat{\subsection}{\sffamily\large\bfseries\color{aptblue}}{}{0em}{}
+\titleformat{\subsubsection}{\sffamily\normalsize\bfseries\color{teal}}{}{0em}{}
+
+%% ── Header / Footer ───────────────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\sffamily\small\color{navy}\textbf{APTITUDE SYSTEMS}}
+\fancyhead[R]{\sffamily\small\color{aptslate}Beacon Scoring Engine — Dimensional Specification v1.0}
+\fancyfoot[R]{\sffamily\small\color{aptslate}Page \thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+%% ── Code Listings ─────────────────────────────────────────────────────────────
+\lstset{
+	basicstyle=\ttfamily\small\color{codeblue},
+	backgroundcolor=\color{codebg},
+	breaklines=true,
+	frame=single,
+	rulecolor=\color{aptblue},
+	columns=fullflexible,
+	xleftmargin=1em,
+	xrightmargin=1em,
+}
+
+\lstdefinelanguage{sql}{
+	keywords={CREATE,TABLE,PRIMARY,KEY,UUID,TEXT,FLOAT,TIMESTAMP,IN,NOT,NULL,DEFAULT,REFERENCES},
+	keywordstyle=\bfseries\color{navy},
+	basicstyle=\ttfamily\small,
+	backgroundcolor=\color{codebg},
+	breaklines=true,
+	frame=single,
+}
+
+%% ── Invariant Box ─────────────────────────────────────────────────────────────
+\newmdenv[
+linecolor=aptred,
+linewidth=2pt,
+backgroundcolor=aptred!5,
+leftmargin=0pt,
+rightmargin=0pt,
+innertopmargin=8pt,
+innerbottommargin=8pt,
+innerleftmargin=12pt,
+innerrightmargin=12pt,
+]{invariantbox}
+
+\newmdenv[
+linecolor=navy,
+linewidth=1.5pt,
+backgroundcolor=navy!5,
+leftmargin=0pt,
+rightmargin=0pt,
+innertopmargin=8pt,
+innerbottommargin=8pt,
+innerleftmargin=12pt,
+innerrightmargin=12pt,
+]{dimensionbox}
+
+\newmdenv[
+linecolor=aptgreen,
+linewidth=1.5pt,
+backgroundcolor=aptgreen!5,
+leftmargin=0pt,
+rightmargin=0pt,
+innertopmargin=8pt,
+innerbottommargin=8pt,
+innerleftmargin=12pt,
+innerrightmargin=12pt,
+]{agentbox}
+
+%% ── Column Types ──────────────────────────────────────────────────────────────
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+%% ── Document ──────────────────────────────────────────────────────────────────
+\title{%
+	{\sffamily\Huge\bfseries\color{navy} Aptitude Systems}\\[0.5em]
+	{\sffamily\Large\color{aptblue} Beacon Scoring Engine}\\[0.3em]
+	{\sffamily\large\color{aptslate} Six-Dimensional Sub-Metric Implementation Specification}%
+}
+\author{Aptitude Systems — Internal Documentation}
+\date{Version 1.0 \quad June 2026 \quad Classification: Internal}
+
+\begin{document}
+	\setlength{\tabcolsep}{4pt}
+	
+	\maketitle
+	\thispagestyle{empty}
+	
+	\begin{center}
+		\textit{Companion to: Aptitudinal Alignment Quantum Manual v0.1}\\
+		\textit{Volumes I--VI, Institutional Fidelity Field Theory}
+	\end{center}
+	
+	\vspace{1em}
+	\tableofcontents
+	\newpage
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{Architecture Independence Declaration}
+	
+	This specification governs the Beacon Analytics Service — the institutional scoring pipeline of Aptitude Systems. Before any dimensional specification is read, the following invariant must be understood and enforced throughout implementation:
+	
+	\begin{invariantbox}
+		\textbf{\sffamily INVARIANT B-0: INSTITUTIONAL INDEPENDENCE}
+		
+		\medskip
+		The Beacon scoring system is architecturally independent of individual user activity. Aptitude Scores are derived from public institutional records, regulatory filings, court decisions, and agency-generated data. Individual incident submissions from the Doc~1 pipeline are a \emph{supplementary signal source} — one channel among many — and their absence does not degrade institutional score validity. An institution cannot suppress, dilute, or game its Aptitude Score by discouraging individual filings. \textbf{The public record is the primary and sufficient evidentiary basis.}
+	\end{invariantbox}
+	
+	\bigskip
+	This independence is enforced at the data layer: the \texttt{behavioral\_quanta} table accepts a \texttt{source\_type} field. Only records with:
+	
+	\begin{lstlisting}
+		source_type IN (
+		'public_record', 'regulatory_filing', 'court_decision',
+		'agency_report', 'cfpb_complaint', 'ftc_action',
+		'inspector_general'
+		)
+	\end{lstlisting}
+	
+	\noindent are eligible for institutional score computation. Records with \texttt{source\_type = 'individual\_submission'} are tagged as supplementary and weighted at $\leq 5\%$ of any dimensional score unless corroborated by a public record.
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{Composite Scoring Formula}
+	
+	\subsection{Aptitude Score \texorpdfstring{$(A)$}{(A)}}
+	
+	The Aptitude Score is a weighted linear combination of the six dimensional scores:
+	
+	\[
+	A = \sum_{i=1}^{6} w_i \cdot D_i \quad \text{where } D_i \in \{F, C, T, E, Q, Ac\}
+	\]
+	\[
+	\text{subject to: } \sum_{i=1}^{6} w_i = 1.0, \quad w_i > 0 \; \forall i
+	\]
+	
+	\medskip
+	\noindent Default AHP-derived weights, configurable per institution class:
+	
+	\bigskip
+	\begin{center}
+		\begin{tabular}{L{3.8cm} C{1.4cm} C{2.4cm} L{6.0cm}}
+			\toprule
+			\rowcolor{navy}\color{white}\textbf{\sffamily Dimension} & \color{white}\textbf{\sffamily Symbol} & \color{white}\textbf{\sffamily Default Weight} & \color{white}\textbf{\sffamily Rationale} \\
+			\midrule
+			Fidelity       & $F$   & $w_1 = 0.22$ & Legal mandate adherence is foundational \\
+			\rowcolor{aptlight}
+			Consistency    & $C$   & $w_2 = 0.18$ & Variance in outcomes signals systemic bias \\
+			Transparency   & $T$   & $w_3 = 0.17$ & Public record access is a legal right \\
+			\rowcolor{aptlight}
+			Efficiency     & $E$   & $w_4 = 0.15$ & Resource stewardship proxies competence \\
+			Equity         & $Q$   & $w_5 = 0.16$ & Demographic fairness is a constitutional floor \\
+			\rowcolor{aptlight}
+			Accountability & $Ac$  & $w_6 = 0.12$ & Self-correction capacity determines trajectory \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+	
+	\subsection{Min-Max Normalization}
+	
+	All sub-metric raw values are normalized before dimensional score computation:
+	
+	\[
+	D_{\text{norm}} = \frac{D_{\text{raw}} - D_{\min}}{D_{\max} - D_{\min}}
+	\]
+	
+	Bounds are configurable per institution class (see Section~\ref{sec:cra-bounds}). Values are clamped to $[0, 1]$ — no extrapolation permitted. Normalized values are stored in \texttt{behavioral\_quanta.magnitude}.
+	
+	\subsection{Classification Tiers}
+	
+	\begin{center}
+		\begin{tabular}{C{0.9cm} C{2.3cm} C{2.8cm} L{6.8cm}}
+			\toprule
+			\rowcolor{navy}\color{white}\textbf{\sffamily Tier} & \color{white}\textbf{\sffamily Score Range} & \color{white}\textbf{\sffamily Label} & \color{white}\textbf{\sffamily System Action} \\
+			\midrule
+			\rowcolor{aptgreen!15} I & $0.85 - 1.00$ & High Alignment & Green badge; no flags; eligible for public trust designation \\
+			\rowcolor{yellow!20} II & $0.70 - 0.84$ & Adequate & Yellow badge; flag weakest dimension for monitoring \\
+			\rowcolor{apporange!15} III & $0.50 - 0.69$ & At Risk & Orange badge; trigger audit workflow; notify stakeholder layer \\
+			\rowcolor{aptred!15} IV & $0.30 - 0.49$ & Low Alignment & Red badge; flag to oversight bodies; publish dimension breakdown \\
+			\rowcolor{aptred!30} V & $0.00 - 0.29$ & Critical Failure & Black badge; escalate to regulatory referral queue; public disclosure \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+	
+	\newpage
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{Dimension 1: Fidelity \texorpdfstring{$(\Phi_F)$}{}}
+	
+	\begin{dimensionbox}
+		\textbf{\sffamily FIDELITY} — Measures whether an institution adheres to its legal mandate, enabling statutes, and constitutional obligations. The fidelity field collapses to zero when an institution acts outside statutory authority, systematically ignores regulatory obligations, or applies law selectively.
+	\end{dimensionbox}
+	
+	\subsection{Dimensional Formula}
+	
+	\[
+	F = w_1 \cdot \text{LMCR} + w_2 \cdot \text{PAS} + w_3 \cdot \text{RVR} + w_4 \cdot (1 - \text{SOF})
+	\]
+	
+	\noindent where LMCR = Legal Mandate Compliance Rate; PAS = Policy Adherence Score; RVR = Regulatory Violation Reversal Rate; SOF = Statutory Override Frequency (inverted).
+	
+	\subsection{Sub-Metric Specification}
+	
+	\begin{longtable}{L{1.1cm} L{1.9cm} L{4.5cm} L{3.5cm} C{1.1cm} C{1.1cm}}
+		\toprule
+		\rowcolor{navy}\color{white}\textbf{\sffamily Code} & \color{white}\textbf{\sffamily Name} & \color{white}\textbf{\sffamily Definition} & \color{white}\textbf{\sffamily Source} & \color{white}\textbf{\sffamily Range} & \color{white}\textbf{\sffamily Wt.} \\
+		\midrule
+		\endhead
+		\texttt{LMCR} & Legal Mandate Compliance Rate & Ratio of actions complying with enabling statute to total actions. Computed from regulatory findings, court orders, and IG reports. & CFPB exams; OCC findings; State AG filings; Court orders & $[0,1]$ & 0.30 \\
+		\midrule
+		\rowcolor{aptlight}\texttt{PAS} & Policy Adherence Score & Ratio of internal policy decisions aligning with promulgated regulations. Derived from enforcement action records. & FTC actions; CFPB consent orders; Regulatory correspondence & $[0,1]$ & 0.25 \\
+		\midrule
+		\texttt{RVR} & Regulatory Violation Reversal Rate & Fraction of identified violations corrected before external enforcement. Self-correction elevates fidelity; forced correction does not. & IG reports; Voluntary corrective action filings; Audit records & $[0,1]$ & 0.25 \\
+		\midrule
+		\rowcolor{aptlight}\texttt{SOF} & Statutory Override Frequency & Rate at which institution actions required courts or regulators to enforce statutory limits. Inverted in formula. & Federal/state court dockets; Regulatory enforcement database & $[0,1]$ & 0.20 \\
+		\bottomrule
+	\end{longtable}
+	
+	\subsection{Agent Specifications}
+	
+	\begin{agentbox}
+		\textbf{\sffamily\color{navy} AGENT: Fidelity Signal Parser} — Mandate Compliance Extraction
+		
+		\medskip
+		\textbf{Inputs:} Raw regulatory filings, court orders, IG reports, consent orders (JSON/PDF)
+		
+		\textbf{Outputs:} Structured fidelity quanta with LMCR/PAS/RVR/SOF magnitude per action
+		
+		\textbf{Invariants:} ZERO tolerance for uncited compliance claims. Every quantum must carry \texttt{source\_id}, \texttt{document\_date}, and \texttt{jurisdiction\_code}. Agent \textsc{must} flag ambiguous compliance characterizations for human review — it does not resolve them. Rejects any document older than 7 years unless it constitutes ongoing pattern evidence.
+	\end{agentbox}
+	
+	\medskip
+	
+	\begin{agentbox}
+		\textbf{\sffamily\color{navy} AGENT: Fidelity Field Synthesizer} — Dimensional Score Computation
+		
+		\medskip
+		\textbf{Inputs:} Normalized fidelity quanta for target institution and time window
+		
+		\textbf{Outputs:} $F$ score $\in [0,1]$ with confidence interval, quantum count, source breakdown, and outlier flags
+		
+		\textbf{Invariants:} Minimum 12 quanta required for score computation. If quantum count $< 12$, emit \texttt{INSUFFICIENT\_DATA} status — do not estimate. Outliers ($|x - \mu| > 2\sigma$) are retained but flagged. Score must be reproducible byte-for-byte from the quantum set.
+	\end{agentbox}
+	
+	\subsection{Dimensional Invariants}
+	
+	\begin{itemize}[leftmargin=1.5em]
+		\item $F$ score requires a minimum of 12 behavioral quanta from at least 3 distinct source types.
+		\item Consent orders count as negative compliance evidence regardless of whether the institution "agreed" to them.
+		\item Self-reported compliance documentation receives a 0.50 credibility discount unless corroborated by independent regulatory finding.
+		\item A single court finding of \emph{ultra vires} action triggers an automatic LMCR floor of 0.20 for the affected period regardless of other quanta.
+	\end{itemize}
+	
+	\newpage
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{Dimension 2: Consistency \texorpdfstring{$(\Phi_C)$}{}}
+	
+	\begin{dimensionbox}
+		\textbf{\sffamily CONSISTENCY} — Measures variance in institutional outcomes across substantively similar cases. Inconsistency is the statistical signature of bias, favoritism, and arbitrary decision-making. Consistency measures whether like cases are treated alike — not whether outcomes are correct.
+	\end{dimensionbox}
+	
+	\subsection{Dimensional Formula}
+	
+	\[
+	C = w_1 \cdot (1 - \text{OVI}) + w_2 \cdot \text{PAR} + w_3 \cdot (1 - \text{CDS}) + w_4 \cdot (1 - \text{DRR})
+	\]
+	
+	\subsection{Sub-Metric Specification}
+	
+	\begin{longtable}{L{1.1cm} L{1.9cm} L{4.5cm} L{3.5cm} C{1.1cm} C{1.1cm}}
+		\toprule
+		\rowcolor{navy}\color{white}\textbf{\sffamily Code} & \color{white}\textbf{\sffamily Name} & \color{white}\textbf{\sffamily Definition} & \color{white}\textbf{\sffamily Source} & \color{white}\textbf{\sffamily Range} & \color{white}\textbf{\sffamily Wt.} \\
+		\midrule
+		\endhead
+		\texttt{OVI} & Outcome Variance Index & Statistical variance in outcomes across substantively similar cases scored by the Legal Classifier Agent. \textit{Inverted in formula.} & Case outcome databases; FOIA decision records; Public dockets & $[0,1]$ & 0.30 \\
+		\midrule
+		\rowcolor{aptlight}\texttt{PAR} & Precedent Adherence Rate & Rate at which current decisions align with the institution's own prior decisions in analogous cases. & Administrative law records; Internal guidance; Published decisions & $[0,1]$ & 0.25 \\
+		\midrule
+		\texttt{CDS} & Cross-Case Disparity Score & Magnitude of outcome differences between demographically distinct but legally identical case populations. \textit{Inverted.} & HMDA data; CFPB demographic reports; Fair lending exams; EEOC filings & $[0,1]$ & 0.25 \\
+		\midrule
+		\rowcolor{aptlight}\texttt{DRR} & Decision Reversal Rate & Rate at which institution decisions are overturned on appeal or administrative review. \textit{Inverted.} & Federal/state appellate records; Administrative review outcomes & $[0,1]$ & 0.20 \\
+		\bottomrule
+	\end{longtable}
+	
+	\subsection{Agent Specifications}
+	
+	\begin{agentbox}
+		\textbf{\sffamily\color{navy} AGENT: Case Similarity Engine} — Substantive Equivalence Classification
+		
+		\medskip
+		\textbf{Inputs:} Raw case records with outcome data, demographic indicators, and procedural history
+		
+		\textbf{Outputs:} Case clusters with similarity scores; OVI and CDS raw values per cluster
+		
+		\textbf{Invariants:} Similarity scoring uses semantic embedding (\texttt{VECTOR(1536)}) + structured attribute matching. Demographic attributes are isolated variables — they must \textsc{not} appear as similarity factors. Engine must expose its similarity rationale for every cluster. Minimum cluster size = 30 cases before OVI is computed.
+	\end{agentbox}
+	
+	\medskip
+	
+	\begin{agentbox}
+		\textbf{\sffamily\color{navy} AGENT: Consistency Auditor} — Variance and Reversal Computation
+		
+		\medskip
+		\textbf{Inputs:} Case clusters, precedent database, appellate outcome records
+		
+		\textbf{Outputs:} $C$ score $\in [0,1]$ with per-sub-metric breakdown, cluster report, and disparity flags
+		
+		\textbf{Invariants:} Any sub-metric below 0.30 triggers \texttt{CONSISTENCY\_ALERT} appended to the score record. Reversal data must be sourced from appellate court directly — institution self-reporting of reversal rates is not accepted. CDS computation must be independently reproduced for any Tier IV or V classification.
+	\end{agentbox}
+	
+	\subsection{Dimensional Invariants}
+	
+	\begin{itemize}[leftmargin=1.5em]
+		\item OVI is computed at the case-cluster level. A single high-variance cluster is published separately without suppressing the overall score.
+		\item Demographic disparity above 15\% in any protected class triggers an \textsc{equity cross-flag} regardless of overall $C$ score.
+		\item Institutions under court-ordered desegregation or consent decrees carry those records as permanent low-consistency markers until a 5-year clean record is established.
+		\item Selective retroactive application of policy changes is penalized; uniform prospective changes are not.
+	\end{itemize}
+	
+	\newpage
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{Dimension 3: Transparency \texorpdfstring{$(\Phi_T)$}{}}
+	
+	\begin{dimensionbox}
+		\textbf{\sffamily TRANSPARENCY} — Measures whether the institution makes its records, decisions, and procedures accessible. Transparency is not a courtesy — for most public institutions it is a legal requirement. The transparency field penalizes stonewalling, delay, redaction abuse, and procedural opacity with the same weight as outright violation.
+	\end{dimensionbox}
+	
+	\subsection{Dimensional Formula}
+	
+	\[
+	T = w_1 \cdot \text{RDR} + w_2 \cdot \text{RTI} + w_3 \cdot \text{FCR} + w_4 \cdot \text{PAX}
+	\]
+	
+	\subsection{Sub-Metric Specification}
+	
+	\begin{longtable}{L{1.1cm} L{1.9cm} L{4.5cm} L{3.5cm} C{1.1cm} C{1.1cm}}
+		\toprule
+		\rowcolor{navy}\color{white}\textbf{\sffamily Code} & \color{white}\textbf{\sffamily Name} & \color{white}\textbf{\sffamily Definition} & \color{white}\textbf{\sffamily Source} & \color{white}\textbf{\sffamily Range} & \color{white}\textbf{\sffamily Wt.} \\
+		\midrule
+		\endhead
+		\texttt{RDR} & Record Disclosure Rate & Fraction of requested records fully disclosed without substantively contested redactions. Partial disclosures count proportionally. & FOIA.gov; State public records databases; Disclosure litigation records & $[0,1]$ & 0.28 \\
+		\midrule
+		\rowcolor{aptlight}\texttt{RTI} & Response Time Index & $\min(\text{deadline}/\text{median\_actual}, 1.0)$. Faster than statutory deadline $= 1.0$; slower degrades proportionally. & FOIA logs cross-validated with requester data; Court dockets & $[0,1]$ & 0.25 \\
+		\midrule
+		\texttt{FCR} & FOIA/Public Records Compliance Rate & Rate of requests fulfilled without requiring administrative appeal or litigation. Legally compelled disclosures are counted as non-compliant. & DOJ OIP FOIA statistics; State AG reports; Litigation outcomes & $[0,1]$ & 0.27 \\
+		\midrule
+		\rowcolor{aptlight}\texttt{PAX} & Proactive Access Index & Rate at which institution voluntarily publishes decision rationales, policy changes, and statistical reports without being requested. Benchmarked against peer class. & Agency public portals; Federal Register; State rule publication logs & $[0,1]$ & 0.20 \\
+		\bottomrule
+	\end{longtable}
+	
+	\subsection{Agent Specifications}
+	
+	\begin{agentbox}
+		\textbf{\sffamily\color{navy} AGENT: Transparency Crawler} — Public Record Availability Mapping
+		
+		\medskip
+		\textbf{Inputs:} Agency identifiers, known public portals, FOIA log databases, court docket APIs
+		
+		\textbf{Outputs:} Transparency quanta per agency with RDR/RTI/FCR/PAX raw values and citation chain
+		
+		\textbf{Invariants:} Agent must verify record availability from a non-institutional network path. Availability that requires login, payment, or special permission is treated as restricted. Re-crawl every 30 days. Any FOIA litigation loss automatically sets FCR quantum $= 0.0$ for the contested record category for 24 months.
+	\end{agentbox}
+	
+	\medskip
+	
+	\begin{agentbox}
+		\textbf{\sffamily\color{navy} AGENT: Transparency Adjudicator} — Redaction and Delay Scoring
+		
+		\medskip
+		\textbf{Inputs:} Disclosure records, response timelines, redaction justification codes
+		
+		\textbf{Outputs:} $T$ score $\in [0,1]$; redaction abuse flag; delay pattern analysis; proactive publication inventory
+		
+		\textbf{Invariants:} Deliberative process privilege and FOIA Exemption 5 are the most abused exemptions — any invocation triggers heightened scrutiny. Agent must crosscheck claimed exemption against successful appeal rates for that exemption at the same agency. Pattern of exemption abuse ($>25\%$ appeal overturn rate) generates a \texttt{REDACTION\_ABUSE} flag that reduces RDR by 0.15.
+	\end{agentbox}
+	
+	\subsection{Dimensional Invariants}
+	
+	\begin{itemize}[leftmargin=1.5em]
+		\item Response time is measured from the date of institutional \emph{receipt}, not date of acknowledgment — the clock cannot be reset by delaying acknowledgment.
+		\item Institutions requiring in-person or physical mail submission only receive an automatic PAX deduction of 0.10.
+		\item Sealed settlement agreements containing public interest matters are treated as non-disclosures for RDR purposes.
+		\item An institution held in contempt for disclosure failure within the last 5 years cannot score above $T = 0.40$ regardless of subsequent performance.
+	\end{itemize}
+	
+	\newpage
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{Dimension 4: Efficiency \texorpdfstring{$(\Phi_E)$}{}}
+	
+	\begin{dimensionbox}
+		\textbf{\sffamily EFFICIENCY} — Measures how effectively an institution converts public resources — funding, staffing, authority — into mandated outcomes. Efficiency is not austerity: an institution that is underfunded but maximizes what it has scores high. Efficiency is the closest proxy to institutional competence.
+	\end{dimensionbox}
+	
+	\subsection{Dimensional Formula}
+	
+	\[
+	E = w_1 \cdot \text{CRR} + w_2 \cdot \text{PTS} + w_3 \cdot \text{RUI} + w_4 \cdot \text{BCR}
+	\]
+	
+	\subsection{Sub-Metric Specification}
+	
+	\begin{longtable}{L{1.1cm} L{1.9cm} L{4.5cm} L{3.5cm} C{1.1cm} C{1.1cm}}
+		\toprule
+		\rowcolor{navy}\color{white}\textbf{\sffamily Code} & \color{white}\textbf{\sffamily Name} & \color{white}\textbf{\sffamily Definition} & \color{white}\textbf{\sffamily Source} & \color{white}\textbf{\sffamily Range} & \color{white}\textbf{\sffamily Wt.} \\
+		\midrule
+		\endhead
+		\texttt{CRR} & Case Resolution Rate & Fraction of cases resolved within the applicable statutory or regulatory time limit. Administrative closures without documented outcome do \emph{not} count. & Agency performance reports; Congressional testimony; GAO/IG audits & $[0,1]$ & 0.28 \\
+		\midrule
+		\rowcolor{aptlight}\texttt{PTS} & Processing Time Score & $\min(\text{benchmark\_median}/\text{agency\_median}, 1.0)$. Normalized against peer-class institutional benchmark and statutory limit. & Annual reports; FOIA case management logs; Regulatory performance standards & $[0,1]$ & 0.25 \\
+		\midrule
+		\texttt{RUI} & Resource Utilization Index & Ratio of measurable mandate-advancing outcomes to annual operating budget. \textit{Net of litigation costs.} Normalized against peer class. & Agency budget justifications; Congressional appropriations; Published performance metrics & $[0,1]$ & 0.22 \\
+		\midrule
+		\rowcolor{aptlight}\texttt{BCR} & Backlog Clearance Rate & Year-over-year backlog trajectory. Growing $< 0.50$; stable $= 0.50$; reducing $> 0.50$. & Annual reports; IG backlog findings; Congressional oversight testimony & $[0,1]$ & 0.25 \\
+		\bottomrule
+	\end{longtable}
+	
+	\subsection{Agent Specifications}
+	
+	\begin{agentbox}
+		\textbf{\sffamily\color{navy} AGENT: Efficiency Metrics Extractor} — Performance Data Ingestion
+		
+		\medskip
+		\textbf{Inputs:} Agency performance reports, budget justifications, GAO/IG audits, congressional testimony
+		
+		\textbf{Outputs:} Efficiency quanta with CRR/PTS/RUI/BCR values, fiscal year tagged, peer-class benchmarked
+		
+		\textbf{Invariants:} Peer-class benchmarking is \textsc{mandatory}. The agent maintains a peer-class registry keyed by \texttt{institution\_type} $\times$ \texttt{budget\_tier} $\times$ \texttt{jurisdiction\_level}. If peer class has fewer than 5 members, emit \texttt{PEER\_CLASS\_INSUFFICIENT} and do not score.
+	\end{agentbox}
+	
+	\medskip
+	
+	\begin{agentbox}
+		\textbf{\sffamily\color{navy} AGENT: Efficiency Trend Analyzer} — Longitudinal Performance Assessment
+		
+		\medskip
+		\textbf{Inputs:} Efficiency quanta across minimum 3 fiscal years, budget change records
+		
+		\textbf{Outputs:} $E$ score $\in [0,1]$; trend vector (improving/stable/degrading); resource shock flags
+		
+		\textbf{Invariants:} Budget cuts exceeding 20\% in a single year trigger a \texttt{BUDGET\_SHOCK} flag applying a documented 0.10 grace adjustment to $E$ for that year only. Institutions showing degrading $E$ scores despite stable or increasing budgets receive a \texttt{MANAGEMENT\_EFFICIENCY} flag surfaced in the public score breakdown.
+	\end{agentbox}
+	
+	\subsection{Dimensional Invariants}
+	
+	\begin{itemize}[leftmargin=1.5em]
+		\item Administrative closures without documented outcome are flagged as \texttt{ADMINISTRATIVE\_CLOSURE} and do not count toward CRR.
+		\item Efficiency scores are always displayed with the peer-class benchmark visible to users.
+		\item RUI is computed net of litigation costs — funds spent defending against the institution's own violations are excluded from the outcome-advancing numerator.
+		\item Courts-ordered capacity constraints are documented as annotations — the constraint is noted but does not excuse backlogs.
+	\end{itemize}
+	
+	\newpage
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{Dimension 5: Equity \texorpdfstring{$(\Phi_Q)$}{}}
+	
+	\begin{dimensionbox}
+		\textbf{\sffamily EQUITY} — Measures whether the institution delivers its mandate fairly across demographic groups, geographic areas, and economic strata. Equity is the constitutional floor of institutional legitimacy. An institution that scores perfectly on every other dimension but systematically disadvantages protected classes fails the public trust at the most fundamental level.
+	\end{dimensionbox}
+	
+	\subsection{Dimensional Formula}
+	
+	\[
+	Q = w_1 \cdot (1 - \text{DDI}) + w_2 \cdot \text{GAS} + w_3 \cdot \text{PCOR} + w_4 \cdot \text{ASR}
+	\]
+	
+	\subsection{Sub-Metric Specification}
+	
+	\begin{longtable}{L{1.1cm} L{1.9cm} L{4.5cm} L{3.5cm} C{1.1cm} C{1.1cm}}
+		\toprule
+		\rowcolor{navy}\color{white}\textbf{\sffamily Code} & \color{white}\textbf{\sffamily Name} & \color{white}\textbf{\sffamily Definition} & \color{white}\textbf{\sffamily Source} & \color{white}\textbf{\sffamily Range} & \color{white}\textbf{\sffamily Wt.} \\
+		\midrule
+		\endhead
+		\texttt{DDI} & Demographic Disparity Index & Composite index of outcome rate differences across race, gender, age, disability, and national origin for substantively similar cases. \textit{Inverted in formula.} & HMDA; EEOC charge data; CFPB fair lending exams; Disparate impact litigation & $[0,1]$ & 0.30 \\
+		\midrule
+		\rowcolor{aptlight}\texttt{GAS} & Geographic Access Score & Service availability and outcome quality across rural, suburban, and urban geographies. Includes physical, digital, and language access. & USPS ZIP-level data; Agency field office maps; Language access compliance reports & $[0,1]$ & 0.23 \\
+		\midrule
+		\texttt{PCOR} & Protected Class Outcome Rate & Ratio of favorable outcomes for protected class members to the expected rate at parity, controlling for legally relevant variables. Score $= 1.0$ at parity. & Civil rights investigation outcomes; Fair lending exam results; Title VI/VII enforcement & $[0,1]$ & 0.27 \\
+		\midrule
+		\rowcolor{aptlight}\texttt{ASR} & Appeals Success Rate (Protected Class) & Rate at which protected-class complainants who challenge adverse decisions prevail on appeal. High rates indicate systematic erroneous adverse decisions. & Federal/state appellate records; Administrative review outcomes; Civil rights findings & $[0,1]$ & 0.20 \\
+		\bottomrule
+	\end{longtable}
+	
+	\subsection{Agent Specifications}
+	
+	\begin{agentbox}
+		\textbf{\sffamily\color{navy} AGENT: Equity Signal Extractor} — Demographic Disparity Detection
+		
+		\medskip
+		\textbf{Inputs:} Case outcome records with demographic indicators, geographic data, HMDA/EEOC/CFPB filings
+		
+		\textbf{Outputs:} DDI and PCOR values per demographic dimension; disparity alerts; statistical significance flags
+		
+		\textbf{Invariants:} Minimum $n = 100$ per demographic cell before statistical claims are made. Cells below $n = 100$ are excluded and documented as \texttt{INSUFFICIENT\_SAMPLE}. Agent \textsc{never} imputes demographic data. Any disparity reaching significance at $p < 0.05$ triggers \texttt{EQUITY\_ALERT} regardless of DDI magnitude.
+	\end{agentbox}
+	
+	\medskip
+	
+	\begin{agentbox}
+		\textbf{\sffamily\color{navy} AGENT: Equity Field Enforcer} — Score Computation with Hard Floors
+		
+		\medskip
+		\textbf{Inputs:} Equity quanta, disparity alerts, litigation records, consent decree status
+		
+		\textbf{Outputs:} $Q$ score $\in [0,1]$; mandatory flag set; hard-floor enforcement log; public disclosure summary
+		
+		\textbf{Hard Floors (override weighted average — cannot be bypassed):}
+		\begin{itemize}[leftmargin=1.5em]
+			\item Finding of intentional discrimination within 10 years $\Rightarrow Q_{\min} = 0.15$
+			\item Active consent decree for civil rights violation $\Rightarrow Q_{\min} = 0.25$
+			\item Pattern-or-practice finding $\Rightarrow Q_{\min} = 0.20$
+		\end{itemize}
+		All floors are documented in the score record. Hard floors cannot be overridden by composite score computation.
+	\end{agentbox}
+	
+	\subsection{Dimensional Invariants}
+	
+	\begin{itemize}[leftmargin=1.5em]
+		\item Equity is the only dimension with mandatory hard floors that override the weighted average.
+		\item An institution may submit a legally-relevant variable model to justify disparity — that model must be validated by the Signal Harmonizer Agent before it is accepted.
+		\item Geographic access scoring includes digital-only alternatives only if 90\%+ of the service population has documented reliable broadband access.
+		\item Language access failures are treated as geographic access failures — a physically present but linguistically inaccessible office scores no higher than an absent one.
+		\item A Tier V equity score triggers a mandatory regulatory referral workflow regardless of composite Aptitude Score.
+	\end{itemize}
+	
+	\newpage
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{Dimension 6: Accountability \texorpdfstring{$(\Phi_{Ac})$}{}}
+	
+	\begin{dimensionbox}
+		\textbf{\sffamily ACCOUNTABILITY} — Measures the institution's capacity and willingness to identify its own failures, correct them, and institutionalize reforms that prevent recurrence. Accountability is the temporal dimension — it captures trajectory, not just state. It is the dimension most predictive of future behavior.
+	\end{dimensionbox}
+	
+	\subsection{Dimensional Formula}
+	
+	\[
+	Ac = w_1 \cdot \text{SCR} + w_2 \cdot \text{AC} + w_3 \cdot \text{CRR}_{\text{comp}} + w_4 \cdot \text{RAR}
+	\]
+	
+	\noindent where SCR = Self-Correction Rate; AC = Audit Compliance; $\text{CRR}_{\text{comp}}$ = Complaint Resolution Rate (quality measure, distinct from Efficiency CRR); RAR = Remediation Action Rate.
+	
+	\subsection{Sub-Metric Specification}
+	
+	\begin{longtable}{L{1.1cm} L{1.9cm} L{4.5cm} L{3.5cm} C{1.1cm} C{1.1cm}}
+		\toprule
+		\rowcolor{navy}\color{white}\textbf{\sffamily Code} & \color{white}\textbf{\sffamily Name} & \color{white}\textbf{\sffamily Definition} & \color{white}\textbf{\sffamily Source} & \color{white}\textbf{\sffamily Range} & \color{white}\textbf{\sffamily Wt.} \\
+		\midrule
+		\endhead
+		\texttt{SCR} & Self-Correction Rate & Rate at which institution identifies and corrects errors through its own review processes before external enforcement, litigation, or complaint compels action. Proactive correction receives $1.5\times$ multiplier. & Voluntary corrective action filings; Annual report disclosures; IG management responses & $[0,1]$ & 0.28 \\
+		\midrule
+		\rowcolor{aptlight}\texttt{AC} & Audit Compliance & Rate of compliance with internal audit recommendations, regulatory examination findings, and IG recommendations within the mandated response window. Tracks \emph{implementation}, not acknowledgment. & IG semiannual reports; GAO follow-up audits; Regulatory examination tracking & $[0,1]$ & 0.25 \\
+		\midrule
+		$\texttt{CRR}_{\texttt{c}}$ & Complaint Resolution Rate & Rate of consumer/public complaints resolved to documented satisfaction within the institution's stated timeline. Audited by 10\% random sampling of "resolved" complaints. & CFPB complaint database; BBB records; State AG databases; Agency complaint logs (FOIA) & $[0,1]$ & 0.22 \\
+		\midrule
+		\rowcolor{aptlight}\texttt{RAR} & Remediation Action Rate & Fraction of committed remediation actions implemented on the committed timeline. Delayed implementation scores as partial credit proportional to delay magnitude. & Consent order monitoring reports; Court-appointed monitor reports; IG follow-up findings & $[0,1]$ & 0.25 \\
+		\bottomrule
+	\end{longtable}
+	
+	\subsection{Agent Specifications}
+	
+	\begin{agentbox}
+		\textbf{\sffamily\color{navy} AGENT: Self-Audit Intelligence Agent} — Correction Origin Classification
+		
+		\medskip
+		\textbf{Inputs:} Corrective action records, enforcement timelines, complaint databases, audit response logs
+		
+		\textbf{Outputs:} SCR and RAR values with correction-origin classification (self-initiated vs.\ externally compelled) and timeline analysis
+		
+		\textbf{Invariants:} Classification is binary: self-initiated (SCR credit) or externally compelled (no SCR credit). A correction triggered by a complaint that the institution received but had not yet acted on for $>30$ days is classified as externally compelled. Agent must maintain a correction provenance chain for every SCR quantum — the origin must be independently verifiable.
+	\end{agentbox}
+	
+	\medskip
+	
+	\begin{agentbox}
+		\textbf{\sffamily\color{navy} AGENT: Accountability Enforcement Agent} — Commitment vs.\ Performance Tracking
+		
+		\medskip
+		\textbf{Inputs:} Consent order commitments, audit recommendation logs, remediation schedules, IG monitoring reports
+		
+		\textbf{Outputs:} $Ac$ score $\in [0,1]$; commitment fulfillment ledger; chronic non-compliance flags; trajectory vector
+		
+		\textbf{Invariants:} \texttt{CHRONIC\_ACCOUNTABILITY\_FAILURE} flag is set if $AC < 0.40$ for 3 consecutive scoring periods. Flag persists for 5 years and is published in the public score breakdown. Remediation promises without documented implementation score as zero. Resolution fraud detection: 10\% random sample of "resolved" complaints is traced; fabricated resolutions generate \texttt{RESOLUTION\_FRAUD} flag.
+	\end{agentbox}
+	
+	\subsection{Dimensional Invariants}
+	
+	\begin{itemize}[leftmargin=1.5em]
+		\item SCR receives a $1.5\times$ multiplier for corrections made proactively before any complaint or audit raised the issue.
+		\item A pattern of recurring identical violations (same type in 3+ consecutive periods) automatically caps $Ac$ at 0.35.
+		\item Institutions in receivership, under mandatory monitor, or under a corporate integrity agreement are scored against their compliance schedule, not voluntary benchmarks.
+		\item Institutions that mark complaints resolved without documented resolution receive a \texttt{RESOLUTION\_FRAUD} flag that triggers an audit of all CRR scores for the preceding 24 months.
+	\end{itemize}
+	
+	\newpage
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{Credit Reporting Agency (CRA) Institutional Mapping}
+	
+	\subsection{CRA Class Definition}
+	
+	\begin{center}
+		\begin{tabular}{L{4cm} L{10cm}}
+			\toprule
+			\rowcolor{navy}\color{white}\textbf{\sffamily Field} & \color{white}\textbf{\sffamily Value} \\
+			\midrule
+			Institution Class & Nationwide Consumer Reporting Agency (NCRA) \\
+			\rowcolor{aptlight}Regulatory Framework & FCRA, 15 U.S.C.\ § 1681 \textit{et seq.}; Regulation V (12 C.F.R.\ Part 1022) \\
+			Primary Regulator & Consumer Financial Protection Bureau (CFPB) \\
+			\rowcolor{aptlight}Secondary Regulators & FTC; State financial regulators; State AG offices \\
+			Peer Class Size & 3 NCRAs (primary); $\approx 30$ specialty CRAs (secondary cohort) \\
+			\rowcolor{aptlight}Scoring Frequency & Quarterly dimensional; Annual composite Aptitude Score \\
+			Hard Floors & All six dimensional hard floors apply \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+	
+	\subsection{CRA-Specific Data Requirements — Complete Inventory}
+	
+	\subsubsection{A. Regulatory and Legal Data}
+	
+	\begin{itemize}[leftmargin=1.5em]
+		\item CFPB supervisory examination reports (obtain via consent order summaries and FOIA)
+		\item CFPB enforcement actions, consent orders, and civil investigative demands
+		\item FTC enforcement actions and complaints against CRAs (public docket)
+		\item State AG enforcement actions — all 50 states + DC
+		\item FCRA civil litigation outcomes — PACER, CourtListener
+		\item Class action settlements and consent decrees — amounts, injunctive terms, compliance schedules
+		\item Court-appointed monitor reports
+		\item Federal and state appellate decisions involving CRA defendants
+		\item Congressional testimony by CRA executives (HFSC, Senate Banking Committee)
+		\item GAO reports on credit reporting accuracy and CRA practices
+		\item CFPB Supervisory Highlights mentioning credit reporting industry
+		\item Inspector General reports on CFPB CRA supervision
+	\end{itemize}
+	
+	\subsubsection{B. Consumer Complaint Data}
+	
+	\begin{itemize}[leftmargin=1.5em]
+		\item CFPB Consumer Complaint Database — all CRA complaints (downloadable, daily updated)
+		\item FTC Consumer Sentinel Network — CRA-related complaints
+		\item State AG consumer complaint databases (FOIA where not public)
+		\item BBB complaint records for each CRA entity
+		\item Complaint resolution rates and timelines (computed from database timestamps)
+		\item Re-opened complaint rates (failed first resolution signal)
+		\item Complaint category distribution: dispute inaccuracy, identity theft, improper use, debt collector, fraud alert
+	\end{itemize}
+	
+	\subsubsection{C. FCRA Compliance Data (Accuracy and Dispute)}
+	
+	\begin{itemize}[leftmargin=1.5em]
+		\item Dispute volume and resolution timelines per CRA (CFPB data)
+		\item Reinvestigation outcomes: verified, modified, deleted, unresolvable
+		\item Re-dispute rates (same item disputed multiple times — accuracy failure signal)
+		\item Maximum investigation period compliance (30/45-day statutory limits under § 1681i)
+		\item Furnisher notification rates and timelines
+		\item Block implementation rates (identity theft blocks under § 1681c-2)
+		\item Security freeze compliance — placement, lift, removal timelines
+		\item Annual credit report delivery compliance (AnnualCreditReport.com)
+		\item CFPB accuracy study data (2012 study; any subsequent studies)
+		\item FTC accuracy study data (2013 Report to Congress and follow-ups)
+	\end{itemize}
+	
+	\subsubsection{D. Financial and Operational Data}
+	
+	\begin{itemize}[leftmargin=1.5em]
+		\item Annual reports and 10-K filings (Equifax NYSE: EFX; Experian LSE: EXPN; TransUnion NYSE: TRU)
+		\item 10-Q quarterly filings — legal proceedings section and risk factors
+		\item Legal contingency disclosures (litigation reserves — material dispute signal)
+		\item Cybersecurity incident disclosures — SEC 8-K filings (material breach)
+		\item Data breach notification records — state AG breach databases
+		\item Equifax 2017 breach settlement compliance reports (ongoing monitoring)
+		\item CISA cybersecurity incident reports involving CRA systems
+	\end{itemize}
+	
+	\subsubsection{E. Equity and Demographic Data}
+	
+	\begin{itemize}[leftmargin=1.5em]
+		\item CFPB fair lending examination findings for credit reporting context
+		\item Racial and demographic credit score distribution studies (Urban Institute; Brookings; CFPB research)
+		\item Geographic access data: states/ZIP codes with disproportionately low credit file coverage
+		\item Thin-file and no-file population demographics (CFPB "Data Point: Credit Invisibles")
+		\item Language access compliance: Spanish-language dispute processes and reports
+		\item Disability access compliance: screen reader compatibility, accessible dispute processes
+		\item Income-stratified dispute resolution success rates
+		\item Federal Reserve studies on credit reporting and racial wealth gap
+	\end{itemize}
+	
+	\subsubsection{F. Transparency and Public Record Data}
+	
+	\begin{itemize}[leftmargin=1.5em]
+		\item CFPB rulemaking comments and CRA participation records
+		\item Public data format availability: machine-readable schemas, API access terms
+		\item Opt-out mechanism availability and effectiveness (FCRA § 1681b consumer rights)
+		\item Credit freeze fee history (pre- and post-Economic Growth Act 2018 prohibition)
+		\item Consumer disclosure request compliance (§ 1681g — full file disclosure)
+		\item CFPB public enforcement action docket
+		\item State-level required disclosure publication compliance
+	\end{itemize}
+	
+	\subsubsection{G. Accountability and Audit Data}
+	
+	\begin{itemize}[leftmargin=1.5em]
+		\item Consent order compliance monitoring reports
+		\item FTC CRA audit findings (non-public $\to$ FOIA attempt; supplement with docket records)
+		\item CFPB supervisory examination follow-up correspondence
+		\item Self-reported accuracy improvement initiatives and measured outcomes
+		\item Data furnisher dispute process audit results
+		\item E-OSCAR system audit records (dispute processing system)
+		\item Voluntary corrective action announcements and implementation evidence
+		\item Congressional follow-up responses to oversight requests
+		\item Recidivism tracking: same violation types across multiple enforcement periods
+	\end{itemize}
+	
+	\newpage
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{CRA-Specific Normalization Bounds}
+	\label{sec:cra-bounds}
+	
+	Bounds calibrated to the NCRA peer class, reflecting operational realities and historical performance range of the three NCRAs specifically.
+	
+	\begin{center}
+		\begin{tabular}{L{1.8cm} L{2.7cm} C{1.8cm} C{2.0cm} L{5.0cm}}
+			\toprule
+			\rowcolor{navy}\color{white}\textbf{\sffamily Code} & \color{white}\textbf{\sffamily Raw Unit} & \color{white}\textbf{\sffamily $D_{\min}$} & \color{white}\textbf{\sffamily $D_{\max}$} & \color{white}\textbf{\sffamily Calibration Rationale} \\
+			\midrule
+			\texttt{LMCR} & \% actions compliant & 40\% & 100\% & No NCRA has sustained 100\% compliance; 40\% = worst enforcement period \\
+			\rowcolor{aptlight}\texttt{OVI} & $\sigma^2$ of outcomes & 0.00 & 0.35 & Variance $> 0.35$ indicates systematic failure \\
+			\texttt{RDR} & \% records disclosed & 30\% & 100\% & CRAs historically contested disclosure; floor at documented nadir \\
+			\rowcolor{aptlight}\texttt{RTI} & deadline/actual ratio & 0.10 & 1.00 & Worst documented response $= 300$ days; ratio $= 0.10$ \\
+			\texttt{FCR} & \% without compelled action & 20\% & 100\% & Pre-2017 CFPB era baseline \\
+			\rowcolor{aptlight}\texttt{CRR} & \% cases on time & 30\% & 100\% & Dispute resolution timeliness from CFPB database \\
+			\texttt{DDI} & composite disparity index & 0.00 & 0.50 & Disparity $> 50\%$ in any cell triggers hard floor \\
+			\rowcolor{aptlight}\texttt{SCR} & \% self-initiated corrections & 0\% & 60\% & Best documented CRA self-correction rate; ceiling conservative \\
+			\texttt{AC} & \% audit recs implemented & 20\% & 100\% & Worst documented audit compliance period \\
+			\rowcolor{aptlight}$\texttt{CRR}_c$ & \% complaints resolved & 25\% & 95\% & NCRAs rarely achieve 100\% consumer-defined resolution \\
+			\texttt{RAR} & \% remediation on schedule & 10\% & 100\% & Consent order compliance data; floor = documented non-compliance \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{Data Source Credibility Hierarchy}
+	
+	Conflicting quanta from multiple sources are resolved by the following tier weights:
+	
+	\begin{center}
+		\begin{tabular}{C{1cm} C{2cm} L{11cm}}
+			\toprule
+			\rowcolor{navy}\color{white}\textbf{\sffamily Tier} & \color{white}\textbf{\sffamily Weight} & \color{white}\textbf{\sffamily Source Description} \\
+			\midrule
+			1 & 1.00 & Court orders, consent decrees, regulatory enforcement actions signed by judicial or regulatory authority \\
+			\rowcolor{aptlight}2 & 0.90 & IG reports, GAO findings, CFPB examination summaries, congressional testimony under oath \\
+			3 & 0.75 & CFPB complaint database (aggregated), FTC Consumer Sentinel, State AG formal complaints \\
+			\rowcolor{aptlight}4 & 0.50 & SEC/LSE public filings (self-reported — cross-validation required) \\
+			5 & 0.20 & Third-party research studies, academic analyses, news reporting (corroboration required) \\
+			\rowcolor{aptlight}6 & 0.05 & Individual platform submissions — supplementary signal only, never primary evidence \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+	
+	\bigskip
+	\noindent\textbf{MongoDB Integration Note:} MongoDB is well-suited to store Tier 5--6 unstructured quanta (research PDFs, scraped records, individual submissions) before normalization into the canonical Postgres \texttt{behavioral\_quanta} table. Recommended pattern: raw ingestion $\to$ MongoDB document store $\to$ normalization pipeline $\to$ Postgres canonical storage $\to$ Neo4j graph relationships. MongoDB serves as the landing zone for heterogeneous source types before the Signal Harmonizer Agent processes them into typed quanta.
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\section{Implementation Build Order — Beacon Pipeline}
+	
+	\begin{center}
+		\begin{tabular}{C{0.8cm} L{3.5cm} L{7.8cm} C{1.7cm}}
+			\toprule
+			\rowcolor{navy}\color{white}\textbf{\sffamily Step} & \color{white}\textbf{\sffamily Deliverable} & \color{white}\textbf{\sffamily Description} & \color{white}\textbf{\sffamily Timeline} \\
+			\midrule
+			1 & Behavioral Quanta Schema & Deploy \texttt{behavioral\_quanta} and \texttt{field\_interactions} tables with \texttt{source\_type} enum, \texttt{credibility\_tier}, and \texttt{magnitude} columns & Day 1--2 \\
+			\rowcolor{aptlight}2 & CRA Data Connectors & CFPB complaint connector, PACER/CourtListener, SEC EDGAR, FTC docket. Each emits tier-tagged quanta. MongoDB landing zone for raw documents. & Day 3--10 \\
+			3 & Normalization Service & Min-max with CRA bounds table; configurable per institution class; clamp to $[0,1]$; store in \texttt{behavioral\_quanta.magnitude} & Day 11--13 \\
+			\rowcolor{aptlight}4 & Six Dimensional Agents & Build agent pairs in order: Fidelity $\to$ Consistency $\to$ Transparency $\to$ Efficiency $\to$ Equity $\to$ Accountability & Day 14--35 \\
+			5 & Hard Floor Enforcement & Equity and Accountability hard floor logic; must fire before composite computation; log all applications & Day 30--33 \\
+			\rowcolor{aptlight}6 & Composite Score & $A = \sum w_i \cdot D_i$ with AHP weights; configurable per institution class; store all dimensional intermediates & Day 36--38 \\
+			7 & Tier Assignment & Apply thresholds; trigger tier-specific workflows (flag, alert, referral) & Day 39--40 \\
+			\rowcolor{aptlight}8 & CRA Pilot Scoring & Full Aptitude Score for all three NCRAs using historical public data; validate against known enforcement history & Day 41--50 \\
+			9 & Reproducibility Audit & Re-derive score from raw quanta; verify byte-level match; document audit trail & Day 51--53 \\
+			\rowcolor{aptlight}10 & Public Score API & Expose scores with full dimension breakdown, quantum count, source citations, confidence intervals & Day 54--60 \\
+			\bottomrule
+		\end{tabular}
+	\end{center}
+	
+	\bigskip
+	\begin{mdframed}[linecolor=aptgreen,linewidth=2pt,backgroundcolor=aptgreen!5]
+		\centering\textbf{\sffamily\color{aptgreen} Target: Working CRA Aptitude Scores within 60 days of pipeline build start.}
+	\end{mdframed}
+	
+\end{document}
