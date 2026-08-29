@@ -1,69 +1,167 @@
-\section{Six Dimensions and Metric Registry}
+\section{Six Dimensions and Complete Metric Specifications}
 
-Each dimension is defined once. The operational sub-metric tables, weights,
-source lists, and agent specifications come from the Beacon Scoring Engine
-specification (source: \texttt{Bias Beacon Documentation.tex}, the second of
-the two LaTeX manuals on the maintainer's desktop), reproduced verbatim where
-they define behavior. Only the rules that change scoring behavior are
-restated here; full metric tables live in the source specification and its
-metric registry.
+The six dimensions below are the universal institutional fields. The
+sub-metrics, formulas, weights, source requirements, agent responsibilities,
+and invariants are the detailed Beacon Scoring Engine baseline. They are
+preserved here as the operational specification; the newer Alignment
+terminology is used for the final result.
 
-\subsection{Fidelity (\(F\))} % LMCR, PAS, RVR, SOF — weights 0.30/0.25/0.25/0.20; 12-quanta minimum; consent orders are negative evidence; self-reported compliance 0.50 credibility discount; ultra vires finding floors LMCR at 0.20.
-Measures whether an institution adheres to its legal mandate, enabling
-statutes, and constitutional obligations. Sub-metrics: Legal Mandate
-Compliance Rate (LMCR), Policy Adherence Score (PAS), Regulatory Violation
-Reversal Rate (RVR), and Statutory Override Frequency (SOF, inverted).
-Consent orders count as negative compliance evidence regardless of whether
-the institution agreed to them. Self-reported compliance documentation
-receives a 0.50 credibility discount unless corroborated. A single court
-finding of \emph{ultra vires} action floors LMCR at 0.20 for the affected
-period.
+\subsection{Dimension 1: Fidelity (\(\Phi_F\))}
 
-\subsection{Consistency (\(C\))} % OVI, PAR, CDS, DRR — cluster-level variance; 15% protected-class disparity triggers equity cross-flag; consent decrees are permanent low-consistency markers until 5-year clean record.
-Measures variance in institutional outcomes across substantively similar
-cases. Sub-metrics: Outcome Variance Index (OVI, inverted), Precedent
-Adherence Rate (PAR), Cross-Case Disparity Score (CDS, inverted), and
-Decision Reversal Rate (DRR, inverted). A demographic disparity above 15\%
-in any protected class triggers an equity cross-flag regardless of the
-overall \(C\) score. Institutions under consent decrees carry permanent
-low-consistency markers until a 5-year clean record is established.
+\begin{invariantbox}
+\textbf{FIDELITY} --- Measures whether an institution adheres to its legal
+mandate, enabling statutes, and constitutional obligations. The field
+collapses when an institution acts outside statutory authority, systematically
+ignores obligations, or applies law selectively.
+\end{invariantbox}
 
-\subsection{Transparency (\(T\))} % RDR, RTI, FCR, PAX — clock starts at receipt; in-person-only filing deducts PAX 0.10; contempt within 5 years caps T at 0.40.
-Measures whether the institution makes its records, decisions, and
-procedures accessible. Sub-metrics: Record Disclosure Rate (RDR), Response
-Time Index (RTI), FOIA/Public Records Compliance Rate (FCR), and Proactive
-Access Index (PAX). Response time is measured from institutional
-\emph{receipt}, not acknowledgment. Institutions requiring in-person filing
-only receive an automatic PAX deduction of 0.10. An institution held in
-contempt for disclosure failure within the last 5 years cannot score above
-\(T = 0.40\).
+\[
+F = 0.30\,\mathrm{LMCR}+0.25\,\mathrm{PAS}+0.25\,\mathrm{RVR}+0.20(1-\mathrm{SOF})
+\]
 
-\subsection{Efficiency (\(E\))} % CRR, PTS, RUI, BCR — administrative closures don't count; peer-class benchmark always displayed; budget shock grace 0.10.
-Measures how effectively an institution converts public resources into
-mandated outcomes. Sub-metrics: Case Resolution Rate (CRR), Processing Time
-Score (PTS), Resource Utilization Index (RUI, net of litigation costs), and
-Backlog Clearance Rate (BCR). Administrative closures without documented
-outcome do not count. Efficiency scores are always displayed with the
-peer-class benchmark visible. Budget cuts exceeding 20\% in a single year
-trigger a documented 0.10 grace adjustment for that year only.
+\begin{center}
+\begin{tabular}{p{1.4cm}p{4cm}p{6.7cm}c}
+\toprule
+Code & Name & Definition and source basis & Wt. \\
+\midrule
+LMCR & Legal Mandate Compliance Rate & Actions complying with enabling statute divided by total actions; regulatory findings, court orders, IG reports. & .30 \\
+PAS & Policy Adherence Score & Internal policy decisions aligned with promulgated regulations; FTC actions, consent orders, correspondence. & .25 \\
+RVR & Regulatory Violation Reversal Rate & Violations corrected before external enforcement; IG, voluntary corrections, audit records. & .25 \\
+SOF & Statutory Override Frequency & Actions requiring courts or regulators to enforce statutory limits; inverted. & .20 \\
+\bottomrule
+\end{tabular}
+\end{center}
 
-\subsection{Equity (\(Q\))} % DDI, GAS, PCOR, ASR — hard floors in 05; n>=100 per cell; never impute demographics; Tier V triggers regulatory referral.
-Measures whether the institution delivers its mandate fairly across
-demographic groups, geographic areas, and economic strata. Sub-metrics:
-Demographic Disparity Index (DDI, inverted), Geographic Access Score (GAS),
-Protected Class Outcome Rate (PCOR), and Appeals Success Rate for protected
-classes (ASR). Hard floors are defined in Section~5. A minimum \(n = 100\)
-per demographic cell is required before statistical claims; the system never
-imputes demographic data. A Tier V equity score triggers a mandatory
-regulatory referral workflow regardless of the overall Alignment Score.
+The Fidelity Signal Parser emits cited quanta with source identifier,
+document date, and jurisdiction. Ambiguous compliance characterizations are
+flagged for human review. The Field Synthesizer requires at least 12 quanta
+from 3 source types, retains outliers, and produces a reproducible score with
+confidence interval. Consent orders are negative evidence; self-reported
+compliance receives a 0.50 credibility discount unless corroborated. An
+\emph{ultra vires} finding floors LMCR at 0.20 for the affected period.
 
-\subsection{Accountability (\(Ac\))} % SCR, AC, CRR_c, RAR — 1.5x multiplier for proactive correction; recurring identical violations cap Ac at 0.35; RESOLUTION_FRAUD audit trigger.
-Measures the institution's capacity to identify its own failures, correct
-them, and institutionalize reforms. Sub-metrics: Self-Correction Rate (SCR,
-with a \(1.5\times\) multiplier for proactive correction), Audit Compliance
-(AC), Complaint Resolution Rate (\(\mathrm{CRR_c}\), distinct from
-Efficiency CRR), and Remediation Action Rate (RAR). A pattern of recurring
-identical violations (3+ consecutive periods) caps \(Ac\) at 0.35. Complaints
-marked resolved without documented resolution trigger a
-\texttt{RESOLUTION\_FRAUD} flag and an audit of all complaint-resolution
-scores for the preceding 24 months.
+\subsection{Dimension 2: Consistency (\(\Phi_C\))}
+
+\[
+C = 0.30(1-\mathrm{OVI})+0.25\,\mathrm{PAR}+0.25(1-\mathrm{CDS})+0.20(1-\mathrm{DRR})
+\]
+
+\begin{center}
+\begin{tabular}{p{1.4cm}p{4cm}p{6.7cm}c}
+\toprule
+Code & Name & Definition and source basis & Wt. \\
+\midrule
+OVI & Outcome Variance Index & Variance across substantively similar cases; case databases, FOIA records, dockets; inverted. & .30 \\
+PAR & Precedent Adherence Rate & Current decisions aligned with prior analogous decisions. & .25 \\
+CDS & Cross-Case Disparity Score & Outcome differences between demographically distinct but legally identical populations; inverted. & .25 \\
+DRR & Decision Reversal Rate & Decisions overturned on appeal or review; appellate records; inverted. & .20 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The Case Similarity Engine uses semantic and structured matching while keeping
+demographics out of similarity factors, exposes rationale, and requires a
+30-case cluster. A protected-class disparity above 15\% creates an equity
+cross-flag. Consent decrees remain low-consistency markers until a five-year
+clean record; selective retroactive policy application is penalized.
+
+\subsection{Dimension 3: Transparency (\(\Phi_T\))}
+
+\[
+T = 0.28\,\mathrm{RDR}+0.25\,\mathrm{RTI}+0.27\,\mathrm{FCR}+0.20\,\mathrm{PAX}
+\]
+
+\begin{center}
+\begin{tabular}{p{1.4cm}p{4cm}p{6.7cm}c}
+\toprule
+Code & Name & Definition and source basis & Wt. \\
+\midrule
+RDR & Record Disclosure Rate & Requested records disclosed without contested redactions; FOIA and public-record databases. & .28 \\
+RTI & Response Time Index & \(\min(\mathrm{deadline}/\mathrm{median\ actual},1)\). & .25 \\
+FCR & Public Records Compliance Rate & Requests fulfilled without appeal or litigation; compelled disclosures are non-compliant. & .27 \\
+PAX & Proactive Access Index & Voluntary publication of rationales, changes, and statistics benchmarked to peers. & .20 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The Transparency Crawler verifies availability without login, payment, or
+special permission and recrawls every 30 days. A litigation loss sets FCR to
+zero for the contested category for 24 months. Receipt, not acknowledgment,
+starts the response clock. Exemption-abuse patterns over 25\% appeal overturn
+rate reduce RDR by 0.15; contempt for disclosure within five years caps
+\(T\) at 0.40.
+
+\subsection{Dimension 4: Efficiency (\(\Phi_E\))}
+
+\[
+E = 0.28\,\mathrm{CRR}+0.25\,\mathrm{PTS}+0.22\,\mathrm{RUI}+0.25\,\mathrm{BCR}
+\]
+
+\begin{center}
+\begin{tabular}{p{1.4cm}p{4cm}p{6.7cm}c}
+\toprule
+Code & Name & Definition and source basis & Wt. \\
+\midrule
+CRR & Case Resolution Rate & Cases resolved within statutory or regulatory time limit; undocumented administrative closures excluded. & .28 \\
+PTS & Processing Time Score & \(\min(\mathrm{benchmark\ median}/\mathrm{agency\ median},1)\). & .25 \\
+RUI & Resource Utilization Index & Mandate-advancing outcomes per operating budget, net of litigation costs. & .22 \\
+BCR & Backlog Clearance Rate & Year-over-year backlog trajectory: growing below .50, stable .50, reducing above .50. & .25 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Peer benchmarking is mandatory; a peer class below five members produces
+\texttt{PEER\_CLASS\_INSUFFICIENT}. A budget cut above 20\% creates a documented
+0.10 one-year grace adjustment and degrading performance despite stable or
+increasing budgets creates a management-efficiency flag.
+
+\subsection{Dimension 5: Equity (\(\Phi_Q\))}
+
+\[
+Q = 0.30(1-\mathrm{DDI})+0.23\,\mathrm{GAS}+0.27\,\mathrm{PCOR}+0.20\,\mathrm{ASR}
+\]
+
+\begin{center}
+\begin{tabular}{p{1.4cm}p{4cm}p{6.7cm}c}
+\toprule
+Code & Name & Definition and source basis & Wt. \\
+\midrule
+DDI & Demographic Disparity Index & Outcome-rate differences across protected groups; inverted. & .30 \\
+GAS & Geographic Access Score & Physical, digital, and language access across geography. & .23 \\
+PCOR & Protected Class Outcome Rate & Favorable outcomes relative to parity, controlling for legally relevant variables. & .27 \\
+ASR & Protected Class Appeals Success Rate & Protected-class complainants prevailing on appeal; high rates indicate erroneous adverse decisions. & .20 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The Equity Signal Extractor requires \(n=100\) per demographic cell, never
+imputes demographics, and flags statistical significance at \(p<0.05\). Hard
+floors override weighted averages: intentional discrimination within ten
+years gives \(Q_{\min}=0.15\), an active civil-rights consent decree gives
+\(Q_{\min}=0.25\), and a pattern-or-practice finding gives \(Q_{\min}=0.20\).
+Language access failure is access failure; Tier V equity triggers referral.
+
+\subsection{Dimension 6: Accountability (\(\Phi_{Ac}\))}
+
+\[
+Ac = 0.28\,\mathrm{SCR}+0.25\,\mathrm{AC}+0.22\,\mathrm{CRR_c}+0.25\,\mathrm{RAR}
+\]
+
+\begin{center}
+\begin{tabular}{p{1.4cm}p{4cm}p{6.7cm}c}
+\toprule
+Code & Name & Definition and source basis & Wt. \\
+\midrule
+SCR & Self-Correction Rate & Self-initiated correction before external compulsion; proactive multiplier 1.5. & .28 \\
+AC & Audit Compliance & Audit recommendations implemented on schedule. & .25 \\
+CRR$_c$ & Complaint Resolution Rate & Complaints resolved with documented resolution; distinct from Efficiency CRR. & .22 \\
+RAR & Remediation Action Rate & Required remediation completed on schedule and verified. & .25 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The Self-Audit Intelligence Agent detects correction quality, while the
+Accountability Enforcement Agent applies a 1.5 multiplier only to proactive
+correction and caps \(Ac\) at 0.35 after three consecutive periods of the same
+violation. Resolution claims without documentation trigger
+\texttt{RESOLUTION\_FRAUD} and a 24-month audit.

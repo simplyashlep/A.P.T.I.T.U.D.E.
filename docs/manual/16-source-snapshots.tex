@@ -1,0 +1,34 @@
+\section{Immutable Source Snapshot Layer}
+
+Before a source record is transformed into a metric observation, the system
+preserves the retrieved response as an immutable source snapshot. This is a
+vertical-neutral storage contract: the same structure can contain an SEC
+filing for an NCRA, an inspection report for a corrections department, or a
+court decision for a judiciary profile.
+
+\begin{lstlisting}
+entity_id + source_type + source_record_id
+  -> retrieved payload
+  -> canonical content hash
+  -> immutable snapshot
+  -> parser/versioned observation
+\end{lstlisting}
+
+Each snapshot records the entity, source type, source identifier, retrieval
+time, optional source URL, parser version, payload, and content hash. The
+content hash permits integrity verification and prevents a later source
+change from silently altering a previously computed result. A parser may
+produce a new observation version, but it must not mutate the original
+snapshot.
+
+Snapshot integrity is checked before selection for downstream processing.
+Invalid or tampered snapshots are excluded rather than silently repaired.
+This establishes the reproducibility boundary required by the Beacon baseline:
+auditers can re-run a parser against the preserved source response and compare
+both the source hash and the resulting observation.
+
+The current implementation provides deterministic in-memory contracts. Durable
+object storage, retention policy, encrypted storage for restricted material,
+source-specific fetch adapters, and signed external manifests remain later
+infrastructure work. No snapshot by itself constitutes a validated metric or
+published Alignment Score.

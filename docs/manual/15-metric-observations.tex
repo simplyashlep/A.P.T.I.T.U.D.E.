@@ -1,0 +1,32 @@
+\section{Metric Observation Layer}
+
+The metric observation layer is the next executable bridge between source
+records and Alignment Scores. It is deliberately vertical-neutral: an
+observation identifies the entity, metric, raw value, normalization bounds,
+source, citation, date, jurisdiction, sample size, and confidence. The
+vertical registry supplies the metric direction, weight, and minimum sample
+requirements.
+
+\begin{lstlisting}
+raw source record
+  -> metric observation with provenance
+  -> bounded normalization (inverse metrics are reversed)
+  -> sample sufficiency check
+  -> confidence-weighted metric aggregate
+  -> registry-weighted dimension value
+  -> universal Alignment Score contract
+\end{lstlisting}
+
+The same machinery can process an NCRA observation such as \texttt{LMCR} and
+a corrections observation such as \texttt{DPA}; only the vertical registry,
+source mapping, and evidence interpretation differ. A first use case does not
+become a system-wide assumption.
+
+Observations that do not meet a metric's minimum sample requirement are
+retained for audit and shown as insufficient, but are excluded from the
+metric aggregate. Every observation retains source provenance so that a score
+can be reproduced from the underlying record set.
+
+This layer does not yet fetch live sources or persist snapshots. Those remain
+separate ingestion and storage concerns and must be completed before an
+empirical profile is published.

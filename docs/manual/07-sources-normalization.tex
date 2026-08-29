@@ -1,28 +1,72 @@
-\section{Source Credibility and Normalization Bounds}
+\section{Source Credibility and Normalization}
 
-\subsection{Credibility Hierarchy}
+\subsection{Architecture Independence}
 
-Conflicting quanta from multiple sources are resolved by tier weight:
+The Beacon scoring system is independent of individual user activity. Scores
+are derived from public records, regulatory filings, court decisions, and
+agency-generated data. Individual submissions are supplementary signals and
+never the sole basis for institutional validity. Unless corroborated by a
+public record, they contribute no more than 5\% of a dimensional score.
+
+\subsection{Data Source Credibility Hierarchy}
+
+Conflicting observations are resolved through the following tiers:
 
 \begin{center}
-\begin{tabular}{ccp{10cm}}
+\begin{tabular}{cp{2cm}p{9.2cm}}
 \toprule
 Tier & Weight & Source description \\
 \midrule
-1 & 1.00 & Court orders, consent decrees, regulatory enforcement actions \\
-2 & 0.90 & IG reports, GAO findings, examination summaries, sworn testimony \\
-3 & 0.75 & Aggregated complaint databases, formal complaints \\
-4 & 0.50 & Self-reported public filings (cross-validation required) \\
-5 & 0.20 & Third-party research and reporting (corroboration required) \\
-6 & 0.05 & Individual submissions --- supplementary only \\
+1 & 1.00 & Court orders, consent decrees, and signed regulatory enforcement actions. \\
+2 & 0.90 & Inspector-general and GAO reports, examination summaries, and sworn congressional testimony. \\
+3 & 0.75 & Aggregated CFPB complaints, FTC Consumer Sentinel, and formal state complaints. \\
+4 & 0.50 & Self-reported SEC or public filings; cross-validation required. \\
+5 & 0.20 & Academic research, third-party studies, and news reporting; corroboration required. \\
+6 & 0.05 & Individual platform submissions; supplementary only, never primary evidence. \\
 \bottomrule
 \end{tabular}
 \end{center}
 
-\subsection{Normalization Bounds}
+MongoDB may serve as a landing zone for heterogeneous documents before
+normalization into canonical relational evidence. Graph relationships may be
+materialized separately; no storage technology is required by the universal
+contract.
 
-Normalization bounds are configured per entity class in the metric registry
-(e.g., the NCRA peer class bounds table from \texttt{Bias Beacon
-Documentation.tex} for credit reporting agencies). Every bound records its
-calibration rationale. Values are clamped to \([0,1]\) --- no extrapolation
+\subsection{Normalization}
+
+For a positive metric:
+\[
+D_{norm}=\mathrm{clamp}_{[0,1]}\left(\frac{D_{raw}-D_{min}}{D_{max}-D_{min}}\right).
+\]
+For an inverse metric, the bounded result is subtracted from one. Bounds are
+versioned by profile and calibrated to a peer class. Extrapolation is not
 permitted.
+
+\subsection{NCRA Normalization Bounds}
+\label{sec:cra-bounds}
+
+The initial Nationwide Consumer Reporting Agency bounds are preserved from the
+Beacon baseline and must be empirically reviewed before publication:
+
+\begin{center}
+\begin{tabular}{p{2cm}p{3.3cm}ccp{6cm}}
+\toprule
+Code & Raw unit & Min & Max & Calibration rationale \\
+\midrule
+LMCR & percent actions compliant & 40\% & 100\% & Documented NCRA enforcement range. \\
+OVI & outcome variance & 0.00 & 0.35 & Above .35 indicates systematic failure. \\
+RDR & percent records disclosed & 30\% & 100\% & Documented disclosure range. \\
+RTI & deadline/actual ratio & .10 & 1.00 & Worst documented response ratio. \\
+FCR & percent without compelled action & 20\% & 100\% & Historical baseline. \\
+CRR & percent cases on time & 30\% & 100\% & Dispute-resolution timeliness range. \\
+DDI & disparity index & 0.00 & 0.50 & Above .50 triggers hard-floor review. \\
+SCR & percent self-initiated corrections & 0\% & 60\% & Conservative observed ceiling. \\
+AC & percent audit recommendations implemented & 20\% & 100\% & Historical audit range. \\
+CRR$_c$ & percent complaints resolved & 25\% & 95\% & Consumer-defined resolution range. \\
+RAR & percent remediation on schedule & 10\% & 100\% & Consent-order compliance range. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Bounds are not facts about an entity. They are explicit calibration parameters,
+subject to versioning, peer-class review, and reproducibility audit.

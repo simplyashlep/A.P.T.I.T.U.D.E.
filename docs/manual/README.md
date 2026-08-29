@@ -23,6 +23,8 @@ manual.
 | 12-ncra-profile | Detailed Beacon CRA baseline and Equifax pilot scope |
 | 13-corrections-profile | Department of Corrections validation profile |
 | 14-executable-registry | Versioned metric registries and cross-vertical validation |
+| 15-metric-observations | Registry-driven metric normalization and aggregation |
+| 16-source-snapshots | Immutable raw-source preservation and integrity verification |
 
 Terminology is locked: Alignment Score (never "Composite Score"), dimension
 scores, Alignment Status, entity, potential profile. The Beacon document is the

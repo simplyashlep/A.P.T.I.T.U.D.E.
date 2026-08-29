@@ -1,5 +1,8 @@
-%% Alignment.V1 — complete Beacon baseline plus additive Alignment layers
-%% The original supplied Beacon specification is preserved in full below.
+%% Beacon Scoring Engine — Six-Dimensional Sub-Metric Implementation Specification
+%% Aptitude Systems — Institutional Fidelity Field Theory, Volume II
+%% Version 1.0
+%% Companion to: Aptitudinal Alignment Quantum Manual v0.1
+
 \documentclass[a4paper,11pt]{article}
 \usepackage{fontspec}
 \setmainfont{Times New Roman}
@@ -41,7 +44,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[L]{\sffamily\small\color{navy}\textbf{APTITUDE SYSTEMS}}
-\fancyhead[R]{\sffamily\small\color{aptslate}Alignment.V1 — Complete Beacon Baseline}
+\fancyhead[R]{\sffamily\small\color{aptslate}Beacon Scoring Engine — Dimensional Specification v1.0}
 \fancyfoot[R]{\sffamily\small\color{aptslate}Page \thepage}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0pt}
@@ -52,33 +55,21 @@
 \newmdenv[linecolor=aptgreen,linewidth=1.5pt,backgroundcolor=aptgreen!5,leftmargin=0pt,rightmargin=0pt,innertopmargin=8pt,innerbottommargin=8pt,innerleftmargin=12pt,innerrightmargin=12pt]{agentbox}
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
-\title{{\sffamily\Huge\bfseries\color{navy} Aptitudinal Alignment}\\[0.5em]{\sffamily\Large\color{aptblue} Alignment.V1}\\[0.3em]{\sffamily\large\color{aptslate} Complete Beacon Scoring Engine Baseline plus Universal Brain Architecture}}
+\title{{\sffamily\Huge\bfseries\color{navy} Aptitude Systems}\\[0.5em]{\sffamily\Large\color{aptblue} Beacon Scoring Engine}\\[0.3em]{\sffamily\large\color{aptslate} Six-Dimensional Sub-Metric Implementation Specification}}
 \author{Aptitude Systems — Internal Documentation}
-\date{Version 1.0 \quad August 2026}
+\date{Version 1.0 \quad June 2026 \quad Classification: Internal}
 \begin{document}
 \setlength{\tabcolsep}{4pt}
 \maketitle
 \thispagestyle{empty}
-\begin{center}\textit{The complete Beacon specification is preserved first; newer Alignment layers are additive.}\end{center}
+\begin{center}
+\textit{Companion to: Aptitudinal Alignment Quantum Manual v0.1}\\
+\textit{Volumes I--VI, Institutional Fidelity Field Theory}
+\end{center}
+\vspace{1em}
 \tableofcontents
 \newpage
 
-% The complete Beacon body is maintained in the companion canonical source.
-\input{00-beacon-body}
+\input{00-beacon-body-original}
 
-% Additive universal brain and cross-vertical layers.
-\input{01-overview}
-\input{02-vocabulary}
-\input{03-evidence-foundation}
-\input{04-legal-intelligence}
-\input{05-alignment-scoring}
-\input{10-vertical-taxonomy}
-\input{11-vertical-profile-contract}
-\input{12-ncra-profile}
-\input{13-corrections-profile}
-\input{14-executable-registry}
-\input{15-metric-observations}
-\input{16-source-snapshots}
-\input{08-governance-reproducibility}
-\input{09-implementation-phases}
 \end{document}
